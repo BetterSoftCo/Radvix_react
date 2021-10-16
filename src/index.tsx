@@ -1,10 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {SplashPage} from "./views/pages/landing/splash_page";
+import {BrowserRouter} from "react-router-dom";
+import App from "./App";
+import "./styles/app.css";
 
 ReactDOM.render(
-	<React.StrictMode>
-		<SplashPage/>
-	</React.StrictMode>,
+	<BrowserRouter>
+		<App/>
+	</BrowserRouter>,
+
 	document.getElementById('root')
 );
