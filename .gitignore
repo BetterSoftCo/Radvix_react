@@ -14,3 +14,5 @@ yarn-error.log*
 .idea
 /.idea
 .idea/
+src/react-app-env.d.ts
+src/react-app-env.d.ts/
