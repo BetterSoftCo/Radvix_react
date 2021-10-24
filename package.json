@@ -1,6 +1,9 @@
 {
   "name": "radvix_react",
   "version": "0.1.0",
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "private": true,
   "dependencies": {
     "bar": "file:../../../NodeJS/utilities_js",
