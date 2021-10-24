@@ -1,0 +1,35 @@
+.parent-sidebar {
+  background: $black-color;
+  overflow-y: scroll;
+  transition: all 700ms;
+  padding: 1rem;
+  height: 91vh;
+  direction: rtl;
+
+  ul {
+    list-style: none;
+    padding: 0.5rem 0.5rem;
+    color: #ffffff;
+    text-align: center;
+    a.selected li{
+      border-bottom: 0.5px solid #8EE1FF;
+    }
+    li {
+      border-bottom: 0.5px solid $background-color;
+      margin-top: 0.5rem;
+    }
+  }
+}
+.parent-sidebar::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #f5f5f5;
+}
+
+.parent-sidebar::-webkit-scrollbar {
+  width: 6px;
+  background-color: #f5f5f5;
+}
+
+.parent-sidebar::-webkit-scrollbar-thumb {
+  background-color: #000000;
+}

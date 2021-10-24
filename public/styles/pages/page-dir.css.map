@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "page-dir.scss",
+        "_dashbord.scss"
+    ],
+    "names": [],
+    "file": "page-dir.css"
+}
