@@ -1,0 +1,32 @@
+.righ-section {
+  .top {
+    min-height: 137px;
+    background-color: $background-color;
+    margin: 2rem;
+    border-radius: 15px;
+  }
+  .bottom {
+    min-height: 246px;
+    background-color: $black-color;
+    margin: 2rem;
+    border-radius: 15px;
+    .massages{
+        background-color: #343434;
+        border-radius: 15px;
+        margin-top: 1rem;
+        
+        ul{
+            padding-left: 0;
+            list-style: none;
+            margin-bottom: 0;
+            li{
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                color: #ffff;
+                padding: .25rem;
+            }
+        }
+    }
+  }
+}
