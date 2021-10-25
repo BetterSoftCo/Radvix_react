@@ -11,7 +11,6 @@ export class SplashPage extends React.Component {
       { text: "hossein", id: 2 },
     ];
     let handelSelect = (e: any) => {
-      console.log("ssssss", e.target.value);
     };
     return (
       <Fragment>

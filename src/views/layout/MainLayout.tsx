@@ -9,12 +9,12 @@ export const MainLayout: React.FC = (props) => {
       <Header></Header>
       <div className="main">
         <div className="row">
-          <div className="col-2 col-md-1 ">
+          <div className="col-3 col-md-2 col-lg-1 ">
             <div className="parent-sidebar">
               <Sidebar></Sidebar>
             </div>
           </div>
-          <div className="col-7 col-md-11 col-xl-8">{props.children}</div>
+          <div className="col-9 col-md-10 col-lg-11 col-xl-8">{props.children}</div>
           <div className="col-xl-3">
             <RightSection></RightSection>
           </div>
