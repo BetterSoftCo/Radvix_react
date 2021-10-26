@@ -12,13 +12,13 @@ export const TableComponent: React.FC<TableComponentProp> = ({
       <table className="table table-striped table-light">
         <thead>
           <tr>
-            {Heading.map((index,head) => (
+            {Heading.map((head,index) => (
               <th scope="col" key={index}>{head}</th>
             ))}
           </tr>
         </thead>
         <tbody>
-          {Items.map((index,head) => (
+          {Items.map((head,index) => (
             <tr key={index}>
               <td>Mark</td>
               <td>Otto</td>
