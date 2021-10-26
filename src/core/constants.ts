@@ -4,5 +4,6 @@ export class AppConstants {
 
 export const routes = {
 	splash: '/',
-	dashboard: '/dashboard'
+	dashboard: '/dashboard',
+	login:'/login'
 };

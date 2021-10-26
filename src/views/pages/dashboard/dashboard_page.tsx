@@ -4,7 +4,9 @@ import { InputIcon } from "../../components/searchBox";
 import { TableComponent } from "../../components/Table";
 import ReactPaginate from "react-paginate";
 import { CircleIcon, ThemeCircleIcon } from "../../components/CircleIcon";
-import { AcordienTable } from "./../../components/TreeDataTable";
+import { AcordienTable } from "./RecentTasks";
+import { AcordienTableData } from "./RecentData";
+import { store } from "../../../data/Store";
 export class DashboardPage extends React.Component {
   handlePageClick = (data: any) => {};
   mockData = [
@@ -41,6 +43,8 @@ export class DashboardPage extends React.Component {
       height: 30,
     },
   ];
+  RoleUser = store.getState();
+ 
   render() {
     return (
       <div className="container-fluid dashbord">
@@ -206,7 +210,7 @@ export class DashboardPage extends React.Component {
                   ></InputComponent>
                 </div>
               </div>
-              <AcordienTable></AcordienTable>
+              <AcordienTable role={this.RoleUser}></AcordienTable>
               <div className="d-flex justify-content-center align-items-center my-3">
                 <ReactPaginate
                   previousLabel={
@@ -268,7 +272,8 @@ export class DashboardPage extends React.Component {
                   ></InputComponent>
                 </div>
               </div>
-              <AcordienTable></AcordienTable>
+
+              <AcordienTableData></AcordienTableData>
               <div className="d-flex justify-content-center align-items-center my-3">
                 <ReactPaginate
                   previousLabel={
