@@ -11,11 +11,12 @@ interface CircleIconInterface {
   height?: string;
   fontSize?: string;
   className?: string;
+  onClick?:(e:any)=>void;
+  border?:string
 }
 export const CircleIcon: React.FC<CircleIconInterface> = (
   props,
 ) => {
-  console.log(props);
   
   let Theme: string;
   if (props.type === ThemeCircleIcon.dark) {
@@ -38,7 +39,9 @@ export const CircleIcon: React.FC<CircleIconInterface> = (
         width:props.width,
         height:props.height,
         fontSize:props.fontSize,
+        border:props.border
       }}
+      onClick={props.onClick}
     >
       {props.children}
     </span>

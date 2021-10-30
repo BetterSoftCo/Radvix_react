@@ -1,10 +1,21 @@
 .InputComponentStyle {
   border-radius: 9px;
-  border:none;
+  border-top-right-radius: 9px;
+  border-bottom-right-radius: 9px;
+  border: none;
 }
 
-.InputSelectStyle{
+.InputSelectStyle {
   border-radius: 9px;
-  border:none;
-  background-image: url('./../../Images/component/down-arrow-black-circular-button.svg');
+  border: none;
+  background-image: url("./../../Images/component/down-arrow-black-circular-button.svg");
+}
+.Icon-inside {
+  position: relative;
+  span.icon {
+    position: absolute;
+    right: 10px;
+    top: 15%;
+    color: #30a3f1;
+  }
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment, ReactNode } from "react";
 
 export enum InputType {
   text,
@@ -13,12 +13,13 @@ interface InputsProps {
   backgroundColor?: string;
   className?: string;
   borderRadius?: string;
-  onChange?: (e:any)=>void;
+  onChange?: (e: any) => void;
   placeholder?: string;
   type: InputType;
   items?: any[];
   TextItem?: string;
   ValueItem?: string;
+  
 }
 export const InputComponent: React.FC<InputsProps> = ({
   width,
@@ -49,6 +50,8 @@ export const InputComponent: React.FC<InputsProps> = ({
   } else {
     IsclassName = "";
   }
+ 
+  
 
   return type === InputType.text ? (
     <input
@@ -56,8 +59,13 @@ export const InputComponent: React.FC<InputsProps> = ({
       style={styles}
       onChange={onChange}
       placeholder={placeholder}
+
       className={`${
-        IsclassName + " " + "InputComponentStyle" + " " + "form-control"
+        IsclassName +
+        " " +
+        "InputComponentStyle" +
+        " " +
+        "form-control"
       }`}
     />
   ) : (

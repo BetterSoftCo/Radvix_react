@@ -1,0 +1,28 @@
+.dashbord {
+  margin-top: 1rem;
+  .overviwe {
+    padding: 2rem;
+    background-color: $BackgroundColor;
+    border-radius: 15px;
+    .overviwe-item {
+      .avatar {
+        margin: 0.5rem;
+      }
+    }
+  }
+}
+.pagination {
+  li {
+    margin: 0.3rem;
+  }
+  li.active {
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(173, 173, 173);
+    width: 24px;
+    height: 24px;
+    color: white;
+  }
+}

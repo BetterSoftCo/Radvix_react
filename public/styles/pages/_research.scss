@@ -1,0 +1,214 @@
+.new-research {
+}
+.box-content {
+  background-color: $BackgroundColor;
+  color: $black-color;
+  border-radius: 15px;
+  margin: 2rem 0rem;
+  .b-title {
+    margin-left: 1rem;
+    .backPage {
+      background-image: url("./../../Images/pages/Toggle Icon.png");
+      display: block;
+      width: 28px;
+      height: 28px;
+      margin-right: 1rem;
+      cursor: pointer;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      @media (max-width: 575.98px) {
+        width: 90px;
+        height: 48px;
+      }
+    }
+  }
+  .left {
+    position: relative;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    &::before {
+      content: "";
+      background-color: #cbcbcb;
+      position: absolute;
+      width: 1px;
+      height: 100%;
+      top: 10px;
+      right: -5px;
+      display: block;
+    }
+  }
+  .right {
+    position: relative;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .item {
+    margin-top: 1rem;
+    .label {
+      font-size: 1.1rem;
+      color: $black-color;
+      margin-right: 1rem;
+      .CircleIcon {
+        margin-left: 1rem;
+      }
+    }
+    input[type="text"],
+    input[type="select"] {
+      margin-top: 0.3rem;
+      border: 1px solid #adadad;
+    }
+  }
+  .react-datepicker__input-container {
+    position: relative;
+    input {
+      border-radius: 9px;
+      display: block;
+      width: 100%;
+      padding: 0.375rem 0.75rem;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #212529;
+      background-color: #fff;
+      background-clip: padding-box;
+      border: 1 px solid #ced4da;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+      position: relative;
+    }
+    &::after {
+      color: #000;
+      content: "\f073";
+      font-family: "Font Awesome 5 Free";
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      position: absolute;
+      right: 10px;
+      top: 26%;
+    }
+  }
+  .form-check {
+    input[type="radio"] {
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      outline: none;
+      &:focus {
+        box-shadow: none;
+      }
+      &:checked {
+        background: $black-color;
+        border: 2px solid #ffff;
+      }
+    }
+  }
+  .btn-group {
+    width: 100%;
+    margin-top: 1rem;
+    z-index: 0;
+    label.btn {
+      line-height: 0.5;
+      border-radius: 15px;
+      border-top-right-radius: 15px !important;
+      border-bottom-right-radius: 15px !important;
+      @media (max-width: 575.98px) {
+        line-height: 1rem;
+      }
+    }
+  }
+  .fileUploadBox {
+    min-height: 105px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 3px dashed #adadad;
+    margin-top: 1rem;
+  }
+  .box-alert {
+    min-height: 115px;
+    border-radius: 9px;
+    background-color: #c6c6c6;
+    padding: 2rem;
+    text-align: center;
+  }
+  .tabel-info {
+    .t-title {
+      background-color: #f5f5f5;
+      padding: 1rem;
+    }
+    .t-desc {
+      background-color: #ffffff;
+      padding: 0.5rem;
+    }
+    .border-t-r {
+      border-top-right-radius: 15px;
+    }
+    .border-t-l {
+      border-top-left-radius: 15px;
+    }
+    .border-b-l {
+      border-bottom-left-radius: 15px;
+    }
+    .border-b-r {
+      border-bottom-right-radius: 15px;
+    }
+  }
+  .teams {
+    background-color: #f5f5f5;
+    padding: 1rem;
+    border-radius: 15px;
+    .team-list {
+      max-height: 220px;
+      overflow-y: scroll;
+      background-color: #c7c7c7;
+      border-radius: 15px;
+      padding: 1rem 2rem;
+      border-bottom: 2px solid #a0a0a0;
+      border-top: 2px solid #a0a0a0;
+      .IconTextVerticalLight {
+        border-bottom: 1px solid #d9d9d9;
+      }
+      .avatar {
+        width: 50px;
+        height: 50px;
+        margin-right: 1rem;
+      }
+    }
+  }
+  .file-list {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  .tags {
+    button {
+      margin-bottom: 1rem;
+    }
+  }
+}
+.team-list::-webkit-scrollbar {
+  width: 20px;
+}
+
+.team-list::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.team-list::-webkit-scrollbar-thumb {
+  background-color: #5d5d5d;
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+
+.team-list::-webkit-scrollbar-thumb:hover {
+  background-color: #a0a0a0;
+}
