@@ -5,5 +5,9 @@ export class AppConstants {
 export const routes = {
 	splash: '/',
 	dashboard: '/dashboard',
-	login:'/login'
+	login:'/login',
+	research:'/dashboard/research/',
+	new_research:'/dashboard/research/new/',
+	profile_research:'/dashboard/research/profile/',
+	edit_research:'/dashboard/research/edit/'
 };

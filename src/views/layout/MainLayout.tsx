@@ -17,12 +17,12 @@ class MainLayout extends React.Component<IMainLayout & RouteComponentProps> {
             <Header></Header>
             <div className="main">
               <div className="row">
-                <div className="col-3 col-md-2 col-lg-1 ">
+                <div className="col-12 col-md-2 col-lg-1 ">
                   <div className="parent-sidebar">
                     <Sidebar></Sidebar>
                   </div>
                 </div>
-                <div className="col-9 col-md-10 col-lg-11 col-xl-8">
+                <div className="col-12 col-md-10 col-lg-11 col-xl-8">
                   {this.props.children}
                 </div>
                 <div className="col-xl-3">
