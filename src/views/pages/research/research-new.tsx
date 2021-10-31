@@ -1,10 +1,7 @@
 import React from "react";
-import ReactPaginate from "react-paginate";
 import { store } from "../../../data/Store";
 import { CircleIcon, ThemeCircleIcon } from "../../components/CircleIcon";
 import { InputComponent, InputType } from "../../components/inputs";
-import { InputIcon } from "../../components/searchBox";
-import { AcordienTableResearch } from "./component/AcordienTableResearch";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { MainButton, MainButtonType } from "../../components/button";

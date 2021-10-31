@@ -5,15 +5,18 @@ import { Route, Switch } from "react-router";
 import { SplashPage } from "./views/pages/landing/splash_page";
 import { routes } from "./core/constants";
 import { DashboardPage } from "./views/pages/dashboard/dashboard_page";
-import MainLayout  from "./views/layout/MainLayout";
+import MainLayout from "./views/layout/MainLayout";
 import { Provider } from "react-redux";
 import { store } from "./data/Store/index";
 import { LoginPage } from "./views/pages/login/login";
 import { ResearchPage } from "./views/pages/research/research_page";
 import { ResearchPageNew } from "./views/pages/research/research-new";
 import { ResearchPageProfile } from "./views/pages/research/research-profile";
-import { ResearchPageEdit } from "./views/pages/research/research-editt";
-
+import  ResearchPageEdit  from "./views/pages/research/research-editt";
+import ProtectedRoute from "./router/ProtectedRoute";
+import { UserRoles } from "./core/utils";
+import 'react-toastify/dist/ReactToastify.css';
+const RoleUser: UserRoles = store.getState();
 
 ReactDOM.render(
   <Provider store={store}>
@@ -25,8 +28,27 @@ ReactDOM.render(
           <Route component={LoginPage} path={routes.login} exact />
           <Route component={ResearchPage} path={routes.research} exact />
           <Route component={ResearchPageNew} path={routes.new_research} exact />
-          <Route component={ResearchPageProfile} path={routes.profile_research} exact />
-          <Route component={ResearchPageEdit} path={routes.edit_research} exact />
+          <Route
+            component={ResearchPageProfile}
+            path={routes.profile_research}
+            exact
+          />
+          {/* <Route
+            component={ResearchPageEdit}
+            path={routes.edit_research}
+            exact
+          /> */}
+          <ProtectedRoute
+            isAuthenticated={
+              RoleUser === UserRoles.level1 || RoleUser === UserRoles.level2
+                ? true
+                : false
+            }
+            authenticationPath={routes.research}
+            exact={true}
+            path={routes.edit_research}
+            component={ResearchPageEdit}
+          />
         </Switch>
       </MainLayout>
     </BrowserRouter>

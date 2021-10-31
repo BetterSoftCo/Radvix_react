@@ -1,9 +1,9 @@
 import React, { Fragment, ReactNode } from "react";
 import { RouteComponentProps, withRouter } from "react-router";
-import { routes } from "../../core/constants";
 import { Header } from "./Header";
 import { RightSection } from "./RightSection";
 import { Sidebar } from "./sidebar";
+import { ToastContainer } from "react-toastify";
 
 interface IMainLayout {
   children: ReactNode;
@@ -32,10 +32,14 @@ class MainLayout extends React.Component<IMainLayout & RouteComponentProps> {
             </div>
           </Fragment>
         ) : (
-          <div className="container-fluid justify-content-center align-items-center d-flex" style={{height:'100vh'}} >
+          <div
+            className="container-fluid justify-content-center align-items-center d-flex"
+            style={{ height: "100vh" }}
+          >
             {this.props.children}
           </div>
         )}
+        <ToastContainer />
       </Fragment>
     );
   }

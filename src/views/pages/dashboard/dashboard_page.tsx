@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from "react";
 import { InputComponent, InputType } from "../../components/inputs";
 import { InputIcon } from "../../components/searchBox";

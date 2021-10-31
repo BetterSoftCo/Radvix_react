@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/alt-text */
 import React from "react";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { MainButton, MainButtonType } from "../components/button";

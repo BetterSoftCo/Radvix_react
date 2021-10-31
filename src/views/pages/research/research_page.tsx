@@ -4,7 +4,7 @@ import { store } from "../../../data/Store";
 import { CircleIcon, ThemeCircleIcon } from "../../components/CircleIcon";
 import { InputComponent, InputType } from "../../components/inputs";
 import { InputIcon } from "../../components/searchBox";
-import { AcordienTableResearch } from "./component/AcordienTableResearch";
+import  AcordienTableResearch  from "./component/AcordienTableResearch";
 
 export class ResearchPage extends React.Component {
   RoleUser = store.getState();
@@ -19,7 +19,7 @@ export class ResearchPage extends React.Component {
                 <div className="left d-flex w-50 align-items-center">
                   <h6 style={{ width: "35%" }}>Research List</h6>
                   <InputIcon
-                    chilren={<img src="/images/pages/Search Box Icon.svg" />}
+                    chilren={<img src="/images/pages/Search Box Icon.svg" alt=""/>}
                     width="100%"
                     height="44px"
                     placeholder="Search..."

@@ -1,9 +1,8 @@
-import { Reducer } from "react";
 import { UserRoles } from "../../../core/utils";
 import { SET_USER_ROLE } from "../actions/ActionsType";
 import { UserRoleAction, UserRoleState } from "../actions/User";
 
-const UserRole: UserRoles = 2;
+const UserRole: UserRoles = UserRoles.level3;
 
 const reducer = (
   state: UserRoles = UserRole,

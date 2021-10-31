@@ -1,17 +1,16 @@
 import React from "react";
-import ReactPaginate from "react-paginate";
 import { store } from "../../../data/Store";
 import { CircleIcon, ThemeCircleIcon } from "../../components/CircleIcon";
 import { InputComponent, InputType } from "../../components/inputs";
-import { InputIcon } from "../../components/searchBox";
-import { AcordienTableResearch } from "./component/AcordienTableResearch";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { MainButton, MainButtonType } from "../../components/button";
 import Dropzone from "react-dropzone";
 import { IconTextRow } from "../../components/IconTextRow";
 import { Theme } from "../../../core/utils";
-export class ResearchPageEdit extends React.Component {
+import { RouteComponentProps, withRouter } from "react-router";
+import { routes } from "../../../core/constants";
+class ResearchPageEdit extends React.Component<RouteComponentProps> {
   RoleUser = store.getState();
   date = new Date();
   handelChangeDate(params: any): void {
@@ -35,7 +34,13 @@ export class ResearchPageEdit extends React.Component {
         <div className="row"></div>
         <div className="col-12 box-content p-3">
           <h5 className="b-title d-flex">
-            <span className="backPage"></span> Create A New Research Project
+            <span
+              className="backPage"
+              onClick={() => {
+                this.props.history.push(routes.research)
+              }}
+            ></span>{" "}
+            Create A New Research Project
           </h5>
           <div className="form row">
             <div className="col-md-6 left">
@@ -464,6 +469,7 @@ export class ResearchPageEdit extends React.Component {
                     <img
                       src="/Images/pages/Team Menu Icon.svg"
                       className="mx-2"
+                      alt=""
                     />
                   }
                 ></IconTextRow>
@@ -647,3 +653,4 @@ export class ResearchPageEdit extends React.Component {
     );
   }
 }
+export default withRouter(ResearchPageEdit);
