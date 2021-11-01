@@ -1,11 +1,11 @@
 import React from "react";
-import { store } from "../../../data/Store";
-import { CircleIcon, ThemeCircleIcon } from "../../components/CircleIcon";
+import { store } from "../../../data/store";
+import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import "react-datepicker/dist/react-datepicker.css";
 import { MainButton, MainButtonType } from "../../components/button";
-import { IconTextRow } from "../../components/IconTextRow";
+import { IconTextRow } from "../../components/icon_text_horizontal";
 import { Theme } from "../../../core/utils";
-export class ResearchPageProfile extends React.Component {
+export class LaboratoryPageProfile extends React.Component {
   RoleUser = store.getState();
 
   render() {
@@ -15,8 +15,7 @@ export class ResearchPageProfile extends React.Component {
         <div className="col-12 box-content p-3">
           <div className="d-flex justify-content-between align-items-center">
             <h5 className="b-title d-flex align-items-center">
-              <span className="backPage"></span>{" "}
-              {"Research List > Research Profile"}
+              <span className="backPage"></span> {"Lab Profile"}
               <CircleIcon
                 width="22px"
                 height="22px"
@@ -25,16 +24,6 @@ export class ResearchPageProfile extends React.Component {
                 fontSize="10px"
                 color="#ffff"
                 className="mx-4"
-              >
-                <i className="fas fa-edit"></i>
-              </CircleIcon>
-              <CircleIcon
-                width="22px"
-                height="22px"
-                type={ThemeCircleIcon.dark}
-                backgroundColor="#474747"
-                fontSize="10px"
-                color="#ffff"
               >
                 <i className="fas fa-history"></i>
               </CircleIcon>
@@ -47,61 +36,52 @@ export class ResearchPageProfile extends React.Component {
             ></MainButton>
           </div>
           <div className="Studying p-4 my-2">
-            <h3 className="px-5 text-center">
-              Studying The Effects Of Freeze Thaw On Durability Of Concrete Made
-              From Recycled Aggregate
-            </h3>
+            <h3 className="px-5 text-center">Structural And Materials Lab</h3>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
               enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.{" "}
+              nisi ut aliquip ex ea commodo consequat.
             </p>
           </div>
           <div className="row">
             <div className="col-md-6  tabel-info ">
               <div className="row border-bottom ">
-                <h6 className="col-4 t-title mb-0 border-t-l">Priority</h6>
-                <div className="col-8 t-desc border-t-r">
-                  <MainButton
-                    children="High Priority"
-                    type={MainButtonType.dark}
-                    borderRadius="24px"
-                    fontSize="14px"
-                    backgroundColor="#096BFF"
-                  ></MainButton>
-                </div>
+                <h6 className="col-4 t-title mb-0 border-t-l">Category</h6>
+                <div className="col-8 t-desc border-t-r">Material</div>
               </div>
               <div className="row border-bottom">
-                <h6 className="col-4 t-title mb-0">Created by</h6>
-                <div className="col-8 t-desc">N. Hosseinzadeh</div>
-              </div>
-              <div className="row border-bottom">
-                <h6 className="col-4 t-title mb-0">Start - Deadline</h6>
-                <div className="col-8 t-desc">07/10/2021 - 04/12/2022</div>
-              </div>
-              <div className="row border-bottom">
-                <h6 className="col-4 t-title mb-0">Date Completed</h6>
+                <h6 className="col-4 t-title mb-0">Lab Manager(s)</h6>
                 <div className="col-8 t-desc">
-                  {" "}
+                  <ul>
+                    <li>N. Hosseinzadeh</li>
+                    <li>N. Hosseinzadeh</li>
+                    <li>N. Hosseinzadeh</li>
+                  </ul>
+                </div>
+              </div>
+              <div className="row border-bottom">
+                <h6 className="col-4 t-title mb-0">Website</h6>
+                <div className="col-8 t-desc">
                   <MainButton
-                    children="On Going"
+                    children="https://drive.google.com/file/234234"
                     type={MainButtonType.dark}
                     borderRadius="24px"
                     fontSize="14px"
-                    backgroundColor="#8EE1FF"
-                  ></MainButton>
-                  <MainButton
-                    children="Delayed"
-                    type={MainButtonType.dark}
-                    borderRadius="24px"
-                    fontSize="14px"
-                    backgroundColor="#FE861F"
+                    backgroundColor="#F5F5F5"
+                    color="#096BFF"
                   ></MainButton>
                 </div>
               </div>
               <div className="row border-bottom">
-                <h6 className="col-4 t-title mb-0 border-b-l">Attachments</h6>
+                <h6 className="col-4 t-title mb-0">Address</h6>
+                <div className="col-8 t-desc">
+                  Beshiktash Institute of Tech 9863 Greystone Street Upland, CA
+                  91784 +1 (235) 123 4567
+                </div>
+              </div>
+              <div className="row border-bottom">
+                <h6 className="col-4 t-title mb-0 border-b-l">Protocols</h6>
                 <div className="col-8 t-desc border-b-r">
                   {" "}
                   <ul className="file-list">
@@ -145,100 +125,7 @@ export class ResearchPageProfile extends React.Component {
               </div>
             </div>
             <div className="col-md-6">
-              <div className="teams mb-3">
-                <IconTextRow
-                  theme={Theme.dark}
-                  text="Teams (Members)"
-                  children={
-                    <img
-                      src="/Images/pages/Team Menu Icon.svg"
-                      className="mx-2"
-                      alt=""
-                    />
-                  }
-                ></IconTextRow>
-                <div className="tags p-3">
-                  <MainButton
-                    children="ACCESSLab Team"
-                    type={MainButtonType.light}
-                    borderRadius="24px"
-                    fontSize="14px"
-                    className="px-3"
-                  ></MainButton>
-                  <MainButton
-                    children="ACCESSLab Team"
-                    type={MainButtonType.light}
-                    borderRadius="24px"
-                    fontSize="14px"
-                    className="px-3"
-                  ></MainButton>
-                  <MainButton
-                    children="ACCESSLab Team"
-                    type={MainButtonType.light}
-                    borderRadius="24px"
-                    fontSize="14px"
-                    className="px-3"
-                  ></MainButton>
-                  <MainButton
-                    children="ACCESSLab Team"
-                    type={MainButtonType.light}
-                    borderRadius="24px"
-                    fontSize="14px"
-                    className="px-3 m-2"
-                  ></MainButton>
-                </div>
-                <div className="team-list">
-                  <IconTextRow
-                    theme={Theme.light}
-                    children={
-                      <img
-                        src="/images/layout/img_avatar.png"
-                        alt="Avatar"
-                        className="rounded-circle avatar"
-                      />
-                    }
-                    text="Nima Hosseinzadeh"
-                    className="my-2"
-                  ></IconTextRow>
-                  <IconTextRow
-                    theme={Theme.light}
-                    children={
-                      <img
-                        src="/images/layout/img_avatar.png"
-                        alt="Avatar"
-                        className="rounded-circle avatar"
-                      />
-                    }
-                    text="Nima Hosseinzadeh"
-                    className="my-2"
-                  ></IconTextRow>
-                  <IconTextRow
-                    theme={Theme.light}
-                    children={
-                      <img
-                        src="/images/layout/img_avatar.png"
-                        alt="Avatar"
-                        className="rounded-circle avatar"
-                      />
-                    }
-                    text="Nima Hosseinzadeh"
-                    className="my-2"
-                  ></IconTextRow>
-                  <IconTextRow
-                    theme={Theme.light}
-                    children={
-                      <img
-                        src="/images/layout/img_avatar.png"
-                        alt="Avatar"
-                        className="rounded-circle avatar"
-                      />
-                    }
-                    text="Nima Hosseinzadeh"
-                    className="my-2"
-                  ></IconTextRow>
-                </div>
-              </div>
-              <div className="teams Labs">
+              <div className="teams Labs mb-3">
                 <IconTextRow
                   theme={Theme.dark}
                   text="Labs (Equipments)"
@@ -287,6 +174,117 @@ export class ResearchPageProfile extends React.Component {
                     </svg>
                   }
                 ></IconTextRow>
+                <div className="team-list mt-3">
+                  <IconTextRow
+                    theme={Theme.light}
+                    children={
+                      <CircleIcon
+                        type={ThemeCircleIcon.light}
+                        backgroundColor="#F5F5F5"
+                        width="50px"
+                        height="50px"
+                        className="avatar"
+                      >
+                        <img src="/Images/pages/Lab Menu Icon.svg" alt="" />
+                      </CircleIcon>
+                    }
+                    text="Nima Hosseinzadeh"
+                    className="my-2"
+                  ></IconTextRow>
+                  <IconTextRow
+                    theme={Theme.light}
+                    children={
+                      <CircleIcon
+                        type={ThemeCircleIcon.light}
+                        backgroundColor="#F5F5F5"
+                        width="50px"
+                        height="50px"
+                        className="avatar"
+                      >
+                        <img src="/Images/pages/Lab Menu Icon.svg" alt="" />
+                      </CircleIcon>
+                    }
+                    text="Nima Hosseinzadeh"
+                    className="my-2"
+                  ></IconTextRow>
+                  <IconTextRow
+                    theme={Theme.light}
+                    children={
+                      <CircleIcon
+                        type={ThemeCircleIcon.light}
+                        backgroundColor="#F5F5F5"
+                        width="50px"
+                        height="50px"
+                        className="avatar"
+                      >
+                        <img src="/Images/pages/Lab Menu Icon.svg" alt="" />
+                      </CircleIcon>
+                    }
+                    text="Nima Hosseinzadeh"
+                    className="my-2"
+                  ></IconTextRow>
+                  <IconTextRow
+                    theme={Theme.light}
+                    children={
+                      <CircleIcon
+                        type={ThemeCircleIcon.light}
+                        backgroundColor="#F5F5F5"
+                        width="50px"
+                        height="50px"
+                        className="avatar"
+                      >
+                        <img src="/Images/pages/Lab Menu Icon.svg" alt="" />
+                      </CircleIcon>
+                    }
+                    text="Nima Hosseinzadeh"
+                    className="my-2"
+                  ></IconTextRow>
+                  <IconTextRow
+                    theme={Theme.light}
+                    children={
+                      <CircleIcon
+                        type={ThemeCircleIcon.light}
+                        backgroundColor="#F5F5F5"
+                        width="50px"
+                        height="50px"
+                        className="avatar"
+                      >
+                        <img src="/Images/pages/Lab Menu Icon.svg" alt="" />
+                      </CircleIcon>
+                    }
+                    text="Nima Hosseinzadeh"
+                    className="my-2"
+                  ></IconTextRow>
+                  <IconTextRow
+                    theme={Theme.light}
+                    children={
+                      <CircleIcon
+                        type={ThemeCircleIcon.light}
+                        backgroundColor="#F5F5F5"
+                        width="50px"
+                        height="50px"
+                        className="avatar"
+                      >
+                        <img src="/Images/pages/Lab Menu Icon.svg" alt="" />
+                      </CircleIcon>
+                    }
+                    text="Nima Hosseinzadeh"
+                    className="my-2"
+                  ></IconTextRow>
+                </div>
+              </div>
+              <div className="teams mb-3">
+                <IconTextRow
+                  theme={Theme.dark}
+                  text="Teams (Members)"
+                  children={
+                    <img
+                      src="/Images/pages/Team Menu Icon.svg"
+                      className="mx-2"
+                      alt=""
+                    />
+                  }
+                ></IconTextRow>
                 <div className="tags p-3">
                   <MainButton
                     children="ACCESSLab Team"
@@ -294,6 +292,7 @@ export class ResearchPageProfile extends React.Component {
                     borderRadius="24px"
                     fontSize="14px"
                     className="px-3"
+                    backgroundColor="#EBEBEB"
                   ></MainButton>
                   <MainButton
                     children="ACCESSLab Team"
@@ -301,6 +300,7 @@ export class ResearchPageProfile extends React.Component {
                     borderRadius="24px"
                     fontSize="14px"
                     className="px-3"
+                    backgroundColor="#EBEBEB"
                   ></MainButton>
                   <MainButton
                     children="ACCESSLab Team"
@@ -308,6 +308,7 @@ export class ResearchPageProfile extends React.Component {
                     borderRadius="24px"
                     fontSize="14px"
                     className="px-3"
+                    backgroundColor="#EBEBEB"
                   ></MainButton>
                   <MainButton
                     children="ACCESSLab Team"
@@ -315,21 +316,18 @@ export class ResearchPageProfile extends React.Component {
                     borderRadius="24px"
                     fontSize="14px"
                     className="px-3 m-2"
+                    backgroundColor="#EBEBEB"
                   ></MainButton>
                 </div>
                 <div className="team-list">
                   <IconTextRow
                     theme={Theme.light}
                     children={
-                      <CircleIcon
-                        type={ThemeCircleIcon.light}
-                        backgroundColor="#F5F5F5"
-                        width="50px"
-                        height="50px"
-                        className="avatar"
-                      >
-                        <img src="/Images/pages/Lab Menu Icon.svg" alt="" />
-                      </CircleIcon>
+                      <img
+                        src="/images/layout/img_avatar.png"
+                        alt="Avatar"
+                        className="rounded-circle avatar"
+                      />
                     }
                     text="Nima Hosseinzadeh"
                     className="my-2"
@@ -337,15 +335,11 @@ export class ResearchPageProfile extends React.Component {
                   <IconTextRow
                     theme={Theme.light}
                     children={
-                      <CircleIcon
-                        type={ThemeCircleIcon.light}
-                        backgroundColor="#F5F5F5"
-                        width="50px"
-                        height="50px"
-                        className="avatar"
-                      >
-                        <img src="/Images/pages/Lab Menu Icon.svg" alt="" />
-                      </CircleIcon>
+                      <img
+                        src="/images/layout/img_avatar.png"
+                        alt="Avatar"
+                        className="rounded-circle avatar"
+                      />
                     }
                     text="Nima Hosseinzadeh"
                     className="my-2"
@@ -353,15 +347,11 @@ export class ResearchPageProfile extends React.Component {
                   <IconTextRow
                     theme={Theme.light}
                     children={
-                      <CircleIcon
-                        type={ThemeCircleIcon.light}
-                        backgroundColor="#F5F5F5"
-                        width="50px"
-                        height="50px"
-                        className="avatar"
-                      >
-                        <img src="/Images/pages/Lab Menu Icon.svg" alt="" />
-                      </CircleIcon>
+                      <img
+                        src="/images/layout/img_avatar.png"
+                        alt="Avatar"
+                        className="rounded-circle avatar"
+                      />
                     }
                     text="Nima Hosseinzadeh"
                     className="my-2"
@@ -369,47 +359,11 @@ export class ResearchPageProfile extends React.Component {
                   <IconTextRow
                     theme={Theme.light}
                     children={
-                      <CircleIcon
-                        type={ThemeCircleIcon.light}
-                        backgroundColor="#F5F5F5"
-                        width="50px"
-                        height="50px"
-                        className="avatar"
-                      >
-                        <img src="/Images/pages/Lab Menu Icon.svg" alt="" />
-                      </CircleIcon>
-                    }
-                    text="Nima Hosseinzadeh"
-                    className="my-2"
-                  ></IconTextRow>
-                  <IconTextRow
-                    theme={Theme.light}
-                    children={
-                      <CircleIcon
-                        type={ThemeCircleIcon.light}
-                        backgroundColor="#F5F5F5"
-                        width="50px"
-                        height="50px"
-                        className="avatar"
-                      >
-                        <img src="/Images/pages/Lab Menu Icon.svg" alt="" />
-                      </CircleIcon>
-                    }
-                    text="Nima Hosseinzadeh"
-                    className="my-2"
-                  ></IconTextRow>
-                  <IconTextRow
-                    theme={Theme.light}
-                    children={
-                      <CircleIcon
-                        type={ThemeCircleIcon.light}
-                        backgroundColor="#F5F5F5"
-                        width="50px"
-                        height="50px"
-                        className="avatar"
-                      >
-                        <img src="/Images/pages/Lab Menu Icon.svg" alt="" />
-                      </CircleIcon>
+                      <img
+                        src="/images/layout/img_avatar.png"
+                        alt="Avatar"
+                        className="rounded-circle avatar"
+                      />
                     }
                     text="Nima Hosseinzadeh"
                     className="my-2"

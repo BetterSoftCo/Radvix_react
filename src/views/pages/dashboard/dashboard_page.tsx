@@ -1,13 +1,13 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from "react";
 import { InputComponent, InputType } from "../../components/inputs";
-import { InputIcon } from "../../components/searchBox";
-import { TableComponent } from "../../components/Table";
+import { InputIcon } from "../../components/search_box";
+import { TableComponent } from "../../components/table_comonent";
 import ReactPaginate from "react-paginate";
-import { CircleIcon, ThemeCircleIcon } from "../../components/CircleIcon";
-import { AcordienTable } from "./RecentTasks";
-import { AcordienTableData } from "./RecentData";
-import { store } from "../../../data/Store";
+import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
+import { AcordienTable } from "./recent_tasks";
+import { AcordienTableData } from "./recent_data";
+import { store } from "../../../data/store";
 export class DashboardPage extends React.Component {
   handlePageClick = (data: any) => {};
   mockData = [

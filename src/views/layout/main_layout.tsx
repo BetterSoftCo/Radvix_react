@@ -1,7 +1,7 @@
 import React, { Fragment, ReactNode } from "react";
 import { RouteComponentProps, withRouter } from "react-router";
-import { Header } from "./Header";
-import { RightSection } from "./RightSection";
+import { Header } from "./header_layout";
+import { RightSection } from "./right_section";
 import { Sidebar } from "./sidebar";
 import { ToastContainer } from "react-toastify";
 

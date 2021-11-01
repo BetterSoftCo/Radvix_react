@@ -1,12 +1,12 @@
 import React from "react";
-import { store } from "../../../data/Store";
-import { CircleIcon, ThemeCircleIcon } from "../../components/CircleIcon";
+import { store } from "../../../data/store";
+import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import { InputComponent, InputType } from "../../components/inputs";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { MainButton, MainButtonType } from "../../components/button";
 import Dropzone from "react-dropzone";
-import { IconTextRow } from "../../components/IconTextRow";
+import { IconTextRow } from "../../components/icon_text_horizontal";
 import { Theme } from "../../../core/utils";
 import { RouteComponentProps, withRouter } from "react-router";
 import { routes } from "../../../core/constants";

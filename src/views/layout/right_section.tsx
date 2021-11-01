@@ -2,7 +2,7 @@
 import React from "react";
 import { Theme } from "../../core/utils";
 import { MainButton, MainButtonType } from "../components/button";
-import { IconTextVertical } from "../components/IconTextVertical";
+import { IconTextVertical } from "../components/Icon_text_vertical";
 export const RightSection: React.FC = () => {
   return (
     <div className="righ-section">
