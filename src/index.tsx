@@ -19,6 +19,7 @@ import {
   ResearchPageNew,
   ResearchPageProfile,
   ResearchPageEdit,
+  TeamPage,
 } from "./views";
 
 const RoleUser: UserRoles = store.getState();
@@ -33,6 +34,7 @@ ReactDOM.render(
           <Route component={LoginPage} path={routes.login} exact />
           <Route component={ResearchPage} path={routes.research} exact />
           <Route component={ResearchPageNew} path={routes.new_research} exact />
+          <Route component={TeamPage} path={routes.team} exact />
           <Route
             component={ResearchPageProfile}
             path={routes.profile_research}

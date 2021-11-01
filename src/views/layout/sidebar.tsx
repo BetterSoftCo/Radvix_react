@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { routes } from "../../core/constants";
 import { Theme } from "../../core/utils";
 import { IconTextVertical } from "../components/IconTextVertical";
 
@@ -25,7 +26,7 @@ export const Sidebar: React.FC = () => {
           ></IconTextVertical>
         </li>
       </NavLink>
-      <NavLink to="/dashboard/Team" activeClassName="selected">
+      <NavLink to={routes.team} activeClassName="selected">
         <li>
           <IconTextVertical
             text="Team"
