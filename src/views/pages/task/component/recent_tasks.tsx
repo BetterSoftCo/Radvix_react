@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect } from "react";
-import { UserRoles } from "../../../core/utils";
-import { MainButton, MainButtonType } from "./../../components/button";
-import { CircleIcon, ThemeCircleIcon } from "./../../components/CircleIcon";
+import { UserRoles } from "../../../../core/utils";
+import { MainButton, MainButtonType } from "../../../components/button";
+import { CircleIcon, ThemeCircleIcon } from "../../../components/circle_icon";
 interface IAcordienTable {
   role: UserRoles;
 }

@@ -1,6 +1,6 @@
 import React from "react";
-import { store } from "../../../data/Store";
-import { CircleIcon, ThemeCircleIcon } from "../../components/CircleIcon";
+import { store } from "../../../data/store";
+import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import { InputComponent, InputType } from "../../components/inputs";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";

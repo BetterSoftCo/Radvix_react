@@ -69,7 +69,6 @@ button {
 
 .InputSelectStyle {
   border-radius: 9px;
-  border: none;
   background-image: url("./../../Images/component/down-arrow-black-circular-button.svg");
 }
 
@@ -154,7 +153,7 @@ button {
   -webkit-transition: all 700ms;
   transition: all 700ms;
   padding: 1rem;
-  height: auto;
+  height: 100%;
   direction: rtl;
 }
 
@@ -634,6 +633,10 @@ button {
   padding: 0.5rem;
 }
 
+.box-content .tabel-info .t-desc ul {
+  list-style: none;
+}
+
 .box-content .tabel-info .border-t-r {
   border-top-right-radius: 15px;
 }
@@ -702,6 +705,14 @@ button {
 
 .team-list::-webkit-scrollbar-thumb:hover {
   background-color: #a0a0a0;
+}
+
+.team-edit {
+  background-color: #c7c7c7 !important;
+}
+
+.team-edit .team {
+  border: 1px solid #EBEBEB;
 }
 
 body {
@@ -775,7 +786,6 @@ button {
 
 .InputSelectStyle {
   border-radius: 9px;
-  border: none;
   background-image: url("./../../Images/component/down-arrow-black-circular-button.svg");
 }
 
@@ -860,7 +870,7 @@ button {
   -webkit-transition: all 700ms;
   transition: all 700ms;
   padding: 1rem;
-  height: auto;
+  height: 100%;
   direction: rtl;
 }
 
@@ -1340,6 +1350,10 @@ button {
   padding: 0.5rem;
 }
 
+.box-content .tabel-info .t-desc ul {
+  list-style: none;
+}
+
 .box-content .tabel-info .border-t-r {
   border-top-right-radius: 15px;
 }
@@ -1408,5 +1422,13 @@ button {
 
 .team-list::-webkit-scrollbar-thumb:hover {
   background-color: #a0a0a0;
+}
+
+.team-edit {
+  background-color: #c7c7c7 !important;
+}
+
+.team-edit .team {
+  border: 1px solid #EBEBEB;
 }
 /*# sourceMappingURL=app.css.map */

@@ -306,6 +306,10 @@
   padding: 0.5rem;
 }
 
+.box-content .tabel-info .t-desc ul {
+  list-style: none;
+}
+
 .box-content .tabel-info .border-t-r {
   border-top-right-radius: 15px;
 }
@@ -374,5 +378,13 @@
 
 .team-list::-webkit-scrollbar-thumb:hover {
   background-color: #a0a0a0;
+}
+
+.team-edit {
+  background-color: #c7c7c7 !important;
+}
+
+.team-edit .team {
+  border: 1px solid #EBEBEB;
 }
 /*# sourceMappingURL=page-dir.css.map */

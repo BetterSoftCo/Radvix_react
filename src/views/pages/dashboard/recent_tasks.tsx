@@ -1,35 +1,35 @@
 import React, { Fragment, useEffect } from "react";
-import { RouteComponentProps, withRouter } from "react-router";
-import { routes } from "../../../../core/constants";
-import { MainButton, MainButtonType } from "../../../components/button";
-import { CircleIcon, ThemeCircleIcon } from "../../../components/CircleIcon";
-
-interface IAcordienTableResearch{}
- const AcordienTableResearch:React.FC<IAcordienTableResearch & RouteComponentProps>  = (props) => {
-  console.log(props);
-  
+import { UserRoles } from "../../../core/utils";
+import { MainButton, MainButtonType } from "../../components/button";
+import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
+interface IAcordienTable {
+  role: UserRoles;
+}
+export const AcordienTable = (props: IAcordienTable) => {
   const handelOnclick = (e: any) => {
     e.stopPropagation();
-    props.history.push(routes.edit_research)
+    console.log(e);
   };
   useEffect(() => {}, []);
   return (
     <Fragment>
       <div className="row px-3">
-        <div className="col">Research Name</div>
+        <div className="col">Task Name</div>
+        <div className="col">Created By</div>
+        <div className="col">Assigned To</div>
         <div className="col">Deadline</div>
         <div className="col">Status</div>
         <div className="col"></div>
       </div>
-      <div className="accordion" id="accordionResearchList">
+      <div className="accordion" id="accordionExample">
         <div className="accordion-item accordion-item-top">
           <div className="accordion-header" id="headingOne">
             <div
               className="accordion-button"
               data-bs-toggle="collapse"
-              data-bs-target="#collapseOneResearchLIst"
+              data-bs-target="#collapseOne"
               aria-expanded="true"
-              aria-controls="collapseOneResearchLIst"
+              aria-controls="collapseOne"
             >
               <div className="row w-100  ">
                 <div className="col">
@@ -58,15 +58,18 @@ interface IAcordienTableResearch{}
                   ></MainButton>
                 </div>
                 <div className="col d-flex justify-content-between align-items-center">
-                  <CircleIcon
-                    width="26px"
-                    height="26px"
-                    type={ThemeCircleIcon.dark}
-                    onClick={(e) => handelOnclick(e)}
-                    className="pointer"
-                  >
-                    <i className="fas fa-edit"></i>
-                  </CircleIcon>
+                  {props.role !== UserRoles.level3 ? (
+                    <CircleIcon
+                      width="26px"
+                      height="26px"
+                      type={ThemeCircleIcon.dark}
+                      onClick={(e) => handelOnclick(e)}
+                      className="pointer"
+                    >
+                      <i className="fas fa-edit"></i>
+                    </CircleIcon>
+                  ) : null}
+
                   <CircleIcon
                     width="26px"
                     height="26px"
@@ -90,10 +93,10 @@ interface IAcordienTableResearch{}
             </div>
           </div>
           <div
-            id="collapseOneResearchLIst"
+            id="collapseOne"
             className="accordion-collapse collapse "
             aria-labelledby="headingOne"
-            data-bs-parent="#accordionResearchList"
+            data-bs-parent="#accordionExample"
           >
             <div className="accordion-body ">
               <span className="sub-accordion">Subtask</span>
@@ -220,15 +223,17 @@ interface IAcordienTableResearch{}
                   ></MainButton>
                 </div>
                 <div className="col d-flex justify-content-between align-items-center">
-                  <CircleIcon
-                    width="26px"
-                    height="26px"
-                    type={ThemeCircleIcon.dark}
-                    onClick={(e) => handelOnclick(e)}
-                    className="pointer"
-                  >
-                    <i className="fas fa-edit"></i>
-                  </CircleIcon>
+                {props.role !== UserRoles.level3 ? (
+                    <CircleIcon
+                      width="26px"
+                      height="26px"
+                      type={ThemeCircleIcon.dark}
+                      onClick={(e) => handelOnclick(e)}
+                      className="pointer"
+                    >
+                      <i className="fas fa-edit"></i>
+                    </CircleIcon>
+                  ) : null}
                   <CircleIcon
                     width="26px"
                     height="26px"
@@ -255,7 +260,7 @@ interface IAcordienTableResearch{}
             id="collapsetwo"
             className="accordion-collapse collapse"
             aria-labelledby="headingtwo"
-            data-bs-parent="#accordionResearchList"
+            data-bs-parent="#accordionExample"
           >
             <div className="accordion-body ">
               <span className="sub-accordion">Subtask</span>
@@ -382,15 +387,17 @@ interface IAcordienTableResearch{}
                   ></MainButton>
                 </div>
                 <div className="col d-flex justify-content-between align-items-center">
-                  <CircleIcon
-                    width="26px"
-                    height="26px"
-                    type={ThemeCircleIcon.dark}
-                    onClick={(e) => handelOnclick(e)}
-                    className="pointer"
-                  >
-                    <i className="fas fa-edit"></i>
-                  </CircleIcon>
+                {props.role !== UserRoles.level3 ? (
+                    <CircleIcon
+                      width="26px"
+                      height="26px"
+                      type={ThemeCircleIcon.dark}
+                      onClick={(e) => handelOnclick(e)}
+                      className="pointer"
+                    >
+                      <i className="fas fa-edit"></i>
+                    </CircleIcon>
+                  ) : null}
                   <CircleIcon
                     width="26px"
                     height="26px"
@@ -417,7 +424,7 @@ interface IAcordienTableResearch{}
             id="collapsethree"
             className="accordion-collapse collapse"
             aria-labelledby="headingthree"
-            data-bs-parent="#accordionResearchList"
+            data-bs-parent="#accordionExample"
           >
             <div className="accordion-body ">
               <span className="sub-accordion">Subtask</span>
@@ -512,4 +519,3 @@ interface IAcordienTableResearch{}
     </Fragment>
   );
 };
-export default withRouter(AcordienTableResearch);

@@ -3,7 +3,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { routes } from "../../core/constants";
 import { Theme } from "../../core/utils";
-import { IconTextVertical } from "../components/IconTextVertical";
+import { IconTextVertical } from "../components/Icon_text_vertical";
 
 export const Sidebar: React.FC = () => {
   return (
@@ -17,7 +17,7 @@ export const Sidebar: React.FC = () => {
           ></IconTextVertical>
         </li>
       </NavLink>
-      <NavLink to="/dashboard/Laboratory" activeClassName="selected">
+      <NavLink to="/dashboard/laboratory" activeClassName="selected">
         <li>
           <IconTextVertical
             text="Laboratory"

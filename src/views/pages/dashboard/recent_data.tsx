@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect } from "react";
-import { MainButton, MainButtonType } from "./../../components/button";
-import { CircleIcon, ThemeCircleIcon } from "./../../components/CircleIcon";
+import { MainButton, MainButtonType } from "../../components/button";
+import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 
 export const AcordienTableData = () => {
   const handelOnclick = (e: any) => {

@@ -1,5 +1,5 @@
 import { UserRoles } from "../../../core/utils";
-import { SET_USER_ROLE } from "./ActionsType";
+import { SET_USER_ROLE } from "./actions_type";
 
  
 export type UserRoleState = UserRoles

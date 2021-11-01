@@ -1,5 +1,5 @@
 import React from "react";
-import { store } from "../../../data/Store";
+import { store } from "../../../data/store";
 import { InputComponent, InputType } from "../../components/inputs";
 export class TeamPage extends React.Component {
   RoleUser = store.getState();
