@@ -9,13 +9,18 @@ import MainLayout from "./views/layout/MainLayout";
 import { Provider } from "react-redux";
 import { store } from "./data/Store/index";
 import { LoginPage } from "./views/pages/login/login";
-import { ResearchPage } from "./views/pages/research/research_page";
-import { ResearchPageNew } from "./views/pages/research/research-new";
-import { ResearchPageProfile } from "./views/pages/research/research-profile";
-import  ResearchPageEdit  from "./views/pages/research/research-editt";
+
 import ProtectedRoute from "./router/ProtectedRoute";
 import { UserRoles } from "./core/utils";
 import 'react-toastify/dist/ReactToastify.css';
+
+import {
+  ResearchPage,
+  ResearchPageNew,
+  ResearchPageProfile,
+  ResearchPageEdit,
+} from "./views";
+
 const RoleUser: UserRoles = store.getState();
 
 ReactDOM.render(
