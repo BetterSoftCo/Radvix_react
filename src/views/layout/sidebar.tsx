@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { Theme } from "../../core/utils";
@@ -6,7 +7,7 @@ import { IconTextVertical } from "../components/IconTextVertical";
 export const Sidebar: React.FC = () => {
   return (
     <ul>
-      <NavLink to="/dashboard/Research" activeClassName="selected">
+      <NavLink to="/dashboard/research" activeClassName="selected">
         <li>
           <IconTextVertical
             text="Research"

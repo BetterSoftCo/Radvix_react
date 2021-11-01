@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-concat */
 import React from "react";
 export enum ThemeCircleIcon {
   light,
@@ -11,7 +12,8 @@ interface CircleIconInterface {
   height?: string;
   fontSize?: string;
   className?: string;
-  onClick?:(e:any)=>void
+  onClick?:(e:any)=>void;
+  border?:string
 }
 export const CircleIcon: React.FC<CircleIconInterface> = (
   props,
@@ -38,6 +40,7 @@ export const CircleIcon: React.FC<CircleIconInterface> = (
         width:props.width,
         height:props.height,
         fontSize:props.fontSize,
+        border:props.border
       }}
       onClick={props.onClick}
     >

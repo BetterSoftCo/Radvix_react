@@ -1,3 +1,6 @@
-@import "base/base-dir";
-@import "component/component-dir";
-@import "pages/page-dir";
+@import "./base/base-dir";
+@import "./component/component-dir";
+@import "./pages/page-dir";
+@import './base/base-dir.scss';
+@import './component/component-dir.scss';
+@import './pages/page-dir.scss';

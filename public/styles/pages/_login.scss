@@ -3,7 +3,7 @@
   min-width: 50%;
 
   .left {
-    background-color: $background-color;
+    background-color: $BackgroundColor;
     min-height: 400px;
     display: flex;
     flex-direction: column;
@@ -29,14 +29,14 @@
     align-items: center;
     .line {
       font-size: 14px;
-      color: $background-color;
+      color: $BackgroundColor;
       position: relative;
       
       &::after {
         content: "";
         width: 200%;
         height: 2px;
-        background-color: $background-color;
+        background-color: $BackgroundColor;
         position: absolute;
         top: 50%;
         left: 106%;
@@ -45,7 +45,7 @@
         content: "";
         width: 200%;
         height: 2px;
-        background-color: $background-color;
+        background-color: $BackgroundColor;
         position: absolute;
         top: 50%;
         right: 106%;

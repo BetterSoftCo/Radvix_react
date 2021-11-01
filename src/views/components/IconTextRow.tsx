@@ -2,14 +2,14 @@
 import React, { ReactNode } from "react";
 import { Theme } from "../../core/utils";
 
-interface IconTextVerticalProp {
+interface IconTextRowProp {
   text: string;
   theme: Theme;
   children: ReactNode;
   className?: string;
   fontSize?: string;
 }
-export const IconTextVertical: React.FC<IconTextVerticalProp> = ({
+export const IconTextRow: React.FC<IconTextRowProp> = ({
   text,
   theme,
   children,
@@ -34,7 +34,7 @@ export const IconTextVertical: React.FC<IconTextVerticalProp> = ({
   return (
     <div
       style={Styles}
-      className={`${IsclassName + " " + StyleTheme + " " + "IconTextVertical"}`}
+      className={`${IsclassName + " " + StyleTheme + " " + "IconTextRow"}`}
     >
       {children}
       <span>{text}</span>
