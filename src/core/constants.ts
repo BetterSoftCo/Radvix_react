@@ -1,3 +1,7 @@
+import upload from './../assets/icons/upload.svg';
+export {
+	 upload,
+}
 export class AppConstants {
 	static token: string = "token";
 }
@@ -19,3 +23,5 @@ export const routes = {
 	task_new:'/dashboard/Task/new/',
 	task_profile:'/dashboard/Task/profile/',
 };
+
+
