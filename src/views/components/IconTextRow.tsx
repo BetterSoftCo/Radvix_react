@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-concat */
 import React, { ReactNode } from "react";
 import { Theme } from "../../core/utils";
 

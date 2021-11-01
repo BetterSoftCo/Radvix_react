@@ -1,17 +1,6 @@
 import React, { Fragment } from "react";
-import { Theme } from "../../../core/utils";
-import { MainButton, MainButtonType } from "../../components/button";
-import { CircleIcon, ThemeCircleIcon } from "../../components/CircleIcon";
-import { IconTextVertical } from "../../components/IconTextVertical";
-import { InputComponent, InputType } from "../../components/inputs";
 export class SplashPage extends React.Component {
   render() {
-    let list = [
-      { text: "amir", id: 1 },
-      { text: "hossein", id: 2 },
-    ];
-    let handelSelect = (e: any) => {
-    };
     return (
       <Fragment>
         {/* <div className="container">

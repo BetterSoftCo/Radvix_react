@@ -153,6 +153,7 @@ export class ResearchPageProfile extends React.Component {
                     <img
                       src="/Images/pages/Team Menu Icon.svg"
                       className="mx-2"
+                      alt=""
                     />
                   }
                 ></IconTextRow>

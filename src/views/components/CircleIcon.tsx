@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-concat */
 import React from "react";
 export enum ThemeCircleIcon {
   light,

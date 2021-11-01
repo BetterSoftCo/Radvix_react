@@ -1,4 +1,5 @@
-import React, { Fragment, ReactNode } from "react";
+/* eslint-disable no-useless-concat */
+import React from "react";
 
 export enum InputType {
   text,

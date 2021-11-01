@@ -1,12 +1,16 @@
 import React, { Fragment, useEffect } from "react";
+import { RouteComponentProps, withRouter } from "react-router";
+import { routes } from "../../../../core/constants";
 import { MainButton, MainButtonType } from "../../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../../components/CircleIcon";
 
-
-export const AcordienTableResearch = () => {
+interface IAcordienTableResearch{}
+ const AcordienTableResearch:React.FC<IAcordienTableResearch & RouteComponentProps>  = (props) => {
+  console.log(props);
+  
   const handelOnclick = (e: any) => {
     e.stopPropagation();
-    console.log(e);
+    props.history.push(routes.edit_research)
   };
   useEffect(() => {}, []);
   return (
@@ -508,3 +512,4 @@ export const AcordienTableResearch = () => {
     </Fragment>
   );
 };
+export default withRouter(AcordienTableResearch);

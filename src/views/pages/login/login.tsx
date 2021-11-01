@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from "react";
 import { MainButton, MainButtonType } from "../../components/button";
 import { InputComponent, InputType } from "../../components/inputs";

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from "react";
 import { Theme } from "../../core/utils";
 import { MainButton, MainButtonType } from "../components/button";
