@@ -3,7 +3,7 @@
 import React from "react";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { MainButton, MainButtonType } from "../components/button";
-import { InputComponent, InputType } from "../components/inputs";
+import { SelectComponent } from "../components/select_input";
 
 export const Header: React.FC = () => {
   return (
@@ -35,8 +35,7 @@ export const Header: React.FC = () => {
               </div>
               <div className="col-md-5 col-8 d-flex justify-content-center align-items-center">
                 <h6 className="mb-0 Selected-Research">Selected Research:</h6>
-                <InputComponent
-                  type={InputType.select}
+                <SelectComponent
                   items={[
                     { name: "items 3", id: 2 },
                     { name: "items 2", id: 3 },
@@ -46,7 +45,7 @@ export const Header: React.FC = () => {
                   TextItem="name"
                   ValueItem="id"
                   className="py-0"
-                ></InputComponent>
+                ></SelectComponent>
               </div>
               <div className="col-md-3 col-4 d-flex justify-content-center align-items-center">
                 <h6 className="mb-0 Selected-Research w-25 ">Timeline</h6>

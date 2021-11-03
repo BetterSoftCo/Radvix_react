@@ -9,7 +9,8 @@ import Dropzone from "react-dropzone";
 import { IconTextRow } from "../../components/icon_text_horizontal";
 import { Theme } from "../../../core/utils";
 import { RouteComponentProps, withRouter } from "react-router";
-import { routes } from "../../../core/constants";
+import { AppRoutes } from "../../../core/constants";
+import { SelectComponent } from "../../components/select_input";
 class ResearchPageEdit extends React.Component<RouteComponentProps> {
   RoleUser = store.getState();
   date = new Date();
@@ -37,7 +38,7 @@ class ResearchPageEdit extends React.Component<RouteComponentProps> {
             <span
               className="backPage"
               onClick={() => {
-                this.props.history.push(routes.research)
+                this.props.history.push(AppRoutes.research);
               }}
             ></span>{" "}
             Create A New Research Project
@@ -450,8 +451,7 @@ class ResearchPageEdit extends React.Component<RouteComponentProps> {
                   </CircleIcon>
                 </span>
 
-                <InputComponent
-                  type={InputType.select}
+                <SelectComponent
                   items={[
                     { name: "test1", id: 1 },
                     { name: "test2", id: 2 },
@@ -459,7 +459,7 @@ class ResearchPageEdit extends React.Component<RouteComponentProps> {
                   TextItem="name"
                   ValueItem="id"
                   className="my-2"
-                ></InputComponent>
+                ></SelectComponent>
               </div>
               <div className="teams mb-3">
                 <IconTextRow

@@ -5,6 +5,7 @@ import { InputComponent, InputType } from "../../components/inputs";
 import "react-datepicker/dist/react-datepicker.css";
 import { MainButton, MainButtonType } from "../../components/button";
 import Dropzone from "react-dropzone";
+import { SelectComponent } from "../../components/select_input";
 export class LaboratoryPageNew extends React.Component {
   RoleUser = store.getState();
   date = new Date();
@@ -74,8 +75,7 @@ export class LaboratoryPageNew extends React.Component {
                   </CircleIcon>
                 </span>
                 <div className="d-flex justify-content-between align-items-center">
-                  <InputComponent
-                    type={InputType.select}
+                  <SelectComponent
                     items={[
                       { name: "test1", id: 1 },
                       { name: "test2", id: 2 },
@@ -83,7 +83,7 @@ export class LaboratoryPageNew extends React.Component {
                     TextItem="name"
                     ValueItem="id"
                     className="my-2"
-                  ></InputComponent>
+                  ></SelectComponent>
                   <CircleIcon
                     width="36px"
                     height="36px"
@@ -174,8 +174,7 @@ export class LaboratoryPageNew extends React.Component {
                   </CircleIcon>
                 </span>
 
-                <InputComponent
-                  type={InputType.select}
+                <SelectComponent
                   items={[
                     { name: "test1", id: 1 },
                     { name: "test2", id: 2 },
@@ -183,7 +182,7 @@ export class LaboratoryPageNew extends React.Component {
                   TextItem="name"
                   ValueItem="id"
                   className="my-2"
-                ></InputComponent>
+                ></SelectComponent>
               </div>
               <div className="item d-flex justify-content-center align-items-center box-alert">
                 No Member Has Been Added Yet! (You will automatically be added
@@ -317,8 +316,7 @@ export class LaboratoryPageNew extends React.Component {
               <div className="item">
                 <span className="label d-flex align-items-center">Country</span>
 
-                <InputComponent
-                  type={InputType.select}
+                <SelectComponent
                   items={[
                     { name: "test1", id: 1 },
                     { name: "test2", id: 2 },
@@ -326,7 +324,7 @@ export class LaboratoryPageNew extends React.Component {
                   TextItem="name"
                   ValueItem="id"
                   className="my-2"
-                ></InputComponent>
+                ></SelectComponent>
               </div>
             </div>
             <div className="col-12 d-flex justify-content-center align-items-center my-4">

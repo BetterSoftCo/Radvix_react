@@ -3,11 +3,6 @@ import React, { Fragment, ReactNode } from "react";
 import { MainButton, MainButtonType } from "./button";
 import { CircleIcon, ThemeCircleIcon } from "./circle_icon";
 
-export enum InputType {
-  text,
-  textarea,
-}
-
 interface InputsProps {
   width?: string;
   height?: string;
@@ -18,12 +13,14 @@ interface InputsProps {
   borderRadius?: string;
   onChange?: (e: any) => void;
   placeholder?: string;
-  type: InputType;
+  items: any[];
+  TextItem: string;
+  ValueItem: string;
   label?: ReactNode;
   popQuestion?: string;
   optional?: string;
 }
-export const InputComponent: React.FC<InputsProps> = ({
+export const SelectComponent: React.FC<InputsProps> = ({
   width,
   height,
   minWidth,
@@ -33,7 +30,9 @@ export const InputComponent: React.FC<InputsProps> = ({
   borderRadius,
   onChange,
   placeholder,
-  type,
+  items,
+  TextItem,
+  ValueItem,
   label,
   popQuestion,
   optional,
@@ -82,30 +81,26 @@ export const InputComponent: React.FC<InputsProps> = ({
       </span>
     );
   }
-  return type === InputType.text ? (
+
+  return (
     <Fragment>
       {TemplateLabel}
-      <input
-        type="text"
-        style={styles}
-        onChange={onChange}
-        placeholder={placeholder}
+      <select
         className={`${
-          IsclassName + " " + "InputComponentStyle" + " " + "form-control"
+          IsclassName + " " + "InputSelectStyle" + " " + "form-select"
         }`}
-      />
-    </Fragment>
-  ) : (
-    <Fragment>
-      {TemplateLabel}
-      <textarea
         style={styles}
-        className={`${
-          IsclassName + " " + "InputComponentStyle" + " " + "form-control"
-        }`}
+        aria-label="Default select example"
         onChange={onChange}
-        placeholder={placeholder}
-      ></textarea>
+        defaultValue={placeholder}
+      >
+        <option disabled>{placeholder}</option>
+        {items.map((item, index) => (
+          <option value={item[`${ValueItem}`]} key={index}>
+            {item[`${TextItem}`]}
+          </option>
+        ))}
+      </select>
     </Fragment>
   );
 };

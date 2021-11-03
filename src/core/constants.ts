@@ -2,20 +2,20 @@ export class AppConstants {
 	static token: string = "token";
 }
 
-export const routes = {
-	splash: '/',
-	dashboard: '/dashboard',
-	login:'/login',
-	research:'/dashboard/research/',
-	new_research:'/dashboard/research/new/',
-	profile_research:'/dashboard/research/profile/',
-	edit_research:'/dashboard/research/edit/',
-	laboratory:'/dashboard/laboratory/',
-	new_laboratory:'/dashboard/laboratory/new/',
-	profile_laboratory:'/dashboard/laboratory/profile/',
-	edit_laboratory:'/dashboard/laboratory/edit/',
-	task:'/dashboard/Task/',
-	task_new:'/dashboard/Task/new/',
-	task_profile:'/dashboard/Task/profile/',
+export class AppRoutes {
+	static splash:string = '/';
+	static dashboard:string = '/dashboard';
+	static login:string ='/login';
+	static research:string ='/dashboard/research/';
+	static new_research:string ='/dashboard/research/new/';
+	static profile_research:string ='/dashboard/research/profile/';
+	static edit_research:string ='/dashboard/research/edit/';
+	static laboratory:string ='/dashboard/laboratory/';
+	static new_laboratory:string ='/dashboard/laboratory/new/';
+	static profile_laboratory:string ='/dashboard/laboratory/profile/';
+	static edit_laboratory:string ='/dashboard/laboratory/edit/';
+	static task:string ='/dashboard/Task/';
+	static task_new:string ='/dashboard/Task/new/';
+	static task_profile:string ='/dashboard/Task/profile/';
 
 };

@@ -7,6 +7,7 @@ import { MainButton, MainButtonType } from "../../components/button";
 import Dropzone from "react-dropzone";
 import { IconTextRow } from "../../components/icon_text_horizontal";
 import { Theme } from "../../../core/utils";
+import { SelectComponent } from "../../components/select_input";
 export class LaboratoryPageEdit extends React.Component {
   RoleUser = store.getState();
   date = new Date();
@@ -36,22 +37,12 @@ export class LaboratoryPageEdit extends React.Component {
           <div className="form row">
             <div className="col-md-6 left">
               <div className="item">
-                <span className="label d-flex align-items-center">
-                  Laboratory Name:
-                  <CircleIcon
-                    width="20px"
-                    height="20px"
-                    type={ThemeCircleIcon.dark}
-                    backgroundColor="transparent"
-                    border="1px solid #D5D5D5"
-                    fontSize="10px"
-                    color="#D5D5D5"
-                  >
-                    <i className="fas fa-question"></i>
-                  </CircleIcon>
-                </span>
-
-                <InputComponent type={InputType.text}></InputComponent>
+                <InputComponent
+                  type={InputType.text}
+                  label="Laboratory Name:"
+                  popQuestion="hellow"
+                  optional="optional"
+                ></InputComponent>
               </div>
               <div className="item">
                 <span className="label d-flex align-items-center">
@@ -76,8 +67,7 @@ export class LaboratoryPageEdit extends React.Component {
                   </CircleIcon>
                 </span>
                 <div className="d-flex justify-content-between align-items-center">
-                  <InputComponent
-                    type={InputType.select}
+                  <SelectComponent
                     items={[
                       { name: "test1", id: 1 },
                       { name: "test2", id: 2 },
@@ -85,7 +75,7 @@ export class LaboratoryPageEdit extends React.Component {
                     TextItem="name"
                     ValueItem="id"
                     className="my-2"
-                  ></InputComponent>
+                  ></SelectComponent>
                   <CircleIcon
                     width="36px"
                     height="36px"
@@ -147,11 +137,11 @@ export class LaboratoryPageEdit extends React.Component {
                   </CircleIcon>
                 </span>
 
-                <textarea
-                  style={{ height: "100px", marginTop: "1rem" }}
-                  className="form-control"
-                  id="floatingTextarea"
-                ></textarea>
+                <InputComponent
+                  type={InputType.textarea}
+                  className="mt-3"
+                  height="100px"
+                ></InputComponent>
               </div>
               <div className="item">
                 <span className="label d-flex align-items-center">
@@ -176,8 +166,7 @@ export class LaboratoryPageEdit extends React.Component {
                   </CircleIcon>
                 </span>
 
-                <InputComponent
-                  type={InputType.select}
+                <SelectComponent
                   items={[
                     { name: "test1", id: 1 },
                     { name: "test2", id: 2 },
@@ -185,7 +174,7 @@ export class LaboratoryPageEdit extends React.Component {
                   TextItem="name"
                   ValueItem="id"
                   className="my-2"
-                ></InputComponent>
+                ></SelectComponent>
               </div>
               <div className="item d-flex justify-content-center align-items-center box-alert">
                 No Member Has Been Added Yet! (You will automatically be added
@@ -537,8 +526,7 @@ export class LaboratoryPageEdit extends React.Component {
               <div className="item">
                 <span className="label d-flex align-items-center">Country</span>
 
-                <InputComponent
-                  type={InputType.select}
+                <SelectComponent
                   items={[
                     { name: "test1", id: 1 },
                     { name: "test2", id: 2 },
@@ -546,7 +534,7 @@ export class LaboratoryPageEdit extends React.Component {
                   TextItem="name"
                   ValueItem="id"
                   className="my-2"
-                ></InputComponent>
+                ></SelectComponent>
               </div>
             </div>
             <div className="col-12 d-flex justify-content-center align-items-center my-4">

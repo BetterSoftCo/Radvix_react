@@ -6,6 +6,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { MainButton, MainButtonType } from "../../components/button";
 import Dropzone from "react-dropzone";
+import { SelectComponent } from "../../components/select_input";
 export class TaskPageNew extends React.Component {
   RoleUser = store.getState();
   date = new Date();
@@ -238,8 +239,7 @@ export class TaskPageNew extends React.Component {
                   </CircleIcon>
                 </span>
 
-                <InputComponent
-                  type={InputType.select}
+                <SelectComponent
                   items={[
                     { name: "test1", id: 1 },
                     { name: "test2", id: 2 },
@@ -247,7 +247,7 @@ export class TaskPageNew extends React.Component {
                   TextItem="name"
                   ValueItem="id"
                   className="my-2"
-                ></InputComponent>
+                ></SelectComponent>
               </div>
               <div className="item d-flex justify-content-center align-items-center box-alert">
                 No Member Has Been Added Yet! (You will automatically be added
@@ -276,8 +276,7 @@ export class TaskPageNew extends React.Component {
                   </CircleIcon>
                 </span>
 
-                <InputComponent
-                  type={InputType.select}
+                <SelectComponent
                   items={[
                     { name: "test1", id: 1 },
                     { name: "test2", id: 2 },
@@ -285,7 +284,7 @@ export class TaskPageNew extends React.Component {
                   TextItem="name"
                   ValueItem="id"
                   className="my-2"
-                ></InputComponent>
+                ></SelectComponent>
               </div>
               <div className="item d-flex justify-content-center align-items-center box-alert">
                 No Equipment Has Been Added Yet!Start Over

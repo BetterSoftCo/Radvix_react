@@ -3,11 +3,6 @@ import React, { Fragment, ReactNode } from "react";
 import { MainButton, MainButtonType } from "./button";
 import { CircleIcon, ThemeCircleIcon } from "./circle_icon";
 
-export enum InputType {
-  text,
-  textarea,
-}
-
 interface InputsProps {
   width?: string;
   height?: string;
@@ -17,13 +12,15 @@ interface InputsProps {
   className?: string;
   borderRadius?: string;
   onChange?: (e: any) => void;
-  placeholder?: string;
-  type: InputType;
+  name: string;
+  items: any[];
+  TextItem: string;
+  ValueItem: string;
   label?: ReactNode;
   popQuestion?: string;
   optional?: string;
 }
-export const InputComponent: React.FC<InputsProps> = ({
+export const RadioGroup: React.FC<InputsProps> = ({
   width,
   height,
   minWidth,
@@ -32,8 +29,10 @@ export const InputComponent: React.FC<InputsProps> = ({
   className,
   borderRadius,
   onChange,
-  placeholder,
-  type,
+  name,
+  items,
+  TextItem,
+  ValueItem,
   label,
   popQuestion,
   optional,
@@ -46,7 +45,7 @@ export const InputComponent: React.FC<InputsProps> = ({
     backgroundColor: backgroundColor,
     borderRadius: borderRadius,
   };
-  let IsclassName;
+  let IsclassName: string;
   if (className !== undefined) {
     IsclassName = className;
   } else {
@@ -82,30 +81,38 @@ export const InputComponent: React.FC<InputsProps> = ({
       </span>
     );
   }
-  return type === InputType.text ? (
+
+  return (
     <Fragment>
       {TemplateLabel}
-      <input
-        type="text"
-        style={styles}
-        onChange={onChange}
-        placeholder={placeholder}
-        className={`${
-          IsclassName + " " + "InputComponentStyle" + " " + "form-control"
-        }`}
-      />
-    </Fragment>
-  ) : (
-    <Fragment>
-      {TemplateLabel}
-      <textarea
-        style={styles}
-        className={`${
-          IsclassName + " " + "InputComponentStyle" + " " + "form-control"
-        }`}
-        onChange={onChange}
-        placeholder={placeholder}
-      ></textarea>
+      {items.map((item, index) => (
+        <div
+          className={`${
+            IsclassName +
+            " " +
+            "RadioButtonGroupStyle" +
+            " " +
+            "form-check form-check-inline mt-2"
+          }`}
+          style={styles}
+          key={index}
+        >
+          <input
+            className="form-check-input"
+            type="radio"
+            name={name}
+            id={item[`${ValueItem}`] + name}
+            value={item[`${ValueItem}`]}
+            onChange={onChange}
+          />
+          <label
+            className="form-check-label"
+            htmlFor={item[`${ValueItem}`] + name}
+          >
+            {item[`${TextItem}`]}
+          </label>
+        </div>
+      ))}
     </Fragment>
   );
 };

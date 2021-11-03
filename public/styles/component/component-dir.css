@@ -1,0 +1,314 @@
+.darkButton {
+  color: white;
+  background-color: #474747;
+}
+
+.lightButton {
+  color: #474747;
+  background-color: #c6c6c6;
+}
+
+button {
+  background: transparent;
+  -webkit-box-shadow: 0px 0px 0px transparent;
+          box-shadow: 0px 0px 0px transparent;
+  border: 0px solid transparent;
+  text-shadow: 0px 0px 0px transparent;
+}
+
+.darkCircleIcon {
+  color: white;
+  background-color: #474747;
+}
+
+.lightCircleIcon {
+  color: #474747;
+  background-color: #c6c6c6;
+}
+
+.CircleIcon {
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.InputComponentStyle {
+  border-radius: 9px;
+  border-top-right-radius: 9px;
+  border-bottom-right-radius: 9px;
+  border: none;
+}
+
+.InputSelectStyle {
+  border-radius: 9px;
+  background-image: url("./../../Images/component/down-arrow-black-circular-button.svg");
+}
+
+.Icon-inside {
+  position: relative;
+}
+
+.Icon-inside span.icon {
+  position: absolute;
+  right: 10px;
+  top: 15%;
+  color: #30a3f1;
+}
+
+.IconTextVertical {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.IconTextVertical.IconTextVerticalDark {
+  color: #ffff;
+}
+
+.IconTextVertical.IconTextVerticalLight {
+  color: #474747;
+}
+
+.IconTextRow {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.IconTextRow.IconTextRowDark {
+  color: #ffff;
+}
+
+.IconTextRow.IconTextRowLight {
+  color: #474747;
+}
+
+.header .left-side {
+  padding-top: .35rem;
+  padding-bottom: .35rem;
+  background-color: #F5F5F5;
+}
+
+.header .left-side .avatar {
+  height: 50px;
+  width: 50px;
+}
+
+.header .right-side {
+  background-color: #ebebeb;
+}
+
+.header .right-side .Selected-Research {
+  margin-right: .2rem;
+}
+
+.parent-sidebar {
+  background: #474747;
+  overflow-y: scroll;
+  -webkit-transition: all 700ms;
+  transition: all 700ms;
+  padding: 1rem;
+  height: 100%;
+  direction: rtl;
+}
+
+.parent-sidebar ul {
+  list-style: none;
+  padding: 0.5rem 0.5rem;
+  color: #ffffff;
+  text-align: center;
+}
+
+.parent-sidebar ul a.selected li {
+  border-bottom: 0.5px solid #8EE1FF;
+}
+
+.parent-sidebar ul li {
+  border-bottom: 0.5px solid #ebebeb;
+  margin-top: 0.5rem;
+}
+
+.parent-sidebar::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #f5f5f5;
+}
+
+.parent-sidebar::-webkit-scrollbar {
+  width: 6px;
+  background-color: #f5f5f5;
+}
+
+.parent-sidebar::-webkit-scrollbar-thumb {
+  background-color: #000000;
+}
+
+.righ-section .top {
+  min-height: 137px;
+  background-color: #ebebeb;
+  margin: 2rem;
+  border-radius: 15px;
+}
+
+.righ-section .bottom {
+  min-height: 246px;
+  background-color: #474747;
+  margin: 2rem;
+  border-radius: 15px;
+}
+
+.righ-section .bottom .massages {
+  background-color: #343434;
+  border-radius: 15px;
+  margin-top: 1rem;
+}
+
+.righ-section .bottom .massages ul {
+  padding-left: 0;
+  list-style: none;
+  margin-bottom: 0;
+}
+
+.righ-section .bottom .massages ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #ffff;
+  padding: .25rem;
+}
+
+.TableBox {
+  padding: 2rem;
+  background-color: #ebebeb;
+  border-radius: 15px;
+  margin-top: 1rem;
+}
+
+.TableBox .table {
+  border-collapse: inherit;
+}
+
+.TableBox .table thead tr th {
+  background-color: transparent;
+  font-size: 20px;
+  font-weight: lighter;
+}
+
+.TableBox .table tbody {
+  border-radius: 10px;
+}
+
+.TableBox .table tbody tr:first-child td:first-child {
+  border-top-left-radius: 15px;
+}
+
+.TableBox .table tbody tr:first-child td:last-child {
+  border-top-right-radius: 15px;
+}
+
+.TableBox .table tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 15px;
+}
+
+.TableBox .table tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 15px;
+}
+
+.TableBox span.lable {
+  border: 2px solid;
+  margin-right: 0.2rem;
+  border-radius: 80px;
+}
+
+.TableBox .accordion-button::after {
+  position: absolute;
+  left: 6px;
+  padding-left: 1rem;
+  background-image: url("./../../Images/component/down-arrow-black-circular-button.svg");
+}
+
+.TableBox .accordion-button .row.w-100 {
+  padding-left: 1rem;
+}
+
+.TableBox .accordion-body {
+  position: relative;
+  margin-left: 1rem;
+}
+
+.TableBox .accordion-body .row.w-100:nth-child(odd) {
+  background-color: white;
+}
+
+.TableBox .accordion-body .row.w-100:nth-child(even) {
+  background-color: #f5f5f5;
+}
+
+.TableBox .accordion-body span.sub-accordion {
+  position: absolute;
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+  left: -3%;
+  bottom: 35%;
+  background: white;
+  text-align: center;
+}
+
+.TableBox .accordion .accordion-item.accordion-item-top {
+  border-radius: 15px;
+}
+
+.TableBox .accordion .accordion-item.accordion-item-top:nth-child(even) .accordion-header .accordion-button {
+  background-color: white;
+}
+
+.TableBox .accordion .accordion-item.accordion-item-top:nth-child(odd) .accordion-header .accordion-button {
+  background-color: #f5f5f5;
+}
+
+.TableBox .accordion .accordion-item.accordion-item-top:nth-child(odd):first-child .accordion-header .accordion-button {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.TableBox .accordion .accordion-item.accordion-item-top:nth-child(odd):last-child .accordion-header .accordion-button {
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.box-alert {
+  min-height: 115px;
+  border-radius: 9px;
+  background-color: #c6c6c6;
+  padding: 2rem;
+  text-align: center;
+}
+/*# sourceMappingURL=component-dir.css.map */

@@ -325,6 +325,14 @@ button {
   border-bottom-right-radius: 15px;
 }
 
+.box-alert {
+  min-height: 115px;
+  border-radius: 9px;
+  background-color: #c6c6c6;
+  padding: 2rem;
+  text-align: center;
+}
+
 .dashbord {
   margin-top: 1rem;
 }
@@ -613,14 +621,6 @@ button {
           flex-direction: column;
   border: 3px dashed #adadad;
   margin-top: 1rem;
-}
-
-.box-content .box-alert {
-  min-height: 115px;
-  border-radius: 9px;
-  background-color: #c6c6c6;
-  padding: 2rem;
-  text-align: center;
 }
 
 .box-content .tabel-info .t-title {
@@ -1042,6 +1042,14 @@ button {
   border-bottom-right-radius: 15px;
 }
 
+.box-alert {
+  min-height: 115px;
+  border-radius: 9px;
+  background-color: #c6c6c6;
+  padding: 2rem;
+  text-align: center;
+}
+
 .dashbord {
   margin-top: 1rem;
 }
@@ -1330,14 +1338,6 @@ button {
           flex-direction: column;
   border: 3px dashed #adadad;
   margin-top: 1rem;
-}
-
-.box-content .box-alert {
-  min-height: 115px;
-  border-radius: 9px;
-  background-color: #c6c6c6;
-  padding: 2rem;
-  text-align: center;
 }
 
 .box-content .tabel-info .t-title {
