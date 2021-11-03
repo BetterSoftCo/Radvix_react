@@ -163,23 +163,7 @@
     background-color: #f5f5f5;
     padding: 1rem;
     border-radius: 15px;
-    .team-list {
-      max-height: 220px;
-      overflow-y: scroll;
-      background-color: #c7c7c7;
-      border-radius: 15px;
-      padding: 1rem 2rem;
-      border-bottom: 2px solid #a0a0a0;
-      border-top: 2px solid #a0a0a0;
-      .IconTextVerticalLight {
-        border-bottom: 1px solid #d9d9d9;
-      }
-      .avatar {
-        width: 50px;
-        height: 50px;
-        margin-right: 1rem;
-      }
-    }
+   
   }
   .file-list {
     list-style-type: none;
@@ -191,24 +175,7 @@
     }
   }
 }
-.team-list::-webkit-scrollbar {
-  width: 20px;
-}
 
-.team-list::-webkit-scrollbar-track {
-  background-color: transparent;
-}
-
-.team-list::-webkit-scrollbar-thumb {
-  background-color: #5d5d5d;
-  border-radius: 20px;
-  border: 6px solid transparent;
-  background-clip: content-box;
-}
-
-.team-list::-webkit-scrollbar-thumb:hover {
-  background-color: #a0a0a0;
-}
 .team-edit{
   background-color: #c7c7c7!important;
   .team{

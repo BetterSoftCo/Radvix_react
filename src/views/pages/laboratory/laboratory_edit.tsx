@@ -5,9 +5,9 @@ import { InputComponent, InputType } from "../../components/inputs";
 import "react-datepicker/dist/react-datepicker.css";
 import { MainButton, MainButtonType } from "../../components/button";
 import Dropzone from "react-dropzone";
-import { IconTextRow } from "../../components/icon_text_horizontal";
-import { Theme } from "../../../core/utils";
 import { SelectComponent } from "../../components/select_input";
+import { BoxAlert } from "../../components/box_alert";
+import { BoxListScroll } from "../../components/box_list_scroll";
 export class LaboratoryPageEdit extends React.Component {
   RoleUser = store.getState();
   date = new Date();
@@ -90,83 +90,26 @@ export class LaboratoryPageEdit extends React.Component {
                 </div>
               </div>
               <div className="item">
-                <span className="label d-flex align-items-center">
-                  Website:
-                  <MainButton
-                    type={MainButtonType.light}
-                    children={"Optional"}
-                    borderRadius="50px"
-                    fontSize="15px"
-                    className="mx-2"
-                  ></MainButton>
-                  <CircleIcon
-                    width="20px"
-                    height="20px"
-                    type={ThemeCircleIcon.dark}
-                    backgroundColor="transparent"
-                    border="1px solid #D5D5D5"
-                    fontSize="10px"
-                    color="#D5D5D5"
-                  >
-                    <i className="fas fa-question"></i>
-                  </CircleIcon>
-                </span>
-
-                <InputComponent type={InputType.text}></InputComponent>
-              </div>
-              <div className="item">
-                <span className="label d-flex align-items-center">
-                  Description:
-                  <MainButton
-                    type={MainButtonType.light}
-                    children={"Optional"}
-                    borderRadius="50px"
-                    fontSize="15px"
-                    className="mx-2"
-                  ></MainButton>
-                  <CircleIcon
-                    width="20px"
-                    height="20px"
-                    type={ThemeCircleIcon.dark}
-                    backgroundColor="transparent"
-                    border="1px solid #D5D5D5"
-                    fontSize="10px"
-                    color="#D5D5D5"
-                  >
-                    <i className="fas fa-question"></i>
-                  </CircleIcon>
-                </span>
-
                 <InputComponent
-                  type={InputType.textarea}
-                  className="mt-3"
-                  height="100px"
+                  type={InputType.text}
+                  label=" Website:"
+                  popQuestion=" Website:"
+                  optional="optional"
                 ></InputComponent>
               </div>
               <div className="item">
-                <span className="label d-flex align-items-center">
-                  Lab Manager(s):
-                  <MainButton
-                    type={MainButtonType.light}
-                    children={"Optional"}
-                    borderRadius="50px"
-                    fontSize="15px"
-                    className="mx-2"
-                  ></MainButton>
-                  <CircleIcon
-                    width="20px"
-                    height="20px"
-                    type={ThemeCircleIcon.dark}
-                    backgroundColor="transparent"
-                    border="1px solid #D5D5D5"
-                    fontSize="10px"
-                    color="#D5D5D5"
-                  >
-                    <i className="fas fa-question"></i>
-                  </CircleIcon>
-                </span>
-
+                <InputComponent
+                  type={InputType.textarea}
+                  label="Description:"
+                  popQuestion="Description:"
+                  optional="optional"
+                ></InputComponent>
+              </div>
+              <div className="item">
                 <SelectComponent
+                  label=" Lab Manager(s):"
+                  popQuestion=" Lab Manager(s):"
+                  optional="optional"
                   items={[
                     { name: "test1", id: 1 },
                     { name: "test2", id: 2 },
@@ -174,125 +117,40 @@ export class LaboratoryPageEdit extends React.Component {
                   TextItem="name"
                   ValueItem="id"
                   className="my-2"
+                  placeholder="Click to see the list…"
                 ></SelectComponent>
               </div>
-              <div className="item d-flex justify-content-center align-items-center box-alert">
-                No Member Has Been Added Yet! (You will automatically be added
-                to this research)
-              </div>
+              <BoxAlert
+                text=" No Member Has Been Added Yet! (You will automatically be added
+                to this research)"
+              ></BoxAlert>
               <div className="teams mb-3 mt-3 team-edit">
-                <div className="team-list">
-                  <div className="d-flex justify-content-between align-items-center">
-                    <IconTextRow
-                      theme={Theme.light}
-                      children={
-                        <img
-                          src="/images/layout/img_avatar.png"
-                          alt="Avatar"
-                          className="rounded-circle avatar"
-                        />
-                      }
-                      text="Nima Hosseinzadeh"
-                      className="my-2"
-                    ></IconTextRow>
-                    <CircleIcon
-                      type={ThemeCircleIcon.dark}
-                      width="22px"
-                      height="22px"
-                      className="mx-3"
-                    >
-                      <i className="fas fa-trash"></i>
-                    </CircleIcon>
-                  </div>
-                  <div className="d-flex justify-content-between align-items-center">
-                    <IconTextRow
-                      theme={Theme.light}
-                      children={
-                        <img
-                          src="/images/layout/img_avatar.png"
-                          alt="Avatar"
-                          className="rounded-circle avatar"
-                        />
-                      }
-                      text="Nima Hosseinzadeh"
-                      className="my-2"
-                    ></IconTextRow>
-                    <CircleIcon
-                      type={ThemeCircleIcon.dark}
-                      width="22px"
-                      height="22px"
-                      className="mx-3"
-                    >
-                      <i className="fas fa-trash"></i>
-                    </CircleIcon>
-                  </div>
-                  <div className="d-flex justify-content-between align-items-center">
-                    <IconTextRow
-                      theme={Theme.light}
-                      children={
-                        <img
-                          src="/images/layout/img_avatar.png"
-                          alt="Avatar"
-                          className="rounded-circle avatar"
-                        />
-                      }
-                      text="Nima Hosseinzadeh"
-                      className="my-2"
-                    ></IconTextRow>
-                    <CircleIcon
-                      type={ThemeCircleIcon.dark}
-                      width="22px"
-                      height="22px"
-                      className="mx-3"
-                    >
-                      <i className="fas fa-trash"></i>
-                    </CircleIcon>
-                  </div>
-                  <div className="d-flex justify-content-between align-items-center">
-                    <IconTextRow
-                      theme={Theme.light}
-                      children={
-                        <img
-                          src="/images/layout/img_avatar.png"
-                          alt="Avatar"
-                          className="rounded-circle avatar"
-                        />
-                      }
-                      text="Nima Hosseinzadeh"
-                      className="my-2"
-                    ></IconTextRow>
-                    <CircleIcon
-                      type={ThemeCircleIcon.dark}
-                      width="22px"
-                      height="22px"
-                      className="mx-3"
-                    >
-                      <i className="fas fa-trash"></i>
-                    </CircleIcon>
-                  </div>
-                  <div className="d-flex justify-content-between align-items-center">
-                    <IconTextRow
-                      theme={Theme.light}
-                      children={
-                        <img
-                          src="/images/layout/img_avatar.png"
-                          alt="Avatar"
-                          className="rounded-circle avatar"
-                        />
-                      }
-                      text="Nima Hosseinzadeh"
-                      className="my-2"
-                    ></IconTextRow>
-                    <CircleIcon
-                      type={ThemeCircleIcon.dark}
-                      width="22px"
-                      height="22px"
-                      className="mx-3"
-                    >
-                      <i className="fas fa-trash"></i>
-                    </CircleIcon>
-                  </div>
-                </div>
+                <BoxListScroll
+                  items={[
+                    {
+                      text: "Nima Hosseinzadeh",
+                      id: 1,
+                      imagesrc: "/images/layout/img_avatar.png",
+                    },
+                    {
+                      text: "Nima Hosseinzadeh",
+                      id: 2,
+                      imagesrc: "/images/layout/img_avatar.png",
+                    },
+                    {
+                      text: "Nima Hosseinzadeh",
+                      id: 3,
+                      imagesrc: "/images/layout/img_avatar.png",
+                    },
+                  ]}
+                  TextItem="text"
+                  ValueItem="id"
+                  ImageItem="imagesrc"
+                  Deletabel
+                  DeleteFunc={(p, value) => {
+                    console.log(p, value);
+                  }}
+                ></BoxListScroll>
               </div>
             </div>
             <div className="col-md-6 right">
@@ -442,90 +300,59 @@ export class LaboratoryPageEdit extends React.Component {
                 </li>
               </ul>
               <div className="item">
-                <span className="label d-flex align-items-center">
-                  Address: <br /> Institution/Company
-                  <CircleIcon
-                    width="20px"
-                    height="20px"
-                    type={ThemeCircleIcon.dark}
-                    backgroundColor="transparent"
-                    border="1px solid #D5D5D5"
-                    fontSize="10px"
-                    color="#D5D5D5"
-                  >
-                    <i className="fas fa-question"></i>
-                  </CircleIcon>
-                </span>
-
-                <InputComponent type={InputType.text}></InputComponent>
+                <InputComponent
+                  type={InputType.text}
+                  label={
+                    <span>
+                      Address: <br /> Institution/Company
+                    </span>
+                  }
+                  popQuestion="Address"
+                ></InputComponent>
               </div>
               <div className="item">
-                <span className="label d-flex align-items-center">
-                  Address Line 1
-                  <CircleIcon
-                    width="20px"
-                    height="20px"
-                    type={ThemeCircleIcon.dark}
-                    backgroundColor="transparent"
-                    border="1px solid #D5D5D5"
-                    fontSize="10px"
-                    color="#D5D5D5"
-                  >
-                    <i className="fas fa-question"></i>
-                  </CircleIcon>
-                </span>
-
-                <InputComponent type={InputType.text}></InputComponent>
+                <InputComponent
+                  type={InputType.text}
+                  label=" Address Line 1"
+                  popQuestion=" Address Line 1"
+                ></InputComponent>
               </div>
               <div className="item">
-                <span className="label d-flex align-items-center">
-                  Address Line 2
-                  <CircleIcon
-                    width="20px"
-                    height="20px"
-                    type={ThemeCircleIcon.dark}
-                    backgroundColor="transparent"
-                    border="1px solid #D5D5D5"
-                    fontSize="10px"
-                    color="#D5D5D5"
-                  >
-                    <i className="fas fa-question"></i>
-                  </CircleIcon>
-                </span>
-
-                <InputComponent type={InputType.text}></InputComponent>
+                <InputComponent
+                  type={InputType.text}
+                  label="Address Line 2"
+                  popQuestion="Address Line 2"
+                ></InputComponent>
               </div>
               <div className="row">
                 <div className="item col-md-6">
-                  <span className="label d-flex align-items-center">City</span>
-
-                  <InputComponent type={InputType.text}></InputComponent>
+                  <InputComponent
+                    type={InputType.text}
+                    label="City"
+                  ></InputComponent>
                 </div>
                 <div className="item col-md-6">
-                  <span className="label d-flex align-items-center">
-                    State/Province
-                  </span>
-
-                  <InputComponent type={InputType.text}></InputComponent>
+                  <InputComponent
+                    type={InputType.text}
+                    label="State/Province"
+                  ></InputComponent>
                 </div>
               </div>
               <div className="row">
                 <div className="item col-md-6">
-                  <span className="label d-flex align-items-center">
-                    ZIP/Postal Code
-                  </span>
-
-                  <InputComponent type={InputType.text}></InputComponent>
+                  <InputComponent
+                    type={InputType.text}
+                    label=" ZIP/Postal Code"
+                  ></InputComponent>
                 </div>
                 <div className="item col-md-6">
-                  <span className="label d-flex align-items-center">Phone</span>
-
-                  <InputComponent type={InputType.text}></InputComponent>
+                  <InputComponent
+                    type={InputType.text}
+                    label="Phone"
+                  ></InputComponent>
                 </div>
               </div>
               <div className="item">
-                <span className="label d-flex align-items-center">Country</span>
-
                 <SelectComponent
                   items={[
                     { name: "test1", id: 1 },
@@ -534,6 +361,7 @@ export class LaboratoryPageEdit extends React.Component {
                   TextItem="name"
                   ValueItem="id"
                   className="my-2"
+                  label="Country"
                 ></SelectComponent>
               </div>
             </div>

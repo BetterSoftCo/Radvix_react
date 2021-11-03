@@ -6,6 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { MainButton, MainButtonType } from "../../components/button";
 import Dropzone from "react-dropzone";
 import { SelectComponent } from "../../components/select_input";
+import { BoxAlert } from "../../components/box_alert";
 export class LaboratoryPageNew extends React.Component {
   RoleUser = store.getState();
   date = new Date();
@@ -35,22 +36,11 @@ export class LaboratoryPageNew extends React.Component {
           <div className="form row">
             <div className="col-md-6 left">
               <div className="item">
-                <span className="label d-flex align-items-center">
-                  Laboratory Name:
-                  <CircleIcon
-                    width="20px"
-                    height="20px"
-                    type={ThemeCircleIcon.dark}
-                    backgroundColor="transparent"
-                    border="1px solid #D5D5D5"
-                    fontSize="10px"
-                    color="#D5D5D5"
-                  >
-                    <i className="fas fa-question"></i>
-                  </CircleIcon>
-                </span>
-
-                <InputComponent type={InputType.text}></InputComponent>
+                <InputComponent
+                  type={InputType.text}
+                  label="Laboratory Name:"
+                  popQuestion="Laboratory Name:"
+                ></InputComponent>
               </div>
               <div className="item">
                 <span className="label d-flex align-items-center">
@@ -98,83 +88,26 @@ export class LaboratoryPageNew extends React.Component {
                 </div>
               </div>
               <div className="item">
-                <span className="label d-flex align-items-center">
-                  Website:
-                  <MainButton
-                    type={MainButtonType.light}
-                    children={"Optional"}
-                    borderRadius="50px"
-                    fontSize="15px"
-                    className="mx-2"
-                  ></MainButton>
-                  <CircleIcon
-                    width="20px"
-                    height="20px"
-                    type={ThemeCircleIcon.dark}
-                    backgroundColor="transparent"
-                    border="1px solid #D5D5D5"
-                    fontSize="10px"
-                    color="#D5D5D5"
-                  >
-                    <i className="fas fa-question"></i>
-                  </CircleIcon>
-                </span>
-
-                <InputComponent type={InputType.text}></InputComponent>
+                <InputComponent
+                  type={InputType.text}
+                  label=" Website:"
+                  popQuestion=" Website:"
+                  optional="optional"
+                ></InputComponent>
               </div>
               <div className="item">
-                <span className="label d-flex align-items-center">
-                  Description:
-                  <MainButton
-                    type={MainButtonType.light}
-                    children={"Optional"}
-                    borderRadius="50px"
-                    fontSize="15px"
-                    className="mx-2"
-                  ></MainButton>
-                  <CircleIcon
-                    width="20px"
-                    height="20px"
-                    type={ThemeCircleIcon.dark}
-                    backgroundColor="transparent"
-                    border="1px solid #D5D5D5"
-                    fontSize="10px"
-                    color="#D5D5D5"
-                  >
-                    <i className="fas fa-question"></i>
-                  </CircleIcon>
-                </span>
-
-                <textarea
-                  style={{ height: "100px", marginTop: "1rem" }}
-                  className="form-control"
-                  id="floatingTextarea"
-                ></textarea>
+                <InputComponent
+                  type={InputType.textarea}
+                  label="Description:"
+                  popQuestion="Description:"
+                  optional="optional"
+                ></InputComponent>
               </div>
               <div className="item">
-                <span className="label d-flex align-items-center">
-                  Lab Manager(s):
-                  <MainButton
-                    type={MainButtonType.light}
-                    children={"Optional"}
-                    borderRadius="50px"
-                    fontSize="15px"
-                    className="mx-2"
-                  ></MainButton>
-                  <CircleIcon
-                    width="20px"
-                    height="20px"
-                    type={ThemeCircleIcon.dark}
-                    backgroundColor="transparent"
-                    border="1px solid #D5D5D5"
-                    fontSize="10px"
-                    color="#D5D5D5"
-                  >
-                    <i className="fas fa-question"></i>
-                  </CircleIcon>
-                </span>
-
                 <SelectComponent
+                  label=" Lab Manager(s):"
+                  popQuestion=" Lab Manager(s):"
+                  optional="optional"
                   items={[
                     { name: "test1", id: 1 },
                     { name: "test2", id: 2 },
@@ -184,10 +117,10 @@ export class LaboratoryPageNew extends React.Component {
                   className="my-2"
                 ></SelectComponent>
               </div>
-              <div className="item d-flex justify-content-center align-items-center box-alert">
-                No Member Has Been Added Yet! (You will automatically be added
-                to this research)
-              </div>
+              <BoxAlert
+                text=" No Member Has Been Added Yet! (You will automatically be added
+                to this research)"
+              ></BoxAlert>
             </div>
             <div className="col-md-6 right">
               <div className="item">
@@ -229,93 +162,61 @@ export class LaboratoryPageNew extends React.Component {
                     </section>
                   )}
                 </Dropzone>
-               
               </div>
               <div className="item">
-                <span className="label d-flex align-items-center">
-                  Address: <br /> Institution/Company
-                  <CircleIcon
-                    width="20px"
-                    height="20px"
-                    type={ThemeCircleIcon.dark}
-                    backgroundColor="transparent"
-                    border="1px solid #D5D5D5"
-                    fontSize="10px"
-                    color="#D5D5D5"
-                  >
-                    <i className="fas fa-question"></i>
-                  </CircleIcon>
-                </span>
-
-                <InputComponent type={InputType.text}></InputComponent>
+                <InputComponent
+                  type={InputType.text}
+                  label={
+                    <span>
+                      Address: <br /> Institution/Company
+                    </span>
+                  }
+                  popQuestion="Address"
+                ></InputComponent>
               </div>
               <div className="item">
-                <span className="label d-flex align-items-center">
-                  Address Line 1
-                  <CircleIcon
-                    width="20px"
-                    height="20px"
-                    type={ThemeCircleIcon.dark}
-                    backgroundColor="transparent"
-                    border="1px solid #D5D5D5"
-                    fontSize="10px"
-                    color="#D5D5D5"
-                  >
-                    <i className="fas fa-question"></i>
-                  </CircleIcon>
-                </span>
-
-                <InputComponent type={InputType.text}></InputComponent>
+                <InputComponent
+                  type={InputType.text}
+                  label=" Address Line 1"
+                  popQuestion=" Address Line 1"
+                ></InputComponent>
               </div>
               <div className="item">
-                <span className="label d-flex align-items-center">
-                  Address Line 2
-                  <CircleIcon
-                    width="20px"
-                    height="20px"
-                    type={ThemeCircleIcon.dark}
-                    backgroundColor="transparent"
-                    border="1px solid #D5D5D5"
-                    fontSize="10px"
-                    color="#D5D5D5"
-                  >
-                    <i className="fas fa-question"></i>
-                  </CircleIcon>
-                </span>
-
-                <InputComponent type={InputType.text}></InputComponent>
+                <InputComponent
+                  type={InputType.text}
+                  label="Address Line 2"
+                  popQuestion="Address Line 2"
+                ></InputComponent>
               </div>
               <div className="row">
                 <div className="item col-md-6">
-                  <span className="label d-flex align-items-center">City</span>
-
-                  <InputComponent type={InputType.text}></InputComponent>
+                  <InputComponent
+                    type={InputType.text}
+                    label="City"
+                  ></InputComponent>
                 </div>
                 <div className="item col-md-6">
-                  <span className="label d-flex align-items-center">
-                    State/Province
-                  </span>
-
-                  <InputComponent type={InputType.text}></InputComponent>
+                  <InputComponent
+                    type={InputType.text}
+                    label="State/Province"
+                  ></InputComponent>
                 </div>
               </div>
               <div className="row">
                 <div className="item col-md-6">
-                  <span className="label d-flex align-items-center">
-                    ZIP/Postal Code
-                  </span>
-
-                  <InputComponent type={InputType.text}></InputComponent>
+                  <InputComponent
+                    type={InputType.text}
+                    label=" ZIP/Postal Code"
+                  ></InputComponent>
                 </div>
                 <div className="item col-md-6">
-                  <span className="label d-flex align-items-center">Phone</span>
-
-                  <InputComponent type={InputType.text}></InputComponent>
+                  <InputComponent
+                    type={InputType.text}
+                    label="Phone"
+                  ></InputComponent>
                 </div>
               </div>
               <div className="item">
-                <span className="label d-flex align-items-center">Country</span>
-
                 <SelectComponent
                   items={[
                     { name: "test1", id: 1 },
@@ -324,6 +225,7 @@ export class LaboratoryPageNew extends React.Component {
                   TextItem="name"
                   ValueItem="id"
                   className="my-2"
+                  label="Country"
                 ></SelectComponent>
               </div>
             </div>

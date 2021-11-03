@@ -11,6 +11,9 @@ import { Theme } from "../../../core/utils";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
 import { SelectComponent } from "../../components/select_input";
+import { RadioGroup } from "../../components/radio_group";
+import { ButtonGroup } from "../../components/botton_group";
+import { BoxListScroll } from "../../components/box_list_scroll";
 class ResearchPageEdit extends React.Component<RouteComponentProps> {
   RoleUser = store.getState();
   date = new Date();
@@ -46,22 +49,11 @@ class ResearchPageEdit extends React.Component<RouteComponentProps> {
           <div className="form row">
             <div className="col-md-6 left">
               <div className="item">
-                <span className="label d-flex align-items-center">
-                  Research Name:{" "}
-                  <CircleIcon
-                    width="20px"
-                    height="20px"
-                    type={ThemeCircleIcon.dark}
-                    backgroundColor="transparent"
-                    border="1px solid #D5D5D5"
-                    fontSize="10px"
-                    color="#D5D5D5"
-                  >
-                    <i className="fas fa-question"></i>
-                  </CircleIcon>
-                </span>
-
-                <InputComponent type={InputType.text}></InputComponent>
+                <InputComponent
+                  type={InputType.text}
+                  label="Research Name:"
+                  popQuestion="Research Name"
+                ></InputComponent>
               </div>
               <div className="item">
                 <span className="label d-flex align-items-center">
@@ -90,141 +82,41 @@ class ResearchPageEdit extends React.Component<RouteComponentProps> {
                 </div>
               </div>
               <div className="item">
-                <span className="label d-flex align-items-center">
-                  Currency:{" "}
-                  <CircleIcon
-                    width="20px"
-                    height="20px"
-                    type={ThemeCircleIcon.dark}
-                    backgroundColor="transparent"
-                    border="1px solid #D5D5D5"
-                    fontSize="10px"
-                    color="#D5D5D5"
-                  >
-                    <i className="fas fa-question"></i>
-                  </CircleIcon>
-                </span>
-
-                <div className="form-check form-check-inline mt-3">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="inlineRadioOptions"
-                    id="inlineRadio1"
-                    value="option1"
-                  />
-                  <label className="form-check-label" htmlFor="inlineRadio1">
-                    U.S. Dollar ($)
-                  </label>
-                </div>
-                <div className="form-check form-check-inline">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="inlineRadioOptions"
-                    id="inlineRadio2"
-                    value="option2"
-                  />
-                  <label className="form-check-label" htmlFor="inlineRadio2">
-                    Pounds ($)
-                  </label>
-                </div>
-                <div className="form-check form-check-inline">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="inlineRadioOptions"
-                    id="inlineRadio3"
-                    value="option3"
-                  />
-                  <label className="form-check-label" htmlFor="inlineRadio3">
-                    Euro (€)
-                  </label>
-                </div>
+                <RadioGroup
+                  label=" Currency:"
+                  popQuestion="Currency"
+                  TextItem="name"
+                  ValueItem="id"
+                  name="Currency"
+                  items={[
+                    { name: "U.S. Dollar ($)", id: 1 },
+                    { name: " Pounds ($)", id: 2 },
+                    { name: "Euro (€)", id: 3 },
+                  ]}
+                ></RadioGroup>
               </div>
               <div className="item">
-                <span className="label d-flex align-items-center">
-                  Research Priority:
-                  <CircleIcon
-                    width="20px"
-                    height="20px"
-                    type={ThemeCircleIcon.dark}
-                    backgroundColor="transparent"
-                    border="1px solid #D5D5D5"
-                    fontSize="10px"
-                    color="#D5D5D5"
-                  >
-                    <i className="fas fa-question"></i>
-                  </CircleIcon>
-                </span>
-
-                <div
-                  className="btn-group"
-                  role="group"
-                  aria-label="Basic radio toggle button group"
-                >
-                  <input
-                    type="radio"
-                    className="btn-check"
-                    name="btnradio"
-                    id="btnradio1"
-                    autoComplete="off"
-                  />
-                  <label className="btn btn-outline-dark" htmlFor="btnradio1">
-                    Low
-                  </label>
-
-                  <input
-                    type="radio"
-                    className="btn-check"
-                    name="btnradio"
-                    id="btnradio2"
-                    autoComplete="off"
-                  />
-                  <label className="btn btn-outline-dark" htmlFor="btnradio2">
-                    Medium
-                  </label>
-
-                  <input
-                    type="radio"
-                    className="btn-check"
-                    name="btnradio"
-                    id="btnradio3"
-                    autoComplete="off"
-                  />
-                  <label className="btn btn-outline-dark" htmlFor="btnradio3">
-                    High
-                  </label>
-                </div>
+                <ButtonGroup
+                  label="Research Priority:"
+                  popQuestion="Research Priority"
+                  TextItem="name"
+                  ValueItem="id"
+                  name="ResearchPriority"
+                  items={[
+                    { name: " Low", id: 1 },
+                    { name: " Medium", id: 2 },
+                    { name: "High", id: 3 },
+                  ]}
+                ></ButtonGroup>
               </div>
               <div className="item">
-                <span className="label d-flex align-items-center">
-                  Research Name:{" "}
-                  <MainButton
-                    type={MainButtonType.light}
-                    children={"Optional"}
-                    borderRadius="50px"
-                    fontSize="15px"
-                    className="mx-2"
-                  ></MainButton>
-                  <CircleIcon
-                    width="20px"
-                    height="20px"
-                    type={ThemeCircleIcon.dark}
-                    backgroundColor="transparent"
-                    border="1px solid #D5D5D5"
-                    fontSize="10px"
-                    color="#D5D5D5"
-                  >
-                    <i className="fas fa-question"></i>
-                  </CircleIcon>
-                </span>
-
-                <textarea
-                  style={{ height: "100px", marginTop: "1rem" }}
-                  className="form-control"
-                  id="floatingTextarea"
-                ></textarea>
+                <InputComponent
+                  type={InputType.textarea}
+                  className="mt-3"
+                  label="Research Description:"
+                  popQuestion="Research Description:"
+                  optional="optional"
+                ></InputComponent>
               </div>
               <div className="item">
                 <span className="label d-flex align-items-center">
@@ -429,28 +321,6 @@ class ResearchPageEdit extends React.Component<RouteComponentProps> {
                 </li>
               </ul>
               <div className="item">
-                <span className="label d-flex align-items-center">
-                  Assign Teams (Members):
-                  <MainButton
-                    type={MainButtonType.light}
-                    children={"Optional"}
-                    borderRadius="50px"
-                    fontSize="15px"
-                    className="mx-2"
-                  ></MainButton>
-                  <CircleIcon
-                    width="20px"
-                    height="20px"
-                    type={ThemeCircleIcon.dark}
-                    backgroundColor="transparent"
-                    border="1px solid #D5D5D5"
-                    fontSize="10px"
-                    color="#D5D5D5"
-                  >
-                    <i className="fas fa-question"></i>
-                  </CircleIcon>
-                </span>
-
                 <SelectComponent
                   items={[
                     { name: "test1", id: 1 },
@@ -459,6 +329,9 @@ class ResearchPageEdit extends React.Component<RouteComponentProps> {
                   TextItem="name"
                   ValueItem="id"
                   className="my-2"
+                  label="Assign Teams (Members):"
+                  popQuestion="Assign Teams (Members):"
+                  optional="optional"
                 ></SelectComponent>
               </div>
               <div className="teams mb-3">
@@ -513,118 +386,31 @@ class ResearchPageEdit extends React.Component<RouteComponentProps> {
                     className="px-3"
                   ></MainButton>
                 </div>
-                <div className="team-list">
-                  <div className="d-flex justify-content-between align-items-center">
-                    <IconTextRow
-                      theme={Theme.light}
-                      children={
-                        <img
-                          src="/images/layout/img_avatar.png"
-                          alt="Avatar"
-                          className="rounded-circle avatar"
-                        />
-                      }
-                      text="Nima Hosseinzadeh"
-                      className="my-2"
-                    ></IconTextRow>
-                    <CircleIcon
-                      type={ThemeCircleIcon.dark}
-                      width="22px"
-                      height="22px"
-                      className="mx-3"
-                    >
-                      <i className="fas fa-trash"></i>
-                    </CircleIcon>
-                  </div>
-                  <div className="d-flex justify-content-between align-items-center">
-                    <IconTextRow
-                      theme={Theme.light}
-                      children={
-                        <img
-                          src="/images/layout/img_avatar.png"
-                          alt="Avatar"
-                          className="rounded-circle avatar"
-                        />
-                      }
-                      text="Nima Hosseinzadeh"
-                      className="my-2"
-                    ></IconTextRow>
-                    <CircleIcon
-                      type={ThemeCircleIcon.dark}
-                      width="22px"
-                      height="22px"
-                      className="mx-3"
-                    >
-                      <i className="fas fa-trash"></i>
-                    </CircleIcon>
-                  </div>
-                  <div className="d-flex justify-content-between align-items-center">
-                    <IconTextRow
-                      theme={Theme.light}
-                      children={
-                        <img
-                          src="/images/layout/img_avatar.png"
-                          alt="Avatar"
-                          className="rounded-circle avatar"
-                        />
-                      }
-                      text="Nima Hosseinzadeh"
-                      className="my-2"
-                    ></IconTextRow>
-                    <CircleIcon
-                      type={ThemeCircleIcon.dark}
-                      width="22px"
-                      height="22px"
-                      className="mx-3"
-                    >
-                      <i className="fas fa-trash"></i>
-                    </CircleIcon>
-                  </div>
-                  <div className="d-flex justify-content-between align-items-center">
-                    <IconTextRow
-                      theme={Theme.light}
-                      children={
-                        <img
-                          src="/images/layout/img_avatar.png"
-                          alt="Avatar"
-                          className="rounded-circle avatar"
-                        />
-                      }
-                      text="Nima Hosseinzadeh"
-                      className="my-2"
-                    ></IconTextRow>
-                    <CircleIcon
-                      type={ThemeCircleIcon.dark}
-                      width="22px"
-                      height="22px"
-                      className="mx-3"
-                    >
-                      <i className="fas fa-trash"></i>
-                    </CircleIcon>
-                  </div>
-                  <div className="d-flex justify-content-between align-items-center">
-                    <IconTextRow
-                      theme={Theme.light}
-                      children={
-                        <img
-                          src="/images/layout/img_avatar.png"
-                          alt="Avatar"
-                          className="rounded-circle avatar"
-                        />
-                      }
-                      text="Nima Hosseinzadeh"
-                      className="my-2"
-                    ></IconTextRow>
-                    <CircleIcon
-                      type={ThemeCircleIcon.dark}
-                      width="22px"
-                      height="22px"
-                      className="mx-3"
-                    >
-                      <i className="fas fa-trash"></i>
-                    </CircleIcon>
-                  </div>
-                </div>
+                <BoxListScroll
+                  items={[
+                    {
+                      text: "Nima Hosseinzadeh",
+                      id: 1,
+                      imagesrc: "/images/layout/img_avatar.png",
+                    },
+                    {
+                      text: "Nima Hosseinzadeh",
+                      id: 2,
+                      imagesrc: "/images/layout/img_avatar.png",
+                    },
+                    {
+                      text: "Nima Hosseinzadeh",
+                      id: 3,
+                      imagesrc: "/images/layout/img_avatar.png",
+                    },
+                  ]}
+                  TextItem="text"
+                  ValueItem="id"
+                  ImageItem="imagesrc"
+                  Deletabel
+                  DeleteFunc={(p , value)=>{console.log(p , value);
+                  }}
+                ></BoxListScroll>
               </div>
             </div>
             <div className="col-12 d-flex justify-content-center align-items-center my-4">
