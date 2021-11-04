@@ -2,8 +2,8 @@ import React from "react";
 import ReactPaginate from "react-paginate";
 import { store } from "../../../data/store";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
-import { InputComponent, InputType } from "../../components/inputs";
 import { InputIcon } from "../../components/search_box";
+import { SelectComponent } from "../../components/select_input";
 import  AcordienTableResearch  from "./component/acordien_table_research";
 
 export class ResearchPage extends React.Component {
@@ -26,8 +26,7 @@ export class ResearchPage extends React.Component {
                   ></InputIcon>
                 </div>
                 <div className="right w-25 d-flex justify-content-end">
-                  <InputComponent
-                    type={InputType.select}
+                  <SelectComponent
                     width="63px"
                     height="44px"
                     items={[
@@ -37,7 +36,7 @@ export class ResearchPage extends React.Component {
                     ]}
                     TextItem="item"
                     ValueItem="id"
-                  ></InputComponent>
+                  ></SelectComponent>
                 </div>
               </div>
                     <AcordienTableResearch></AcordienTableResearch>

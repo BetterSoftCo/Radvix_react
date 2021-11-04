@@ -5,6 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { MainButton, MainButtonType } from "../../components/button";
 import { IconTextRow } from "../../components/icon_text_horizontal";
 import { Theme } from "../../../core/utils";
+import { BoxListScroll } from "../../components/box_list_scroll";
 export class TaskPageProfile extends React.Component {
   RoleUser = store.getState();
 
@@ -186,56 +187,28 @@ export class TaskPageProfile extends React.Component {
                     className="px-3 m-2"
                   ></MainButton>
                 </div>
-                <div className="team-list">
-                  <IconTextRow
-                    theme={Theme.light}
-                    children={
-                      <img
-                        src="/images/layout/img_avatar.png"
-                        alt="Avatar"
-                        className="rounded-circle avatar"
-                      />
-                    }
-                    text="Nima Hosseinzadeh"
-                    className="my-2"
-                  ></IconTextRow>
-                  <IconTextRow
-                    theme={Theme.light}
-                    children={
-                      <img
-                        src="/images/layout/img_avatar.png"
-                        alt="Avatar"
-                        className="rounded-circle avatar"
-                      />
-                    }
-                    text="Nima Hosseinzadeh"
-                    className="my-2"
-                  ></IconTextRow>
-                  <IconTextRow
-                    theme={Theme.light}
-                    children={
-                      <img
-                        src="/images/layout/img_avatar.png"
-                        alt="Avatar"
-                        className="rounded-circle avatar"
-                      />
-                    }
-                    text="Nima Hosseinzadeh"
-                    className="my-2"
-                  ></IconTextRow>
-                  <IconTextRow
-                    theme={Theme.light}
-                    children={
-                      <img
-                        src="/images/layout/img_avatar.png"
-                        alt="Avatar"
-                        className="rounded-circle avatar"
-                      />
-                    }
-                    text="Nima Hosseinzadeh"
-                    className="my-2"
-                  ></IconTextRow>
-                </div>
+                <BoxListScroll
+                  items={[
+                    {
+                      text: "Nima Hosseinzadeh",
+                      id: 1,
+                      imagesrc: "/images/layout/img_avatar.png",
+                    },
+                    {
+                      text: "Nima Hosseinzadeh",
+                      id: 2,
+                      imagesrc: "/images/layout/img_avatar.png",
+                    },
+                    {
+                      text: "Nima Hosseinzadeh",
+                      id: 3,
+                      imagesrc: "/images/layout/img_avatar.png",
+                    },
+                  ]}
+                  TextItem="text"
+                  ValueItem="id"
+                  ImageItem="imagesrc"
+                ></BoxListScroll>
               </div>
               <div className="teams Labs">
                 <IconTextRow
@@ -316,104 +289,28 @@ export class TaskPageProfile extends React.Component {
                     className="px-3 m-2"
                   ></MainButton>
                 </div>
-                <div className="team-list">
-                  <IconTextRow
-                    theme={Theme.light}
-                    children={
-                      <CircleIcon
-                        type={ThemeCircleIcon.light}
-                        backgroundColor="#F5F5F5"
-                        width="50px"
-                        height="50px"
-                        className="avatar"
-                      >
-                        <img src="/Images/pages/Lab Menu Icon.svg" alt="" />
-                      </CircleIcon>
-                    }
-                    text="Nima Hosseinzadeh"
-                    className="my-2"
-                  ></IconTextRow>
-                  <IconTextRow
-                    theme={Theme.light}
-                    children={
-                      <CircleIcon
-                        type={ThemeCircleIcon.light}
-                        backgroundColor="#F5F5F5"
-                        width="50px"
-                        height="50px"
-                        className="avatar"
-                      >
-                        <img src="/Images/pages/Lab Menu Icon.svg" alt="" />
-                      </CircleIcon>
-                    }
-                    text="Nima Hosseinzadeh"
-                    className="my-2"
-                  ></IconTextRow>
-                  <IconTextRow
-                    theme={Theme.light}
-                    children={
-                      <CircleIcon
-                        type={ThemeCircleIcon.light}
-                        backgroundColor="#F5F5F5"
-                        width="50px"
-                        height="50px"
-                        className="avatar"
-                      >
-                        <img src="/Images/pages/Lab Menu Icon.svg" alt="" />
-                      </CircleIcon>
-                    }
-                    text="Nima Hosseinzadeh"
-                    className="my-2"
-                  ></IconTextRow>
-                  <IconTextRow
-                    theme={Theme.light}
-                    children={
-                      <CircleIcon
-                        type={ThemeCircleIcon.light}
-                        backgroundColor="#F5F5F5"
-                        width="50px"
-                        height="50px"
-                        className="avatar"
-                      >
-                        <img src="/Images/pages/Lab Menu Icon.svg" alt="" />
-                      </CircleIcon>
-                    }
-                    text="Nima Hosseinzadeh"
-                    className="my-2"
-                  ></IconTextRow>
-                  <IconTextRow
-                    theme={Theme.light}
-                    children={
-                      <CircleIcon
-                        type={ThemeCircleIcon.light}
-                        backgroundColor="#F5F5F5"
-                        width="50px"
-                        height="50px"
-                        className="avatar"
-                      >
-                        <img src="/Images/pages/Lab Menu Icon.svg" alt="" />
-                      </CircleIcon>
-                    }
-                    text="Nima Hosseinzadeh"
-                    className="my-2"
-                  ></IconTextRow>
-                  <IconTextRow
-                    theme={Theme.light}
-                    children={
-                      <CircleIcon
-                        type={ThemeCircleIcon.light}
-                        backgroundColor="#F5F5F5"
-                        width="50px"
-                        height="50px"
-                        className="avatar"
-                      >
-                        <img src="/Images/pages/Lab Menu Icon.svg" alt="" />
-                      </CircleIcon>
-                    }
-                    text="Nima Hosseinzadeh"
-                    className="my-2"
-                  ></IconTextRow>
-                </div>
+                <BoxListScroll
+                  items={[
+                    {
+                      text: "Nima Hosseinzadeh",
+                      id: 1,
+                      imagesrc: "/images/layout/img_avatar.png",
+                    },
+                    {
+                      text: "Nima Hosseinzadeh",
+                      id: 2,
+                      imagesrc: "/images/layout/img_avatar.png",
+                    },
+                    {
+                      text: "Nima Hosseinzadeh",
+                      id: 3,
+                      imagesrc: "/images/layout/img_avatar.png",
+                    },
+                  ]}
+                  TextItem="text"
+                  ValueItem="id"
+                  ImageItem="imagesrc"
+                ></BoxListScroll>
               </div>
             </div>
           </div>

@@ -3,8 +3,8 @@ import ReactPaginate from "react-paginate";
 import { store } from "../../../data/store";
 import { MainButton, MainButtonType } from "../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
-import { InputComponent, InputType } from "../../components/inputs";
 import { InputIcon } from "../../components/search_box";
+import { SelectComponent } from "../../components/select_input";
 import { AcordienTable } from "./component/recent_tasks";
 
 export class TasksPage extends React.Component {
@@ -64,8 +64,7 @@ export class TasksPage extends React.Component {
                   borderRadius="24px"
                   fontSize="14px"
                 ></MainButton>
-                <InputComponent
-                  type={InputType.select}
+                <SelectComponent
                   width="63px"
                   height="44px"
                   items={[
@@ -75,7 +74,7 @@ export class TasksPage extends React.Component {
                   ]}
                   TextItem="item"
                   ValueItem="id"
-                ></InputComponent>
+                ></SelectComponent>
               </div>
             </div>
             <AcordienTable role={this.RoleUser}></AcordienTable>

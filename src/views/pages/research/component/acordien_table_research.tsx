@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect } from "react";
 import { RouteComponentProps, withRouter } from "react-router";
-import { routes } from "../../../../core/constants";
+import { AppRoutes } from "../../../../core/constants";
 import { MainButton, MainButtonType } from "../../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../../components/circle_icon";
 
@@ -10,7 +10,7 @@ interface IAcordienTableResearch{}
   
   const handelOnclick = (e: any) => {
     e.stopPropagation();
-    props.history.push(routes.edit_research)
+    props.history.push(AppRoutes.edit_research)
   };
   useEffect(() => {}, []);
   return (

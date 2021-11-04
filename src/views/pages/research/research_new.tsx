@@ -6,6 +6,10 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { MainButton, MainButtonType } from "../../components/button";
 import Dropzone from "react-dropzone";
+import { SelectComponent } from "../../components/select_input";
+import { RadioGroup } from "../../components/radio_group";
+import { ButtonGroup } from "../../components/botton_group";
+import { BoxAlert } from "../../components/box_alert";
 export class ResearchPageNew extends React.Component {
   RoleUser = store.getState();
   date = new Date();
@@ -35,22 +39,11 @@ export class ResearchPageNew extends React.Component {
           <div className="form row">
             <div className="col-md-6 left">
               <div className="item">
-                <span className="label d-flex align-items-center">
-                  Research Name:{" "}
-                  <CircleIcon
-                    width="20px"
-                    height="20px"
-                    type={ThemeCircleIcon.dark}
-                    backgroundColor="transparent"
-                    border="1px solid #D5D5D5"
-                    fontSize="10px"
-                    color="#D5D5D5"
-                  >
-                    <i className="fas fa-question"></i>
-                  </CircleIcon>
-                </span>
-
-                <InputComponent type={InputType.text}></InputComponent>
+                <InputComponent
+                  type={InputType.text}
+                  label="Research Name:"
+                  popQuestion="Research Name:"
+                ></InputComponent>
               </div>
               <div className="item">
                 <span className="label d-flex align-items-center">
@@ -64,7 +57,10 @@ export class ResearchPageNew extends React.Component {
                     fontSize="10px"
                     color="#D5D5D5"
                   >
-                    <i className="fas fa-question"></i>
+                    <i
+                      className="fas fa-question"
+                      title="Scheduled Timeline"
+                    ></i>
                   </CircleIcon>
                 </span>
                 <div className="d-flex justify-content-between align-items-center">
@@ -79,141 +75,41 @@ export class ResearchPageNew extends React.Component {
                 </div>
               </div>
               <div className="item">
-                <span className="label d-flex align-items-center">
-                  Currency:{" "}
-                  <CircleIcon
-                    width="20px"
-                    height="20px"
-                    type={ThemeCircleIcon.dark}
-                    backgroundColor="transparent"
-                    border="1px solid #D5D5D5"
-                    fontSize="10px"
-                    color="#D5D5D5"
-                  >
-                    <i className="fas fa-question"></i>
-                  </CircleIcon>
-                </span>
-
-                <div className="form-check form-check-inline mt-3">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="inlineRadioOptions"
-                    id="inlineRadio1"
-                    value="option1"
-                  />
-                  <label className="form-check-label" htmlFor="inlineRadio1">
-                    U.S. Dollar ($)
-                  </label>
-                </div>
-                <div className="form-check form-check-inline">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="inlineRadioOptions"
-                    id="inlineRadio2"
-                    value="option2"
-                  />
-                  <label className="form-check-label" htmlFor="inlineRadio2">
-                    Pounds ($)
-                  </label>
-                </div>
-                <div className="form-check form-check-inline">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="inlineRadioOptions"
-                    id="inlineRadio3"
-                    value="option3"
-                  />
-                  <label className="form-check-label" htmlFor="inlineRadio3">
-                    Euro (€)
-                  </label>
-                </div>
+                <RadioGroup
+                  name="Currency"
+                  label="Currency"
+                  popQuestion="Currency"
+                  items={[
+                    { name: "U.S. Dollar ($)", value: 1 },
+                    { name: "Pounds ($)", value: 2 },
+                    { name: "Euro (€)", value: 3 },
+                  ]}
+                  TextItem="name"
+                  ValueItem="value"
+                ></RadioGroup>
               </div>
               <div className="item">
-                <span className="label d-flex align-items-center">
-                  Research Priority:
-                  <CircleIcon
-                    width="20px"
-                    height="20px"
-                    type={ThemeCircleIcon.dark}
-                    backgroundColor="transparent"
-                    border="1px solid #D5D5D5"
-                    fontSize="10px"
-                    color="#D5D5D5"
-                  >
-                    <i className="fas fa-question"></i>
-                  </CircleIcon>
-                </span>
-
-                <div
-                  className="btn-group"
-                  role="group"
-                  aria-label="Basic radio toggle button group"
-                >
-                  <input
-                    type="radio"
-                    className="btn-check"
-                    name="btnradio"
-                    id="btnradio1"
-                    autoComplete="off"
-                  />
-                  <label className="btn btn-outline-dark" htmlFor="btnradio1">
-                    Low
-                  </label>
-
-                  <input
-                    type="radio"
-                    className="btn-check"
-                    name="btnradio"
-                    id="btnradio2"
-                    autoComplete="off"
-                  />
-                  <label className="btn btn-outline-dark" htmlFor="btnradio2">
-                    Medium
-                  </label>
-
-                  <input
-                    type="radio"
-                    className="btn-check"
-                    name="btnradio"
-                    id="btnradio3"
-                    autoComplete="off"
-                  />
-                  <label className="btn btn-outline-dark" htmlFor="btnradio3">
-                    High
-                  </label>
-                </div>
+                <ButtonGroup
+                  label="Research Priority:"
+                  popQuestion="Research Priority:"
+                  name="ResearchPriority"
+                  items={[
+                    { name: "Low", value: 1 },
+                    { name: "Medium", value: 2 },
+                    { name: "High", value: 3 },
+                  ]}
+                  TextItem="name"
+                  ValueItem="value"
+                ></ButtonGroup>
               </div>
               <div className="item">
-                <span className="label d-flex align-items-center">
-                  Research Name:{" "}
-                  <MainButton
-                    type={MainButtonType.light}
-                    children={"Optional"}
-                    borderRadius="50px"
-                    fontSize="15px"
-                    className="mx-2"
-                  ></MainButton>
-                  <CircleIcon
-                    width="20px"
-                    height="20px"
-                    type={ThemeCircleIcon.dark}
-                    backgroundColor="transparent"
-                    border="1px solid #D5D5D5"
-                    fontSize="10px"
-                    color="#D5D5D5"
-                  >
-                    <i className="fas fa-question"></i>
-                  </CircleIcon>
-                </span>
-
-                <textarea
-                  style={{ height: "100px", marginTop: "1rem" }}
-                  className="form-control"
-                  id="floatingTextarea"
-                ></textarea>
+                <InputComponent
+                  type={InputType.textarea}
+                  label="Research Description:"
+                  optional="optional"
+                  popQuestion="Research Description:"
+                  className="mt-2"
+                ></InputComponent>
               </div>
             </div>
             <div className="col-md-6 right">
@@ -275,30 +171,7 @@ export class ResearchPageNew extends React.Component {
                 </CircleIcon>
               </div>
               <div className="item">
-                <span className="label d-flex align-items-center">
-                  Assign Teams (Members):
-                  <MainButton
-                    type={MainButtonType.light}
-                    children={"Optional"}
-                    borderRadius="50px"
-                    fontSize="15px"
-                    className="mx-2"
-                  ></MainButton>
-                  <CircleIcon
-                    width="20px"
-                    height="20px"
-                    type={ThemeCircleIcon.dark}
-                    backgroundColor="transparent"
-                    border="1px solid #D5D5D5"
-                    fontSize="10px"
-                    color="#D5D5D5"
-                  >
-                    <i className="fas fa-question"></i>
-                  </CircleIcon>
-                </span>
-
-                <InputComponent
-                  type={InputType.select}
+                <SelectComponent
                   items={[
                     { name: "test1", id: 1 },
                     { name: "test2", id: 2 },
@@ -306,12 +179,16 @@ export class ResearchPageNew extends React.Component {
                   TextItem="name"
                   ValueItem="id"
                   className="my-2"
-                ></InputComponent>
+                  placeholder="Click to see the list…"
+                  label="Assign Teams (Members):"
+                  popQuestion="Assign Teams (Members):"
+                  optional="optional"
+                ></SelectComponent>
               </div>
-              <div className="item d-flex justify-content-center align-items-center box-alert">
-                No Member Has Been Added Yet! (You will automatically be added
-                to this research)
-              </div>
+              <BoxAlert
+                text=" No Member Has Been Added Yet! (You will automatically be added
+                to this research)"
+              ></BoxAlert>
             </div>
           </div>
         </div>

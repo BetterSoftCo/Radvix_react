@@ -1,14 +1,14 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { routes } from "../../core/constants";
+import { AppRoutes } from "../../core/constants";
 import { Theme } from "../../core/utils";
 import { IconTextVertical } from "../components/Icon_text_vertical";
 
 export const Sidebar: React.FC = () => {
   return (
     <ul>
-      <NavLink to="/dashboard/research" activeClassName="selected">
+      <NavLink to={AppRoutes.research} activeClassName="selected">
         <li>
           <IconTextVertical
             text="Research"
@@ -17,7 +17,7 @@ export const Sidebar: React.FC = () => {
           ></IconTextVertical>
         </li>
       </NavLink>
-      <NavLink to="/dashboard/laboratory" activeClassName="selected">
+      <NavLink to={AppRoutes.laboratory} activeClassName="selected">
         <li>
           <IconTextVertical
             text="Laboratory"
@@ -26,7 +26,7 @@ export const Sidebar: React.FC = () => {
           ></IconTextVertical>
         </li>
       </NavLink>
-      <NavLink to={routes.team} activeClassName="selected">
+      <NavLink to="/dashboard/Team" activeClassName="selected">
         <li>
           <IconTextVertical
             text="Team"
@@ -35,7 +35,7 @@ export const Sidebar: React.FC = () => {
           ></IconTextVertical>
         </li>
       </NavLink>
-      <NavLink to="/dashboard/Task" activeClassName="selected">
+      <NavLink to={AppRoutes.task} activeClassName="selected">
         <li>
           <IconTextVertical
             text="Task"
