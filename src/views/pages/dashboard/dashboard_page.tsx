@@ -8,6 +8,7 @@ import { AcordienTable } from "./recent_tasks";
 import { AcordienTableData } from "./recent_data";
 import { store } from "../../../data/store";
 import { SelectComponent } from "../../components/select_input";
+import { compeleted_tasks_overview_icon, equipment_involved_overview_icon, members_involved_overview_icon, pending_tasks_overview_icon, project_deadline_overview_icon, search_box_icon } from "../../../assets";
 export class DashboardPage extends React.Component {
   handlePageClick = (data: any) => {};
   mockData = [
@@ -59,7 +60,7 @@ export class DashboardPage extends React.Component {
                 <div className="left d-flex w-50 align-items-center">
                   <h6 style={{ width: "35%" }}>Research Updates</h6>
                   <InputIcon
-                    chilren={<img src="/images/pages/Search Box Icon.svg" />}
+                    chilren={<img src={search_box_icon} />}
                     width="100%"
                     height="44px"
                     placeholder="Search..."
@@ -123,7 +124,7 @@ export class DashboardPage extends React.Component {
                 <div className="left d-flex w-50 align-items-center">
                   <h6 style={{ width: "35%" }}>Recent Tasks</h6>
                   <InputIcon
-                    chilren={<img src="/images/pages/Search Box Icon.svg" />}
+                    chilren={<img src={search_box_icon} />}
                     width="100%"
                     height="44px"
                     placeholder="Search..."
@@ -184,7 +185,7 @@ export class DashboardPage extends React.Component {
                 <div className="left d-flex w-50 align-items-center">
                   <h6 style={{ width: "35%" }}>Recent Data Sets</h6>
                   <InputIcon
-                    chilren={<img src="/images/pages/Search Box Icon.svg" />}
+                    chilren={<img src={search_box_icon} />}
                     width="100%"
                     height="44px"
                     placeholder="Search..."
@@ -252,7 +253,7 @@ const HeadDashboardPage: React.FC = () => {
       <div className="overviwe-item">
         <div className="d-flex align-items-center justify-content-around">
           <img
-            src="/images/pages/Members Involved Overview Icon.svg"
+            src={members_involved_overview_icon}
             alt="Avatar"
             className="avatar"
           />
@@ -265,7 +266,7 @@ const HeadDashboardPage: React.FC = () => {
       <div className="overviwe-item">
         <div className="d-flex align-items-center justify-content-around">
           <img
-            src="/images/pages/Equipment Involved Overview Icon.svg"
+            src={equipment_involved_overview_icon}
             alt="Avatar"
             className="avatar"
           />
@@ -278,7 +279,7 @@ const HeadDashboardPage: React.FC = () => {
       <div className="overviwe-item">
         <div className="d-flex align-items-center justify-content-around">
           <img
-            src="/images/pages/Compeleted Tasks Overview Icon.svg"
+            src={compeleted_tasks_overview_icon}
             alt="Avatar"
             className="avatar"
           />
@@ -291,7 +292,7 @@ const HeadDashboardPage: React.FC = () => {
       <div className="overviwe-item">
         <div className="d-flex align-items-center justify-content-around">
           <img
-            src="/images/pages/Pending Tasks Overview Icon.svg"
+            src={pending_tasks_overview_icon}
             alt="Avatar"
             className="avatar"
           />
@@ -304,7 +305,7 @@ const HeadDashboardPage: React.FC = () => {
       <div className="overviwe-item">
         <div className="d-flex align-items-center justify-content-around">
           <img
-            src="/images/pages/Project Deadline Overview Icon.svg"
+            src={project_deadline_overview_icon}
             alt="Avatar"
             className="avatar"
           />

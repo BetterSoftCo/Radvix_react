@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from "react";
+import { google_scholar_icon_130918, linkedIn_logo_initials, member, orcid_og_image, radvix_logo } from "../../../assets";
 import { MainButton, MainButtonType } from "../../components/button";
 import { InputComponent, InputType } from "../../components/inputs";
 
@@ -7,9 +8,9 @@ export const LoginPage: React.FC = () => {
   return (
     <div className="row bg-danger  login">
       <div className="col-md-3   left">
-        <img src="/images/layout/Radvix Logo.svg" className="logo" alt="" />
+        <img src={radvix_logo} className="logo" alt="" />
         <span>login</span>
-        <img src="/images/pages/Member.png" className="logo-Member" alt="" />
+        <img src={member} className="logo-Member" alt="" />
         <MainButton
           children={"Forgot Email?"}
           type={MainButtonType.dark}
@@ -57,7 +58,7 @@ export const LoginPage: React.FC = () => {
           backgroundColor="#A6CE39"
           children={
             <div>
-              <img src="/images/pages/orcid-og-image.png" /> Login using ORCiD
+              <img src={orcid_og_image} /> Login using ORCiD
             </div>
           }
         ></MainButton>
@@ -71,7 +72,7 @@ export const LoginPage: React.FC = () => {
           backgroundColor="#4285F4"
           children={
             <div>
-              <img src="/images/pages/google_scholar_icon_130918.png" /> Login
+              <img src={google_scholar_icon_130918} /> Login
               using Google
             </div>
           }
@@ -86,7 +87,7 @@ export const LoginPage: React.FC = () => {
           backgroundColor="#0274B3"
           children={
             <div>
-              <img src="/images/pages/LinkedIn_logo_initials.png" /> Login using
+              <img src={linkedIn_logo_initials} /> Login using
               LinkedIn
             </div>
           }
