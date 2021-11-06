@@ -7,7 +7,7 @@ import { AppRoutes } from "./core/constants";
 import { DashboardPage } from "./views/pages/dashboard/dashboard_page";
 import MainLayout from "./views/layout/main_layout";
 import { Provider } from "react-redux";
-import { store } from "./data/store/index";
+import { store } from "./data/store";
 import ProtectedRoute from "./router/protected_route";
 import { UserRoles } from "./core/utils";
 import "react-toastify/dist/ReactToastify.css";
