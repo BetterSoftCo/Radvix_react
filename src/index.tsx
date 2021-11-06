@@ -8,25 +8,25 @@ import { DashboardPage } from "./views/pages/dashboard/dashboard_page";
 import MainLayout from "./views/layout/main_layout";
 import { Provider } from "react-redux";
 import { store } from "./data/store/index";
-import { LoginPage } from "./views/pages/login/login";
-
 import ProtectedRoute from "./router/protected_route";
 import { UserRoles } from "./core/utils";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 import {
   ResearchPage,
   ResearchPageNew,
   ResearchPageProfile,
   ResearchPageEdit,
+  LoginPage,
+  LaboratoryPageProfile,
+  LaboratoryPage,
+  LaboratoryPageEdit,
+  LaboratoryPageNew,
+  TasksPage,
+  TaskPageNew,
+  TaskPageProfile,
+  TaskPageEdit,
 } from "./views";
-import { LaboratoryPage } from "./views/pages/laboratory/laboratory_page";
-import { LaboratoryPageNew } from "./views/pages/laboratory/laboratory_new";
-import { LaboratoryPageProfile } from "./views/pages/laboratory/laboratory_profile";
-import { LaboratoryPageEdit } from "./views/pages/laboratory/laboratory_edit";
-import { TasksPage } from "./views/pages/task/task_page";
-import { TaskPageNew } from "./views/pages/task/task_new";
-import { TaskPageProfile } from "./views/pages/task/task_profile";
 
 const RoleUser: UserRoles = store.getState();
 
@@ -39,7 +39,11 @@ ReactDOM.render(
           <Route component={DashboardPage} path={AppRoutes.dashboard} exact />
           <Route component={LoginPage} path={AppRoutes.login} exact />
           <Route component={ResearchPage} path={AppRoutes.research} exact />
-          <Route component={ResearchPageNew} path={AppRoutes.new_research} exact />
+          <Route
+            component={ResearchPageNew}
+            path={AppRoutes.new_research}
+            exact
+          />
           <Route
             component={ResearchPageProfile}
             path={AppRoutes.profile_research}
@@ -92,8 +96,22 @@ ReactDOM.render(
             path={AppRoutes.task_new}
             component={TaskPageNew}
           />
-          <Route component={TaskPageProfile} path={AppRoutes.task_profile} exact />
-
+          <Route
+            component={TaskPageProfile}
+            path={AppRoutes.task_profile}
+            exact
+          />
+          <ProtectedRoute
+            isAuthenticated={
+              RoleUser === UserRoles.level1 || RoleUser === UserRoles.level2
+                ? true
+                : false
+            }
+            authenticationPath={AppRoutes.task}
+            exact={true}
+            path={AppRoutes.task_edit}
+            component={TaskPageEdit}
+          />
         </Switch>
       </MainLayout>
     </BrowserRouter>
