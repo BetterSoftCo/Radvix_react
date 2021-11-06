@@ -1,13 +1,14 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from "react";
-import { InputComponent, InputType } from "../../components/inputs";
-import { InputIcon } from "../../components/searchBox";
-import { TableComponent } from "../../components/Table";
+import { InputIcon } from "../../components/search_box";
+import { TableComponent } from "../../components/table_comonent";
 import ReactPaginate from "react-paginate";
-import { CircleIcon, ThemeCircleIcon } from "../../components/CircleIcon";
-import { AcordienTable } from "./RecentTasks";
-import { AcordienTableData } from "./RecentData";
-import { store } from "../../../data/Store";
+import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
+import { AcordienTable } from "./recent_tasks";
+import { AcordienTableData } from "./recent_data";
+import { store } from "../../../data/store";
+import { SelectComponent } from "../../components/select_input";
+import { compeleted_tasks_overview_icon, equipment_involved_overview_icon, members_involved_overview_icon, pending_tasks_overview_icon, project_deadline_overview_icon, search_box_icon } from "../../../assets";
 export class DashboardPage extends React.Component {
   handlePageClick = (data: any) => {};
   mockData = [
@@ -45,79 +46,13 @@ export class DashboardPage extends React.Component {
     },
   ];
   RoleUser = store.getState();
- 
+
   render() {
     return (
       <div className="container-fluid dashbord">
         <div className="row">
           <div className="col-12">
-            <div className="overviwe d-flex flex-wrap flex-lg-nowrap justify-content-between align-items-center">
-              <div className="overviwe-item">
-                <div className="d-flex align-items-center justify-content-around">
-                  <img
-                    src="/images/pages/Members Involved Overview Icon.svg"
-                    alt="Avatar"
-                    className="avatar"
-                  />
-                  <div className="d-flex flex-column align-items-center">
-                    <h1 className="display-5">12</h1>
-                    <span className="text-center">Users Involved</span>
-                  </div>
-                </div>
-              </div>
-              <div className="overviwe-item">
-                <div className="d-flex align-items-center justify-content-around">
-                  <img
-                    src="/images/pages/Equipment Involved Overview Icon.svg"
-                    alt="Avatar"
-                    className="avatar"
-                  />
-                  <div className="d-flex flex-column align-items-center">
-                    <h1 className="display-5">8</h1>
-                    <span className="text-center">Equipment Available</span>
-                  </div>
-                </div>
-              </div>
-              <div className="overviwe-item">
-                <div className="d-flex align-items-center justify-content-around">
-                  <img
-                    src="/images/pages/Compeleted Tasks Overview Icon.svg"
-                    alt="Avatar"
-                    className="avatar"
-                  />
-                  <div className="d-flex flex-column align-items-center">
-                    <h1 className="display-5">18</h1>
-                    <span className="text-center">Tasks Completed</span>
-                  </div>
-                </div>
-              </div>
-              <div className="overviwe-item">
-                <div className="d-flex align-items-center justify-content-around">
-                  <img
-                    src="/images/pages/Pending Tasks Overview Icon.svg"
-                    alt="Avatar"
-                    className="avatar"
-                  />
-                  <div className="d-flex flex-column align-items-center">
-                    <h1 className="display-5">45</h1>
-                    <span className="text-center">Tasks Pending</span>
-                  </div>
-                </div>
-              </div>
-              <div className="overviwe-item">
-                <div className="d-flex align-items-center justify-content-around">
-                  <img
-                    src="/images/pages/Project Deadline Overview Icon.svg"
-                    alt="Avatar"
-                    className="avatar"
-                  />
-                  <div className="d-flex flex-column align-items-center">
-                    <h1 className="display-5">87</h1>
-                    <span className="text-center">Days Left To Deadline</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <HeadDashboardPage></HeadDashboardPage>
           </div>
           <div className="col-12">
             <div className="TableBox">
@@ -125,15 +60,14 @@ export class DashboardPage extends React.Component {
                 <div className="left d-flex w-50 align-items-center">
                   <h6 style={{ width: "35%" }}>Research Updates</h6>
                   <InputIcon
-                    chilren={<img src="/images/pages/Search Box Icon.svg" />}
+                    chilren={<img src={search_box_icon} />}
                     width="100%"
                     height="44px"
                     placeholder="Search..."
                   ></InputIcon>
                 </div>
                 <div className="right w-25 d-flex justify-content-end">
-                  <InputComponent
-                    type={InputType.select}
+                  <SelectComponent
                     width="63px"
                     height="44px"
                     items={[
@@ -143,7 +77,7 @@ export class DashboardPage extends React.Component {
                     ]}
                     TextItem="item"
                     ValueItem="id"
-                  ></InputComponent>
+                  ></SelectComponent>
                 </div>
               </div>
               <TableComponent
@@ -190,15 +124,14 @@ export class DashboardPage extends React.Component {
                 <div className="left d-flex w-50 align-items-center">
                   <h6 style={{ width: "35%" }}>Recent Tasks</h6>
                   <InputIcon
-                    chilren={<img src="/images/pages/Search Box Icon.svg" />}
+                    chilren={<img src={search_box_icon} />}
                     width="100%"
                     height="44px"
                     placeholder="Search..."
                   ></InputIcon>
                 </div>
                 <div className="right w-25 d-flex justify-content-end">
-                  <InputComponent
-                    type={InputType.select}
+                  <SelectComponent
                     width="63px"
                     height="44px"
                     items={[
@@ -208,7 +141,7 @@ export class DashboardPage extends React.Component {
                     ]}
                     TextItem="item"
                     ValueItem="id"
-                  ></InputComponent>
+                  ></SelectComponent>
                 </div>
               </div>
               <AcordienTable role={this.RoleUser}></AcordienTable>
@@ -252,15 +185,14 @@ export class DashboardPage extends React.Component {
                 <div className="left d-flex w-50 align-items-center">
                   <h6 style={{ width: "35%" }}>Recent Data Sets</h6>
                   <InputIcon
-                    chilren={<img src="/images/pages/Search Box Icon.svg" />}
+                    chilren={<img src={search_box_icon} />}
                     width="100%"
                     height="44px"
                     placeholder="Search..."
                   ></InputIcon>
                 </div>
                 <div className="right w-25 d-flex justify-content-end">
-                  <InputComponent
-                    type={InputType.select}
+                  <SelectComponent
                     width="63px"
                     height="44px"
                     items={[
@@ -270,7 +202,7 @@ export class DashboardPage extends React.Component {
                     ]}
                     TextItem="item"
                     ValueItem="id"
-                  ></InputComponent>
+                  ></SelectComponent>
                 </div>
               </div>
 
@@ -314,3 +246,75 @@ export class DashboardPage extends React.Component {
     );
   }
 }
+
+const HeadDashboardPage: React.FC = () => {
+  return (
+    <div className="overviwe d-flex flex-wrap flex-lg-nowrap justify-content-between align-items-center">
+      <div className="overviwe-item">
+        <div className="d-flex align-items-center justify-content-around">
+          <img
+            src={members_involved_overview_icon}
+            alt="Avatar"
+            className="avatar"
+          />
+          <div className="d-flex flex-column align-items-center">
+            <h1 className="display-5">12</h1>
+            <span className="text-center">Users Involved</span>
+          </div>
+        </div>
+      </div>
+      <div className="overviwe-item">
+        <div className="d-flex align-items-center justify-content-around">
+          <img
+            src={equipment_involved_overview_icon}
+            alt="Avatar"
+            className="avatar"
+          />
+          <div className="d-flex flex-column align-items-center">
+            <h1 className="display-5">8</h1>
+            <span className="text-center">Equipment Available</span>
+          </div>
+        </div>
+      </div>
+      <div className="overviwe-item">
+        <div className="d-flex align-items-center justify-content-around">
+          <img
+            src={compeleted_tasks_overview_icon}
+            alt="Avatar"
+            className="avatar"
+          />
+          <div className="d-flex flex-column align-items-center">
+            <h1 className="display-5">18</h1>
+            <span className="text-center">Tasks Completed</span>
+          </div>
+        </div>
+      </div>
+      <div className="overviwe-item">
+        <div className="d-flex align-items-center justify-content-around">
+          <img
+            src={pending_tasks_overview_icon}
+            alt="Avatar"
+            className="avatar"
+          />
+          <div className="d-flex flex-column align-items-center">
+            <h1 className="display-5">45</h1>
+            <span className="text-center">Tasks Pending</span>
+          </div>
+        </div>
+      </div>
+      <div className="overviwe-item">
+        <div className="d-flex align-items-center justify-content-around">
+          <img
+            src={project_deadline_overview_icon}
+            alt="Avatar"
+            className="avatar"
+          />
+          <div className="d-flex flex-column align-items-center">
+            <h1 className="display-5">87</h1>
+            <span className="text-center">Days Left To Deadline</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};

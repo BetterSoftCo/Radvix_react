@@ -1,9 +1,11 @@
 /* eslint-disable no-useless-concat */
-import React from "react";
+import React, { Fragment, ReactNode } from "react";
+import { MainButton, MainButtonType } from "./button";
+import { CircleIcon, ThemeCircleIcon } from "./circle_icon";
 
 export enum InputType {
   text,
-  select,
+  textarea,
 }
 
 interface InputsProps {
@@ -17,10 +19,9 @@ interface InputsProps {
   onChange?: (e: any) => void;
   placeholder?: string;
   type: InputType;
-  items?: any[];
-  TextItem?: string;
-  ValueItem?: string;
-  
+  label?: ReactNode;
+  popQuestion?: string;
+  optional?: string;
 }
 export const InputComponent: React.FC<InputsProps> = ({
   width,
@@ -33,9 +34,9 @@ export const InputComponent: React.FC<InputsProps> = ({
   onChange,
   placeholder,
   type,
-  items,
-  TextItem,
-  ValueItem,
+  label,
+  popQuestion,
+  optional,
 }) => {
   let styles = {
     width: width,
@@ -51,38 +52,60 @@ export const InputComponent: React.FC<InputsProps> = ({
   } else {
     IsclassName = "";
   }
- 
-  
-
+  let TemplateLabel;
+  if (label !== null) {
+    TemplateLabel = (
+      <span className="label d-flex align-items-center">
+        {label}
+        {optional ? (
+          <MainButton
+            type={MainButtonType.light}
+            children={optional}
+            borderRadius="50px"
+            fontSize="15px"
+            className="mx-2"
+          ></MainButton>
+        ) : null}
+        {popQuestion ? (
+          <CircleIcon
+            width="20px"
+            height="20px"
+            type={ThemeCircleIcon.dark}
+            backgroundColor="transparent"
+            border="1px solid #D5D5D5"
+            fontSize="10px"
+            color="#D5D5D5"
+          >
+            <i className="fas fa-question pointer" title={popQuestion}></i>
+          </CircleIcon>
+        ) : null}
+      </span>
+    );
+  }
   return type === InputType.text ? (
-    <input
-      type="text"
-      style={styles}
-      onChange={onChange}
-      placeholder={placeholder}
-
-      className={`${
-        IsclassName +
-        " " +
-        "InputComponentStyle" +
-        " " +
-        "form-control"
-      }`}
-    />
+    <Fragment>
+      {TemplateLabel}
+      <input
+        type="text"
+        style={styles}
+        onChange={onChange}
+        placeholder={placeholder}
+        className={`${
+          IsclassName + " " + "InputComponentStyle" + " " + "form-control"
+        }`}
+      />
+    </Fragment>
   ) : (
-    <select
-      className={`${
-        IsclassName + " " + "InputSelectStyle" + " " + "form-select"
-      }`}
-      style={styles}
-      aria-label="Default select example"
-      onChange={onChange}
-    >
-      {items?.map((item, index) => (
-        <option value={item[`${ValueItem}`]} key={index}>
-          {item[`${TextItem}`]}
-        </option>
-      ))}
-    </select>
+    <Fragment>
+      {TemplateLabel}
+      <textarea
+        style={styles}
+        className={`${
+          IsclassName + " " + "InputComponentStyle" + " " + "form-control"
+        }`}
+        onChange={onChange}
+        placeholder={placeholder}
+      ></textarea>
+    </Fragment>
   );
 };

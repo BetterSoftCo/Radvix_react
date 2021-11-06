@@ -1,10 +1,11 @@
 import React from "react";
 import ReactPaginate from "react-paginate";
-import { store } from "../../../data/Store";
-import { CircleIcon, ThemeCircleIcon } from "../../components/CircleIcon";
-import { InputComponent, InputType } from "../../components/inputs";
-import { InputIcon } from "../../components/searchBox";
-import  AcordienTableResearch  from "./component/AcordienTableResearch";
+import { search_box_icon } from "../../../assets";
+import { store } from "../../../data/store";
+import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
+import { InputIcon } from "../../components/search_box";
+import { SelectComponent } from "../../components/select_input";
+import  AcordienTableResearch  from "./component/acordien_table_research";
 
 export class ResearchPage extends React.Component {
   RoleUser = store.getState();
@@ -19,15 +20,14 @@ export class ResearchPage extends React.Component {
                 <div className="left d-flex w-50 align-items-center">
                   <h6 style={{ width: "35%" }}>Research List</h6>
                   <InputIcon
-                    chilren={<img src="/images/pages/Search Box Icon.svg" alt=""/>}
+                    chilren={<img src={search_box_icon} alt=""/>}
                     width="100%"
                     height="44px"
                     placeholder="Search..."
                   ></InputIcon>
                 </div>
                 <div className="right w-25 d-flex justify-content-end">
-                  <InputComponent
-                    type={InputType.select}
+                  <SelectComponent
                     width="63px"
                     height="44px"
                     items={[
@@ -37,7 +37,7 @@ export class ResearchPage extends React.Component {
                     ]}
                     TextItem="item"
                     ValueItem="id"
-                  ></InputComponent>
+                  ></SelectComponent>
                 </div>
               </div>
                     <AcordienTableResearch></AcordienTableResearch>
