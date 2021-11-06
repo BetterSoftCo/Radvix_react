@@ -8,11 +8,8 @@ import { MainButton, MainButtonType } from "../../components/button";
 import Dropzone from "react-dropzone";
 import { SelectComponent } from "../../components/select_input";
 import { ButtonGroup } from "../../components/botton_group";
-import { BoxAlert } from "../../components/box_alert";
-import { pdf_icon, img_avatar, team_menu_icon } from "../../../assets";
-import { IconTextRow } from "../../components/icon_text_horizontal";
+import { pdf_icon, img_avatar } from "../../../assets";
 import { BoxListScroll } from "../../components/box_list_scroll";
-import { Theme } from "../../../core/utils";
 export class TaskPageEdit extends React.Component {
   RoleUser = store.getState();
   date = new Date();
