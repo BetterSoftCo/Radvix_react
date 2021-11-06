@@ -17,5 +17,6 @@ export class AppRoutes {
 	static task:string ='/dashboard/Task/';
 	static task_new:string ='/dashboard/Task/new/';
 	static task_profile:string ='/dashboard/Task/profile/';
+	static task_edit:string ='/dashboard/Task/edit/';
 
 };
