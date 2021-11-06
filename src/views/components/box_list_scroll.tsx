@@ -30,6 +30,8 @@ export const BoxListScroll: React.FC<IBoxListScroll> = ({
   return (
     <div className={`${IsclassName + " " + "box-list-scroll"}`}>
       {items.map((item, index) => (
+        <>
+        {console.log("item",item)}
         <div
           className="d-flex justify-content-between align-items-center"
           key={index}
@@ -38,12 +40,12 @@ export const BoxListScroll: React.FC<IBoxListScroll> = ({
             theme={Theme.light}
             children={
               <img
-                src={item[`${ImageItem}`]}
+                src={item.imagesrc.img_avatar}
                 alt="Avatar"
                 className="rounded-circle avatar"
               />
             }
-            text={item[`${TextItem}`]}
+            text={item.text}
             className="my-2"
           ></IconTextRow>
           {Deletabel && DeleteFunc !== undefined ? (
@@ -60,6 +62,7 @@ export const BoxListScroll: React.FC<IBoxListScroll> = ({
             </CircleIcon>
           ) : null}
         </div>
+        </>
       ))}
     </div>
   );

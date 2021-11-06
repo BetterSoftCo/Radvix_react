@@ -14,6 +14,7 @@ import { SelectComponent } from "../../components/select_input";
 import { RadioGroup } from "../../components/radio_group";
 import { ButtonGroup } from "../../components/botton_group";
 import { BoxListScroll } from "../../components/box_list_scroll";
+import { pdf_icon, team_menu_icon ,img_avatar} from "../../../assets";
 class ResearchPageEdit extends React.Component<RouteComponentProps> {
   RoleUser = store.getState();
   date = new Date();
@@ -217,7 +218,7 @@ class ResearchPageEdit extends React.Component<RouteComponentProps> {
                 <ul className="file-list mt-3">
                   <li className="d-flex align-items-center mb-1">
                     <img
-                      src="/images/pages/PDF Icon.svg"
+                      src={pdf_icon}
                       alt=""
                       className="mx-2"
                     />{" "}
@@ -233,7 +234,7 @@ class ResearchPageEdit extends React.Component<RouteComponentProps> {
                   </li>
                   <li className="d-flex align-items-center mb-1">
                     <img
-                      src="/images/pages/PDF Icon.svg"
+                      src={pdf_icon}
                       alt=""
                       className="mx-2"
                     />{" "}
@@ -249,7 +250,7 @@ class ResearchPageEdit extends React.Component<RouteComponentProps> {
                   </li>
                   <li className="d-flex align-items-center mb-1">
                     <img
-                      src="/images/pages/PDF Icon.svg"
+                      src={pdf_icon}
                       alt=""
                       className="mx-2"
                     />{" "}
@@ -340,7 +341,7 @@ class ResearchPageEdit extends React.Component<RouteComponentProps> {
                   text="Teams (Members)"
                   children={
                     <img
-                      src="/Images/pages/Team Menu Icon.svg"
+                      src={team_menu_icon}
                       className="mx-2"
                       alt=""
                     />
@@ -391,17 +392,17 @@ class ResearchPageEdit extends React.Component<RouteComponentProps> {
                     {
                       text: "Nima Hosseinzadeh",
                       id: 1,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc:{img_avatar},
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 2,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc:{img_avatar},
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 3,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc:{img_avatar},
                     },
                   ]}
                   TextItem="text"
