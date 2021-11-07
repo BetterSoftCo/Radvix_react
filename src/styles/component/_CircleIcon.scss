@@ -1,0 +1,15 @@
+.darkCircleIcon {
+  color: white;
+  background-color: $black-color;
+}
+
+.lightCircleIcon {
+  color: #474747;
+  background-color: $gray-color;
+}
+.CircleIcon {
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
