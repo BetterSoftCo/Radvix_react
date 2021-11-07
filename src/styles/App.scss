@@ -1,21 +1,9 @@
 //base
-@import './base/_base.scss';
-@import './base/_constant.scss';
+@import './base/base_dir.scss';
 
 //component;
-@import './component/_box_alert.scss';
-@import './component/_box_list_scroll.scss';
-@import './component/_button.scss';
-@import './component/_CircleIcon.scss';
-@import './component/_header.scss';
-@import './component/_IconTextVertical.scss';
-@import './component/_input.scss';
-@import './component/_righSection.scss';
-@import './component/_sidebar.scss';
-@import './component/_table.scss';
+@import './component/component_dir.scss';
 //screens
-@import './pages/_dashbord.scss';
-@import './pages/_login.scss';
-@import './pages/_research.scss';
+@import './pages/page_dir.scss'
 
 
