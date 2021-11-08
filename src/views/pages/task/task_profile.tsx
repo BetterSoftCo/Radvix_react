@@ -4,10 +4,45 @@ import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import "react-datepicker/dist/react-datepicker.css";
 import { MainButton, MainButtonType } from "../../components/button";
 import { IconTextRow } from "../../components/icon_text_horizontal";
-import { Theme } from "../../../core/utils";
+import { Theme, UserRoles } from "../../../core/utils";
 import { BoxListScroll } from "../../components/box_list_scroll";
+import { InputIcon } from "../../components/search_box";
+import { SelectComponent } from "../../components/select_input";
+import { TaskDataCollection } from "./component/task_data_collection";
+import ReactPaginate from "react-paginate";
+import { Subtasks } from "./component/subtasks";
 export class TaskPageProfile extends React.Component {
   RoleUser = store.getState();
+  state = {
+    Data: {
+      Items: [
+        {
+          name: "Structural and Materials Lab",
+          Institution: "University Of Miami",
+          Category: "Material",
+          Eqiups: "12",
+        },
+        {
+          name: "Structural and Materials Lab",
+          Institution: "University Of Miami",
+          Category: "Material",
+          Eqiups: "12",
+        },
+        {
+          name: "Structural and Materials Lab",
+          Institution: "University Of Miami",
+          Category: "Material",
+          Eqiups: "12",
+        },
+        {
+          name: "Structural and Materials Lab",
+          Institution: "University Of Miami",
+          Category: "Material",
+          Eqiups: "12",
+        },
+      ],
+    },
+  }
 
   render() {
     return (
@@ -315,6 +350,138 @@ export class TaskPageProfile extends React.Component {
             </div>
           </div>
         </div>
+        <div className="col-12">
+          <div className="TableBox">
+            <div className="TopTableBox d-flex justify-content-between align-items-center">
+              <div className="left d-flex w-50 align-items-center">
+                <h6 style={{ width: "35%" }}>Task Data Collection</h6>
+                <InputIcon
+                  chilren={<img src="/images/pages/Search Box Icon.svg" alt="radvix" />}
+                  width="100%"
+                  height="44px"
+                  placeholder="Search..."
+                ></InputIcon>
+              </div>
+              <div className="right w-25 d-flex justify-content-end">
+                <SelectComponent
+                  width="63px"
+                  height="44px"
+                  items={[
+                    { item: 1, id: 1 },
+                    { item: 2, id: 2 },
+                    { item: 3, id: 3 },
+                  ]}
+                  TextItem="item"
+                  ValueItem="id"
+                ></SelectComponent>
+              </div>
+            </div>
+            <TaskDataCollection
+              Items={this.state.Data.Items}
+              Heading={["Laboratory Name", "Institution", "Category", "Eqiups"]}
+            ></TaskDataCollection>
+            <div className="d-flex justify-content-center align-items-center">
+              <ReactPaginate
+                previousLabel={
+                  <CircleIcon
+                    width="24px"
+                    backgroundColor="#ADADAD"
+                    height="24px"
+                    type={ThemeCircleIcon.dark}
+                  >
+                    <i className="fas fa-chevron-left"></i>
+                  </CircleIcon>
+                }
+                nextLabel={
+                  <CircleIcon
+                    width="24px"
+                    backgroundColor="#ADADAD"
+                    height="24px"
+                    type={ThemeCircleIcon.dark}
+                  >
+                    <i className="fas fa-angle-right"></i>
+                  </CircleIcon>
+                }
+                breakLabel={"..."}
+                breakClassName={"break-me"}
+                pageCount={20}
+                marginPagesDisplayed={2}
+                pageRangeDisplayed={5}
+                onPageChange={() => {
+                  console.log("sssss");
+                }}
+                containerClassName={"pagination"}
+                activeClassName={"active"}
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="col-12">
+          <div className="TableBox">
+            <div className="TopTableBox d-flex justify-content-between align-items-center">
+              <div className="left d-flex w-50 align-items-center">
+                <h6 style={{ width: "35%" }}>Subtasks</h6>
+                <InputIcon
+                  chilren={<img src="/images/pages/Search Box Icon.svg" alt="radvix" />}
+                  width="100%"
+                  height="44px"
+                  placeholder="Search..."
+                ></InputIcon>
+              </div>
+              <div className="right w-25 d-flex justify-content-end">
+                <SelectComponent
+                  width="63px"
+                  height="44px"
+                  items={[
+                    { item: 1, id: 1 },
+                    { item: 2, id: 2 },
+                    { item: 3, id: 3 },
+                  ]}
+                  TextItem="item"
+                  ValueItem="id"
+                ></SelectComponent>
+              </div>
+            </div>
+            <Subtasks role={UserRoles.level1}></Subtasks>
+            <div className="d-flex justify-content-center align-items-center">
+              <ReactPaginate
+                previousLabel={
+                  <CircleIcon
+                    width="24px"
+                    backgroundColor="#ADADAD"
+                    height="24px"
+                    type={ThemeCircleIcon.dark}
+                  >
+                    <i className="fas fa-chevron-left"></i>
+                  </CircleIcon>
+                }
+                nextLabel={
+                  <CircleIcon
+                    width="24px"
+                    backgroundColor="#ADADAD"
+                    height="24px"
+                    type={ThemeCircleIcon.dark}
+                  >
+                    <i className="fas fa-angle-right"></i>
+                  </CircleIcon>
+                }
+                breakLabel={"..."}
+                breakClassName={"break-me"}
+                pageCount={20}
+                marginPagesDisplayed={2}
+                pageRangeDisplayed={5}
+                onPageChange={() => {
+                  console.log("ssss");
+                }}
+                containerClassName={"pagination"}
+                activeClassName={"active"}
+              />
+            </div>
+          </div>
+        </div>
+
+
       </div>
     );
   }
