@@ -276,6 +276,7 @@ export class LaboratoryPageProfile extends React.Component {
                   }}
                 ></BoxListScroll>
               </div>
+              
             </div>
           </div>
         </div>
