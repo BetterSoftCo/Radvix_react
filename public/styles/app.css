@@ -493,25 +493,6 @@ button {
   margin-left: 1rem;
 }
 
-.box-content .b-title .backPage {
-  background-image: url("./../../Images/pages/Toggle Icon.png");
-  display: block;
-  width: 28px;
-  height: 28px;
-  margin-right: 1rem;
-  cursor: pointer;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-@media (max-width: 575.98px) {
-  .box-content .b-title .backPage {
-    width: 90px;
-    height: 48px;
-  }
-}
-
 .box-content .left {
   position: relative;
   margin-top: 2rem;
@@ -713,6 +694,25 @@ button {
 
 .team-edit .team {
   border: 1px solid #EBEBEB;
+}
+
+.backPage {
+  background-image: url("./../../Images/pages/Toggle Icon.png");
+  display: block;
+  width: 28px;
+  height: 28px;
+  margin-right: 1rem;
+  cursor: pointer;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 575.98px) {
+  .backPage {
+    width: 90px;
+    height: 48px;
+  }
 }
 
 body {
@@ -1210,25 +1210,6 @@ button {
   margin-left: 1rem;
 }
 
-.box-content .b-title .backPage {
-  background-image: url("./../../Images/pages/Toggle Icon.png");
-  display: block;
-  width: 28px;
-  height: 28px;
-  margin-right: 1rem;
-  cursor: pointer;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-@media (max-width: 575.98px) {
-  .box-content .b-title .backPage {
-    width: 90px;
-    height: 48px;
-  }
-}
-
 .box-content .left {
   position: relative;
   margin-top: 2rem;
@@ -1430,5 +1411,24 @@ button {
 
 .team-edit .team {
   border: 1px solid #EBEBEB;
+}
+
+.backPage {
+  background-image: url("./../../Images/pages/Toggle Icon.png");
+  display: block;
+  width: 28px;
+  height: 28px;
+  margin-right: 1rem;
+  cursor: pointer;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 575.98px) {
+  .backPage {
+    width: 90px;
+    height: 48px;
+  }
 }
 /*# sourceMappingURL=app.css.map */

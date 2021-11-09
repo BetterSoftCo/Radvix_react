@@ -7,21 +7,6 @@
   margin: 2rem 0rem;
   .b-title {
     margin-left: 1rem;
-    .backPage {
-      background-image: url("./../../Images/pages/Toggle Icon.png");
-      display: block;
-      width: 28px;
-      height: 28px;
-      margin-right: 1rem;
-      cursor: pointer;
-      background-position: center;
-      background-size: cover;
-      background-repeat: no-repeat;
-      @media (max-width: 575.98px) {
-        width: 90px;
-        height: 48px;
-      }
-    }
   }
   .left {
     position: relative;
@@ -180,5 +165,20 @@
   background-color: #c7c7c7!important;
   .team{
     border: 1px solid #EBEBEB;
+  }
+}
+.backPage {
+  background-image: url("./../../Images/pages/Toggle Icon.png");
+  display: block;
+  width: 28px;
+  height: 28px;
+  margin-right: 1rem;
+  cursor: pointer;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  @media (max-width: 575.98px) {
+    width: 90px;
+    height: 48px;
   }
 }

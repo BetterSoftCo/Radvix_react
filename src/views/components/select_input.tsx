@@ -52,7 +52,8 @@ export const SelectComponent: React.FC<InputsProps> = ({
     IsclassName = "";
   }
   let TemplateLabel;
-  if (label !== null) {
+  
+  if (label !== null && label !== undefined) {
     TemplateLabel = (
       <span className="label d-flex align-items-center">
         {label}
