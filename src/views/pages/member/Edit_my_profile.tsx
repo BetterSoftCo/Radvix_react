@@ -4,8 +4,6 @@ import { InputComponent, InputType } from "../../components/inputs";
 import "react-datepicker/dist/react-datepicker.css";
 import { MainButton, MainButtonType } from "../../components/button";
 import { SelectComponent } from "../../components/select_input";
-import { BoxAlert } from "../../components/box_alert";
-import { ButtonGroup } from "../../components/botton_group";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import Dropzone from "react-dropzone";
 export class EditMyProfile extends React.Component {

@@ -16,6 +16,10 @@ import { MemberPageNew } from './pages/member/member_new';
 import { MemberPageProfile } from './pages/member/member_profile';
 import { MemberPageUseEdit } from './pages/member/user_edit';
 import { EditMyProfile } from './pages/member/Edit_my_profile';
+import { NewEquip } from './pages/Equip/new_equip';
+import { EquipPage } from './pages/Equip/equip_page';
+import { EquipProfile } from './pages/Equip/equip_profile';
+import { EditEquip } from './pages/Equip/equip_edit';
 
 
 // import { TeamPage } from './pages/team/team_page';
@@ -39,6 +43,10 @@ export {
   MemberPageNew,
   MemberPageProfile,
   MemberPageUseEdit,
-  EditMyProfile
+  EditMyProfile,
+  NewEquip,
+  EquipPage,
+  EquipProfile,
+  EditEquip
   // TeamPage
 };

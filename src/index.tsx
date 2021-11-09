@@ -31,6 +31,10 @@ import {
   MemberPageProfile,
   MemberPageUseEdit,
   EditMyProfile,
+  NewEquip,
+  EquipPage,
+  EquipProfile,
+  EditEquip,
 } from "./views";
 
 const RoleUser: UserRoles = store.getState();
@@ -149,6 +153,38 @@ ReactDOM.render(
             component={EditMyProfile}
             path={AppRoutes.member_edit_profile}
             exact
+          />
+          <ProtectedRoute
+            isAuthenticated={
+              RoleUser === UserRoles.level1 || RoleUser === UserRoles.level2
+                ? true
+                : false
+            }
+            authenticationPath={AppRoutes.equip}
+            exact={true}
+            path={AppRoutes.equip_new}
+            component={NewEquip}
+          />
+          <Route
+            component={EquipPage}
+            path={AppRoutes.equip}
+            exact
+          />
+          <Route
+            component={EquipProfile}
+            path={AppRoutes.equip_profile}
+            exact
+          />
+          <ProtectedRoute
+            isAuthenticated={
+              RoleUser === UserRoles.level1 || RoleUser === UserRoles.level2
+                ? true
+                : false
+            }
+            authenticationPath={AppRoutes.equip}
+            exact={true}
+            path={AppRoutes.equip_edit}
+            component={EditEquip}
           />
         </Switch>
       </MainLayout>

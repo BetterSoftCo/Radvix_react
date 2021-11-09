@@ -21,8 +21,11 @@ export class AppRoutes {
 	static member:string ='/dashboard/Member';
 	static member_new:string ='/dashboard/Member/new/';
 	static member_profile:string ='/dashboard/Member/profile/';
-	static member_edit:string ='/dashboard/Member/edit/';
 	static member_user_edit:string ='/dashboard/Member/UserEdit/';
 	static member_edit_profile:string ='/dashboard/Member/EditProfile/';
+	static equip_new:string ='/dashboard/Equip/new/';
+	static equip:string ='/dashboard/Equip/';
+	static equip_profile:string ='/dashboard/Equip/profile/';
+	static equip_edit:string ='/dashboard/Equip/edit/';
 
 };
