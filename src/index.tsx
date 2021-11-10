@@ -35,6 +35,9 @@ import {
   EquipPage,
   EquipProfile,
   EditEquip,
+  NewDiscusstion,
+  DiscusstionPage,
+  DiscusstionList,
 } from "./views";
 
 const RoleUser: UserRoles = store.getState();
@@ -185,6 +188,21 @@ ReactDOM.render(
             exact={true}
             path={AppRoutes.equip_edit}
             component={EditEquip}
+          />
+          <Route
+            component={NewDiscusstion}
+            path={AppRoutes.discussion_new}
+            exact
+          />
+          <Route
+            component={DiscusstionPage}
+            path={AppRoutes.discussion}
+            exact
+          />
+           <Route
+            component={DiscusstionList}
+            path={AppRoutes.discussion_list}
+            exact
           />
         </Switch>
       </MainLayout>
