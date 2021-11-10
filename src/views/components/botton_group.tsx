@@ -52,7 +52,7 @@ export const ButtonGroup: React.FC<InputsProps> = ({
     IsclassName = "";
   }
   let TemplateLabel;
-  if (label !== null) {
+  if (label !== null && label !== undefined) {
     TemplateLabel = (
       <span className="label d-flex align-items-center">
         {label}
@@ -102,12 +102,13 @@ export const ButtonGroup: React.FC<InputsProps> = ({
               id={item[`${ValueItem}`] + name}
               autoComplete="off"
               onChange={onChange}
+              disabled={item.disable}
             />
             <label
               className="btn btn-outline-dark"
               htmlFor={item[`${ValueItem}`] + name}
             >
-              {item[`${TextItem}`]}
+              {item[`${TextItem}`]} {item.disable ? '(Locked)' : ''}
             </label>
           </Fragment>
         ))}

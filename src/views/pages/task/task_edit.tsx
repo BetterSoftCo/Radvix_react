@@ -8,7 +8,6 @@ import { MainButton, MainButtonType } from "../../components/button";
 import Dropzone from "react-dropzone";
 import { SelectComponent } from "../../components/select_input";
 import { ButtonGroup } from "../../components/botton_group";
-import { pdf_icon, img_avatar } from "../../../assets";
 import { BoxListScroll } from "../../components/box_list_scroll";
 export class TaskPageEdit extends React.Component {
   RoleUser = store.getState();
@@ -148,7 +147,7 @@ export class TaskPageEdit extends React.Component {
                 </Dropzone>
                 <ul className="file-list mt-3">
                   <li className="d-flex align-items-center mb-1">
-                    <img src={pdf_icon} alt="" className="mx-2" />{" "}
+                    <img src="/images/pages/PDF Icon.svg" alt="" className="mx-2" />{" "}
                     proposal_general.pdf
                     <CircleIcon
                       type={ThemeCircleIcon.dark}
@@ -160,7 +159,7 @@ export class TaskPageEdit extends React.Component {
                     </CircleIcon>
                   </li>
                   <li className="d-flex align-items-center mb-1">
-                    <img src={pdf_icon} alt="" className="mx-2" />{" "}
+                    <img src="/images/pages/PDF Icon.svg" alt="" className="mx-2" />{" "}
                     proposal_general.pdf
                     <CircleIcon
                       type={ThemeCircleIcon.dark}
@@ -172,7 +171,7 @@ export class TaskPageEdit extends React.Component {
                     </CircleIcon>
                   </li>
                   <li className="d-flex align-items-center mb-1">
-                    <img src={pdf_icon} alt="" className="mx-2" />{" "}
+                    <img src="/images/pages/PDF Icon.svg" alt="" className="mx-2" />{" "}
                     proposal_general.pdf
                     <CircleIcon
                       type={ThemeCircleIcon.dark}
@@ -304,17 +303,17 @@ export class TaskPageEdit extends React.Component {
                     {
                       text: "Nima Hosseinzadeh",
                       id: 1,
-                      imagesrc: { img_avatar },
+                      imagesrc: '/images/layout/img_avatar.png',
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 2,
-                      imagesrc: { img_avatar },
+                      imagesrc: '/images/layout/img_avatar.png',
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 3,
-                      imagesrc: { img_avatar },
+                      imagesrc: '/images/layout/img_avatar.png',
                     },
                   ]}
                   TextItem="text"
@@ -347,17 +346,17 @@ export class TaskPageEdit extends React.Component {
                     {
                       text: "Nima Hosseinzadeh",
                       id: 1,
-                      imagesrc: { img_avatar },
+                      imagesrc: '/images/layout/img_avatar.png',
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 2,
-                      imagesrc: { img_avatar },
+                      imagesrc: '/images/layout/img_avatar.png',
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 3,
-                      imagesrc: { img_avatar },
+                      imagesrc: '/images/layout/img_avatar.png',
                     },
                   ]}
                   TextItem="text"
