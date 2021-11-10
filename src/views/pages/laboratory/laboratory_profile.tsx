@@ -263,7 +263,7 @@ export class LaboratoryPageProfile extends React.Component {
                       imagesrc: {img_avatar},
                     },
                     {
-                      text: "Nima Hosseinzadeh",
+                      text: "Nima Hosseinzadehgg",
                       id: 3,
                       imagesrc: {img_avatar},
                     },
@@ -277,6 +277,7 @@ export class LaboratoryPageProfile extends React.Component {
                   }}
                 ></BoxListScroll>
               </div>
+
             </div>
           </div>
         </div>

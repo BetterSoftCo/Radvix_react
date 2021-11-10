@@ -26,6 +26,18 @@ import {
   TaskPageNew,
   TaskPageProfile,
   TaskPageEdit,
+  MemberPage,
+  MemberPageNew,
+  MemberPageProfile,
+  MemberPageUseEdit,
+  EditMyProfile,
+  NewEquip,
+  EquipPage,
+  EquipProfile,
+  EditEquip,
+  NewDiscusstion,
+  DiscusstionPage,
+  DiscusstionList,
 } from "./views";
 
 const RoleUser: UserRoles = store.getState();
@@ -111,6 +123,86 @@ ReactDOM.render(
             exact={true}
             path={AppRoutes.task_edit}
             component={TaskPageEdit}
+          />
+          <Route component={MemberPage} path={AppRoutes.member} exact />
+          <ProtectedRoute
+            isAuthenticated={
+              RoleUser === UserRoles.level1 || RoleUser === UserRoles.level2
+                ? true
+                : false
+            }
+            authenticationPath={AppRoutes.member}
+            exact={true}
+            path={AppRoutes.member_new}
+            component={MemberPageNew}
+          />
+          <Route
+            component={MemberPageProfile}
+            path={AppRoutes.member_profile}
+            exact
+          />
+          <ProtectedRoute
+            isAuthenticated={
+              RoleUser === UserRoles.level1 || RoleUser === UserRoles.level2
+                ? true
+                : false
+            }
+            authenticationPath={AppRoutes.member}
+            exact={true}
+            path={AppRoutes.member_user_edit}
+            component={MemberPageUseEdit}
+          />
+          <Route
+            component={EditMyProfile}
+            path={AppRoutes.member_edit_profile}
+            exact
+          />
+          <ProtectedRoute
+            isAuthenticated={
+              RoleUser === UserRoles.level1 || RoleUser === UserRoles.level2
+                ? true
+                : false
+            }
+            authenticationPath={AppRoutes.equip}
+            exact={true}
+            path={AppRoutes.equip_new}
+            component={NewEquip}
+          />
+          <Route
+            component={EquipPage}
+            path={AppRoutes.equip}
+            exact
+          />
+          <Route
+            component={EquipProfile}
+            path={AppRoutes.equip_profile}
+            exact
+          />
+          <ProtectedRoute
+            isAuthenticated={
+              RoleUser === UserRoles.level1 || RoleUser === UserRoles.level2
+                ? true
+                : false
+            }
+            authenticationPath={AppRoutes.equip}
+            exact={true}
+            path={AppRoutes.equip_edit}
+            component={EditEquip}
+          />
+          <Route
+            component={NewDiscusstion}
+            path={AppRoutes.discussion_new}
+            exact
+          />
+          <Route
+            component={DiscusstionPage}
+            path={AppRoutes.discussion}
+            exact
+          />
+           <Route
+            component={DiscusstionList}
+            path={AppRoutes.discussion_list}
+            exact
           />
         </Switch>
       </MainLayout>

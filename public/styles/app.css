@@ -493,25 +493,6 @@ button {
   margin-left: 1rem;
 }
 
-.box-content .b-title .backPage {
-  background-image: url("./../../Images/pages/Toggle Icon.png");
-  display: block;
-  width: 28px;
-  height: 28px;
-  margin-right: 1rem;
-  cursor: pointer;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-@media (max-width: 575.98px) {
-  .box-content .b-title .backPage {
-    width: 90px;
-    height: 48px;
-  }
-}
-
 .box-content .left {
   position: relative;
   margin-top: 2rem;
@@ -713,6 +694,76 @@ button {
 
 .team-edit .team {
   border: 1px solid #EBEBEB;
+}
+
+.backPage {
+  background-image: url("./../../Images/pages/Toggle Icon.png");
+  display: block;
+  width: 28px;
+  height: 28px;
+  margin-right: 1rem;
+  cursor: pointer;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 575.98px) {
+  .backPage {
+    width: 90px;
+    height: 48px;
+  }
+}
+
+.discusstion .box-list-scroll {
+  max-height: 700px;
+}
+
+.title-discusstion {
+  border-radius: 15px;
+  padding: 0.5rem 1rem;
+  background-color: #f5f5f5;
+  margin-top: 2rem;
+  font-size: 20px;
+  font-weight: normal;
+}
+
+.title-discusstion span {
+  color: #0089ff;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.chat {
+  border-radius: 15px;
+  padding: 0.5rem 1rem;
+  background-color: #f5f5f5;
+}
+
+.chat .submit-msg {
+  border-radius: 15px;
+  background-color: #474747;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: lighter;
+  padding: 0.52rem;
+  margin: 0.5rem;
+}
+
+.chat .Received {
+  direction: rtl;
+}
+
+.chat .Received .Received-msg {
+  border-radius: 15px;
+  background-color: #c7c7c7;
+  color: #474747;
+  font-size: 18px;
+  font-weight: lighter;
+  padding: 0.52rem;
+  margin: 0.5rem;
+  text-align: left;
+  direction: ltr;
 }
 
 body {
@@ -1210,25 +1261,6 @@ button {
   margin-left: 1rem;
 }
 
-.box-content .b-title .backPage {
-  background-image: url("./../../Images/pages/Toggle Icon.png");
-  display: block;
-  width: 28px;
-  height: 28px;
-  margin-right: 1rem;
-  cursor: pointer;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-@media (max-width: 575.98px) {
-  .box-content .b-title .backPage {
-    width: 90px;
-    height: 48px;
-  }
-}
-
 .box-content .left {
   position: relative;
   margin-top: 2rem;
@@ -1430,5 +1462,75 @@ button {
 
 .team-edit .team {
   border: 1px solid #EBEBEB;
+}
+
+.backPage {
+  background-image: url("./../../Images/pages/Toggle Icon.png");
+  display: block;
+  width: 28px;
+  height: 28px;
+  margin-right: 1rem;
+  cursor: pointer;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 575.98px) {
+  .backPage {
+    width: 90px;
+    height: 48px;
+  }
+}
+
+.discusstion .box-list-scroll {
+  max-height: 700px;
+}
+
+.title-discusstion {
+  border-radius: 15px;
+  padding: 0.5rem 1rem;
+  background-color: #f5f5f5;
+  margin-top: 2rem;
+  font-size: 20px;
+  font-weight: normal;
+}
+
+.title-discusstion span {
+  color: #0089ff;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.chat {
+  border-radius: 15px;
+  padding: 0.5rem 1rem;
+  background-color: #f5f5f5;
+}
+
+.chat .submit-msg {
+  border-radius: 15px;
+  background-color: #474747;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: lighter;
+  padding: 0.52rem;
+  margin: 0.5rem;
+}
+
+.chat .Received {
+  direction: rtl;
+}
+
+.chat .Received .Received-msg {
+  border-radius: 15px;
+  background-color: #c7c7c7;
+  color: #474747;
+  font-size: 18px;
+  font-weight: lighter;
+  padding: 0.52rem;
+  margin: 0.5rem;
+  text-align: left;
+  direction: ltr;
 }
 /*# sourceMappingURL=app.css.map */

@@ -1,15 +1,13 @@
 import React from "react";
 import { store } from "../../../data/store";
-import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import { InputComponent, InputType } from "../../components/inputs";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { MainButton, MainButtonType } from "../../components/button";
-import Dropzone from "react-dropzone";
 import { SelectComponent } from "../../components/select_input";
-import { ButtonGroup } from "../../components/botton_group";
-import { BoxListScroll } from "../../components/box_list_scroll";
-export class TaskPageEdit extends React.Component {
+import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
+import Dropzone from "react-dropzone";
+import { RadioGroup } from "../../components/radio_group";
+export class EditEquip extends React.Component {
   RoleUser = store.getState();
   date = new Date();
   handelChangeDate(params: any): void {
@@ -33,55 +31,27 @@ export class TaskPageEdit extends React.Component {
         <div className="row"></div>
         <div className="col-12 box-content p-3">
           <h5 className="b-title d-flex">
-            <span className="backPage"></span> Edit Task
+            <span className="backPage"></span> Create A New Equipment
           </h5>
           <div className="form row">
             <div className="col-md-6 left">
               <div className="item">
-                <ButtonGroup
-                  label="Task Status:"
-                  popQuestion="Task Status:"
-                  TextItem="name"
-                  ValueItem="id"
-                  name="TaskStatus"
-                  items={[
-                    { name: " On Hold", id: 1 },
-                    { name: " On Going", id: 2 },
-                    { name: "Completed", id: 3 },
-                  ]}
-                ></ButtonGroup>
-              </div>
-              <div className="item">
                 <InputComponent
                   type={InputType.text}
-                  label="Task Name:"
-                  popQuestion="Task Name:"
+                  label="Equipment Nickname:"
+                  popQuestion="Equipment Nickname:"
                 ></InputComponent>
-              </div>
-              <div className="item">
-                <InputComponent
-                  type={InputType.textarea}
-                  label="Description:"
-                  popQuestion="Description:"
-                ></InputComponent>
-              </div>
-              <div className="item">
-                <ButtonGroup
-                  label="Task Priority:"
-                  popQuestion="Task Priority:"
-                  TextItem="name"
-                  ValueItem="id"
-                  name="TaskPriority"
-                  items={[
-                    { name: " Low", id: 1 },
-                    { name: " Medium", id: 2 },
-                    { name: "High", id: 3 },
-                  ]}
-                ></ButtonGroup>
               </div>
               <div className="item">
                 <span className="label d-flex align-items-center">
-                  Scheduled Timeline:{" "}
+                  Equipment Picture:
+                  <MainButton
+                    type={MainButtonType.light}
+                    children={"Optional"}
+                    borderRadius="50px"
+                    fontSize="15px"
+                    className="mx-2"
+                  ></MainButton>
                   <CircleIcon
                     width="20px"
                     height="20px"
@@ -95,20 +65,83 @@ export class TaskPageEdit extends React.Component {
                   </CircleIcon>
                 </span>
                 <div className="d-flex justify-content-between align-items-center">
-                  <DatePicker
-                    selected={this.date}
-                    onChange={this.handelChangeDate}
+                  <img
+                    src="/images/layout/img_avatar.png"
+                    alt="Avatar"
+                    className="rounded-circle avatar mx-2"
+                    width="125px"
+                    height="125px"
                   />
-                  <span className="mx-2">Until</span>
-                  <DatePicker
-                    selected={this.date}
-                    onChange={this.handelChangeDate}
-                  />
+                  <CircleIcon
+                    type={ThemeCircleIcon.dark}
+                    width="44px"
+                    height="30px"
+                    className="mx-2 pointer"
+                  >
+                    <i className="fas fa-trash"></i>
+                  </CircleIcon>
+                  <Dropzone onDrop={this.onDrop}>
+                    {({ getRootProps, getInputProps }) => (
+                      <section className="container fileUploadBox">
+                        <div {...getRootProps({ className: "dropzone" })}>
+                          <input {...getInputProps()} />
+                          <p>
+                            Drag 'n' drop some files here, or click to select
+                            files
+                          </p>
+                        </div>
+                        <aside>
+                          <h4>Files</h4>
+                          <ul>{files}</ul>
+                        </aside>
+                      </section>
+                    )}
+                  </Dropzone>
                 </div>
               </div>
               <div className="item">
+                <InputComponent
+                  type={InputType.text}
+                  label="Manufacturer"
+                  popQuestion="Manufacturer"
+                  optional="optional"
+                ></InputComponent>
+              </div>
+
+              <div className="item">
+                <InputComponent
+                  type={InputType.text}
+                  label="Model:"
+                  popQuestion="Model:"
+                  optional="optional"
+                ></InputComponent>
+              </div>
+              <div className="item">
+                <InputComponent
+                  type={InputType.textarea}
+                  label="Description:"
+                  popQuestion="Description:"
+                  optional="optional"
+                ></InputComponent>
+              </div>
+              <div className="item">
+                <RadioGroup
+                  label=" Status:"
+                  popQuestion="Status"
+                  TextItem="name"
+                  ValueItem="id"
+                  name="Currency"
+                  items={[
+                    { name: "Operational", id: 1 },
+                    { name: " Not Operational", id: 2 },
+                  ]}
+                ></RadioGroup>
+              </div>
+            </div>
+            <div className="col-md-6 right">
+              <div className="item">
                 <span className="label d-flex align-items-center">
-                  Task Attachments:
+                  Protocols and Documents:
                   <MainButton
                     type={MainButtonType.light}
                     children={"Optional"}
@@ -147,7 +180,11 @@ export class TaskPageEdit extends React.Component {
                 </Dropzone>
                 <ul className="file-list mt-3">
                   <li className="d-flex align-items-center mb-1">
-                    <img src="/images/pages/PDF Icon.svg" alt="" className="mx-2" />{" "}
+                    <img
+                      src="/images/pages/PDF Icon.svg"
+                      alt=""
+                      className="mx-2"
+                    />{" "}
                     proposal_general.pdf
                     <CircleIcon
                       type={ThemeCircleIcon.dark}
@@ -159,7 +196,11 @@ export class TaskPageEdit extends React.Component {
                     </CircleIcon>
                   </li>
                   <li className="d-flex align-items-center mb-1">
-                    <img src="/images/pages/PDF Icon.svg" alt="" className="mx-2" />{" "}
+                    <img
+                      src="/images/pages/PDF Icon.svg"
+                      alt=""
+                      className="mx-2"
+                    />{" "}
                     proposal_general.pdf
                     <CircleIcon
                       type={ThemeCircleIcon.dark}
@@ -171,7 +212,11 @@ export class TaskPageEdit extends React.Component {
                     </CircleIcon>
                   </li>
                   <li className="d-flex align-items-center mb-1">
-                    <img src="/images/pages/PDF Icon.svg" alt="" className="mx-2" />{" "}
+                    <img
+                      src="/images/pages/PDF Icon.svg"
+                      alt=""
+                      className="mx-2"
+                    />{" "}
                     proposal_general.pdf
                     <CircleIcon
                       type={ThemeCircleIcon.dark}
@@ -239,8 +284,47 @@ export class TaskPageEdit extends React.Component {
                   </CircleIcon>
                 </li>
               </ul>
-            </div>
-            <div className="col-md-6 right">
+              <div className="item">
+                <span className="label d-flex align-items-center">
+                  Warranty/Technical Support:
+                  <MainButton
+                    type={MainButtonType.light}
+                    children={"Optional"}
+                    borderRadius="50px"
+                    fontSize="15px"
+                    className="mx-2"
+                  ></MainButton>
+                  <CircleIcon
+                    width="20px"
+                    height="20px"
+                    type={ThemeCircleIcon.dark}
+                    backgroundColor="transparent"
+                    border="1px solid #D5D5D5"
+                    fontSize="10px"
+                    color="#D5D5D5"
+                  >
+                    <i className="fas fa-question"></i>
+                  </CircleIcon>
+                </span>
+
+                <InputComponent
+                  type={InputType.text}
+                  label="Technician Name:"
+                  popQuestion="Technician Name:"
+                ></InputComponent>
+              </div>
+              <div className="item">
+                <InputComponent
+                  type={InputType.text}
+                  label="Email"
+                ></InputComponent>
+              </div>
+              <div className="item">
+                <InputComponent
+                  type={InputType.text}
+                  label="Phone"
+                ></InputComponent>
+              </div>
               <div className="item">
                 <SelectComponent
                   items={[
@@ -250,14 +334,12 @@ export class TaskPageEdit extends React.Component {
                   TextItem="name"
                   ValueItem="id"
                   className="my-2"
-                  label="Assign To Teams (Members):"
-                  popQuestion="Assign To Teams (Members):"
-                  optional="optional"
+                  label="Assign To Laboratory:"
+                  popQuestion="Assign To Laboratory:"
                   placeholder="Click to see the list…"
                 ></SelectComponent>
               </div>
-
-              <div className="teams mb-3">
+              <div className="teams Labs">
                 <div className="tags p-3">
                   <MainButton
                     children={
@@ -297,82 +379,32 @@ export class TaskPageEdit extends React.Component {
                     fontSize="14px"
                     className="px-3"
                   ></MainButton>
+                  <MainButton
+                    children={
+                      <div className="d-flex">
+                        ACCESSLab Team
+                        <CircleIcon
+                          type={ThemeCircleIcon.dark}
+                          width="22px"
+                          height="22px"
+                          className="mx-3"
+                        >
+                          <i className="fas fa-trash"></i>
+                        </CircleIcon>
+                      </div>
+                    }
+                    type={MainButtonType.light}
+                    borderRadius="24px"
+                    fontSize="14px"
+                    className="px-3"
+                  ></MainButton>
                 </div>
-                <BoxListScroll
-                  items={[
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 1,
-                      imagesrc: '/images/layout/img_avatar.png',
-                    },
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 2,
-                      imagesrc: '/images/layout/img_avatar.png',
-                    },
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 3,
-                      imagesrc: '/images/layout/img_avatar.png',
-                    },
-                  ]}
-                  TextItem="text"
-                  ValueItem="id"
-                  ImageItem="imagesrc"
-                  Deletabel
-                  DeleteFunc={(p, value) => {
-                    console.log(p, value);
-                  }}
-                ></BoxListScroll>
-              </div>
-              <div className="item">
-                <SelectComponent
-                  items={[
-                    { name: "test1", id: 1 },
-                    { name: "test2", id: 2 },
-                  ]}
-                  TextItem="name"
-                  ValueItem="id"
-                  className="my-2"
-                  label="Suggest Equipment:"
-                  popQuestion="Suggest Equipment:"
-                  optional="optional"
-                  placeholder="Click to see the list…"
-                ></SelectComponent>
-              </div>
-              <div className="teams mb-3">
-                <BoxListScroll
-                  items={[
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 1,
-                      imagesrc: '/images/layout/img_avatar.png',
-                    },
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 2,
-                      imagesrc: '/images/layout/img_avatar.png',
-                    },
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 3,
-                      imagesrc: '/images/layout/img_avatar.png',
-                    },
-                  ]}
-                  TextItem="text"
-                  ValueItem="id"
-                  ImageItem="imagesrc"
-                  Deletabel
-                  DeleteFunc={(p, value) => {
-                    console.log(p, value);
-                  }}
-                ></BoxListScroll>
               </div>
             </div>
             <div className="col-12 d-flex justify-content-center align-items-center my-4">
               <MainButton
                 type={MainButtonType.light}
-                children={"Start Over"}
+                children={"Cancel"}
                 borderRadius="50px"
                 fontSize="20px"
                 className="mx-2"
@@ -381,7 +413,7 @@ export class TaskPageEdit extends React.Component {
               ></MainButton>
               <MainButton
                 type={MainButtonType.dark}
-                children={"Create"}
+                children={"Save"}
                 borderRadius="50px"
                 fontSize="20px"
                 className="mx-2"
