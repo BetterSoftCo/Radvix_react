@@ -5,40 +5,11 @@ import { MainButton, MainButtonType } from "../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import { InputIcon } from "../../components/search_box";
 import { SelectComponent } from "../../components/select_input";
-import { AcordienTable } from './component/recent_teams';
+import  AcordienTable  from "./component/recent_teams";
+
 
 export class TeamPage extends React.Component {
   RoleUser = store.getState();
-  state = {
-    Data: {
-      Items: [
-        {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
-        },
-        {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
-        },
-        {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
-        },
-        {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
-        },
-      ],
-    },
-  };
   render() {
     return (
       <div className="container-fluid research">

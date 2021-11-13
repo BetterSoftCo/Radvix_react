@@ -24,6 +24,7 @@ import { NewDiscusstion } from './pages/discussion/new_discusstion';
 import { DiscusstionPage } from './pages/discussion/discusstion_page';
 import { DiscusstionList } from './pages/discussion/discusstion_list';
 import { TeamPage } from './pages/team/team_page';
+import  {TeamPageNew}  from './pages/team/team_new';
 import { DataPageNew } from './pages/datapage/new_data';
 import { DataCollection } from './pages/datapage/data_collection';
 import { MyDataCollection } from './pages/datapage/my_data';
@@ -64,6 +65,7 @@ export {
   DiscusstionPage,
   DiscusstionList,
   TeamPage,
+  TeamPageNew,
   DataPageNew,
   DataCollection,
   MyDataCollection,

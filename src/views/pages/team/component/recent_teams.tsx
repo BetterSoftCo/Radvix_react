@@ -2,13 +2,15 @@ import React, { Fragment, useEffect } from "react";
 import { UserRoles } from "../../../../core/utils";
 import { MainButton, MainButtonType } from "../../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../../components/circle_icon";
+import { RouteComponentProps, withRouter } from "react-router";
+import { AppRoutes } from "../../../../core/constants";
 interface IAcordienTable {
   role: UserRoles;
 }
-export const AcordienTable = (props: IAcordienTable) => {
+const AcordienTable:React.FC<IAcordienTable & RouteComponentProps>  = (props) => {
   const handelOnclick = (e: any) => {
     e.stopPropagation();
-    console.log(e);
+    props.history.push(AppRoutes.new_team)
   };
   useEffect(() => {}, []);
   return (
@@ -576,3 +578,4 @@ export const AcordienTable = (props: IAcordienTable) => {
     </Fragment>
   );
 };
+export default withRouter(AcordienTable);
