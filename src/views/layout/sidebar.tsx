@@ -31,7 +31,7 @@ export const Sidebar: React.FC = () => {
           <IconTextVertical
             text="Team"
             theme={Theme.dark}
-            children={<img src="/Images/pages/team_menu.svg
+            children={<img src="/Images/layout/team_menu_icon.svg
             " />}
           ></IconTextVertical>
         </li>
@@ -59,7 +59,7 @@ export const Sidebar: React.FC = () => {
           <IconTextVertical
             text="Discussion"
             theme={Theme.dark}
-            children={<img src='/Images/layout/group_27.svg' />}
+            children={<img src='/Images/layout/chat.png' />}
           ></IconTextVertical>
         </li>
       </NavLink>
