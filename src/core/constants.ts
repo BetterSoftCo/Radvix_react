@@ -30,6 +30,11 @@ export class AppRoutes {
 	static discussion:string ='/dashboard/Discussion';
 	static discussion_new:string ='/dashboard/Discussion/new/';
 	static discussion_list:string ='/dashboard/Discussion/list/';
+	static data:string ='/dashboard/Data/';
+	static data_new:string ='/dashboard/Data/new';
+	static data_mydata:string ='/dashboard/Data/mydata/';
+	static data_profile:string ='/dashboard/Data/profile/';
+	static data_edit:string ='/dashboard/Data/edit/';
 	
 
 };

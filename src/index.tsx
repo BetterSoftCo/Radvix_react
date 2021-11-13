@@ -38,6 +38,11 @@ import {
   NewDiscusstion,
   DiscusstionPage,
   DiscusstionList,
+  DataPageNew,
+  DataCollection,
+  MyDataCollection,
+  DataPageProfile,
+  DataPageEdit,
 } from "./views";
 
 const RoleUser: UserRoles = store.getState();
@@ -168,11 +173,7 @@ ReactDOM.render(
             path={AppRoutes.equip_new}
             component={NewEquip}
           />
-          <Route
-            component={EquipPage}
-            path={AppRoutes.equip}
-            exact
-          />
+          <Route component={EquipPage} path={AppRoutes.equip} exact />
           <Route
             component={EquipProfile}
             path={AppRoutes.equip_profile}
@@ -199,10 +200,33 @@ ReactDOM.render(
             path={AppRoutes.discussion}
             exact
           />
-           <Route
+          <Route
             component={DiscusstionList}
             path={AppRoutes.discussion_list}
             exact
+          />
+          <Route component={DataPageNew} path={AppRoutes.data_new} exact />
+          <Route component={DataCollection} path={AppRoutes.data} exact />
+          <Route
+            component={MyDataCollection}
+            path={AppRoutes.data_mydata}
+            exact
+          />
+          <Route
+            component={DataPageProfile}
+            path={AppRoutes.data_profile}
+            exact
+          />
+          <ProtectedRoute
+            isAuthenticated={
+              RoleUser === UserRoles.level1 || RoleUser === UserRoles.level2
+                ? true
+                : false
+            }
+            authenticationPath={AppRoutes.data}
+            exact={true}
+            path={AppRoutes.data_edit}
+            component={DataPageEdit}
           />
         </Switch>
       </MainLayout>
