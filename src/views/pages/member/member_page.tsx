@@ -19,7 +19,7 @@ export class MemberPage extends React.Component {
                 <h4 style={{ width: "35%" }} className="b-title d-flex"><span className="backPage"></span> Members</h4>
                 <InputIcon
                   chilren={
-                    <img src="/images/pages/Search Box Icon.svg" alt="" />
+                    <img src="/images/pages/search_box_icon.svg" alt="" />
                   }
                   width="100%"
                   height="44px"

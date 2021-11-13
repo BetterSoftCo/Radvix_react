@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from "react";
-import { new_task_icon , group_27, quick_data_collection, chat} from "../../assets";
 import { Theme } from "../../core/utils";
 import { MainButton, MainButtonType } from "../components/button";
 import { IconTextVertical } from "../components/Icon_text_vertical";
@@ -12,25 +11,25 @@ export const RightSection: React.FC = () => {
           text="Create 
           New Task"
           theme={Theme.light}
-          children={<img src={new_task_icon}/>}
+          children={<img src='/Images/layout/new_task_icon.svg'/>}
         ></IconTextVertical>
         <IconTextVertical
           text="New
           Discussion"
           theme={Theme.light}
-          children={<img src={group_27} />}
+          children={<img src='/Images/layout/group_27.svg' />}
         ></IconTextVertical>
         <IconTextVertical
           text="Data
           Collection"
           theme={Theme.light}
-          children={<img src={quick_data_collection}/>}
+          children={<img src='/Images/layout/quick_data_collection.svg'/>}
         ></IconTextVertical>
       </div>
       <div className="bottom">
         <div className="d-flex flex-column justify-content-center p-3">
           <div className="d-flex justify-content-center align-items-center">
-            <img src={chat} className="mx-2" />
+            <img src="/images/layout/chat.png"  className="mx-2" />
             <span className="text-light">3 Recent Discussions</span>
           </div>
           <div className="massages">

@@ -1,6 +1,5 @@
 import React from "react";
 import ReactPaginate from "react-paginate";
-import { search_box_icon } from "../../../assets";
 import { store } from "../../../data/store";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import { InputIcon } from "../../components/search_box";
@@ -20,7 +19,7 @@ export class ResearchPage extends React.Component {
                 <div className="left d-flex w-50 align-items-center">
                   <h6 style={{ width: "35%" }}>Research List</h6>
                   <InputIcon
-                    chilren={<img src={search_box_icon} alt=""/>}
+                    chilren={<img src='/images/pages/search_box_icon.svg' alt=""/>}
                     width="100%"
                     height="44px"
                     placeholder="Search..."

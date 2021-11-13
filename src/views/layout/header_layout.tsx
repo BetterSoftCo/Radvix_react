@@ -4,7 +4,6 @@ import React from "react";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { MainButton, MainButtonType } from "../components/button";
 import { SelectComponent } from "../components/select_input";
-import { radvix_logo ,group, img_avatar, profile_view_icon, logout_icon} from "../../assets";
 
 export const Header: React.FC = () => {
   return (
@@ -15,7 +14,7 @@ export const Header: React.FC = () => {
             <div className="row h-100">
               <div className="col-md-2 col-6">
                 <img
-                  src={radvix_logo}
+                  src='/images/layout/radvix_logo.svg'
                   height="42px"
                   width="142px"
                 />
@@ -27,8 +26,8 @@ export const Header: React.FC = () => {
                   fontSize="15px"
                   borderRadius="50px"
                   children={
-                    <div>,group
-                      <img src={group} alt="sssss" />{" "}
+                    <div>
+                      <img src='/Images/component/group_1.svg' alt="sssss" />{" "}
                       Home
                     </div>
                   }
@@ -57,7 +56,7 @@ export const Header: React.FC = () => {
           <div className="col-lg-3 left-side">
             <div className="d-flex align-items-center justify-content-around">
               <img
-                src={img_avatar}
+                src="/images/layout/img_avatar.png"
                 alt="Avatar"
                 className="rounded-circle avatar"
               />
@@ -73,10 +72,10 @@ export const Header: React.FC = () => {
                 ></MainButton>
               </div>
               <a href="#">
-                <img src={profile_view_icon} alt="" />
+                <img src='/Images/layout/profile_view_icon.svg' alt="" />
               </a>
               <a href="#">
-                <img src={logout_icon} alt="" />
+                <img src='/Images/layout/logout_icon.svg' alt="" />
               </a>
             </div>
           </div>

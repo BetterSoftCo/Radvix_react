@@ -40,7 +40,7 @@ export const BoxListScroll: React.FC<IBoxListScroll> = ({
             theme={Theme.light}
             children={
               <img
-                src={item.imagesrc.img_avatar}
+                src={item.imagesrc}
                 alt="Avatar"
                 className="rounded-circle avatar"
               />

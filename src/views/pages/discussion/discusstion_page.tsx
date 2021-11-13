@@ -5,9 +5,6 @@ import { InputComponent, InputType } from "../../components/inputs";
 import "react-datepicker/dist/react-datepicker.css";
 import { MainButton, MainButtonType } from "../../components/button";
 import Dropzone from "react-dropzone";
-import { SelectComponent } from "../../components/select_input";
-import { ButtonGroup } from "../../components/botton_group";
-import { BoxAlert } from "../../components/box_alert";
 import { IconTextRow } from "../../components/icon_text_horizontal";
 import { Theme } from "../../../core/utils";
 import { BoxListScroll } from "../../components/box_list_scroll";
@@ -77,7 +74,7 @@ export class DiscusstionPage extends React.Component {
                   laboris nisi ut aliquip ex ea
                   <ul className="file-list">
                     <li>
-                      <img src="/images/pages/PDF Icon.svg" alt="" />{" "}
+                      <img src="/images/pages/pdf_icon.svg" alt="" />{" "}
                       proposal_general.pdf
                     </li>
                   </ul>
@@ -106,7 +103,7 @@ export class DiscusstionPage extends React.Component {
                   laboris nisi ut aliquip ex ea
                   <ul className="file-list">
                     <li>
-                      <img src="/images/pages/PDF Icon.svg" alt="" />{" "}
+                      <img src="/images/pages/pdf_icon.svg" alt="" />{" "}
                       proposal_general.pdf
                     </li>
                   </ul>
@@ -135,7 +132,7 @@ export class DiscusstionPage extends React.Component {
                   laboris nisi ut aliquip ex ea
                   <ul className="file-list">
                     <li>
-                      <img src="/images/pages/PDF Icon.svg" alt="" />{" "}
+                      <img src="/images/pages/pdf_icon.svg" alt="" />{" "}
                       proposal_general.pdf
                     </li>
                   </ul>
@@ -151,7 +148,7 @@ export class DiscusstionPage extends React.Component {
                     text="Users In This Discussion"
                     children={
                       <img
-                        src="/Images/pages/Team Menu Icon.svg"
+                        src="/Images/pages/team_menu_icon.svg"
                         className="mx-2"
                         alt=""
                       />

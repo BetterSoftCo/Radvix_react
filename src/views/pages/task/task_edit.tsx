@@ -147,7 +147,7 @@ export class TaskPageEdit extends React.Component {
                 </Dropzone>
                 <ul className="file-list mt-3">
                   <li className="d-flex align-items-center mb-1">
-                    <img src="/images/pages/PDF Icon.svg" alt="" className="mx-2" />{" "}
+                    <img src="/images/pages/pdf_icon.svg" alt="" className="mx-2" />{" "}
                     proposal_general.pdf
                     <CircleIcon
                       type={ThemeCircleIcon.dark}
@@ -159,7 +159,7 @@ export class TaskPageEdit extends React.Component {
                     </CircleIcon>
                   </li>
                   <li className="d-flex align-items-center mb-1">
-                    <img src="/images/pages/PDF Icon.svg" alt="" className="mx-2" />{" "}
+                    <img src="/images/pages/pdf_icon.svg" alt="" className="mx-2" />{" "}
                     proposal_general.pdf
                     <CircleIcon
                       type={ThemeCircleIcon.dark}
@@ -171,7 +171,7 @@ export class TaskPageEdit extends React.Component {
                     </CircleIcon>
                   </li>
                   <li className="d-flex align-items-center mb-1">
-                    <img src="/images/pages/PDF Icon.svg" alt="" className="mx-2" />{" "}
+                    <img src="/images/pages/pdf_icon.svg" alt="" className="mx-2" />{" "}
                     proposal_general.pdf
                     <CircleIcon
                       type={ThemeCircleIcon.dark}

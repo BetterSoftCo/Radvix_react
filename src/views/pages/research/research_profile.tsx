@@ -6,7 +6,6 @@ import { MainButton, MainButtonType } from "../../components/button";
 import { IconTextRow } from "../../components/icon_text_horizontal";
 import { Theme } from "../../../core/utils";
 import { BoxListScroll } from "../../components/box_list_scroll";
-import { excel_icon, pdf_icon, team_menu_icon, word_icon,img_avatar } from "../../../assets";
 export class ResearchPageProfile extends React.Component {
   RoleUser = store.getState();
 
@@ -108,19 +107,19 @@ export class ResearchPageProfile extends React.Component {
                   {" "}
                   <ul className="file-list">
                     <li>
-                      <img src={pdf_icon} alt="" />{" "}
+                      <img src='/images/pages/pdf_icon.svg' alt="" />{" "}
                       proposal_general.pdf
                     </li>
                     <li>
-                      <img src={word_icon} alt="" />{" "}
+                      <img src='/images/pages/word_icon.svg' alt="" />{" "}
                       proposal_general.docx
                     </li>
                     <li>
-                      <img src={excel_icon} alt="" />{" "}
+                      <img src='/images/pages/excel_icon.svg' alt="" />{" "}
                       proposal_general.xlsx
                     </li>
                     <li>
-                      <img src={pdf_icon} alt="" />{" "}
+                      <img src='/images/pages/pdf_icon.svg' alt="" />{" "}
                       proposal_general.pdf
                     </li>
                     <li>
@@ -153,7 +152,7 @@ export class ResearchPageProfile extends React.Component {
                   text="Teams (Members)"
                   children={
                     <img
-                      src={team_menu_icon}
+                      src="/Images/pages/team_menu_icon.svg"
                       className="mx-2"
                       alt=""
                     />
@@ -194,17 +193,17 @@ export class ResearchPageProfile extends React.Component {
                     {
                       text: "Nima Hosseinzadeh",
                       id: 1,
-                      imagesrc: {img_avatar},
+                      imagesrc: "/images/layout/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 2,
-                      imagesrc: {img_avatar},
+                      imagesrc: "/images/layout/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 3,
-                      imagesrc: {img_avatar},
+                      imagesrc: "/images/layout/img_avatar.png",
                     },
                   ]}
                   TextItem="text"
@@ -297,17 +296,17 @@ export class ResearchPageProfile extends React.Component {
                     {
                       text: "Nima Hosseinzadeh",
                       id: 1,
-                      imagesrc: {img_avatar},
+                      imagesrc: "/images/layout/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 2,
-                      imagesrc: {img_avatar},
+                      imagesrc: "/images/layout/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 3,
-                      imagesrc: {img_avatar},
+                      imagesrc: "/images/layout/img_avatar.png",
                     },
                   ]}
                   TextItem="text"
