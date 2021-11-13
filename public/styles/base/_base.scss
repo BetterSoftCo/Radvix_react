@@ -15,3 +15,7 @@ a, a:hover, a:focus, a:active {
   text-decoration: none;
   color: inherit;
 }
+@mixin custom_width($width) {
+  width: $width;
+} 
+

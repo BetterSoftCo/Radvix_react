@@ -688,6 +688,10 @@ button {
   margin-bottom: 1rem;
 }
 
+.w-30 {
+  width: 30%;
+}
+
 .team-edit {
   background-color: #c7c7c7 !important;
 }
@@ -1454,6 +1458,10 @@ button {
 
 .box-content .tags button {
   margin-bottom: 1rem;
+}
+
+.w-30 {
+  width: 30%;
 }
 
 .team-edit {

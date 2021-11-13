@@ -159,6 +159,10 @@
       margin-bottom: 1rem;
     }
   }
+  
+}
+.w-30{
+  @include custom_width(30%);
 }
 
 .team-edit{
