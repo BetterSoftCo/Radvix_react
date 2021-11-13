@@ -5,9 +5,9 @@ import { MainButton, MainButtonType } from "../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import { InputIcon } from "../../components/search_box";
 import { SelectComponent } from "../../components/select_input";
-import { DiscusstionListTable } from "./component/discusstion_list_table";
+import { MyDataCollectionTable } from "./component/my_data_collection_tbl";
 
-export class DiscusstionList extends React.Component {
+export class MyDataCollection extends React.Component {
   RoleUser = store.getState();
   state = {
     Data: {
@@ -41,38 +41,34 @@ export class DiscusstionList extends React.Component {
   };
   render() {
     return (
-      <div className="container-fluid research">
+      <div className="container-fluid research task">
         <div className="row"></div>
         <div className="col-12">
           <div className="TableBox">
-            <div className="TopTableBox d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3">
+            <div className="TopTableBox d-flex justify-content-between align-items-center mb-3">
               <div className="left d-flex w-50 align-items-center">
-                <h6 className="b-title d-flex" style={{ width: "35%" }}>
-                  <span className="backPage"></span> Equipment List
-                </h6>
+                <h6 style={{ width: "35%" }}>Data Collection</h6>
                 <InputIcon
                   chilren={
-                    <img src="/images/pages/search_box_icon.svg" alt="" />
+                    <img src='/images/pages/search_box_icon.svg' alt="" />
                   }
                   width="100%"
                   height="44px"
                   placeholder="Search..."
                 ></InputIcon>
               </div>
-              <div className="right  d-flex justify-content-between">
+              <div className="right w-25 d-flex justify-content-between align-items-center">
                 <MainButton
-                  children="New Equip"
+                  children="New Data"
                   type={MainButtonType.dark}
                   borderRadius="24px"
                   fontSize="14px"
-                  className="my-2 mx-2"
                 ></MainButton>
                 <MainButton
-                  children="Laboratories"
+                  children="All Date"
                   type={MainButtonType.dark}
                   borderRadius="24px"
                   fontSize="14px"
-                  className="my-2 mx-2"
                 ></MainButton>
                 <SelectComponent
                   width="63px"
@@ -87,10 +83,7 @@ export class DiscusstionList extends React.Component {
                 ></SelectComponent>
               </div>
             </div>
-            <DiscusstionListTable
-              Items={this.state.Data.Items}
-              Heading={["Subject", "Related To", "Update"]}
-            ></DiscusstionListTable>
+            <MyDataCollectionTable role={this.RoleUser}></MyDataCollectionTable>
 
             <div className="d-flex justify-content-center align-items-center my-3">
               <ReactPaginate

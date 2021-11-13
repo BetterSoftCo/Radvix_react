@@ -19,7 +19,7 @@ export class ResearchPage extends React.Component {
                 <div className="left d-flex w-50 align-items-center">
                   <h6 style={{ width: "35%" }}>Research List</h6>
                   <InputIcon
-                    chilren={<img src="/images/pages/Search Box Icon.svg" alt=""/>}
+                    chilren={<img src='/images/pages/search_box_icon.svg' alt=""/>}
                     width="100%"
                     height="44px"
                     placeholder="Search..."

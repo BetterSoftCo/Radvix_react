@@ -14,7 +14,7 @@ export const Header: React.FC = () => {
             <div className="row h-100">
               <div className="col-md-2 col-6">
                 <img
-                  src="/images/layout/Radvix Logo.svg"
+                  src='/images/layout/radvix_logo.svg'
                   height="42px"
                   width="142px"
                 />
@@ -27,7 +27,7 @@ export const Header: React.FC = () => {
                   borderRadius="50px"
                   children={
                     <div>
-                      <img src="/images/component/Group 1.svg" alt="sssss" />{" "}
+                      <img src='/Images/component/group_1.svg' alt="sssss" />{" "}
                       Home
                     </div>
                   }
@@ -72,10 +72,10 @@ export const Header: React.FC = () => {
                 ></MainButton>
               </div>
               <a href="#">
-                <img src="/images/layout/Profile View Icon.svg" alt="" />
+                <img src='/Images/layout/profile_view_icon.svg' alt="" />
               </a>
               <a href="#">
-                <img src="/images/layout/Logout Icon.svg" alt="" />
+                <img src='/Images/layout/logout_icon.svg' alt="" />
               </a>
             </div>
           </div>

@@ -141,19 +141,19 @@ export class TaskPageProfile extends React.Component {
                   {" "}
                   <ul className="file-list">
                     <li>
-                      <img src="/images/pages/PDF Icon.svg" alt="" />{" "}
+                      <img src="/images/pages/pdf_icon.svg" alt="" />{" "}
                       proposal_general.pdf
                     </li>
                     <li>
-                      <img src="/images/pages/Word Icon.svg" alt="" />{" "}
+                      <img src="/images/pages/word_icon.svg" alt="" />{" "}
                       proposal_general.docx
                     </li>
                     <li>
-                      <img src="/images/pages/Excel Icon.svg" alt="" />{" "}
+                      <img src="/images/pages/excel_icon.svg" alt="" />{" "}
                       proposal_general.xlsx
                     </li>
                     <li>
-                      <img src="/images/pages/PDF Icon.svg" alt="" />{" "}
+                      <img src="/images/pages/pdf_icon.svg" alt="" />{" "}
                       proposal_general.pdf
                     </li>
                     <li>
@@ -186,7 +186,7 @@ export class TaskPageProfile extends React.Component {
                   text="Assigned to Teams (Members)"
                   children={
                     <img
-                      src="/Images/pages/Team Menu Icon.svg"
+                      src="/Images/pages/team_menu_icon.svg"
                       className="mx-2"
                       alt=""
                     />
@@ -356,7 +356,7 @@ export class TaskPageProfile extends React.Component {
               <div className="left d-flex w-50 align-items-center">
                 <h6 style={{ width: "35%" }}>Task Data Collection</h6>
                 <InputIcon
-                  chilren={<img src="/images/pages/Search Box Icon.svg" alt="radvix" />}
+                  chilren={<img src="/images/pages/search_box_icon.svg" alt="radvix" />}
                   width="100%"
                   height="44px"
                   placeholder="Search..."
@@ -423,7 +423,7 @@ export class TaskPageProfile extends React.Component {
               <div className="left d-flex w-50 align-items-center">
                 <h6 style={{ width: "35%" }}>Subtasks</h6>
                 <InputIcon
-                  chilren={<img src="/images/pages/Search Box Icon.svg" alt="radvix" />}
+                  chilren={<img src="/images/pages/search_box_icon.svg" alt="radvix" />}
                   width="100%"
                   height="44px"
                   placeholder="Search..."

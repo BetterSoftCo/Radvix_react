@@ -24,6 +24,15 @@ import { NewDiscusstion } from './pages/discussion/new_discusstion';
 import { DiscusstionPage } from './pages/discussion/discusstion_page';
 import { DiscusstionList } from './pages/discussion/discusstion_list';
 import { TeamPage } from './pages/team/team_page';
+import { DataPageNew } from './pages/datapage/new_data';
+import { DataCollection } from './pages/datapage/data_collection';
+import { MyDataCollection } from './pages/datapage/my_data';
+import { DataPageProfile } from './pages/datapage/data_profile';
+import { DataPageEdit } from './pages/datapage/edit_data';
+import { PublishPageNew } from './pages/publish/new_publish';
+import { MyPublications } from './pages/publish/my_publications';
+import { PublicationProfile } from './pages/publish/publication_profile';
+import { UploadNewDraft } from './pages/publish/new_draft_upload';
 
 
 
@@ -54,5 +63,14 @@ export {
   NewDiscusstion,
   DiscusstionPage,
   DiscusstionList,
-  TeamPage
+  TeamPage,
+  DataPageNew,
+  DataCollection,
+  MyDataCollection,
+  DataPageProfile,
+  DataPageEdit,
+  PublishPageNew,
+  MyPublications,
+  PublicationProfile,
+  UploadNewDraft
 };

@@ -5,9 +5,9 @@ import { MainButton, MainButtonType } from "../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import { InputIcon } from "../../components/search_box";
 import { SelectComponent } from "../../components/select_input";
-import { DiscusstionListTable } from "./component/discusstion_list_table";
+import { MyPublicationsTable } from "./component/my_publications_tbl";
 
-export class DiscusstionList extends React.Component {
+export class MyPublications extends React.Component {
   RoleUser = store.getState();
   state = {
     Data: {
@@ -48,7 +48,7 @@ export class DiscusstionList extends React.Component {
             <div className="TopTableBox d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3">
               <div className="left d-flex w-50 align-items-center">
                 <h6 className="b-title d-flex" style={{ width: "35%" }}>
-                  <span className="backPage"></span> Equipment List
+                  <span className="backPage"></span> My Publications
                 </h6>
                 <InputIcon
                   chilren={
@@ -61,14 +61,7 @@ export class DiscusstionList extends React.Component {
               </div>
               <div className="right  d-flex justify-content-between">
                 <MainButton
-                  children="New Equip"
-                  type={MainButtonType.dark}
-                  borderRadius="24px"
-                  fontSize="14px"
-                  className="my-2 mx-2"
-                ></MainButton>
-                <MainButton
-                  children="Laboratories"
+                  children="New Publication"
                   type={MainButtonType.dark}
                   borderRadius="24px"
                   fontSize="14px"
@@ -87,10 +80,10 @@ export class DiscusstionList extends React.Component {
                 ></SelectComponent>
               </div>
             </div>
-            <DiscusstionListTable
+            <MyPublicationsTable
               Items={this.state.Data.Items}
               Heading={["Subject", "Related To", "Update"]}
-            ></DiscusstionListTable>
+            ></MyPublicationsTable>
 
             <div className="d-flex justify-content-center align-items-center my-3">
               <ReactPaginate

@@ -13,7 +13,7 @@ export const Sidebar: React.FC = () => {
           <IconTextVertical
             text="Research"
             theme={Theme.dark}
-            children={<img src="/images/layout/Research Icon.svg" />}
+            children={<img src='/Images/layout/research_icon.svg' />}
           ></IconTextVertical>
         </li>
       </NavLink>
@@ -22,7 +22,7 @@ export const Sidebar: React.FC = () => {
           <IconTextVertical
             text="Laboratory"
             theme={Theme.dark}
-            children={<img src="/images/layout/Lab Menu Icon.svg" />}
+            children={<img src='/Images/layout/lab_menu_icon.svg' />}
           ></IconTextVertical>
         </li>
       </NavLink>
@@ -31,7 +31,8 @@ export const Sidebar: React.FC = () => {
           <IconTextVertical
             text="Team"
             theme={Theme.dark}
-            children={<img src="/images/layout/Team Menu Icon.svg" />}
+            children={<img src="/Images/layout/team_menu_icon.svg
+            " />}
           ></IconTextVertical>
         </li>
       </NavLink>
@@ -40,7 +41,7 @@ export const Sidebar: React.FC = () => {
           <IconTextVertical
             text="Task"
             theme={Theme.dark}
-            children={<img src="/images/layout/Task Menu Icon.svg" />}
+            children={<img src='/Images/layout/task_menu_icon.svg'/>}
           ></IconTextVertical>
         </li>
       </NavLink>
@@ -49,7 +50,7 @@ export const Sidebar: React.FC = () => {
           <IconTextVertical
             text="Data"
             theme={Theme.dark}
-            children={<img src="/images/layout/Data Manu Icon.svg" />}
+            children={<img src='/Images/layout/data_manu_Icon.svg'/>}
           ></IconTextVertical>
         </li>
       </NavLink>
@@ -58,7 +59,7 @@ export const Sidebar: React.FC = () => {
           <IconTextVertical
             text="Discussion"
             theme={Theme.dark}
-            children={<img src="/images/layout/chat.svg" />}
+            children={<img src='/Images/layout/chat.png' />}
           ></IconTextVertical>
         </li>
       </NavLink>
@@ -67,7 +68,7 @@ export const Sidebar: React.FC = () => {
           <IconTextVertical
             text="Publish"
             theme={Theme.dark}
-            children={<img src="/images/layout/Publish Menu Icon.svg" />}
+            children={<img src='/Images/layout/publish_menu_icon.svg' />}
           ></IconTextVertical>
         </li>
       </NavLink>
@@ -76,7 +77,7 @@ export const Sidebar: React.FC = () => {
           <IconTextVertical
             text="Expense"
             theme={Theme.dark}
-            children={<img src="/images/layout/Expense Menu Icon.svg" />}
+            children={<img src='/Images/layout/expense_menu_icon.svg'/>}
           ></IconTextVertical>
         </li>
       </NavLink>
@@ -85,7 +86,7 @@ export const Sidebar: React.FC = () => {
           <IconTextVertical
             text="Setting"
             theme={Theme.dark}
-            children={<img src="/images/layout/Setting Menu Icon.svg" />}
+            children={<img src='/Images/layout/setting_menu_icon.svg' />}
           ></IconTextVertical>
         </li>
       </NavLink>
@@ -94,7 +95,7 @@ export const Sidebar: React.FC = () => {
           <IconTextVertical
             text="Ticketing"
             theme={Theme.dark}
-            children={<img src="/images/layout/headphones.svg" />}
+            children={<img src='/Images/layout/headphones.svg'/>}
           ></IconTextVertical>
         </li>
       </NavLink>

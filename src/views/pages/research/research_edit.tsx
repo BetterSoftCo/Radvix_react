@@ -217,7 +217,7 @@ class ResearchPageEdit extends React.Component<RouteComponentProps> {
                 <ul className="file-list mt-3">
                   <li className="d-flex align-items-center mb-1">
                     <img
-                      src="/images/pages/PDF Icon.svg"
+                      src='/images/pages/pdf_icon.svg'
                       alt=""
                       className="mx-2"
                     />{" "}
@@ -233,7 +233,7 @@ class ResearchPageEdit extends React.Component<RouteComponentProps> {
                   </li>
                   <li className="d-flex align-items-center mb-1">
                     <img
-                      src="/images/pages/PDF Icon.svg"
+                      src='/images/pages/pdf_icon.svg'
                       alt=""
                       className="mx-2"
                     />{" "}
@@ -249,7 +249,7 @@ class ResearchPageEdit extends React.Component<RouteComponentProps> {
                   </li>
                   <li className="d-flex align-items-center mb-1">
                     <img
-                      src="/images/pages/PDF Icon.svg"
+                      src='/images/pages/pdf_icon.svg'
                       alt=""
                       className="mx-2"
                     />{" "}
@@ -340,7 +340,7 @@ class ResearchPageEdit extends React.Component<RouteComponentProps> {
                   text="Teams (Members)"
                   children={
                     <img
-                      src="/Images/pages/Team Menu Icon.svg"
+                      src="/Images/pages/team_menu_icon.svg"
                       className="mx-2"
                       alt=""
                     />
@@ -391,17 +391,17 @@ class ResearchPageEdit extends React.Component<RouteComponentProps> {
                     {
                       text: "Nima Hosseinzadeh",
                       id: 1,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc:"/images/layout/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 2,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc:"/images/layout/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 3,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc:"/images/layout/img_avatar.png",
                     },
                   ]}
                   TextItem="text"

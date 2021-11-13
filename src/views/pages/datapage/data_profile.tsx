@@ -6,8 +6,39 @@ import { MainButton, MainButtonType } from "../../components/button";
 import { IconTextRow } from "../../components/icon_text_horizontal";
 import { Theme } from "../../../core/utils";
 import { BoxListScroll } from "../../components/box_list_scroll";
-export class LaboratoryPageProfile extends React.Component {
+
+export class DataPageProfile extends React.Component {
   RoleUser = store.getState();
+  state = {
+    Data: {
+      Items: [
+        {
+          name: "Structural and Materials Lab",
+          Institution: "University Of Miami",
+          Category: "Material",
+          Eqiups: "12",
+        },
+        {
+          name: "Structural and Materials Lab",
+          Institution: "University Of Miami",
+          Category: "Material",
+          Eqiups: "12",
+        },
+        {
+          name: "Structural and Materials Lab",
+          Institution: "University Of Miami",
+          Category: "Material",
+          Eqiups: "12",
+        },
+        {
+          name: "Structural and Materials Lab",
+          Institution: "University Of Miami",
+          Category: "Material",
+          Eqiups: "12",
+        },
+      ],
+    },
+  };
 
   render() {
     return (
@@ -16,7 +47,8 @@ export class LaboratoryPageProfile extends React.Component {
         <div className="col-12 box-content p-3">
           <div className="d-flex justify-content-between align-items-center">
             <h5 className="b-title d-flex align-items-center">
-              <span className="backPage"></span> {"Lab Profile"}
+              <span className="backPage"></span>{" "}
+              {"Data Collection  > Data Profile"}
               <CircleIcon
                 width="22px"
                 height="22px"
@@ -26,7 +58,17 @@ export class LaboratoryPageProfile extends React.Component {
                 color="#ffff"
                 className="mx-4"
               >
-                <i className="fas fa-history"></i>
+                <i className="fas fa-edit"></i>
+              </CircleIcon>
+              <CircleIcon
+                width="22px"
+                height="22px"
+                type={ThemeCircleIcon.dark}
+                backgroundColor="#474747"
+                fontSize="10px"
+                color="#ffff"
+              >
+                <i className="fas fa-comment"></i>
               </CircleIcon>
             </h5>
             <MainButton
@@ -37,69 +79,36 @@ export class LaboratoryPageProfile extends React.Component {
             ></MainButton>
           </div>
           <div className="Studying p-4 my-2">
-            <h3 className="px-5 text-center">Structural And Materials Lab</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
-            </p>
+            <h3 className="px-5 text-center">
+              TGA Results and Exported Data on Soft Samples
+            </h3>
           </div>
           <div className="row">
             <div className="col-md-6  tabel-info ">
               <div className="row border-bottom ">
-                <h6 className="col-4 t-title mb-0 border-t-l">Category</h6>
-                <div className="col-8 t-desc border-t-r">Material</div>
+                <h6 className="col-4 t-title mb-0 border-t-l">
+                  Data Set Added by
+                </h6>
+                <div className="col-8 t-desc border-t-r">N. Hosseinzadeh</div>
               </div>
               <div className="row border-bottom">
-                <h6 className="col-4 t-title mb-0">Lab Manager(s)</h6>
+                <h6 className="col-4 t-title mb-0">Data Set Files</h6>
                 <div className="col-8 t-desc">
-                  <ul>
-                    <li>N. Hosseinzadeh</li>
-                    <li>N. Hosseinzadeh</li>
-                    <li>N. Hosseinzadeh</li>
-                  </ul>
-                </div>
-              </div>
-              <div className="row border-bottom">
-                <h6 className="col-4 t-title mb-0">Website</h6>
-                <div className="col-8 t-desc">
-                  <MainButton
-                    children="https://drive.google.com/file/234234"
-                    type={MainButtonType.dark}
-                    borderRadius="24px"
-                    fontSize="14px"
-                    backgroundColor="#F5F5F5"
-                    color="#096BFF"
-                  ></MainButton>
-                </div>
-              </div>
-              <div className="row border-bottom">
-                <h6 className="col-4 t-title mb-0">Address</h6>
-                <div className="col-8 t-desc">
-                  Beshiktash Institute of Tech 9863 Greystone Street Upland, CA
-                  91784 +1 (235) 123 4567
-                </div>
-              </div>
-              <div className="row border-bottom">
-                <h6 className="col-4 t-title mb-0 border-b-l">Protocols</h6>
-                <div className="col-8 t-desc border-b-r">
-                  {" "}
                   <ul className="file-list">
                     <li>
-                      <img src='/images/pages/pdf_icon.svg' alt="" />{" "}
+                      <img src="/images/pages/pdf_icon.svg" alt="" />{" "}
                       proposal_general.pdf
                     </li>
                     <li>
-                      <img src='/images/pages/word_icon.svg' alt="" />{" "}
+                      <img src="/images/pages/word_icon.svg" alt="" />{" "}
                       proposal_general.docx
                     </li>
                     <li>
-                      <img src='/images/pages/excel_icon.svg' alt="" />{" "}
+                      <img src="/images/pages/excel_icon.svg" alt="" />{" "}
                       proposal_general.xlsx
                     </li>
                     <li>
-                      <img src='/images/pages/pdf_icon.svg' alt="" />{" "}
+                      <img src="/images/pages/pdf_icon.svg" alt="" />{" "}
                       proposal_general.pdf
                     </li>
                     <li>
@@ -124,12 +133,37 @@ export class LaboratoryPageProfile extends React.Component {
                   </ul>
                 </div>
               </div>
+              <div className="row border-bottom">
+                <h6 className="col-4 t-title mb-0">Date</h6>
+                <div className="col-8 t-desc">07/22/2021 21:24</div>
+              </div>
+              <div className="row border-bottom">
+                <h6 className="col-4 t-title mb-0">Data Description</h6>
+                <div className="col-8 t-desc">
+                  {" "}
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea
+                </div>
+              </div>
+
+              <div className="row border-bottom">
+                <h6 className="col-4 t-title mb-0">Task</h6>
+                <div className="col-8 t-desc">Running TGA On XFG…</div>
+              </div>
+              <div className="row border-bottom">
+                <h6 className="col-4 t-title mb-0 border-b-l">
+                  Task Assigned by
+                </h6>
+                <div className="col-8 t-desc border-b-r">B. Forouzani</div>
+              </div>
             </div>
             <div className="col-md-6">
-              <div className="teams Labs mb-3">
+            <div className="teams Labs">
                 <IconTextRow
                   theme={Theme.dark}
-                  text="Labs (Equipments)"
+                  text="Equipments Used"
                   children={
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -175,8 +209,8 @@ export class LaboratoryPageProfile extends React.Component {
                     </svg>
                   }
                 ></IconTextRow>
+                
                 <BoxListScroll
-                  className="mt-3"
                   items={[
                     {
                       text: "Nima Hosseinzadeh",
@@ -197,58 +231,21 @@ export class LaboratoryPageProfile extends React.Component {
                   TextItem="text"
                   ValueItem="id"
                   ImageItem="imagesrc"
-                  Deletabel
-                  DeleteFunc={(p, value) => {
-                    console.log(p, value);
-                  }}
+                  className="mt-2"
                 ></BoxListScroll>
               </div>
               <div className="teams mb-3">
                 <IconTextRow
                   theme={Theme.dark}
-                  text="Teams (Members)"
+                  text="Users with Access to this data set"
                   children={
                     <img
-                      src='/images/pages/team_menu_icon.svg'
+                      src="/Images/pages/team_menu.svg"
                       className="mx-2"
                       alt=""
                     />
                   }
                 ></IconTextRow>
-                <div className="tags p-3">
-                  <MainButton
-                    children="ACCESSLab Team"
-                    type={MainButtonType.light}
-                    borderRadius="24px"
-                    fontSize="14px"
-                    className="px-3"
-                    backgroundColor="#EBEBEB"
-                  ></MainButton>
-                  <MainButton
-                    children="ACCESSLab Team"
-                    type={MainButtonType.light}
-                    borderRadius="24px"
-                    fontSize="14px"
-                    className="px-3"
-                    backgroundColor="#EBEBEB"
-                  ></MainButton>
-                  <MainButton
-                    children="ACCESSLab Team"
-                    type={MainButtonType.light}
-                    borderRadius="24px"
-                    fontSize="14px"
-                    className="px-3"
-                    backgroundColor="#EBEBEB"
-                  ></MainButton>
-                  <MainButton
-                    children="ACCESSLab Team"
-                    type={MainButtonType.light}
-                    borderRadius="24px"
-                    fontSize="14px"
-                    className="px-3 m-2"
-                    backgroundColor="#EBEBEB"
-                  ></MainButton>
-                </div>
                 <BoxListScroll
                   items={[
                     {
@@ -262,7 +259,7 @@ export class LaboratoryPageProfile extends React.Component {
                       imagesrc: "/images/layout/img_avatar.png",
                     },
                     {
-                      text: "Nima Hosseinzadehgg",
+                      text: "Nima Hosseinzadeh",
                       id: 3,
                       imagesrc: "/images/layout/img_avatar.png",
                     },
@@ -270,13 +267,10 @@ export class LaboratoryPageProfile extends React.Component {
                   TextItem="text"
                   ValueItem="id"
                   ImageItem="imagesrc"
-                  Deletabel
-                  DeleteFunc={(p, value) => {
-                    console.log(p, value);
-                  }}
+                  className="mt-2"
                 ></BoxListScroll>
               </div>
-
+              
             </div>
           </div>
         </div>

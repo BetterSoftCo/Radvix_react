@@ -325,7 +325,7 @@ export class EditMyProfile extends React.Component {
                   <li className="d-flex justify-content-between align-items-center mb-2">
                     <div>
                       <img
-                        src="/images/pages/LinkedIn_logo_initials.png"
+                        src="/images/pages/linkedIn_logo_initials.png"
                         alt=""
                       />{" "}
                       <MainButton
@@ -349,7 +349,7 @@ export class EditMyProfile extends React.Component {
                   <li className="d-flex justify-content-between align-items-center mb-2">
                     <div>
                       <img
-                        src="/images/pages/LinkedIn_logo_initials.png"
+                        src="/images/pages/linkedIn_logo_initials.png"
                         alt=""
                       />{" "}
                       <MainButton
@@ -373,7 +373,7 @@ export class EditMyProfile extends React.Component {
                   <li className="d-flex justify-content-between align-items-center mb-2">
                     <div>
                       <img
-                        src="/images/pages/LinkedIn_logo_initials.png"
+                        src="/images/pages/linkedIn_logo_initials.png"
                         alt=""
                       />{" "}
                       <MainButton

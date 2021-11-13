@@ -100,7 +100,7 @@ export class MemberPageProfile extends React.Component {
                 <div className="col-8 t-desc border-b-r">
                   <ul className="file-list">
                     <li>
-                      <img src="/images/pages/PDF Icon.svg" alt="" />{" "}
+                      <img src="/images/pages/pdf_icon.svg" alt="" />{" "}
                       proposal_general.pdf
                     </li>
                   </ul>
@@ -112,7 +112,7 @@ export class MemberPageProfile extends React.Component {
                   <ul className="file-list">
                     <li>
                       <img
-                        src="/images/pages/LinkedIn_logo_initials.png"
+                        src="/images/pages/linkedIn_logo_initials.png"
                         alt=""
                       />{" "}
                       <MainButton
@@ -126,7 +126,7 @@ export class MemberPageProfile extends React.Component {
                     </li>
                     <li>
                       <img
-                        src="/images/pages/LinkedIn_logo_initials.png"
+                        src="/images/pages/linkedIn_logo_initials.png"
                         alt=""
                       />{" "}
                       <MainButton
@@ -140,7 +140,7 @@ export class MemberPageProfile extends React.Component {
                     </li>
                     <li>
                       <img
-                        src="/images/pages/LinkedIn_logo_initials.png"
+                        src="/images/pages/linkedIn_logo_initials.png"
                         alt=""
                       />{" "}
                       <MainButton
@@ -163,7 +163,7 @@ export class MemberPageProfile extends React.Component {
                   text="Subteams"
                   children={
                     <img
-                      src="/Images/pages/Team Menu Icon.svg"
+                      src="/Images/pages/team_menu_icon.svg"
                       className="mx-2"
                       alt=""
                     />

@@ -49,7 +49,7 @@ export class LaboratoryPage extends React.Component {
                 <h6 style={{ width: "35%" }}>Laboratory List</h6>
                 <InputIcon
                   chilren={
-                    <img src="/images/pages/Search Box Icon.svg" alt="" />
+                    <img src='/images/pages/search_box_icon.svg' alt="" />
                   }
                   width="100%"
                   height="44px"

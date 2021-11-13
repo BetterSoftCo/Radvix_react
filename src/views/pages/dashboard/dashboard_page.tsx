@@ -59,7 +59,7 @@ export class DashboardPage extends React.Component {
                 <div className="left d-flex w-50 align-items-center">
                   <h6 style={{ width: "35%" }}>Research Updates</h6>
                   <InputIcon
-                    chilren={<img src="/images/pages/Search Box Icon.svg" />}
+                    chilren={<img src='/images/pages/search_box_icon.svg' />}
                     width="100%"
                     height="44px"
                     placeholder="Search..."
@@ -123,7 +123,7 @@ export class DashboardPage extends React.Component {
                 <div className="left d-flex w-50 align-items-center">
                   <h6 style={{ width: "35%" }}>Recent Tasks</h6>
                   <InputIcon
-                    chilren={<img src="/images/pages/Search Box Icon.svg" />}
+                    chilren={<img src='/images/pages/search_box_icon.svg' />}
                     width="100%"
                     height="44px"
                     placeholder="Search..."
@@ -184,7 +184,7 @@ export class DashboardPage extends React.Component {
                 <div className="left d-flex w-50 align-items-center">
                   <h6 style={{ width: "35%" }}>Recent Data Sets</h6>
                   <InputIcon
-                    chilren={<img src="/images/pages/Search Box Icon.svg" />}
+                    chilren={<img src='/images/pages/search_box_icon.svg' />}
                     width="100%"
                     height="44px"
                     placeholder="Search..."
@@ -252,7 +252,7 @@ const HeadDashboardPage: React.FC = () => {
       <div className="overviwe-item">
         <div className="d-flex align-items-center justify-content-around">
           <img
-            src="/images/pages/Members Involved Overview Icon.svg"
+            src='images/pages/members_involved_overview_icon.svg'
             alt="Avatar"
             className="avatar"
           />
@@ -265,7 +265,7 @@ const HeadDashboardPage: React.FC = () => {
       <div className="overviwe-item">
         <div className="d-flex align-items-center justify-content-around">
           <img
-            src="/images/pages/Equipment Involved Overview Icon.svg"
+            src='images/pages/equipment_involved_overview_icon.svg'
             alt="Avatar"
             className="avatar"
           />
@@ -278,7 +278,7 @@ const HeadDashboardPage: React.FC = () => {
       <div className="overviwe-item">
         <div className="d-flex align-items-center justify-content-around">
           <img
-            src="/images/pages/Compeleted Tasks Overview Icon.svg"
+            src='/images/pages/equipment_involved_overview_icon.svg'
             alt="Avatar"
             className="avatar"
           />
@@ -291,7 +291,7 @@ const HeadDashboardPage: React.FC = () => {
       <div className="overviwe-item">
         <div className="d-flex align-items-center justify-content-around">
           <img
-            src="/images/pages/Pending Tasks Overview Icon.svg"
+            src='/images/pages/pending_tasks_overview_icon.svg'
             alt="Avatar"
             className="avatar"
           />
@@ -304,7 +304,7 @@ const HeadDashboardPage: React.FC = () => {
       <div className="overviwe-item">
         <div className="d-flex align-items-center justify-content-around">
           <img
-            src="/images/pages/Project Deadline Overview Icon.svg"
+            src='/images/pages/equipment_involved_overview_icon.svg'
             alt="Avatar"
             className="avatar"
           />

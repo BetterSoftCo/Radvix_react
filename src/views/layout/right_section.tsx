@@ -11,25 +11,25 @@ export const RightSection: React.FC = () => {
           text="Create 
           New Task"
           theme={Theme.light}
-          children={<img src="/images/layout/New Task Icon.svg" />}
+          children={<img src='/Images/layout/new_task_icon.svg'/>}
         ></IconTextVertical>
         <IconTextVertical
           text="New
           Discussion"
           theme={Theme.light}
-          children={<img src="/images/layout/Group 27.svg" />}
+          children={<img src='/Images/layout/group_27.svg' />}
         ></IconTextVertical>
         <IconTextVertical
           text="Data
           Collection"
           theme={Theme.light}
-          children={<img src="/images/layout/Quick Data Collection.svg" />}
+          children={<img src='/Images/layout/quick_data_collection.svg'/>}
         ></IconTextVertical>
       </div>
       <div className="bottom">
         <div className="d-flex flex-column justify-content-center p-3">
           <div className="d-flex justify-content-center align-items-center">
-            <img src="/images/layout/chat.svg" className="mx-2" />
+            <img src="/images/layout/chat.png"  className="mx-2" />
             <span className="text-light">3 Recent Discussions</span>
           </div>
           <div className="massages">

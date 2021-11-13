@@ -181,7 +181,7 @@ export class EditEquip extends React.Component {
                 <ul className="file-list mt-3">
                   <li className="d-flex align-items-center mb-1">
                     <img
-                      src="/images/pages/PDF Icon.svg"
+                      src="/images/pages/pdf_icon.svg"
                       alt=""
                       className="mx-2"
                     />{" "}
@@ -197,7 +197,7 @@ export class EditEquip extends React.Component {
                   </li>
                   <li className="d-flex align-items-center mb-1">
                     <img
-                      src="/images/pages/PDF Icon.svg"
+                      src="/images/pages/pdf_icon.svg"
                       alt=""
                       className="mx-2"
                     />{" "}
@@ -213,7 +213,7 @@ export class EditEquip extends React.Component {
                   </li>
                   <li className="d-flex align-items-center mb-1">
                     <img
-                      src="/images/pages/PDF Icon.svg"
+                      src="/images/pages/pdf_icon.svg"
                       alt=""
                       className="mx-2"
                     />{" "}

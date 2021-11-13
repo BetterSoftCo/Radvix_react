@@ -107,19 +107,19 @@ export class ResearchPageProfile extends React.Component {
                   {" "}
                   <ul className="file-list">
                     <li>
-                      <img src="/images/pages/PDF Icon.svg" alt="" />{" "}
+                      <img src='/images/pages/pdf_icon.svg' alt="" />{" "}
                       proposal_general.pdf
                     </li>
                     <li>
-                      <img src="/images/pages/Word Icon.svg" alt="" />{" "}
+                      <img src='/images/pages/word_icon.svg' alt="" />{" "}
                       proposal_general.docx
                     </li>
                     <li>
-                      <img src="/images/pages/Excel Icon.svg" alt="" />{" "}
+                      <img src='/images/pages/excel_icon.svg' alt="" />{" "}
                       proposal_general.xlsx
                     </li>
                     <li>
-                      <img src="/images/pages/PDF Icon.svg" alt="" />{" "}
+                      <img src='/images/pages/pdf_icon.svg' alt="" />{" "}
                       proposal_general.pdf
                     </li>
                     <li>
@@ -152,7 +152,7 @@ export class ResearchPageProfile extends React.Component {
                   text="Teams (Members)"
                   children={
                     <img
-                      src="/Images/pages/Team Menu Icon.svg"
+                      src="/Images/pages/team_menu_icon.svg"
                       className="mx-2"
                       alt=""
                     />

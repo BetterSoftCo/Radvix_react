@@ -7,9 +7,9 @@ export const LoginPage: React.FC = () => {
   return (
     <div className="row bg-danger  login">
       <div className="col-md-3   left">
-        <img src="/images/layout/Radvix Logo.svg" className="logo" alt="" />
+        <img src='/images/layout/radvix_logo.svg' className="logo" alt="" />
         <span>login</span>
-        <img src="/images/pages/Member.png" className="logo-Member" alt="" />
+        <img src='/images/pages/member.png' className="logo-Member" alt="" />
         <MainButton
           children={"Forgot Email?"}
           type={MainButtonType.dark}
@@ -57,7 +57,7 @@ export const LoginPage: React.FC = () => {
           backgroundColor="#A6CE39"
           children={
             <div>
-              <img src="/images/pages/orcid-og-image.png" /> Login using ORCiD
+              <img src='/images/pages/orcid-og-image.png' /> Login using ORCiD
             </div>
           }
         ></MainButton>
@@ -71,7 +71,7 @@ export const LoginPage: React.FC = () => {
           backgroundColor="#4285F4"
           children={
             <div>
-              <img src="/images/pages/google_scholar_icon_130918.png" /> Login
+              <img src='/images/pages/google_scholar_icon_130918.png' /> Login
               using Google
             </div>
           }
@@ -86,7 +86,7 @@ export const LoginPage: React.FC = () => {
           backgroundColor="#0274B3"
           children={
             <div>
-              <img src="/images/pages/LinkedIn_logo_initials.png" /> Login using
+              <img src='/images/pages/linkedIn_logo_initials.png' /> Login using
               LinkedIn
             </div>
           }
