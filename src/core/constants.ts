@@ -35,6 +35,10 @@ export class AppRoutes {
 	static data_mydata:string ='/dashboard/Data/mydata/';
 	static data_profile:string ='/dashboard/Data/profile/';
 	static data_edit:string ='/dashboard/Data/edit/';
+	static publish:string ='/dashboard/Publish/';
+	static publish_new:string ='/dashboard/Publish/new';
+	static publish_profile:string ='/dashboard/Publish/profile';
+	static publish_upload:string ='/dashboard/Publish/upload';
 	
 
 };

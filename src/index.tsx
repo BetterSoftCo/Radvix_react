@@ -43,6 +43,10 @@ import {
   MyDataCollection,
   DataPageProfile,
   DataPageEdit,
+  PublishPageNew,
+  MyPublications,
+  PublicationProfile,
+  UploadNewDraft,
 } from "./views";
 
 const RoleUser: UserRoles = store.getState();
@@ -228,6 +232,27 @@ ReactDOM.render(
             path={AppRoutes.data_edit}
             component={DataPageEdit}
           />
+           <Route
+            component={PublishPageNew}
+            path={AppRoutes.publish_new}
+            exact
+          />
+           <Route
+            component={MyPublications}
+            path={AppRoutes.publish}
+            exact
+          />
+          <Route
+            component={PublicationProfile}
+            path={AppRoutes.publish_profile}
+            exact
+          />
+          <Route
+            component={UploadNewDraft}
+            path={AppRoutes.publish_upload}
+            exact
+          />
+          
         </Switch>
       </MainLayout>
     </BrowserRouter>

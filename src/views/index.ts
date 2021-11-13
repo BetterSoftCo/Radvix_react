@@ -28,6 +28,10 @@ import { DataCollection } from './pages/datapage/data_collection';
 import { MyDataCollection } from './pages/datapage/my_data';
 import { DataPageProfile } from './pages/datapage/data_profile';
 import { DataPageEdit } from './pages/datapage/edit_data';
+import { PublishPageNew } from './pages/publish/new_publish';
+import { MyPublications } from './pages/publish/my_publications';
+import { PublicationProfile } from './pages/publish/publication_profile';
+import { UploadNewDraft } from './pages/publish/new_draft_upload';
 
 
 // import { TeamPage } from './pages/team/team_page';
@@ -63,6 +67,10 @@ export {
   DataCollection,
   MyDataCollection,
   DataPageProfile,
-  DataPageEdit
+  DataPageEdit,
+  PublishPageNew,
+  MyPublications,
+  PublicationProfile,
+  UploadNewDraft
   // TeamPage
 };
