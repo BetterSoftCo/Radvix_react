@@ -23,9 +23,9 @@ import { EditEquip } from './pages/Equip/equip_edit';
 import { NewDiscusstion } from './pages/discussion/new_discusstion';
 import { DiscusstionPage } from './pages/discussion/discusstion_page';
 import { DiscusstionList } from './pages/discussion/discusstion_list';
+import { TeamPage } from './pages/team/team_page';
 
 
-// import { TeamPage } from './pages/team/team_page';
 
 
 export {
@@ -53,6 +53,6 @@ export {
   EditEquip,
   NewDiscusstion,
   DiscusstionPage,
-  DiscusstionList
-  // TeamPage
+  DiscusstionList,
+  TeamPage
 };

@@ -26,7 +26,7 @@ export const Sidebar: React.FC = () => {
           ></IconTextVertical>
         </li>
       </NavLink>
-      <NavLink to="/dashboard/Team" activeClassName="selected">
+      <NavLink to={AppRoutes.team} activeClassName="selected">
         <li>
           <IconTextVertical
             text="Team"
