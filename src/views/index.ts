@@ -16,10 +16,10 @@ import { MemberPageNew } from './pages/member/member_new';
 import { MemberPageProfile } from './pages/member/member_profile';
 import { MemberPageUseEdit } from './pages/member/user_edit';
 import { EditMyProfile } from './pages/member/Edit_my_profile';
-import { NewEquip } from './pages/Equip/new_equip';
-import { EquipPage } from './pages/Equip/equip_page';
-import { EquipProfile } from './pages/Equip/equip_profile';
-import { EditEquip } from './pages/Equip/equip_edit';
+import { NewEquip } from './pages/equip/new_equip';
+import { EquipPage } from './pages/equip/equip_page';
+import { EquipProfile } from './pages/equip/equip_profile';
+import { EditEquip } from './pages/equip/equip_edit';
 import { NewDiscusstion } from './pages/discussion/new_discusstion';
 import { DiscusstionPage } from './pages/discussion/discusstion_page';
 import { DiscusstionList } from './pages/discussion/discusstion_list';
@@ -32,6 +32,9 @@ import { PublishPageNew } from './pages/publish/new_publish';
 import { MyPublications } from './pages/publish/my_publications';
 import { PublicationProfile } from './pages/publish/publication_profile';
 import { UploadNewDraft } from './pages/publish/new_draft_upload';
+import { ExpensePageNew } from './pages/expense/new_expense';
+import { ExpenseArchive } from './pages/expense/expense_archive';
+import { ExpensePageProfile } from './pages/expense/expense_profile_unapproved';
 
 
 // import { TeamPage } from './pages/team/team_page';
@@ -71,6 +74,9 @@ export {
   PublishPageNew,
   MyPublications,
   PublicationProfile,
-  UploadNewDraft
+  UploadNewDraft,
+  ExpensePageNew,
+  ExpenseArchive,
+  ExpensePageProfile
   // TeamPage
 };

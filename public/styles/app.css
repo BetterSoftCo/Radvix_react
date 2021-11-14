@@ -715,6 +715,28 @@ button {
   }
 }
 
+.Amount {
+  padding-left: 1rem;
+}
+
+.Amount .title {
+  font-size: 18px;
+  font-weight: normal;
+  background-color: #F5F5F5;
+  border-bottom-left-radius: 15px;
+  border-top-left-radius: 15px;
+  padding: 1rem;
+}
+
+.Amount .price {
+  font-size: 37px;
+  font-weight: bold;
+  background-color: #ffff;
+  border-bottom-right-radius: 15px;
+  border-top-right-radius: 15px;
+  padding: 1rem;
+}
+
 .discusstion .box-list-scroll {
   max-height: 700px;
 }
@@ -1481,6 +1503,28 @@ button {
     width: 90px;
     height: 48px;
   }
+}
+
+.Amount {
+  padding-left: 1rem;
+}
+
+.Amount .title {
+  font-size: 18px;
+  font-weight: normal;
+  background-color: #F5F5F5;
+  border-bottom-left-radius: 15px;
+  border-top-left-radius: 15px;
+  padding: 1rem;
+}
+
+.Amount .price {
+  font-size: 37px;
+  font-weight: bold;
+  background-color: #ffff;
+  border-bottom-right-radius: 15px;
+  border-top-right-radius: 15px;
+  padding: 1rem;
 }
 
 .discusstion .box-list-scroll {

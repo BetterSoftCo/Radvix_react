@@ -47,6 +47,9 @@ import {
   MyPublications,
   PublicationProfile,
   UploadNewDraft,
+  ExpensePageNew,
+  ExpenseArchive,
+  ExpensePageProfile,
 } from "./views";
 
 const RoleUser: UserRoles = store.getState();
@@ -232,16 +235,12 @@ ReactDOM.render(
             path={AppRoutes.data_edit}
             component={DataPageEdit}
           />
-           <Route
+          <Route
             component={PublishPageNew}
             path={AppRoutes.publish_new}
             exact
           />
-           <Route
-            component={MyPublications}
-            path={AppRoutes.publish}
-            exact
-          />
+          <Route component={MyPublications} path={AppRoutes.publish} exact />
           <Route
             component={PublicationProfile}
             path={AppRoutes.publish_profile}
@@ -252,7 +251,17 @@ ReactDOM.render(
             path={AppRoutes.publish_upload}
             exact
           />
-          
+          <Route
+            component={ExpensePageNew}
+            path={AppRoutes.expense_new}
+            exact
+          />
+          <Route component={ExpenseArchive} path={AppRoutes.expense} exact />
+          <Route
+            component={ExpensePageProfile}
+            path={AppRoutes.expense_profile}
+            exact
+          />
         </Switch>
       </MainLayout>
     </BrowserRouter>

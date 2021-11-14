@@ -39,6 +39,9 @@ export class AppRoutes {
 	static publish_new:string ='/dashboard/Publish/new';
 	static publish_profile:string ='/dashboard/Publish/profile';
 	static publish_upload:string ='/dashboard/Publish/upload';
+	static expense:string ='/dashboard/Expense/';
+	static expense_new:string ='/dashboard/Expense/new';
+	static expense_profile:string ='/dashboard/Expense/profile';
 	
 
 };
