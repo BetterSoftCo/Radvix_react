@@ -38,6 +38,8 @@ import {
   NewDiscusstion,
   DiscusstionPage,
   DiscusstionList,
+  TeamPage,
+  TeamPageNew,
   DataPageNew,
   DataCollection,
   MyDataCollection,
@@ -80,7 +82,14 @@ ReactDOM.render(
             path={AppRoutes.edit_research}
             component={ResearchPageEdit}
           />
+
           <Route component={LaboratoryPage} path={AppRoutes.laboratory} exact />
+          <Route component={TeamPage} path={AppRoutes.team} exact />
+          <Route
+            component={TeamPageNew}
+            path={AppRoutes.new_team}
+            exact
+          />
           <ProtectedRoute
             isAuthenticated={
               RoleUser === UserRoles.level1 || RoleUser === UserRoles.level2

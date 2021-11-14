@@ -23,6 +23,8 @@ import { EditEquip } from './pages/equip/equip_edit';
 import { NewDiscusstion } from './pages/discussion/new_discusstion';
 import { DiscusstionPage } from './pages/discussion/discusstion_page';
 import { DiscusstionList } from './pages/discussion/discusstion_list';
+import { TeamPage } from './pages/team/team_page';
+import  {TeamPageNew}  from './pages/team/team_new';
 import { DataPageNew } from './pages/datapage/new_data';
 import { DataCollection } from './pages/datapage/data_collection';
 import { MyDataCollection } from './pages/datapage/my_data';
@@ -37,7 +39,6 @@ import { ExpenseArchive } from './pages/expense/expense_archive';
 import { ExpensePageProfile } from './pages/expense/expense_profile_unapproved';
 
 
-// import { TeamPage } from './pages/team/team_page';
 
 
 export {
@@ -66,6 +67,8 @@ export {
   NewDiscusstion,
   DiscusstionPage,
   DiscusstionList,
+  TeamPage,
+  TeamPageNew,
   DataPageNew,
   DataCollection,
   MyDataCollection,
