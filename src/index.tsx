@@ -57,6 +57,8 @@ import {
   TicketPage,
   Ticket,
   AdminDashboard,
+  AdminClients,
+  AdminMember,
 } from "./views";
 
 const RoleUser: UserRoles = store.getState();
@@ -90,11 +92,7 @@ ReactDOM.render(
 
           <Route component={LaboratoryPage} path={AppRoutes.laboratory} exact />
           <Route component={TeamPage} path={AppRoutes.team} exact />
-          <Route
-            component={TeamPageNew}
-            path={AppRoutes.new_team}
-            exact
-          />
+          <Route component={TeamPageNew} path={AppRoutes.new_team} exact />
           <ProtectedRoute
             isAuthenticated={
               RoleUser === UserRoles.level1 || RoleUser === UserRoles.level2
@@ -276,40 +274,35 @@ ReactDOM.render(
             path={AppRoutes.expense_profile}
             exact
           />
-          <Route
-            component={SettingPage}
-            path={AppRoutes.setting}
-            exact
-          />
+          <Route component={SettingPage} path={AppRoutes.setting} exact />
           <Route
             component={TicketPageNew}
             path={AppRoutes.ticketing_new}
             exact
           />
-          <Route
-            component={TicketPage}
-            path={AppRoutes.ticketing}
-            exact
-          />
-          <Route
-            component={Ticket}
-            path={AppRoutes.ticketing_ticket}
-            exact
-          />
+          <Route component={TicketPage} path={AppRoutes.ticketing} exact />
+          <Route component={Ticket} path={AppRoutes.ticketing_ticket} exact />
           <ProtectedRoute
-            isAuthenticated={
-              RoleUser === UserRoles.admin
-                ? true
-                : false
-            }
+            isAuthenticated={RoleUser === UserRoles.admin ? true : false}
             authenticationPath={AppRoutes.dashboard}
             exact={true}
             path={AppRoutes.admin_dashboard}
             component={AdminDashboard}
           />
-          
-          
-          
+          <ProtectedRoute
+            isAuthenticated={RoleUser === UserRoles.admin ? true : false}
+            authenticationPath={AppRoutes.dashboard}
+            exact={true}
+            path={AppRoutes.admin_clients}
+            component={AdminClients}
+          />
+          <ProtectedRoute
+            isAuthenticated={RoleUser === UserRoles.admin ? true : false}
+            authenticationPath={AppRoutes.dashboard}
+            exact={true}
+            path={AppRoutes.admin_member}
+            component={AdminMember}
+          />
         </Switch>
       </MainLayout>
     </BrowserRouter>

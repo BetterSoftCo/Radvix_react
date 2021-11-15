@@ -42,6 +42,8 @@ import { TicketPageNew } from './pages/ticket/new_ticket';
 import { TicketPage } from './pages/ticket/ticket_list';
 import { Ticket } from './pages/ticket/ticket';
 import { AdminDashboard } from './pages/admin/admin_dashboard';
+import { AdminClients } from './pages/admin/admin_clients';
+import { AdminMember } from './pages/admin/admin_members';
 
 
 
@@ -90,6 +92,8 @@ export {
   TicketPageNew,
   TicketPage,
   Ticket,
-  AdminDashboard
+  AdminDashboard,
+  AdminClients,
+  AdminMember
   // TeamPage
 };
