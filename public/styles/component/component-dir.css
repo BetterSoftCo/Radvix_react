@@ -304,6 +304,17 @@ button {
   border-bottom-right-radius: 15px;
 }
 
+@media (max-width: 575.98px) {
+  .TableBox .responsive {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    min-width: 63vw;
+  }
+  .TableBox .responsive .child-rsponsive {
+    min-width: 100vw;
+  }
+}
+
 .box-alert {
   min-height: 115px;
   border-radius: 9px;

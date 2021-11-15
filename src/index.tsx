@@ -52,6 +52,7 @@ import {
   ExpensePageNew,
   ExpenseArchive,
   ExpensePageProfile,
+  SettingPage,
 } from "./views";
 
 const RoleUser: UserRoles = store.getState();
@@ -271,6 +272,12 @@ ReactDOM.render(
             path={AppRoutes.expense_profile}
             exact
           />
+          <Route
+            component={SettingPage}
+            path={AppRoutes.setting}
+            exact
+          />
+          
         </Switch>
       </MainLayout>
     </BrowserRouter>

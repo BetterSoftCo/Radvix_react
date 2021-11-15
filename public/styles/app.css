@@ -325,6 +325,17 @@ button {
   border-bottom-right-radius: 15px;
 }
 
+@media (max-width: 575.98px) {
+  .TableBox .responsive {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    min-width: 63vw;
+  }
+  .TableBox .responsive .child-rsponsive {
+    min-width: 100vw;
+  }
+}
+
 .box-alert {
   min-height: 115px;
   border-radius: 9px;
@@ -679,6 +690,14 @@ button {
   border-radius: 15px;
 }
 
+.box-content .teams .History .box-history {
+  min-height: 140px;
+  background-color: #ebebeb;
+  border-radius: 15px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 .box-content .file-list {
   list-style-type: none;
   padding-left: 0;
@@ -697,7 +716,7 @@ button {
 }
 
 .team-edit .team {
-  border: 1px solid #EBEBEB;
+  border: 1px solid #ebebeb;
 }
 
 .backPage {
@@ -726,7 +745,7 @@ button {
 .Amount .title {
   font-size: 18px;
   font-weight: normal;
-  background-color: #F5F5F5;
+  background-color: #f5f5f5;
   border-bottom-left-radius: 15px;
   border-top-left-radius: 15px;
   padding: 1rem;
@@ -739,6 +758,49 @@ button {
   border-bottom-right-radius: 15px;
   border-top-right-radius: 15px;
   padding: 1rem;
+}
+
+.accordion .checkbox {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  cursor: pointer;
+  position: relative;
+}
+
+.accordion .checkbox > input {
+  height: 25px;
+  width: 25px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  border: 1px solid #707070;
+  border-radius: 4px;
+  outline: none;
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+  background-color: #ffff;
+  cursor: pointer;
+}
+
+.accordion .checkbox > input:checked {
+  border: 1px solid #ffff;
+  background-color: #707070;
+}
+
+.accordion .checkbox > input:checked + span::before {
+  content: "\2713";
+  display: block;
+  text-align: center;
+  color: #ffff;
+  position: absolute;
+  left: 0.7rem;
+  top: 0.2rem;
+}
+
+.accordion .checkbox > input:active {
+  border: 2px solid #707070;
 }
 
 .discusstion .box-list-scroll {
@@ -1119,6 +1181,17 @@ button {
   border-bottom-right-radius: 15px;
 }
 
+@media (max-width: 575.98px) {
+  .TableBox .responsive {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    min-width: 63vw;
+  }
+  .TableBox .responsive .child-rsponsive {
+    min-width: 100vw;
+  }
+}
+
 .box-alert {
   min-height: 115px;
   border-radius: 9px;
@@ -1473,6 +1546,14 @@ button {
   border-radius: 15px;
 }
 
+.box-content .teams .History .box-history {
+  min-height: 140px;
+  background-color: #ebebeb;
+  border-radius: 15px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 .box-content .file-list {
   list-style-type: none;
   padding-left: 0;
@@ -1491,7 +1572,7 @@ button {
 }
 
 .team-edit .team {
-  border: 1px solid #EBEBEB;
+  border: 1px solid #ebebeb;
 }
 
 .backPage {
@@ -1520,7 +1601,7 @@ button {
 .Amount .title {
   font-size: 18px;
   font-weight: normal;
-  background-color: #F5F5F5;
+  background-color: #f5f5f5;
   border-bottom-left-radius: 15px;
   border-top-left-radius: 15px;
   padding: 1rem;
@@ -1533,6 +1614,49 @@ button {
   border-bottom-right-radius: 15px;
   border-top-right-radius: 15px;
   padding: 1rem;
+}
+
+.accordion .checkbox {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  cursor: pointer;
+  position: relative;
+}
+
+.accordion .checkbox > input {
+  height: 25px;
+  width: 25px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  border: 1px solid #707070;
+  border-radius: 4px;
+  outline: none;
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+  background-color: #ffff;
+  cursor: pointer;
+}
+
+.accordion .checkbox > input:checked {
+  border: 1px solid #ffff;
+  background-color: #707070;
+}
+
+.accordion .checkbox > input:checked + span::before {
+  content: "\2713";
+  display: block;
+  text-align: center;
+  color: #ffff;
+  position: absolute;
+  left: 0.7rem;
+  top: 0.2rem;
+}
+
+.accordion .checkbox > input:active {
+  border: 2px solid #707070;
 }
 
 .discusstion .box-list-scroll {

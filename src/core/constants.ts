@@ -44,6 +44,7 @@ export class AppRoutes {
 	static expense:string ='/dashboard/Expense/';
 	static expense_new:string ='/dashboard/Expense/new';
 	static expense_profile:string ='/dashboard/Expense/profile';
+	static setting:string ='/dashboard/Setting/';
 	
 
 };

@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { store } from "../../../data/store";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import "react-datepicker/dist/react-datepicker.css";
