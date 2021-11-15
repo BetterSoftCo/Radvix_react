@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from "react";
+import { useEffect } from "react";
 import { CircleIcon, ThemeCircleIcon } from "../../../components/circle_icon";
 export const UserTypesTable = () => {
   useEffect(() => {}, []);

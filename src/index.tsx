@@ -53,6 +53,9 @@ import {
   ExpenseArchive,
   ExpensePageProfile,
   SettingPage,
+  TicketPageNew,
+  TicketPage,
+  Ticket,
 } from "./views";
 
 const RoleUser: UserRoles = store.getState();
@@ -277,6 +280,22 @@ ReactDOM.render(
             path={AppRoutes.setting}
             exact
           />
+          <Route
+            component={TicketPageNew}
+            path={AppRoutes.ticketing_new}
+            exact
+          />
+          <Route
+            component={TicketPage}
+            path={AppRoutes.ticketing}
+            exact
+          />
+          <Route
+            component={Ticket}
+            path={AppRoutes.ticketing_ticket}
+            exact
+          />
+          
           
         </Switch>
       </MainLayout>

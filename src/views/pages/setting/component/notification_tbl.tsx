@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from "react";
+import { useEffect } from "react";
 export const NotificationTable = () => {
   useEffect(() => {}, []);
   return (

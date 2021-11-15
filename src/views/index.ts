@@ -38,6 +38,9 @@ import { ExpensePageNew } from './pages/expense/new_expense';
 import { ExpenseArchive } from './pages/expense/expense_archive';
 import { ExpensePageProfile } from './pages/expense/expense_profile_unapproved';
 import { SettingPage } from './pages/setting';
+import { TicketPageNew } from './pages/ticket/new_ticket';
+import { TicketPage } from './pages/ticket/ticket_list';
+import { Ticket } from './pages/ticket/ticket';
 
 
 
@@ -82,6 +85,9 @@ export {
   ExpensePageNew,
   ExpenseArchive,
   ExpensePageProfile,
-  SettingPage
+  SettingPage,
+  TicketPageNew,
+  TicketPage,
+  Ticket
   // TeamPage
 };
