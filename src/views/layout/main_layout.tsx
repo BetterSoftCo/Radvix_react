@@ -1,6 +1,6 @@
 import React, { Fragment, ReactNode } from "react";
 import { RouteComponentProps, withRouter } from "react-router";
-import { Header } from "./header_layout";
+import Header from "./header_layout";
 import { RightSection } from "./right_section";
 import { Sidebar } from "./sidebar";
 import { ToastContainer } from "react-toastify";
@@ -22,12 +22,20 @@ class MainLayout extends React.Component<IMainLayout & RouteComponentProps> {
                     <Sidebar></Sidebar>
                   </div>
                 </div>
-                <div className="col-12 col-md-10 col-lg-11 col-xl-8">
+                <div
+                  className={
+                    this.props.location.pathname.search("/admin") >= 0
+                      ? "col-12 col-md-10 col-lg-11 col-xl-11"
+                      : "col-12 col-md-10 col-lg-11 col-xl-8"
+                  }
+                >
                   {this.props.children}
                 </div>
-                <div className="col-xl-3">
-                  <RightSection></RightSection>
-                </div>
+                {this.props.location.pathname.search("/admin") >= 0 ? null : (
+                  <div className="col-xl-3">
+                    <RightSection></RightSection>
+                  </div>
+                )}
               </div>
             </div>
           </Fragment>

@@ -48,6 +48,7 @@ export class AppRoutes {
 	static ticketing:string ='/dashboard/Ticketing/';
 	static ticketing_new:string ='/dashboard/Ticketing/new';
 	static ticketing_ticket:string ='/dashboard/Ticketing/ticket';
+	static admin_dashboard:string ='/dashboard/Admin';
 	
 	
 

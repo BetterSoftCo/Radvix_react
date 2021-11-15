@@ -56,6 +56,7 @@ import {
   TicketPageNew,
   TicketPage,
   Ticket,
+  AdminDashboard,
 } from "./views";
 
 const RoleUser: UserRoles = store.getState();
@@ -295,6 +296,18 @@ ReactDOM.render(
             path={AppRoutes.ticketing_ticket}
             exact
           />
+          <ProtectedRoute
+            isAuthenticated={
+              RoleUser === UserRoles.admin
+                ? true
+                : false
+            }
+            authenticationPath={AppRoutes.dashboard}
+            exact={true}
+            path={AppRoutes.admin_dashboard}
+            component={AdminDashboard}
+          />
+          
           
           
         </Switch>
