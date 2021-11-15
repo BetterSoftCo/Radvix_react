@@ -1,11 +1,11 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from "react";
-import { InputIcon } from "../../components/search_box";
-import ReactPaginate from "react-paginate";
-import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import { store } from "../../../data/store";
-import { SelectComponent } from "../../components/select_input";
 import { UserSignups } from "./component/user_signups";
+import { ButtonGroup } from "../../components/botton_group";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { MainButton, MainButtonType } from "../../components/button";
 export class AdminDashboard extends React.Component {
   handlePageClick = (data: any) => {};
   mockData = [
@@ -43,7 +43,7 @@ export class AdminDashboard extends React.Component {
     },
   ];
   RoleUser = store.getState();
-
+  date = new Date();
   render() {
     return (
       <div className="container-fluid dashbord">
@@ -55,62 +55,69 @@ export class AdminDashboard extends React.Component {
             <div className="TableBox">
               <div className="TopTableBox d-flex justify-content-between align-items-center">
                 <div className="left d-flex w-50 align-items-center">
-                  <h6 style={{ width: "35%" }}>Research Updates</h6>
-                  <InputIcon
-                    chilren={<img src="/images/pages/search_box_icon.svg" />}
-                    width="100%"
-                    height="44px"
-                    placeholder="Search..."
-                  ></InputIcon>
-                </div>
-                <div className="right w-25 d-flex justify-content-end">
-                  <SelectComponent
-                    width="63px"
-                    height="44px"
-                    items={[
-                      { item: 1, id: 1 },
-                      { item: 2, id: 2 },
-                      { item: 3, id: 3 },
-                    ]}
-                    TextItem="item"
-                    ValueItem="id"
-                  ></SelectComponent>
+                  <h6 style={{ width: "35%" }}>User Signups</h6>
                 </div>
               </div>
-              <div className="w-100">
+              <div className="w-100 bg-light rounded p-2">
                 <UserSignups></UserSignups>
               </div>
-              <div className="d-flex justify-content-center align-items-center">
-                <ReactPaginate
-                  previousLabel={
-                    <CircleIcon
-                      width="24px"
-                      backgroundColor="#ADADAD"
-                      height="24px"
-                      type={ThemeCircleIcon.dark}
-                    >
-                      <i className="fas fa-chevron-left"></i>
-                    </CircleIcon>
-                  }
-                  nextLabel={
-                    <CircleIcon
-                      width="24px"
-                      backgroundColor="#ADADAD"
-                      height="24px"
-                      type={ThemeCircleIcon.dark}
-                    >
-                      <i className="fas fa-angle-right"></i>
-                    </CircleIcon>
-                  }
-                  breakLabel={"..."}
-                  breakClassName={"break-me"}
-                  pageCount={20}
-                  marginPagesDisplayed={2}
-                  pageRangeDisplayed={5}
-                  onPageChange={this.handlePageClick}
-                  containerClassName={"pagination"}
-                  activeClassName={"active"}
-                />
+              <div className="row box-content">
+                <div className="col-md-6">
+                  <div className="item ">
+                    <ButtonGroup
+                      name="AccessLevel"
+                      items={[
+                        { name: "Income ($) ", value: 1 },
+                        { name: "User Signup ", value: 2 },
+                        { name: "Data Usage (GB) ", value: 3 },
+                      ]}
+                      TextItem="name"
+                      ValueItem="value"
+                    ></ButtonGroup>
+                  </div>
+                </div>
+                <div className="col-md-3">
+                  <div className="item">
+                    <div className="d-flex justify-content-between align-items-center">
+                      <span className="mx-2">From</span>
+                      <DatePicker
+                        selected={this.date}
+                        onChange={() => {
+                          console.log("s");
+                        }}
+                      />
+                      <span className="mx-2">Until</span>
+                      <DatePicker
+                        selected={this.date}
+                        onChange={() => {
+                          console.log("s");
+                        }}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-3">
+                  <div className="item mt-4">
+                    <MainButton
+                      type={MainButtonType.dark}
+                      children={"Reset"}
+                      borderRadius="50px"
+                      fontSize="15px"
+                      className="mx-2"
+                      minHeight="29px"
+                      minWidth="100px"
+                    ></MainButton>
+                    <MainButton
+                      type={MainButtonType.dark}
+                      children={"Apply"}
+                      borderRadius="50px"
+                      fontSize="15px"
+                      className="mx-2"
+                      minHeight="29px"
+                      minWidth="100px"
+                    ></MainButton>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
