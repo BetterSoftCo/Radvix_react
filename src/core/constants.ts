@@ -51,6 +51,10 @@ export class AppRoutes {
 	static admin_dashboard:string ='/dashboard/Admin';
 	static admin_clients:string ='/dashboard/Admin/clients/';
 	static admin_member:string ='/dashboard/Admin/member/';
+	static admin_payments:string ='/dashboard/Admin/payments/';
+	static admin_tickets:string ='/dashboard/Admin/tickets/';
+	static admin_ticket:string ='/dashboard/Admin/ticket/';
+	static admin_broadcast:string ='/dashboard/Admin/broadcast/';
 	
 	
 

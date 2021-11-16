@@ -59,6 +59,10 @@ import {
   AdminDashboard,
   AdminClients,
   AdminMember,
+  AdminPayments,
+  AdminTickets,
+  AdminTicket,
+  AdminBroadcast,
 } from "./views";
 
 const RoleUser: UserRoles = store.getState();
@@ -303,6 +307,35 @@ ReactDOM.render(
             path={AppRoutes.admin_member}
             component={AdminMember}
           />
+          <ProtectedRoute
+            isAuthenticated={RoleUser === UserRoles.admin ? true : false}
+            authenticationPath={AppRoutes.dashboard}
+            exact={true}
+            path={AppRoutes.admin_payments}
+            component={AdminPayments}
+          />
+          <ProtectedRoute
+            isAuthenticated={RoleUser === UserRoles.admin ? true : false}
+            authenticationPath={AppRoutes.dashboard}
+            exact={true}
+            path={AppRoutes.admin_tickets}
+            component={AdminTickets}
+          />
+           <ProtectedRoute
+            isAuthenticated={RoleUser === UserRoles.admin ? true : false}
+            authenticationPath={AppRoutes.dashboard}
+            exact={true}
+            path={AppRoutes.admin_ticket}
+            component={AdminTicket}
+          />
+          <ProtectedRoute
+            isAuthenticated={RoleUser === UserRoles.admin ? true : false}
+            authenticationPath={AppRoutes.dashboard}
+            exact={true}
+            path={AppRoutes.admin_broadcast}
+            component={AdminBroadcast}
+          />
+          
         </Switch>
       </MainLayout>
     </BrowserRouter>
