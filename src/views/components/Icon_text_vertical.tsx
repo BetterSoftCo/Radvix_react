@@ -9,6 +9,7 @@ interface IconTextVerticalProp {
   className?: string;
   fontSize?: string;
 }
+
 export const IconTextVertical: React.FC<IconTextVerticalProp> = ({
   text,
   theme,
@@ -34,7 +35,7 @@ export const IconTextVertical: React.FC<IconTextVerticalProp> = ({
   return (
     <div
       style={Styles}
-      className={`${IsclassName + " " + StyleTheme + " " + "IconTextVertical"}`}
+      className={`${IsclassName}  ${StyleTheme} IconTextVertical`}
     >
       {children}
       <span>{text}</span>
