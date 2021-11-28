@@ -1,11 +1,11 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from "react";
 import { InputIcon } from "../../components/search_box";
-import { TableComponent } from "../../components/table_comonent";
+import  TableComponent  from "./component/table_comonent";
 import ReactPaginate from "react-paginate";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
-import { AcordienTable } from "./recent_tasks";
-import { AcordienTableData } from "./recent_data";
+import  AcordienTable  from "./recent_tasks";
+import  AcordienTableData  from "./recent_data";
 import { store } from "../../../data/store";
 import { SelectComponent } from "../../components/select_input";
 export class DashboardPage extends React.Component {
@@ -83,8 +83,9 @@ export class DashboardPage extends React.Component {
                 Heading={["Update", "Date"]}
                 Items={[1, 2, 3, 4]}
               ></TableComponent>
-              <div className="d-flex justify-content-center align-items-center">
-                <ReactPaginate
+              <div className="d-flex justify-content-between align-items-baseline">
+                  <div className="d-flex justify-content-end flex-fill">
+                  <ReactPaginate
                   previousLabel={
                     <CircleIcon
                       width="24px"
@@ -110,11 +111,18 @@ export class DashboardPage extends React.Component {
                   pageCount={20}
                   marginPagesDisplayed={2}
                   pageRangeDisplayed={5}
-                  onPageChange={this.handlePageClick}
+                  onPageChange={()=>{console.log('changepage')}}
                   containerClassName={"pagination"}
                   activeClassName={"active"}
                 />
+                  </div>
+                  <div className="d-flex justify-content-end flex-fill">
+                  <p className="text-right mb-0 " >Total Results: 45</p>
+                  </div>
+                 
+                
               </div>
+             
             </div>
           </div>
           <div className="col-12">
@@ -144,8 +152,9 @@ export class DashboardPage extends React.Component {
                 </div>
               </div>
               <AcordienTable role={this.RoleUser}></AcordienTable>
-              <div className="d-flex justify-content-center align-items-center my-3">
-                <ReactPaginate
+              <div className="d-flex justify-content-between align-items-baseline my-2">
+                  <div className="d-flex justify-content-end flex-fill">
+                  <ReactPaginate
                   previousLabel={
                     <CircleIcon
                       width="24px"
@@ -171,10 +180,16 @@ export class DashboardPage extends React.Component {
                   pageCount={20}
                   marginPagesDisplayed={2}
                   pageRangeDisplayed={5}
-                  onPageChange={this.handlePageClick}
+                  onPageChange={()=>{console.log('changepage')}}
                   containerClassName={"pagination"}
                   activeClassName={"active"}
                 />
+                  </div>
+                  <div className="d-flex justify-content-end flex-fill">
+                  <p className="text-right mb-0 " >Total Results: 45</p>
+                  </div>
+                 
+                
               </div>
             </div>
           </div>
@@ -206,8 +221,9 @@ export class DashboardPage extends React.Component {
               </div>
 
               <AcordienTableData></AcordienTableData>
-              <div className="d-flex justify-content-center align-items-center my-3">
-                <ReactPaginate
+              <div className="d-flex justify-content-between align-items-baseline my-2">
+                  <div className="d-flex justify-content-end flex-fill">
+                  <ReactPaginate
                   previousLabel={
                     <CircleIcon
                       width="24px"
@@ -233,10 +249,16 @@ export class DashboardPage extends React.Component {
                   pageCount={20}
                   marginPagesDisplayed={2}
                   pageRangeDisplayed={5}
-                  onPageChange={this.handlePageClick}
+                  onPageChange={()=>{console.log('changepage')}}
                   containerClassName={"pagination"}
                   activeClassName={"active"}
                 />
+                  </div>
+                  <div className="d-flex justify-content-end flex-fill">
+                  <p className="text-right mb-0 " >Total Results: 45</p>
+                  </div>
+                 
+                
               </div>
             </div>
           </div>
@@ -257,7 +279,7 @@ const HeadDashboardPage: React.FC = () => {
             className="avatar"
           />
           <div className="d-flex flex-column align-items-center">
-            <h1 className="display-5">12</h1>
+            <h1 className="display-6 fw-bold mb-0">12</h1>
             <span className="text-center">Users Involved</span>
           </div>
         </div>
@@ -270,7 +292,7 @@ const HeadDashboardPage: React.FC = () => {
             className="avatar"
           />
           <div className="d-flex flex-column align-items-center">
-            <h1 className="display-5">8</h1>
+            <h1 className="display-6  fw-bold mb-0">8</h1>
             <span className="text-center">Equipment Available</span>
           </div>
         </div>
@@ -278,12 +300,12 @@ const HeadDashboardPage: React.FC = () => {
       <div className="overviwe-item">
         <div className="d-flex align-items-center justify-content-around">
           <img
-            src='/images/pages/equipment_involved_overview_icon.svg'
+            src='/images/layout/compeleted_tasks_verview_icon.svg'
             alt="Avatar"
             className="avatar"
           />
           <div className="d-flex flex-column align-items-center">
-            <h1 className="display-5">18</h1>
+            <h1 className="display-6  fw-bold mb-0">18</h1>
             <span className="text-center">Tasks Completed</span>
           </div>
         </div>
@@ -296,7 +318,7 @@ const HeadDashboardPage: React.FC = () => {
             className="avatar"
           />
           <div className="d-flex flex-column align-items-center">
-            <h1 className="display-5">45</h1>
+            <h1 className="display-6  fw-bold mb-0">45</h1>
             <span className="text-center">Tasks Pending</span>
           </div>
         </div>
@@ -304,12 +326,12 @@ const HeadDashboardPage: React.FC = () => {
       <div className="overviwe-item">
         <div className="d-flex align-items-center justify-content-around">
           <img
-            src='/images/pages/equipment_involved_overview_icon.svg'
+            src='/images/layout/project_deadline_overview_icon.svg'
             alt="Avatar"
             className="avatar"
           />
           <div className="d-flex flex-column align-items-center">
-            <h1 className="display-5">87</h1>
+            <h1 className="display-6  fw-bold mb-0">87</h1>
             <span className="text-center">Days Left To Deadline</span>
           </div>
         </div>

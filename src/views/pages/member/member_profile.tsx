@@ -16,7 +16,7 @@ export class MemberPageProfile extends React.Component {
         <div className="col-12 box-content p-3">
           <div className="d-flex justify-content-between align-items-center">
             <h5 className="b-title d-flex align-items-center">
-              <span className="backPage"></span> {"Lab Profile"}
+              <span className="backPage"></span> {"Member Profile"}
               <CircleIcon
                 width="22px"
                 height="22px"

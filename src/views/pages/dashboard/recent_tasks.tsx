@@ -1,11 +1,13 @@
 import React, { Fragment, useEffect } from "react";
+import { RouteComponentProps, withRouter } from "react-router";
+import { AppRoutes } from "../../../core/constants";
 import { UserRoles } from "../../../core/utils";
 import { MainButton, MainButtonType } from "../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 interface IAcordienTable {
   role: UserRoles;
 }
-export const AcordienTable = (props: IAcordienTable) => {
+ const AcordienTable:React.FC<IAcordienTable & RouteComponentProps> = (props) => {
   const handelOnclick = (e: any) => {
     e.stopPropagation();
     console.log(e);
@@ -21,15 +23,16 @@ export const AcordienTable = (props: IAcordienTable) => {
         <div className="col">Status</div>
         <div className="col"></div>
       </div>
-      <div className="accordion" id="accordionExample">
-        <div className="accordion-item accordion-item-top">
-          <div className="accordion-header" id="headingOne">
+      <div className="accordion" id="accordion_resenttask">
+       {['one','tow','three'].map((item , index)=>(
+          <div className="accordion-item accordion-item-top" key={index}>
+          <div className="accordion-header" id={`heading_resenttask${index}`}>
             <div
               className="accordion-button"
               data-bs-toggle="collapse"
-              data-bs-target="#collapseOne"
               aria-expanded="true"
-              aria-controls="collapseOne"
+              data-bs-target={`#collapse_resenttask${index}`}
+              aria-controls={`collapse_resenttask${index}`}
             >
               <div className="row w-100  ">
                 <div className="col">
@@ -63,7 +66,7 @@ export const AcordienTable = (props: IAcordienTable) => {
                       width="26px"
                       height="26px"
                       type={ThemeCircleIcon.dark}
-                      onClick={(e) => handelOnclick(e)}
+                      onClick={(e) => props.history.push(AppRoutes.task_edit)}
                       className="pointer"
                     >
                       <i className="fas fa-edit"></i>
@@ -83,7 +86,7 @@ export const AcordienTable = (props: IAcordienTable) => {
                     width="26px"
                     height="26px"
                     type={ThemeCircleIcon.dark}
-                    onClick={(e) => handelOnclick(e)}
+                    onClick={(e) => props.history.push(AppRoutes.task_profile)}
                     className="pointer"
                   >
                     <i className="fas fa-file-alt"></i>
@@ -93,14 +96,15 @@ export const AcordienTable = (props: IAcordienTable) => {
             </div>
           </div>
           <div
-            id="collapseOne"
+            id={`collapse_resenttask${index}`}
             className="accordion-collapse collapse "
-            aria-labelledby="headingOne"
-            data-bs-parent="#accordionExample"
+            aria-labelledby={`heading_resenttask${index}`}
+            data-bs-parent="#accordion_resenttask"
           >
             <div className="accordion-body ">
               <span className="sub-accordion">Subtask</span>
-              <div className="row w-100 py-2 rounded">
+             {[1,2,3].map((item,index)=>(
+                <div className="row w-100 py-2 rounded" key={index}>
                 <div className="col">
                   <span
                     className="text-truncate d-inline-block"
@@ -128,394 +132,15 @@ export const AcordienTable = (props: IAcordienTable) => {
                 </div>
                 <div className="col d-flex justify-content-between align-items-center"></div>
               </div>
-              <div className="row w-100 py-2 rounded">
-                <div className="col">
-                  <span
-                    className="text-truncate d-inline-block"
-                    style={{ maxWidth: "120px" }}
-                  >
-                    <span
-                      className="lable"
-                      style={{ borderColor: "#096BFF" }}
-                    ></span>{" "}
-                    TGA issues with are...TGA issues with are...TGA issues with
-                    are...
-                  </span>
-                </div>
-                <div className="col">N. Hossein...</div>
-                <div className="col">K. Pourtorab</div>
-                <div className="col">07/22/2021</div>
-                <div className="col">
-                  <MainButton
-                    type={MainButtonType.dark}
-                    children="1 message"
-                    borderRadius="15px"
-                    backgroundColor="#8EE1FF"
-                    color="#474747"
-                  ></MainButton>
-                </div>
-                <div className="col d-flex justify-content-between align-items-center"></div>
-              </div>
-              <div className="row w-100 py-2 rounded">
-                <div className="col">
-                  <span
-                    className="text-truncate d-inline-block"
-                    style={{ maxWidth: "120px" }}
-                  >
-                    <span
-                      className="lable"
-                      style={{ borderColor: "#096BFF" }}
-                    ></span>{" "}
-                    TGA issues with are...TGA issues with are...TGA issues with
-                    are...
-                  </span>
-                </div>
-                <div className="col">N. Hossein...</div>
-                <div className="col">K. Pourtorab</div>
-                <div className="col">07/22/2021</div>
-                <div className="col">
-                  <MainButton
-                    type={MainButtonType.dark}
-                    children="1 message"
-                    borderRadius="15px"
-                    backgroundColor="#8EE1FF"
-                    color="#474747"
-                  ></MainButton>
-                </div>
-                <div className="col d-flex justify-content-between align-items-center"></div>
-              </div>
+             ))}
+             
             </div>
           </div>
         </div>
-        <div className="accordion-item accordion-item-top">
-          <div className="accordion-header" id="headingtwo">
-            <div
-              className="accordion-button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapsetwo"
-              aria-expanded="false"
-              aria-controls="collapsetwo"
-            >
-              <div className="row w-100  ">
-                <div className="col">
-                  <span
-                    className="text-truncate d-inline-block"
-                    style={{ maxWidth: "120px" }}
-                  >
-                    <span
-                      className="lable"
-                      style={{ borderColor: "#096BFF" }}
-                    ></span>{" "}
-                    TGA issues with are...TGA issues with are...TGA issues with
-                    are...
-                  </span>
-                </div>
-                <div className="col">N. Hossein...</div>
-                <div className="col">K. Pourtorab</div>
-                <div className="col">07/22/2021</div>
-                <div className="col">
-                  <MainButton
-                    type={MainButtonType.dark}
-                    children="1 message"
-                    borderRadius="15px"
-                    backgroundColor="#8EE1FF"
-                    color="#474747"
-                  ></MainButton>
-                </div>
-                <div className="col d-flex justify-content-between align-items-center">
-                {props.role !== UserRoles.level3 ? (
-                    <CircleIcon
-                      width="26px"
-                      height="26px"
-                      type={ThemeCircleIcon.dark}
-                      onClick={(e) => handelOnclick(e)}
-                      className="pointer"
-                    >
-                      <i className="fas fa-edit"></i>
-                    </CircleIcon>
-                  ) : null}
-                  <CircleIcon
-                    width="26px"
-                    height="26px"
-                    type={ThemeCircleIcon.dark}
-                    onClick={(e) => handelOnclick(e)}
-                    className="pointer"
-                  >
-                    <i className="fas fa-comment"></i>
-                  </CircleIcon>
-                  <CircleIcon
-                    width="26px"
-                    height="26px"
-                    type={ThemeCircleIcon.dark}
-                    onClick={(e) => handelOnclick(e)}
-                    className="pointer"
-                  >
-                    <i className="fas fa-file-alt"></i>
-                  </CircleIcon>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            id="collapsetwo"
-            className="accordion-collapse collapse"
-            aria-labelledby="headingtwo"
-            data-bs-parent="#accordionExample"
-          >
-            <div className="accordion-body ">
-              <span className="sub-accordion">Subtask</span>
-              <div className="row w-100 py-2 rounded">
-                <div className="col">
-                  <span
-                    className="text-truncate d-inline-block"
-                    style={{ maxWidth: "120px" }}
-                  >
-                    <span
-                      className="lable"
-                      style={{ borderColor: "#096BFF" }}
-                    ></span>{" "}
-                    TGA issues with are...TGA issues with are...TGA issues with
-                    are...
-                  </span>
-                </div>
-                <div className="col">N. Hossein...</div>
-                <div className="col">K. Pourtorab</div>
-                <div className="col">07/22/2021</div>
-                <div className="col">
-                  <MainButton
-                    type={MainButtonType.dark}
-                    children="1 message"
-                    borderRadius="15px"
-                    backgroundColor="#8EE1FF"
-                    color="#474747"
-                  ></MainButton>
-                </div>
-                <div className="col d-flex justify-content-between align-items-center"></div>
-              </div>
-              <div className="row w-100 py-2 rounded">
-                <div className="col">
-                  <span
-                    className="text-truncate d-inline-block"
-                    style={{ maxWidth: "120px" }}
-                  >
-                    <span
-                      className="lable"
-                      style={{ borderColor: "#096BFF" }}
-                    ></span>{" "}
-                    TGA issues with are...TGA issues with are...TGA issues with
-                    are...
-                  </span>
-                </div>
-                <div className="col">N. Hossein...</div>
-                <div className="col">K. Pourtorab</div>
-                <div className="col">07/22/2021</div>
-                <div className="col">
-                  <MainButton
-                    type={MainButtonType.dark}
-                    children="1 message"
-                    borderRadius="15px"
-                    backgroundColor="#8EE1FF"
-                    color="#474747"
-                  ></MainButton>
-                </div>
-                <div className="col d-flex justify-content-between align-items-center"></div>
-              </div>
-              <div className="row w-100 py-2 rounded">
-                <div className="col">
-                  <span
-                    className="text-truncate d-inline-block"
-                    style={{ maxWidth: "120px" }}
-                  >
-                    <span
-                      className="lable"
-                      style={{ borderColor: "#096BFF" }}
-                    ></span>{" "}
-                    TGA issues with are...TGA issues with are...TGA issues with
-                    are...
-                  </span>
-                </div>
-                <div className="col">N. Hossein...</div>
-                <div className="col">K. Pourtorab</div>
-                <div className="col">07/22/2021</div>
-                <div className="col">
-                  <MainButton
-                    type={MainButtonType.dark}
-                    children="1 message"
-                    borderRadius="15px"
-                    backgroundColor="#8EE1FF"
-                    color="#474747"
-                  ></MainButton>
-                </div>
-                <div className="col d-flex justify-content-between align-items-center"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="accordion-item accordion-item-top">
-          <div className="accordion-header" id="headingthree">
-            <div
-              className="accordion-button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapsethree"
-              aria-expanded="false"
-              aria-controls="collapsethree"
-            >
-              <div className="row w-100  ">
-                <div className="col">
-                  <span
-                    className="text-truncate d-inline-block"
-                    style={{ maxWidth: "120px" }}
-                  >
-                    <span
-                      className="lable"
-                      style={{ borderColor: "#096BFF" }}
-                    ></span>{" "}
-                    TGA issues with are...TGA issues with are...TGA issues with
-                    are...
-                  </span>
-                </div>
-                <div className="col">N. Hossein...</div>
-                <div className="col">K. Pourtorab</div>
-                <div className="col">07/22/2021</div>
-                <div className="col">
-                  <MainButton
-                    type={MainButtonType.dark}
-                    children="1 message"
-                    borderRadius="15px"
-                    backgroundColor="#8EE1FF"
-                    color="#474747"
-                  ></MainButton>
-                </div>
-                <div className="col d-flex justify-content-between align-items-center">
-                {props.role !== UserRoles.level3 ? (
-                    <CircleIcon
-                      width="26px"
-                      height="26px"
-                      type={ThemeCircleIcon.dark}
-                      onClick={(e) => handelOnclick(e)}
-                      className="pointer"
-                    >
-                      <i className="fas fa-edit"></i>
-                    </CircleIcon>
-                  ) : null}
-                  <CircleIcon
-                    width="26px"
-                    height="26px"
-                    type={ThemeCircleIcon.dark}
-                    onClick={(e) => handelOnclick(e)}
-                    className="pointer"
-                  >
-                    <i className="fas fa-comment"></i>
-                  </CircleIcon>
-                  <CircleIcon
-                    width="26px"
-                    height="26px"
-                    type={ThemeCircleIcon.dark}
-                    onClick={(e) => handelOnclick(e)}
-                    className="pointer"
-                  >
-                    <i className="fas fa-file-alt"></i>
-                  </CircleIcon>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            id="collapsethree"
-            className="accordion-collapse collapse"
-            aria-labelledby="headingthree"
-            data-bs-parent="#accordionExample"
-          >
-            <div className="accordion-body ">
-              <span className="sub-accordion">Subtask</span>
-              <div className="row w-100 py-2 rounded">
-                <div className="col">
-                  <span
-                    className="text-truncate d-inline-block"
-                    style={{ maxWidth: "120px" }}
-                  >
-                    <span
-                      className="lable"
-                      style={{ borderColor: "#096BFF" }}
-                    ></span>{" "}
-                    TGA issues with are...TGA issues with are...TGA issues with
-                    are...
-                  </span>
-                </div>
-                <div className="col">N. Hossein...</div>
-                <div className="col">K. Pourtorab</div>
-                <div className="col">07/22/2021</div>
-                <div className="col">
-                  <MainButton
-                    type={MainButtonType.dark}
-                    children="1 message"
-                    borderRadius="15px"
-                    backgroundColor="#8EE1FF"
-                    color="#474747"
-                  ></MainButton>
-                </div>
-                <div className="col d-flex justify-content-between align-items-center"></div>
-              </div>
-              <div className="row w-100 py-2 rounded">
-                <div className="col">
-                  <span
-                    className="text-truncate d-inline-block"
-                    style={{ maxWidth: "120px" }}
-                  >
-                    <span
-                      className="lable"
-                      style={{ borderColor: "#096BFF" }}
-                    ></span>{" "}
-                    TGA issues with are...TGA issues with are...TGA issues with
-                    are...
-                  </span>
-                </div>
-                <div className="col">N. Hossein...</div>
-                <div className="col">K. Pourtorab</div>
-                <div className="col">07/22/2021</div>
-                <div className="col">
-                  <MainButton
-                    type={MainButtonType.dark}
-                    children="1 message"
-                    borderRadius="15px"
-                    backgroundColor="#8EE1FF"
-                    color="#474747"
-                  ></MainButton>
-                </div>
-                <div className="col d-flex justify-content-between align-items-center"></div>
-              </div>
-              <div className="row w-100 py-2 rounded">
-                <div className="col">
-                  <span
-                    className="text-truncate d-inline-block"
-                    style={{ maxWidth: "120px" }}
-                  >
-                    <span
-                      className="lable"
-                      style={{ borderColor: "#096BFF" }}
-                    ></span>{" "}
-                    TGA issues with are...TGA issues with are...TGA issues with
-                    are...
-                  </span>
-                </div>
-                <div className="col">N. Hossein...</div>
-                <div className="col">K. Pourtorab</div>
-                <div className="col">07/22/2021</div>
-                <div className="col">
-                  <MainButton
-                    type={MainButtonType.dark}
-                    children="1 message"
-                    borderRadius="15px"
-                    backgroundColor="#8EE1FF"
-                    color="#474747"
-                  ></MainButton>
-                </div>
-                <div className="col d-flex justify-content-between align-items-center"></div>
-              </div>
-            </div>
-          </div>
-        </div>
+       ))}
+       
       </div>
     </Fragment>
   );
 };
+export default withRouter(AcordienTable);

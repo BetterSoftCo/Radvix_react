@@ -2,7 +2,7 @@ import { UserRoles } from "../../../core/utils";
 import { SET_USER_ROLE } from "../actions/actions_type";
 import { UserRoleAction, UserRoleState } from "../actions/user_action";
 
-const UserRole: UserRoles = UserRoles.admin;
+const UserRole: UserRoles = UserRoles.level1;
 
 const reducer = (
   state: UserRoles = UserRole,

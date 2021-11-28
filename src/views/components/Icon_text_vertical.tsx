@@ -8,6 +8,7 @@ interface IconTextVerticalProp {
   children: ReactNode;
   className?: string;
   fontSize?: string;
+  onClick?: () => void;
 }
 export const IconTextVertical: React.FC<IconTextVerticalProp> = ({
   text,
@@ -15,6 +16,7 @@ export const IconTextVertical: React.FC<IconTextVerticalProp> = ({
   children,
   className,
   fontSize,
+  onClick
 }) => {
   let StyleTheme: string = "";
   if (theme === Theme.light) {
@@ -35,6 +37,7 @@ export const IconTextVertical: React.FC<IconTextVerticalProp> = ({
     <div
       style={Styles}
       className={`${IsclassName + " " + StyleTheme + " " + "IconTextVertical"}`}
+      onClick={onClick}
     >
       {children}
       <span>{text}</span>

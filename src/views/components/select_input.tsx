@@ -19,6 +19,7 @@ interface InputsProps {
   label?: ReactNode;
   popQuestion?: string;
   optional?: string;
+  border?:string;
 }
 export const SelectComponent: React.FC<InputsProps> = ({
   width,
@@ -28,6 +29,7 @@ export const SelectComponent: React.FC<InputsProps> = ({
   backgroundColor,
   className,
   borderRadius,
+  border,
   onChange,
   placeholder,
   items,
@@ -44,6 +46,7 @@ export const SelectComponent: React.FC<InputsProps> = ({
     minHeigth: minHeigth,
     backgroundColor: backgroundColor,
     borderRadius: borderRadius,
+    border:border
   };
   let IsclassName;
   if (className !== undefined) {
