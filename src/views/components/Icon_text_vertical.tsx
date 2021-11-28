@@ -10,6 +10,7 @@ interface IconTextVerticalProp {
   fontSize?: string;
   onClick?: () => void;
 }
+
 export const IconTextVertical: React.FC<IconTextVerticalProp> = ({
   text,
   theme,
