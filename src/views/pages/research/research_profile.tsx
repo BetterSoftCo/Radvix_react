@@ -6,8 +6,11 @@ import { MainButton, MainButtonType } from "../../components/button";
 import { IconTextRow } from "../../components/icon_text_horizontal";
 import { Theme } from "../../../core/utils";
 import { BoxListScroll } from "../../components/box_list_scroll";
-export class ResearchPageProfile extends React.Component {
+import { RouteComponentProps, withRouter } from "react-router";
+import { AppRoutes } from "../../../core/constants";
+ class ResearchPageProfile extends React.Component<RouteComponentProps> {
   RoleUser = store.getState();
+
 
   render() {
     return (
@@ -16,7 +19,7 @@ export class ResearchPageProfile extends React.Component {
         <div className="col-12 box-content p-3">
           <div className="d-flex justify-content-between align-items-center">
             <h5 className="b-title d-flex align-items-center">
-              <span className="backPage"></span>{" "}
+              <span onClick={()=>{window.history.back()}} className="backPage"></span>{" "}
               {"Research List > Research Profile"}
               <CircleIcon
                 width="22px"
@@ -25,7 +28,8 @@ export class ResearchPageProfile extends React.Component {
                 backgroundColor="#474747"
                 fontSize="10px"
                 color="#ffff"
-                className="mx-4"
+                className="mx-4 pointer"
+                onClick={()=>{this.props.history.push(AppRoutes.edit_research)}}
               >
                 <i className="fas fa-edit"></i>
               </CircleIcon>
@@ -45,6 +49,7 @@ export class ResearchPageProfile extends React.Component {
               type={MainButtonType.dark}
               borderRadius="24px"
               fontSize="14px"
+              onClick={()=>{this.props.history.push(AppRoutes.discussion)}}
             ></MainButton>
           </div>
           <div className="Studying p-4 my-2">
@@ -165,6 +170,7 @@ export class ResearchPageProfile extends React.Component {
                     borderRadius="24px"
                     fontSize="14px"
                     className="px-3"
+                    onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
                   ></MainButton>
                   <MainButton
                     children="ACCESSLab Team"
@@ -172,6 +178,7 @@ export class ResearchPageProfile extends React.Component {
                     borderRadius="24px"
                     fontSize="14px"
                     className="px-3"
+                    onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
                   ></MainButton>
                   <MainButton
                     children="ACCESSLab Team"
@@ -179,6 +186,7 @@ export class ResearchPageProfile extends React.Component {
                     borderRadius="24px"
                     fontSize="14px"
                     className="px-3"
+                    onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
                   ></MainButton>
                   <MainButton
                     children="ACCESSLab Team"
@@ -186,6 +194,7 @@ export class ResearchPageProfile extends React.Component {
                     borderRadius="24px"
                     fontSize="14px"
                     className="px-3 m-2"
+                    onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
                   ></MainButton>
                 </div>
                 <BoxListScroll
@@ -210,6 +219,8 @@ export class ResearchPageProfile extends React.Component {
                   ValueItem="id"
                   ImageItem="imagesrc"
                   Deletabel
+                  onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
+                  className="pointer"
                 ></BoxListScroll>
               </div>
               <div className="teams Labs">
@@ -267,7 +278,8 @@ export class ResearchPageProfile extends React.Component {
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
+                    className="px-3 pointer"
+                    onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
                   ></MainButton>
                   <MainButton
                     children="ACCESSLab Team"
@@ -275,6 +287,7 @@ export class ResearchPageProfile extends React.Component {
                     borderRadius="24px"
                     fontSize="14px"
                     className="px-3"
+                    onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
                   ></MainButton>
                   <MainButton
                     children="ACCESSLab Team"
@@ -282,6 +295,7 @@ export class ResearchPageProfile extends React.Component {
                     borderRadius="24px"
                     fontSize="14px"
                     className="px-3"
+                    onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
                   ></MainButton>
                   <MainButton
                     children="ACCESSLab Team"
@@ -289,6 +303,7 @@ export class ResearchPageProfile extends React.Component {
                     borderRadius="24px"
                     fontSize="14px"
                     className="px-3 m-2"
+                    onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
                   ></MainButton>
                 </div>
                 <BoxListScroll
@@ -313,6 +328,8 @@ export class ResearchPageProfile extends React.Component {
                   ValueItem="id"
                   ImageItem="imagesrc"
                   Deletabel
+                  onClick={()=>{this.props.history.push(AppRoutes.profile_laboratory)}}
+                  className="pointer"
                 ></BoxListScroll>
               </div>
             </div>
@@ -322,3 +339,4 @@ export class ResearchPageProfile extends React.Component {
     );
   }
 }
+export default withRouter(ResearchPageProfile)

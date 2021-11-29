@@ -108,7 +108,7 @@ const AcordienTableData: React.FC<RouteComponentProps> = (props) => {
                         className="pointer d-flex justify-content-center align-items-center mx-2"
                         
                       >
-                        <p className="d-flex align-items-center mb-2">...</p>
+                        <p className="d-flex align-items-center mb-2 px-2">...</p>
                       </CircleIcon>
                     </div>
                     <div className="col-2 text-center">K. Pourtorab</div>

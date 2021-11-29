@@ -1,8 +1,8 @@
 import React, { Fragment, ReactNode } from "react";
 import { RouteComponentProps, withRouter } from "react-router";
 import Header from "./header_layout";
-import  RightSection  from "./right_section";
-import { Sidebar } from "./sidebar";
+import RightSection from "./right_section";
+import  Sidebar  from "./sidebar";
 import { ToastContainer } from "react-toastify";
 
 interface IMainLayout {
@@ -17,10 +17,8 @@ class MainLayout extends React.Component<IMainLayout & RouteComponentProps> {
             <Header></Header>
             <div className="main">
               <div className="row">
-                <div className="col-12 col-md-2 col-lg-1 ">
-                  <div className="parent-sidebar">
-                    <Sidebar></Sidebar>
-                  </div>
+                <div className="col-12 col-md-2 col-lg-1 sidebar">
+                  <Sidebar></Sidebar>
                 </div>
                 <div
                   className={

@@ -217,7 +217,7 @@ class ResearchPageEdit extends React.Component<RouteComponentProps> {
                 <ul className="file-list mt-3">
                   <li className="d-flex align-items-center mb-1">
                     <img
-                      src='/images/pages/pdf_icon.svg'
+                      src="/images/pages/pdf_icon.svg"
                       alt=""
                       className="mx-2"
                     />{" "}
@@ -233,7 +233,7 @@ class ResearchPageEdit extends React.Component<RouteComponentProps> {
                   </li>
                   <li className="d-flex align-items-center mb-1">
                     <img
-                      src='/images/pages/pdf_icon.svg'
+                      src="/images/pages/pdf_icon.svg"
                       alt=""
                       className="mx-2"
                     />{" "}
@@ -249,7 +249,7 @@ class ResearchPageEdit extends React.Component<RouteComponentProps> {
                   </li>
                   <li className="d-flex align-items-center mb-1">
                     <img
-                      src='/images/pages/pdf_icon.svg'
+                      src="/images/pages/pdf_icon.svg"
                       alt=""
                       className="mx-2"
                     />{" "}
@@ -391,24 +391,25 @@ class ResearchPageEdit extends React.Component<RouteComponentProps> {
                     {
                       text: "Nima Hosseinzadeh",
                       id: 1,
-                      imagesrc:"/images/layout/img_avatar.png",
+                      imagesrc: "/images/layout/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 2,
-                      imagesrc:"/images/layout/img_avatar.png",
+                      imagesrc: "/images/layout/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 3,
-                      imagesrc:"/images/layout/img_avatar.png",
+                      imagesrc: "/images/layout/img_avatar.png",
                     },
                   ]}
                   TextItem="text"
                   ValueItem="id"
                   ImageItem="imagesrc"
                   Deletabel
-                  DeleteFunc={(p , value)=>{console.log(p , value);
+                  DeleteFunc={(p, value) => {
+                    console.log(p, value);
                   }}
                 ></BoxListScroll>
               </div>
@@ -426,6 +427,9 @@ class ResearchPageEdit extends React.Component<RouteComponentProps> {
               <MainButton
                 type={MainButtonType.dark}
                 children={"Save"}
+                onClick={() => {
+                  this.props.history.push(AppRoutes.profile_research);
+                }}
                 borderRadius="50px"
                 fontSize="20px"
                 className="mx-2"

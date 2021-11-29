@@ -10,7 +10,9 @@ import { SelectComponent } from "../../components/select_input";
 import { RadioGroup } from "../../components/radio_group";
 import { ButtonGroup } from "../../components/botton_group";
 import { BoxAlert } from "../../components/box_alert";
-export class ResearchPageNew extends React.Component {
+import { RouteComponentProps, withRouter } from "react-router";
+import { AppRoutes } from "../../../core/constants";
+ class ResearchPageNew extends React.Component <RouteComponentProps> {
   RoleUser = store.getState();
   date = new Date();
   handelChangeDate(params: any): void {
@@ -190,9 +192,31 @@ export class ResearchPageNew extends React.Component {
                 to this research)"
               ></BoxAlert>
             </div>
+            <div className="col-12 d-flex justify-content-center align-items-center my-4">
+              <MainButton
+                type={MainButtonType.light}
+                children={"Start Over"}
+                borderRadius="50px"
+                fontSize="20px"
+                className="mx-2"
+                minHeight="47px"
+                minWidth="110px"
+              ></MainButton>
+              <MainButton
+                type={MainButtonType.dark}
+                children={"Create"}
+                borderRadius="50px"
+                fontSize="20px"
+                className="mx-2"
+                minHeight="47px"
+                minWidth="110px"
+                onClick={()=>{this.props.history.push(AppRoutes.profile_research)}}
+              ></MainButton>
+            </div>
           </div>
         </div>
       </div>
     );
   }
 }
+export default withRouter(ResearchPageNew);

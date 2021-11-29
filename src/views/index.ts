@@ -1,6 +1,6 @@
 import { ResearchPage } from './pages/research/research_page';
-import { ResearchPageNew } from './pages/research/research_new';
-import { ResearchPageProfile } from './pages/research/research_profile';
+import  ResearchPageNew  from './pages/research/research_new';
+import  ResearchPageProfile  from './pages/research/research_profile';
 import ResearchPageEdit from './pages/research/research_edit';
 import { LoginPage } from './pages/login/login';
 import { LaboratoryPageProfile } from './pages/laboratory/laboratory_profile';

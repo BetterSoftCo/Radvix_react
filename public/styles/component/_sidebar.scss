@@ -5,6 +5,8 @@
   padding: 1rem;
   height: 100%;
   direction: rtl;
+  border: 1px solid #f5f5f5;
+
 
   ul {
     list-style: none;
@@ -33,3 +35,25 @@
 .parent-sidebar::-webkit-scrollbar-thumb {
   background-color: #000000;
 }
+.sidebar{
+  position: relative;
+  .gide-sidebar{
+    position: absolute;
+    left: 91%;
+    top: 0;
+    height: 100%;
+    z-index: 20;
+    background-color: $black-color;
+    width: 200px;
+    .list-icons{
+      padding: 1rem;
+      background-color: #ebebeb;
+    }
+    .helptext{
+      font-size: 10px;
+      color: #ebebeb;
+    }
+    
+  }
+}
+

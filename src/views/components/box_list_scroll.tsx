@@ -11,6 +11,7 @@ interface IBoxListScroll {
   Deletabel?: boolean;
   DeleteFunc?: (e: any, value: any) => void;
   className?: string;
+  onClick?: () => void;
 }
 export const BoxListScroll: React.FC<IBoxListScroll> = ({
   items,
@@ -20,6 +21,7 @@ export const BoxListScroll: React.FC<IBoxListScroll> = ({
   Deletabel,
   DeleteFunc,
   className,
+  onClick
 }) => {
   let IsclassName;
   if (className !== undefined) {
@@ -33,6 +35,7 @@ export const BoxListScroll: React.FC<IBoxListScroll> = ({
         <>
         {console.log("item",item)}
         <div
+          onClick={onClick}
           className="d-flex justify-content-between align-items-center"
           key={index}
         >
