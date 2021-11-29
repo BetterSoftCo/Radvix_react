@@ -4,7 +4,7 @@ import { store } from "../../../data/store";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import { InputIcon } from "../../components/search_box";
 import { SelectComponent } from "../../components/select_input";
-import { TableListLaboratory } from "./component/table_list_laboratory";
+import  TableListLaboratory  from "./component/table_list_laboratory";
 
 export class LaboratoryPage extends React.Component {
   RoleUser = store.getState();

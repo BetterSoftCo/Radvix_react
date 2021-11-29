@@ -27,7 +27,7 @@ export class PublishPageNew extends React.Component {
         <div className="row"></div>
         <div className="col-12 box-content p-3">
           <h5 className="b-title d-flex">
-            <span className="backPage"></span> New Publication/Presentation
+            <span onClick={()=>{window.history.back()}} className="backPage"></span> New Publication/Presentation
           </h5>
           <div className="form row">
             <div className="col-md-6 left">

@@ -33,7 +33,7 @@ export class AdminTicket extends React.Component {
         <div className="row"></div>
         <div className="col-12 box-content p-3 discusstion">
           <h5 className="b-title d-flex">
-            <span className="backPage"></span>
+            <span onClick={()=>{window.history.back()}} className="backPage"></span>
             Question About The Thermogravimetric Results
             <MainButton
               children="High Priority"

@@ -50,7 +50,7 @@ export class PublicationProfile extends React.Component {
         <div className="col-12 box-content p-3">
           <div className="d-flex justify-content-between align-items-center">
             <h5 className="b-title d-flex align-items-center">
-              <span className="backPage"></span> {"Publication Profile"}
+              <span onClick={()=>{window.history.back()}} className="backPage"></span> {"Publication Profile"}
             </h5>
             <div>
               <MainButton

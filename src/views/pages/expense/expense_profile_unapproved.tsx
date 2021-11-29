@@ -4,7 +4,9 @@ import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import "react-datepicker/dist/react-datepicker.css";
 import { MainButton, MainButtonType } from "../../components/button";
 import { UserRoles } from "../../../core/utils";
-export class ExpensePageProfile extends React.Component {
+import { RouteComponentProps, withRouter } from "react-router";
+import { AppRoutes } from "../../../core/constants";
+ class ExpensePageProfile extends React.Component<RouteComponentProps> {
   RoleUser = store.getState();
   state = {
     Data: {
@@ -44,7 +46,7 @@ export class ExpensePageProfile extends React.Component {
         <div className="col-12 box-content p-3">
           <div className="d-flex justify-content-between align-items-center">
             <h5 className="b-title d-flex align-items-center">
-              <span className="backPage"></span> {"Expense Profile"}
+              <span onClick={()=>{window.history.back()}} className="backPage"></span> {"Expense Profile"}
               {this.RoleUser === UserRoles.level1 ? (
                 <CircleIcon
                   width="22px"
@@ -64,6 +66,7 @@ export class ExpensePageProfile extends React.Component {
               type={MainButtonType.dark}
               borderRadius="24px"
               fontSize="14px"
+              onClick={()=>{this.props.history.push(AppRoutes.discussion)}}
             ></MainButton>
           </div>
           <div className="Studying p-4 my-2">
@@ -202,3 +205,4 @@ export class ExpensePageProfile extends React.Component {
     );
   }
 }
+export default withRouter(ExpensePageProfile)

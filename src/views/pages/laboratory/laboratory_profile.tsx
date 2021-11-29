@@ -6,7 +6,9 @@ import { MainButton, MainButtonType } from "../../components/button";
 import { IconTextRow } from "../../components/icon_text_horizontal";
 import { Theme } from "../../../core/utils";
 import { BoxListScroll } from "../../components/box_list_scroll";
-export class LaboratoryPageProfile extends React.Component {
+import { withRouter , RouteComponentProps } from "react-router";
+import { AppRoutes } from "../../../core/constants";
+ class LaboratoryPageProfile extends React.Component<RouteComponentProps> {
   RoleUser = store.getState();
 
   render() {
@@ -16,7 +18,7 @@ export class LaboratoryPageProfile extends React.Component {
         <div className="col-12 box-content p-3">
           <div className="d-flex justify-content-between align-items-center">
             <h5 className="b-title d-flex align-items-center">
-              <span className="backPage"></span> {"Lab Profile"}
+              <span onClick={()=>{window.history.back()}} className="backPage"></span> {"Laboratory List > Lab Profile"}
               <CircleIcon
                 width="22px"
                 height="22px"
@@ -24,9 +26,10 @@ export class LaboratoryPageProfile extends React.Component {
                 backgroundColor="#474747"
                 fontSize="10px"
                 color="#ffff"
-                className="mx-4"
+                className="mx-4 pointer"
+                onClick={()=>{this.props.history.push(AppRoutes.edit_laboratory)}}
               >
-                <i className="fas fa-history"></i>
+                <i className="fas fa-edit"></i>
               </CircleIcon>
             </h5>
             <MainButton
@@ -34,6 +37,7 @@ export class LaboratoryPageProfile extends React.Component {
               type={MainButtonType.dark}
               borderRadius="24px"
               fontSize="14px"
+              onClick={()=>{this.props.history.push(AppRoutes.discussion)}}
             ></MainButton>
           </div>
           <div className="Studying p-4 my-2">
@@ -176,7 +180,7 @@ export class LaboratoryPageProfile extends React.Component {
                   }
                 ></IconTextRow>
                 <BoxListScroll
-                  className="mt-3"
+                  className="mt-3 pointer"
                   items={[
                     {
                       text: "Nima Hosseinzadeh",
@@ -201,6 +205,9 @@ export class LaboratoryPageProfile extends React.Component {
                   DeleteFunc={(p, value) => {
                     console.log(p, value);
                   }}
+                  
+                  onClick={()=>{this.props.history.push(AppRoutes.profile_laboratory)}}
+                  
                 ></BoxListScroll>
               </div>
               <div className="teams mb-3">
@@ -221,32 +228,36 @@ export class LaboratoryPageProfile extends React.Component {
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
+                    className="px-3 pointer"
                     backgroundColor="#EBEBEB"
+                    onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
                   ></MainButton>
                   <MainButton
                     children="ACCESSLab Team"
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
+                    className="px-3 pointer"
                     backgroundColor="#EBEBEB"
+                    onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
                   ></MainButton>
                   <MainButton
                     children="ACCESSLab Team"
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
+                    className="px-3 pointer"
                     backgroundColor="#EBEBEB"
+                    onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
                   ></MainButton>
                   <MainButton
                     children="ACCESSLab Team"
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3 m-2"
+                    className="px-3 m-2 pointer"
                     backgroundColor="#EBEBEB"
+                    onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
                   ></MainButton>
                 </div>
                 <BoxListScroll
@@ -274,6 +285,8 @@ export class LaboratoryPageProfile extends React.Component {
                   DeleteFunc={(p, value) => {
                     console.log(p, value);
                   }}
+                  className="pointer"
+                  onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
                 ></BoxListScroll>
               </div>
 
@@ -284,3 +297,4 @@ export class LaboratoryPageProfile extends React.Component {
     );
   }
 }
+export default withRouter(LaboratoryPageProfile)

@@ -48,7 +48,7 @@ export class SettingPage extends React.Component {
           <div className="col-12 box-content p-3">
             <div className="d-flex justify-content-between align-items-center">
               <h5 className="b-title d-flex align-items-center">
-                <span className="backPage"></span> {"Billing And Subscription"}
+                <span onClick={()=>{window.history.back()}} className="backPage"></span> {"Billing And Subscription"}
               </h5>
             </div>
             <div className="row mt-4">
@@ -168,7 +168,7 @@ export class SettingPage extends React.Component {
         <div className="col-12 box-content p-3">
           <div className="d-flex justify-content-between align-items-center">
             <h5 className="b-title d-flex align-items-center">
-              <span className="backPage"></span> {"Notifications"}
+              <span onClick={()=>{window.history.back()}} className="backPage"></span> {"Notifications"}
             </h5>
           </div>
           <div className="TableBox">
@@ -238,7 +238,7 @@ export class SettingPage extends React.Component {
           <div className="col-12 box-content p-3">
             <div className="d-flex justify-content-between align-items-center">
               <h5 className="b-title d-flex align-items-center">
-                <span className="backPage"></span> {"User Types"}
+                <span onClick={()=>{window.history.back()}} className="backPage"></span> {"User Types"}
               </h5>
             </div>
             <div className="TableBox">

@@ -6,8 +6,10 @@ import { MainButton, MainButtonType } from "../../components/button";
 import { IconTextRow } from "../../components/icon_text_horizontal";
 import { Theme } from "../../../core/utils";
 import { BoxListScroll } from "../../components/box_list_scroll";
+import { RouteComponentProps, withRouter } from "react-router";
+import { AppRoutes } from "../../../core/constants";
 
-export class DataPageProfile extends React.Component {
+ class DataPageProfile extends React.Component<RouteComponentProps> {
   RoleUser = store.getState();
   state = {
     Data: {
@@ -47,7 +49,7 @@ export class DataPageProfile extends React.Component {
         <div className="col-12 box-content p-3">
           <div className="d-flex justify-content-between align-items-center">
             <h5 className="b-title d-flex align-items-center">
-              <span className="backPage"></span>{" "}
+              <span onClick={()=>{window.history.back()}} className="backPage"></span>{" "}
               {"Data Collection  > Data Profile"}
               <CircleIcon
                 width="22px"
@@ -76,6 +78,7 @@ export class DataPageProfile extends React.Component {
               type={MainButtonType.dark}
               borderRadius="24px"
               fontSize="14px"
+              onClick={()=>{this.props.history.push(AppRoutes.discussion)}}
             ></MainButton>
           </div>
           <div className="Studying p-4 my-2">
@@ -278,3 +281,4 @@ export class DataPageProfile extends React.Component {
     );
   }
 }
+export default withRouter(DataPageProfile)

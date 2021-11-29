@@ -30,7 +30,7 @@ export class AdminBroadcast extends React.Component {
         <div className="row"></div>
         <div className="col-12 box-content p-3">
           <h5 className="b-title d-flex">
-            <span className="backPage"></span> New Broadcast 
+            <span onClick={()=>{window.history.back()}} className="backPage"></span> New Broadcast 
           </h5>
           <div className="form row">
             <div className="col-md-4 left">

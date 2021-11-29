@@ -26,7 +26,7 @@ export class MemberPageUseEdit extends React.Component {
         <div className="row"></div>
         <div className="col-12 box-content p-3">
           <h5 className="b-title d-flex">
-            <span className="backPage"></span> Edit Member Access
+            <span onClick={()=>{window.history.back()}} className="backPage"></span> Edit Member Access
           </h5>
           <div className="form row">
             <div className="col-md-6 left">
