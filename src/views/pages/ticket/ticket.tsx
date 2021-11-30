@@ -8,7 +8,8 @@ import Dropzone from "react-dropzone";
 import { IconTextRow } from "../../components/icon_text_horizontal";
 import { Theme } from "../../../core/utils";
 import { BoxListScroll } from "../../components/box_list_scroll";
-export class Ticket extends React.Component {
+import { RouteComponentProps, withRouter } from "react-router";
+ class Ticket extends React.Component<RouteComponentProps> {
   RoleUser = store.getState();
   date = new Date();
   handelChangeDate(params: any): void {
@@ -353,3 +354,4 @@ export class Ticket extends React.Component {
     );
   }
 }
+export default withRouter(Ticket)

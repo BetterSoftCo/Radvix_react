@@ -7,7 +7,9 @@ import "react-datepicker/dist/react-datepicker.css";
 import { MainButton, MainButtonType } from "../../components/button";
 import { SelectComponent } from "../../components/select_input";
 import Dropzone from "react-dropzone";
-export class ExpensePageNew extends React.Component {
+import { RouteComponentProps, withRouter } from "react-router";
+import { AppRoutes } from "../../../core/constants";
+class ExpensePageNew extends React.Component<RouteComponentProps> {
   RoleUser = store.getState();
   date = new Date();
   handelChangeDate(params: any): void {
@@ -31,7 +33,13 @@ export class ExpensePageNew extends React.Component {
         <div className="row"></div>
         <div className="col-12 box-content p-3">
           <h5 className="b-title d-flex">
-            <span onClick={()=>{window.history.back()}} className="backPage"></span> New Expense
+            <span
+              onClick={() => {
+                window.history.back();
+              }}
+              className="backPage"
+            ></span>{" "}
+            New Expense
           </h5>
           <div className="form row">
             <div className="col-md-6 left">
@@ -215,6 +223,7 @@ export class ExpensePageNew extends React.Component {
                 className="mx-2"
                 minHeight="47px"
                 minWidth="110px"
+                onClick={()=>{this.props.history.push(AppRoutes.expense_profile)}}
               ></MainButton>
             </div>
           </div>
@@ -223,3 +232,4 @@ export class ExpensePageNew extends React.Component {
     );
   }
 }
+export default withRouter(ExpensePageNew);

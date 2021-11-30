@@ -55,7 +55,7 @@ import { AppRoutes } from "../../../core/constants";
                   backgroundColor="#474747"
                   fontSize="10px"
                   color="#ffff"
-                  className="mx-4"
+                  className="mx-4 pointer"
                 >
                   <i className="fas fa-edit"></i>
                 </CircleIcon>

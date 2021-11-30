@@ -5,7 +5,7 @@ import { MainButton, MainButtonType } from "../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import { InputIcon } from "../../components/search_box";
 import { SelectComponent } from "../../components/select_input";
-import { MyPublicationsTable } from "./component/my_publications_tbl";
+import MyPublicationsTable from "./component/my_publications_tbl";
 
 export class MyPublications extends React.Component {
   RoleUser = store.getState();
@@ -13,28 +13,28 @@ export class MyPublications extends React.Component {
     Data: {
       Items: [
         {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
+          name: "Studying the effects of freeze thaw cycle…",
+          Institution: "Report",
+          Category: "N. Hosseinzadeh",
+          Eqiups: "07/22/2021",
         },
         {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
+          name: "Studying the effects of freeze thaw cycle…",
+          Institution: "Report",
+          Category: "N. Hosseinzadeh",
+          Eqiups: "07/22/2021",
         },
         {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
+          name: "Studying the effects of freeze thaw cycle…",
+          Institution: "Report",
+          Category: "N. Hosseinzadeh",
+          Eqiups: "07/22/2021",
         },
         {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
+          name: "Studying the effects of freeze thaw cycle…",
+          Institution: "Report",
+          Category: "N. Hosseinzadeh",
+          Eqiups: "07/22/2021",
         },
       ],
     },
@@ -48,7 +48,13 @@ export class MyPublications extends React.Component {
             <div className="TopTableBox d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3">
               <div className="left d-flex w-50 align-items-center">
                 <h6 className="b-title d-flex" style={{ width: "35%" }}>
-                  <span onClick={()=>{window.history.back()}} className="backPage"></span> My Publications
+                  <span
+                    onClick={() => {
+                      window.history.back();
+                    }}
+                    className="backPage"
+                  ></span>{" "}
+                  My Publications
                 </h6>
                 <InputIcon
                   chilren={
@@ -82,12 +88,12 @@ export class MyPublications extends React.Component {
             </div>
             <MyPublicationsTable
               Items={this.state.Data.Items}
-              Heading={["Subject", "Related To", "Update"]}
+              Heading={["Name", "Category", "Currently Working On", "Deadline"]}
             ></MyPublicationsTable>
 
-           <div className="d-flex justify-content-between align-items-baseline">
-                  <div className="d-flex justify-content-end flex-fill">
-                  <ReactPaginate
+            <div className="d-flex justify-content-between align-items-baseline">
+              <div className="d-flex justify-content-end flex-fill">
+                <ReactPaginate
                   previousLabel={
                     <CircleIcon
                       width="24px"
@@ -113,17 +119,17 @@ export class MyPublications extends React.Component {
                   pageCount={20}
                   marginPagesDisplayed={2}
                   pageRangeDisplayed={5}
-                  onPageChange={()=>{console.log('changepage')}}
+                  onPageChange={() => {
+                    console.log("changepage");
+                  }}
                   containerClassName={"pagination"}
                   activeClassName={"active"}
                 />
-                  </div>
-                  <div className="d-flex justify-content-end flex-fill">
-                  <p className="text-right mb-0 " >Total Results: 45</p>
-                  </div>
-                 
-                
               </div>
+              <div className="d-flex justify-content-end flex-fill">
+                <p className="text-right mb-0 ">Total Results: 45</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

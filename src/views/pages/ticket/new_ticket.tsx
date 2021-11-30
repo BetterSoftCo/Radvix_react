@@ -7,7 +7,9 @@ import { MainButton, MainButtonType } from "../../components/button";
 import Dropzone from "react-dropzone";
 import { SelectComponent } from "../../components/select_input";
 import { ButtonGroup } from "../../components/botton_group";
-export class TicketPageNew extends React.Component {
+import { RouteComponentProps, withRouter } from "react-router";
+import { AppRoutes } from "../../../core/constants";
+ class TicketPageNew extends React.Component<RouteComponentProps> {
   RoleUser = store.getState();
   date = new Date();
   handelChangeDate(params: any): void {
@@ -138,6 +140,7 @@ export class TicketPageNew extends React.Component {
                 className="mx-2"
                 minHeight="47px"
                 minWidth="110px"
+                onClick={()=>{this.props.history.push(AppRoutes.ticketing)}}
               ></MainButton>
             </div>
           </div>
@@ -146,3 +149,4 @@ export class TicketPageNew extends React.Component {
     );
   }
 }
+export default withRouter(TicketPageNew)

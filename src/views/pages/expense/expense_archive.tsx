@@ -5,7 +5,7 @@ import { MainButton, MainButtonType } from "../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import { InputIcon } from "../../components/search_box";
 import { SelectComponent } from "../../components/select_input";
-import { ExpenseArchiveTable } from "./component/expense_archive_tbl";
+import  ExpenseArchiveTable  from "./component/expense_archive_tbl";
 
 export class ExpenseArchive extends React.Component {
   RoleUser = store.getState();
@@ -14,27 +14,36 @@ export class ExpenseArchive extends React.Component {
       Items: [
         {
           name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
+          Institution: "Travel",
+          Category: "N. Hosseinzadeh",
+          Eqiups: "$122.23",
+          Receipt:"12/2.2022",
+          status:"approved"
         },
         {
           name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
+          Institution: "Travel",
+          Category: "N. Hosseinzadeh",
+          Eqiups: "$122.23",
+          Receipt:"12/2.2022",
+          status:"approved"
         },
         {
           name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
+          Institution: "Travel",
+          Category: "N. Hosseinzadeh",
+          Eqiups: "$122.23",
+          Receipt:"12/2.2022",
+          status:"approved"
         },
         {
           name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
+          Institution: "Travel",
+          Category: "N. Hosseinzadeh",
+          Eqiups: "$122.23",
+          Receipt:"12/2.2022",
+          status:"approved"
+          
         },
       ],
     },
@@ -48,7 +57,13 @@ export class ExpenseArchive extends React.Component {
             <div className="TopTableBox d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3">
               <div className="left d-flex w-50 align-items-center">
                 <h6 className="b-title d-flex" style={{ width: "35%" }}>
-                  <span onClick={()=>{window.history.back()}} className="backPage"></span> Expense Archive
+                  <span
+                    onClick={() => {
+                      window.history.back();
+                    }}
+                    className="backPage"
+                  ></span>{" "}
+                  Expense Archive
                 </h6>
                 <InputIcon
                   chilren={
@@ -82,12 +97,19 @@ export class ExpenseArchive extends React.Component {
             </div>
             <ExpenseArchiveTable
               Items={this.state.Data.Items}
-              Heading={["Subject", "Related To", "Update"]}
+              Heading={[
+                "Expense Name",
+                "Category",
+                "Requested By",
+                "Amount",
+                "Receipt Date",
+                "Status",
+              ]}
             ></ExpenseArchiveTable>
 
-           <div className="d-flex justify-content-between align-items-baseline">
-                  <div className="d-flex justify-content-end flex-fill">
-                  <ReactPaginate
+            <div className="d-flex justify-content-between align-items-baseline">
+              <div className="d-flex justify-content-end flex-fill">
+                <ReactPaginate
                   previousLabel={
                     <CircleIcon
                       width="24px"
@@ -113,17 +135,17 @@ export class ExpenseArchive extends React.Component {
                   pageCount={20}
                   marginPagesDisplayed={2}
                   pageRangeDisplayed={5}
-                  onPageChange={()=>{console.log('changepage')}}
+                  onPageChange={() => {
+                    console.log("changepage");
+                  }}
                   containerClassName={"pagination"}
                   activeClassName={"active"}
                 />
-                  </div>
-                  <div className="d-flex justify-content-end flex-fill">
-                  <p className="text-right mb-0 " >Total Results: 45</p>
-                  </div>
-                 
-                
               </div>
+              <div className="d-flex justify-content-end flex-fill">
+                <p className="text-right mb-0 ">Total Results: 45</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

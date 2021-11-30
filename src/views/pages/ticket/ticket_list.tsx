@@ -5,36 +5,41 @@ import { MainButton, MainButtonType } from "../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import { InputIcon } from "../../components/search_box";
 import { SelectComponent } from "../../components/select_input";
-import { MyTicketTable } from "./component/my_tickets";
-
-export class TicketPage extends React.Component {
+import  MyTicketTable  from "./component/my_tickets";
+import { RouteComponentProps, withRouter } from "react-router";
+import { AppRoutes } from "../../../core/constants";
+class TicketPage extends React.Component<RouteComponentProps> {
   RoleUser = store.getState();
   state = {
     Data: {
       Items: [
         {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
+          name: "Problem with saving the projects",
+          Institution: "1253335",
+          Category: "07/22/2021   17:13",
+          Eqiups: "1 message",
+          status: "open",
         },
         {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
+          name: "Problem with saving the projects",
+          Institution: "1253335",
+          Category: "07/22/2021   17:13",
+          Eqiups: "1 message",
+          status: "open",
         },
         {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
+          name: "Problem with saving the projects",
+          Institution: "1253335",
+          Category: "07/22/2021   17:13",
+          Eqiups: "1 message",
+          status: "open",
         },
         {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
+          name: "Problem with saving the projects",
+          Institution: "1253335",
+          Category: "07/22/2021   17:13",
+          Eqiups: "1 message",
+          status: "open",
         },
       ],
     },
@@ -64,6 +69,9 @@ export class TicketPage extends React.Component {
                   borderRadius="24px"
                   fontSize="14px"
                   className="mx-4"
+                  onClick={() => {
+                    this.props.history.push(AppRoutes.ticketing_new);
+                  }}
                 ></MainButton>
                 <SelectComponent
                   width="63px"
@@ -83,9 +91,9 @@ export class TicketPage extends React.Component {
               Heading={["Subject", "Ticket #", "Date", "Update", "Status"]}
             ></MyTicketTable>
 
-           <div className="d-flex justify-content-between align-items-baseline">
-                  <div className="d-flex justify-content-end flex-fill">
-                  <ReactPaginate
+            <div className="d-flex justify-content-between align-items-baseline">
+              <div className="d-flex justify-content-end flex-fill">
+                <ReactPaginate
                   previousLabel={
                     <CircleIcon
                       width="24px"
@@ -111,20 +119,21 @@ export class TicketPage extends React.Component {
                   pageCount={20}
                   marginPagesDisplayed={2}
                   pageRangeDisplayed={5}
-                  onPageChange={()=>{console.log('changepage')}}
+                  onPageChange={() => {
+                    console.log("changepage");
+                  }}
                   containerClassName={"pagination"}
                   activeClassName={"active"}
                 />
-                  </div>
-                  <div className="d-flex justify-content-end flex-fill">
-                  <p className="text-right mb-0 " >Total Results: 45</p>
-                  </div>
-                 
-                
               </div>
+              <div className="d-flex justify-content-end flex-fill">
+                <p className="text-right mb-0 ">Total Results: 45</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     );
   }
 }
+export default withRouter(TicketPage);
