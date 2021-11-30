@@ -50,7 +50,7 @@ import { AdminTicket } from "./pages/admin/admin_ticket";
 import { AdminBroadcast } from "./pages/admin/admin_broadcast";
 import TeamPageProfile from "./pages/team/team_profile";
 import TeamPageEdit from "./pages/team/team_edit";
-
+import TimeLine from './pages/research/timeline'
 export {
   ResearchPage,
   ResearchPageNew,
@@ -104,4 +104,5 @@ export {
   AdminBroadcast,
   TeamPageProfile,
   TeamPageEdit,
+  TimeLine
 };

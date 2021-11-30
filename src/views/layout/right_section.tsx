@@ -61,6 +61,7 @@ const RightSection: React.FC<RouteComponentProps> = (props) => {
                     props.history.push(AppRoutes.discussion);
                   }}
                   className="pointer"
+                  key={index}
                 >
                   <span
                     className="text-truncate d-inline-block"

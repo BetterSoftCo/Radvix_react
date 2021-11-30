@@ -8,6 +8,7 @@ export class AppRoutes {
 	static login:string ='/login';
 	static research:string ='/dashboard/research/';
 	static new_research:string ='/dashboard/research/new/';
+	static timeline_research:string ='/dashboard/research/timeline/';
 	static profile_research:string ='/dashboard/research/profile/';
 	static edit_research:string ='/dashboard/research/edit/';
 	static team:string ='/dashboard/team/';
