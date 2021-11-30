@@ -7,7 +7,8 @@ import Dropzone from "react-dropzone";
 import { SelectComponent } from "../../components/select_input";
 import { MainButton, MainButtonType } from "../../components/button";
 import { BoxListScroll } from "../../components/box_list_scroll";
-export class DataPageEdit extends React.Component {
+import { RouteComponentProps, withRouter } from "react-router";
+ class DataPageEdit extends React.Component<RouteComponentProps> {
   RoleUser = store.getState();
   date = new Date();
   handelChangeDate(params: any): void {
@@ -274,3 +275,4 @@ export class DataPageEdit extends React.Component {
     );
   }
 }
+export default withRouter(DataPageEdit)

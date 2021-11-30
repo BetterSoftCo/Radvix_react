@@ -9,7 +9,7 @@ import { BoxListScroll } from "../../components/box_list_scroll";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
 
- class DataPageProfile extends React.Component<RouteComponentProps> {
+class DataPageProfile extends React.Component<RouteComponentProps> {
   RoleUser = store.getState();
   state = {
     Data: {
@@ -49,7 +49,12 @@ import { AppRoutes } from "../../../core/constants";
         <div className="col-12 box-content p-3">
           <div className="d-flex justify-content-between align-items-center">
             <h5 className="b-title d-flex align-items-center">
-              <span onClick={()=>{window.history.back()}} className="backPage"></span>{" "}
+              <span
+                onClick={() => {
+                  window.history.back();
+                }}
+                className="backPage"
+              ></span>{" "}
               {"Data Collection  > Data Profile"}
               <CircleIcon
                 width="22px"
@@ -58,7 +63,10 @@ import { AppRoutes } from "../../../core/constants";
                 backgroundColor="#474747"
                 fontSize="10px"
                 color="#ffff"
-                className="mx-4"
+                className="mx-4 pointer"
+                onClick={() => {
+                  this.props.history.push(AppRoutes.data_edit);
+                }}
               >
                 <i className="fas fa-edit"></i>
               </CircleIcon>
@@ -78,7 +86,9 @@ import { AppRoutes } from "../../../core/constants";
               type={MainButtonType.dark}
               borderRadius="24px"
               fontSize="14px"
-              onClick={()=>{this.props.history.push(AppRoutes.discussion)}}
+              onClick={() => {
+                this.props.history.push(AppRoutes.discussion);
+              }}
             ></MainButton>
           </div>
           <div className="Studying p-4 my-2">
@@ -163,7 +173,7 @@ import { AppRoutes } from "../../../core/constants";
               </div>
             </div>
             <div className="col-md-6">
-            <div className="teams Labs">
+              <div className="teams Labs">
                 <IconTextRow
                   theme={Theme.dark}
                   text="Equipments Used"
@@ -212,7 +222,7 @@ import { AppRoutes } from "../../../core/constants";
                     </svg>
                   }
                 ></IconTextRow>
-                
+
                 <BoxListScroll
                   items={[
                     {
@@ -237,7 +247,7 @@ import { AppRoutes } from "../../../core/constants";
                   className="mt-2"
                 ></BoxListScroll>
               </div>
-              <div className="teams mb-3">
+              <div className="teams my-3 ">
                 <IconTextRow
                   theme={Theme.dark}
                   text="Users with Access to this data set"
@@ -270,10 +280,10 @@ import { AppRoutes } from "../../../core/constants";
                   TextItem="text"
                   ValueItem="id"
                   ImageItem="imagesrc"
-                  className="mt-2"
+                  className="mt-2 pointer"
+                  onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
                 ></BoxListScroll>
               </div>
-              
             </div>
           </div>
         </div>
@@ -281,4 +291,4 @@ import { AppRoutes } from "../../../core/constants";
     );
   }
 }
-export default withRouter(DataPageProfile)
+export default withRouter(DataPageProfile);

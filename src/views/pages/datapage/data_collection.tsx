@@ -1,13 +1,15 @@
 import React from "react";
 import ReactPaginate from "react-paginate";
+import { RouteComponentProps, withRouter } from "react-router";
+import { AppRoutes } from "../../../core/constants";
 import { store } from "../../../data/store";
 import { MainButton, MainButtonType } from "../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import { InputIcon } from "../../components/search_box";
 import { SelectComponent } from "../../components/select_input";
-import { DataCollectionTable } from "./component/data_collection_table";
+import  DataCollectionTable  from "./component/data_collection_table";
 
-export class DataCollection extends React.Component {
+ class DataCollection extends React.Component<RouteComponentProps> {
   RoleUser = store.getState();
   state = {
     Data: {
@@ -63,12 +65,14 @@ export class DataCollection extends React.Component {
                   type={MainButtonType.dark}
                   borderRadius="24px"
                   fontSize="14px"
+                  onClick={()=>{this.props.history.push(AppRoutes.data_new)}}
                 ></MainButton>
                 <MainButton
                   children="My Data"
                   type={MainButtonType.dark}
                   borderRadius="24px"
                   fontSize="14px"
+                  onClick={()=>{this.props.history.push(AppRoutes.data_mydata)}}
                 ></MainButton>
                 <SelectComponent
                   width="63px"
@@ -130,3 +134,4 @@ export class DataCollection extends React.Component {
     );
   }
 }
+export default withRouter(DataCollection)

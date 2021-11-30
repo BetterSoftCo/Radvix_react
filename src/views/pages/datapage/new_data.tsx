@@ -7,7 +7,9 @@ import Dropzone from "react-dropzone";
 import { SelectComponent } from "../../components/select_input";
 import { BoxAlert } from "../../components/box_alert";
 import { MainButton, MainButtonType } from "../../components/button";
-export class DataPageNew extends React.Component {
+import { RouteComponentProps, withRouter } from "react-router";
+import { AppRoutes } from "../../../core/constants";
+ class DataPageNew extends React.Component<RouteComponentProps> {
   RoleUser = store.getState();
   date = new Date();
   handelChangeDate(params: any): void {
@@ -166,6 +168,7 @@ export class DataPageNew extends React.Component {
                 className="mx-2"
                 minHeight="47px"
                 minWidth="110px"
+                onClick={()=>{this.props.history.push(AppRoutes.data_profile)}}
               ></MainButton>
             </div>
           </div>
@@ -174,3 +177,4 @@ export class DataPageNew extends React.Component {
     );
   }
 }
+export default withRouter(DataPageNew)
