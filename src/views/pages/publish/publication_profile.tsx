@@ -10,34 +10,36 @@ import { InputIcon } from "../../components/search_box";
 import { SelectComponent } from "../../components/select_input";
 import ReactPaginate from "react-paginate";
 import { Drafts } from "./component/drafts";
-export class PublicationProfile extends React.Component {
+import { RouteComponentProps, withRouter } from "react-router";
+import { AppRoutes } from "../../../core/constants";
+ class PublicationProfile extends React.Component<RouteComponentProps> {
   RoleUser = store.getState();
   state = {
     Data: {
       Items: [
         {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
+          name: "synergic_paper_v1.docx",
+          Institution: "N. Hosseinzadeh",
+          Category: "07/22/2021   21:24",
+          Eqiups: "1.0",
         },
         {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
+          name: "synergic_paper_v1.docx",
+          Institution: "N. Hosseinzadeh",
+          Category: "07/22/2021   21:24",
+          Eqiups: "1.0",
         },
         {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
+          name: "synergic_paper_v1.docx",
+          Institution: "N. Hosseinzadeh",
+          Category: "07/22/2021   21:24",
+          Eqiups: "1.0",
         },
         {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
+          name: "synergic_paper_v1.docx",
+          Institution: "N. Hosseinzadeh",
+          Category: "07/22/2021   21:24",
+          Eqiups: "1.0",
         },
       ],
     },
@@ -59,6 +61,7 @@ export class PublicationProfile extends React.Component {
                 borderRadius="24px"
                 fontSize="14px"
                 className="mx-2"
+                onClick={()=>{this.props.history.push(AppRoutes.publish_upload)}}
               ></MainButton>
               <MainButton
                 children="Discussion Panel"
@@ -66,6 +69,7 @@ export class PublicationProfile extends React.Component {
                 borderRadius="24px"
                 fontSize="14px"
                 className="mx-2"
+                onClick={()=>{this.props.history.push(AppRoutes.discussion)}}
               ></MainButton>
             </div>
           </div>
@@ -180,7 +184,8 @@ export class PublicationProfile extends React.Component {
                   TextItem="text"
                   ValueItem="id"
                   ImageItem="imagesrc"
-                  className="mt-2"
+                  className="mt-2 pointer"
+                  onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
                 ></BoxListScroll>
               </div>
             </div>
@@ -207,6 +212,7 @@ export class PublicationProfile extends React.Component {
                   borderRadius="24px"
                   fontSize="14px"
                   className="mx-2"
+                  onClick={()=>{this.props.history.push(AppRoutes.publish_upload)}}
                 ></MainButton>
                 <SelectComponent
                   width="63px"
@@ -223,7 +229,7 @@ export class PublicationProfile extends React.Component {
             </div>
             <Drafts
               Items={this.state.Data.Items}
-              Heading={["Laboratory Name", "Institution", "Category", "Eqiups"]}
+              Heading={["File", "Added By", "Date", "Version"]}
             ></Drafts>
             <div className="d-flex justify-content-center align-items-center">
               <ReactPaginate
@@ -265,3 +271,4 @@ export class PublicationProfile extends React.Component {
     );
   }
 }
+export default withRouter(PublicationProfile)

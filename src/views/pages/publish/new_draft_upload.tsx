@@ -7,7 +7,9 @@ import { MainButton, MainButtonType } from "../../components/button";
 import { SelectComponent } from "../../components/select_input";
 import Dropzone from "react-dropzone";
 import { RadioGroup } from "../../components/radio_group";
-export class UploadNewDraft extends React.Component {
+import { RouteComponentProps, withRouter } from "react-router";
+import { AppRoutes } from "../../../core/constants";
+ class UploadNewDraft extends React.Component<RouteComponentProps> {
   RoleUser = store.getState();
   date = new Date();
   handelChangeDate(params: any): void {
@@ -191,6 +193,7 @@ export class UploadNewDraft extends React.Component {
                 className="mx-2"
                 minHeight="47px"
                 minWidth="110px"
+                onClick={()=>{this.props.history.push(AppRoutes.publish_profile)}}
               ></MainButton>
             </div>
           </div>
@@ -199,3 +202,4 @@ export class UploadNewDraft extends React.Component {
     );
   }
 }
+export default withRouter(UploadNewDraft)

@@ -5,36 +5,33 @@ import { MainButton, MainButtonType } from "../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import { InputIcon } from "../../components/search_box";
 import { SelectComponent } from "../../components/select_input";
-import { DiscusstionListTable } from "./component/discusstion_list_table";
-
-export class DiscusstionList extends React.Component {
+import  DiscusstionListTable  from "./component/discusstion_list_table";
+import { RouteComponentProps, withRouter } from "react-router";
+import { AppRoutes } from "../../../core/constants";
+ class DiscusstionList extends React.Component<RouteComponentProps> {
   RoleUser = store.getState();
   state = {
     Data: {
       Items: [
         {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
+          name: "Studying the effects of freeze thaw cycle…",
+          Institution: "Running TGA On XFG…",
           Category: "Material",
-          Eqiups: "12",
         },
         {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
+          name: "Studying the effects of freeze thaw cycle…",
+          Institution: "Running TGA On XFG…",
           Category: "Material",
-          Eqiups: "12",
         },
         {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
+          name: "Studying the effects of freeze thaw cycle…",
+          Institution: "Running TGA On XFG…",
           Category: "Material",
-          Eqiups: "12",
         },
         {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
+          name: "Studying the effects of freeze thaw cycle…",
+          Institution: "Running TGA On XFG…",
           Category: "Material",
-          Eqiups: "12",
         },
       ],
     },
@@ -66,6 +63,7 @@ export class DiscusstionList extends React.Component {
                   borderRadius="24px"
                   fontSize="14px"
                   className="my-2 mx-2"
+                  onClick={()=>{this.props.history.push(AppRoutes.equip_new)}}
                 ></MainButton>
                 <MainButton
                   children="Laboratories"
@@ -73,6 +71,7 @@ export class DiscusstionList extends React.Component {
                   borderRadius="24px"
                   fontSize="14px"
                   className="my-2 mx-2"
+                  onClick={()=>{this.props.history.push(AppRoutes.laboratory)}}
                 ></MainButton>
                 <SelectComponent
                   width="63px"
@@ -137,3 +136,4 @@ export class DiscusstionList extends React.Component {
     );
   }
 }
+export default withRouter(DiscusstionList)
