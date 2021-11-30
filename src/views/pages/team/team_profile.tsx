@@ -6,9 +6,9 @@ import { MainButton, MainButtonType } from "../../components/button";
 import { IconTextRow } from "../../components/icon_text_horizontal";
 import { Theme } from "../../../core/utils";
 import { BoxListScroll } from "../../components/box_list_scroll";
-import { withRouter , RouteComponentProps } from "react-router";
+import { withRouter, RouteComponentProps } from "react-router";
 import { AppRoutes } from "../../../core/constants";
- class LaboratoryPageProfile extends React.Component<RouteComponentProps> {
+class TeamPageProfile extends React.Component<RouteComponentProps> {
   RoleUser = store.getState();
 
   render() {
@@ -18,7 +18,13 @@ import { AppRoutes } from "../../../core/constants";
         <div className="col-12 box-content p-3">
           <div className="d-flex justify-content-between align-items-center">
             <h5 className="b-title d-flex align-items-center">
-              <span onClick={()=>{window.history.back()}} className="backPage"></span> {"Laboratory List > Lab Profile"}
+              <span
+                onClick={() => {
+                  window.history.back();
+                }}
+                className="backPage"
+              ></span>{" "}
+              {"Team Profile"}
               <CircleIcon
                 width="22px"
                 height="22px"
@@ -27,7 +33,9 @@ import { AppRoutes } from "../../../core/constants";
                 fontSize="10px"
                 color="#ffff"
                 className="mx-4 pointer"
-                onClick={()=>{this.props.history.push(AppRoutes.edit_laboratory)}}
+                onClick={() => {
+                  this.props.history.push(AppRoutes.team_edit);
+                }}
               >
                 <i className="fas fa-edit"></i>
               </CircleIcon>
@@ -37,11 +45,13 @@ import { AppRoutes } from "../../../core/constants";
               type={MainButtonType.dark}
               borderRadius="24px"
               fontSize="14px"
-              onClick={()=>{this.props.history.push(AppRoutes.discussion)}}
+              onClick={() => {
+                this.props.history.push(AppRoutes.discussion);
+              }}
             ></MainButton>
           </div>
           <div className="Studying p-4 my-2">
-            <h3 className="px-5 text-center">Structural And Materials Lab</h3>
+            <h3 className="px-5 text-center">Material Testing Team</h3>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
@@ -52,85 +62,67 @@ import { AppRoutes } from "../../../core/constants";
           <div className="row">
             <div className="col-md-6  tabel-info ">
               <div className="row border-bottom ">
-                <h6 className="col-4 t-title mb-0 border-t-l">Category</h6>
-                <div className="col-8 t-desc border-t-r">Material</div>
-              </div>
-              <div className="row border-bottom">
-                <h6 className="col-4 t-title mb-0">Lab Manager(s)</h6>
-                <div className="col-8 t-desc">
-                  <ul>
-                    <li>N. Hosseinzadeh</li>
-                    <li>N. Hosseinzadeh</li>
-                    <li>N. Hosseinzadeh</li>
-                  </ul>
-                </div>
-              </div>
-              <div className="row border-bottom">
-                <h6 className="col-4 t-title mb-0">Website</h6>
-                <div className="col-8 t-desc">
+                <h6 className="col-4 t-title mb-0 border-t-l">Type</h6>
+                <div className="col-8 t-desc border-t-r">
                   <MainButton
-                    children="https://drive.google.com/file/234234"
-                    type={MainButtonType.dark}
+                    children="Main Team"
+                    type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    backgroundColor="#F5F5F5"
-                    color="#096BFF"
+                    backgroundColor="#C3C3C3"
                   ></MainButton>
                 </div>
               </div>
               <div className="row border-bottom">
-                <h6 className="col-4 t-title mb-0">Address</h6>
-                <div className="col-8 t-desc">
-                  Beshiktash Institute of Tech 9863 Greystone Street Upland, CA
-                  91784 +1 (235) 123 4567
-                </div>
+                <h6 className="col-4 t-title mb-0">Team Managers</h6>
+                <div className="col-8 t-desc">D. Jones</div>
               </div>
+
               <div className="row border-bottom">
-                <h6 className="col-4 t-title mb-0 border-b-l">Protocols</h6>
+                <h6 className="col-4 t-title mb-0 border-b-l">Subteams</h6>
                 <div className="col-8 t-desc border-b-r">
                   {" "}
                   <ul className="file-list">
-                    <li>
-                      <img src='/images/pages/pdf_icon.svg' alt="" />{" "}
-                      proposal_general.pdf
-                    </li>
-                    <li>
-                      <img src='/images/pages/word_icon.svg' alt="" />{" "}
-                      proposal_general.docx
-                    </li>
-                    <li>
-                      <img src='/images/pages/excel_icon.svg' alt="" />{" "}
-                      proposal_general.xlsx
-                    </li>
-                    <li>
-                      <img src='/images/pages/pdf_icon.svg' alt="" />{" "}
-                      proposal_general.pdf
-                    </li>
-                    <li>
-                      Shared Links:
-                      <MainButton
-                        children="https://drive.google.com/file/234234"
-                        type={MainButtonType.dark}
-                        borderRadius="24px"
-                        fontSize="14px"
-                        backgroundColor="#F5F5F5"
-                        color="#096BFF"
-                      ></MainButton>
-                      <MainButton
-                        children="https://drive.google.com/file/234234"
-                        type={MainButtonType.dark}
-                        borderRadius="24px"
-                        fontSize="14px"
-                        backgroundColor="#F5F5F5"
-                        color="#096BFF"
-                      ></MainButton>
-                    </li>
+                    <li>- Material Testing Team</li>
+                    <li>- Tension Development Team</li>
+                    <li>- 3D Printed Material Team</li>
                   </ul>
                 </div>
               </div>
-            </div>
-            <div className="col-md-6">
-              <div className="teams Labs mb-3">
+              <div className="teams my-3">
+                <IconTextRow
+                  theme={Theme.dark}
+                  text="Projects"
+                  children={
+                    <img src="/images/pages/lamp.svg" className="mx-2" alt="" />
+                  }
+                ></IconTextRow>
+                <div className="tags p-3">
+                  <MainButton
+                    children="Synergistic Effects of Air Content and Supplementary Cementitious Materials on Increasing Concrete Durability"
+                    type={MainButtonType.light}
+                    borderRadius="24px"
+                    fontSize="14px"
+                    className="px-3 pointer"
+                    backgroundColor="#EBEBEB"
+                    onClick={() => {
+                      this.props.history.push(AppRoutes.member_profile);
+                    }}
+                  ></MainButton>
+                  <MainButton
+                    children="Biophilic Concrete Development"
+                    type={MainButtonType.light}
+                    borderRadius="24px"
+                    fontSize="14px"
+                    className="px-3 pointer"
+                    backgroundColor="#EBEBEB"
+                    onClick={() => {
+                      this.props.history.push(AppRoutes.member_profile);
+                    }}
+                  ></MainButton>
+                </div>
+              </div>
+              <div className="teams Labs">
                 <IconTextRow
                   theme={Theme.dark}
                   text="Labs (Equipments)"
@@ -179,6 +171,90 @@ import { AppRoutes } from "../../../core/constants";
                     </svg>
                   }
                 ></IconTextRow>
+                <div className="tags p-3">
+                  <MainButton
+                    children="ACCESSLab Team"
+                    type={MainButtonType.light}
+                    borderRadius="24px"
+                    fontSize="14px"
+                    className="px-3 pointer"
+                    onClick={() => {
+                      this.props.history.push(AppRoutes.member_profile);
+                    }}
+                  ></MainButton>
+                  <MainButton
+                    children="ACCESSLab Team"
+                    type={MainButtonType.light}
+                    borderRadius="24px"
+                    fontSize="14px"
+                    className="px-3"
+                    onClick={() => {
+                      this.props.history.push(AppRoutes.member_profile);
+                    }}
+                  ></MainButton>
+                  <MainButton
+                    children="ACCESSLab Team"
+                    type={MainButtonType.light}
+                    borderRadius="24px"
+                    fontSize="14px"
+                    className="px-3"
+                    onClick={() => {
+                      this.props.history.push(AppRoutes.member_profile);
+                    }}
+                  ></MainButton>
+                  <MainButton
+                    children="ACCESSLab Team"
+                    type={MainButtonType.light}
+                    borderRadius="24px"
+                    fontSize="14px"
+                    className="px-3 m-2"
+                    onClick={() => {
+                      this.props.history.push(AppRoutes.member_profile);
+                    }}
+                  ></MainButton>
+                </div>
+                <BoxListScroll
+                  items={[
+                    {
+                      text: "Nima Hosseinzadeh",
+                      id: 1,
+                      imagesrc: "/images/layout/img_avatar.png",
+                    },
+                    {
+                      text: "Nima Hosseinzadeh",
+                      id: 2,
+                      imagesrc: "/images/layout/img_avatar.png",
+                    },
+                    {
+                      text: "Nima Hosseinzadeh",
+                      id: 3,
+                      imagesrc: "/images/layout/img_avatar.png",
+                    },
+                  ]}
+                  TextItem="text"
+                  ValueItem="id"
+                  ImageItem="imagesrc"
+                  Deletabel
+                  onClick={() => {
+                    this.props.history.push(AppRoutes.profile_laboratory);
+                  }}
+                  className="pointer"
+                ></BoxListScroll>
+              </div>
+            </div>
+            <div className="col-md-6">
+              <div className="teams Labs mb-3">
+                <IconTextRow
+                  theme={Theme.dark}
+                  text="Teams (Members)"
+                  children={
+                    <img
+                      src="/Images/pages/team_menu.svg"
+                      className="mx-2"
+                      alt=""
+                    />
+                  }
+                ></IconTextRow>
                 <BoxListScroll
                   className="mt-3 pointer"
                   items={[
@@ -201,95 +277,11 @@ import { AppRoutes } from "../../../core/constants";
                   TextItem="text"
                   ValueItem="id"
                   ImageItem="imagesrc"
-                  Deletabel
-                  DeleteFunc={(p, value) => {
-                    console.log(p, value);
+                  onClick={() => {
+                    this.props.history.push(AppRoutes.profile_laboratory);
                   }}
-                  
-                  onClick={()=>{this.props.history.push(AppRoutes.profile_laboratory)}}
-                  
                 ></BoxListScroll>
               </div>
-              <div className="teams mb-3">
-                <IconTextRow
-                  theme={Theme.dark}
-                  text="Teams (Members)"
-                  children={
-                    <img
-                      src='/images/pages/team_menu.svg'
-                      className="mx-2"
-                      alt=""
-                    />
-                  }
-                ></IconTextRow>
-                <div className="tags p-3">
-                  <MainButton
-                    children="ACCESSLab Team"
-                    type={MainButtonType.light}
-                    borderRadius="24px"
-                    fontSize="14px"
-                    className="px-3 pointer"
-                    backgroundColor="#EBEBEB"
-                    onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
-                  ></MainButton>
-                  <MainButton
-                    children="ACCESSLab Team"
-                    type={MainButtonType.light}
-                    borderRadius="24px"
-                    fontSize="14px"
-                    className="px-3 pointer"
-                    backgroundColor="#EBEBEB"
-                    onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
-                  ></MainButton>
-                  <MainButton
-                    children="ACCESSLab Team"
-                    type={MainButtonType.light}
-                    borderRadius="24px"
-                    fontSize="14px"
-                    className="px-3 pointer"
-                    backgroundColor="#EBEBEB"
-                    onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
-                  ></MainButton>
-                  <MainButton
-                    children="ACCESSLab Team"
-                    type={MainButtonType.light}
-                    borderRadius="24px"
-                    fontSize="14px"
-                    className="px-3 m-2 pointer"
-                    backgroundColor="#EBEBEB"
-                    onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
-                  ></MainButton>
-                </div>
-                <BoxListScroll
-                  items={[
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 1,
-                      imagesrc: "/images/layout/img_avatar.png",
-                    },
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 2,
-                      imagesrc: "/images/layout/img_avatar.png",
-                    },
-                    {
-                      text: "Nima Hosseinzadehgg",
-                      id: 3,
-                      imagesrc: "/images/layout/img_avatar.png",
-                    },
-                  ]}
-                  TextItem="text"
-                  ValueItem="id"
-                  ImageItem="imagesrc"
-                  Deletabel
-                  DeleteFunc={(p, value) => {
-                    console.log(p, value);
-                  }}
-                  className="pointer"
-                  onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
-                ></BoxListScroll>
-              </div>
-
             </div>
           </div>
         </div>
@@ -297,4 +289,4 @@ import { AppRoutes } from "../../../core/constants";
     );
   }
 }
-export default withRouter(LaboratoryPageProfile)
+export default withRouter(TeamPageProfile);

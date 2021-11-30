@@ -148,7 +148,7 @@ export class DiscusstionPage extends React.Component {
                     text="Users In This Discussion"
                     children={
                       <img
-                        src="/Images/pages/team_menu_icon.svg"
+                        src="/Images/pages/team_menu.svg"
                         className="mx-2"
                         alt=""
                       />

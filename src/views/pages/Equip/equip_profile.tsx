@@ -140,7 +140,7 @@ export class EquipProfile extends React.Component {
                   text="Teams (Members) With Access"
                   children={
                     <img
-                      src="/Images/pages/team_menu_icon.svg"
+                      src="/Images/pages/team_menu.svg"
                       className="mx-2"
                       alt=""
                     />

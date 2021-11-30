@@ -63,6 +63,8 @@ import {
   AdminTickets,
   AdminTicket,
   AdminBroadcast,
+  TeamPageProfile,
+  TeamPageEdit,
 } from "./views";
 
 const RoleUser: UserRoles = store.getState();
@@ -321,7 +323,7 @@ ReactDOM.render(
             path={AppRoutes.admin_tickets}
             component={AdminTickets}
           />
-           <ProtectedRoute
+          <ProtectedRoute
             isAuthenticated={RoleUser === UserRoles.admin ? true : false}
             authenticationPath={AppRoutes.dashboard}
             exact={true}
@@ -335,7 +337,22 @@ ReactDOM.render(
             path={AppRoutes.admin_broadcast}
             component={AdminBroadcast}
           />
-          
+          <Route
+            component={TeamPageProfile}
+            path={AppRoutes.team_profile}
+            exact
+          />
+          <ProtectedRoute
+            isAuthenticated={
+              RoleUser === UserRoles.level1 || RoleUser === UserRoles.level2
+                ? true
+                : false
+            }
+            authenticationPath={AppRoutes.team}
+            exact={true}
+            path={AppRoutes.team_edit}
+            component={TeamPageEdit}
+          />
         </Switch>
       </MainLayout>
     </BrowserRouter>

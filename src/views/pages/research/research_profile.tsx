@@ -157,7 +157,7 @@ import { AppRoutes } from "../../../core/constants";
                   text="Teams (Members)"
                   children={
                     <img
-                      src="/Images/pages/team_menu_icon.svg"
+                      src="/Images/pages/team_menu.svg"
                       className="mx-2"
                       alt=""
                     />

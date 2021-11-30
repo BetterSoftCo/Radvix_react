@@ -6,9 +6,11 @@ import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import { InputIcon } from "../../components/search_box";
 import { SelectComponent } from "../../components/select_input";
 import  AcordienTable  from "./component/recent_teams";
+import { withRouter, RouteComponentProps } from "react-router";
+import { AppRoutes } from "../../../core/constants";
 
 
-export class TeamPage extends React.Component {
+ class TeamPage extends React.Component<RouteComponentProps> {
   RoleUser = store.getState();
   render() {
     return (
@@ -34,12 +36,14 @@ export class TeamPage extends React.Component {
                   type={MainButtonType.dark}
                   borderRadius="24px"
                   fontSize="14px"
+                  onClick={()=>{this.props.history.push(AppRoutes.new_team)}}
                 ></MainButton>
                 <MainButton
                   children="Member"
                   type={MainButtonType.dark}
                   borderRadius="24px"
                   fontSize="14px"
+                  onClick={()=>{this.props.history.push(AppRoutes.member)}}
                 ></MainButton>
                 <SelectComponent
                   width="63px"
@@ -100,3 +104,4 @@ export class TeamPage extends React.Component {
     );
   }
 }
+export default withRouter(TeamPage)

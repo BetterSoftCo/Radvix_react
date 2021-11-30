@@ -5,7 +5,9 @@ import "react-datepicker/dist/react-datepicker.css";
 import { MainButton, MainButtonType } from "../../components/button";
 import { SelectComponent } from "../../components/select_input";
 import { BoxAlert } from "../../components/box_alert";
-export class TeamPageNew extends React.Component {
+import { RouteComponentProps, withRouter } from "react-router";
+import { AppRoutes } from "../../../core/constants";
+class TeamPageNew extends React.Component<RouteComponentProps> {
   RoleUser = store.getState();
   date = new Date();
   render() {
@@ -14,7 +16,13 @@ export class TeamPageNew extends React.Component {
         <div className="row"></div>
         <div className="col-12 box-content p-3">
           <h5 className="b-title d-flex">
-            <span onClick={()=>{window.history.back()}} className="backPage"></span> Create A New Team
+            <span
+              onClick={() => {
+                window.history.back();
+              }}
+              className="backPage"
+            ></span>{" "}
+            Create A New Team
           </h5>
           <div className="form row">
             <div className="col-md-6 left">
@@ -56,7 +64,6 @@ export class TeamPageNew extends React.Component {
               ></BoxAlert>
             </div>
             <div className="col-md-6 right">
-              
               <div className="item">
                 <SelectComponent
                   items={[
@@ -72,9 +79,7 @@ export class TeamPageNew extends React.Component {
                   optional=""
                 ></SelectComponent>
               </div>
-              <BoxAlert
-                text="No Members Have Been Added Yet!"
-              ></BoxAlert>
+              <BoxAlert text="No Members Have Been Added Yet!"></BoxAlert>
               <div className="item">
                 <SelectComponent
                   items={[
@@ -90,9 +95,7 @@ export class TeamPageNew extends React.Component {
                   optional="optional"
                 ></SelectComponent>
               </div>
-              <BoxAlert
-                text="No Members Have Been Added Yet!"
-              ></BoxAlert>
+              <BoxAlert text="No Members Have Been Added Yet!"></BoxAlert>
               <div className="item">
                 <SelectComponent
                   items={[
@@ -108,9 +111,7 @@ export class TeamPageNew extends React.Component {
                   optional="optional"
                 ></SelectComponent>
               </div>
-              <BoxAlert
-                text="No Members Have Been Added Yet!"
-              ></BoxAlert>
+              <BoxAlert text="No Members Have Been Added Yet!"></BoxAlert>
             </div>
             <div className="col-12 d-flex justify-content-center align-items-center my-4">
               <MainButton
@@ -130,6 +131,9 @@ export class TeamPageNew extends React.Component {
                 className="mx-2"
                 minHeight="47px"
                 minWidth="110px"
+                onClick={() => {
+                  this.props.history.push(AppRoutes.team_profile);
+                }}
               ></MainButton>
             </div>
           </div>
@@ -138,3 +142,4 @@ export class TeamPageNew extends React.Component {
     );
   }
 }
+export default withRouter(TeamPageNew);

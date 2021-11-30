@@ -163,7 +163,7 @@ export class MemberPageProfile extends React.Component {
                   text="Subteams"
                   children={
                     <img
-                      src="/Images/pages/team_menu_icon.svg"
+                      src="/Images/pages/team_menu.svg"
                       className="mx-2"
                       alt=""
                     />

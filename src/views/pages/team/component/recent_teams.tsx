@@ -64,7 +64,7 @@ const AcordienTable:React.FC<IAcordienTable & RouteComponentProps>  = (props) =>
                     width="26px"
                     height="26px"
                     type={ThemeCircleIcon.dark}
-                    onClick={(e) => handelOnclick(e)}
+                    onClick={() => props.history.push(AppRoutes.team_profile)}
                     className="pointer m-1"
                     >
                     <i className="fas fa-file-alt"></i>
@@ -74,7 +74,7 @@ const AcordienTable:React.FC<IAcordienTable & RouteComponentProps>  = (props) =>
                         width="26px"
                         height="26px"
                         type={ThemeCircleIcon.dark}
-                        onClick={(e) => handelOnclick(e)}
+                        onClick={() => props.history.push(AppRoutes.team_edit)}
                         className="pointer m-1"
                       >
                         <i className="fas fa-edit"></i>
