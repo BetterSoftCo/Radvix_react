@@ -2,8 +2,9 @@
 import React from "react";
 import { MainButton, MainButtonType } from "../../components/button";
 import { InputComponent, InputType } from "../../components/inputs";
-
-export const LoginPage: React.FC = () => {
+import { RouteComponentProps, withRouter } from "react-router";
+import { AppRoutes } from "../../../core/constants";
+ const LoginPage: React.FC<RouteComponentProps> = (props) => {
   return (
     <div className="row bg-danger  login">
       <div className="col-md-3   left">
@@ -43,6 +44,9 @@ export const LoginPage: React.FC = () => {
               minWidth="90px"
               minHeight="43px"
               className="align-self-end"
+              onClick={() => {
+                  props.history.push(AppRoutes.dashboard);
+                }}
             ></MainButton>
           </div>
         </form>
@@ -95,3 +99,4 @@ export const LoginPage: React.FC = () => {
     </div>
   );
 };
+export default withRouter(LoginPage)
