@@ -100,4 +100,14 @@
       }
     }
   }
+  .responsive {
+    @media (max-width: 575.98px) {
+      overflow-x: scroll;
+      overflow-y: hidden;
+      min-width: 63vw;
+      .child-rsponsive{
+        min-width: 100vw;
+      }
+    }
+  }
 }

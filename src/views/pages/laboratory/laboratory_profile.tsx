@@ -6,8 +6,9 @@ import { MainButton, MainButtonType } from "../../components/button";
 import { IconTextRow } from "../../components/icon_text_horizontal";
 import { Theme } from "../../../core/utils";
 import { BoxListScroll } from "../../components/box_list_scroll";
-import { excel_icon, pdf_icon, word_icon ,img_avatar, team_menu_icon} from "../../../assets";
-export class LaboratoryPageProfile extends React.Component {
+import { withRouter , RouteComponentProps } from "react-router";
+import { AppRoutes } from "../../../core/constants";
+ class LaboratoryPageProfile extends React.Component<RouteComponentProps> {
   RoleUser = store.getState();
 
   render() {
@@ -17,7 +18,7 @@ export class LaboratoryPageProfile extends React.Component {
         <div className="col-12 box-content p-3">
           <div className="d-flex justify-content-between align-items-center">
             <h5 className="b-title d-flex align-items-center">
-              <span className="backPage"></span> {"Lab Profile"}
+              <span onClick={()=>{window.history.back()}} className="backPage"></span> {"Laboratory List > Lab Profile"}
               <CircleIcon
                 width="22px"
                 height="22px"
@@ -25,9 +26,10 @@ export class LaboratoryPageProfile extends React.Component {
                 backgroundColor="#474747"
                 fontSize="10px"
                 color="#ffff"
-                className="mx-4"
+                className="mx-4 pointer"
+                onClick={()=>{this.props.history.push(AppRoutes.edit_laboratory)}}
               >
-                <i className="fas fa-history"></i>
+                <i className="fas fa-edit"></i>
               </CircleIcon>
             </h5>
             <MainButton
@@ -35,6 +37,7 @@ export class LaboratoryPageProfile extends React.Component {
               type={MainButtonType.dark}
               borderRadius="24px"
               fontSize="14px"
+              onClick={()=>{this.props.history.push(AppRoutes.discussion)}}
             ></MainButton>
           </div>
           <div className="Studying p-4 my-2">
@@ -88,19 +91,19 @@ export class LaboratoryPageProfile extends React.Component {
                   {" "}
                   <ul className="file-list">
                     <li>
-                      <img src={pdf_icon} alt="" />{" "}
+                      <img src='/images/pages/pdf_icon.svg' alt="" />{" "}
                       proposal_general.pdf
                     </li>
                     <li>
-                      <img src={word_icon} alt="" />{" "}
+                      <img src='/images/pages/word_icon.svg' alt="" />{" "}
                       proposal_general.docx
                     </li>
                     <li>
-                      <img src={excel_icon} alt="" />{" "}
+                      <img src='/images/pages/excel_icon.svg' alt="" />{" "}
                       proposal_general.xlsx
                     </li>
                     <li>
-                      <img src={pdf_icon} alt="" />{" "}
+                      <img src='/images/pages/pdf_icon.svg' alt="" />{" "}
                       proposal_general.pdf
                     </li>
                     <li>
@@ -177,22 +180,22 @@ export class LaboratoryPageProfile extends React.Component {
                   }
                 ></IconTextRow>
                 <BoxListScroll
-                  className="mt-3"
+                  className="mt-3 pointer"
                   items={[
                     {
                       text: "Nima Hosseinzadeh",
                       id: 1,
-                      imagesrc: {img_avatar},
+                      imagesrc: "/images/layout/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 2,
-                      imagesrc: {img_avatar},
+                      imagesrc: "/images/layout/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 3,
-                      imagesrc: {img_avatar},
+                      imagesrc: "/images/layout/img_avatar.png",
                     },
                   ]}
                   TextItem="text"
@@ -202,6 +205,9 @@ export class LaboratoryPageProfile extends React.Component {
                   DeleteFunc={(p, value) => {
                     console.log(p, value);
                   }}
+                  
+                  onClick={()=>{this.props.history.push(AppRoutes.profile_laboratory)}}
+                  
                 ></BoxListScroll>
               </div>
               <div className="teams mb-3">
@@ -210,7 +216,7 @@ export class LaboratoryPageProfile extends React.Component {
                   text="Teams (Members)"
                   children={
                     <img
-                      src={team_menu_icon}
+                      src='/images/pages/team_menu.svg'
                       className="mx-2"
                       alt=""
                     />
@@ -222,32 +228,36 @@ export class LaboratoryPageProfile extends React.Component {
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
+                    className="px-3 pointer"
                     backgroundColor="#EBEBEB"
+                    onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
                   ></MainButton>
                   <MainButton
                     children="ACCESSLab Team"
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
+                    className="px-3 pointer"
                     backgroundColor="#EBEBEB"
+                    onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
                   ></MainButton>
                   <MainButton
                     children="ACCESSLab Team"
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
+                    className="px-3 pointer"
                     backgroundColor="#EBEBEB"
+                    onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
                   ></MainButton>
                   <MainButton
                     children="ACCESSLab Team"
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3 m-2"
+                    className="px-3 m-2 pointer"
                     backgroundColor="#EBEBEB"
+                    onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
                   ></MainButton>
                 </div>
                 <BoxListScroll
@@ -255,17 +265,17 @@ export class LaboratoryPageProfile extends React.Component {
                     {
                       text: "Nima Hosseinzadeh",
                       id: 1,
-                      imagesrc: {img_avatar},
+                      imagesrc: "/images/layout/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 2,
-                      imagesrc: {img_avatar},
+                      imagesrc: "/images/layout/img_avatar.png",
                     },
                     {
-                      text: "Nima Hosseinzadeh",
+                      text: "Nima Hosseinzadehgg",
                       id: 3,
-                      imagesrc: {img_avatar},
+                      imagesrc: "/images/layout/img_avatar.png",
                     },
                   ]}
                   TextItem="text"
@@ -275,8 +285,11 @@ export class LaboratoryPageProfile extends React.Component {
                   DeleteFunc={(p, value) => {
                     console.log(p, value);
                   }}
+                  className="pointer"
+                  onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
                 ></BoxListScroll>
               </div>
+
             </div>
           </div>
         </div>
@@ -284,3 +297,4 @@ export class LaboratoryPageProfile extends React.Component {
     );
   }
 }
+export default withRouter(LaboratoryPageProfile)

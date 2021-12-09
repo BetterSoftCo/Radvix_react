@@ -1,6 +1,5 @@
 import React from "react";
 import ReactPaginate from "react-paginate";
-import { search_box_icon } from "../../../assets";
 import { store } from "../../../data/store";
 import { MainButton, MainButtonType } from "../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
@@ -51,7 +50,7 @@ export class TasksPage extends React.Component {
                 <h6 style={{ width: "35%" }}>Task List</h6>
                 <InputIcon
                   chilren={
-                    <img src={search_box_icon} alt="" />
+                    <img src='/images/pages/search_box_icon.svg' alt="" />
                   }
                   width="100%"
                   height="44px"
@@ -80,40 +79,45 @@ export class TasksPage extends React.Component {
             </div>
             <AcordienTable role={this.RoleUser}></AcordienTable>
 
-            <div className="d-flex justify-content-center align-items-center my-3">
-              <ReactPaginate
-                previousLabel={
-                  <CircleIcon
-                    width="24px"
-                    backgroundColor="#ADADAD"
-                    height="24px"
-                    type={ThemeCircleIcon.dark}
-                  >
-                    <i className="fas fa-chevron-left"></i>
-                  </CircleIcon>
-                }
-                nextLabel={
-                  <CircleIcon
-                    width="24px"
-                    backgroundColor="#ADADAD"
-                    height="24px"
-                    type={ThemeCircleIcon.dark}
-                  >
-                    <i className="fas fa-angle-right"></i>
-                  </CircleIcon>
-                }
-                breakLabel={"..."}
-                breakClassName={"break-me"}
-                pageCount={20}
-                marginPagesDisplayed={2}
-                pageRangeDisplayed={5}
-                onPageChange={() => {
-                  console.log("sssss");
-                }}
-                containerClassName={"pagination"}
-                activeClassName={"active"}
-              />
-            </div>
+           <div className="d-flex justify-content-between align-items-baseline">
+                  <div className="d-flex justify-content-end flex-fill">
+                  <ReactPaginate
+                  previousLabel={
+                    <CircleIcon
+                      width="24px"
+                      backgroundColor="#ADADAD"
+                      height="24px"
+                      type={ThemeCircleIcon.dark}
+                    >
+                      <i className="fas fa-chevron-left"></i>
+                    </CircleIcon>
+                  }
+                  nextLabel={
+                    <CircleIcon
+                      width="24px"
+                      backgroundColor="#ADADAD"
+                      height="24px"
+                      type={ThemeCircleIcon.dark}
+                    >
+                      <i className="fas fa-angle-right"></i>
+                    </CircleIcon>
+                  }
+                  breakLabel={"..."}
+                  breakClassName={"break-me"}
+                  pageCount={20}
+                  marginPagesDisplayed={2}
+                  pageRangeDisplayed={5}
+                  onPageChange={()=>{console.log('changepage')}}
+                  containerClassName={"pagination"}
+                  activeClassName={"active"}
+                />
+                  </div>
+                  <div className="d-flex justify-content-end flex-fill">
+                  <p className="text-right mb-0 " >Total Results: 45</p>
+                  </div>
+                 
+                
+              </div>
           </div>
         </div>
       </div>

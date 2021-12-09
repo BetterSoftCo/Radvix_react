@@ -1,16 +1,16 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from "react";
-import { google_scholar_icon_130918, linkedIn_logo_initials, member, orcid_og_image, radvix_logo } from "../../../assets";
 import { MainButton, MainButtonType } from "../../components/button";
 import { InputComponent, InputType } from "../../components/inputs";
-
-export const LoginPage: React.FC = () => {
+import { RouteComponentProps, withRouter } from "react-router";
+import { AppRoutes } from "../../../core/constants";
+ const LoginPage: React.FC<RouteComponentProps> = (props) => {
   return (
     <div className="row bg-danger  login">
       <div className="col-md-3   left">
-        <img src={radvix_logo} className="logo" alt="" />
+        <img src='/images/layout/radvix_logo.svg' className="logo" alt="" />
         <span>login</span>
-        <img src={member} className="logo-Member" alt="" />
+        <img src='/images/pages/member.png' className="logo-Member" alt="" />
         <MainButton
           children={"Forgot Email?"}
           type={MainButtonType.dark}
@@ -44,6 +44,9 @@ export const LoginPage: React.FC = () => {
               minWidth="90px"
               minHeight="43px"
               className="align-self-end"
+              onClick={() => {
+                  props.history.push(AppRoutes.dashboard);
+                }}
             ></MainButton>
           </div>
         </form>
@@ -58,7 +61,7 @@ export const LoginPage: React.FC = () => {
           backgroundColor="#A6CE39"
           children={
             <div>
-              <img src={orcid_og_image} /> Login using ORCiD
+              <img src='/images/pages/orcid-og-image.png' /> Login using ORCiD
             </div>
           }
         ></MainButton>
@@ -72,7 +75,7 @@ export const LoginPage: React.FC = () => {
           backgroundColor="#4285F4"
           children={
             <div>
-              <img src={google_scholar_icon_130918} /> Login
+              <img src='/images/pages/google_scholar_icon_130918.png' /> Login
               using Google
             </div>
           }
@@ -87,7 +90,7 @@ export const LoginPage: React.FC = () => {
           backgroundColor="#0274B3"
           children={
             <div>
-              <img src={linkedIn_logo_initials} /> Login using
+              <img src='/images/pages/linkedIn_logo_initials.png' /> Login using
               LinkedIn
             </div>
           }
@@ -96,3 +99,4 @@ export const LoginPage: React.FC = () => {
     </div>
   );
 };
+export default withRouter(LoginPage)

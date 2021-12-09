@@ -7,7 +7,9 @@ import { MainButton, MainButtonType } from "../../components/button";
 import Dropzone from "react-dropzone";
 import { SelectComponent } from "../../components/select_input";
 import { BoxAlert } from "../../components/box_alert";
-export class LaboratoryPageNew extends React.Component {
+import { RouteComponentProps, withRouter } from "react-router";
+import { AppRoutes } from "../../../core/constants";
+ class LaboratoryPageNew extends React.Component<RouteComponentProps> {
   RoleUser = store.getState();
   date = new Date();
   handelChangeDate(params: any): void {
@@ -27,11 +29,11 @@ export class LaboratoryPageNew extends React.Component {
       </li>
     ));
     return (
-      <div className="container-fluid research new-research">
+        <div className="container-fluid research new-research">
         <div className="row"></div>
         <div className="col-12 box-content p-3">
           <h5 className="b-title d-flex">
-            <span className="backPage"></span> Create A New Laboratory
+            <span onClick={()=>{window.history.back()}} className="backPage"></span> Create A New Laboratory
           </h5>
           <div className="form row">
             <div className="col-md-6 left">
@@ -242,6 +244,7 @@ export class LaboratoryPageNew extends React.Component {
               <MainButton
                 type={MainButtonType.dark}
                 children={"Create"}
+                onClick={()=>{this.props.history.push(AppRoutes.profile_laboratory)}}
                 borderRadius="50px"
                 fontSize="20px"
                 className="mx-2"
@@ -255,3 +258,4 @@ export class LaboratoryPageNew extends React.Component {
     );
   }
 }
+export default withRouter(LaboratoryPageNew)

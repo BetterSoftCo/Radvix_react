@@ -8,7 +8,6 @@ import Dropzone from "react-dropzone";
 import { SelectComponent } from "../../components/select_input";
 import { BoxAlert } from "../../components/box_alert";
 import { BoxListScroll } from "../../components/box_list_scroll";
-import { pdf_icon , img_avatar} from "../../../assets";
 export class LaboratoryPageEdit extends React.Component {
   RoleUser = store.getState();
   date = new Date();
@@ -33,7 +32,7 @@ export class LaboratoryPageEdit extends React.Component {
         <div className="row"></div>
         <div className="col-12 box-content p-3">
           <h5 className="b-title d-flex">
-            <span className="backPage"></span> Create A New Laboratory
+            <span onClick={()=>{window.history.back()}} className="backPage"></span> Create A New Laboratory
           </h5>
           <div className="form row">
             <div className="col-md-6 left">
@@ -131,17 +130,17 @@ export class LaboratoryPageEdit extends React.Component {
                     {
                       text: "Nima Hosseinzadeh",
                       id: 1,
-                      imagesrc: {img_avatar},
+                      imagesrc: "/images/layout/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 2,
-                      imagesrc: {img_avatar},
+                      imagesrc: "/images/layout/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 3,
-                      imagesrc: {img_avatar},
+                      imagesrc: "/images/layout/img_avatar.png",
                     },
                   ]}
                   TextItem="text"
@@ -197,7 +196,7 @@ export class LaboratoryPageEdit extends React.Component {
                 <ul className="file-list mt-3">
                   <li className="d-flex align-items-center mb-1">
                     <img
-                      src={pdf_icon}
+                      src='/images/pages/pdf_icon.svg'
                       alt=""
                       className="mx-2"
                     />{" "}
@@ -213,7 +212,7 @@ export class LaboratoryPageEdit extends React.Component {
                   </li>
                   <li className="d-flex align-items-center mb-1">
                     <img
-                      src={pdf_icon}
+                      src='/images/pages/pdf_icon.svg'
                       alt=""
                       className="mx-2"
                     />{" "}
@@ -229,7 +228,7 @@ export class LaboratoryPageEdit extends React.Component {
                   </li>
                   <li className="d-flex align-items-center mb-1">
                     <img
-                      src={pdf_icon}
+                      src='/images/pages/pdf_icon.svg'
                       alt=""
                       className="mx-2"
                     />{" "}

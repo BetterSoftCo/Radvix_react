@@ -12,6 +12,7 @@ import ProtectedRoute from "./router/protected_route";
 import { UserRoles } from "./core/utils";
 import "react-toastify/dist/ReactToastify.css";
 
+
 import {
   ResearchPage,
   ResearchPageNew,
@@ -26,6 +27,46 @@ import {
   TaskPageNew,
   TaskPageProfile,
   TaskPageEdit,
+  MemberPage,
+  MemberPageNew,
+  MemberPageProfile,
+  MemberPageUseEdit,
+  EditMyProfile,
+  NewEquip,
+  EquipPage,
+  EquipProfile,
+  EditEquip,
+  NewDiscusstion,
+  DiscusstionPage,
+  DiscusstionList,
+  TeamPage,
+  TeamPageNew,
+  DataPageNew,
+  DataCollection,
+  MyDataCollection,
+  DataPageProfile,
+  DataPageEdit,
+  PublishPageNew,
+  MyPublications,
+  PublicationProfile,
+  UploadNewDraft,
+  ExpensePageNew,
+  ExpenseArchive,
+  ExpensePageProfile,
+  SettingPage,
+  TicketPageNew,
+  TicketPage,
+  Ticket,
+  AdminDashboard,
+  AdminClients,
+  AdminMember,
+  AdminPayments,
+  AdminTickets,
+  AdminTicket,
+  AdminBroadcast,
+  TeamPageProfile,
+  TeamPageEdit,
+  TimeLine,
 } from "./views";
 
 const RoleUser: UserRoles = store.getState();
@@ -56,7 +97,10 @@ ReactDOM.render(
             path={AppRoutes.edit_research}
             component={ResearchPageEdit}
           />
+
           <Route component={LaboratoryPage} path={AppRoutes.laboratory} exact />
+          <Route component={TeamPage} path={AppRoutes.team} exact />
+          <Route component={TeamPageNew} path={AppRoutes.new_team} exact />
           <ProtectedRoute
             isAuthenticated={
               RoleUser === UserRoles.level1 || RoleUser === UserRoles.level2
@@ -111,6 +155,210 @@ ReactDOM.render(
             exact={true}
             path={AppRoutes.task_edit}
             component={TaskPageEdit}
+          />
+          <Route component={MemberPage} path={AppRoutes.member} exact />
+          <ProtectedRoute
+            isAuthenticated={
+              RoleUser === UserRoles.level1 || RoleUser === UserRoles.level2
+                ? true
+                : false
+            }
+            authenticationPath={AppRoutes.member}
+            exact={true}
+            path={AppRoutes.member_new}
+            component={MemberPageNew}
+          />
+          <Route
+            component={MemberPageProfile}
+            path={AppRoutes.member_profile}
+            exact
+          />
+          <ProtectedRoute
+            isAuthenticated={
+              RoleUser === UserRoles.level1 || RoleUser === UserRoles.level2
+                ? true
+                : false
+            }
+            authenticationPath={AppRoutes.member}
+            exact={true}
+            path={AppRoutes.member_user_edit}
+            component={MemberPageUseEdit}
+          />
+          <Route
+            component={EditMyProfile}
+            path={AppRoutes.member_edit_profile}
+            exact
+          />
+          <ProtectedRoute
+            isAuthenticated={
+              RoleUser === UserRoles.level1 || RoleUser === UserRoles.level2
+                ? true
+                : false
+            }
+            authenticationPath={AppRoutes.equip}
+            exact={true}
+            path={AppRoutes.equip_new}
+            component={NewEquip}
+          />
+          <Route component={EquipPage} path={AppRoutes.equip} exact />
+          <Route
+            component={EquipProfile}
+            path={AppRoutes.equip_profile}
+            exact
+          />
+          <ProtectedRoute
+            isAuthenticated={
+              RoleUser === UserRoles.level1 || RoleUser === UserRoles.level2
+                ? true
+                : false
+            }
+            authenticationPath={AppRoutes.equip}
+            exact={true}
+            path={AppRoutes.equip_edit}
+            component={EditEquip}
+          />
+          <Route
+            component={NewDiscusstion}
+            path={AppRoutes.discussion_new}
+            exact
+          />
+          <Route
+            component={DiscusstionPage}
+            path={AppRoutes.discussion}
+            exact
+          />
+          <Route
+            component={DiscusstionList}
+            path={AppRoutes.discussion_list}
+            exact
+          />
+          <Route component={DataPageNew} path={AppRoutes.data_new} exact />
+          <Route component={DataCollection} path={AppRoutes.data} exact />
+          <Route
+            component={MyDataCollection}
+            path={AppRoutes.data_mydata}
+            exact
+          />
+          <Route
+            component={DataPageProfile}
+            path={AppRoutes.data_profile}
+            exact
+          />
+          <ProtectedRoute
+            isAuthenticated={
+              RoleUser === UserRoles.level1 || RoleUser === UserRoles.level2
+                ? true
+                : false
+            }
+            authenticationPath={AppRoutes.data}
+            exact={true}
+            path={AppRoutes.data_edit}
+            component={DataPageEdit}
+          />
+          <Route
+            component={PublishPageNew}
+            path={AppRoutes.publish_new}
+            exact
+          />
+          <Route component={MyPublications} path={AppRoutes.publish} exact />
+          <Route
+            component={PublicationProfile}
+            path={AppRoutes.publish_profile}
+            exact
+          />
+          <Route
+            component={UploadNewDraft}
+            path={AppRoutes.publish_upload}
+            exact
+          />
+          <Route
+            component={ExpensePageNew}
+            path={AppRoutes.expense_new}
+            exact
+          />
+          <Route component={ExpenseArchive} path={AppRoutes.expense} exact />
+          <Route
+            component={ExpensePageProfile}
+            path={AppRoutes.expense_profile}
+            exact
+          />
+          <Route component={SettingPage} path={AppRoutes.setting} exact />
+          <Route
+            component={TicketPageNew}
+            path={AppRoutes.ticketing_new}
+            exact
+          />
+          <Route component={TicketPage} path={AppRoutes.ticketing} exact />
+          <Route component={Ticket} path={AppRoutes.ticketing_ticket} exact />
+          <ProtectedRoute
+            isAuthenticated={RoleUser === UserRoles.admin ? true : false}
+            authenticationPath={AppRoutes.dashboard}
+            exact={true}
+            path={AppRoutes.admin_dashboard}
+            component={AdminDashboard}
+          />
+          <ProtectedRoute
+            isAuthenticated={RoleUser === UserRoles.admin ? true : false}
+            authenticationPath={AppRoutes.dashboard}
+            exact={true}
+            path={AppRoutes.admin_clients}
+            component={AdminClients}
+          />
+          <ProtectedRoute
+            isAuthenticated={RoleUser === UserRoles.admin ? true : false}
+            authenticationPath={AppRoutes.dashboard}
+            exact={true}
+            path={AppRoutes.admin_member}
+            component={AdminMember}
+          />
+          <ProtectedRoute
+            isAuthenticated={RoleUser === UserRoles.admin ? true : false}
+            authenticationPath={AppRoutes.dashboard}
+            exact={true}
+            path={AppRoutes.admin_payments}
+            component={AdminPayments}
+          />
+          <ProtectedRoute
+            isAuthenticated={RoleUser === UserRoles.admin ? true : false}
+            authenticationPath={AppRoutes.dashboard}
+            exact={true}
+            path={AppRoutes.admin_tickets}
+            component={AdminTickets}
+          />
+          <ProtectedRoute
+            isAuthenticated={RoleUser === UserRoles.admin ? true : false}
+            authenticationPath={AppRoutes.dashboard}
+            exact={true}
+            path={AppRoutes.admin_ticket}
+            component={AdminTicket}
+          />
+          <ProtectedRoute
+            isAuthenticated={RoleUser === UserRoles.admin ? true : false}
+            authenticationPath={AppRoutes.dashboard}
+            exact={true}
+            path={AppRoutes.admin_broadcast}
+            component={AdminBroadcast}
+          />
+          <Route
+            component={TeamPageProfile}
+            path={AppRoutes.team_profile}
+            exact
+          />
+          <ProtectedRoute
+            isAuthenticated={
+              RoleUser === UserRoles.level1 || RoleUser === UserRoles.level2
+                ? true
+                : false
+            }
+            authenticationPath={AppRoutes.team}
+            exact={true}
+            path={AppRoutes.team_edit}
+            component={TeamPageEdit}
+          />
+          <Route
+            component={TimeLine}
+            path={AppRoutes.timeline_research}
+            exact
           />
         </Switch>
       </MainLayout>

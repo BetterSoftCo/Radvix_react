@@ -19,6 +19,7 @@ interface InputsProps {
   label?: ReactNode;
   popQuestion?: string;
   optional?: string;
+  border?:string;
 }
 export const SelectComponent: React.FC<InputsProps> = ({
   width,
@@ -28,6 +29,7 @@ export const SelectComponent: React.FC<InputsProps> = ({
   backgroundColor,
   className,
   borderRadius,
+  border,
   onChange,
   placeholder,
   items,
@@ -44,6 +46,7 @@ export const SelectComponent: React.FC<InputsProps> = ({
     minHeigth: minHeigth,
     backgroundColor: backgroundColor,
     borderRadius: borderRadius,
+    border:border
   };
   let IsclassName;
   if (className !== undefined) {
@@ -52,7 +55,8 @@ export const SelectComponent: React.FC<InputsProps> = ({
     IsclassName = "";
   }
   let TemplateLabel;
-  if (label !== null) {
+  
+  if (label !== null && label !== undefined) {
     TemplateLabel = (
       <span className="label d-flex align-items-center">
         {label}

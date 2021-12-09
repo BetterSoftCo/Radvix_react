@@ -29,7 +29,7 @@ export class SplashPage extends React.Component {
             borderRadius="50px"
             children={
               <div>
-                <img src="images/component/Group 1.svg" alt="sssss" /> Home
+                <img src="images/component/group_1.svg" alt="sssss" /> Home
               </div>
             }
             onClick={() => console.log("hello")}

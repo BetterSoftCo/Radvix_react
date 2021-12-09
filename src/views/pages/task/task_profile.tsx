@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/alt-text */
 import React from "react";
 import { store } from "../../../data/store";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
@@ -7,18 +6,14 @@ import { MainButton, MainButtonType } from "../../components/button";
 import { IconTextRow } from "../../components/icon_text_horizontal";
 import { Theme, UserRoles } from "../../../core/utils";
 import { BoxListScroll } from "../../components/box_list_scroll";
-import {
-  pdf_icon,
-  team_menu_icon,
-  img_avatar,
-  search_box_icon,
-} from "../../../assets";
 import { InputIcon } from "../../components/search_box";
-import ReactPaginate from "react-paginate";
 import { SelectComponent } from "../../components/select_input";
 import { TaskDataCollection } from "./component/task_data_collection";
+import ReactPaginate from "react-paginate";
 import { Subtasks } from "./component/subtasks";
-export class TaskPageProfile extends React.Component {
+import { RouteComponentProps, withRouter } from "react-router";
+import { AppRoutes } from "../../../core/constants";
+ class TaskPageProfile extends React.Component<RouteComponentProps> {
   RoleUser = store.getState();
   state = {
     Data: {
@@ -49,7 +44,8 @@ export class TaskPageProfile extends React.Component {
         },
       ],
     },
-  };
+  }
+
   render() {
     return (
       <div className="container-fluid research new-research">
@@ -57,7 +53,7 @@ export class TaskPageProfile extends React.Component {
         <div className="col-12 box-content p-3">
           <div className="d-flex justify-content-between align-items-center">
             <h5 className="b-title d-flex align-items-center">
-              <span className="backPage"></span> {"Task Profile"}
+              <span onClick={()=>{window.history.back()}} className="backPage"></span> {"Task Profile"}
               <CircleIcon
                 width="22px"
                 height="22px"
@@ -85,6 +81,7 @@ export class TaskPageProfile extends React.Component {
               type={MainButtonType.dark}
               borderRadius="24px"
               fontSize="14px"
+              onClick={()=>{this.props.history.push(AppRoutes.discussion)}}
             ></MainButton>
           </div>
           <div className="Studying p-4 my-2">
@@ -147,16 +144,20 @@ export class TaskPageProfile extends React.Component {
                   {" "}
                   <ul className="file-list">
                     <li>
-                      <img src={pdf_icon} alt="" /> proposal_general.pdf
+                      <img src="/images/pages/pdf_icon.svg" alt="" />{" "}
+                      proposal_general.pdf
                     </li>
                     <li>
-                      <img src={pdf_icon} alt="" /> proposal_general.docx
+                      <img src="/images/pages/word_icon.svg" alt="" />{" "}
+                      proposal_general.docx
                     </li>
                     <li>
-                      <img src={pdf_icon} alt="" /> proposal_general.xlsx
+                      <img src="/images/pages/excel_icon.svg" alt="" />{" "}
+                      proposal_general.xlsx
                     </li>
                     <li>
-                      <img src={pdf_icon} alt="" /> proposal_general.pdf
+                      <img src="/images/pages/pdf_icon.svg" alt="" />{" "}
+                      proposal_general.pdf
                     </li>
                     <li>
                       Shared Links:
@@ -187,7 +188,11 @@ export class TaskPageProfile extends React.Component {
                   theme={Theme.dark}
                   text="Assigned to Teams (Members)"
                   children={
-                    <img src={team_menu_icon} className="mx-2" alt="" />
+                    <img
+                      src="/Images/pages/team_menu.svg"
+                      className="mx-2"
+                      alt=""
+                    />
                   }
                 ></IconTextRow>
                 <div className="tags p-3">
@@ -225,17 +230,17 @@ export class TaskPageProfile extends React.Component {
                     {
                       text: "Nima Hosseinzadeh",
                       id: 1,
-                      imagesrc: { img_avatar },
+                      imagesrc: "/images/layout/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 2,
-                      imagesrc: { img_avatar },
+                      imagesrc: "/images/layout/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 3,
-                      imagesrc: { img_avatar },
+                      imagesrc: "/images/layout/img_avatar.png",
                     },
                   ]}
                   TextItem="text"
@@ -327,17 +332,17 @@ export class TaskPageProfile extends React.Component {
                     {
                       text: "Nima Hosseinzadeh",
                       id: 1,
-                      imagesrc: { img_avatar },
+                      imagesrc: "/images/layout/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 2,
-                      imagesrc: { img_avatar },
+                      imagesrc: "/images/layout/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 3,
-                      imagesrc: { img_avatar },
+                      imagesrc: "/images/layout/img_avatar.png",
                     },
                   ]}
                   TextItem="text"
@@ -354,7 +359,7 @@ export class TaskPageProfile extends React.Component {
               <div className="left d-flex w-50 align-items-center">
                 <h6 style={{ width: "35%" }}>Task Data Collection</h6>
                 <InputIcon
-                  chilren={<img src={search_box_icon} />}
+                  chilren={<img src="/images/pages/search_box_icon.svg" alt="radvix" />}
                   width="100%"
                   height="44px"
                   placeholder="Search..."
@@ -414,13 +419,14 @@ export class TaskPageProfile extends React.Component {
             </div>
           </div>
         </div>
+
         <div className="col-12">
           <div className="TableBox">
             <div className="TopTableBox d-flex justify-content-between align-items-center">
               <div className="left d-flex w-50 align-items-center">
                 <h6 style={{ width: "35%" }}>Subtasks</h6>
                 <InputIcon
-                  chilren={<img src={search_box_icon} />}
+                  chilren={<img src="/images/pages/search_box_icon.svg" alt="radvix" />}
                   width="100%"
                   height="44px"
                   placeholder="Search..."
@@ -477,7 +483,10 @@ export class TaskPageProfile extends React.Component {
             </div>
           </div>
         </div>
+
+
       </div>
     );
   }
 }
+export default withRouter(TaskPageProfile)
