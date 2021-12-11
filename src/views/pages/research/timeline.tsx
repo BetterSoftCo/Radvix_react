@@ -6,13 +6,11 @@ import {
   Inject,
   Day,
   Week,
-  WorkWeek,
-  Agenda,
   Month,
   ViewsDirective,
   ViewDirective,
 } from "@syncfusion/ej2-react-schedule";
-import { Browser, Internationalization, extend } from "@syncfusion/ej2-base";
+import { Browser, Internationalization } from "@syncfusion/ej2-base";
 class TimeLine extends React.Component<RouteComponentProps> {
   data = [
     {
