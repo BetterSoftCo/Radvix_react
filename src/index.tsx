@@ -12,7 +12,6 @@ import ProtectedRoute from "./router/protected_route";
 import { UserRoles } from "./core/utils";
 import "react-toastify/dist/ReactToastify.css";
 
-
 import {
   ResearchPage,
   ResearchPageNew,
@@ -67,6 +66,7 @@ import {
   TeamPageProfile,
   TeamPageEdit,
   TimeLine,
+  ShowLibraryPage,
 } from "./views";
 
 const RoleUser: UserRoles = store.getState();
@@ -358,6 +358,11 @@ ReactDOM.render(
           <Route
             component={TimeLine}
             path={AppRoutes.timeline_research}
+            exact
+          />
+          <Route
+            component={ShowLibraryPage}
+            path={AppRoutes.library_page}
             exact
           />
         </Switch>

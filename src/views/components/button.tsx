@@ -1,8 +1,23 @@
+/* eslint-disable no-extend-native */
+
 import React from "react";
 export enum MainButtonType {
   dark,
   light,
 }
+declare global {
+   interface Number {
+    islight(): string;
+  }
+}
+Number.prototype.islight = function (this: MainButtonType) {
+  if(this === MainButtonType.light){
+    return 'lightButton'
+  }else{
+    return 'darkButton'
+  }
+};
+
 
 interface MainButtonProps {
   children: React.ReactNode;
@@ -16,7 +31,7 @@ interface MainButtonProps {
   type?: MainButtonType;
   fontSize?: string;
   className?: string;
-  color?:string
+  color?: string;
 }
 
 export const MainButton: React.FC<MainButtonProps> = ({
@@ -31,26 +46,22 @@ export const MainButton: React.FC<MainButtonProps> = ({
   children,
   fontSize,
   className,
-  color
+  color,
 }) => {
-  let styleName: string = "";
-  if (type === MainButtonType.dark) {
-    styleName = "darkButton";
-  }
 
-  if (type === MainButtonType.light) {
-    styleName = "lightButton";
-  }
+  
+
+  
   let IsclassName;
   if (className !== undefined) {
     IsclassName = className;
   } else {
-      IsclassName = ''
+    IsclassName = "";
   }
   return (
     <button
       onClick={onClick}
-      className={`${IsclassName + " " + styleName}`}
+      className={`${IsclassName + " " + type?.islight()}`}
       style={{
         display: display,
         backgroundColor,
@@ -59,10 +70,10 @@ export const MainButton: React.FC<MainButtonProps> = ({
         minHeight,
         minWidth,
         fontSize,
-        color
+        color,
       }}
     >
-    {children}
+      {children}
     </button>
   );
 };

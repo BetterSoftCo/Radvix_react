@@ -94,20 +94,20 @@
       }
     }
   }
-  .btn-group {
-    width: 100%;
-    margin-top: 1rem;
-    z-index: 0;
-    label.btn {
-      line-height: 0.5;
-      border-radius: 15px;
-      border-top-right-radius: 15px !important;
-      border-bottom-right-radius: 15px !important;
-      @media (max-width: 575.98px) {
-        line-height: 1rem;
-      }
-    }
-  }
+  // .btn-group {
+  //   width: 100%;
+  //   margin-top: 1rem;
+  //   z-index: 0;
+  //   label.btn {
+  //     line-height: 0.5;
+  //     border-radius: 15px;
+  //     border-top-right-radius: 15px !important;
+  //     border-bottom-right-radius: 15px !important;
+  //     @media (max-width: 575.98px) {
+  //       line-height: 1rem;
+  //     }
+  //   }
+  // }
   .fileUploadBox {
     min-height: 105px;
     background-color: white;

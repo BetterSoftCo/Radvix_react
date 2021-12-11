@@ -58,6 +58,7 @@ export class AppRoutes {
 	static admin_tickets:string ='/dashboard/Admin/tickets/';
 	static admin_ticket:string ='/dashboard/Admin/ticket/';
 	static admin_broadcast:string ='/dashboard/Admin/broadcast/';
+	static library_page:string ='/library/page';
 	
 	
 
