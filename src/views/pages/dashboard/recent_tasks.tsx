@@ -4,9 +4,13 @@ import { AppRoutes } from "../../../core/constants";
 import { UserRoles } from "../../../core/utils";
 import { MainButton, MainButtonType } from "../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
+import { TaskViewModel } from "../../view_models/task_view_model";
+
 interface IAcordienTable {
   role: UserRoles;
+  tasks: Array<TaskViewModel>;
 }
+
  const AcordienTable:React.FC<IAcordienTable & RouteComponentProps> = (props) => {
   const handelOnclick = (e: any) => {
     e.stopPropagation();

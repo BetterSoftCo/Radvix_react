@@ -8,7 +8,10 @@ import  AcordienTable  from "./recent_tasks";
 import  AcordienTableData  from "./recent_data";
 import { store } from "../../../data/store";
 import { SelectComponent } from "../../components/select_input";
+import { DashboardController } from "./dashboard_controller";
 export class DashboardPage extends React.Component {
+  controller: DashboardController = new DashboardController();
+
   handlePageClick = (data: any) => {};
   mockData = [
     {
@@ -151,7 +154,7 @@ export class DashboardPage extends React.Component {
                   ></SelectComponent>
                 </div>
               </div>
-              <AcordienTable role={this.RoleUser}></AcordienTable>
+              <AcordienTable role={this.RoleUser} tasks={this.controller.recentTasks}></AcordienTable>
               <div className="d-flex justify-content-between align-items-baseline my-2">
                   <div className="d-flex justify-content-end flex-fill">
                   <ReactPaginate
