@@ -7,10 +7,12 @@ import { AppRoutes } from "../../../../core/constants";
 interface IAcordienTable {
   role: UserRoles;
 }
-const AcordienTable:React.FC<IAcordienTable & RouteComponentProps>  = (props) => {
+const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
+  props
+) => {
   const handelOnclick = (e: any) => {
     e.stopPropagation();
-    props.history.push(AppRoutes.new_team)
+    props.history.push(AppRoutes.new_team);
   };
   useEffect(() => {}, []);
   return (
@@ -40,14 +42,14 @@ const AcordienTable:React.FC<IAcordienTable & RouteComponentProps>  = (props) =>
                   >
                     <span
                       className="lable"
-                      style={{ borderColor: "#096BFF" }}
+                      style={{ backgroundColor: "#096BFF" }}
                     ></span>{" "}
                     Material Testing Team
                   </span>
                 </div>
                 <div className="col">N. Hossein...</div>
                 <div className="col text-center">1</div>
-                
+
                 <div className="col">
                   <MainButton
                     type={MainButtonType.dark}
@@ -58,28 +60,26 @@ const AcordienTable:React.FC<IAcordienTable & RouteComponentProps>  = (props) =>
                   ></MainButton>
                 </div>
                 <div className="col d-flex justify-content-end align-items-center">
-
-                  
                   <CircleIcon
                     width="26px"
                     height="26px"
                     type={ThemeCircleIcon.dark}
                     onClick={() => props.history.push(AppRoutes.team_profile)}
                     className="pointer m-1"
-                    >
-                    <i className="fas fa-file-alt"></i>
+                  >
+                    <img src="/images/pages/google_docs.svg" alt="radvix" width={15} height={15} />
                   </CircleIcon>
-                    {props.role !== UserRoles.level3 ? (
-                      <CircleIcon
-                        width="26px"
-                        height="26px"
-                        type={ThemeCircleIcon.dark}
-                        onClick={() => props.history.push(AppRoutes.team_edit)}
-                        className="pointer m-1"
-                      >
-                        <i className="fas fa-edit"></i>
-                      </CircleIcon>
-                    ) : null}
+                  {props.role !== UserRoles.level3 ? (
+                    <CircleIcon
+                      width="26px"
+                      height="26px"
+                      type={ThemeCircleIcon.dark}
+                      onClick={() => props.history.push(AppRoutes.team_edit)}
+                      className="pointer m-1"
+                    >
+                      <img src="/images/pages/edit.svg" alt="radvix" />
+                    </CircleIcon>
+                  ) : null}
                 </div>
               </div>
             </div>
@@ -91,116 +91,122 @@ const AcordienTable:React.FC<IAcordienTable & RouteComponentProps>  = (props) =>
             data-bs-parent="#accordionExample"
           >
             <div className="accordion-body ">
-              <span className="sub-accordion">Subtask</span>
-              <div className="row w-100 py-2 rounded">
-                <div className="col">
-                  <span
-                    className="text-truncate d-inline-block"
-                    style={{ maxWidth: "120px" }}
-                  >
-                    <span
-                      className="lable"
-                      style={{ borderColor: "#096BFF" }}
-                    ></span>{" "}
-                    Strength and Durability Team
-                  </span>
-                </div>
-                <div className="col">N. Hossein...</div>
-                <div className="col text-center">1</div>
-                
-                <div className="col">
-                  <MainButton
-                    type={MainButtonType.dark}
-                    children="Subteam"
-                    borderRadius="15px"
-                    backgroundColor="#E3E3E3"
-                    color="#474747"
-                  ></MainButton>
-                </div>
-                <div className="col d-flex justify-content-end align-items-center">
-                <CircleIcon
-                    width="26px"
-                    height="26px"
-                    type={ThemeCircleIcon.dark}
-                    onClick={(e) => handelOnclick(e)}
-                    className="pointer  m-1"
-                    >
-                    <i className="fas fa-file-alt"></i>
-                  </CircleIcon>
-                </div>
+              <div className="sub-accordian-parent">
+                <p className="sub-accordion" style={{ marginRight: "-7px" }}>
+                  Subtask
+                </p>
               </div>
-              <div className="row w-100 py-2 rounded">
-                <div className="col">
-                  <span
-                    className="text-truncate d-inline-block"
-                    style={{ maxWidth: "120px" }}
-                  >
+              <div className="items">
+                <div className="row w-100 py-2 rounded">
+                  <div className="col">
                     <span
-                      className="lable"
-                      style={{ borderColor: "#096BFF" }}
-                    ></span>{" "}
-                    Biophilic Concrete Team
-                  </span>
-                </div>
-                <div className="col">N. Hossein...</div>
-                <div className="col text-center">1</div>
-                
-                <div className="col">
-                  <MainButton
-                    type={MainButtonType.dark}
-                    children="Subteam"
-                    borderRadius="15px"
-                    backgroundColor="#E3E3E3"
-                    color="#474747"
-                  ></MainButton>
-                </div>
-                <div className="col d-flex justify-content-end align-items-center">
-                <CircleIcon
-                    width="26px"
-                    height="26px"
-                    type={ThemeCircleIcon.dark}
-                    onClick={(e) => handelOnclick(e)}
-                    className="pointer  m-1 "
+                      className="text-truncate d-inline-block"
+                      style={{ maxWidth: "120px" }}
                     >
-                    <i className="fas fa-file-alt"></i>
-                  </CircleIcon>
+                      <span
+                        className="lable"
+                        style={{ backgroundColor: "#096BFF" }}
+                      ></span>{" "}
+                      Strength and Durability Team
+                    </span>
+                  </div>
+                  <div className="col">N. Hossein...</div>
+                  <div className="col text-center">1</div>
+
+                  <div className="col">
+                    <MainButton
+                      type={MainButtonType.dark}
+                      children="Subteam"
+                      borderRadius="15px"
+                      backgroundColor="#E3E3E3"
+                      color="#474747"
+                    ></MainButton>
+                  </div>
+                  <div className="col d-flex justify-content-end align-items-center">
+                    <CircleIcon
+                      width="26px"
+                      height="26px"
+                      type={ThemeCircleIcon.dark}
+                      onClick={(e) => handelOnclick(e)}
+                      className="pointer  m-1"
+                    >
+                      <img src="/images/pages/google_docs.svg" alt="radvix" width={15} height={15} />
+                    </CircleIcon>
+                  </div>
                 </div>
-              </div>
-              <div className="row w-100 py-2 rounded">
-                <div className="col">
-                  <span
-                    className="text-truncate d-inline-block"
-                    style={{ maxWidth: "120px" }}
-                  >
+                <div className="row w-100 py-2 rounded">
+                  <div className="col">
                     <span
-                      className="lable"
-                      style={{ borderColor: "#096BFF" }}
-                    ></span>{" "}
-                    Tension Development Team
-                  </span>
-                </div>
-                <div className="col">N. Hossein...</div>
-                <div className="col text-center">1</div>
-                
-                <div className="col">
-                  <MainButton
-                    type={MainButtonType.dark}
-                    children="Subteam"
-                    borderRadius="15px"
-                    backgroundColor="#E3E3E3"
-                    color="#474747"
-                  ></MainButton>
-                </div>
-                <div className="col d-flex justify-content-end align-items-center">
-                <CircleIcon
-                    width="26px"
-                    height="26px"
-                    type={ThemeCircleIcon.dark}
-                    onClick={(e) => handelOnclick(e)}
-                    className="pointer  m-1"
+                      className="text-truncate d-inline-block"
+                      style={{ maxWidth: "120px" }}
                     >
-                    <i className="fas fa-file-alt"></i>
-                  </CircleIcon>
+                      <span
+                        className="lable"
+                        style={{ backgroundColor: "#096BFF" }}
+                      ></span>{" "}
+                      Biophilic Concrete Team
+                    </span>
+                  </div>
+                  <div className="col">N. Hossein...</div>
+                  <div className="col text-center">1</div>
+
+                  <div className="col">
+                    <MainButton
+                      type={MainButtonType.dark}
+                      children="Subteam"
+                      borderRadius="15px"
+                      backgroundColor="#E3E3E3"
+                      color="#474747"
+                    ></MainButton>
+                  </div>
+                  <div className="col d-flex justify-content-end align-items-center">
+                    <CircleIcon
+                      width="26px"
+                      height="26px"
+                      type={ThemeCircleIcon.dark}
+                      onClick={(e) => handelOnclick(e)}
+                      className="pointer  m-1 "
+                    >
+                      <img src="/images/pages/google_docs.svg" alt="radvix" width={15} height={15} />
+                    </CircleIcon>
+                  </div>
+                </div>
+                <div className="row w-100 py-2 rounded">
+                  <div className="col">
+                    <span
+                      className="text-truncate d-inline-block"
+                      style={{ maxWidth: "120px" }}
+                    >
+                      <span
+                        className="lable"
+                        style={{ backgroundColor: "#096BFF" }}
+                      ></span>{" "}
+                      Tension Development Team
+                    </span>
+                  </div>
+                  <div className="col">N. Hossein...</div>
+                  <div className="col text-center">1</div>
+
+                  <div className="col">
+                    <MainButton
+                      type={MainButtonType.dark}
+                      children="Subteam"
+                      borderRadius="15px"
+                      backgroundColor="#E3E3E3"
+                      color="#474747"
+                    ></MainButton>
+                  </div>
+                  <div className="col d-flex justify-content-end align-items-center">
+                    <CircleIcon
+                      width="26px"
+                      height="26px"
+                      type={ThemeCircleIcon.dark}
+                      onClick={(e) => handelOnclick(e)}
+                      className="pointer  m-1"
+                    >
+                      <img src="/images/pages/google_docs.svg" alt="radvix" width={15} height={15} />
+                    </CircleIcon>
+                  </div>
                 </div>
               </div>
             </div>
@@ -223,14 +229,14 @@ const AcordienTable:React.FC<IAcordienTable & RouteComponentProps>  = (props) =>
                   >
                     <span
                       className="lable"
-                      style={{ borderColor: "#096BFF" }}
+                      style={{ backgroundColor: "#096BFF" }}
                     ></span>{" "}
                     Running TGA On XFG...
                   </span>
                 </div>
                 <div className="col">N. Hossein...</div>
                 <div className="col text-center">1</div>
-                
+
                 <div className="col">
                   <MainButton
                     type={MainButtonType.dark}
@@ -248,9 +254,9 @@ const AcordienTable:React.FC<IAcordienTable & RouteComponentProps>  = (props) =>
                     onClick={(e) => handelOnclick(e)}
                     className="pointer  m-1"
                   >
-                    <i className="fas fa-file-alt"></i>
+                    <img src="/images/pages/google_docs.svg" alt="radvix" width={15} height={15} />
                   </CircleIcon>
-                {props.role !== UserRoles.level3 ? (
+                  {props.role !== UserRoles.level3 ? (
                     <CircleIcon
                       width="26px"
                       height="26px"
@@ -258,10 +264,9 @@ const AcordienTable:React.FC<IAcordienTable & RouteComponentProps>  = (props) =>
                       onClick={(e) => handelOnclick(e)}
                       className="pointer  m-1"
                     >
-                      <i className="fas fa-edit"></i>
+                      <img src="/images/pages/edit.svg" alt="radvix" />
                     </CircleIcon>
                   ) : null}
-                  
                 </div>
               </div>
             </div>
@@ -273,117 +278,123 @@ const AcordienTable:React.FC<IAcordienTable & RouteComponentProps>  = (props) =>
             data-bs-parent="#accordionExample"
           >
             <div className="accordion-body ">
-              <span className="sub-accordion">Subtask</span>
-              <div className="row w-100 py-2 rounded">
-                <div className="col">
-                  <span
-                    className="text-truncate d-inline-block"
-                    style={{ maxWidth: "120px" }}
-                  >
-                    <span
-                      className="lable"
-                      style={{ borderColor: "#096BFF" }}
-                    ></span>{" "}
-                    Running TGA On XFG...
-                  </span>
-                </div>
-                <div className="col">N. Hossein...</div>
-                <div className="col text-center">1</div>
-                
-                <div className="col">
-                  <MainButton
-                    type={MainButtonType.dark}
-                    children="Subteam"
-                    borderRadius="15px"
-                    backgroundColor="#E3E3E3"
-                    color="#474747"
-                  ></MainButton>
-                </div>
-                <div className="col d-flex justify-content-end align-items-center">
-                <CircleIcon
-                    width="26px"
-                    height="26px"
-                    type={ThemeCircleIcon.dark}
-                    onClick={(e) => handelOnclick(e)}
-                    className="pointer  m-1"
-                    >
-                    <i className="fas fa-file-alt"></i>
-                  </CircleIcon>
-                </div>
+              <div className="sub-accordian-parent">
+                <p className="sub-accordion" style={{ marginRight: "-7px" }}>
+                  Subtask
+                </p>
               </div>
-              <div className="row w-100 py-2 rounded">
-                <div className="col">
-                  <span
-                    className="text-truncate d-inline-block"
-                    style={{ maxWidth: "120px" }}
-                  >
+              <div className="items">
+                <div className="row w-100 py-2 rounded">
+                  <div className="col">
                     <span
-                      className="lable"
-                      style={{ borderColor: "#096BFF" }}
-                    ></span>{" "}
-                    Running TGA On XFG...
-                  </span>
-                </div>
-                <div className="col">N. Hossein...</div>
-                <div className="col text-center">1</div>
-                
-                <div className="col">
-                  <MainButton
-                    type={MainButtonType.dark}
-                    children="Subteam"
-                    borderRadius="15px"
-                    backgroundColor="#E3E3E3"
-                    color="#474747"
-                  ></MainButton>
-                </div>
-                <div className="col d-flex justify-content-end align-items-center">
-                <CircleIcon
-                    width="26px"
-                    height="26px"
-                    type={ThemeCircleIcon.dark}
-                    onClick={(e) => handelOnclick(e)}
-                    className="pointer  m-1"
+                      className="text-truncate d-inline-block"
+                      style={{ maxWidth: "120px" }}
                     >
-                    <i className="fas fa-file-alt"></i>
-                  </CircleIcon>
+                      <span
+                        className="lable"
+                        style={{ backgroundColor: "#096BFF" }}
+                      ></span>{" "}
+                      Running TGA On XFG...
+                    </span>
+                  </div>
+                  <div className="col">N. Hossein...</div>
+                  <div className="col text-center">1</div>
+
+                  <div className="col">
+                    <MainButton
+                      type={MainButtonType.dark}
+                      children="Subteam"
+                      borderRadius="15px"
+                      backgroundColor="#E3E3E3"
+                      color="#474747"
+                    ></MainButton>
+                  </div>
+                  <div className="col d-flex justify-content-end align-items-center">
+                    <CircleIcon
+                      width="26px"
+                      height="26px"
+                      type={ThemeCircleIcon.dark}
+                      onClick={(e) => handelOnclick(e)}
+                      className="pointer  m-1"
+                    >
+                      <img src="/images/pages/google_docs.svg" alt="radvix" width={15} height={15} />
+                    </CircleIcon>
+                  </div>
                 </div>
-              </div>
-              <div className="row w-100 py-2 rounded">
-                <div className="col">
-                  <span
-                    className="text-truncate d-inline-block"
-                    style={{ maxWidth: "120px" }}
-                  >
+                <div className="row w-100 py-2 rounded">
+                  <div className="col">
                     <span
-                      className="lable"
-                      style={{ borderColor: "#096BFF" }}
-                    ></span>{" "}
-                    TGA issues with are...TGA issues with are...TGA issues with
-                    are...
-                  </span>
-                </div>
-                <div className="col">N. Hossein...</div>
-                <div className="col text-center">1</div>
-                
-                <div className="col">
-                  <MainButton
-                    type={MainButtonType.dark}
-                    children="Subteam"
-                    borderRadius="15px"
-                    backgroundColor="#E3E3E3"
-                    color="#474747"
-                  ></MainButton>
-                </div>
-                <div className="col d-flex justify-content-end align-items-center">
-                <CircleIcon
-                    width="26px"
-                    height="26px"
-                    type={ThemeCircleIcon.dark}
-                    onClick={(e) => handelOnclick(e)}
-                    className="pointer  m-1"
+                      className="text-truncate d-inline-block"
+                      style={{ maxWidth: "120px" }}
                     >
-                    <i className="fas fa-file-alt"></i>
-                  </CircleIcon>
+                      <span
+                        className="lable"
+                        style={{ backgroundColor: "#096BFF" }}
+                      ></span>{" "}
+                      Running TGA On XFG...
+                    </span>
+                  </div>
+                  <div className="col">N. Hossein...</div>
+                  <div className="col text-center">1</div>
+
+                  <div className="col">
+                    <MainButton
+                      type={MainButtonType.dark}
+                      children="Subteam"
+                      borderRadius="15px"
+                      backgroundColor="#E3E3E3"
+                      color="#474747"
+                    ></MainButton>
+                  </div>
+                  <div className="col d-flex justify-content-end align-items-center">
+                    <CircleIcon
+                      width="26px"
+                      height="26px"
+                      type={ThemeCircleIcon.dark}
+                      onClick={(e) => handelOnclick(e)}
+                      className="pointer  m-1"
+                    >
+                      <img src="/images/pages/google_docs.svg" alt="radvix" width={15} height={15} />
+                    </CircleIcon>
+                  </div>
+                </div>
+                <div className="row w-100 py-2 rounded">
+                  <div className="col">
+                    <span
+                      className="text-truncate d-inline-block"
+                      style={{ maxWidth: "120px" }}
+                    >
+                      <span
+                        className="lable"
+                        style={{ backgroundColor: "#096BFF" }}
+                      ></span>{" "}
+                      TGA issues with are...TGA issues with are...TGA issues
+                      with are...
+                    </span>
+                  </div>
+                  <div className="col">N. Hossein...</div>
+                  <div className="col text-center">1</div>
+
+                  <div className="col">
+                    <MainButton
+                      type={MainButtonType.dark}
+                      children="Subteam"
+                      borderRadius="15px"
+                      backgroundColor="#E3E3E3"
+                      color="#474747"
+                    ></MainButton>
+                  </div>
+                  <div className="col d-flex justify-content-end align-items-center">
+                    <CircleIcon
+                      width="26px"
+                      height="26px"
+                      type={ThemeCircleIcon.dark}
+                      onClick={(e) => handelOnclick(e)}
+                      className="pointer  m-1"
+                    >
+                      <img src="/images/pages/google_docs.svg" alt="radvix" width={15} height={15} />
+                    </CircleIcon>
+                  </div>
                 </div>
               </div>
             </div>
@@ -406,14 +417,14 @@ const AcordienTable:React.FC<IAcordienTable & RouteComponentProps>  = (props) =>
                   >
                     <span
                       className="lable"
-                      style={{ borderColor: "#096BFF" }}
+                      style={{ backgroundColor: "#096BFF" }}
                     ></span>{" "}
                     Running TGA On XFG...
                   </span>
                 </div>
                 <div className="col">N. Hossein...</div>
                 <div className="col text-center">1</div>
-                
+
                 <div className="col">
                   <MainButton
                     type={MainButtonType.dark}
@@ -424,27 +435,26 @@ const AcordienTable:React.FC<IAcordienTable & RouteComponentProps>  = (props) =>
                   ></MainButton>
                 </div>
                 <div className="col d-flex justify-content-end align-items-center">
-                  
                   <CircleIcon
                     width="26px"
                     height="26px"
                     type={ThemeCircleIcon.dark}
                     onClick={(e) => handelOnclick(e)}
                     className="pointer  m-1"
-                    >
-                    <i className="fas fa-file-alt"></i>
+                  >
+                    <img src="/images/pages/google_docs.svg" alt="radvix" width={15} height={15} />
                   </CircleIcon>
-                    {props.role !== UserRoles.level3 ? (
-                        <CircleIcon
-                          width="26px"
-                          height="26px"
-                          type={ThemeCircleIcon.dark}
-                          onClick={(e) => handelOnclick(e)}
-                          className="pointer  m-1"
-                        >
-                          <i className="fas fa-edit"></i>
-                        </CircleIcon>
-                      ) : null}
+                  {props.role !== UserRoles.level3 ? (
+                    <CircleIcon
+                      width="26px"
+                      height="26px"
+                      type={ThemeCircleIcon.dark}
+                      onClick={(e) => handelOnclick(e)}
+                      className="pointer  m-1"
+                    >
+                      <img src="/images/pages/edit.svg" alt="radvix" />
+                    </CircleIcon>
+                  ) : null}
                 </div>
               </div>
             </div>
@@ -456,119 +466,125 @@ const AcordienTable:React.FC<IAcordienTable & RouteComponentProps>  = (props) =>
             data-bs-parent="#accordionExample"
           >
             <div className="accordion-body ">
-              <span className="sub-accordion">Subtask</span>
-              <div className="row w-100 py-2 rounded">
-                <div className="col">
-                  <span
-                    className="text-truncate d-inline-block"
-                    style={{ maxWidth: "120px" }}
-                  >
-                    <span
-                      className="lable"
-                      style={{ borderColor: "#096BFF" }}
-                    ></span>{" "}
-                    TGA issues with are...TGA issues with are...TGA issues with
-                    are...
-                  </span>
-                </div>
-                <div className="col">N. Hossein...</div>
-                <div className="col text-center">1</div>
-                
-                <div className="col">
-                  <MainButton
-                    type={MainButtonType.dark}
-                    children="Subteam"
-                    borderRadius="15px"
-                    backgroundColor="#E3E3E3"
-                    color="#474747"
-                  ></MainButton>
-                </div>
-                <div className="col d-flex justify-content-end align-items-center">
-                <CircleIcon
-                    width="26px"
-                    height="26px"
-                    type={ThemeCircleIcon.dark}
-                    onClick={(e) => handelOnclick(e)}
-                    className="pointer  m-1"
-                    >
-                    <i className="fas fa-file-alt"></i>
-                  </CircleIcon>
-                </div>
+              <div className="sub-accordian-parent">
+                <p className="sub-accordion" style={{ marginRight: "-7px" }}>
+                  Subtask
+                </p>
               </div>
-              <div className="row w-100 py-2 rounded">
-                <div className="col">
-                  <span
-                    className="text-truncate d-inline-block"
-                    style={{ maxWidth: "120px" }}
-                  >
+              <div className="items">
+                <div className="row w-100 py-2 rounded">
+                  <div className="col">
                     <span
-                      className="lable"
-                      style={{ borderColor: "#096BFF" }}
-                    ></span>{" "}
-                    TGA issues with are...TGA issues with are...TGA issues with
-                    are...
-                  </span>
-                </div>
-                <div className="col">N. Hossein...</div>
-                <div className="col text-center">1</div>
-                
-                <div className="col">
-                  <MainButton
-                    type={MainButtonType.dark}
-                    children="Subteam"
-                    borderRadius="15px"
-                    backgroundColor="#E3E3E3"
-                    color="#474747"
-                  ></MainButton>
-                </div>
-                <div className="col d-flex justify-content-end align-items-center">
-                <CircleIcon
-                    width="26px"
-                    height="26px"
-                    type={ThemeCircleIcon.dark}
-                    onClick={(e) => handelOnclick(e)}
-                    className="pointer  m-1"
+                      className="text-truncate d-inline-block"
+                      style={{ maxWidth: "120px" }}
                     >
-                    <i className="fas fa-file-alt"></i>
-                  </CircleIcon>
+                      <span
+                        className="lable"
+                        style={{ backgroundColor: "#096BFF" }}
+                      ></span>{" "}
+                      TGA issues with are...TGA issues with are...TGA issues
+                      with are...
+                    </span>
+                  </div>
+                  <div className="col">N. Hossein...</div>
+                  <div className="col text-center">1</div>
+
+                  <div className="col">
+                    <MainButton
+                      type={MainButtonType.dark}
+                      children="Subteam"
+                      borderRadius="15px"
+                      backgroundColor="#E3E3E3"
+                      color="#474747"
+                    ></MainButton>
+                  </div>
+                  <div className="col d-flex justify-content-end align-items-center">
+                    <CircleIcon
+                      width="26px"
+                      height="26px"
+                      type={ThemeCircleIcon.dark}
+                      onClick={(e) => handelOnclick(e)}
+                      className="pointer  m-1"
+                    >
+                      <img src="/images/pages/google_docs.svg" alt="radvix" width={15} height={15} />
+                    </CircleIcon>
+                  </div>
                 </div>
-              </div>
-              <div className="row w-100 py-2 rounded">
-                <div className="col">
-                  <span
-                    className="text-truncate d-inline-block"
-                    style={{ maxWidth: "120px" }}
-                  >
+                <div className="row w-100 py-2 rounded">
+                  <div className="col">
                     <span
-                      className="lable"
-                      style={{ borderColor: "#096BFF" }}
-                    ></span>{" "}
-                    TGA issues with are...TGA issues with are...TGA issues with
-                    are...
-                  </span>
-                </div>
-                <div className="col">N. Hossein...</div>
-                <div className="col text-center">1</div>
-                
-                <div className="col">
-                  <MainButton
-                    type={MainButtonType.dark}
-                    children="Subteam"
-                    borderRadius="15px"
-                    backgroundColor="#E3E3E3"
-                    color="#474747"
-                  ></MainButton>
-                </div>
-                <div className="col d-flex justify-content-end align-items-center">
-                <CircleIcon
-                    width="26px"
-                    height="26px"
-                    type={ThemeCircleIcon.dark}
-                    onClick={(e) => handelOnclick(e)}
-                    className="pointer  m-1"
+                      className="text-truncate d-inline-block"
+                      style={{ maxWidth: "120px" }}
                     >
-                    <i className="fas fa-file-alt"></i>
-                  </CircleIcon>
+                      <span
+                        className="lable"
+                        style={{ backgroundColor: "#096BFF" }}
+                      ></span>{" "}
+                      TGA issues with are...TGA issues with are...TGA issues
+                      with are...
+                    </span>
+                  </div>
+                  <div className="col">N. Hossein...</div>
+                  <div className="col text-center">1</div>
+
+                  <div className="col">
+                    <MainButton
+                      type={MainButtonType.dark}
+                      children="Subteam"
+                      borderRadius="15px"
+                      backgroundColor="#E3E3E3"
+                      color="#474747"
+                    ></MainButton>
+                  </div>
+                  <div className="col d-flex justify-content-end align-items-center">
+                    <CircleIcon
+                      width="26px"
+                      height="26px"
+                      type={ThemeCircleIcon.dark}
+                      onClick={(e) => handelOnclick(e)}
+                      className="pointer  m-1"
+                    >
+                      <img src="/images/pages/google_docs.svg" alt="radvix" width={15} height={15} />
+                    </CircleIcon>
+                  </div>
+                </div>
+                <div className="row w-100 py-2 rounded">
+                  <div className="col">
+                    <span
+                      className="text-truncate d-inline-block"
+                      style={{ maxWidth: "120px" }}
+                    >
+                      <span
+                        className="lable"
+                        style={{ backgroundColor: "#096BFF" }}
+                      ></span>{" "}
+                      TGA issues with are...TGA issues with are...TGA issues
+                      with are...
+                    </span>
+                  </div>
+                  <div className="col">N. Hossein...</div>
+                  <div className="col text-center">1</div>
+
+                  <div className="col">
+                    <MainButton
+                      type={MainButtonType.dark}
+                      children="Subteam"
+                      borderRadius="15px"
+                      backgroundColor="#E3E3E3"
+                      color="#474747"
+                    ></MainButton>
+                  </div>
+                  <div className="col d-flex justify-content-end align-items-center">
+                    <CircleIcon
+                      width="26px"
+                      height="26px"
+                      type={ThemeCircleIcon.dark}
+                      onClick={(e) => handelOnclick(e)}
+                      className="pointer  m-1"
+                    >
+                      <img src="/images/pages/google_docs.svg" alt="radvix" width={15} height={15} />
+                    </CircleIcon>
+                  </div>
                 </div>
               </div>
             </div>

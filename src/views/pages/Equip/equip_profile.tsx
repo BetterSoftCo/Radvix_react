@@ -26,7 +26,7 @@ export class EquipProfile extends React.Component {
                 color="#ffff"
                 className="mx-4"
               >
-                <i className="fas fa-edit"></i>
+                <img src="/images/pages/edit.svg" alt="radvix" />
               </CircleIcon>
             </h5>
             <div className="d-flex justify-content-around align-items-center w-25">

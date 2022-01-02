@@ -156,7 +156,7 @@ export const ShowLibraryPage: React.FC = (props) => {
           onClick={(e) => console.log("s")}
           className="pointer"
         >
-          <i className="fas fa-file-alt"></i>
+          <img src="/images/pages/google_docs.svg" alt="radvix" width={15} height={15} />
         </CircleIcon>
         <CircleIcon
           width="26px"
@@ -165,7 +165,7 @@ export const ShowLibraryPage: React.FC = (props) => {
           onClick={(e) => console.log("s")}
           className="pointer"
         >
-          <i className="fas fa-file-alt"></i>
+          <img src="/images/pages/google_docs.svg" alt="radvix" width={15} height={15} />
         </CircleIcon>
       </div>
       <div className="col-12 border-bottom my-4 py-2 item d-flex">
@@ -223,7 +223,6 @@ export const ShowLibraryPage: React.FC = (props) => {
         <InputIcon
           chilren={<img src="/images/pages/search_box_icon.svg" alt="" />}
           width="100%"
-          height="44px"
           placeholder="Search..."
         ></InputIcon>
       </div>

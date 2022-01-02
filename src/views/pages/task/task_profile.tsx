@@ -63,7 +63,7 @@ import { AppRoutes } from "../../../core/constants";
                 color="#ffff"
                 className="mx-4"
               >
-                <i className="fas fa-edit"></i>
+                <img src="/images/pages/edit.svg" alt="radvix" />
               </CircleIcon>
               <CircleIcon
                 width="22px"
@@ -361,7 +361,6 @@ import { AppRoutes } from "../../../core/constants";
                 <InputIcon
                   chilren={<img src="/images/pages/search_box_icon.svg" alt="radvix" />}
                   width="100%"
-                  height="44px"
                   placeholder="Search..."
                 ></InputIcon>
               </div>
@@ -428,7 +427,6 @@ import { AppRoutes } from "../../../core/constants";
                 <InputIcon
                   chilren={<img src="/images/pages/search_box_icon.svg" alt="radvix" />}
                   width="100%"
-                  height="44px"
                   placeholder="Search..."
                 ></InputIcon>
               </div>

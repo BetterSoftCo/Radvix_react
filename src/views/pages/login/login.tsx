@@ -6,10 +6,10 @@ import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
 const LoginPage: React.FC<RouteComponentProps> = (props) => {
   return (
-    <div className="row bg-danger  login">
-      <div className="col-md-3   left">
+    <div className="login d-flex flex-column flex-md-row">
+      <div className="left">
         <img src="/images/layout/radvix_logo.svg" className="logo" alt="" />
-        <span>login</span>
+        <span className="sub_logo">Login</span>
         <img src="/images/pages/member.png" className="logo-Member" alt="" />
         <MainButton
           children={"Forgot Email?"}
@@ -25,24 +25,24 @@ const LoginPage: React.FC<RouteComponentProps> = (props) => {
           minWidth="139px"
           className="mb-2"
         ></MainButton>
-        <span>Support </span>
-        <span className="text-center">Learn More About Radvix </span>
+        <span className="about">Support </span>
+        <span className="about text-center">Learn More About Radvix </span>
       </div>
-      <div className="col-md-9   right">
-        <form action="#" className="mt-5 w-100 ">
+      <div className="right">
+        <form action="#" className="mt-3 w-100 ">
           <label className="text-light mb-2">Email:</label>
-          <InputComponent type={InputType.text}></InputComponent>
+          <InputComponent type={InputType.text} placeholder="example@email.com"></InputComponent>
           <div className="password mt-2 d-flex justify-content-between align-items-center">
             <div className="input w-75">
               <label className="text-light mb-2">Password:</label>
-              <InputComponent type={InputType.text}></InputComponent>
+              <InputComponent type={InputType.text} placeholder="*******"></InputComponent>
             </div>
             <MainButton
               children={"Login"}
               type={MainButtonType.light}
               borderRadius="50px"
-              minWidth="90px"
-              minHeight="43px"
+              minWidth="60px"
+              minHeight="37px"
               className="align-self-end"
               onClick={() => {
                 props.history.push(AppRoutes.dashboard);
@@ -57,7 +57,7 @@ const LoginPage: React.FC<RouteComponentProps> = (props) => {
           minWidth="70px"
           fontSize="15px"
           borderRadius="50px"
-          className="mt-auto mb-2 px-3"
+          className="mt-2 mb-2 px-3"
           backgroundColor="#A6CE39"
           children={
             <div>

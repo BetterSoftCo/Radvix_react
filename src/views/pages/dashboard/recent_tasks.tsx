@@ -46,7 +46,7 @@ interface IAcordienTable {
                   >
                     <span
                       className="lable"
-                      style={{ borderColor: "#096BFF" }}
+                      style={{ backgroundColor: "#096BFF" }}
                     ></span>{" "}
                     TGA issues with are...TGA issues with are...TGA issues with
                     are...
@@ -73,7 +73,7 @@ interface IAcordienTable {
                       onClick={(e) => props.history.push(AppRoutes.task_edit)}
                       className="pointer"
                     >
-                      <i className="fas fa-edit"></i>
+                      <img src="/images/pages/edit.svg" alt="radvix" />
                     </CircleIcon>
                   ) : null}
 
@@ -84,7 +84,8 @@ interface IAcordienTable {
                     onClick={(e) => handelOnclick(e)}
                     className="pointer"
                   >
-                    <i className="fas fa-comment"></i>
+                    <img src="/images/pages/start_discussion.svg" alt="radvix" />
+                    
                   </CircleIcon>
                   <CircleIcon
                     width="26px"
@@ -93,7 +94,8 @@ interface IAcordienTable {
                     onClick={(e) => props.history.push(AppRoutes.task_profile)}
                     className="pointer"
                   >
-                    <i className="fas fa-file-alt"></i>
+                    <img src="/images/pages/google_docs.svg" alt="radvix" width={15} height={15} />
+                    
                   </CircleIcon>
                 </div>
               </div>
@@ -105,8 +107,11 @@ interface IAcordienTable {
             aria-labelledby={`heading_resenttask${index}`}
             data-bs-parent="#accordion_resenttask"
           >
-            <div className="accordion-body ">
-              <span className="sub-accordion">Subtask</span>
+            <div className="accordion-body">
+              <div className="sub-accordian-parent">
+              <p className="sub-accordion">Subtask</p> 
+              </div>
+             <div className="items">
              {[1,2,3].map((item,index)=>(
                 <div className="row w-100 py-2 rounded" key={index}>
                 <div className="col">
@@ -116,7 +121,7 @@ interface IAcordienTable {
                   >
                     <span
                       className="lable"
-                      style={{ borderColor: "#096BFF" }}
+                      style={{ backgroundColor: "#096BFF"  }}
                     ></span>{" "}
                     TGA issues with are...TGA issues with are...TGA issues with
                     are...
@@ -137,6 +142,7 @@ interface IAcordienTable {
                 <div className="col d-flex justify-content-between align-items-center"></div>
               </div>
              ))}
+             </div>
              
             </div>
           </div>

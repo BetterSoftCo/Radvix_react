@@ -38,7 +38,7 @@ const TableListLaboratory: React.FC<TableComponentProp & RouteComponentProps> =
                         props.history.push(AppRoutes.profile_laboratory)
                       }
                     >
-                      <i className="fas fa-file-alt"></i>
+                      <img src="/images/pages/google_docs.svg" alt="radvix" width={15} height={15} />
                     </CircleIcon>
                     <CircleIcon
                       width="26px"
@@ -49,7 +49,7 @@ const TableListLaboratory: React.FC<TableComponentProp & RouteComponentProps> =
                       }
                       className="pointer"
                     >
-                      <i className="fas fa-edit"></i>
+                      <img src="/images/pages/edit.svg" alt="radvix" />
                     </CircleIcon>
                   </div>
                 </td>

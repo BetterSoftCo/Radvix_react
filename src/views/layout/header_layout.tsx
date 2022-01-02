@@ -12,13 +12,13 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
     <div className="header">
       <div className="container-fluid">
         <div className="row ">
-          <div className="col-lg-9 right-side">
+          <div className="col-lg-10 right-side">
             <div className="row h-100">
-              <div className="col-md-2 col-6">
+              <div className="col-md-2 col-6 d-flex justify-content-start align-items-center">
                 <img
                   src="/images/layout/radvix_logo.svg"
                   height="42px"
-                  width="142px"
+                  width="100px"
                 />
               </div>
               {props.location.pathname.search("/admin") >= 0 ? null : (
@@ -26,7 +26,7 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
                   <div className="col-md-2 col-6 d-flex justify-content-center align-items-center">
                     <MainButton
                       type={MainButtonType.dark}
-                      minHeight="43px"
+                      minHeight="42px"
                       fontSize="15px"
                       borderRadius="50px"
                       className="px-3"
@@ -37,6 +37,7 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
                           <img
                             src="/Images/component/group_1.svg"
                             alt="sssss"
+                            height='20'
                           />{" "}
                           Home
                         </div>
@@ -65,17 +66,18 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
                   <div className="col-md-3 col-4 d-flex justify-content-center align-items-center">
                     <h6 className="mb-0 Selected-Research w-25 fw-light">Timeline</h6>
                     <ProgressBar
-                      completed={60}
+                      completed={20}
                       className="w-75"
                       bgColor="#474747"
+                      
                     />
                   </div>
                 </Fragment>
               )}
             </div>
           </div>
-          <div className="col-lg-3 left-side">
-            <div className="d-flex align-items-center justify-content-around">
+          <div className="col-lg-2 left-side">
+            <div className="d-flex align-items-center justify-content-between">
               <img
               onClick={()=>{props.history.push(AppRoutes.member_profile)}}
                 src="/images/layout/img_avatar.png"
@@ -90,13 +92,13 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
                   children="Principal Investigator"
                   type={MainButtonType.dark}
                   borderRadius="24px"
-                  fontSize="14px"
+                  fontSize="11px"
                 ></MainButton>
               </div>
-              <a onClick={()=>{props.history.push(AppRoutes.member_profile)}} className="pointer">
+              <a onClick={()=>{props.history.push(AppRoutes.member_profile)}} className="pointer mx-1">
                 <img src="/Images/layout/profile_view_icon.svg" alt="" />
               </a>
-              <a onClick={()=>{props.history.push(AppRoutes.login)}} className="pointer">
+              <a onClick={()=>{props.history.push(AppRoutes.login)}} className="pointer mx-1">
                 <img src="/Images/layout/logout_icon.svg" alt="" />
               </a>
             </div>

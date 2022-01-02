@@ -64,7 +64,6 @@ export class DashboardPage extends React.Component {
                   <InputIcon
                     chilren={<img src='/images/pages/search_box_icon.svg' />}
                     width="100%"
-                    height="44px"
                     placeholder="Search..."
                   ></InputIcon>
                 </div>
@@ -136,7 +135,6 @@ export class DashboardPage extends React.Component {
                   <InputIcon
                     chilren={<img src='/images/pages/search_box_icon.svg' />}
                     width="100%"
-                    height="44px"
                     placeholder="Search..."
                   ></InputIcon>
                 </div>
@@ -204,7 +202,6 @@ export class DashboardPage extends React.Component {
                   <InputIcon
                     chilren={<img src='/images/pages/search_box_icon.svg' />}
                     width="100%"
-                    height="44px"
                     placeholder="Search..."
                   ></InputIcon>
                 </div>
@@ -283,7 +280,7 @@ const HeadDashboardPage: React.FC = () => {
           />
           <div className="d-flex flex-column align-items-center">
             <h1 className="display-6 fw-bold mb-0">12</h1>
-            <span className="text-center">Users Involved</span>
+            <span className="text-center">Users <br /> Involved</span>
           </div>
         </div>
       </div>
@@ -296,7 +293,7 @@ const HeadDashboardPage: React.FC = () => {
           />
           <div className="d-flex flex-column align-items-center">
             <h1 className="display-6  fw-bold mb-0">8</h1>
-            <span className="text-center">Equipment Available</span>
+            <span className="text-center">Equipment <br /> Available</span>
           </div>
         </div>
       </div>
@@ -309,7 +306,7 @@ const HeadDashboardPage: React.FC = () => {
           />
           <div className="d-flex flex-column align-items-center">
             <h1 className="display-6  fw-bold mb-0">18</h1>
-            <span className="text-center">Tasks Completed</span>
+            <span className="text-center">Tasks <br /> Completed</span>
           </div>
         </div>
       </div>
@@ -322,7 +319,7 @@ const HeadDashboardPage: React.FC = () => {
           />
           <div className="d-flex flex-column align-items-center">
             <h1 className="display-6  fw-bold mb-0">45</h1>
-            <span className="text-center">Tasks Pending</span>
+            <span className="text-center">Tasks <br /> Pending</span>
           </div>
         </div>
       </div>
@@ -335,7 +332,7 @@ const HeadDashboardPage: React.FC = () => {
           />
           <div className="d-flex flex-column align-items-center">
             <h1 className="display-6  fw-bold mb-0">87</h1>
-            <span className="text-center">Days Left To Deadline</span>
+            <span className="text-center">Days Left <br /> To Deadline</span>
           </div>
         </div>
       </div>

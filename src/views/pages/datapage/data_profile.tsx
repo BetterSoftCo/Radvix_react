@@ -68,7 +68,7 @@ class DataPageProfile extends React.Component<RouteComponentProps> {
                   this.props.history.push(AppRoutes.data_edit);
                 }}
               >
-                <i className="fas fa-edit"></i>
+                <img src="/images/pages/edit.svg" alt="radvix" />
               </CircleIcon>
               <CircleIcon
                 width="22px"
@@ -78,7 +78,7 @@ class DataPageProfile extends React.Component<RouteComponentProps> {
                 fontSize="10px"
                 color="#ffff"
               >
-                <i className="fas fa-comment"></i>
+                <img src="/images/pages/start_discussion.svg" alt="radvix" />
               </CircleIcon>
             </h5>
             <MainButton

@@ -27,7 +27,7 @@ export const UserTypesTable = () => {
                   >
                     <span
                       className="lable"
-                      style={{ borderColor: "#096BFF" }}
+                      style={{ backgroundColor: "#096BFF"  }}
                     ></span>{" "}
                     Level 1
                   </span>
@@ -43,7 +43,7 @@ export const UserTypesTable = () => {
                     color="#ffff"
                     className="mx-4"
                   >
-                    <i className="fas fa-edit"></i>
+                    <img src="/images/pages/edit.svg" alt="radvix" />
                   </CircleIcon>
                 </div>
               </div>
@@ -56,8 +56,11 @@ export const UserTypesTable = () => {
             data-bs-parent="#accordionUsertypes"
           >
             <div className="accordion-body ">
-              <span className="sub-accordion">User Labeling </span>
-              <div className="row w-100 py-2 rounded">
+              <div className="sub-accordian-parent">
+              <p className="sub-accordion"  style={{marginRight: '-15px',whiteSpace: 'nowrap'}}>User Labeling</p> 
+              </div>
+             <div className="items">
+             <div className="row w-100 py-2 rounded">
                 <div className="col">
                   <span
                     className="text-truncate d-inline-block"
@@ -65,7 +68,7 @@ export const UserTypesTable = () => {
                   >
                     <span
                       className="lable"
-                      style={{ borderColor: "#096BFF" }}
+                      style={{ backgroundColor: "#096BFF"  }}
                     ></span>{" "}
                     PI
                   </span>
@@ -83,7 +86,7 @@ export const UserTypesTable = () => {
                     color="#ffff"
                     className="mx-4"
                   >
-                    <i className="fas fa-edit"></i>
+                    <img src="/images/pages/edit.svg" alt="radvix" />
                   </CircleIcon>
                 </div>
               </div>
@@ -95,7 +98,7 @@ export const UserTypesTable = () => {
                   >
                     <span
                       className="lable"
-                      style={{ borderColor: "#096BFF" }}
+                      style={{ backgroundColor: "#096BFF"  }}
                     ></span>{" "}
                     PI
                   </span>
@@ -113,7 +116,7 @@ export const UserTypesTable = () => {
                     color="#ffff"
                     className="mx-4"
                   >
-                    <i className="fas fa-edit"></i>
+                    <img src="/images/pages/edit.svg" alt="radvix" />
                   </CircleIcon>
                 </div>
               </div>
@@ -125,7 +128,7 @@ export const UserTypesTable = () => {
                   >
                     <span
                       className="lable"
-                      style={{ borderColor: "#096BFF" }}
+                      style={{ backgroundColor: "#096BFF"  }}
                     ></span>{" "}
                     PI
                   </span>
@@ -143,10 +146,11 @@ export const UserTypesTable = () => {
                     color="#ffff"
                     className="mx-4"
                   >
-                    <i className="fas fa-edit"></i>
+                    <img src="/images/pages/edit.svg" alt="radvix" />
                   </CircleIcon>
                 </div>
               </div>
+             </div>
             </div>
           </div>
         </div>
@@ -167,7 +171,7 @@ export const UserTypesTable = () => {
                   >
                     <span
                       className="lable"
-                      style={{ borderColor: "#096BFF" }}
+                      style={{ backgroundColor: "#096BFF"  }}
                     ></span>{" "}
                     PI
                   </span>
@@ -185,7 +189,7 @@ export const UserTypesTable = () => {
                     color="#ffff"
                     className="mx-4"
                   >
-                    <i className="fas fa-edit"></i>
+                    <img src="/images/pages/edit.svg" alt="radvix" />
                   </CircleIcon>
                 </div>
               </div>
@@ -198,8 +202,11 @@ export const UserTypesTable = () => {
             data-bs-parent="#accordionUsertypes"
           >
             <div className="accordion-body ">
-              <span className="sub-accordion">Notification</span>
-              <div className="row w-100 py-2 rounded">
+              <div className="sub-accordian-parent">
+              <p className="sub-accordion"  style={{marginRight: '-7px'}}>Notification</p> 
+              </div>
+             <div className="items">
+             <div className="row w-100 py-2 rounded">
                 <div className="col">
                   <span
                     className="text-truncate d-inline-block"
@@ -207,7 +214,7 @@ export const UserTypesTable = () => {
                   >
                     <span
                       className="lable"
-                      style={{ borderColor: "#096BFF" }}
+                      style={{ backgroundColor: "#096BFF"  }}
                     ></span>{" "}
                     PI
                   </span>
@@ -225,7 +232,7 @@ export const UserTypesTable = () => {
                     color="#ffff"
                     className="mx-4"
                   >
-                    <i className="fas fa-edit"></i>
+                    <img src="/images/pages/edit.svg" alt="radvix" />
                   </CircleIcon>
                 </div>
               </div>
@@ -237,7 +244,7 @@ export const UserTypesTable = () => {
                   >
                     <span
                       className="lable"
-                      style={{ borderColor: "#096BFF" }}
+                      style={{ backgroundColor: "#096BFF"  }}
                     ></span>{" "}
                     PI
                   </span>
@@ -255,10 +262,11 @@ export const UserTypesTable = () => {
                     color="#ffff"
                     className="mx-4"
                   >
-                    <i className="fas fa-edit"></i>
+                    <img src="/images/pages/edit.svg" alt="radvix" />
                   </CircleIcon>
                 </div>
               </div>
+             </div>
             </div>
           </div>
         </div>
@@ -279,7 +287,7 @@ export const UserTypesTable = () => {
                   >
                     <span
                       className="lable"
-                      style={{ borderColor: "#096BFF" }}
+                      style={{ backgroundColor: "#096BFF"  }}
                     ></span>{" "}
                     PI
                   </span>
@@ -297,7 +305,7 @@ export const UserTypesTable = () => {
                     color="#ffff"
                     className="mx-4"
                   >
-                    <i className="fas fa-edit"></i>
+                    <img src="/images/pages/edit.svg" alt="radvix" />
                   </CircleIcon>
                 </div>
               </div>
@@ -310,8 +318,11 @@ export const UserTypesTable = () => {
             data-bs-parent="#accordionUsertypes"
           >
             <div className="accordion-body ">
-              <span className="sub-accordion">Notification</span>
-              <div className="row w-100 py-2 rounded">
+              <div className="sub-accordian-parent">
+              <p className="sub-accordion"  style={{marginRight: '-7px'}}>Notification</p> 
+              </div>
+             <div className="items">
+             <div className="row w-100 py-2 rounded">
                 <div className="col">
                   <span
                     className="text-truncate d-inline-block"
@@ -319,7 +330,7 @@ export const UserTypesTable = () => {
                   >
                     <span
                       className="lable"
-                      style={{ borderColor: "#096BFF" }}
+                      style={{ backgroundColor: "#096BFF"  }}
                     ></span>{" "}
                     PI
                   </span>
@@ -337,7 +348,7 @@ export const UserTypesTable = () => {
                     color="#ffff"
                     className="mx-4"
                   >
-                    <i className="fas fa-edit"></i>
+                    <img src="/images/pages/edit.svg" alt="radvix" />
                   </CircleIcon>
                 </div>
               </div>
@@ -349,7 +360,7 @@ export const UserTypesTable = () => {
                   >
                     <span
                       className="lable"
-                      style={{ borderColor: "#096BFF" }}
+                      style={{ backgroundColor: "#096BFF"  }}
                     ></span>{" "}
                     PI
                   </span>
@@ -367,7 +378,7 @@ export const UserTypesTable = () => {
                     color="#ffff"
                     className="mx-4"
                   >
-                    <i className="fas fa-edit"></i>
+                    <img src="/images/pages/edit.svg" alt="radvix" />
                   </CircleIcon>
                 </div>
               </div>
@@ -379,7 +390,7 @@ export const UserTypesTable = () => {
                   >
                     <span
                       className="lable"
-                      style={{ borderColor: "#096BFF" }}
+                      style={{ backgroundColor: "#096BFF"  }}
                     ></span>{" "}
                     PI
                   </span>
@@ -397,10 +408,11 @@ export const UserTypesTable = () => {
                     color="#ffff"
                     className="mx-4"
                   >
-                    <i className="fas fa-edit"></i>
+                    <img src="/images/pages/edit.svg" alt="radvix" />
                   </CircleIcon>
                 </div>
               </div>
+             </div>
             </div>
           </div>
         </div>

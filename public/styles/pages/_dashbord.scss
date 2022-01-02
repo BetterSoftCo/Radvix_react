@@ -14,6 +14,13 @@
 .pagination {
   li {
     margin: 0.3rem;
+    font-weight: normal;
+    .fas{
+      font-weight: 600;
+    }
+  }
+  li.previous {
+    font-size: 13px;
   }
   li.active {
     border-radius: 50%;

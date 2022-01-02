@@ -52,7 +52,6 @@ export class LaboratoryPage extends React.Component {
                     <img src='/images/pages/search_box_icon.svg' alt="" />
                   }
                   width="100%"
-                  height="44px"
                   placeholder="Search..."
                 ></InputIcon>
               </div>

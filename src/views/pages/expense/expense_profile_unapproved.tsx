@@ -57,7 +57,7 @@ import { AppRoutes } from "../../../core/constants";
                   color="#ffff"
                   className="mx-4 pointer"
                 >
-                  <i className="fas fa-edit"></i>
+                  <img src="/images/pages/edit.svg" alt="radvix" />
                 </CircleIcon>
               ) : null}
             </h5>
