@@ -3,7 +3,7 @@ import React, { ReactNode } from "react";
 import { Theme } from "../../core/utils";
 
 interface IconTextVerticalProp {
-  text: string;
+  text: ReactNode;
   theme: Theme;
   children: ReactNode;
   className?: string;

@@ -50,7 +50,7 @@ const ExpenseArchiveTable: React.FC<TableComponentProp & RouteComponentProps> =
                       }}
                       className="pointer"
                     >
-                      <i className="fas fa-file-alt"></i>
+                      <img src="/images/pages/google_docs.svg" alt="radvix" width={15} height={15} />
                     </CircleIcon>
                   </div>
                 </td>

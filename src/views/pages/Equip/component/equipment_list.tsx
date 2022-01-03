@@ -36,7 +36,7 @@ export const EquipmentList: React.FC<TableComponentProp> = ({
                     onClick={(e) => console.log("s")}
                     className="pointer"
                   >
-                    <i className="fas fa-file-alt"></i>
+                    <img src="/images/pages/google_docs.svg" alt="radvix" width={15} height={15} />
                   </CircleIcon>
                   <CircleIcon
                     width="26px"
@@ -45,7 +45,7 @@ export const EquipmentList: React.FC<TableComponentProp> = ({
                     onClick={(e) => console.log("sgdsa")}
                     className="pointer"
                   >
-                    <i className="fas fa-edit"></i>
+                    <img src="/images/pages/edit.svg" alt="radvix" />
                   </CircleIcon>
                 </div>
               </td>

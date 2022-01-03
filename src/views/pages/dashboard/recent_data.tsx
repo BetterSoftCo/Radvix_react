@@ -38,7 +38,7 @@ const AcordienTableData: React.FC<RouteComponentProps> = (props) => {
                     >
                       <span
                         className="lable"
-                        style={{ borderColor: "#096BFF" }}
+                        style={{ backgroundColor: "#096BFF"  }}
                       ></span>{" "}
                       Task: Running TGA On XFG...
                     </span>
@@ -51,7 +51,7 @@ const AcordienTableData: React.FC<RouteComponentProps> = (props) => {
                     onClick={(e) => props.history.push(AppRoutes.task_profile)}
                     className="pointer"
                   >
-                    <i className="fas fa-file-alt"></i>
+                    <img src="/images/pages/google_docs.svg" alt="radvix" width={15} height={15} />
                   </CircleIcon>
                   </div>
                 </div>
@@ -64,10 +64,11 @@ const AcordienTableData: React.FC<RouteComponentProps> = (props) => {
               data-bs-parent="#accordion_resentdata"
             >
               <div className="accordion-body ">
-                <span className="sub-accordion" style={{ left: "-2%" }}>
-                  Data
-                </span>
-                {[1, 2, 3].map((item, index) => (
+                <div className="sub-accordian-parent">
+              <p className="sub-accordion" style={{marginRight: '31%'}}>Data</p> 
+              </div>
+               <div className="items">
+               {[1, 2, 3].map((item, index) => (
                   <div className="row w-100 py-2 rounded" key={index}>
                     <div className="col-2 text-center">
                       <span
@@ -76,7 +77,7 @@ const AcordienTableData: React.FC<RouteComponentProps> = (props) => {
                       >
                         <span
                           className="lable"
-                          style={{ borderColor: "#096BFF" }}
+                          style={{ backgroundColor: "#096BFF"  }}
                         ></span>{" "}
                         Strength and Durability Team
                       </span>
@@ -117,6 +118,7 @@ const AcordienTableData: React.FC<RouteComponentProps> = (props) => {
                     <div className="col d-flex justify-content-between align-items-center"></div>
                   </div>
                 ))}
+               </div>
               </div>
             </div>
           </div>

@@ -26,7 +26,7 @@ export const NotificationTable = () => {
                   >
                     <span
                       className="lable"
-                      style={{ borderColor: "#096BFF" }}
+                      style={{ backgroundColor: "#096BFF"  }}
                     ></span>{" "}
                     Project
                   </span>
@@ -52,7 +52,10 @@ export const NotificationTable = () => {
             data-bs-parent="#accordionExample"
           >
             <div className="accordion-body ">
-              <span className="sub-accordion">Notification</span>
+              <div className="sub-accordian-parent">
+              <p className="sub-accordion"  style={{marginRight: '-7px'}}>Notification</p> 
+              </div>
+              <div className="items">
               <div className="row w-100 py-2 rounded">
                 <div className="col">
                   <span
@@ -61,7 +64,7 @@ export const NotificationTable = () => {
                   >
                     <span
                       className="lable"
-                      style={{ borderColor: "#096BFF" }}
+                      style={{ backgroundColor: "#096BFF"  }}
                     ></span>{" "}
                     New Project Added
                   </span>
@@ -86,7 +89,7 @@ export const NotificationTable = () => {
                   >
                     <span
                       className="lable"
-                      style={{ borderColor: "#096BFF" }}
+                      style={{ backgroundColor: "#096BFF"  }}
                     ></span>{" "}
                     New Project Added
                   </span>
@@ -111,7 +114,7 @@ export const NotificationTable = () => {
                   >
                     <span
                       className="lable"
-                      style={{ borderColor: "#096BFF" }}
+                      style={{ backgroundColor: "#096BFF"  }}
                     ></span>{" "}
                     New Project Added
                   </span>
@@ -127,6 +130,7 @@ export const NotificationTable = () => {
                     <input type="checkbox" />
                   </label>
                 </div>
+              </div>
               </div>
             </div>
           </div>
@@ -148,7 +152,7 @@ export const NotificationTable = () => {
                   >
                     <span
                       className="lable"
-                      style={{ borderColor: "#096BFF" }}
+                      style={{ backgroundColor: "#096BFF"  }}
                     ></span>{" "}
                     Laboratory
                   </span>
@@ -174,8 +178,11 @@ export const NotificationTable = () => {
             data-bs-parent="#accordionExample"
           >
             <div className="accordion-body ">
-              <span className="sub-accordion">Notification</span>
-              <div className="row w-100 py-2 rounded">
+              <div className="sub-accordian-parent">
+              <p className="sub-accordion"  style={{marginRight: '-7px'}}>Notification</p> 
+              </div>
+             <div className="items">
+             <div className="row w-100 py-2 rounded">
                 <div className="col">
                   <span
                     className="text-truncate d-inline-block"
@@ -183,7 +190,7 @@ export const NotificationTable = () => {
                   >
                     <span
                       className="lable"
-                      style={{ borderColor: "#096BFF" }}
+                      style={{ backgroundColor: "#096BFF"  }}
                     ></span>{" "}
                     New Project Added
                   </span>
@@ -208,7 +215,7 @@ export const NotificationTable = () => {
                   >
                     <span
                       className="lable"
-                      style={{ borderColor: "#096BFF" }}
+                      style={{ backgroundColor: "#096BFF"  }}
                     ></span>{" "}
                     New Project Added
                   </span>
@@ -233,7 +240,7 @@ export const NotificationTable = () => {
                   >
                     <span
                       className="lable"
-                      style={{ borderColor: "#096BFF" }}
+                      style={{ backgroundColor: "#096BFF"  }}
                     ></span>{" "}
                     New Project Added
                   </span>
@@ -250,6 +257,7 @@ export const NotificationTable = () => {
                   </label>
                 </div>
               </div>
+             </div>
             </div>
           </div>
         </div>
@@ -270,7 +278,7 @@ export const NotificationTable = () => {
                   >
                     <span
                       className="lable"
-                      style={{ borderColor: "#096BFF" }}
+                      style={{ backgroundColor: "#096BFF"  }}
                     ></span>{" "}
                     Team
                   </span>
@@ -296,7 +304,10 @@ export const NotificationTable = () => {
             data-bs-parent="#accordionExample"
           >
             <div className="accordion-body ">
-              <span className="sub-accordion">Notification</span>
+              <div className="sub-accordian-parent">
+              <p className="sub-accordion"  style={{marginRight: '-7px'}}>Notification</p> 
+              </div>
+              <div className="items">
               <div className="row w-100 py-2 rounded">
                 <div className="col">
                   <span
@@ -305,7 +316,7 @@ export const NotificationTable = () => {
                   >
                     <span
                       className="lable"
-                      style={{ borderColor: "#096BFF" }}
+                      style={{ backgroundColor: "#096BFF"  }}
                     ></span>{" "}
                     New Project Added
                   </span>
@@ -330,7 +341,7 @@ export const NotificationTable = () => {
                   >
                     <span
                       className="lable"
-                      style={{ borderColor: "#096BFF" }}
+                      style={{ backgroundColor: "#096BFF"  }}
                     ></span>{" "}
                     New Project Added
                   </span>
@@ -355,7 +366,7 @@ export const NotificationTable = () => {
                   >
                     <span
                       className="lable"
-                      style={{ borderColor: "#096BFF" }}
+                      style={{ backgroundColor: "#096BFF"  }}
                     ></span>{" "}
                     New Project Added
                   </span>
@@ -371,6 +382,7 @@ export const NotificationTable = () => {
                     <input type="checkbox" />
                   </label>
                 </div>
+              </div>
               </div>
             </div>
           </div>

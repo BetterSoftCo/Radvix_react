@@ -22,7 +22,6 @@ export class MemberPage extends React.Component {
                     <img src="/images/pages/search_box_icon.svg" alt="" />
                   }
                   width="100%"
-                  height="44px"
                   placeholder="Search..."
                 ></InputIcon>
               </div>
@@ -135,7 +134,7 @@ const MemberItem: React.FC = () => (
         }}
         className="pointer mx-1"
       >
-        <i className="fas fa-edit"></i>
+        <img src="/images/pages/edit.svg" alt="radvix" />
       </CircleIcon>
       <CircleIcon
         width="26px"
@@ -146,7 +145,7 @@ const MemberItem: React.FC = () => (
         }}
         className="pointer mx-1"
       >
-        <i className="fas fa-file-alt"></i>
+        <img src="/images/pages/google_docs.svg" alt="radvix" width={15} height={15} />
       </CircleIcon>
     </div>
   </div>

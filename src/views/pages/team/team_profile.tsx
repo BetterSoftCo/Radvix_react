@@ -37,7 +37,7 @@ class TeamPageProfile extends React.Component<RouteComponentProps> {
                   this.props.history.push(AppRoutes.team_edit);
                 }}
               >
-                <i className="fas fa-edit"></i>
+                <img src="/images/pages/edit.svg" alt="radvix" />
               </CircleIcon>
             </h5>
             <MainButton

@@ -29,7 +29,7 @@ import { AppRoutes } from "../../../core/constants";
                 className="mx-4 pointer"
                 onClick={()=>{this.props.history.push(AppRoutes.edit_laboratory)}}
               >
-                <i className="fas fa-edit"></i>
+                <img src="/images/pages/edit.svg" alt="radvix" />
               </CircleIcon>
             </h5>
             <MainButton

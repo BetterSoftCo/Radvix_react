@@ -43,7 +43,7 @@ const DataCollectionTable: React.FC<IAcordienTable & RouteComponentProps> = (
                     >
                       <span
                         className="lable"
-                        style={{ borderColor: "#096BFF" }}
+                        style={{ backgroundColor: "#096BFF"  }}
                       ></span>{" "}
                       Task: Running TGA On XFG...
                     </span>
@@ -58,7 +58,7 @@ const DataCollectionTable: React.FC<IAcordienTable & RouteComponentProps> = (
                       }
                       className="pointer"
                     >
-                      <i className="fas fa-file-alt"></i>
+                      <img src="/images/pages/google_docs.svg" alt="radvix" width={15} height={15} />
                     </CircleIcon>
                   </div>
                 </div>
@@ -71,9 +71,11 @@ const DataCollectionTable: React.FC<IAcordienTable & RouteComponentProps> = (
               data-bs-parent="#accordion_resentdata"
             >
               <div className="accordion-body ">
-                <span className="sub-accordion" style={{ left: "-2%" }}>
-                  Data
-                </span>
+                <div className="sub-accordian-parent">
+              <p className="sub-accordion"  style={{marginRight: '31%'}}>Data</p> 
+              </div>
+
+                <div className="items">
                 {[1, 2, 3].map((item, index) => (
                   <div className="row w-100 py-2 rounded" key={index}>
                     <div className="col-2 text-center">
@@ -83,7 +85,7 @@ const DataCollectionTable: React.FC<IAcordienTable & RouteComponentProps> = (
                       >
                         <span
                           className="lable"
-                          style={{ borderColor: "#096BFF" }}
+                          style={{ backgroundColor: "#096BFF"  }}
                         ></span>{" "}
                         Strength and Durability Team
                       </span>
@@ -135,7 +137,7 @@ const DataCollectionTable: React.FC<IAcordienTable & RouteComponentProps> = (
                           props.history.push(AppRoutes.data_profile);
                         }}
                       >
-                        <i className="fas fa-file-alt"></i>
+                        <img src="/images/pages/google_docs.svg" alt="radvix" width={15} height={15} />
                       </CircleIcon>
                       <CircleIcon
                         width="22px"
@@ -146,7 +148,7 @@ const DataCollectionTable: React.FC<IAcordienTable & RouteComponentProps> = (
                         color="#ffff"
                         className="mx-4 pointer"
                       >
-                        <i className="fas fa-comment"></i>
+                        <img src="/images/pages/start_discussion.svg" alt="radvix" />
                       </CircleIcon>
                       <CircleIcon
                         width="22px"
@@ -162,6 +164,7 @@ const DataCollectionTable: React.FC<IAcordienTable & RouteComponentProps> = (
                     </div>
                   </div>
                 ))}
+                </div>
               </div>
             </div>
           </div>

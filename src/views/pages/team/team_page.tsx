@@ -26,7 +26,6 @@ import { AppRoutes } from "../../../core/constants";
                     <img src="/images/pages/Search Box Icon.svg" alt="" />
                   }
                   width="100%"
-                  height="44px"
                   placeholder="Search..."
                 ></InputIcon>
               </div>
