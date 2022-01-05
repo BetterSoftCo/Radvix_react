@@ -258,7 +258,7 @@ export class DashboardPage extends React.Component {
                   <p className="text-right mb-0 " >Total Results: 45</p>
                   </div>
                  
-                
+                  <button onClick={()=>{this.controller.postGlobalSearch()}}>fffffffffff</button>
               </div>
             </div>
           </div>
