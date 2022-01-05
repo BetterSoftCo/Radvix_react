@@ -152,21 +152,21 @@ export class EquipProfile extends React.Component {
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
+                    backgroundColor="#EBEBEB"
                   ></MainButton>
                   <MainButton
                     children="ACCESSLab Team"
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
+                    backgroundColor="#EBEBEB"
                   ></MainButton>
                   <MainButton
                     children="ACCESSLab Team"
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
+                    backgroundColor="#EBEBEB"
                   ></MainButton>
                   <MainButton
                     children="ACCESSLab Team"
@@ -174,6 +174,7 @@ export class EquipProfile extends React.Component {
                     borderRadius="24px"
                     fontSize="14px"
                     className="px-3 m-2"
+                    backgroundColor="#EBEBEB"
                   ></MainButton>
                 </div>
                 <BoxListScroll

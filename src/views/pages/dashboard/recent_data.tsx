@@ -51,7 +51,7 @@ const AcordienTableData: React.FC<RouteComponentProps> = (props) => {
                     onClick={(e) => props.history.push(AppRoutes.task_profile)}
                     className="pointer"
                   >
-                    <img src="/images/pages/google_docs.svg" alt="radvix" width={15} height={15} />
+                    <img src="/images/pages/google_docs.svg" alt="radvix" width={12} height={12} />
                   </CircleIcon>
                   </div>
                 </div>

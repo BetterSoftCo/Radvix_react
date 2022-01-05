@@ -7,10 +7,11 @@
   margin: 1rem 0rem;
   .b-title {
     margin-left: 1rem;
+    margin-bottom: 0px;
   }
   .left {
     position: relative;
-    margin-top: .5rem;
+    margin-top: 0.5rem;
     display: flex;
     flex-direction: column;
     &::before {
@@ -26,7 +27,7 @@
   }
   .right {
     position: relative;
-    margin-top: .5rem;
+    margin-top: 0.5rem;
     display: flex;
     flex-direction: column;
   }
@@ -115,8 +116,48 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    border: 3px dashed #adadad;
+    // border: 1px dashed #adadad;
+    border-radius: 9px;
+    background-image: repeating-linear-gradient(
+        -60deg,
+        #adadad,
+        #adadad 0.64px,
+        transparent 1px,
+        transparent 5.48px,
+        #adadad 8px
+      ),
+      repeating-linear-gradient(
+        30deg,
+        #adadad,
+        #adadad 0.64px,
+        transparent 1px,
+        transparent 5.48px,
+        #adadad 8px
+      ),
+      repeating-linear-gradient(
+        120deg,
+        #adadad,
+        #adadad 0.64px,
+        transparent 1px,
+        transparent 5.48px,
+        #adadad 8px
+      ),
+      repeating-linear-gradient(
+        210deg,
+        #adadad,
+        #adadad 0.64px,
+        transparent 1px,
+        transparent 5.48px,
+        #adadad 8px
+      );
+    background-size: 2px 100%, 100% 2px, 2px 100%, 100% 2px;
+    background-position: 0 0, 0 0, 100% 0, 0 100%;
+    background-repeat: no-repeat;
     margin-top: 1rem;
+    p {
+      color: #707070;
+      font-size: 14px;
+    }
   }
 
   .tabel-info {
@@ -145,7 +186,7 @@
     }
   }
   .teams {
-    background-color: #f5f5f5;
+    background-color: $gray-color;
     padding: 1rem;
     border-radius: 15px;
     .History {
@@ -158,6 +199,14 @@
       }
     }
   }
+  .teams.teams-light{
+    background-color: #F5F5F5;
+  }
+  .chat-teams-light{
+    .parent-box-list-scroll{
+      padding: 0 !important
+    }
+  }
   .file-list {
     list-style-type: none;
     padding-left: 0;
@@ -165,6 +214,16 @@
   .tags {
     button {
       margin-bottom: 1rem;
+      margin-left: .5rem;
+      
+      
+    }
+    button.tag-delete{
+      padding-left: 1rem !important;
+      padding-right: .2rem !important;
+    }
+    .CircleIcon{
+      margin-left: 3px
     }
   }
 }
@@ -218,7 +277,6 @@
     cursor: pointer;
     position: relative;
   }
-
 
   .checkbox > input {
     height: 25px;

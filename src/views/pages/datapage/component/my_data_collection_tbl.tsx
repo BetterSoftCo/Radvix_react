@@ -56,7 +56,7 @@ interface IAcordienTable {
                       }
                       className="pointer"
                     >
-                      <img src="/images/pages/google_docs.svg" alt="radvix" width={15} height={15} />
+                      <img src="/images/pages/google_docs.svg" alt="radvix" width={12} height={12} />
                     </CircleIcon>
                   </div>
                 </div>
@@ -134,7 +134,7 @@ interface IAcordienTable {
                           props.history.push(AppRoutes.data_profile);
                         }}
                       >
-                        <img src="/images/pages/google_docs.svg" alt="radvix" width={15} height={15} />
+                        <img src="/images/pages/google_docs.svg" alt="radvix" width={12} height={12} />
                       </CircleIcon>
                       <CircleIcon
                         width="22px"
@@ -156,7 +156,7 @@ interface IAcordienTable {
                         color="#ffff"
                         className="mx-4 pointer"
                       >
-                        <i className="fas fa-upload"></i>
+                        <img src="/images/pages/download.svg" alt="radvix" width={15} height={15} />
                       </CircleIcon>
                     </div>
                   </div>

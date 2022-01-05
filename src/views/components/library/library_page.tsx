@@ -156,7 +156,7 @@ export const ShowLibraryPage: React.FC = (props) => {
           onClick={(e) => console.log("s")}
           className="pointer"
         >
-          <img src="/images/pages/google_docs.svg" alt="radvix" width={15} height={15} />
+          <img src="/images/pages/google_docs.svg" alt="radvix" width={12} height={12} />
         </CircleIcon>
         <CircleIcon
           width="26px"
@@ -165,7 +165,7 @@ export const ShowLibraryPage: React.FC = (props) => {
           onClick={(e) => console.log("s")}
           className="pointer"
         >
-          <img src="/images/pages/google_docs.svg" alt="radvix" width={15} height={15} />
+          <img src="/images/pages/google_docs.svg" alt="radvix" width={12} height={12} />
         </CircleIcon>
       </div>
       <div className="col-12 border-bottom my-4 py-2 item d-flex">

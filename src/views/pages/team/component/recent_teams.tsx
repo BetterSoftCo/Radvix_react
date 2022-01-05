@@ -67,7 +67,7 @@ const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
                     onClick={() => props.history.push(AppRoutes.team_profile)}
                     className="pointer m-1"
                   >
-                    <img src="/images/pages/google_docs.svg" alt="radvix" width={15} height={15} />
+                    <img src="/images/pages/google_docs.svg" alt="radvix" width={12} height={12} />
                   </CircleIcon>
                   {props.role !== UserRoles.level3 ? (
                     <CircleIcon
@@ -130,7 +130,7 @@ const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
                       onClick={(e) => handelOnclick(e)}
                       className="pointer  m-1"
                     >
-                      <img src="/images/pages/google_docs.svg" alt="radvix" width={15} height={15} />
+                      <img src="/images/pages/google_docs.svg" alt="radvix" width={12} height={12} />
                     </CircleIcon>
                   </div>
                 </div>
@@ -167,7 +167,7 @@ const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
                       onClick={(e) => handelOnclick(e)}
                       className="pointer  m-1 "
                     >
-                      <img src="/images/pages/google_docs.svg" alt="radvix" width={15} height={15} />
+                      <img src="/images/pages/google_docs.svg" alt="radvix" width={12} height={12} />
                     </CircleIcon>
                   </div>
                 </div>
@@ -204,7 +204,7 @@ const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
                       onClick={(e) => handelOnclick(e)}
                       className="pointer  m-1"
                     >
-                      <img src="/images/pages/google_docs.svg" alt="radvix" width={15} height={15} />
+                      <img src="/images/pages/google_docs.svg" alt="radvix" width={12} height={12} />
                     </CircleIcon>
                   </div>
                 </div>
@@ -254,7 +254,7 @@ const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
                     onClick={(e) => handelOnclick(e)}
                     className="pointer  m-1"
                   >
-                    <img src="/images/pages/google_docs.svg" alt="radvix" width={15} height={15} />
+                    <img src="/images/pages/google_docs.svg" alt="radvix" width={12} height={12} />
                   </CircleIcon>
                   {props.role !== UserRoles.level3 ? (
                     <CircleIcon
@@ -317,7 +317,7 @@ const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
                       onClick={(e) => handelOnclick(e)}
                       className="pointer  m-1"
                     >
-                      <img src="/images/pages/google_docs.svg" alt="radvix" width={15} height={15} />
+                      <img src="/images/pages/google_docs.svg" alt="radvix" width={12} height={12} />
                     </CircleIcon>
                   </div>
                 </div>
@@ -354,7 +354,7 @@ const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
                       onClick={(e) => handelOnclick(e)}
                       className="pointer  m-1"
                     >
-                      <img src="/images/pages/google_docs.svg" alt="radvix" width={15} height={15} />
+                      <img src="/images/pages/google_docs.svg" alt="radvix" width={12} height={12} />
                     </CircleIcon>
                   </div>
                 </div>
@@ -392,7 +392,7 @@ const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
                       onClick={(e) => handelOnclick(e)}
                       className="pointer  m-1"
                     >
-                      <img src="/images/pages/google_docs.svg" alt="radvix" width={15} height={15} />
+                      <img src="/images/pages/google_docs.svg" alt="radvix" width={12} height={12} />
                     </CircleIcon>
                   </div>
                 </div>
@@ -442,7 +442,7 @@ const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
                     onClick={(e) => handelOnclick(e)}
                     className="pointer  m-1"
                   >
-                    <img src="/images/pages/google_docs.svg" alt="radvix" width={15} height={15} />
+                    <img src="/images/pages/google_docs.svg" alt="radvix" width={12} height={12} />
                   </CircleIcon>
                   {props.role !== UserRoles.level3 ? (
                     <CircleIcon
@@ -506,7 +506,7 @@ const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
                       onClick={(e) => handelOnclick(e)}
                       className="pointer  m-1"
                     >
-                      <img src="/images/pages/google_docs.svg" alt="radvix" width={15} height={15} />
+                      <img src="/images/pages/google_docs.svg" alt="radvix" width={12} height={12} />
                     </CircleIcon>
                   </div>
                 </div>
@@ -544,7 +544,7 @@ const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
                       onClick={(e) => handelOnclick(e)}
                       className="pointer  m-1"
                     >
-                      <img src="/images/pages/google_docs.svg" alt="radvix" width={15} height={15} />
+                      <img src="/images/pages/google_docs.svg" alt="radvix" width={12} height={12} />
                     </CircleIcon>
                   </div>
                 </div>
@@ -582,7 +582,7 @@ const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
                       onClick={(e) => handelOnclick(e)}
                       className="pointer  m-1"
                     >
-                      <img src="/images/pages/google_docs.svg" alt="radvix" width={15} height={15} />
+                      <img src="/images/pages/google_docs.svg" alt="radvix" width={12} height={12} />
                     </CircleIcon>
                   </div>
                 </div>

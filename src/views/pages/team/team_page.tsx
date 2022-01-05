@@ -29,7 +29,7 @@ import { AppRoutes } from "../../../core/constants";
                   placeholder="Search..."
                 ></InputIcon>
               </div>
-              <div className="right w-30 d-flex justify-content-between align-items-center">
+              <div className="right w-50 d-flex justify-content-end align-items-center">
               <MainButton
                   children="New Team"
                   type={MainButtonType.dark}

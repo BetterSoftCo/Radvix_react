@@ -175,7 +175,6 @@ export class MemberPageProfile extends React.Component {
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
                     backgroundColor="#EBEBEB"
                   ></MainButton>
                   <MainButton
@@ -183,7 +182,6 @@ export class MemberPageProfile extends React.Component {
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
                     backgroundColor="#EBEBEB"
                   ></MainButton>
                   <MainButton
@@ -191,7 +189,6 @@ export class MemberPageProfile extends React.Component {
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
                     backgroundColor="#EBEBEB"
                   ></MainButton>
                   <MainButton
@@ -222,7 +219,6 @@ export class MemberPageProfile extends React.Component {
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
                     backgroundColor="#EBEBEB"
                   ></MainButton>
                   <MainButton
@@ -230,7 +226,6 @@ export class MemberPageProfile extends React.Component {
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
                     backgroundColor="#EBEBEB"
                   ></MainButton>
                   <MainButton
@@ -238,7 +233,6 @@ export class MemberPageProfile extends React.Component {
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
                     backgroundColor="#EBEBEB"
                   ></MainButton>
                   <MainButton
@@ -306,7 +300,6 @@ export class MemberPageProfile extends React.Component {
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
                     backgroundColor="#EBEBEB"
                   ></MainButton>
                   <MainButton
@@ -314,7 +307,6 @@ export class MemberPageProfile extends React.Component {
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
                     backgroundColor="#EBEBEB"
                   ></MainButton>
                   <MainButton
@@ -322,7 +314,6 @@ export class MemberPageProfile extends React.Component {
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
                     backgroundColor="#EBEBEB"
                   ></MainButton>
                   <MainButton

@@ -24,7 +24,7 @@ export class AdminMember extends React.Component {
                   Subscription
                 </h4>
               </div>
-              <div className="right w-25 d-flex justify-content-between">
+              <div className="right w-50 d-flex justify-content-end align-items-center">
                 <InputIcon
                   chilren={
                     <img src="/images/pages/search_box_icon.svg" alt="" />
@@ -137,7 +137,7 @@ const MemberItem: React.FC = () => (
         }}
         className="pointer mx-1"
       >
-        <img src="/images/pages/google_docs.svg" alt="radvix" width={15} height={15} />
+        <img src="/images/pages/google_docs.svg" alt="radvix" width={12} height={12} />
       </CircleIcon>
     </div>
   </div>

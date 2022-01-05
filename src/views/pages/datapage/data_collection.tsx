@@ -58,19 +58,19 @@ import  DataCollectionTable  from "./component/data_collection_table";
                   placeholder="Search..."
                 ></InputIcon>
               </div>
-              <div className="right w-25 d-flex justify-content-between align-items-center">
+              <div className="right w-50 d-flex justify-content-end align-items-center">
                 <MainButton
                   children="New Data"
                   type={MainButtonType.dark}
                   borderRadius="24px"
-                  fontSize="14px"
+                  fontSize="16px"
                   onClick={()=>{this.props.history.push(AppRoutes.data_new)}}
                 ></MainButton>
                 <MainButton
                   children="My Data"
                   type={MainButtonType.dark}
                   borderRadius="24px"
-                  fontSize="14px"
+                  fontSize="16px"
                   onClick={()=>{this.props.history.push(AppRoutes.data_mydata)}}
                 ></MainButton>
                 <SelectComponent

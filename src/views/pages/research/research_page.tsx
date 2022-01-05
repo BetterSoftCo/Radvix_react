@@ -51,7 +51,7 @@ export class ResearchPage extends React.Component {
                   placeholder="Search..."
                 ></InputIcon>
               </div>
-              <div className="right w-25 d-flex justify-content-end">
+              <div className="right w-50 d-flex justify-content-end align-items-center">
                 <SelectComponent
                   width="63px"
                   height="44px"

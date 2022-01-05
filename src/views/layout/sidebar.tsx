@@ -211,7 +211,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
       </div>
       {page === "Research" && ShowSidebar === true ? (
         <div className="gide-sidebar">
-          <div className="d-flex flex-wrap list-icons">
+          <div className="d-flex flex-wrap list-icons justify-content-around">
             <IconTextVertical
               fontSize="15px"
               className="lighter mx-2 my-1 pointer"
@@ -224,7 +224,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 <img
                   width="40px"
                   height="40px"
-                  src="/Images/layout/new_task_icon.svg"
+                  src="/Images/layout/add.svg"
                 />
               }
             ></IconTextVertical>
@@ -240,7 +240,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 <img
                   width="40px"
                   height="40px"
-                  src="/Images/layout/new_task_icon.svg"
+                  src="/Images/layout/archives.svg"
                 />
               }
             ></IconTextVertical>
@@ -253,7 +253,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 <img
                   width="40px"
                   height="40px"
-                  src="/Images/layout/new_task_icon.svg"
+                  src="/Images/layout/timeline.svg"
                 />
               }
             ></IconTextVertical>
@@ -294,7 +294,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
       ) : page === "Laboratory" && ShowSidebar === true ? (
         <div className="gide-sidebar">
           <div
-            className="d-flex flex-wrap list-icons"
+            className="d-flex flex-wrap list-icons justify-content-around"
             style={{ marginTop: "6rem" }}
           >
             <IconTextVertical
@@ -309,7 +309,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 <img
                   width="40px"
                   height="40px"
-                  src="/Images/layout/new_task_icon.svg"
+                  src="/Images/layout/add.svg"
                 />
               }
             ></IconTextVertical>
@@ -325,7 +325,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 <img
                   width="40px"
                   height="40px"
-                  src="/Images/layout/new_task_icon.svg"
+                  src="/Images/layout/hotel.svg"
                 />
               }
             ></IconTextVertical>
@@ -341,7 +341,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 <img
                   width="40px"
                   height="40px"
-                  src="/Images/layout/new_task_icon.svg"
+                  src="/Images/layout/microscope_1.svg"
                 />
               }
             ></IconTextVertical>
@@ -357,7 +357,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 <img
                   width="40px"
                   height="40px"
-                  src="/Images/layout/new_task_icon.svg"
+                  src="/Images/layout/laboratory.svg"
                 />
               }
             ></IconTextVertical>
@@ -398,7 +398,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
       ) : page === "Team" && ShowSidebar === true ? (
         <div className="gide-sidebar">
           <div
-            className="d-flex flex-wrap list-icons px-0"
+            className="d-flex flex-wrap list-icons px-0 justify-content-around"
             style={{ marginTop: "10rem" }}
           >
             <IconTextVertical
@@ -413,7 +413,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 <img
                   width="40px"
                   height="40px"
-                  src="/Images/layout/new_task_icon.svg"
+                  src="/Images/layout/teamwork.svg"
                 />
               }
             ></IconTextVertical>
@@ -429,7 +429,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 <img
                   width="40px"
                   height="40px"
-                  src="/Images/layout/new_task_icon.svg"
+                  src="/Images/layout/tasks.svg"
                 />
               }
             ></IconTextVertical>
@@ -445,7 +445,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 <img
                   width="40px"
                   height="40px"
-                  src="/Images/layout/new_task_icon.svg"
+                  src="/Images/layout/scientist.svg"
                 />
               }
             ></IconTextVertical>
@@ -461,7 +461,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 <img
                   width="40px"
                   height="40px"
-                  src="/Images/layout/new_task_icon.svg"
+                  src="/Images/layout/user_list.svg"
                 />
               }
             ></IconTextVertical>
@@ -502,7 +502,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
       ) : page === "Task" && ShowSidebar === true ? (
         <div className="gide-sidebar">
           <div
-            className="d-flex flex-wrap list-icons px-0"
+            className="d-flex flex-wrap list-icons px-0 justify-content-around"
             style={{ marginTop: "14rem" }}
           >
             <IconTextVertical
@@ -517,7 +517,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 <img
                   width="40px"
                   height="40px"
-                  src="/Images/layout/new_task_icon.svg"
+                  src="/Images/layout/task.svg"
                 />
               }
             ></IconTextVertical>
@@ -533,7 +533,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 <img
                   width="40px"
                   height="40px"
-                  src="/Images/layout/new_task_icon.svg"
+                  src="/Images/layout/check.svg"
                 />
               }
             ></IconTextVertical>
@@ -574,7 +574,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
       ) : page === "Data" && ShowSidebar === true ? (
         <div className="gide-sidebar">
           <div
-            className="d-flex flex-wrap list-icons px-0"
+            className="d-flex flex-wrap list-icons px-0 justify-content-around"
             style={{ marginTop: "19rem" }}
           >
             <IconTextVertical
@@ -589,7 +589,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 <img
                   width="40px"
                   height="40px"
-                  src="/Images/layout/new_task_icon.svg"
+                  src="/Images/layout/dashboard.svg"
                 />
               }
             ></IconTextVertical>
@@ -605,7 +605,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 <img
                   width="40px"
                   height="40px"
-                  src="/Images/layout/new_task_icon.svg"
+                  src="/Images/layout/inbox.svg"
                 />
               }
             ></IconTextVertical>
@@ -646,7 +646,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
       ) : page === "Discussion" && ShowSidebar === true ? (
         <div className="gide-sidebar">
           <div
-            className="d-flex flex-wrap list-icons px-0"
+            className="d-flex flex-wrap list-icons px-0 justify-content-around"
             style={{ marginTop: "24rem" }}
           >
             <IconTextVertical
@@ -661,7 +661,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 <img
                   width="40px"
                   height="40px"
-                  src="/Images/layout/new_task_icon.svg"
+                  src="/Images/layout/chat_3.svg"
                 />
               }
             ></IconTextVertical>
@@ -677,7 +677,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 <img
                   width="40px"
                   height="40px"
-                  src="/Images/layout/new_task_icon.svg"
+                  src="/Images/layout/businessmen.svg"
                 />
               }
             ></IconTextVertical>
@@ -752,7 +752,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
               alias odit vitae ut?
             </p>
           </div>
-          <div className="d-flex flex-wrap list-icons px-0">
+          <div className="d-flex flex-wrap list-icons px-0 justify-content-around">
             <IconTextVertical
               onClick={() => {
                 props.history.push(AppRoutes.publish_new);
@@ -765,7 +765,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 <img
                   width="40px"
                   height="40px"
-                  src="/Images/layout/new_task_icon.svg"
+                  src="/Images/layout/notebook.svg"
                 />
               }
             ></IconTextVertical>
@@ -781,7 +781,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 <img
                   width="40px"
                   height="40px"
-                  src="/Images/layout/new_task_icon.svg"
+                  src="/Images/layout/newspaper.svg"
                 />
               }
             ></IconTextVertical>
@@ -824,7 +824,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
               alias odit vitae ut?
             </p>
           </div>
-          <div className="d-flex flex-wrap list-icons px-0">
+          <div className="d-flex flex-wrap list-icons px-0 justify-content-around">
             <IconTextVertical
               onClick={() => {
                 props.history.push(AppRoutes.expense_new);
@@ -837,7 +837,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 <img
                   width="40px"
                   height="40px"
-                  src="/Images/layout/new_task_icon.svg"
+                  src="/Images/layout/bill.svg"
                 />
               }
             ></IconTextVertical>
@@ -853,7 +853,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 <img
                   width="40px"
                   height="40px"
-                  src="/Images/layout/new_task_icon.svg"
+                  src="/Images/layout/accounting.svg"
                 />
               }
             ></IconTextVertical>

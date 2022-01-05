@@ -78,7 +78,7 @@ export class EditEquip extends React.Component {
                     height="30px"
                     className="mx-2 pointer"
                   >
-                    <i className="fas fa-trash"></i>
+                    <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
                   </CircleIcon>
                   <Dropzone onDrop={this.onDrop}>
                     {({ getRootProps, getInputProps }) => (
@@ -166,9 +166,30 @@ export class EditEquip extends React.Component {
                     <section className="container fileUploadBox">
                       <div {...getRootProps({ className: "dropzone" })}>
                         <input {...getInputProps()} />
+                        <MainButton
+                          type={MainButtonType.light}
+                          minHeight="30px"
+                          minWidth="179px"
+                          fontSize="14px"
+                          borderRadius="50px"
+                          backgroundColor="#fff"
+                          border="1px solid #707070"
+                          color="#707070"
+                          className="mt-4"
+                          children={
+                            <div className="d-flex justify-content-between align-items-center">
+                              <img
+                                src="/Images/component/cloud_computing.svg"
+                                alt="sssss"
+                                height="20"
+                                
+                              />{" "}
+                              <span className="flex-fill">Browse Local Files</span>
+                            </div>
+                          }
+                        ></MainButton>
                         <p>
-                          Drag 'n' drop some files here, or click to select
-                          files
+                        Or drag and drop files here
                         </p>
                       </div>
                       <aside>
@@ -192,7 +213,7 @@ export class EditEquip extends React.Component {
                       height="22px"
                       className="mx-3"
                     >
-                      <i className="fas fa-trash"></i>
+                      <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
                     </CircleIcon>
                   </li>
                   <li className="d-flex align-items-center mb-1">
@@ -208,7 +229,7 @@ export class EditEquip extends React.Component {
                       height="22px"
                       className="mx-3"
                     >
-                      <i className="fas fa-trash"></i>
+                      <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
                     </CircleIcon>
                   </li>
                   <li className="d-flex align-items-center mb-1">
@@ -224,7 +245,7 @@ export class EditEquip extends React.Component {
                       height="22px"
                       className="mx-3"
                     >
-                      <i className="fas fa-trash"></i>
+                      <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
                     </CircleIcon>
                   </li>
                 </ul>
@@ -262,7 +283,7 @@ export class EditEquip extends React.Component {
                     height="22px"
                     className="mx-3"
                   >
-                    <i className="fas fa-trash"></i>
+                    <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
                   </CircleIcon>
                 </li>
                 <li className="my-2 d-flex flex-column flex-md-row">
@@ -280,7 +301,7 @@ export class EditEquip extends React.Component {
                     height="22px"
                     className="mx-3"
                   >
-                    <i className="fas fa-trash"></i>
+                    <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
                   </CircleIcon>
                 </li>
               </ul>
@@ -340,63 +361,44 @@ export class EditEquip extends React.Component {
                 ></SelectComponent>
               </div>
               <div className="teams Labs">
-                <div className="tags p-3">
+              <div className="tags p-3">
                   <MainButton
+                    backgroundColor="#EBEBEB"
+                    className="tag-delete"
                     children={
-                      <div className="d-flex">
-                        ACCESSLab Team
+                      <div className="d-flex align-items-center justify-content-between">
+                        <span className="flex-fill">ACCESSLab Team</span>
                         <CircleIcon
                           type={ThemeCircleIcon.dark}
                           width="22px"
                           height="22px"
-                          className="mx-3"
                         >
-                          <i className="fas fa-trash"></i>
+                          <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
                         </CircleIcon>
                       </div>
                     }
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
                   ></MainButton>
                   <MainButton
+                    backgroundColor="#EBEBEB"
+                    className="tag-delete"
                     children={
-                      <div className="d-flex">
-                        ACCESSLab Team
+                      <div className="d-flex align-items-center justify-content-between">
+                        <span className="flex-fill">ACCESSLab Team</span>
                         <CircleIcon
                           type={ThemeCircleIcon.dark}
                           width="22px"
                           height="22px"
-                          className="mx-3"
                         >
-                          <i className="fas fa-trash"></i>
+                          <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
                         </CircleIcon>
                       </div>
                     }
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
-                  ></MainButton>
-                  <MainButton
-                    children={
-                      <div className="d-flex">
-                        ACCESSLab Team
-                        <CircleIcon
-                          type={ThemeCircleIcon.dark}
-                          width="22px"
-                          height="22px"
-                          className="mx-3"
-                        >
-                          <i className="fas fa-trash"></i>
-                        </CircleIcon>
-                      </div>
-                    }
-                    type={MainButtonType.light}
-                    borderRadius="24px"
-                    fontSize="14px"
-                    className="px-3"
                   ></MainButton>
                 </div>
               </div>

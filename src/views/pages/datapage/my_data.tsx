@@ -58,7 +58,7 @@ import  MyDataCollectionTable  from "./component/my_data_collection_tbl";
                   placeholder="Search..."
                 ></InputIcon>
               </div>
-              <div className="right w-25 d-flex justify-content-between align-items-center">
+              <div className="right w-50 d-flex justify-content-end align-items-center">
                 <MainButton
                   children="New Data"
                   type={MainButtonType.dark}

@@ -204,7 +204,7 @@ import { AppRoutes } from "../../../core/constants";
                   placeholder="Search..."
                 ></InputIcon>
               </div>
-              <div className="right w-25 d-flex justify-content-end align-items-center">
+              <div className="right w-50 d-flex justify-content-end align-items-center">
                 <MainButton
                   children="Upload Next Draft"
                   type={MainButtonType.dark}

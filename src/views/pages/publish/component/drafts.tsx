@@ -36,7 +36,7 @@ export const Drafts: React.FC<TableComponentProp> = ({
                     onClick={(e) => console.log("s")}
                     className="pointer"
                   >
-                    <i className="fas fa-upload"></i>
+                    <img src="/images/pages/download.svg" alt="radvix" width={15} height={15} />
                   </CircleIcon>
                   <CircleIcon
                     width="26px"
@@ -45,7 +45,7 @@ export const Drafts: React.FC<TableComponentProp> = ({
                     onClick={(e) => console.log("sgdsa")}
                     className="pointer"
                   >
-                    <i className="fas fa-trash"></i>
+                    <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
                   </CircleIcon>
                 </div>
               </td>

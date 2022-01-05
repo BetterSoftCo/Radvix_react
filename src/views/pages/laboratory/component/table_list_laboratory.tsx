@@ -38,7 +38,7 @@ const TableListLaboratory: React.FC<TableComponentProp & RouteComponentProps> =
                         props.history.push(AppRoutes.profile_laboratory)
                       }
                     >
-                      <img src="/images/pages/google_docs.svg" alt="radvix" width={15} height={15} />
+                      <img src="/images/pages/google_docs.svg" alt="radvix" width={12} height={12} />
                     </CircleIcon>
                     <CircleIcon
                       width="26px"

@@ -1,6 +1,11 @@
 @charset "UTF-8";
+@font-face {
+  font-family: Sanfransisco;
+  src: url(./../../font/sf-ui-display-cufonfonts/sf-ui-display-light-58646b33e0551.otf);
+}
 body {
   background-color: #ffffff;
+  font-family: Sanfransisco;
 }
 
 .text-black-color {
@@ -167,6 +172,7 @@ button {
 .sidebar .gide-sidebar .helptext {
   font-size: 10px;
   color: #ebebeb;
+  padding: 1rem;
 }
 
 .righ-section .top {
@@ -215,6 +221,12 @@ button {
 .TableBox .TopTableBox .left .InputComponentStyle {
   height: 39px;
   border: 1px solid #adadad;
+}
+.TableBox .TopTableBox .right button {
+  min-width: 134px;
+  min-height: 34px;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
 }
 .TableBox .table {
   border-collapse: collapse;
@@ -265,18 +277,26 @@ button {
   border-radius: 29%;
   height: 20px;
   display: inline-block;
+  position: relative;
+  top: 4px;
 }
 .TableBox .accordion-button:not(.collapsed)::after {
   transform: rotate(90deg);
 }
 .TableBox .accordion-button::after {
   position: absolute;
-  left: 6px;
+  left: 4px;
   padding-left: 1rem;
   background-image: url("./../../Images/pages/toggle_Icon.svg");
 }
+.TableBox .accordion-button {
+  padding: 0.5rem 0.75rem;
+}
 .TableBox .accordion-button .row.w-100 {
   padding-left: 1rem;
+}
+.TableBox .accordion-button .row.w-100 .col span.d-inline-block {
+  position: relative;
 }
 .TableBox .accordion-body {
   display: flex;
@@ -343,19 +363,19 @@ button {
   text-align: center;
 }
 
-.box-list-scroll {
+.parent-box-list-scroll .box-list-scroll {
   max-height: 220px;
   overflow-y: scroll;
   background-color: #c7c7c7;
   border-radius: 15px;
   padding: 1rem 2rem;
-  border-bottom: 2px solid #a0a0a0;
-  border-top: 2px solid #a0a0a0;
+  border-bottom: 2px solid #EBEBEB;
+  border-top: 2px solid #EBEBEB;
 }
-.box-list-scroll .IconTextVerticalLight {
+.parent-box-list-scroll .box-list-scroll .IconTextVerticalLight {
   border-bottom: 1px solid #d9d9d9;
 }
-.box-list-scroll .avatar {
+.parent-box-list-scroll .box-list-scroll .avatar {
   width: 50px;
   height: 50px;
   margin-right: 1rem;
@@ -516,6 +536,7 @@ button {
 }
 .box-content .b-title {
   margin-left: 1rem;
+  margin-bottom: 0px;
 }
 .box-content .left {
   position: relative;
@@ -608,8 +629,16 @@ button {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  border: 3px dashed #adadad;
+  border-radius: 9px;
+  background-image: repeating-linear-gradient(-60deg, #adadad, #adadad 0.64px, transparent 1px, transparent 5.48px, #adadad 8px), repeating-linear-gradient(30deg, #adadad, #adadad 0.64px, transparent 1px, transparent 5.48px, #adadad 8px), repeating-linear-gradient(120deg, #adadad, #adadad 0.64px, transparent 1px, transparent 5.48px, #adadad 8px), repeating-linear-gradient(210deg, #adadad, #adadad 0.64px, transparent 1px, transparent 5.48px, #adadad 8px);
+  background-size: 2px 100%, 100% 2px, 2px 100%, 100% 2px;
+  background-position: 0 0, 0 0, 100% 0, 0 100%;
+  background-repeat: no-repeat;
   margin-top: 1rem;
+}
+.box-content .fileUploadBox p {
+  color: #707070;
+  font-size: 14px;
 }
 .box-content .tabel-info .t-title {
   background-color: #f5f5f5;
@@ -635,7 +664,7 @@ button {
   border-bottom-right-radius: 15px;
 }
 .box-content .teams {
-  background-color: #f5f5f5;
+  background-color: #c6c6c6;
   padding: 1rem;
   border-radius: 15px;
 }
@@ -646,12 +675,26 @@ button {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
+.box-content .teams.teams-light {
+  background-color: #F5F5F5;
+}
+.box-content .chat-teams-light .parent-box-list-scroll {
+  padding: 0 !important;
+}
 .box-content .file-list {
   list-style-type: none;
   padding-left: 0;
 }
 .box-content .tags button {
   margin-bottom: 1rem;
+  margin-left: 0.5rem;
+}
+.box-content .tags button.tag-delete {
+  padding-left: 1rem !important;
+  padding-right: 0.2rem !important;
+}
+.box-content .tags .CircleIcon {
+  margin-left: 3px;
 }
 
 .w-30 {
@@ -740,14 +783,14 @@ button {
 }
 
 .discusstion .box-list-scroll {
-  max-height: 700px;
+  max-height: 300px;
 }
 
 .title-discusstion {
   border-radius: 15px;
-  padding: 0.5rem 1rem;
+  padding: 0.25rem 0.5rem;
   background-color: #f5f5f5;
-  margin-top: 2rem;
+  margin-top: 1rem;
   font-size: 20px;
   font-weight: normal;
 }
@@ -761,6 +804,8 @@ button {
   border-radius: 15px;
   padding: 0.5rem 1rem;
   background-color: #f5f5f5;
+  max-height: 350px;
+  overflow-y: scroll;
 }
 .chat .submit-msg {
   border-radius: 15px;
@@ -786,8 +831,32 @@ button {
   direction: ltr;
 }
 
+.chat::-webkit-scrollbar {
+  width: 20px;
+}
+
+.chat::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.chat::-webkit-scrollbar-thumb {
+  background-color: #5d5d5d;
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+
+.chat::-webkit-scrollbar-thumb:hover {
+  background-color: #a0a0a0;
+}
+
+@font-face {
+  font-family: Sanfransisco;
+  src: url(./../../font/sf-ui-display-cufonfonts/sf-ui-display-light-58646b33e0551.otf);
+}
 body {
   background-color: #ffffff;
+  font-family: Sanfransisco;
 }
 
 .text-black-color {
@@ -954,6 +1023,7 @@ button {
 .sidebar .gide-sidebar .helptext {
   font-size: 10px;
   color: #ebebeb;
+  padding: 1rem;
 }
 
 .righ-section .top {
@@ -1002,6 +1072,12 @@ button {
 .TableBox .TopTableBox .left .InputComponentStyle {
   height: 39px;
   border: 1px solid #adadad;
+}
+.TableBox .TopTableBox .right button {
+  min-width: 134px;
+  min-height: 34px;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
 }
 .TableBox .table {
   border-collapse: collapse;
@@ -1052,18 +1128,26 @@ button {
   border-radius: 29%;
   height: 20px;
   display: inline-block;
+  position: relative;
+  top: 4px;
 }
 .TableBox .accordion-button:not(.collapsed)::after {
   transform: rotate(90deg);
 }
 .TableBox .accordion-button::after {
   position: absolute;
-  left: 6px;
+  left: 4px;
   padding-left: 1rem;
   background-image: url("./../../Images/pages/toggle_Icon.svg");
 }
+.TableBox .accordion-button {
+  padding: 0.5rem 0.75rem;
+}
 .TableBox .accordion-button .row.w-100 {
   padding-left: 1rem;
+}
+.TableBox .accordion-button .row.w-100 .col span.d-inline-block {
+  position: relative;
 }
 .TableBox .accordion-body {
   display: flex;
@@ -1130,19 +1214,19 @@ button {
   text-align: center;
 }
 
-.box-list-scroll {
+.parent-box-list-scroll .box-list-scroll {
   max-height: 220px;
   overflow-y: scroll;
   background-color: #c7c7c7;
   border-radius: 15px;
   padding: 1rem 2rem;
-  border-bottom: 2px solid #a0a0a0;
-  border-top: 2px solid #a0a0a0;
+  border-bottom: 2px solid #EBEBEB;
+  border-top: 2px solid #EBEBEB;
 }
-.box-list-scroll .IconTextVerticalLight {
+.parent-box-list-scroll .box-list-scroll .IconTextVerticalLight {
   border-bottom: 1px solid #d9d9d9;
 }
-.box-list-scroll .avatar {
+.parent-box-list-scroll .box-list-scroll .avatar {
   width: 50px;
   height: 50px;
   margin-right: 1rem;
@@ -1303,6 +1387,7 @@ button {
 }
 .box-content .b-title {
   margin-left: 1rem;
+  margin-bottom: 0px;
 }
 .box-content .left {
   position: relative;
@@ -1395,8 +1480,16 @@ button {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  border: 3px dashed #adadad;
+  border-radius: 9px;
+  background-image: repeating-linear-gradient(-60deg, #adadad, #adadad 0.64px, transparent 1px, transparent 5.48px, #adadad 8px), repeating-linear-gradient(30deg, #adadad, #adadad 0.64px, transparent 1px, transparent 5.48px, #adadad 8px), repeating-linear-gradient(120deg, #adadad, #adadad 0.64px, transparent 1px, transparent 5.48px, #adadad 8px), repeating-linear-gradient(210deg, #adadad, #adadad 0.64px, transparent 1px, transparent 5.48px, #adadad 8px);
+  background-size: 2px 100%, 100% 2px, 2px 100%, 100% 2px;
+  background-position: 0 0, 0 0, 100% 0, 0 100%;
+  background-repeat: no-repeat;
   margin-top: 1rem;
+}
+.box-content .fileUploadBox p {
+  color: #707070;
+  font-size: 14px;
 }
 .box-content .tabel-info .t-title {
   background-color: #f5f5f5;
@@ -1422,7 +1515,7 @@ button {
   border-bottom-right-radius: 15px;
 }
 .box-content .teams {
-  background-color: #f5f5f5;
+  background-color: #c6c6c6;
   padding: 1rem;
   border-radius: 15px;
 }
@@ -1433,12 +1526,26 @@ button {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
+.box-content .teams.teams-light {
+  background-color: #F5F5F5;
+}
+.box-content .chat-teams-light .parent-box-list-scroll {
+  padding: 0 !important;
+}
 .box-content .file-list {
   list-style-type: none;
   padding-left: 0;
 }
 .box-content .tags button {
   margin-bottom: 1rem;
+  margin-left: 0.5rem;
+}
+.box-content .tags button.tag-delete {
+  padding-left: 1rem !important;
+  padding-right: 0.2rem !important;
+}
+.box-content .tags .CircleIcon {
+  margin-left: 3px;
 }
 
 .w-30 {
@@ -1527,14 +1634,14 @@ button {
 }
 
 .discusstion .box-list-scroll {
-  max-height: 700px;
+  max-height: 300px;
 }
 
 .title-discusstion {
   border-radius: 15px;
-  padding: 0.5rem 1rem;
+  padding: 0.25rem 0.5rem;
   background-color: #f5f5f5;
-  margin-top: 2rem;
+  margin-top: 1rem;
   font-size: 20px;
   font-weight: normal;
 }
@@ -1548,6 +1655,8 @@ button {
   border-radius: 15px;
   padding: 0.5rem 1rem;
   background-color: #f5f5f5;
+  max-height: 350px;
+  overflow-y: scroll;
 }
 .chat .submit-msg {
   border-radius: 15px;
@@ -1571,6 +1680,25 @@ button {
   margin: 0.5rem;
   text-align: left;
   direction: ltr;
+}
+
+.chat::-webkit-scrollbar {
+  width: 20px;
+}
+
+.chat::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.chat::-webkit-scrollbar-thumb {
+  background-color: #5d5d5d;
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+
+.chat::-webkit-scrollbar-thumb:hover {
+  background-color: #a0a0a0;
 }
 
 /*# sourceMappingURL=app.css.map */

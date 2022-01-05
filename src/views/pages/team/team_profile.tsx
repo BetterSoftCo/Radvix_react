@@ -187,7 +187,6 @@ class TeamPageProfile extends React.Component<RouteComponentProps> {
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
                     onClick={() => {
                       this.props.history.push(AppRoutes.member_profile);
                     }}
@@ -197,7 +196,6 @@ class TeamPageProfile extends React.Component<RouteComponentProps> {
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
                     onClick={() => {
                       this.props.history.push(AppRoutes.member_profile);
                     }}

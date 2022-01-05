@@ -63,7 +63,7 @@ class DataPageProfile extends React.Component<RouteComponentProps> {
                 backgroundColor="#474747"
                 fontSize="10px"
                 color="#ffff"
-                className="mx-4 pointer"
+                className="mx-1 pointer"
                 onClick={() => {
                   this.props.history.push(AppRoutes.data_edit);
                 }}
@@ -77,6 +77,7 @@ class DataPageProfile extends React.Component<RouteComponentProps> {
                 backgroundColor="#474747"
                 fontSize="10px"
                 color="#ffff"
+                className="mx-1"
               >
                 <img src="/images/pages/start_discussion.svg" alt="radvix" />
               </CircleIcon>
@@ -86,6 +87,7 @@ class DataPageProfile extends React.Component<RouteComponentProps> {
               type={MainButtonType.dark}
               borderRadius="24px"
               fontSize="14px"
+              className="px-3"
               onClick={() => {
                 this.props.history.push(AppRoutes.discussion);
               }}
@@ -96,7 +98,7 @@ class DataPageProfile extends React.Component<RouteComponentProps> {
               TGA Results and Exported Data on Soft Samples
             </h3>
           </div>
-          <div className="row">
+          <div className="row justify-content-center">
             <div className="col-md-6  tabel-info ">
               <div className="row border-bottom ">
                 <h6 className="col-4 t-title mb-0 border-t-l">
@@ -125,7 +127,7 @@ class DataPageProfile extends React.Component<RouteComponentProps> {
                       proposal_general.pdf
                     </li>
                     <li>
-                      Shared Links:
+                      Shared Links: <br />
                       <MainButton
                         children="https://drive.google.com/file/234234"
                         type={MainButtonType.dark}
@@ -172,8 +174,8 @@ class DataPageProfile extends React.Component<RouteComponentProps> {
                 <div className="col-8 t-desc border-b-r">B. Forouzani</div>
               </div>
             </div>
-            <div className="col-md-6">
-              <div className="teams Labs">
+            <div className="col-md-5">
+              <div className="teams teams-light Labs">
                 <IconTextRow
                   theme={Theme.dark}
                   text="Equipments Used"
@@ -247,7 +249,7 @@ class DataPageProfile extends React.Component<RouteComponentProps> {
                   className="mt-2"
                 ></BoxListScroll>
               </div>
-              <div className="teams my-3 ">
+              <div className="teams teams-light my-3 ">
                 <IconTextRow
                   theme={Theme.dark}
                   text="Users with Access to this data set"

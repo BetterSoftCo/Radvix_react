@@ -13,6 +13,15 @@
         border: 1px solid #adadad;
       }
     }
+    .right{
+      button{
+        min-width: 134px;
+        min-height: 34px;
+        margin-right: .5rem;
+        margin-left: .5rem;
+      }
+
+    }
   }
   .table {
     border-collapse: collapse;
@@ -71,21 +80,31 @@
     border-radius: 29%;
     height: 20px;
     display: inline-block;
+    position: relative;
+    top: 4px;
   }
   .accordion-button:not(.collapsed)::after {
     transform: rotate(90deg);
   }
   .accordion-button::after {
     position: absolute;
-    left: 6px;
+    left: 4px;
     padding-left: 1rem;
     background-image: url("./../../Images/pages/toggle_Icon.svg");
   }
  
   .accordion-button {
+    padding: .5rem .75rem;
     .row.w-100 {
       padding-left: 1rem;
+      .col{
+        span.d-inline-block{
+          position: relative;
+        }
+
+      }
     }
+
   }
   .accordion-body {
     display: flex;

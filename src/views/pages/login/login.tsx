@@ -8,7 +8,7 @@ const LoginPage: React.FC<RouteComponentProps> = (props) => {
   return (
     <div className="login d-flex flex-column flex-md-row">
       <div className="left">
-        <img src="/images/layout/radvix_logo.svg" className="logo" alt="" />
+        <img src="/images/layout/radvix_logo.png" className="logo" alt="" />
         <span className="sub_logo">Login</span>
         <img src="/images/pages/member.png" className="logo-Member" alt="" />
         <MainButton

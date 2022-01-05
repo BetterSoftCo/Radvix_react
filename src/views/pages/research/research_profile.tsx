@@ -166,30 +166,31 @@ import { AppRoutes } from "../../../core/constants";
                 <div className="tags p-3">
                   <MainButton
                     children="ACCESSLab Team"
+                    backgroundColor="#EBEBEB"
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
                     onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
                   ></MainButton>
                   <MainButton
                     children="ACCESSLab Team"
+                    backgroundColor="#EBEBEB"
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
                     onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
                   ></MainButton>
                   <MainButton
                     children="ACCESSLab Team"
+                    backgroundColor="#EBEBEB"
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
                     onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
                   ></MainButton>
                   <MainButton
                     children="ACCESSLab Team"
+                    backgroundColor="#EBEBEB"
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
@@ -275,6 +276,7 @@ import { AppRoutes } from "../../../core/constants";
                 <div className="tags p-3">
                   <MainButton
                     children="ACCESSLab Team"
+                    backgroundColor="#EBEBEB"
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
@@ -283,22 +285,23 @@ import { AppRoutes } from "../../../core/constants";
                   ></MainButton>
                   <MainButton
                     children="ACCESSLab Team"
+                    backgroundColor="#EBEBEB"
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
                     onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
                   ></MainButton>
                   <MainButton
                     children="ACCESSLab Team"
+                    backgroundColor="#EBEBEB"
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
                     onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
                   ></MainButton>
                   <MainButton
                     children="ACCESSLab Team"
+                    backgroundColor="#EBEBEB"
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"

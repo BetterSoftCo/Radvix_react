@@ -30,7 +30,8 @@ export const BoxListScroll: React.FC<IBoxListScroll> = ({
     IsclassName = "";
   }
   return (
-    <div className={`${IsclassName + " " + "box-list-scroll"}`}>
+    <div className="parent-box-list-scroll p-3">
+      <div className={`${IsclassName + " " + "box-list-scroll"}`}>
       {items.map((item, index) => (
         <>
         {console.log("item",item)}
@@ -61,12 +62,13 @@ export const BoxListScroll: React.FC<IBoxListScroll> = ({
                 DeleteFunc(e, item[`${ValueItem}`]);
               }}
             >
-              <i className="fas fa-trash"></i>
+              <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
             </CircleIcon>
           ) : null}
         </div>
         </>
       ))}
+    </div>
     </div>
   );
 };

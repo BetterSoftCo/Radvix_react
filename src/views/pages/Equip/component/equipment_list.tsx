@@ -36,7 +36,7 @@ export const EquipmentList: React.FC<TableComponentProp> = ({
                     onClick={(e) => console.log("s")}
                     className="pointer"
                   >
-                    <img src="/images/pages/google_docs.svg" alt="radvix" width={15} height={15} />
+                    <img src="/images/pages/google_docs.svg" alt="radvix" width={12} height={12} />
                   </CircleIcon>
                   <CircleIcon
                     width="26px"

@@ -24,7 +24,7 @@ class MainLayout extends React.Component<IMainLayout & RouteComponentProps> {
                   className={
                     this.props.location.pathname.search("/admin") >= 0
                       ? "col-12 col-md-10 col-lg-11 col-xl-11"
-                      : "col-12 col-md-10 col-lg-11 col-xl-8"
+                      : "col-12 col-md-10 col-lg-10 col-xl-7"
                   }
                 >
                   {this.props.children}

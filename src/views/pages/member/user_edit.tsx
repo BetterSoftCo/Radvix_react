@@ -89,63 +89,44 @@ export class MemberPageUseEdit extends React.Component {
               </div>
               <div className="teams Labs">
                
-                <div className="tags p-3">
-                <MainButton
+              <div className="tags p-3">
+                  <MainButton
+                    backgroundColor="#EBEBEB"
+                    className="tag-delete"
                     children={
-                      <div className="d-flex">
-                        ACCESSLab Team
+                      <div className="d-flex align-items-center justify-content-between">
+                        <span className="flex-fill">ACCESSLab Team</span>
                         <CircleIcon
                           type={ThemeCircleIcon.dark}
                           width="22px"
                           height="22px"
-                          className="mx-3"
                         >
-                          <i className="fas fa-trash"></i>
+                          <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
                         </CircleIcon>
                       </div>
                     }
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
                   ></MainButton>
                   <MainButton
+                    backgroundColor="#EBEBEB"
+                    className="tag-delete"
                     children={
-                      <div className="d-flex">
-                        ACCESSLab Team
+                      <div className="d-flex align-items-center justify-content-between">
+                        <span className="flex-fill">ACCESSLab Team</span>
                         <CircleIcon
                           type={ThemeCircleIcon.dark}
                           width="22px"
                           height="22px"
-                          className="mx-3"
                         >
-                          <i className="fas fa-trash"></i>
+                          <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
                         </CircleIcon>
                       </div>
                     }
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
-                  ></MainButton>
-                  <MainButton
-                    children={
-                      <div className="d-flex">
-                        ACCESSLab Team
-                        <CircleIcon
-                          type={ThemeCircleIcon.dark}
-                          width="22px"
-                          height="22px"
-                          className="mx-3"
-                        >
-                          <i className="fas fa-trash"></i>
-                        </CircleIcon>
-                      </div>
-                    }
-                    type={MainButtonType.light}
-                    borderRadius="24px"
-                    fontSize="14px"
-                    className="px-3"
                   ></MainButton>
                 </div>
                
@@ -167,44 +148,44 @@ export class MemberPageUseEdit extends React.Component {
               </div>
               <div className="teams mb-3">
                
-                <div className="tags p-3">
-                <MainButton
+              <div className="tags p-3">
+                  <MainButton
+                    backgroundColor="#EBEBEB"
+                    className="tag-delete"
                     children={
-                      <div className="d-flex">
-                        ACCESSLab Team
+                      <div className="d-flex align-items-center justify-content-between">
+                        <span className="flex-fill">ACCESSLab Team</span>
                         <CircleIcon
                           type={ThemeCircleIcon.dark}
                           width="22px"
                           height="22px"
-                          className="mx-3"
                         >
-                          <i className="fas fa-trash"></i>
+                          <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
                         </CircleIcon>
                       </div>
                     }
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
                   ></MainButton>
                   <MainButton
+                    backgroundColor="#EBEBEB"
+                    className="tag-delete"
                     children={
-                      <div className="d-flex">
-                        ACCESSLab Team
+                      <div className="d-flex align-items-center justify-content-between">
+                        <span className="flex-fill">ACCESSLab Team</span>
                         <CircleIcon
                           type={ThemeCircleIcon.dark}
                           width="22px"
                           height="22px"
-                          className="mx-3"
                         >
-                          <i className="fas fa-trash"></i>
+                          <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
                         </CircleIcon>
                       </div>
                     }
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
                   ></MainButton>
                 </div>
                 <BoxListScroll
@@ -251,63 +232,44 @@ export class MemberPageUseEdit extends React.Component {
               </div>
               <div className="teams Labs">
                
-                <div className="tags p-3">
-                <MainButton
+              <div className="tags p-3">
+                  <MainButton
+                    backgroundColor="#EBEBEB"
+                    className="tag-delete"
                     children={
-                      <div className="d-flex">
-                        ACCESSLab Team
+                      <div className="d-flex align-items-center justify-content-between">
+                        <span className="flex-fill">ACCESSLab Team</span>
                         <CircleIcon
                           type={ThemeCircleIcon.dark}
                           width="22px"
                           height="22px"
-                          className="mx-3"
                         >
-                          <i className="fas fa-trash"></i>
+                          <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
                         </CircleIcon>
                       </div>
                     }
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
                   ></MainButton>
                   <MainButton
+                    backgroundColor="#EBEBEB"
+                    className="tag-delete"
                     children={
-                      <div className="d-flex">
-                        ACCESSLab Team
+                      <div className="d-flex align-items-center justify-content-between">
+                        <span className="flex-fill">ACCESSLab Team</span>
                         <CircleIcon
                           type={ThemeCircleIcon.dark}
                           width="22px"
                           height="22px"
-                          className="mx-3"
                         >
-                          <i className="fas fa-trash"></i>
+                          <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
                         </CircleIcon>
                       </div>
                     }
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
-                  ></MainButton>
-                  <MainButton
-                    children={
-                      <div className="d-flex">
-                        ACCESSLab Team
-                        <CircleIcon
-                          type={ThemeCircleIcon.dark}
-                          width="22px"
-                          height="22px"
-                          className="mx-3"
-                        >
-                          <i className="fas fa-trash"></i>
-                        </CircleIcon>
-                      </div>
-                    }
-                    type={MainButtonType.light}
-                    borderRadius="24px"
-                    fontSize="14px"
-                    className="px-3"
                   ></MainButton>
                 </div>
                
