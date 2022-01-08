@@ -21,7 +21,7 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
                   width="100px"
                 />
               </div>
-              {props.location.pathname.search("/admin") >= 0 ? null : (
+              {props.location.pathname.search("/Admin") >= 0 ? null : (
                 <Fragment>
                   <div className="col-md-2 col-6 d-flex justify-content-center align-items-center">
                     <MainButton

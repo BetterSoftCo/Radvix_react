@@ -52,6 +52,7 @@ import TeamPageProfile from "./pages/team/team_profile";
 import TeamPageEdit from "./pages/team/team_edit";
 import TimeLine from './pages/research/timeline'
 import { ShowLibraryPage } from "./components/library/library_page";
+import RegisterPage from './pages/register/register'
 export {
   ResearchPage,
   ResearchPageNew,
@@ -106,5 +107,6 @@ export {
   TeamPageProfile,
   TeamPageEdit,
   TimeLine,
-  ShowLibraryPage
+  ShowLibraryPage,
+  RegisterPage
 };

@@ -98,7 +98,7 @@ export class AdminMember extends React.Component {
 }
 
 const MemberItem: React.FC = () => (
-  <div className="col-md-3 d-flex justify-content-center align-items-center flex-column mb-2">
+  <div className="col-md-3 d-flex justify-content-center align-items-center flex-column mb-4">
     <img
       src="/images/layout/img_avatar.png"
       alt="Avatar"

@@ -82,14 +82,8 @@ export class AdminTickets extends React.Component {
             </div>
             <TicketsTbl
               Items={this.state.Data.Items}
-              Heading={[
-                "Subject",
-                "Ticket ",
-                "Created By",
-                "Date Created",
-                "Update",
-                "Status",
-              ]}
+              Heading={[{name:'Subject',center:false},{name:'Ticket',center:true},{name:'Created By',center:true},{name:'Date Created',center:true},{name:'Update',center:true},{name:'Status',center:true}]}
+              
             ></TicketsTbl>
 
            <div className="d-flex justify-content-between align-items-baseline">

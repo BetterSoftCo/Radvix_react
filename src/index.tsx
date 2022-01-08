@@ -67,6 +67,7 @@ import {
   TeamPageEdit,
   TimeLine,
   ShowLibraryPage,
+  RegisterPage,
 } from "./views";
 
 const RoleUser: UserRoles = store.getState();
@@ -79,6 +80,7 @@ ReactDOM.render(
           <Route component={SplashPage} path={AppRoutes.splash} exact />
           <Route component={DashboardPage} path={AppRoutes.dashboard} exact />
           <Route component={LoginPage} path={AppRoutes.login} exact />
+          <Route component={RegisterPage} path={AppRoutes.register_page} exact />
           <Route component={ResearchPage} path={AppRoutes.research} exact />
           <Route
             component={ResearchPageNew}

@@ -13,28 +13,32 @@ export class AdminPayments extends React.Component {
     Data: {
       Items: [
         {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
+          name: "$123.12",
+          Institution: "07/22/2021   17:13",
+          Category: "Nima Hosseinzadeh",
+          Eqiups: "test@email.com",
+          status:'Succeeded '
         },
         {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
+          name: "$123.12",
+          Institution: "07/22/2021   17:13",
+          Category: "Nima Hosseinzadeh",
+          Eqiups: "test@email.com",
+          status:'Succeeded '
         },
         {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
+          name: "$123.12",
+          Institution: "07/22/2021   17:13",
+          Category: "Nima Hosseinzadeh",
+          Eqiups: "test@email.com",
+          status:'Succeeded '
         },
         {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
+          name: "$123.12",
+          Institution: "07/22/2021   17:13",
+          Category: "Nima Hosseinzadeh",
+          Eqiups: "test@email.com",
+          status:'Succeeded '
         },
       ],
     },
@@ -82,7 +86,8 @@ export class AdminPayments extends React.Component {
             </div>
             <PaymentsTbl
               Items={this.state.Data.Items}
-              Heading={["Payment Amount", "Date", "Client Name", "Client Email" , "Status"]}
+              Heading={[{name:'Payment Amount' , center:false},{name:'Date' , center:true},{name:'Client Name' , center:true},{name:'Client Email' , center:true},{name:'Status' , center:true}]}
+              
             ></PaymentsTbl>
 
            <div className="d-flex justify-content-between align-items-baseline">
