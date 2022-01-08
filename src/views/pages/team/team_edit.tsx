@@ -286,19 +286,19 @@ class TeamPageEdit extends React.Component<RouteComponentProps> {
                 type={MainButtonType.light}
                 children={"Start Over"}
                 borderRadius="50px"
-                fontSize="20px"
+                fontSize="18px"
                 className="mx-2"
-                minHeight="47px"
-                minWidth="110px"
+                minHeight="43px"
+                minWidth="136px"
               ></MainButton>
               <MainButton
                 type={MainButtonType.dark}
                 children={"save"}
                 borderRadius="50px"
-                fontSize="20px"
+                fontSize="18px"
                 className="mx-2"
-                minHeight="47px"
-                minWidth="110px"
+                minHeight="43px"
+                minWidth="136px"
                 onClick={() => {
                   this.props.history.push(AppRoutes.team_profile);
                 }}

@@ -23,6 +23,14 @@ export class EditMyProfile extends React.Component {
     const files = this.state.files.map((file: any) => (
       <li key={file.name}>
         {file.name} - {file.size} bytes
+        <CircleIcon type={ThemeCircleIcon.dark} width="22px" height="22px">
+          <img
+            src="/images/pages/garbage_can.svg"
+            alt="radvix"
+            width={15}
+            height={15}
+          />
+        </CircleIcon>
       </li>
     ));
     return (
@@ -423,28 +431,28 @@ export class EditMyProfile extends React.Component {
                 type={MainButtonType.light}
                 children={"Cancel"}
                 borderRadius="50px"
-                fontSize="20px"
+                fontSize="18px"
                 className="mx-2"
-                minHeight="47px"
-                minWidth="110px"
+                minHeight="43px"
+                minWidth="136px"
               ></MainButton>
               <MainButton
                 type={MainButtonType.dark}
                 children={"Reset Password"}
                 borderRadius="50px"
-                fontSize="20px"
+                fontSize="18px"
                 className="mx-2"
-                minHeight="47px"
-                minWidth="110px"
+                minHeight="43px"
+                minWidth="136px"
               ></MainButton>
                <MainButton
                 type={MainButtonType.dark}
                 children={"Update"}
                 borderRadius="50px"
-                fontSize="20px"
+                fontSize="18px"
                 className="mx-2"
-                minHeight="47px"
-                minWidth="110px"
+                minHeight="43px"
+                minWidth="136px"
               ></MainButton>
             </div>
           </div>

@@ -67,42 +67,51 @@ export class ResearchPage extends React.Component {
             </div>
             <AcordienTableResearch
               Items={this.state.Data.Items}
-              Heading={["Research Name", "Deadline", "Status"]}
+              Heading={[
+                { name: "Research Name", center: false },
+                { name: "Deadline", center: false },
+                { name: "Status", center: true },
+              ]}
             ></AcordienTableResearch>
 
-            <div className="d-flex justify-content-center align-items-center my-3">
-              <ReactPaginate
-                previousLabel={
-                  <CircleIcon
-                    width="24px"
-                    backgroundColor="#ADADAD"
-                    height="24px"
-                    type={ThemeCircleIcon.dark}
-                  >
-                    <i className="fas fa-chevron-left"></i>
-                  </CircleIcon>
-                }
-                nextLabel={
-                  <CircleIcon
-                    width="24px"
-                    backgroundColor="#ADADAD"
-                    height="24px"
-                    type={ThemeCircleIcon.dark}
-                  >
-                    <i className="fas fa-angle-right"></i>
-                  </CircleIcon>
-                }
-                breakLabel={"..."}
-                breakClassName={"break-me"}
-                pageCount={20}
-                marginPagesDisplayed={2}
-                pageRangeDisplayed={5}
-                onPageChange={() => {
-                  console.log("sssss");
-                }}
-                containerClassName={"pagination"}
-                activeClassName={"active"}
-              />
+            <div className="d-flex justify-content-between align-items-baseline">
+              <div className="d-flex justify-content-end flex-fill">
+                <ReactPaginate
+                  previousLabel={
+                    <CircleIcon
+                      width="24px"
+                      backgroundColor="#ADADAD"
+                      height="24px"
+                      type={ThemeCircleIcon.dark}
+                    >
+                      <i className="fas fa-chevron-left"></i>
+                    </CircleIcon>
+                  }
+                  nextLabel={
+                    <CircleIcon
+                      width="24px"
+                      backgroundColor="#ADADAD"
+                      height="24px"
+                      type={ThemeCircleIcon.dark}
+                    >
+                      <i className="fas fa-angle-right"></i>
+                    </CircleIcon>
+                  }
+                  breakLabel={"..."}
+                  breakClassName={"break-me"}
+                  pageCount={20}
+                  marginPagesDisplayed={2}
+                  pageRangeDisplayed={5}
+                  onPageChange={() => {
+                    console.log("changepage");
+                  }}
+                  containerClassName={"pagination"}
+                  activeClassName={"active"}
+                />
+              </div>
+              <div className="d-flex justify-content-end flex-fill">
+                <p className="text-right mb-0 ">Total Results: 45</p>
+              </div>
             </div>
           </div>
         </div>

@@ -363,6 +363,10 @@ button {
   text-align: center;
 }
 
+.parent-box-list-scroll {
+  background-color: #c7c7c7;
+  border-radius: 15px;
+}
 .parent-box-list-scroll .box-list-scroll {
   max-height: 220px;
   overflow-y: scroll;
@@ -528,6 +532,13 @@ button {
   right: 106%;
 }
 
+.Studying h3 {
+  font-size: 2rem;
+}
+.Studying p {
+  text-align: center;
+}
+
 .box-content {
   background-color: #ebebeb;
   color: #474747;
@@ -650,6 +661,10 @@ button {
 }
 .box-content .tabel-info .t-desc ul {
   list-style: none;
+  padding-left: 0;
+}
+.box-content .tabel-info .t-desc button {
+  margin: 0 0.1rem;
 }
 .box-content .tabel-info .border-t-r {
   border-top-right-radius: 15px;
@@ -1214,6 +1229,10 @@ button {
   text-align: center;
 }
 
+.parent-box-list-scroll {
+  background-color: #c7c7c7;
+  border-radius: 15px;
+}
 .parent-box-list-scroll .box-list-scroll {
   max-height: 220px;
   overflow-y: scroll;
@@ -1379,6 +1398,13 @@ button {
   right: 106%;
 }
 
+.Studying h3 {
+  font-size: 2rem;
+}
+.Studying p {
+  text-align: center;
+}
+
 .box-content {
   background-color: #ebebeb;
   color: #474747;
@@ -1501,6 +1527,10 @@ button {
 }
 .box-content .tabel-info .t-desc ul {
   list-style: none;
+  padding-left: 0;
+}
+.box-content .tabel-info .t-desc button {
+  margin: 0 0.1rem;
 }
 .box-content .tabel-info .border-t-r {
   border-top-right-radius: 15px;

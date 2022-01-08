@@ -45,6 +45,7 @@ class TeamPageProfile extends React.Component<RouteComponentProps> {
               type={MainButtonType.dark}
               borderRadius="24px"
               fontSize="14px"
+              className="px-3"
               onClick={() => {
                 this.props.history.push(AppRoutes.discussion);
               }}
@@ -89,7 +90,7 @@ class TeamPageProfile extends React.Component<RouteComponentProps> {
                   </ul>
                 </div>
               </div>
-              <div className="teams my-3">
+              <div className="row teams my-3 teams-light">
                 <IconTextRow
                   theme={Theme.dark}
                   text="Projects"
@@ -97,7 +98,7 @@ class TeamPageProfile extends React.Component<RouteComponentProps> {
                     <img src="/images/pages/lamp.svg" className="mx-2" alt="" />
                   }
                 ></IconTextRow>
-                <div className="tags p-3">
+                <div className="tags mt-2">
                   <MainButton
                     children="Synergistic Effects of Air Content and Supplementary Cementitious Materials on Increasing Concrete Durability"
                     type={MainButtonType.light}
@@ -122,7 +123,7 @@ class TeamPageProfile extends React.Component<RouteComponentProps> {
                   ></MainButton>
                 </div>
               </div>
-              <div className="teams Labs">
+              <div className="row teams Labs teams-light">
                 <IconTextRow
                   theme={Theme.dark}
                   text="Labs (Equipments)"
@@ -178,6 +179,7 @@ class TeamPageProfile extends React.Component<RouteComponentProps> {
                     borderRadius="24px"
                     fontSize="14px"
                     className="px-3 pointer"
+                    backgroundColor="#EBEBEB"
                     onClick={() => {
                       this.props.history.push(AppRoutes.member_profile);
                     }}
@@ -187,6 +189,7 @@ class TeamPageProfile extends React.Component<RouteComponentProps> {
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
+                    backgroundColor="#EBEBEB"
                     onClick={() => {
                       this.props.history.push(AppRoutes.member_profile);
                     }}
@@ -196,6 +199,7 @@ class TeamPageProfile extends React.Component<RouteComponentProps> {
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
+                    backgroundColor="#EBEBEB"
                     onClick={() => {
                       this.props.history.push(AppRoutes.member_profile);
                     }}
@@ -206,6 +210,7 @@ class TeamPageProfile extends React.Component<RouteComponentProps> {
                     borderRadius="24px"
                     fontSize="14px"
                     className="px-3 m-2"
+                    backgroundColor="#EBEBEB"
                     onClick={() => {
                       this.props.history.push(AppRoutes.member_profile);
                     }}
@@ -241,7 +246,7 @@ class TeamPageProfile extends React.Component<RouteComponentProps> {
               </div>
             </div>
             <div className="col-md-6">
-              <div className="teams Labs mb-3">
+              <div className="teams Labs mb-3 teams-light">
                 <IconTextRow
                   theme={Theme.dark}
                   text="Teams (Members)"

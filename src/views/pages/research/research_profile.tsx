@@ -17,8 +17,8 @@ import { AppRoutes } from "../../../core/constants";
       <div className="container-fluid research new-research">
         <div className="row"></div>
         <div className="col-12 box-content p-3">
-          <div className="d-flex justify-content-between align-items-center">
-            <h5 className="b-title d-flex align-items-center">
+          <div className="d-flex justify-content-between align-items-center flex-wrap">
+            <h5 className="b-title d-flex align-items-center flex-wrap">
               <span onClick={()=>{window.history.back()}} className="backPage"></span>{" "}
               {"Research List > Research Profile"}
               <CircleIcon
@@ -28,7 +28,7 @@ import { AppRoutes } from "../../../core/constants";
                 backgroundColor="#474747"
                 fontSize="10px"
                 color="#ffff"
-                className="mx-4 pointer"
+                className="mx-1 pointer"
                 onClick={()=>{this.props.history.push(AppRoutes.edit_research)}}
               >
                 <img src="/images/pages/edit.svg" alt="radvix" />
@@ -49,6 +49,7 @@ import { AppRoutes } from "../../../core/constants";
               type={MainButtonType.dark}
               borderRadius="24px"
               fontSize="14px"
+              className="px-3"
               onClick={()=>{this.props.history.push(AppRoutes.discussion)}}
             ></MainButton>
           </div>

@@ -1,5 +1,13 @@
 .new-research {
 }
+.Studying{
+  h3{
+    font-size: 2rem;
+  }
+  p{
+    text-align: center;
+  }
+}
 .box-content {
   background-color: $BackgroundColor;
   color: $black-color;
@@ -170,6 +178,10 @@
       padding: 0.5rem;
       ul {
         list-style: none;
+        padding-left: 0;
+      }
+      button{
+        margin: 0 .1rem;
       }
     }
     .border-t-r {

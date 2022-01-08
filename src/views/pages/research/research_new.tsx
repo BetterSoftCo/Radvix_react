@@ -12,7 +12,7 @@ import { ButtonGroup } from "../../components/botton_group";
 import { BoxAlert } from "../../components/box_alert";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
- class ResearchPageNew extends React.Component <RouteComponentProps> {
+class ResearchPageNew extends React.Component<RouteComponentProps> {
   RoleUser = store.getState();
   date = new Date();
   handelChangeDate(params: any): void {
@@ -29,6 +29,14 @@ import { AppRoutes } from "../../../core/constants";
     const files = this.state.files.map((file: any) => (
       <li key={file.name}>
         {file.name} - {file.size} bytes
+        <CircleIcon type={ThemeCircleIcon.dark} width="22px" height="22px">
+          <img
+            src="/images/pages/garbage_can.svg"
+            alt="radvix"
+            width={15}
+            height={15}
+          />
+        </CircleIcon>
       </li>
     ));
     return (
@@ -36,7 +44,13 @@ import { AppRoutes } from "../../../core/constants";
         <div className="row"></div>
         <div className="col-12 box-content p-3">
           <h5 className="b-title d-flex">
-            <span onClick={()=>{window.history.back()}} className="backPage"></span> Create A New Research Project
+            <span
+              onClick={() => {
+                window.history.back();
+              }}
+              className="backPage"
+            ></span>{" "}
+            Create A New Research Project
           </h5>
           <div className="form row">
             <div className="col-md-6 left">
@@ -158,19 +172,20 @@ import { AppRoutes } from "../../../core/constants";
                                 src="/Images/component/cloud_computing.svg"
                                 alt="sssss"
                                 height="20"
-                                
                               />{" "}
-                              <span className="flex-fill">Browse Local Files</span>
+                              <span className="flex-fill">
+                                Browse Local Files
+                              </span>
                             </div>
                           }
                         ></MainButton>
-                        <p>
-                        Or drag and drop files here
-                        </p>
+                        <p>Or drag and drop files here</p>
                       </div>
                       <aside>
                         <h4>Files</h4>
-                        <ul>{files}</ul>
+                        <ul>
+                          {files}{" "}
+                        </ul>
                       </aside>
                     </section>
                   )}
@@ -180,6 +195,7 @@ import { AppRoutes } from "../../../core/constants";
                 <InputComponent
                   type={InputType.text}
                   placeholder="https://"
+                  className="mx-2"
                 ></InputComponent>
                 <CircleIcon
                   width="36px"
@@ -188,7 +204,7 @@ import { AppRoutes } from "../../../core/constants";
                   backgroundColor="#9D9D9D"
                   fontSize="18px"
                   color="#ffffff"
-                  className="mx-2"
+                  className="px-3"
                 >
                   <i className="fas fa-plus"></i>
                 </CircleIcon>
@@ -218,20 +234,22 @@ import { AppRoutes } from "../../../core/constants";
                 type={MainButtonType.light}
                 children={"Start Over"}
                 borderRadius="50px"
-                fontSize="20px"
+                fontSize="18px"
                 className="mx-2"
-                minHeight="47px"
-                minWidth="110px"
+                minHeight="43px"
+                minWidth="136px"
               ></MainButton>
               <MainButton
                 type={MainButtonType.dark}
                 children={"Create"}
                 borderRadius="50px"
-                fontSize="20px"
+                fontSize="18px"
                 className="mx-2"
-                minHeight="47px"
-                minWidth="110px"
-                onClick={()=>{this.props.history.push(AppRoutes.profile_research)}}
+                minHeight="43px"
+                minWidth="136px"
+                onClick={() => {
+                  this.props.history.push(AppRoutes.profile_research);
+                }}
               ></MainButton>
             </div>
           </div>

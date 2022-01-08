@@ -67,7 +67,7 @@ class TaskPageProfile extends React.Component<RouteComponentProps> {
                 backgroundColor="#474747"
                 fontSize="10px"
                 color="#ffff"
-                className="mx-4"
+                className="mx-1"
               >
                 <img src="/images/pages/edit.svg" alt="radvix" />
               </CircleIcon>
@@ -87,6 +87,7 @@ class TaskPageProfile extends React.Component<RouteComponentProps> {
               type={MainButtonType.dark}
               borderRadius="24px"
               fontSize="14px"
+              className="px-3"
               onClick={() => {
                 this.props.history.push(AppRoutes.discussion);
               }}
@@ -191,7 +192,7 @@ class TaskPageProfile extends React.Component<RouteComponentProps> {
               </div>
             </div>
             <div className="col-md-6">
-              <div className="teams mb-3">
+              <div className="teams mb-3 teams-light">
                 <IconTextRow
                   theme={Theme.dark}
                   text="Assigned to Teams (Members)"
@@ -257,7 +258,7 @@ class TaskPageProfile extends React.Component<RouteComponentProps> {
                   ImageItem="imagesrc"
                 ></BoxListScroll>
               </div>
-              <div className="teams Labs">
+              <div className="teams Labs teams-light">
                 <IconTextRow
                   theme={Theme.dark}
                   text="Suggested Equipment"
@@ -367,7 +368,7 @@ class TaskPageProfile extends React.Component<RouteComponentProps> {
           <div className="TableBox">
             <div className="TopTableBox d-flex justify-content-between align-items-center">
               <div className="left d-flex w-50 align-items-center">
-                <h6 style={{ width: "35%" }}>Task Data Collection</h6>
+                <h6 style={{ width: "45%" }}>Task Data Collection</h6>
                 <InputIcon
                   chilren={
                     <img src="/images/pages/search_box_icon.svg" alt="radvix" />
@@ -392,7 +393,7 @@ class TaskPageProfile extends React.Component<RouteComponentProps> {
             </div>
             <TaskDataCollection
               Items={this.state.Data.Items}
-              Heading={["Laboratory Name", "Institution", "Category", "Eqiups"]}
+              Heading={["Data Name", "File", "Added By", "Date"]}
             ></TaskDataCollection>
             <div className="d-flex justify-content-center align-items-center">
               <ReactPaginate

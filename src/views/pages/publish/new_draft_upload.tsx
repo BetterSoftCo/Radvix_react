@@ -26,6 +26,14 @@ import { AppRoutes } from "../../../core/constants";
     const files = this.state.files.map((file: any) => (
       <li key={file.name}>
         {file.name} - {file.size} bytes
+        <CircleIcon type={ThemeCircleIcon.dark} width="22px" height="22px">
+          <img
+            src="/images/pages/garbage_can.svg"
+            alt="radvix"
+            width={15}
+            height={15}
+          />
+        </CircleIcon>
       </li>
     ));
     return (
@@ -95,6 +103,7 @@ import { AppRoutes } from "../../../core/constants";
                 <InputComponent
                   type={InputType.text}
                   placeholder="https://"
+                  className="mx-2"
                 ></InputComponent>
                 <CircleIcon
                   width="36px"
@@ -103,7 +112,8 @@ import { AppRoutes } from "../../../core/constants";
                   backgroundColor="#9D9D9D"
                   fontSize="18px"
                   color="#ffffff"
-                  className="mx-2"
+                  className="px-3"
+                  
                 >
                   <i className="fas fa-plus"></i>
                 </CircleIcon>
@@ -173,6 +183,7 @@ import { AppRoutes } from "../../../core/constants";
                 <InputComponent
                   type={InputType.text}
                   placeholder="https://"
+                  className="mx-2"
                 ></InputComponent>
                 <CircleIcon
                   width="36px"
@@ -181,7 +192,8 @@ import { AppRoutes } from "../../../core/constants";
                   backgroundColor="#9D9D9D"
                   fontSize="18px"
                   color="#ffffff"
-                  className="mx-2"
+                  className="px-3"
+                  
                 >
                   <i className="fas fa-plus"></i>
                 </CircleIcon>
@@ -222,19 +234,19 @@ import { AppRoutes } from "../../../core/constants";
                 type={MainButtonType.light}
                 children={"Back"}
                 borderRadius="50px"
-                fontSize="20px"
+                fontSize="18px"
                 className="mx-2"
-                minHeight="47px"
-                minWidth="110px"
+                minHeight="43px"
+                minWidth="136px"
               ></MainButton>
               <MainButton
                 type={MainButtonType.dark}
                 children={"Submit"}
                 borderRadius="50px"
-                fontSize="20px"
+                fontSize="18px"
                 className="mx-2"
-                minHeight="47px"
-                minWidth="110px"
+                minHeight="43px"
+                minWidth="136px"
                 onClick={()=>{this.props.history.push(AppRoutes.publish_profile)}}
               ></MainButton>
             </div>

@@ -68,7 +68,7 @@ import { AppRoutes } from "../../../core/constants";
                 type={MainButtonType.dark}
                 borderRadius="24px"
                 fontSize="14px"
-                className="mx-2"
+                className="mx-2 px-3"
                 onClick={()=>{this.props.history.push(AppRoutes.discussion)}}
               ></MainButton>
             </div>
@@ -228,7 +228,7 @@ import { AppRoutes } from "../../../core/constants";
             </div>
             <Drafts
               Items={this.state.Data.Items}
-              Heading={["File", "Added By", "Date", "Version"]}
+              Heading={[{name:'File',center:false},{name:'Added By',center:true},{name:'Date',center:true},{name:'Version',center:true}]}
             ></Drafts>
             <div className="d-flex justify-content-center align-items-center">
               <ReactPaginate

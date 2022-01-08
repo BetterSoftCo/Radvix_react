@@ -179,6 +179,7 @@ class DataPageProfile extends React.Component<RouteComponentProps> {
                 <IconTextRow
                   theme={Theme.dark}
                   text="Equipments Used"
+                  className="mb-2"
                   children={
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -226,6 +227,7 @@ class DataPageProfile extends React.Component<RouteComponentProps> {
                 ></IconTextRow>
 
                 <BoxListScroll
+                
                   items={[
                     {
                       text: "Nima Hosseinzadeh",
@@ -246,13 +248,14 @@ class DataPageProfile extends React.Component<RouteComponentProps> {
                   TextItem="text"
                   ValueItem="id"
                   ImageItem="imagesrc"
-                  className="mt-2"
+                  
                 ></BoxListScroll>
               </div>
               <div className="teams teams-light my-3 ">
                 <IconTextRow
                   theme={Theme.dark}
                   text="Users with Access to this data set"
+                  className="mb-2"
                   children={
                     <img
                       src="/Images/pages/team_menu.svg"

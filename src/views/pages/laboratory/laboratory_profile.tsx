@@ -37,6 +37,7 @@ import { AppRoutes } from "../../../core/constants";
               type={MainButtonType.dark}
               borderRadius="24px"
               fontSize="14px"
+              className="px-3"
               onClick={()=>{this.props.history.push(AppRoutes.discussion)}}
             ></MainButton>
           </div>
@@ -130,7 +131,7 @@ import { AppRoutes } from "../../../core/constants";
               </div>
             </div>
             <div className="col-md-6">
-              <div className="teams Labs mb-3">
+              <div className="teams Labs mb-3 teams-light">
                 <IconTextRow
                   theme={Theme.dark}
                   text="Labs (Equipments)"
@@ -210,7 +211,7 @@ import { AppRoutes } from "../../../core/constants";
                   
                 ></BoxListScroll>
               </div>
-              <div className="teams mb-3">
+              <div className="teams mb-3 teams-light">
                 <IconTextRow
                   theme={Theme.dark}
                   text="Teams (Members)"

@@ -66,6 +66,7 @@ import { AppRoutes } from "../../../core/constants";
               type={MainButtonType.dark}
               borderRadius="24px"
               fontSize="14px"
+              className="px-3"
               onClick={()=>{this.props.history.push(AppRoutes.discussion)}}
             ></MainButton>
           </div>

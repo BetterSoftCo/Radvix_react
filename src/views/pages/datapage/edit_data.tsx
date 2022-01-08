@@ -25,6 +25,14 @@ import { RouteComponentProps, withRouter } from "react-router";
     const files = this.state.files.map((file: any) => (
       <li key={file.name}>
         {file.name} - {file.size} bytes
+        <CircleIcon type={ThemeCircleIcon.dark} width="22px" height="22px">
+          <img
+            src="/images/pages/garbage_can.svg"
+            alt="radvix"
+            width={15}
+            height={15}
+          />
+        </CircleIcon>
       </li>
     ));
     return (
@@ -165,6 +173,7 @@ import { RouteComponentProps, withRouter } from "react-router";
                 <InputComponent
                   type={InputType.text}
                   placeholder="https://"
+                  className="mx-2"
                 ></InputComponent>
                 <CircleIcon
                   width="36px"
@@ -173,7 +182,8 @@ import { RouteComponentProps, withRouter } from "react-router";
                   backgroundColor="#9D9D9D"
                   fontSize="18px"
                   color="#ffffff"
-                  className="mx-2"
+                  className="px-3"
+                  
                 >
                   <i className="fas fa-plus"></i>
                 </CircleIcon>
@@ -275,19 +285,19 @@ import { RouteComponentProps, withRouter } from "react-router";
                 type={MainButtonType.light}
                 children={"Cancel"}
                 borderRadius="50px"
-                fontSize="20px"
+                fontSize="18px"
                 className="mx-2"
-                minHeight="47px"
-                minWidth="110px"
+                minHeight="43px"
+                minWidth="136px"
               ></MainButton>
               <MainButton
                 type={MainButtonType.dark}
                 children={"Save"}
                 borderRadius="50px"
-                fontSize="20px"
+                fontSize="18px"
                 className="mx-2"
-                minHeight="47px"
-                minWidth="110px"
+                minHeight="43px"
+                minWidth="136px"
               ></MainButton>
             </div>
           </div>

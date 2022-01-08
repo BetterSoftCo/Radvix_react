@@ -4,7 +4,7 @@ import { store } from "../../../data/store";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import { InputIcon } from "../../components/search_box";
 import { SelectComponent } from "../../components/select_input";
-import  TableListLaboratory  from "./component/table_list_laboratory";
+import TableListLaboratory from "./component/table_list_laboratory";
 
 export class LaboratoryPage extends React.Component {
   RoleUser = store.getState();
@@ -46,10 +46,18 @@ export class LaboratoryPage extends React.Component {
           <div className="TableBox">
             <div className="TopTableBox d-flex justify-content-between align-items-center mb-3">
               <div className="left d-flex w-50 align-items-center">
-                <h6 style={{ width: "35%" }}>Laboratory List</h6>
+                <h6 style={{ width: "45%" }} className="b-title d-flex">
+                  <span
+                    onClick={() => {
+                      window.history.back();
+                    }}
+                    className="backPage"
+                  ></span>{" "}
+                  Laboratory List
+                </h6>
                 <InputIcon
                   chilren={
-                    <img src='/images/pages/search_box_icon.svg' alt="" />
+                    <img src="/images/pages/search_box_icon.svg" alt="" />
                   }
                   width="100%"
                   placeholder="Search..."
@@ -71,12 +79,18 @@ export class LaboratoryPage extends React.Component {
             </div>
             <TableListLaboratory
               Items={this.state.Data.Items}
-              Heading={["Laboratory Name", "Institution", "Category", "Eqiups"]}
+              Heading={[
+                { name: "Laboratory Name", center: false },
+                { name: "Institution", center: true },
+                { name: "Category", center: true },
+                { name: "Eqiups", center: true },
+                "",
+              ]}
             ></TableListLaboratory>
 
-           <div className="d-flex justify-content-between align-items-baseline">
-                  <div className="d-flex justify-content-end flex-fill">
-                  <ReactPaginate
+            <div className="d-flex justify-content-between align-items-baseline">
+              <div className="d-flex justify-content-end flex-fill">
+                <ReactPaginate
                   previousLabel={
                     <CircleIcon
                       width="24px"
@@ -102,17 +116,17 @@ export class LaboratoryPage extends React.Component {
                   pageCount={20}
                   marginPagesDisplayed={2}
                   pageRangeDisplayed={5}
-                  onPageChange={()=>{console.log('changepage')}}
+                  onPageChange={() => {
+                    console.log("changepage");
+                  }}
                   containerClassName={"pagination"}
                   activeClassName={"active"}
                 />
-                  </div>
-                  <div className="d-flex justify-content-end flex-fill">
-                  <p className="text-right mb-0 " >Total Results: 45</p>
-                  </div>
-                 
-                
               </div>
+              <div className="d-flex justify-content-end flex-fill">
+                <p className="text-right mb-0 ">Total Results: 45</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

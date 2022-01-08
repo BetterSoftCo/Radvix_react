@@ -203,7 +203,7 @@ export const UserTypesTable = () => {
           >
             <div className="accordion-body ">
               <div className="sub-accordian-parent">
-              <p className="sub-accordion"  style={{marginRight: '-7px'}}>Notification</p> 
+              <p className="sub-accordion"  style={{marginRight: '-17px'}}>Notification</p> 
               </div>
              <div className="items">
              <div className="row w-100 py-2 rounded">
@@ -319,7 +319,7 @@ export const UserTypesTable = () => {
           >
             <div className="accordion-body ">
               <div className="sub-accordian-parent">
-              <p className="sub-accordion"  style={{marginRight: '-7px'}}>Notification</p> 
+              <p className="sub-accordion"  style={{marginRight: '-17px'}}>Notification</p> 
               </div>
              <div className="items">
              <div className="row w-100 py-2 rounded">

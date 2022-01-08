@@ -26,6 +26,14 @@ export class TaskPageEdit extends React.Component {
     const files = this.state.files.map((file: any) => (
       <li key={file.name}>
         {file.name} - {file.size} bytes
+        <CircleIcon type={ThemeCircleIcon.dark} width="22px" height="22px">
+          <img
+            src="/images/pages/garbage_can.svg"
+            alt="radvix"
+            width={15}
+            height={15}
+          />
+        </CircleIcon>
       </li>
     ));
     return (
@@ -209,6 +217,7 @@ export class TaskPageEdit extends React.Component {
                 <InputComponent
                   type={InputType.text}
                   placeholder="https://"
+                  className="mx-2"
                 ></InputComponent>
                 <CircleIcon
                   width="36px"
@@ -217,7 +226,8 @@ export class TaskPageEdit extends React.Component {
                   backgroundColor="#9D9D9D"
                   fontSize="18px"
                   color="#ffffff"
-                  className="mx-2"
+                  className="px-3"
+                  
                 >
                   <i className="fas fa-plus"></i>
                 </CircleIcon>
@@ -395,19 +405,19 @@ export class TaskPageEdit extends React.Component {
                 type={MainButtonType.light}
                 children={"Start Over"}
                 borderRadius="50px"
-                fontSize="20px"
+                fontSize="18px"
                 className="mx-2"
-                minHeight="47px"
-                minWidth="110px"
+                minHeight="43px"
+                minWidth="136px"
               ></MainButton>
               <MainButton
                 type={MainButtonType.dark}
                 children={"Create"}
                 borderRadius="50px"
-                fontSize="20px"
+                fontSize="18px"
                 className="mx-2"
-                minHeight="47px"
-                minWidth="110px"
+                minHeight="43px"
+                minWidth="136px"
               ></MainButton>
             </div>
           </div>

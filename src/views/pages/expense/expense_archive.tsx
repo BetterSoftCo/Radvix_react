@@ -56,7 +56,7 @@ export class ExpenseArchive extends React.Component {
           <div className="TableBox">
             <div className="TopTableBox d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3">
               <div className="left d-flex w-50 align-items-center">
-                <h6 className="b-title d-flex" style={{ width: "35%" }}>
+                <h6 className="b-title d-flex" style={{ width: "45%" }}>
                   <span
                     onClick={() => {
                       window.history.back();

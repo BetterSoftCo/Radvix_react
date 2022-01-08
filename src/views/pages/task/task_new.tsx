@@ -9,7 +9,9 @@ import Dropzone from "react-dropzone";
 import { SelectComponent } from "../../components/select_input";
 import { ButtonGroup } from "../../components/botton_group";
 import { BoxAlert } from "../../components/box_alert";
-export class TaskPageNew extends React.Component {
+import { RouteComponentProps, withRouter } from "react-router";
+import { AppRoutes } from "../../../core/constants";
+ class TaskPageNew extends React.Component<RouteComponentProps> {
   RoleUser = store.getState();
   date = new Date();
   handelChangeDate(params: any): void {
@@ -26,6 +28,14 @@ export class TaskPageNew extends React.Component {
     const files = this.state.files.map((file: any) => (
       <li key={file.name}>
         {file.name} - {file.size} bytes
+        <CircleIcon type={ThemeCircleIcon.dark} width="22px" height="22px">
+          <img
+            src="/images/pages/garbage_can.svg"
+            alt="radvix"
+            width={15}
+            height={15}
+          />
+        </CircleIcon>
       </li>
     ));
     return (
@@ -163,6 +173,7 @@ export class TaskPageNew extends React.Component {
                 <InputComponent
                   type={InputType.text}
                   placeholder="https://"
+                  className="mx-2"
                 ></InputComponent>
                 <CircleIcon
                   width="36px"
@@ -171,7 +182,8 @@ export class TaskPageNew extends React.Component {
                   backgroundColor="#9D9D9D"
                   fontSize="18px"
                   color="#ffffff"
-                  className="mx-2"
+                  className="px-3"
+                  
                 >
                   <i className="fas fa-plus"></i>
                 </CircleIcon>
@@ -218,19 +230,20 @@ export class TaskPageNew extends React.Component {
                 type={MainButtonType.light}
                 children={"Start Over"}
                 borderRadius="50px"
-                fontSize="20px"
+                fontSize="18px"
                 className="mx-2"
-                minHeight="47px"
-                minWidth="110px"
+                minHeight="43px"
+                minWidth="136px"
               ></MainButton>
               <MainButton
                 type={MainButtonType.dark}
                 children={"Create"}
+                onClick={()=>{this.props.history.push(AppRoutes.task_profile)}}
                 borderRadius="50px"
-                fontSize="20px"
+                fontSize="18px"
                 className="mx-2"
-                minHeight="47px"
-                minWidth="110px"
+                minHeight="43px"
+                minWidth="136px"
               ></MainButton>
             </div>
           </div>
@@ -239,3 +252,4 @@ export class TaskPageNew extends React.Component {
     );
   }
 }
+export default withRouter(TaskPageNew)
