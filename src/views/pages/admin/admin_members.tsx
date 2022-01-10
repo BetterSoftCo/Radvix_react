@@ -30,7 +30,7 @@ export class AdminMember extends React.Component {
                     <img src="/images/pages/search_box_icon.svg" alt="" />
                   }
                   width="100%"
-                  placeholder="Search..."
+                  placeholder="Search..."  TopPosition="15%"
                 ></InputIcon>
                 <SelectComponent
                   width="63px"

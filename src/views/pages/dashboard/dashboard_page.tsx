@@ -64,7 +64,7 @@ export class DashboardPage extends React.Component {
                   <InputIcon
                     chilren={<img src='/images/pages/search_box_icon.svg' />}
                     width="100%"
-                    placeholder="Search..."
+                    placeholder="Search..."  TopPosition="15%"
                   ></InputIcon>
                 </div>
                 <div className="right w-50 d-flex justify-content-end align-items-center">
@@ -135,7 +135,7 @@ export class DashboardPage extends React.Component {
                   <InputIcon
                     chilren={<img src='/images/pages/search_box_icon.svg' />}
                     width="100%"
-                    placeholder="Search..."
+                    placeholder="Search..."  TopPosition="15%"
                   ></InputIcon>
                 </div>
                 <div className="right w-50 d-flex justify-content-end align-items-center">
@@ -202,7 +202,7 @@ export class DashboardPage extends React.Component {
                   <InputIcon
                     chilren={<img src='/images/pages/search_box_icon.svg' />}
                     width="100%"
-                    placeholder="Search..."
+                    placeholder="Search..."  TopPosition="15%"
                   ></InputIcon>
                 </div>
                 <div className="right w-50 d-flex justify-content-end align-items-center">

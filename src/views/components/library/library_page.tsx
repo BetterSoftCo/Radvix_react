@@ -223,7 +223,8 @@ export const ShowLibraryPage: React.FC = (props) => {
         <InputIcon
           chilren={<img src="/images/pages/search_box_icon.svg" alt="" />}
           width="100%"
-          placeholder="Search..."
+          placeholder="Search..."  TopPosition="15%"
+          
         ></InputIcon>
       </div>
       <div className="col-12 border-bottom my-4 py-2 item">

@@ -55,7 +55,7 @@ import  DataCollectionTable  from "./component/data_collection_table";
                     <img src='/images/pages/search_box_icon.svg' alt="" />
                   }
                   width="100%"
-                  placeholder="Search..."
+                  placeholder="Search..."  TopPosition="15%"
                 ></InputIcon>
               </div>
               <div className="right w-50 d-flex justify-content-end align-items-center">

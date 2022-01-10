@@ -4,7 +4,7 @@ import { MainButton, MainButtonType } from "../../../components/button";
 import { InputComponent, InputType } from "../../../components/inputs";
 import { SelectComponent } from "../../../components/select_input";
 
-const PlanOne: React.FC<RouteComponentProps> = (props) => {
+const PlanTwo: React.FC<RouteComponentProps> = (props) => {
   return (
     <Fragment>
       <div className="form-register">
@@ -165,4 +165,4 @@ const PlanOne: React.FC<RouteComponentProps> = (props) => {
     </Fragment>
   );
 };
-export default withRouter(PlanOne);
+export default withRouter(PlanTwo);

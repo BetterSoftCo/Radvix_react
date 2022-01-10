@@ -33,7 +33,7 @@ class TeamPage extends React.Component<RouteComponentProps> {
                     <img src="/images/pages/Search Box Icon.svg" alt="" />
                   }
                   width="100%"
-                  placeholder="Search..."
+                  placeholder="Search..."  TopPosition="15%"
                 ></InputIcon>
               </div>
               <div className="right w-50 d-flex justify-content-end align-items-center">

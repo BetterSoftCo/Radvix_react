@@ -374,7 +374,7 @@ class TaskPageProfile extends React.Component<RouteComponentProps> {
                     <img src="/images/pages/search_box_icon.svg" alt="radvix" />
                   }
                   width="100%"
-                  placeholder="Search..."
+                  placeholder="Search..."  TopPosition="15%"
                 ></InputIcon>
               </div>
               <div className="right w-50 d-flex justify-content-end align-items-center">
@@ -442,7 +442,7 @@ class TaskPageProfile extends React.Component<RouteComponentProps> {
                     <img src="/images/pages/search_box_icon.svg" alt="radvix" />
                   }
                   width="100%"
-                  placeholder="Search..."
+                  placeholder="Search..."  TopPosition="15%"
                 ></InputIcon>
               </div>
               <div className="right w-50 d-flex justify-content-end align-items-center">
