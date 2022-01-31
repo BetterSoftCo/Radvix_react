@@ -16,7 +16,7 @@ export class MemberPage extends React.Component {
           <div className="TableBox">
             <div className="TopTableBox d-flex justify-content-between align-items-center mb-3">
               <div className="left d-flex w-50 align-items-center ">
-                <h4 style={{ width: "35%" }} className="b-title d-flex"><span onClick={()=>{window.history.back()}} className="backPage"></span> Members</h4>
+                <h4 style={{ width: "45%" }} className="b-title d-flex"><span onClick={()=>{window.history.back()}} className="backPage"></span> Members</h4>
                 <InputIcon
                   chilren={
                     <img src="/images/pages/search_box_icon.svg" alt="" />

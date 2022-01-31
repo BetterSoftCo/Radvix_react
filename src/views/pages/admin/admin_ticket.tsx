@@ -315,22 +315,43 @@ export class AdminTicket extends React.Component {
                       </CircleIcon>
                     </span>
                     <Dropzone onDrop={this.onDrop}>
-                      {({ getRootProps, getInputProps }) => (
-                        <section className="container fileUploadBox">
-                          <div {...getRootProps({ className: "dropzone" })}>
-                            <input {...getInputProps()} />
-                            <p>
-                              Drag 'n' drop some files here, or click to select
-                              files
-                            </p>
-                          </div>
-                          <aside>
-                            <h4>Files</h4>
-                            <ul>{files}</ul>
-                          </aside>
-                        </section>
-                      )}
-                    </Dropzone>
+                  {({ getRootProps, getInputProps }) => (
+                    <section className="container fileUploadBox">
+                      <div {...getRootProps({ className: "dropzone" })}>
+                        <input {...getInputProps()} />
+                        <MainButton
+                          type={MainButtonType.light}
+                          minHeight="30px"
+                          minWidth="179px"
+                          fontSize="14px"
+                          borderRadius="50px"
+                          backgroundColor="#fff"
+                          border="1px solid #707070"
+                          color="#707070"
+                          className="mt-4"
+                          children={
+                            <div className="d-flex justify-content-between align-items-center">
+                              <img
+                                src="/Images/component/cloud_computing.svg"
+                                alt="sssss"
+                                height="20"
+                                
+                              />{" "}
+                              <span className="flex-fill">Browse Local Files</span>
+                            </div>
+                          }
+                        ></MainButton>
+                        <p>
+                        Or drag and drop files here
+                        </p>
+                      </div>
+                      <aside>
+                        <h4>Files</h4>
+                        <ul>{files}</ul>
+                      </aside>
+                    </section>
+                  )}
+                </Dropzone>
                   </div>
                   <div className="item d-flex justify-content-between align-items-center">
                     <InputComponent

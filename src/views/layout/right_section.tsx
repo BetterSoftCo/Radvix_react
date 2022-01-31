@@ -62,7 +62,7 @@ const RightSection: React.FC<RouteComponentProps> = (props) => {
                 >
                   <span
                     className="text-truncate d-inline-block"
-                    style={{ maxWidth: "190px" }}
+                    style={{ maxWidth: "155px" }}
                   >
                     TGA issues with are...TGA issues with are...TGA issues with
                     are...

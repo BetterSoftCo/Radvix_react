@@ -1,8 +1,10 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import { RouteComponentProps, withRouter } from "react-router";
 import { MainButton, MainButtonType } from "../../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../../components/circle_icon";
+import { RegisterContext } from "../register";
 const Plans: React.FC<RouteComponentProps> = (props) => {
+  const nextStep = useContext(RegisterContext);
   return (
     <Fragment>
       <div className="Annual">
@@ -572,6 +574,9 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
                 minWidth="160px"
                 minHeight="45px"
                 color="#fff"
+                onClick={() => {
+                  nextStep(1);
+                }}
               ></MainButton>
             </div>
           </div>
@@ -587,6 +592,8 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
             <p>
               for large research teams collaborating on multiple research
               projects
+              <br />
+              <br />
             </p>
             <div className="items d-flex flex-column align-items-center">
               <div className="item d-flex justify-content-center align-items-center">
@@ -859,9 +866,10 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
           <div className="plan-head Enterprise">Radvix Enterprise</div>
           <div className="plan-price">Contact Us</div>
           <div className="plan-body">
-            <p>for universities, departments and large corporations
-                <br />
-                <br />
+            <p>
+              for universities, departments and large corporations
+              <br />
+              <br />
             </p>
             <div className="items d-flex flex-column align-items-center">
               <div className="item d-flex justify-content-center align-items-center">

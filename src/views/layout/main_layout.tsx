@@ -41,6 +41,7 @@ class MainLayout extends React.Component<IMainLayout & RouteComponentProps> {
         ) : (
           <div
             className="container-fluid justify-content-center align-items-center d-flex"
+            style={{minHeight: '100vh'}}
           >
             {this.props.children}
           </div>

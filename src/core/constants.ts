@@ -1,5 +1,6 @@
 export class AppConstants {
-	static token: string = "token";
+	static token: string = "";
+	static base_url_api:string = "http://185.79.156.134:1024/api"
 }
 
 export class AppRoutes {

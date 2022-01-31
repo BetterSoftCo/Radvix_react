@@ -128,7 +128,6 @@ button {
 
 .parent-sidebar {
   background: #474747;
-  overflow-y: scroll;
   -webkit-transition: all 700ms;
   transition: all 700ms;
   padding: 1rem;
@@ -149,22 +148,14 @@ button {
 }
 
 .parent-sidebar ul li {
-  border-bottom: 0.5px solid #ebebeb;
+  border-bottom: 0.5px solid #ebebeb69;
   margin-top: 0.5rem;
+  margin-bottom: 1rem;
 }
 
-.parent-sidebar::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  background-color: #f5f5f5;
-}
-
-.parent-sidebar::-webkit-scrollbar {
-  width: 6px;
-  background-color: #f5f5f5;
-}
-
-.parent-sidebar::-webkit-scrollbar-thumb {
-  background-color: #000000;
+.parent-sidebar ul li:first-child {
+  margin-top: 0;
+  margin-bottom: 1rem;
 }
 
 .sidebar {
@@ -189,20 +180,26 @@ button {
 .sidebar .gide-sidebar .helptext {
   font-size: 10px;
   color: #ebebeb;
+  padding: 1rem;
 }
 
 .righ-section .top {
-  min-height: 137px;
+  min-height: 157px;
   background-color: #ebebeb;
-  margin: 2rem;
+  margin: 1rem 2rem 1rem 0rem;
   border-radius: 15px;
 }
 
 .righ-section .bottom {
-  min-height: 246px;
+  min-height: 170px;
   background-color: #474747;
-  margin: 2rem;
+  margin: 1rem 2rem 1rem 0rem;
   border-radius: 15px;
+  padding: 18px 27px 27px 27px;
+}
+
+.righ-section .bottom .title-recent {
+  font-size: 18px;
 }
 
 .righ-section .bottom .massages {
@@ -227,28 +224,64 @@ button {
       -ms-flex-align: center;
           align-items: center;
   color: #ffff;
-  padding: .25rem;
+  padding: .45rem;
 }
 
 .TableBox {
-  padding: 2rem;
+  padding: 1rem;
   background-color: #ebebeb;
   border-radius: 15px;
   margin-top: 1rem;
 }
 
+.TableBox .TopTableBox .left h6 {
+  font-size: 18px;
+}
+
+.TableBox .TopTableBox .left .InputComponentStyle {
+  height: 39px;
+  border: 1px solid #adadad;
+}
+
+.TableBox .TopTableBox .right button {
+  min-width: 134px;
+  min-height: 34px;
+  margin-right: .5rem;
+  margin-left: .5rem;
+}
+
 .TableBox .table {
-  border-collapse: inherit;
+  border-collapse: collapse;
+}
+
+.TableBox .table tbody,
+.TableBox .table td,
+.TableBox .table tfoot,
+.TableBox .table th,
+.TableBox .table thead,
+.TableBox .table tr {
+  border-color: inherit;
+  border-style: solid;
+  border-width: -1;
 }
 
 .TableBox .table thead tr th {
   background-color: transparent;
-  font-size: 20px;
-  font-weight: lighter;
+  font-size: 14px;
+  font-weight: 400;
 }
 
 .TableBox .table tbody {
   border-radius: 10px;
+  font-size: 14px;
+}
+
+.TableBox .table tbody td {
+  border: none;
+}
+
+.TableBox .table tbody tr {
+  border: none;
 }
 
 .TableBox .table tbody tr:first-child td:first-child {
@@ -267,26 +300,70 @@ button {
   border-bottom-right-radius: 15px;
 }
 
+.TableBox .table-striped > tbody > tr:nth-of-type(odd) > * {
+  --bs-table-accent-bg: #f5f5f5;
+}
+
 .TableBox span.lable {
-  border: 2px solid;
-  margin-right: 0.2rem;
-  border-radius: 80px;
+  width: 5px;
+  margin-right: 1px;
+  border-radius: 29%;
+  height: 20px;
+  display: inline-block;
+  position: relative;
+  top: 4px;
+}
+
+.TableBox .accordion-button:not(.collapsed)::after {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
 }
 
 .TableBox .accordion-button::after {
   position: absolute;
-  left: 6px;
+  left: 4px;
   padding-left: 1rem;
-  background-image: url("./../../Images/component/down-arrow-black-circular-button.svg");
+  background-image: url("./../../Images/pages/toggle_Icon.svg");
+}
+
+.TableBox .accordion-button {
+  padding: .5rem .75rem;
 }
 
 .TableBox .accordion-button .row.w-100 {
   padding-left: 1rem;
 }
 
-.TableBox .accordion-body {
+.TableBox .accordion-button .row.w-100 .col span.d-inline-block {
   position: relative;
-  margin-left: 1rem;
+}
+
+.TableBox .accordion-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0rem;
+}
+
+.TableBox .accordion-body .sub-accordian-parent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 5%;
+}
+
+.TableBox .accordion-body .items {
+  width: 97%;
+}
+
+.TableBox .accordion-body .row.w-100 {
+  margin: 0;
 }
 
 .TableBox .accordion-body .row.w-100:nth-child(odd) {
@@ -297,14 +374,10 @@ button {
   background-color: #f5f5f5;
 }
 
-.TableBox .accordion-body span.sub-accordion {
-  position: absolute;
+.TableBox .accordion-body p.sub-accordion {
   -webkit-transform: rotate(-90deg);
           transform: rotate(-90deg);
-  left: -3%;
-  bottom: 35%;
-  background: white;
-  text-align: center;
+  margin-right: 11%;
 }
 
 .TableBox .accordion .accordion-item.accordion-item-top {
@@ -329,6 +402,10 @@ button {
   border-bottom-right-radius: 15px;
 }
 
+.TableBox .accordion-button:not(.collapsed) {
+  color: #474747;
+}
+
 @media (max-width: 575.98px) {
   .TableBox .responsive {
     overflow-x: scroll;
@@ -348,21 +425,26 @@ button {
   text-align: center;
 }
 
-.box-list-scroll {
+.parent-box-list-scroll {
+  background-color: #c7c7c7;
+  border-radius: 15px;
+}
+
+.parent-box-list-scroll .box-list-scroll {
   max-height: 220px;
   overflow-y: scroll;
   background-color: #c7c7c7;
   border-radius: 15px;
   padding: 1rem 2rem;
-  border-bottom: 2px solid #a0a0a0;
-  border-top: 2px solid #a0a0a0;
+  border-bottom: 2px solid #EBEBEB;
+  border-top: 2px solid #EBEBEB;
 }
 
-.box-list-scroll .IconTextVerticalLight {
+.parent-box-list-scroll .box-list-scroll .IconTextVerticalLight {
   border-bottom: 1px solid #d9d9d9;
 }
 
-.box-list-scroll .avatar {
+.parent-box-list-scroll .box-list-scroll .avatar {
   width: 50px;
   height: 50px;
   margin-right: 1rem;
@@ -387,13 +469,20 @@ button {
   background-color: #a0a0a0;
 }
 
-.btn-group {
+.btngroupComponentStyle {
   width: 100%;
   margin-top: 1rem;
   z-index: 0;
+  background-color: #fff;
+  padding: 2px;
+  border-radius: 15px;
 }
 
-.btn-group label.btn {
+.btngroupComponentStyle .btn-outline-dark {
+  border-color: #21252900;
+}
+
+.btngroupComponentStyle label.btn {
   line-height: 0.5;
   border-radius: 15px;
   border-top-right-radius: 15px !important;
@@ -403,7 +492,7 @@ button {
 }
 
 @media (max-width: 575.98px) {
-  .btn-group label.btn {
+  .btngroupComponentStyle label.btn {
     line-height: 1rem;
   }
 }

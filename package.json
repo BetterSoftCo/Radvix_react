@@ -10,6 +10,7 @@
   "dependencies": {
     "@ramonak/react-progress-bar": "^4.0.0",
     "@syncfusion/ej2-react-schedule": "^19.3.55",
+    "axios": "^0.25.0",
     "chart.js": "^3.6.0",
     "history": "^5.0.1",
     "react": "^17.0.2",
@@ -48,7 +49,10 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
+    ],
+    "rules": {
+      "no-use-before-define": "off"
+    }
   },
   "browserslist": {
     "production": [

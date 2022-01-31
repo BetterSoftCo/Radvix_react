@@ -1,11 +1,12 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import { RouteComponentProps, withRouter } from "react-router";
 import { MainButton, MainButtonType } from "../../../components/button";
 import { InputComponent, InputType } from "../../../components/inputs";
 import { InputIcon } from "../../../components/search_box";
-import { SelectComponent } from "../../../components/select_input";
+import { RegisterContext } from "../register";
 
-const PlanOne: React.FC<RouteComponentProps> = (props) => {
+const PlanTwo: React.FC<RouteComponentProps> = (props) => {
+  const nextStep = useContext(RegisterContext)
   return (
     <Fragment>
       <div className="form-register">
@@ -129,6 +130,7 @@ const PlanOne: React.FC<RouteComponentProps> = (props) => {
                     borderRadius="50px"
                     className="px-3"
                     backgroundColor="#00A598"
+                    onClick={()=>{nextStep(3)}}
                     children={
                       <div>
                         Activate Account
@@ -149,4 +151,4 @@ const PlanOne: React.FC<RouteComponentProps> = (props) => {
     </Fragment>
   );
 };
-export default withRouter(PlanOne);
+export default withRouter(PlanTwo);

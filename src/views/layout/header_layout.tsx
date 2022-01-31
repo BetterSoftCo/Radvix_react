@@ -69,6 +69,8 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
                       completed={20}
                       className="w-75"
                       bgColor="#474747"
+                      labelAlignment="outside"
+                      labelColor="#474747"
                       
                     />
                   </div>

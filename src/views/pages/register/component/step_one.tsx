@@ -1,10 +1,12 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import { RouteComponentProps, withRouter } from "react-router";
 import { MainButton, MainButtonType } from "../../../components/button";
 import { InputComponent, InputType } from "../../../components/inputs";
 import { SelectComponent } from "../../../components/select_input";
+import { RegisterContext } from "../register";
 
 const PlanTwo: React.FC<RouteComponentProps> = (props) => {
+ const nextStep = useContext(RegisterContext)
   return (
     <Fragment>
       <div className="form-register">
@@ -146,6 +148,7 @@ const PlanTwo: React.FC<RouteComponentProps> = (props) => {
                   borderRadius="50px"
                   className="px-3"
                   backgroundColor="#00A598"
+                  onClick={()=>{nextStep(2)}}
                   children={
                     <div>
                       Payment

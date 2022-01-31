@@ -108,13 +108,13 @@ interface IAcordienTable {
             data-bs-parent="#accordion_resenttask"
           >
             <div className="accordion-body">
-              <div className="sub-accordian-parent">
+              <div className="sub-accordian-parent justify-content-center">
               <p className="sub-accordion">Subtask</p> 
               </div>
              <div className="items">
              {[1,2,3].map((item,index)=>(
-                <div className="row w-100 py-2 rounded" key={index}>
-                <div className="col">
+                <div className="row w-100 py-1 rounded" key={index}>
+                <div className="col px-0">
                   <span
                     className="text-truncate d-inline-block"
                     style={{ maxWidth: "120px" }}
@@ -128,7 +128,7 @@ interface IAcordienTable {
                   </span>
                 </div>
                 <div className="col">N. Hossein...</div>
-                <div className="col">K. Pourtorab</div>
+                <div className="col px-0">K. Pourtorab</div>
                 <div className="col">07/22/2021</div>
                 <div className="col">
                   <MainButton

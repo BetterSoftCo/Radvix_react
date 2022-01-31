@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import { Route, Switch } from "react-router";
-import { SplashPage } from "./views/pages/landing/splash_page";
+import  SplashPage  from "./views/pages/landing/splash_page";
 import { AppRoutes } from "./core/constants";
 import { DashboardPage } from "./views/pages/dashboard/dashboard_page";
 import MainLayout from "./views/layout/main_layout";
@@ -68,6 +68,7 @@ import {
   TimeLine,
   ShowLibraryPage,
   RegisterPage,
+  not_found_page,
 } from "./views";
 
 const RoleUser: UserRoles = store.getState();
@@ -367,6 +368,7 @@ ReactDOM.render(
             path={AppRoutes.library_page}
             exact
           />
+          <Route path='*' exact={true} component={not_found_page} />
         </Switch>
       </MainLayout>
     </BrowserRouter>

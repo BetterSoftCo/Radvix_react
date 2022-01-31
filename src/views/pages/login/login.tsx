@@ -1,10 +1,22 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React from "react";
+import React, { useState } from "react";
 import { MainButton, MainButtonType } from "../../components/button";
 import { InputComponent, InputType } from "../../components/inputs";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
+import { UserController } from "../../../controllers/user/user_controller";
+import { UserSigninReq } from "../../../data/models/requests/user/signin_req";
 const LoginPage: React.FC<RouteComponentProps> = (props) => {
+  const [password, setpassword] = useState();
+  const [email, setemail] = useState();
+  const controller: UserController = new UserController();
+  async function SignIn() {
+    const body: UserSigninReq = {
+      password: "",
+      email: "",
+    };
+    controller.Signin(body);
+  }
   return (
     <div className="login d-flex flex-column flex-md-row">
       <div className="left">
@@ -29,13 +41,23 @@ const LoginPage: React.FC<RouteComponentProps> = (props) => {
         <span className="about text-center">Learn More About Radvix </span>
       </div>
       <div className="right">
-        <form action="#" className="mt-3 w-100 ">
+        <div className="mt-3 w-100 ">
           <label className="text-light mb-2">Email:</label>
-          <InputComponent type={InputType.text} placeholder="example@email.com"></InputComponent>
+          <InputComponent
+            type={InputType.text}
+            placeholder="example@email.com"
+            onChange={(e)=>{setemail(e.target.value);
+            }}
+          ></InputComponent>
           <div className="password mt-2 d-flex justify-content-between align-items-center">
             <div className="input w-75">
               <label className="text-light mb-2">Password:</label>
-              <InputComponent type={InputType.text} placeholder="*******"></InputComponent>
+              <InputComponent
+                type={InputType.text}
+                placeholder="*******"
+                onChange={(e)=>{setpassword(e.target.value);
+                }}
+              ></InputComponent>
             </div>
             <MainButton
               children={"Login"}
@@ -44,12 +66,11 @@ const LoginPage: React.FC<RouteComponentProps> = (props) => {
               minWidth="60px"
               minHeight="37px"
               className="align-self-end"
-              onClick={() => {
-                props.history.push(AppRoutes.dashboard);
+              onClick={()=>{SignIn()
               }}
             ></MainButton>
           </div>
-        </form>
+        </div>
         <div className="line mt-2">Or login using:</div>
         <MainButton
           type={MainButtonType.dark}
