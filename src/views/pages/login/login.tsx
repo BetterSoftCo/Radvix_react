@@ -7,15 +7,18 @@ import { AppRoutes } from "../../../core/constants";
 import { UserController } from "../../../controllers/user/user_controller";
 import { UserSigninReq } from "../../../data/models/requests/user/signin_req";
 const LoginPage: React.FC<RouteComponentProps> = (props) => {
-  const [password, setpassword] = useState();
-  const [email, setemail] = useState();
+  const [password, setpassword] = useState('');
+  const [email, setemail] = useState('');
   const controller: UserController = new UserController();
   async function SignIn() {
     const body: UserSigninReq = {
-      password: "",
-      email: "",
+      password: password,
+      email: email,
     };
-    controller.Signin(body);
+    controller.Signin(body,res=>{
+      console.log(res);
+      
+    })
   }
   return (
     <div className="login d-flex flex-column flex-md-row">

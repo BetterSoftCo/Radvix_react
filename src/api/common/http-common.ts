@@ -22,6 +22,17 @@ HTTP.interceptors.request.use(
 
 HTTP.interceptors.response.use(
   function (response) {
+    if(response.status === 200){
+      if(response.config.method !==  'get'){
+        toast.success(
+          `${response.data.message}`,
+          {
+            position: toast.POSITION.TOP_RIGHT,
+          }
+        );
+      }
+    }
+    
     return response;
   },
   function (error) {
