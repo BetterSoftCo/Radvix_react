@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import { MainButton, MainButtonType } from "../../components/button";
 import { InputComponent, InputType } from "../../components/inputs";
 import { RouteComponentProps, withRouter } from "react-router";
-import { AppRoutes } from "../../../core/constants";
 import { UserController } from "../../../controllers/user/user_controller";
 import { UserSigninReq } from "../../../data/models/requests/user/signin_req";
+import { AppRoutes } from "../../../core/constants";
 const LoginPage: React.FC<RouteComponentProps> = (props) => {
   const [password, setpassword] = useState('');
   const [email, setemail] = useState('');
@@ -15,9 +15,10 @@ const LoginPage: React.FC<RouteComponentProps> = (props) => {
       password: password,
       email: email,
     };
-    controller.Signin(body,res=>{
-      console.log(res);
-      
+   await controller.Signin(body,res=>{
+      if(res){
+        props.history.replace(AppRoutes.dashboard)
+      }
     })
   }
   return (

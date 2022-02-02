@@ -1,6 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import { AppConstants } from "../../core/constants";
+import { AppConstants } from "./constants";
 export const HTTP = axios.create({
   baseURL: AppConstants.base_url_api,
   headers: {
@@ -22,17 +22,19 @@ HTTP.interceptors.request.use(
 
 HTTP.interceptors.response.use(
   function (response) {
-    if(response.status === 200){
-      if(response.config.method !==  'get'){
-        toast.success(
-          `${response.data.message}`,
-          {
-            position: toast.POSITION.TOP_RIGHT,
-          }
-        );
+    if (response.status >= 200 || response.status <= 299) {
+      if (response.config.method !== 'get') {
+        if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+          // dev code
+          console.log(response.data.message);
+
+        } else {
+          // production code
+          return response
+        }
       }
     }
-    
+
     return response;
   },
   function (error) {

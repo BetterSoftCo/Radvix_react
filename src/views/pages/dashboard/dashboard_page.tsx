@@ -8,9 +8,7 @@ import AcordienTable from "./recent_tasks";
 import AcordienTableData from "./recent_data";
 import { store } from "../../../data/store";
 import { SelectComponent } from "../../components/select_input";
-import { DashboardController } from "./dashboard_controller";
 export class DashboardPage extends React.Component {
-  controller: DashboardController = new DashboardController();
 
   handlePageClick = (data: any) => {};
   mockData = [
@@ -49,7 +47,7 @@ export class DashboardPage extends React.Component {
   ];
   RoleUser = store.getState();
   componentDidMount() {
-    this.controller.postGlobalSearch();
+
     // ...
   }
   render() {
@@ -158,7 +156,7 @@ export class DashboardPage extends React.Component {
               </div>
               <AcordienTable
                 role={this.RoleUser}
-                tasks={this.controller.recentTasks}
+                tasks={[{id:1 , name:'ssss'}]}
               ></AcordienTable>
               <div className="d-flex justify-content-between align-items-baseline my-2">
                 <div className="d-flex justify-content-end flex-fill">
@@ -267,12 +265,6 @@ export class DashboardPage extends React.Component {
                 <div className="d-flex justify-content-end flex-fill">
                   <p className="text-right mb-0 ">Total Results: 45</p>
                 </div>
-
-                <button
-                  onClick={() => {
-                    this.controller.postGlobalSearch();
-                  }}
-                ></button>
               </div>
             </div>
           </div>
