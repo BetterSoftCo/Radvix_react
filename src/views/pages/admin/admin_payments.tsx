@@ -13,28 +13,32 @@ export class AdminPayments extends React.Component {
     Data: {
       Items: [
         {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
+          name: "$123.12",
+          Institution: "07/22/2021   17:13",
+          Category: "Nima Hosseinzadeh",
+          Eqiups: "test@email.com",
+          status:'Succeeded '
         },
         {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
+          name: "$123.12",
+          Institution: "07/22/2021   17:13",
+          Category: "Nima Hosseinzadeh",
+          Eqiups: "test@email.com",
+          status:'Succeeded '
         },
         {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
+          name: "$123.12",
+          Institution: "07/22/2021   17:13",
+          Category: "Nima Hosseinzadeh",
+          Eqiups: "test@email.com",
+          status:'Succeeded '
         },
         {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
+          name: "$123.12",
+          Institution: "07/22/2021   17:13",
+          Category: "Nima Hosseinzadeh",
+          Eqiups: "test@email.com",
+          status:'Succeeded '
         },
       ],
     },
@@ -53,11 +57,10 @@ export class AdminPayments extends React.Component {
                     <img src="/images/pages/search_box_icon.svg" alt="" />
                   }
                   width="100%"
-                  height="44px"
-                  placeholder="Search..."
+                  placeholder="Search..."  TopPosition="15%"
                 ></InputIcon>
               </div>
-              <div className="right w-25 d-flex justify-content-end align-items-center">
+              <div className="right w-50 d-flex justify-content-end align-items-center">
                 <MainButton
                   children="Payment Setup"
                   type={MainButtonType.dark}
@@ -83,7 +86,8 @@ export class AdminPayments extends React.Component {
             </div>
             <PaymentsTbl
               Items={this.state.Data.Items}
-              Heading={["Payment Amount", "Date", "Client Name", "Client Email" , "Status"]}
+              Heading={[{name:'Payment Amount' , center:false},{name:'Date' , center:true},{name:'Client Name' , center:true},{name:'Client Email' , center:true},{name:'Status' , center:true}]}
+              
             ></PaymentsTbl>
 
            <div className="d-flex justify-content-between align-items-baseline">

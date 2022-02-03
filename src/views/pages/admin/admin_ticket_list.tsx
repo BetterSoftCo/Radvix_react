@@ -53,11 +53,10 @@ export class AdminTickets extends React.Component {
                     <img src="/images/pages/search_box_icon.svg" alt="" />
                   }
                   width="100%"
-                  height="44px"
-                  placeholder="Search..."
+                  placeholder="Search..."  TopPosition="15%"
                 ></InputIcon>
               </div>
-              <div className="right w-25 d-flex justify-content-end align-items-center">
+              <div className="right w-50 d-flex justify-content-end align-items-center">
                 <MainButton
                   children="Broadcast "
                   type={MainButtonType.dark}
@@ -83,14 +82,8 @@ export class AdminTickets extends React.Component {
             </div>
             <TicketsTbl
               Items={this.state.Data.Items}
-              Heading={[
-                "Subject",
-                "Ticket ",
-                "Created By",
-                "Date Created",
-                "Update",
-                "Status",
-              ]}
+              Heading={[{name:'Subject',center:false},{name:'Ticket',center:true},{name:'Created By',center:true},{name:'Date Created',center:true},{name:'Update',center:true},{name:'Status',center:true}]}
+              
             ></TicketsTbl>
 
            <div className="d-flex justify-content-between align-items-baseline">

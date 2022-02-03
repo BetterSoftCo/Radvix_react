@@ -61,8 +61,7 @@ export class MyPublications extends React.Component {
                     <img src="/images/pages/search_box_icon.svg" alt="" />
                   }
                   width="100%"
-                  height="44px"
-                  placeholder="Search..."
+                  placeholder="Search..."  TopPosition="15%"
                 ></InputIcon>
               </div>
               <div className="right  d-flex justify-content-between">

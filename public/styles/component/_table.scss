@@ -1,18 +1,53 @@
 .TableBox {
-  padding: 2rem;
+  padding: 1rem;
   background-color: $BackgroundColor;
   border-radius: 15px;
   margin-top: 1rem;
+  .TopTableBox {
+    .left {
+      h6 {
+        font-size: 18px;
+      }
+      .InputComponentStyle {
+        height: 39px;
+        border: 1px solid #adadad;
+      }
+    }
+    .right{
+      button{
+        min-width: 134px;
+        min-height: 34px;
+        margin-right: .5rem;
+        margin-left: .5rem;
+      }
+
+    }
+  }
   .table {
-    border-collapse: inherit;
+    border-collapse: collapse;
+    tbody,
+    td,
+    tfoot,
+    th,
+    thead,
+    tr {
+      border-color: inherit;
+      border-style: solid;
+      border-width: -1;
+    }
     thead tr th {
       background-color: transparent;
-      font-size: 20px;
-      font-weight: lighter;
+      font-size: 14px;
+      font-weight: 400;
     }
     tbody {
       border-radius: 10px;
+      font-size: 14px;
+      td {
+        border: none;
+      }
       tr {
+        border: none;
         &:first-child {
           td {
             &:first-child {
@@ -36,26 +71,55 @@
       }
     }
   }
+  .table-striped > tbody > tr:nth-of-type(odd) > * {
+    --bs-table-accent-bg: #f5f5f5;
+  }
   span.lable {
-    border: 2px solid;
-    margin-right: 0.2rem;
-    border-radius: 80px;
+    width: 5px;
+    margin-right: 1px;
+    border-radius: 29%;
+    height: 20px;
+    display: inline-block;
+    position: relative;
+    top: 4px;
+  }
+  .accordion-button:not(.collapsed)::after {
+    transform: rotate(90deg);
   }
   .accordion-button::after {
     position: absolute;
-    left: 6px;
+    left: 4px;
     padding-left: 1rem;
-    background-image: url("./../../Images/component/down-arrow-black-circular-button.svg");
+    background-image: url("./../../Images/pages/toggle_Icon.svg");
   }
+ 
   .accordion-button {
+    padding: .5rem .75rem;
     .row.w-100 {
       padding-left: 1rem;
+      .col{
+        span.d-inline-block{
+          position: relative;
+        }
+
+      }
     }
+
   }
   .accordion-body {
-    position: relative;
-    margin-left: 1rem;
+    display: flex;
+    padding: 0rem;
+    .sub-accordian-parent {
+      display: flex;
+      justify-content: end;
+      align-items: center;
+      width: 5%;
+    }
+    .items {
+      width: 97%;
+    }
     .row.w-100 {
+      margin: 0;
       &:nth-child(odd) {
         background-color: white;
       }
@@ -63,14 +127,9 @@
         background-color: #f5f5f5;
       }
     }
-    span.sub-accordion {
-      position: absolute;
+    p.sub-accordion {
       transform: rotate(-90deg);
-      left: -3%;
-      bottom: 35%;
-      background: white;
-
-      text-align: center;
+      margin-right: 11%;
     }
   }
   .accordion {
@@ -100,12 +159,15 @@
       }
     }
   }
+  .accordion-button:not(.collapsed) {
+    color: #474747;
+  }
   .responsive {
     @media (max-width: 575.98px) {
       overflow-x: scroll;
       overflow-y: hidden;
       min-width: 63vw;
-      .child-rsponsive{
+      .child-rsponsive {
         min-width: 100vw;
       }
     }

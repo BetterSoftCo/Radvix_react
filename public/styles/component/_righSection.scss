@@ -1,15 +1,19 @@
 .righ-section {
   .top {
-    min-height: 137px;
+    min-height: 157px;
     background-color: $BackgroundColor;
-    margin: 2rem;
+    margin: 1rem 2rem 1rem 0rem ;
     border-radius: 15px;
   }
   .bottom {
-    min-height: 246px;
+    min-height: 170px;
     background-color: $black-color;
-    margin: 2rem;
+    margin: 1rem 2rem 1rem 0rem ;
     border-radius: 15px;
+    padding: 18px 27px 27px 27px;
+    .title-recent{
+      font-size: 18px;
+    }
     .massages{
         background-color: #343434;
         border-radius: 15px;
@@ -24,7 +28,7 @@
                 justify-content: space-around;
                 align-items: center;
                 color: #ffff;
-                padding: .25rem;
+                padding: .45rem;
             }
         }
     }

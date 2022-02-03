@@ -44,16 +44,15 @@ import { AppRoutes } from "../../../core/constants";
           <div className="TableBox">
             <div className="TopTableBox d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3">
               <div className="left d-flex w-50 align-items-center">
-                <h6 className="b-title d-flex" style={{ width: "35%" }}>
-                  <span onClick={()=>{window.history.back()}} className="backPage"></span> Equipment List
+                <h6 className="b-title d-flex" style={{ width: "55%" }}>
+                  <span onClick={()=>{window.history.back()}} className="backPage"></span> My Discussion Panels
                 </h6>
                 <InputIcon
                   chilren={
                     <img src="/images/pages/search_box_icon.svg" alt="" />
                   }
                   width="100%"
-                  height="44px"
-                  placeholder="Search..."
+                  placeholder="Search..."  TopPosition="15%"
                 ></InputIcon>
               </div>
               <div className="right  d-flex justify-content-between">

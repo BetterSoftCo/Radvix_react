@@ -22,6 +22,7 @@ interface InputsProps {
   label?: ReactNode;
   popQuestion?: string;
   optional?: string;
+  rows?:number
 }
 export const InputComponent: React.FC<InputsProps> = ({
   width,
@@ -37,6 +38,7 @@ export const InputComponent: React.FC<InputsProps> = ({
   label,
   popQuestion,
   optional,
+  rows=4
 }) => {
   let styles = {
     width: width,
@@ -100,6 +102,7 @@ export const InputComponent: React.FC<InputsProps> = ({
       {TemplateLabel}
       <textarea
         style={styles}
+        rows={rows}
         className={`${
           IsclassName + " " + "InputComponentStyle" + " " + "form-control"
         }`}

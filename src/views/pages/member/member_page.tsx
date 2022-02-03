@@ -16,17 +16,16 @@ export class MemberPage extends React.Component {
           <div className="TableBox">
             <div className="TopTableBox d-flex justify-content-between align-items-center mb-3">
               <div className="left d-flex w-50 align-items-center ">
-                <h4 style={{ width: "35%" }} className="b-title d-flex"><span onClick={()=>{window.history.back()}} className="backPage"></span> Members</h4>
+                <h4 style={{ width: "45%" }} className="b-title d-flex"><span onClick={()=>{window.history.back()}} className="backPage"></span> Members</h4>
                 <InputIcon
                   chilren={
                     <img src="/images/pages/search_box_icon.svg" alt="" />
                   }
                   width="100%"
-                  height="44px"
-                  placeholder="Search..."
+                  placeholder="Search..."  TopPosition="15%"
                 ></InputIcon>
               </div>
-              <div className="right w-25 d-flex justify-content-between">
+              <div className="right w-50 d-flex justify-content-end align-items-center">
                 <MainButton
                   children="New Member"
                   type={MainButtonType.dark}
@@ -107,7 +106,7 @@ export class MemberPage extends React.Component {
 }
 
 const MemberItem: React.FC = () => (
-  <div className="col-md-3 d-flex justify-content-center align-items-center flex-column mb-2">
+  <div className="col-md-3 d-flex justify-content-center align-items-center flex-column mb-3">
     <img
       src="/images/layout/img_avatar.png"
       alt="Avatar"
@@ -135,7 +134,7 @@ const MemberItem: React.FC = () => (
         }}
         className="pointer mx-1"
       >
-        <i className="fas fa-edit"></i>
+        <img src="/images/pages/edit.svg" alt="radvix" />
       </CircleIcon>
       <CircleIcon
         width="26px"
@@ -146,7 +145,7 @@ const MemberItem: React.FC = () => (
         }}
         className="pointer mx-1"
       >
-        <i className="fas fa-file-alt"></i>
+        <img src="/images/pages/google_docs.svg" alt="radvix" width={12} height={12} />
       </CircleIcon>
     </div>
   </div>

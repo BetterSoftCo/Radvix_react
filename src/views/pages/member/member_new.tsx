@@ -125,19 +125,19 @@ export class MemberPageNew extends React.Component {
                 type={MainButtonType.light}
                 children={"Start Over"}
                 borderRadius="50px"
-                fontSize="20px"
+                fontSize="18px"
                 className="mx-2"
-                minHeight="47px"
-                minWidth="110px"
+                minHeight="43px"
+                minWidth="136px"
               ></MainButton>
               <MainButton
                 type={MainButtonType.dark}
                 children={"Send Invitation"}
                 borderRadius="50px"
-                fontSize="20px"
+                fontSize="18px"
                 className="mx-2"
-                minHeight="47px"
-                minWidth="110px"
+                minHeight="43px"
+                minWidth="136px"
               ></MainButton>
             </div>
           </div>

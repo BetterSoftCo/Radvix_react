@@ -5,12 +5,11 @@ import { MainButton, MainButtonType } from "../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import { InputIcon } from "../../components/search_box";
 import { SelectComponent } from "../../components/select_input";
-import  AcordienTable  from "./component/recent_teams";
+import AcordienTable from "./component/recent_teams";
 import { withRouter, RouteComponentProps } from "react-router";
 import { AppRoutes } from "../../../core/constants";
 
-
- class TeamPage extends React.Component<RouteComponentProps> {
+class TeamPage extends React.Component<RouteComponentProps> {
   RoleUser = store.getState();
   render() {
     return (
@@ -20,30 +19,41 @@ import { AppRoutes } from "../../../core/constants";
           <div className="TableBox">
             <div className="TopTableBox d-flex justify-content-between align-items-center mb-3">
               <div className="left d-flex w-50 align-items-center">
-                <h6 style={{ width: "35%" }}> Team List</h6>
+                <h6 style={{ width: "35%" }} className="b-title d-flex">
+                  <span
+                    onClick={() => {
+                      window.history.back();
+                    }}
+                    className="backPage"
+                  ></span>{" "}
+                  Team List
+                </h6>
                 <InputIcon
                   chilren={
                     <img src="/images/pages/Search Box Icon.svg" alt="" />
                   }
                   width="100%"
-                  height="44px"
-                  placeholder="Search..."
+                  placeholder="Search..."  TopPosition="15%"
                 ></InputIcon>
               </div>
-              <div className="right w-30 d-flex justify-content-between align-items-center">
-              <MainButton
+              <div className="right w-50 d-flex justify-content-end align-items-center">
+                <MainButton
                   children="New Team"
                   type={MainButtonType.dark}
                   borderRadius="24px"
                   fontSize="14px"
-                  onClick={()=>{this.props.history.push(AppRoutes.new_team)}}
+                  onClick={() => {
+                    this.props.history.push(AppRoutes.new_team);
+                  }}
                 ></MainButton>
                 <MainButton
                   children="Member"
                   type={MainButtonType.dark}
                   borderRadius="24px"
                   fontSize="14px"
-                  onClick={()=>{this.props.history.push(AppRoutes.member)}}
+                  onClick={() => {
+                    this.props.history.push(AppRoutes.member);
+                  }}
                 ></MainButton>
                 <SelectComponent
                   width="63px"
@@ -59,9 +69,9 @@ import { AppRoutes } from "../../../core/constants";
               </div>
             </div>
             <AcordienTable role={this.RoleUser}></AcordienTable>
-           <div className="d-flex justify-content-between align-items-baseline">
-                  <div className="d-flex justify-content-end flex-fill">
-                  <ReactPaginate
+            <div className="d-flex justify-content-between align-items-baseline">
+              <div className="d-flex justify-content-end flex-fill">
+                <ReactPaginate
                   previousLabel={
                     <CircleIcon
                       width="24px"
@@ -87,21 +97,21 @@ import { AppRoutes } from "../../../core/constants";
                   pageCount={20}
                   marginPagesDisplayed={2}
                   pageRangeDisplayed={5}
-                  onPageChange={()=>{console.log('changepage')}}
+                  onPageChange={() => {
+                    console.log("changepage");
+                  }}
                   containerClassName={"pagination"}
                   activeClassName={"active"}
                 />
-                  </div>
-                  <div className="d-flex justify-content-end flex-fill">
-                  <p className="text-right mb-0 " >Total Results: 45</p>
-                  </div>
-                 
-                
               </div>
+              <div className="d-flex justify-content-end flex-fill">
+                <p className="text-right mb-0 ">Total Results: 45</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     );
   }
 }
-export default withRouter(TeamPage)
+export default withRouter(TeamPage);

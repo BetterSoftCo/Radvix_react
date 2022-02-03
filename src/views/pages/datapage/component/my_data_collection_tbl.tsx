@@ -41,7 +41,7 @@ interface IAcordienTable {
                     >
                       <span
                         className="lable"
-                        style={{ borderColor: "#096BFF" }}
+                        style={{ backgroundColor: "#096BFF"  }}
                       ></span>{" "}
                       Task: Running TGA On XFG...
                     </span>
@@ -56,7 +56,7 @@ interface IAcordienTable {
                       }
                       className="pointer"
                     >
-                      <i className="fas fa-file-alt"></i>
+                      <img src="/images/pages/google_docs.svg" alt="radvix" width={12} height={12} />
                     </CircleIcon>
                   </div>
                 </div>
@@ -69,10 +69,11 @@ interface IAcordienTable {
               data-bs-parent="#accordion_resentdata"
             >
               <div className="accordion-body ">
-                <span className="sub-accordion" style={{ left: "-2%" }}>
-                  Data
-                </span>
-                {[1, 2, 3].map((item, index) => (
+                <div className="sub-accordian-parent">
+              <p className="sub-accordion"  style={{marginRight: '31%'}}>Data</p> 
+              </div>
+               <div className="items">
+               {[1, 2, 3].map((item, index) => (
                   <div className="row w-100 py-2 rounded" key={index}>
                     <div className="col-2 text-center">
                       <span
@@ -81,7 +82,7 @@ interface IAcordienTable {
                       >
                         <span
                           className="lable"
-                          style={{ borderColor: "#096BFF" }}
+                          style={{ backgroundColor: "#096BFF"  }}
                         ></span>{" "}
                         Strength and Durability Team
                       </span>
@@ -133,7 +134,7 @@ interface IAcordienTable {
                           props.history.push(AppRoutes.data_profile);
                         }}
                       >
-                        <i className="fas fa-file-alt"></i>
+                        <img src="/images/pages/google_docs.svg" alt="radvix" width={12} height={12} />
                       </CircleIcon>
                       <CircleIcon
                         width="22px"
@@ -144,7 +145,7 @@ interface IAcordienTable {
                         color="#ffff"
                         className="mx-4 pointer"
                       >
-                        <i className="fas fa-comment"></i>
+                        <img src="/images/pages/start_discussion.svg" alt="radvix" />
                       </CircleIcon>
                       <CircleIcon
                         width="22px"
@@ -155,11 +156,12 @@ interface IAcordienTable {
                         color="#ffff"
                         className="mx-4 pointer"
                       >
-                        <i className="fas fa-upload"></i>
+                        <img src="/images/pages/download.svg" alt="radvix" width={15} height={15} />
                       </CircleIcon>
                     </div>
                   </div>
                 ))}
+               </div>
               </div>
             </div>
           </div>

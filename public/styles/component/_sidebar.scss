@@ -1,6 +1,5 @@
 .parent-sidebar {
   background: $black-color;
-  overflow-y: scroll;
   transition: all 700ms;
   padding: 1rem;
   height: 100%;
@@ -17,24 +16,17 @@
       border-bottom: 0.5px solid #8EE1FF;
     }
     li {
-      border-bottom: 0.5px solid $BackgroundColor;
+      &:first-child{
+        margin-top: 0;
+        margin-bottom: 1rem;
+      }
+      border-bottom: 0.5px solid #ebebeb69;
       margin-top: 0.5rem;
+      margin-bottom: 1rem;
     }
   }
 }
-.parent-sidebar::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  background-color: #f5f5f5;
-}
 
-.parent-sidebar::-webkit-scrollbar {
-  width: 6px;
-  background-color: #f5f5f5;
-}
-
-.parent-sidebar::-webkit-scrollbar-thumb {
-  background-color: #000000;
-}
 .sidebar{
   position: relative;
   .gide-sidebar{
@@ -52,6 +44,7 @@
     .helptext{
       font-size: 10px;
       color: #ebebeb;
+      padding: 1rem ;
     }
     
   }

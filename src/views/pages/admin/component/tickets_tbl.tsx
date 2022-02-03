@@ -1,7 +1,7 @@
 import React from "react";
 import { CircleIcon, ThemeCircleIcon } from "../../../components/circle_icon";
 interface TableComponentProp {
-  Heading: string[];
+  Heading: any[];
   Items: any[];
 }
 export const TicketsTbl: React.FC<TableComponentProp> = ({
@@ -14,8 +14,12 @@ export const TicketsTbl: React.FC<TableComponentProp> = ({
         <thead>
           <tr>
             {Heading.map((head, index) => (
-              <th scope="col" key={index}>
-                {head}
+              <th
+                scope="col"
+                key={index}
+                className={head.center ? "text-center" : ""}
+              >
+                {head.name}
               </th>
             ))}
           </tr>
@@ -24,30 +28,35 @@ export const TicketsTbl: React.FC<TableComponentProp> = ({
           {Items.map((head, index) => (
             <tr key={index}>
               <td>{head.name}</td>
-              <td>{head.Institution}</td>
-              <td>{head.Category}</td>
-              <td>{head.Eqiups}</td>
-              <td>{head.Eqiups}</td>
-              <td>{head.Eqiups}</td>
+              <td className="text-center">{head.Institution}</td>
+              <td className="text-center">{head.Category}</td>
+              <td className="text-center">{head.Eqiups}</td>
+              <td className="text-center">{head.Eqiups}</td>
+              <td className="text-center">{head.Eqiups}</td>
               <td>
-                <div className="col d-flex justify-content-between align-items-center">
+                <div className="col d-flex justify-content-end align-items-center">
                   <CircleIcon
                     width="26px"
                     height="26px"
                     type={ThemeCircleIcon.dark}
                     onClick={(e) => console.log("s")}
-                    className="pointer"
+                    className="pointer mx-1"
                   >
-                    <i className="fas fa-file-alt"></i>
+                    <img
+                      src="/images/pages/google_docs.svg"
+                      alt="radvix"
+                      width={12}
+                      height={12}
+                    />
                   </CircleIcon>
                   <CircleIcon
                     width="26px"
                     height="26px"
                     type={ThemeCircleIcon.dark}
                     onClick={(e) => console.log("sgdsa")}
-                    className="pointer"
+                    className="pointer mx-1"
                   >
-                    <i className="fas fa-edit"></i>
+                    <img src="/images/pages/edit.svg" alt="radvix" />
                   </CircleIcon>
                 </div>
               </td>

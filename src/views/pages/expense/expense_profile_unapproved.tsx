@@ -57,7 +57,7 @@ import { AppRoutes } from "../../../core/constants";
                   color="#ffff"
                   className="mx-4 pointer"
                 >
-                  <i className="fas fa-edit"></i>
+                  <img src="/images/pages/edit.svg" alt="radvix" />
                 </CircleIcon>
               ) : null}
             </h5>
@@ -66,6 +66,7 @@ import { AppRoutes } from "../../../core/constants";
               type={MainButtonType.dark}
               borderRadius="24px"
               fontSize="14px"
+              className="px-3"
               onClick={()=>{this.props.history.push(AppRoutes.discussion)}}
             ></MainButton>
           </div>

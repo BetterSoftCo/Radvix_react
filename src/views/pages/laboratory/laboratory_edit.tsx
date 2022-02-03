@@ -25,6 +25,14 @@ export class LaboratoryPageEdit extends React.Component {
     const files = this.state.files.map((file: any) => (
       <li key={file.name}>
         {file.name} - {file.size} bytes
+        <CircleIcon type={ThemeCircleIcon.dark} width="22px" height="22px">
+          <img
+            src="/images/pages/garbage_can.svg"
+            alt="radvix"
+            width={15}
+            height={15}
+          />
+        </CircleIcon>
       </li>
     ));
     return (
@@ -83,7 +91,7 @@ export class LaboratoryPageEdit extends React.Component {
                     backgroundColor="#9D9D9D"
                     fontSize="18px"
                     color="#ffffff"
-                    className="mx-2"
+                    className="mx-2 px-3"
                   >
                     <i className="fas fa-list"></i>
                   </CircleIcon>
@@ -181,9 +189,30 @@ export class LaboratoryPageEdit extends React.Component {
                     <section className="container fileUploadBox">
                       <div {...getRootProps({ className: "dropzone" })}>
                         <input {...getInputProps()} />
+                        <MainButton
+                          type={MainButtonType.light}
+                          minHeight="30px"
+                          minWidth="179px"
+                          fontSize="14px"
+                          borderRadius="50px"
+                          backgroundColor="#fff"
+                          border="1px solid #707070"
+                          color="#707070"
+                          className="mt-4"
+                          children={
+                            <div className="d-flex justify-content-between align-items-center">
+                              <img
+                                src="/Images/component/cloud_computing.svg"
+                                alt="sssss"
+                                height="20"
+                                
+                              />{" "}
+                              <span className="flex-fill">Browse Local Files</span>
+                            </div>
+                          }
+                        ></MainButton>
                         <p>
-                          Drag 'n' drop some files here, or click to select
-                          files
+                        Or drag and drop files here
                         </p>
                       </div>
                       <aside>
@@ -207,7 +236,7 @@ export class LaboratoryPageEdit extends React.Component {
                       height="22px"
                       className="mx-3"
                     >
-                      <i className="fas fa-trash"></i>
+                      <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
                     </CircleIcon>
                   </li>
                   <li className="d-flex align-items-center mb-1">
@@ -223,7 +252,7 @@ export class LaboratoryPageEdit extends React.Component {
                       height="22px"
                       className="mx-3"
                     >
-                      <i className="fas fa-trash"></i>
+                      <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
                     </CircleIcon>
                   </li>
                   <li className="d-flex align-items-center mb-1">
@@ -239,7 +268,7 @@ export class LaboratoryPageEdit extends React.Component {
                       height="22px"
                       className="mx-3"
                     >
-                      <i className="fas fa-trash"></i>
+                      <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
                     </CircleIcon>
                   </li>
                 </ul>
@@ -248,6 +277,7 @@ export class LaboratoryPageEdit extends React.Component {
                 <InputComponent
                   type={InputType.text}
                   placeholder="https://"
+                  className="mx-2"
                 ></InputComponent>
                 <CircleIcon
                   width="36px"
@@ -256,7 +286,8 @@ export class LaboratoryPageEdit extends React.Component {
                   backgroundColor="#9D9D9D"
                   fontSize="18px"
                   color="#ffffff"
-                  className="mx-2"
+                  className="px-3"
+                  
                 >
                   <i className="fas fa-plus"></i>
                 </CircleIcon>
@@ -277,7 +308,7 @@ export class LaboratoryPageEdit extends React.Component {
                     height="22px"
                     className="mx-3"
                   >
-                    <i className="fas fa-trash"></i>
+                    <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
                   </CircleIcon>
                 </li>
                 <li className="my-2 d-flex flex-column flex-md-row">
@@ -295,7 +326,7 @@ export class LaboratoryPageEdit extends React.Component {
                     height="22px"
                     className="mx-3"
                   >
-                    <i className="fas fa-trash"></i>
+                    <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
                   </CircleIcon>
                 </li>
               </ul>
@@ -370,19 +401,19 @@ export class LaboratoryPageEdit extends React.Component {
                 type={MainButtonType.light}
                 children={"Start Over"}
                 borderRadius="50px"
-                fontSize="20px"
+                fontSize="18px"
                 className="mx-2"
-                minHeight="47px"
-                minWidth="110px"
+                minHeight="43px"
+                minWidth="136px"
               ></MainButton>
               <MainButton
                 type={MainButtonType.dark}
                 children={"Create"}
                 borderRadius="50px"
-                fontSize="20px"
+                fontSize="18px"
                 className="mx-2"
-                minHeight="47px"
-                minWidth="110px"
+                minHeight="43px"
+                minWidth="136px"
               ></MainButton>
             </div>
           </div>

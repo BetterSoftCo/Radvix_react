@@ -13,7 +13,7 @@ import ReactPaginate from "react-paginate";
 import { Subtasks } from "./component/subtasks";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
- class TaskPageProfile extends React.Component<RouteComponentProps> {
+class TaskPageProfile extends React.Component<RouteComponentProps> {
   RoleUser = store.getState();
   state = {
     Data: {
@@ -44,7 +44,7 @@ import { AppRoutes } from "../../../core/constants";
         },
       ],
     },
-  }
+  };
 
   render() {
     return (
@@ -53,7 +53,13 @@ import { AppRoutes } from "../../../core/constants";
         <div className="col-12 box-content p-3">
           <div className="d-flex justify-content-between align-items-center">
             <h5 className="b-title d-flex align-items-center">
-              <span onClick={()=>{window.history.back()}} className="backPage"></span> {"Task Profile"}
+              <span
+                onClick={() => {
+                  window.history.back();
+                }}
+                className="backPage"
+              ></span>{" "}
+              {"Task Profile"}
               <CircleIcon
                 width="22px"
                 height="22px"
@@ -61,9 +67,9 @@ import { AppRoutes } from "../../../core/constants";
                 backgroundColor="#474747"
                 fontSize="10px"
                 color="#ffff"
-                className="mx-4"
+                className="mx-1"
               >
-                <i className="fas fa-edit"></i>
+                <img src="/images/pages/edit.svg" alt="radvix" />
               </CircleIcon>
               <CircleIcon
                 width="22px"
@@ -81,7 +87,10 @@ import { AppRoutes } from "../../../core/constants";
               type={MainButtonType.dark}
               borderRadius="24px"
               fontSize="14px"
-              onClick={()=>{this.props.history.push(AppRoutes.discussion)}}
+              className="px-3"
+              onClick={() => {
+                this.props.history.push(AppRoutes.discussion);
+              }}
             ></MainButton>
           </div>
           <div className="Studying p-4 my-2">
@@ -183,7 +192,7 @@ import { AppRoutes } from "../../../core/constants";
               </div>
             </div>
             <div className="col-md-6">
-              <div className="teams mb-3">
+              <div className="teams mb-3 teams-light">
                 <IconTextRow
                   theme={Theme.dark}
                   text="Assigned to Teams (Members)"
@@ -198,24 +207,24 @@ import { AppRoutes } from "../../../core/constants";
                 <div className="tags p-3">
                   <MainButton
                     children="ACCESSLab Team"
+                    backgroundColor="#EBEBEB"
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
                   ></MainButton>
                   <MainButton
                     children="ACCESSLab Team"
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
+                    backgroundColor="#EBEBEB"
                   ></MainButton>
                   <MainButton
                     children="ACCESSLab Team"
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
+                    backgroundColor="#EBEBEB"
                   ></MainButton>
                   <MainButton
                     children="ACCESSLab Team"
@@ -223,6 +232,7 @@ import { AppRoutes } from "../../../core/constants";
                     borderRadius="24px"
                     fontSize="14px"
                     className="px-3 m-2"
+                    backgroundColor="#EBEBEB"
                   ></MainButton>
                 </div>
                 <BoxListScroll
@@ -248,7 +258,7 @@ import { AppRoutes } from "../../../core/constants";
                   ImageItem="imagesrc"
                 ></BoxListScroll>
               </div>
-              <div className="teams Labs">
+              <div className="teams Labs teams-light">
                 <IconTextRow
                   theme={Theme.dark}
                   text="Suggested Equipment"
@@ -300,27 +310,28 @@ import { AppRoutes } from "../../../core/constants";
                 <div className="tags p-3">
                   <MainButton
                     children="ACCESSLab Team"
+                    backgroundColor="#EBEBEB"
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
                   ></MainButton>
                   <MainButton
                     children="ACCESSLab Team"
+                    backgroundColor="#EBEBEB"
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
                   ></MainButton>
                   <MainButton
                     children="ACCESSLab Team"
+                    backgroundColor="#EBEBEB"
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
                   ></MainButton>
                   <MainButton
                     children="ACCESSLab Team"
+                    backgroundColor="#EBEBEB"
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
@@ -357,15 +368,16 @@ import { AppRoutes } from "../../../core/constants";
           <div className="TableBox">
             <div className="TopTableBox d-flex justify-content-between align-items-center">
               <div className="left d-flex w-50 align-items-center">
-                <h6 style={{ width: "35%" }}>Task Data Collection</h6>
+                <h6 style={{ width: "45%" }}>Task Data Collection</h6>
                 <InputIcon
-                  chilren={<img src="/images/pages/search_box_icon.svg" alt="radvix" />}
+                  chilren={
+                    <img src="/images/pages/search_box_icon.svg" alt="radvix" />
+                  }
                   width="100%"
-                  height="44px"
-                  placeholder="Search..."
+                  placeholder="Search..."  TopPosition="15%"
                 ></InputIcon>
               </div>
-              <div className="right w-25 d-flex justify-content-end">
+              <div className="right w-50 d-flex justify-content-end align-items-center">
                 <SelectComponent
                   width="63px"
                   height="44px"
@@ -381,7 +393,7 @@ import { AppRoutes } from "../../../core/constants";
             </div>
             <TaskDataCollection
               Items={this.state.Data.Items}
-              Heading={["Laboratory Name", "Institution", "Category", "Eqiups"]}
+              Heading={["Data Name", "File", "Added By", "Date"]}
             ></TaskDataCollection>
             <div className="d-flex justify-content-center align-items-center">
               <ReactPaginate
@@ -426,13 +438,14 @@ import { AppRoutes } from "../../../core/constants";
               <div className="left d-flex w-50 align-items-center">
                 <h6 style={{ width: "35%" }}>Subtasks</h6>
                 <InputIcon
-                  chilren={<img src="/images/pages/search_box_icon.svg" alt="radvix" />}
+                  chilren={
+                    <img src="/images/pages/search_box_icon.svg" alt="radvix" />
+                  }
                   width="100%"
-                  height="44px"
-                  placeholder="Search..."
+                  placeholder="Search..."  TopPosition="15%"
                 ></InputIcon>
               </div>
-              <div className="right w-25 d-flex justify-content-end">
+              <div className="right w-50 d-flex justify-content-end align-items-center">
                 <SelectComponent
                   width="63px"
                   height="44px"
@@ -483,10 +496,8 @@ import { AppRoutes } from "../../../core/constants";
             </div>
           </div>
         </div>
-
-
       </div>
     );
   }
 }
-export default withRouter(TaskPageProfile)
+export default withRouter(TaskPageProfile);

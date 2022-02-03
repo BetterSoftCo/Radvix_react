@@ -5,7 +5,7 @@ import { MainButton, MainButtonType } from "../../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../../components/circle_icon";
 
 interface IAcordienTableResearch {
-  Heading: string[];
+  Heading: any[];
   Items: any[];
 }
 const AcordienTableResearch: React.FC<
@@ -21,8 +21,8 @@ const AcordienTableResearch: React.FC<
         <thead>
           <tr>
             {props.Heading.map((head, index) => (
-              <th scope="col" key={index}>
-                {head}
+              <th scope="col" className={head.center ? 'text-center' : ''} key={index}>
+                {head.name}
               </th>
             ))}
           </tr>
@@ -30,9 +30,9 @@ const AcordienTableResearch: React.FC<
         <tbody>
           {props.Items.map((head, index) => (
             <tr key={index}>
-              <td>{head.name}</td>
+              <td><span className="lable" style={{backgroundColor:'rgb(9, 107, 255)'}}></span> {head.name}</td>
               <td>{head.Institution}</td>
-              <td>
+              <td className="text-center">
                 {" "}
                 <MainButton
                   children={head.Category}
@@ -43,25 +43,25 @@ const AcordienTableResearch: React.FC<
                 ></MainButton>
               </td>
               <td>
-                <div className="col d-flex justify-content-between align-items-center">
+                <div className="col d-flex justify-content-end align-items-center">
                   <CircleIcon
                     width="26px"
                     height="26px"
                     type={ThemeCircleIcon.dark}
                     onClick={() => {props.history.push(AppRoutes.profile_research)}}
-                    className="pointer"
+                    className="pointer mx-1"
                     
                   >
-                    <i className="fas fa-file-alt"></i>
+                    <img src="/images/pages/google_docs.svg" alt="radvix" width={12} height={12} />
                   </CircleIcon>
                   <CircleIcon
                     width="26px"
                     height="26px"
                     type={ThemeCircleIcon.dark}
                     onClick={() => {props.history.push(AppRoutes.edit_research)}}
-                    className="pointer"
+                    className="pointer mx-1"
                   >
-                    <i className="fas fa-edit"></i>
+                    <img src="/images/pages/edit.svg" alt="radvix" />
                   </CircleIcon>
                   <CircleIcon
                     width="26px"
@@ -69,7 +69,7 @@ const AcordienTableResearch: React.FC<
                     type={ThemeCircleIcon.dark}
                     backgroundColor="#474747"
                     color="#ffff"
-                    className="pointer"
+                    className="pointer mx-1"
                     onClick={() => {props.history.push(AppRoutes.profile_research)}}
                   >
                     <i className="fas fa-history"></i>

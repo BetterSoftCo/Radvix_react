@@ -24,14 +24,13 @@ export class AdminMember extends React.Component {
                   Subscription
                 </h4>
               </div>
-              <div className="right w-25 d-flex justify-content-between">
+              <div className="right w-50 d-flex justify-content-end align-items-center">
                 <InputIcon
                   chilren={
                     <img src="/images/pages/search_box_icon.svg" alt="" />
                   }
                   width="100%"
-                  height="44px"
-                  placeholder="Search..."
+                  placeholder="Search..."  TopPosition="15%"
                 ></InputIcon>
                 <SelectComponent
                   width="63px"
@@ -99,7 +98,7 @@ export class AdminMember extends React.Component {
 }
 
 const MemberItem: React.FC = () => (
-  <div className="col-md-3 d-flex justify-content-center align-items-center flex-column mb-2">
+  <div className="col-md-3 d-flex justify-content-center align-items-center flex-column mb-4">
     <img
       src="/images/layout/img_avatar.png"
       alt="Avatar"
@@ -127,7 +126,7 @@ const MemberItem: React.FC = () => (
         }}
         className="pointer mx-1"
       >
-        <i className="fas fa-edit"></i>
+        <img src="/images/pages/edit.svg" alt="radvix" />
       </CircleIcon>
       <CircleIcon
         width="26px"
@@ -138,7 +137,7 @@ const MemberItem: React.FC = () => (
         }}
         className="pointer mx-1"
       >
-        <i className="fas fa-file-alt"></i>
+        <img src="/images/pages/google_docs.svg" alt="radvix" width={12} height={12} />
       </CircleIcon>
     </div>
   </div>

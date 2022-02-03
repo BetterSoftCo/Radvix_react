@@ -1,13 +1,13 @@
 .discusstion {
   .box-list-scroll {
-    max-height: 700px;
+    max-height: 300px;
   }
 }
 .title-discusstion {
   border-radius: 15px;
-  padding: 0.5rem 1rem;
+  padding: 0.25rem .5rem;
   background-color: #f5f5f5;
-  margin-top: 2rem;
+  margin-top: 1rem;
   font-size: 20px;
   font-weight: normal;
   span {
@@ -20,6 +20,8 @@
   border-radius: 15px;
   padding: 0.5rem 1rem;
   background-color: #f5f5f5;
+  max-height: 350px;
+  overflow-y: scroll;
   .submit-msg {
     border-radius: 15px;
     background-color: $black-color;
@@ -43,4 +45,22 @@
       direction: ltr;
     }
   }
+}
+.chat::-webkit-scrollbar {
+  width: 20px;
+}
+
+.chat::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.chat::-webkit-scrollbar-thumb {
+  background-color: #5d5d5d;
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+
+.chat::-webkit-scrollbar-thumb:hover {
+  background-color: #a0a0a0;
 }

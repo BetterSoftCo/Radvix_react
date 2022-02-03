@@ -39,7 +39,7 @@ export const Subtasks = (props: IAcordienTable) => {
                   >
                     <span
                       className="lable"
-                      style={{ borderColor: "#096BFF" }}
+                      style={{ backgroundColor: "#096BFF"  }}
                     ></span>{" "}
                     TGA issues with are...TGA issues with are...TGA issues with
                     are...
@@ -66,7 +66,7 @@ export const Subtasks = (props: IAcordienTable) => {
                       onClick={(e) => handelOnclick(e)}
                       className="pointer"
                     >
-                      <i className="fas fa-edit"></i>
+                      <img src="/images/pages/edit.svg" alt="radvix" />
                     </CircleIcon>
                   ) : null}
 
@@ -77,7 +77,7 @@ export const Subtasks = (props: IAcordienTable) => {
                     onClick={(e) => handelOnclick(e)}
                     className="pointer"
                   >
-                    <i className="fas fa-comment"></i>
+                    <img src="/images/pages/start_discussion.svg" alt="radvix" />
                   </CircleIcon>
                   <CircleIcon
                     width="26px"
@@ -86,7 +86,7 @@ export const Subtasks = (props: IAcordienTable) => {
                     onClick={(e) => handelOnclick(e)}
                     className="pointer"
                   >
-                    <i className="fas fa-file-alt"></i>
+                    <img src="/images/pages/google_docs.svg" alt="radvix" width={12} height={12} />
                   </CircleIcon>
                 </div>
               </div>
@@ -99,8 +99,11 @@ export const Subtasks = (props: IAcordienTable) => {
             data-bs-parent="#accordionExample"
           >
             <div className="accordion-body ">
-              <span className="sub-accordion">Subtask</span>
-              <div className="row w-100 py-2 rounded">
+              <div className="sub-accordian-parent">
+              <p className="sub-accordion"  style={{marginRight: '-7px'}}>Subtask</p> 
+              </div>
+             <div className="items">
+             <div className="row w-100 py-2 rounded">
                 <div className="col">
                   <span
                     className="text-truncate d-inline-block"
@@ -108,7 +111,7 @@ export const Subtasks = (props: IAcordienTable) => {
                   >
                     <span
                       className="lable"
-                      style={{ borderColor: "#096BFF" }}
+                      style={{ backgroundColor: "#096BFF"  }}
                     ></span>{" "}
                     TGA issues with are...TGA issues with are...TGA issues with
                     are...
@@ -136,7 +139,7 @@ export const Subtasks = (props: IAcordienTable) => {
                   >
                     <span
                       className="lable"
-                      style={{ borderColor: "#096BFF" }}
+                      style={{ backgroundColor: "#096BFF"  }}
                     ></span>{" "}
                     TGA issues with are...TGA issues with are...TGA issues with
                     are...
@@ -164,7 +167,7 @@ export const Subtasks = (props: IAcordienTable) => {
                   >
                     <span
                       className="lable"
-                      style={{ borderColor: "#096BFF" }}
+                      style={{ backgroundColor: "#096BFF"  }}
                     ></span>{" "}
                     TGA issues with are...TGA issues with are...TGA issues with
                     are...
@@ -184,6 +187,7 @@ export const Subtasks = (props: IAcordienTable) => {
                 </div>
                 <div className="col d-flex justify-content-between align-items-center"></div>
               </div>
+             </div>
             </div>
           </div>
         </div>
@@ -204,7 +208,7 @@ export const Subtasks = (props: IAcordienTable) => {
                   >
                     <span
                       className="lable"
-                      style={{ borderColor: "#096BFF" }}
+                      style={{ backgroundColor: "#096BFF"  }}
                     ></span>{" "}
                     TGA issues with are...TGA issues with are...TGA issues with
                     are...
@@ -231,7 +235,7 @@ export const Subtasks = (props: IAcordienTable) => {
                       onClick={(e) => handelOnclick(e)}
                       className="pointer"
                     >
-                      <i className="fas fa-edit"></i>
+                      <img src="/images/pages/edit.svg" alt="radvix" />
                     </CircleIcon>
                   ) : null}
                   <CircleIcon
@@ -241,7 +245,7 @@ export const Subtasks = (props: IAcordienTable) => {
                     onClick={(e) => handelOnclick(e)}
                     className="pointer"
                   >
-                    <i className="fas fa-comment"></i>
+                    <img src="/images/pages/start_discussion.svg" alt="radvix" />
                   </CircleIcon>
                   <CircleIcon
                     width="26px"
@@ -250,7 +254,7 @@ export const Subtasks = (props: IAcordienTable) => {
                     onClick={(e) => handelOnclick(e)}
                     className="pointer"
                   >
-                    <i className="fas fa-file-alt"></i>
+                    <img src="/images/pages/google_docs.svg" alt="radvix" width={12} height={12} />
                   </CircleIcon>
                 </div>
               </div>
@@ -263,8 +267,11 @@ export const Subtasks = (props: IAcordienTable) => {
             data-bs-parent="#accordionExample"
           >
             <div className="accordion-body ">
-              <span className="sub-accordion">Subtask</span>
-              <div className="row w-100 py-2 rounded">
+              <div className="sub-accordian-parent">
+              <p className="sub-accordion"  style={{marginRight: '-7px'}}>Subtask</p> 
+              </div>
+             <div className="items">
+             <div className="row w-100 py-2 rounded">
                 <div className="col">
                   <span
                     className="text-truncate d-inline-block"
@@ -272,7 +279,7 @@ export const Subtasks = (props: IAcordienTable) => {
                   >
                     <span
                       className="lable"
-                      style={{ borderColor: "#096BFF" }}
+                      style={{ backgroundColor: "#096BFF"  }}
                     ></span>{" "}
                     TGA issues with are...TGA issues with are...TGA issues with
                     are...
@@ -300,7 +307,7 @@ export const Subtasks = (props: IAcordienTable) => {
                   >
                     <span
                       className="lable"
-                      style={{ borderColor: "#096BFF" }}
+                      style={{ backgroundColor: "#096BFF"  }}
                     ></span>{" "}
                     TGA issues with are...TGA issues with are...TGA issues with
                     are...
@@ -328,7 +335,7 @@ export const Subtasks = (props: IAcordienTable) => {
                   >
                     <span
                       className="lable"
-                      style={{ borderColor: "#096BFF" }}
+                      style={{ backgroundColor: "#096BFF"  }}
                     ></span>{" "}
                     TGA issues with are...TGA issues with are...TGA issues with
                     are...
@@ -348,6 +355,7 @@ export const Subtasks = (props: IAcordienTable) => {
                 </div>
                 <div className="col d-flex justify-content-between align-items-center"></div>
               </div>
+             </div>
             </div>
           </div>
         </div>
@@ -368,7 +376,7 @@ export const Subtasks = (props: IAcordienTable) => {
                   >
                     <span
                       className="lable"
-                      style={{ borderColor: "#096BFF" }}
+                      style={{ backgroundColor: "#096BFF"  }}
                     ></span>{" "}
                     TGA issues with are...TGA issues with are...TGA issues with
                     are...
@@ -395,7 +403,7 @@ export const Subtasks = (props: IAcordienTable) => {
                       onClick={(e) => handelOnclick(e)}
                       className="pointer"
                     >
-                      <i className="fas fa-edit"></i>
+                      <img src="/images/pages/edit.svg" alt="radvix" />
                     </CircleIcon>
                   ) : null}
                   <CircleIcon
@@ -405,7 +413,7 @@ export const Subtasks = (props: IAcordienTable) => {
                     onClick={(e) => handelOnclick(e)}
                     className="pointer"
                   >
-                    <i className="fas fa-comment"></i>
+                    <img src="/images/pages/start_discussion.svg" alt="radvix" />
                   </CircleIcon>
                   <CircleIcon
                     width="26px"
@@ -414,7 +422,7 @@ export const Subtasks = (props: IAcordienTable) => {
                     onClick={(e) => handelOnclick(e)}
                     className="pointer"
                   >
-                    <i className="fas fa-file-alt"></i>
+                    <img src="/images/pages/google_docs.svg" alt="radvix" width={12} height={12} />
                   </CircleIcon>
                 </div>
               </div>
@@ -427,7 +435,10 @@ export const Subtasks = (props: IAcordienTable) => {
             data-bs-parent="#accordionExample"
           >
             <div className="accordion-body ">
-              <span className="sub-accordion">Subtask</span>
+              <div className="sub-accordian-parent">
+              <p className="sub-accordion"  style={{marginRight: '-7px'}}>Subtask</p> 
+              </div>
+              <div className="items">
               <div className="row w-100 py-2 rounded">
                 <div className="col">
                   <span
@@ -436,7 +447,7 @@ export const Subtasks = (props: IAcordienTable) => {
                   >
                     <span
                       className="lable"
-                      style={{ borderColor: "#096BFF" }}
+                      style={{ backgroundColor: "#096BFF"  }}
                     ></span>{" "}
                     TGA issues with are...TGA issues with are...TGA issues with
                     are...
@@ -464,7 +475,7 @@ export const Subtasks = (props: IAcordienTable) => {
                   >
                     <span
                       className="lable"
-                      style={{ borderColor: "#096BFF" }}
+                      style={{ backgroundColor: "#096BFF"  }}
                     ></span>{" "}
                     TGA issues with are...TGA issues with are...TGA issues with
                     are...
@@ -492,7 +503,7 @@ export const Subtasks = (props: IAcordienTable) => {
                   >
                     <span
                       className="lable"
-                      style={{ borderColor: "#096BFF" }}
+                      style={{ backgroundColor: "#096BFF"  }}
                     ></span>{" "}
                     TGA issues with are...TGA issues with are...TGA issues with
                     are...
@@ -511,6 +522,7 @@ export const Subtasks = (props: IAcordienTable) => {
                   ></MainButton>
                 </div>
                 <div className="col d-flex justify-content-between align-items-center"></div>
+              </div>
               </div>
             </div>
           </div>

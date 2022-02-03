@@ -4,9 +4,12 @@ import { AppRoutes } from "../../../core/constants";
 import { UserRoles } from "../../../core/utils";
 import { MainButton, MainButtonType } from "../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
+
 interface IAcordienTable {
   role: UserRoles;
+  tasks: Array<{}>;
 }
+
  const AcordienTable:React.FC<IAcordienTable & RouteComponentProps> = (props) => {
   const handelOnclick = (e: any) => {
     e.stopPropagation();
@@ -42,7 +45,7 @@ interface IAcordienTable {
                   >
                     <span
                       className="lable"
-                      style={{ borderColor: "#096BFF" }}
+                      style={{ backgroundColor: "#096BFF" }}
                     ></span>{" "}
                     TGA issues with are...TGA issues with are...TGA issues with
                     are...
@@ -69,7 +72,7 @@ interface IAcordienTable {
                       onClick={(e) => props.history.push(AppRoutes.task_edit)}
                       className="pointer"
                     >
-                      <i className="fas fa-edit"></i>
+                      <img src="/images/pages/edit.svg" alt="radvix" />
                     </CircleIcon>
                   ) : null}
 
@@ -80,7 +83,8 @@ interface IAcordienTable {
                     onClick={(e) => handelOnclick(e)}
                     className="pointer"
                   >
-                    <i className="fas fa-comment"></i>
+                    <img src="/images/pages/start_discussion.svg" alt="radvix" />
+                    
                   </CircleIcon>
                   <CircleIcon
                     width="26px"
@@ -89,7 +93,8 @@ interface IAcordienTable {
                     onClick={(e) => props.history.push(AppRoutes.task_profile)}
                     className="pointer"
                   >
-                    <i className="fas fa-file-alt"></i>
+                    <img src="/images/pages/google_docs.svg" alt="radvix" width={12} height={12} />
+                    
                   </CircleIcon>
                 </div>
               </div>
@@ -101,25 +106,28 @@ interface IAcordienTable {
             aria-labelledby={`heading_resenttask${index}`}
             data-bs-parent="#accordion_resenttask"
           >
-            <div className="accordion-body ">
-              <span className="sub-accordion">Subtask</span>
+            <div className="accordion-body">
+              <div className="sub-accordian-parent justify-content-center">
+              <p className="sub-accordion">Subtask</p> 
+              </div>
+             <div className="items">
              {[1,2,3].map((item,index)=>(
-                <div className="row w-100 py-2 rounded" key={index}>
-                <div className="col">
+                <div className="row w-100 py-1 rounded" key={index}>
+                <div className="col px-0">
                   <span
                     className="text-truncate d-inline-block"
                     style={{ maxWidth: "120px" }}
                   >
                     <span
                       className="lable"
-                      style={{ borderColor: "#096BFF" }}
+                      style={{ backgroundColor: "#096BFF"  }}
                     ></span>{" "}
                     TGA issues with are...TGA issues with are...TGA issues with
                     are...
                   </span>
                 </div>
                 <div className="col">N. Hossein...</div>
-                <div className="col">K. Pourtorab</div>
+                <div className="col px-0">K. Pourtorab</div>
                 <div className="col">07/22/2021</div>
                 <div className="col">
                   <MainButton
@@ -133,6 +141,7 @@ interface IAcordienTable {
                 <div className="col d-flex justify-content-between align-items-center"></div>
               </div>
              ))}
+             </div>
              
             </div>
           </div>

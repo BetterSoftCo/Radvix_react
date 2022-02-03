@@ -1,5 +1,6 @@
 export class AppConstants {
-	static token: string = "token";
+	static token: string = "";
+	static base_url_api:string = "http://185.79.156.134:1024/api"
 }
 
 export class AppRoutes {
@@ -58,6 +59,8 @@ export class AppRoutes {
 	static admin_tickets:string ='/dashboard/Admin/tickets/';
 	static admin_ticket:string ='/dashboard/Admin/ticket/';
 	static admin_broadcast:string ='/dashboard/Admin/broadcast/';
+	static library_page:string ='/library/page';
+	static register_page:string ='/register';
 	
 	
 

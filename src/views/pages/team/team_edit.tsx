@@ -152,44 +152,44 @@ class TeamPageEdit extends React.Component<RouteComponentProps> {
                 ></SelectComponent>
               </div>
               <div className="teams Labs mb-3">
-                <div className="tags p-3">
-                  <MainButton
+              <div className="tags p-3">
+              <MainButton
+                    backgroundColor="#EBEBEB"
+                    className="tag-delete"
                     children={
-                      <div className="d-flex">
-                        ACCESSLab Team
+                      <div className="d-flex align-items-center justify-content-between">
+                        <span className="flex-fill">ACCESSLab Team</span>
                         <CircleIcon
                           type={ThemeCircleIcon.dark}
                           width="22px"
                           height="22px"
-                          className="mx-3"
                         >
-                          <i className="fas fa-trash"></i>
+                          <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
                         </CircleIcon>
                       </div>
                     }
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
                   ></MainButton>
                   <MainButton
+                    backgroundColor="#EBEBEB"
+                    className="tag-delete"
                     children={
-                      <div className="d-flex">
-                        ACCESSLab Team
+                      <div className="d-flex align-items-center justify-content-between">
+                        <span className="flex-fill">ACCESSLab Team</span>
                         <CircleIcon
                           type={ThemeCircleIcon.dark}
                           width="22px"
                           height="22px"
-                          className="mx-3"
                         >
-                          <i className="fas fa-trash"></i>
+                          <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
                         </CircleIcon>
                       </div>
                     }
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
                   ></MainButton>
                 </div>
                 <BoxListScroll
@@ -239,44 +239,44 @@ class TeamPageEdit extends React.Component<RouteComponentProps> {
                 ></SelectComponent>
               </div>
               <div className="teams Labs mb-3">
-                <div className="tags p-3">
+              <div className="tags p-3">
                   <MainButton
+                    backgroundColor="#EBEBEB"
+                    className="tag-delete"
                     children={
-                      <div className="d-flex">
-                        ACCESSLab Team
+                      <div className="d-flex align-items-center justify-content-between">
+                        <span className="flex-fill">ACCESSLab Team</span>
                         <CircleIcon
                           type={ThemeCircleIcon.dark}
                           width="22px"
                           height="22px"
-                          className="mx-3"
                         >
-                          <i className="fas fa-trash"></i>
+                          <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
                         </CircleIcon>
                       </div>
                     }
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
                   ></MainButton>
                   <MainButton
+                    backgroundColor="#EBEBEB"
+                    className="tag-delete"
                     children={
-                      <div className="d-flex">
-                        ACCESSLab Team
+                      <div className="d-flex align-items-center justify-content-between">
+                        <span className="flex-fill">ACCESSLab Team</span>
                         <CircleIcon
                           type={ThemeCircleIcon.dark}
                           width="22px"
                           height="22px"
-                          className="mx-3"
                         >
-                          <i className="fas fa-trash"></i>
+                          <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
                         </CircleIcon>
                       </div>
                     }
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
                   ></MainButton>
                 </div>
               </div>
@@ -286,19 +286,19 @@ class TeamPageEdit extends React.Component<RouteComponentProps> {
                 type={MainButtonType.light}
                 children={"Start Over"}
                 borderRadius="50px"
-                fontSize="20px"
+                fontSize="18px"
                 className="mx-2"
-                minHeight="47px"
-                minWidth="110px"
+                minHeight="43px"
+                minWidth="136px"
               ></MainButton>
               <MainButton
                 type={MainButtonType.dark}
                 children={"save"}
                 borderRadius="50px"
-                fontSize="20px"
+                fontSize="18px"
                 className="mx-2"
-                minHeight="47px"
-                minWidth="110px"
+                minHeight="43px"
+                minWidth="136px"
                 onClick={() => {
                   this.props.history.push(AppRoutes.team_profile);
                 }}

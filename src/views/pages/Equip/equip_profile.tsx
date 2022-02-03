@@ -6,7 +6,9 @@ import { MainButton, MainButtonType } from "../../components/button";
 import { IconTextRow } from "../../components/icon_text_horizontal";
 import { Theme } from "../../../core/utils";
 import { BoxListScroll } from "../../components/box_list_scroll";
-export class EquipProfile extends React.Component {
+import { RouteComponentProps, withRouter } from "react-router";
+import { AppRoutes } from "../../../core/constants";
+ class EquipProfile extends React.Component<RouteComponentProps> {
   RoleUser = store.getState();
 
   render() {
@@ -24,9 +26,10 @@ export class EquipProfile extends React.Component {
                 backgroundColor="#474747"
                 fontSize="10px"
                 color="#ffff"
-                className="mx-4"
+                onClick={()=>{this.props.history.push(AppRoutes.equip_edit)}}
+                className="mx-2 pointer"
               >
-                <i className="fas fa-edit"></i>
+                <img src="/images/pages/edit.svg" alt="radvix" />
               </CircleIcon>
             </h5>
             <div className="d-flex justify-content-around align-items-center w-25">
@@ -35,6 +38,7 @@ export class EquipProfile extends React.Component {
                 type={MainButtonType.dark}
                 borderRadius="24px"
                 fontSize="14px"
+                className="px-3"
               ></MainButton>
             </div>
           </div>
@@ -134,7 +138,7 @@ export class EquipProfile extends React.Component {
               </div>
             </div>
             <div className="col-md-6">
-            <div className="teams mb-3">
+            <div className="teams mb-3 teams-light">
                 <IconTextRow
                   theme={Theme.dark}
                   text="Teams (Members) With Access"
@@ -152,21 +156,21 @@ export class EquipProfile extends React.Component {
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
+                    backgroundColor="#EBEBEB"
                   ></MainButton>
                   <MainButton
                     children="ACCESSLab Team"
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
+                    backgroundColor="#EBEBEB"
                   ></MainButton>
                   <MainButton
                     children="ACCESSLab Team"
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
-                    className="px-3"
+                    backgroundColor="#EBEBEB"
                   ></MainButton>
                   <MainButton
                     children="ACCESSLab Team"
@@ -174,6 +178,7 @@ export class EquipProfile extends React.Component {
                     borderRadius="24px"
                     fontSize="14px"
                     className="px-3 m-2"
+                    backgroundColor="#EBEBEB"
                   ></MainButton>
                 </div>
                 <BoxListScroll
@@ -207,3 +212,4 @@ export class EquipProfile extends React.Component {
     );
   }
 }
+export default withRouter(EquipProfile)

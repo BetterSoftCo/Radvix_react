@@ -28,24 +28,33 @@ export const TaskDataCollection: React.FC<TableComponentProp> = ({
               <td>{head.Category}</td>
               <td>{head.Eqiups}</td>
               <td>
-                <div className="col d-flex justify-content-between align-items-center">
+                <div className="col d-flex justify-content-end align-items-center">
                   <CircleIcon
                     width="26px"
                     height="26px"
                     type={ThemeCircleIcon.dark}
                     onClick={(e) => console.log("s")}
-                    className="pointer"
+                    className="pointer mx-1"
                   >
-                    <i className="fas fa-file-alt"></i>
+                    <img src="/images/pages/google_docs.svg" alt="radvix" width={12} height={12} />
                   </CircleIcon>
                   <CircleIcon
                     width="26px"
                     height="26px"
                     type={ThemeCircleIcon.dark}
                     onClick={(e) => console.log("sgdsa")}
-                    className="pointer"
+                    className="pointer mx-1"
                   >
-                    <i className="fas fa-edit"></i>
+                    <img src="/images/pages/edit.svg" alt="radvix" />
+                  </CircleIcon>
+                  <CircleIcon
+                    width="26px"
+                    height="26px"
+                    type={ThemeCircleIcon.dark}
+                    onClick={(e) => console.log("sgdsa")}
+                    className="pointer mx-1"
+                  >
+                    <img src="/images/pages/start_discussion.svg" alt="radvix" />
                   </CircleIcon>
                 </div>
               </td>

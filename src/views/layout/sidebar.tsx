@@ -17,201 +17,261 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
   return (
     <Fragment>
       <div className="parent-sidebar">
-        <ul>
-          <li
-            onClick={() => {
-              toggleSidebar("Research");
-            }}
-          >
-            <IconTextVertical
-              fontSize="15px"
-              className="lighter pointer"
-              text="Research"
-              theme={Theme.dark}
-              children={
-                <img
-                  width="40px"
-                  height="40px"
-                  src="/Images/layout/research_icon.svg"
-                />
-              }
-            ></IconTextVertical>
-          </li>
+        {props.location.pathname.search("/Admin") >= 0 ? (
+          <ul>
+            <NavLink to={AppRoutes.admin_member} activeClassName="selected">
+              <li>
+                <IconTextVertical
+                  fontSize="15px"
+                  className="lighter"
+                  text="Users"
+                  theme={Theme.dark}
+                  children={
+                    <img
+                      width="40px"
+                      height="40px"
+                      src="/Images/layout/user_list_admin.svg"
+                    />
+                  }
+                ></IconTextVertical>
+              </li>
+            </NavLink>
+            <NavLink to={AppRoutes.admin_payments} activeClassName="selected">
+              <li>
+                <IconTextVertical
+                  fontSize="15px"
+                  className="lighter"
+                  text="Payments"
+                  theme={Theme.dark}
+                  children={
+                    <img
+                      width="40px"
+                      height="40px"
+                      src="/Images/layout/expense_menu_icon_admin.svg"
+                    />
+                  }
+                ></IconTextVertical>
+              </li>
+            </NavLink>
+            <NavLink to={AppRoutes.admin_tickets} activeClassName="selected">
+              <li>
+                <IconTextVertical
+                  fontSize="15px"
+                  className="lighter"
+                  text="Ticketing"
+                  theme={Theme.dark}
+                  children={
+                    <img
+                      width="40px"
+                      height="40px"
+                      src="/Images/layout/headphones.svg"
+                    />
+                  }
+                ></IconTextVertical>
+              </li>
+            </NavLink>
+          </ul>
+        ) : (
+          <ul>
+            <li
+              onClick={() => {
+                toggleSidebar("Research");
+              }}
+            >
+              <IconTextVertical
+                fontSize="15px"
+                className="lighter pointer"
+                text="Research"
+                theme={Theme.dark}
+                children={
+                  <img
+                    width="40px"
+                    height="40px"
+                    src="/Images/layout/research_icon.svg"
+                  />
+                }
+              ></IconTextVertical>
+            </li>
 
-          <li
-            onClick={() => {
-              toggleSidebar("Laboratory");
-            }}
-          >
-            <IconTextVertical
-              fontSize="15px"
-              className="lighter pointer"
-              text="Laboratory"
-              theme={Theme.dark}
-              children={
-                <img
-                  width="40px"
-                  height="40px"
-                  src="/Images/layout/lab_menu_icon.svg"
-                />
-              }
-            ></IconTextVertical>
-          </li>
+            <li
+              onClick={() => {
+                toggleSidebar("Laboratory");
+              }}
+            >
+              <IconTextVertical
+                fontSize="15px"
+                className="lighter pointer"
+                text="Laboratory"
+                theme={Theme.dark}
+                children={
+                  <img
+                    width="40px"
+                    height="40px"
+                    src="/Images/layout/lab_menu_icon.svg"
+                  />
+                }
+              ></IconTextVertical>
+            </li>
 
-          <li
-            onClick={() => {
-              toggleSidebar("Team");
-            }}
-          >
-            <IconTextVertical
-              fontSize="15px"
-              className="lighter pointer"
-              text="Team"
-              theme={Theme.dark}
-              children={
-                <img
-                  width="40px"
-                  height="40px"
-                  src="/Images/layout/team_menu_icon.svg
+            <li
+              onClick={() => {
+                toggleSidebar("Team");
+              }}
+            >
+              <IconTextVertical
+                fontSize="15px"
+                className="lighter pointer"
+                text="Team"
+                theme={Theme.dark}
+                children={
+                  <img
+                    width="40px"
+                    height="40px"
+                    src="/Images/layout/team_menu_icon.svg
             "
-                />
-              }
-            ></IconTextVertical>
-          </li>
+                  />
+                }
+              ></IconTextVertical>
+            </li>
 
-          <li
-            onClick={() => {
-              toggleSidebar("Task");
-            }}
-          >
-            <IconTextVertical
-              fontSize="15px"
-              className="lighter pointer"
-              text="Task"
-              theme={Theme.dark}
-              children={
-                <img
-                  width="40px"
-                  height="40px"
-                  src="/Images/layout/task_menu_icon.svg"
-                />
-              }
-            ></IconTextVertical>
-          </li>
-
-          <li
-            onClick={() => {
-              toggleSidebar("Data");
-            }}
-          >
-            <IconTextVertical
-              fontSize="15px"
-              className="lighter pointer"
-              text="Data"
-              theme={Theme.dark}
-              children={
-                <img
-                  width="40px"
-                  height="40px"
-                  src="/Images/layout/data_manu_Icon.svg"
-                />
-              }
-            ></IconTextVertical>
-          </li>
-
-          <li
-            onClick={() => {
-              toggleSidebar("Discussion");
-            }}
-          >
-            <IconTextVertical
-              fontSize="15px"
-              className="lighter pointer"
-              text="Discussion"
-              theme={Theme.dark}
-              children={
-                <img width="40px" height="40px" src="/Images/layout/chat.png" />
-              }
-            ></IconTextVertical>
-          </li>
-
-          <li
-            onClick={() => {
-              toggleSidebar("Publish");
-            }}
-          >
-            <IconTextVertical
-              fontSize="15px"
-              className="lighter pointer"
-              text="Publish"
-              theme={Theme.dark}
-              children={
-                <img
-                  width="40px"
-                  height="40px"
-                  src="/Images/layout/publish_menu_icon.svg"
-                />
-              }
-            ></IconTextVertical>
-          </li>
-          <li
-            onClick={() => {
-              toggleSidebar("Expense");
-            }}
-          >
-            <IconTextVertical
-              fontSize="15px"
-              className="lighter pointer"
-              text="Expense"
-              theme={Theme.dark}
-              children={
-                <img
-                  width="40px"
-                  height="40px"
-                  src="/Images/layout/expense_menu_icon.svg"
-                />
-              }
-            ></IconTextVertical>
-          </li>
-          <NavLink to="/dashboard/Setting" activeClassName="selected">
-            <li>
+            <li
+              onClick={() => {
+                toggleSidebar("Task");
+              }}
+            >
               <IconTextVertical
                 fontSize="15px"
-                className="lighter"
-                text="Setting"
+                className="lighter pointer"
+                text="Task"
                 theme={Theme.dark}
                 children={
                   <img
                     width="40px"
                     height="40px"
-                    src="/Images/layout/setting_menu_icon.svg"
+                    src="/Images/layout/task_menu_icon.svg"
                   />
                 }
               ></IconTextVertical>
             </li>
-          </NavLink>
-          <NavLink to="/dashboard/Ticketing" activeClassName="selected">
-            <li>
+
+            <li
+              onClick={() => {
+                toggleSidebar("Data");
+              }}
+            >
               <IconTextVertical
                 fontSize="15px"
-                className="lighter"
-                text="Ticketing"
+                className="lighter pointer"
+                text="Data"
                 theme={Theme.dark}
                 children={
                   <img
                     width="40px"
                     height="40px"
-                    src="/Images/layout/headphones.svg"
+                    src="/Images/layout/data_manu_Icon.svg"
                   />
                 }
               ></IconTextVertical>
             </li>
-          </NavLink>
-        </ul>
+
+            <li
+              onClick={() => {
+                toggleSidebar("Discussion");
+              }}
+            >
+              <IconTextVertical
+                fontSize="15px"
+                className="lighter pointer"
+                text="Discussion"
+                theme={Theme.dark}
+                children={
+                  <img
+                    width="40px"
+                    height="40px"
+                    src="/Images/layout/chat.png"
+                  />
+                }
+              ></IconTextVertical>
+            </li>
+
+            <li
+              onClick={() => {
+                toggleSidebar("Publish");
+              }}
+            >
+              <IconTextVertical
+                fontSize="15px"
+                className="lighter pointer"
+                text="Publish"
+                theme={Theme.dark}
+                children={
+                  <img
+                    width="40px"
+                    height="40px"
+                    src="/Images/layout/publish_menu_icon.svg"
+                  />
+                }
+              ></IconTextVertical>
+            </li>
+            <li
+              onClick={() => {
+                toggleSidebar("Expense");
+              }}
+            >
+              <IconTextVertical
+                fontSize="15px"
+                className="lighter pointer"
+                text="Expense"
+                theme={Theme.dark}
+                children={
+                  <img
+                    width="40px"
+                    height="40px"
+                    src="/Images/layout/expense_menu_icon.svg"
+                  />
+                }
+              ></IconTextVertical>
+            </li>
+            <NavLink to="/dashboard/Setting" activeClassName="selected">
+              <li>
+                <IconTextVertical
+                  fontSize="15px"
+                  className="lighter"
+                  text="Setting"
+                  theme={Theme.dark}
+                  children={
+                    <img
+                      width="40px"
+                      height="40px"
+                      src="/Images/layout/setting_menu_icon.svg"
+                    />
+                  }
+                ></IconTextVertical>
+              </li>
+            </NavLink>
+            <NavLink to="/dashboard/Ticketing" activeClassName="selected">
+              <li>
+                <IconTextVertical
+                  fontSize="15px"
+                  className="lighter"
+                  text="Ticketing"
+                  theme={Theme.dark}
+                  children={
+                    <img
+                      width="40px"
+                      height="40px"
+                      src="/Images/layout/headphones.svg"
+                    />
+                  }
+                ></IconTextVertical>
+              </li>
+            </NavLink>
+          </ul>
+        )}
       </div>
       {page === "Research" && ShowSidebar === true ? (
         <div className="gide-sidebar">
-          <div className="d-flex flex-wrap list-icons">
+          <div className="d-flex flex-wrap list-icons justify-content-around">
             <IconTextVertical
               fontSize="15px"
               className="lighter mx-2 my-1 pointer"
@@ -221,11 +281,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
               }}
               theme={Theme.light}
               children={
-                <img
-                  width="40px"
-                  height="40px"
-                  src="/Images/layout/new_task_icon.svg"
-                />
+                <img width="40px" height="40px" src="/Images/layout/add.svg" />
               }
             ></IconTextVertical>
             <IconTextVertical
@@ -240,7 +296,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 <img
                   width="40px"
                   height="40px"
-                  src="/Images/layout/new_task_icon.svg"
+                  src="/Images/layout/archives.svg"
                 />
               }
             ></IconTextVertical>
@@ -253,7 +309,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 <img
                   width="40px"
                   height="40px"
-                  src="/Images/layout/new_task_icon.svg"
+                  src="/Images/layout/timeline.svg"
                 />
               }
             ></IconTextVertical>
@@ -294,7 +350,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
       ) : page === "Laboratory" && ShowSidebar === true ? (
         <div className="gide-sidebar">
           <div
-            className="d-flex flex-wrap list-icons"
+            className="d-flex flex-wrap list-icons justify-content-around"
             style={{ marginTop: "6rem" }}
           >
             <IconTextVertical
@@ -306,11 +362,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
               text="New Lab"
               theme={Theme.light}
               children={
-                <img
-                  width="40px"
-                  height="40px"
-                  src="/Images/layout/new_task_icon.svg"
-                />
+                <img width="40px" height="40px" src="/Images/layout/add.svg" />
               }
             ></IconTextVertical>
             <IconTextVertical
@@ -325,7 +377,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 <img
                   width="40px"
                   height="40px"
-                  src="/Images/layout/new_task_icon.svg"
+                  src="/Images/layout/hotel.svg"
                 />
               }
             ></IconTextVertical>
@@ -341,7 +393,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 <img
                   width="40px"
                   height="40px"
-                  src="/Images/layout/new_task_icon.svg"
+                  src="/Images/layout/microscope_1.svg"
                 />
               }
             ></IconTextVertical>
@@ -357,7 +409,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 <img
                   width="40px"
                   height="40px"
-                  src="/Images/layout/new_task_icon.svg"
+                  src="/Images/layout/laboratory.svg"
                 />
               }
             ></IconTextVertical>
@@ -398,7 +450,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
       ) : page === "Team" && ShowSidebar === true ? (
         <div className="gide-sidebar">
           <div
-            className="d-flex flex-wrap list-icons px-0"
+            className="d-flex flex-wrap list-icons px-0 justify-content-around"
             style={{ marginTop: "10rem" }}
           >
             <IconTextVertical
@@ -413,7 +465,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 <img
                   width="40px"
                   height="40px"
-                  src="/Images/layout/new_task_icon.svg"
+                  src="/Images/layout/teamwork.svg"
                 />
               }
             ></IconTextVertical>
@@ -429,7 +481,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 <img
                   width="40px"
                   height="40px"
-                  src="/Images/layout/new_task_icon.svg"
+                  src="/Images/layout/tasks.svg"
                 />
               }
             ></IconTextVertical>
@@ -445,7 +497,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 <img
                   width="40px"
                   height="40px"
-                  src="/Images/layout/new_task_icon.svg"
+                  src="/Images/layout/scientist.svg"
                 />
               }
             ></IconTextVertical>
@@ -461,7 +513,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 <img
                   width="40px"
                   height="40px"
-                  src="/Images/layout/new_task_icon.svg"
+                  src="/Images/layout/user_list.svg"
                 />
               }
             ></IconTextVertical>
@@ -502,7 +554,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
       ) : page === "Task" && ShowSidebar === true ? (
         <div className="gide-sidebar">
           <div
-            className="d-flex flex-wrap list-icons px-0"
+            className="d-flex flex-wrap list-icons px-0 justify-content-around"
             style={{ marginTop: "14rem" }}
           >
             <IconTextVertical
@@ -514,11 +566,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
               text="Add Task"
               theme={Theme.light}
               children={
-                <img
-                  width="40px"
-                  height="40px"
-                  src="/Images/layout/new_task_icon.svg"
-                />
+                <img width="40px" height="40px" src="/Images/layout/task.svg" />
               }
             ></IconTextVertical>
             <IconTextVertical
@@ -533,7 +581,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 <img
                   width="40px"
                   height="40px"
-                  src="/Images/layout/new_task_icon.svg"
+                  src="/Images/layout/check.svg"
                 />
               }
             ></IconTextVertical>
@@ -574,7 +622,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
       ) : page === "Data" && ShowSidebar === true ? (
         <div className="gide-sidebar">
           <div
-            className="d-flex flex-wrap list-icons px-0"
+            className="d-flex flex-wrap list-icons px-0 justify-content-around"
             style={{ marginTop: "19rem" }}
           >
             <IconTextVertical
@@ -589,7 +637,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 <img
                   width="40px"
                   height="40px"
-                  src="/Images/layout/new_task_icon.svg"
+                  src="/Images/layout/dashboard.svg"
                 />
               }
             ></IconTextVertical>
@@ -605,7 +653,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 <img
                   width="40px"
                   height="40px"
-                  src="/Images/layout/new_task_icon.svg"
+                  src="/Images/layout/inbox.svg"
                 />
               }
             ></IconTextVertical>
@@ -646,7 +694,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
       ) : page === "Discussion" && ShowSidebar === true ? (
         <div className="gide-sidebar">
           <div
-            className="d-flex flex-wrap list-icons px-0"
+            className="d-flex flex-wrap list-icons px-0 justify-content-around"
             style={{ marginTop: "24rem" }}
           >
             <IconTextVertical
@@ -661,7 +709,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 <img
                   width="40px"
                   height="40px"
-                  src="/Images/layout/new_task_icon.svg"
+                  src="/Images/layout/chat_3.svg"
                 />
               }
             ></IconTextVertical>
@@ -677,7 +725,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 <img
                   width="40px"
                   height="40px"
-                  src="/Images/layout/new_task_icon.svg"
+                  src="/Images/layout/businessmen.svg"
                 />
               }
             ></IconTextVertical>
@@ -752,7 +800,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
               alias odit vitae ut?
             </p>
           </div>
-          <div className="d-flex flex-wrap list-icons px-0">
+          <div className="d-flex flex-wrap list-icons px-0 justify-content-around">
             <IconTextVertical
               onClick={() => {
                 props.history.push(AppRoutes.publish_new);
@@ -765,7 +813,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 <img
                   width="40px"
                   height="40px"
-                  src="/Images/layout/new_task_icon.svg"
+                  src="/Images/layout/notebook.svg"
                 />
               }
             ></IconTextVertical>
@@ -781,7 +829,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 <img
                   width="40px"
                   height="40px"
-                  src="/Images/layout/new_task_icon.svg"
+                  src="/Images/layout/newspaper.svg"
                 />
               }
             ></IconTextVertical>
@@ -824,7 +872,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
               alias odit vitae ut?
             </p>
           </div>
-          <div className="d-flex flex-wrap list-icons px-0">
+          <div className="d-flex flex-wrap list-icons px-0 justify-content-around">
             <IconTextVertical
               onClick={() => {
                 props.history.push(AppRoutes.expense_new);
@@ -834,11 +882,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
               text="Add"
               theme={Theme.light}
               children={
-                <img
-                  width="40px"
-                  height="40px"
-                  src="/Images/layout/new_task_icon.svg"
-                />
+                <img width="40px" height="40px" src="/Images/layout/bill.svg" />
               }
             ></IconTextVertical>
             <IconTextVertical
@@ -853,7 +897,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 <img
                   width="40px"
                   height="40px"
-                  src="/Images/layout/new_task_icon.svg"
+                  src="/Images/layout/accounting.svg"
                 />
               }
             ></IconTextVertical>

@@ -24,7 +24,7 @@ const DiscusstionListTable: React.FC<TableComponentProp & RouteComponentProps> =
           <tbody>
             {props.Items.map((head, index) => (
               <tr key={index}>
-                <td>{head.name}</td>
+                <td><span className="lable" style={{backgroundColor:'rgb(9, 107, 255)'}}></span> {head.name}</td>
                 <td>{head.Institution}</td>
                 <td>
                   {" "}
@@ -47,7 +47,7 @@ const DiscusstionListTable: React.FC<TableComponentProp & RouteComponentProps> =
                       }}
                       className="pointer"
                     >
-                      <i className="fas fa-file-alt"></i>
+                      <img src="/images/pages/google_docs.svg" alt="radvix" width={12} height={12} />
                     </CircleIcon>
                   </div>
                 </td>

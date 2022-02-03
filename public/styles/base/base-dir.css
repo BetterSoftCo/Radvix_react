@@ -1,5 +1,11 @@
+@font-face {
+  font-family: Sanfransisco;
+  src: url(./../../font/sf-ui-display-cufonfonts/sf-ui-display-light-58646b33e0551.otf);
+}
+
 body {
   background-color: #ffffff;
+  font-family: Sanfransisco;
 }
 
 .text-black-color {

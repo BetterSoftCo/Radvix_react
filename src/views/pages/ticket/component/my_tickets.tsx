@@ -79,7 +79,7 @@ const MyTicketTable: React.FC<TableComponentProp & RouteComponentProps> = (
                     onClick={(e) => console.log("s")}
                     className="pointer"
                   >
-                    <i className="fas fa-comment"></i>
+                    <img src="/images/pages/start_discussion.svg" alt="radvix" />
                   </CircleIcon>
                 </div>
               </td>

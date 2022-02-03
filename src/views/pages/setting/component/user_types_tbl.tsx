@@ -4,16 +4,16 @@ export const UserTypesTable = () => {
   useEffect(() => {}, []);
   return (
     <div className="child-rsponsive">
-      <div className="row  px-3">
+      <div className="row  px-3 mb-2">
         <div className="col">User Access Names</div>
-        <div className="col">Current Users</div>
+        <div className="col text-center">Current Users</div>
         <div className="col"></div>
       </div>
       <div className="accordion" id="accordionUsertypes">
         <div className="accordion-item accordion-item-top">
           <div className="accordion-header" id="headingOneUserType">
             <div
-              className="accordion-button"
+              className="accordion-button py-1"
               data-bs-toggle="collapse"
               data-bs-target="#collapseOneusertype"
               aria-expanded="true"
@@ -25,14 +25,11 @@ export const UserTypesTable = () => {
                     className="text-truncate d-inline-block"
                     style={{ maxWidth: "120px" }}
                   >
-                    <span
-                      className="lable"
-                      style={{ borderColor: "#096BFF" }}
-                    ></span>{" "}
+                    {" "}
                     Level 1
                   </span>
                 </div>
-                <div className="col-4"> 19</div>
+                <div className="col-4 text-center"> 19</div>
                 <div className="col-4">
                   <CircleIcon
                     width="22px"
@@ -43,7 +40,7 @@ export const UserTypesTable = () => {
                     color="#ffff"
                     className="mx-4"
                   >
-                    <i className="fas fa-edit"></i>
+                    <img src="/images/pages/edit.svg" alt="radvix" />
                   </CircleIcon>
                 </div>
               </div>
@@ -56,21 +53,21 @@ export const UserTypesTable = () => {
             data-bs-parent="#accordionUsertypes"
           >
             <div className="accordion-body ">
-              <span className="sub-accordion">User Labeling </span>
-              <div className="row w-100 py-2 rounded">
+              <div className="sub-accordian-parent  justify-content-center">
+              <p className="sub-accordion  mb-0 mx-0 text-nowrap py-2">User Labeling</p> 
+              </div>
+             <div className="items">
+             <div className="row w-100 py-2 rounded">
                 <div className="col">
                   <span
                     className="text-truncate d-inline-block"
                     style={{ maxWidth: "120px" }}
                   >
-                    <span
-                      className="lable"
-                      style={{ borderColor: "#096BFF" }}
-                    ></span>{" "}
+                    {" "}
                     PI
                   </span>
                 </div>
-                <div className="col">
+                <div className="col text-center">
                   5
                 </div>
                 <div className="col">
@@ -83,7 +80,7 @@ export const UserTypesTable = () => {
                     color="#ffff"
                     className="mx-4"
                   >
-                    <i className="fas fa-edit"></i>
+                    <img src="/images/pages/edit.svg" alt="radvix" />
                   </CircleIcon>
                 </div>
               </div>
@@ -93,14 +90,11 @@ export const UserTypesTable = () => {
                     className="text-truncate d-inline-block"
                     style={{ maxWidth: "120px" }}
                   >
-                    <span
-                      className="lable"
-                      style={{ borderColor: "#096BFF" }}
-                    ></span>{" "}
+                    {" "}
                     PI
                   </span>
                 </div>
-                <div className="col">
+                <div className="col text-center">
                   5
                 </div>
                 <div className="col">
@@ -113,7 +107,7 @@ export const UserTypesTable = () => {
                     color="#ffff"
                     className="mx-4"
                   >
-                    <i className="fas fa-edit"></i>
+                    <img src="/images/pages/edit.svg" alt="radvix" />
                   </CircleIcon>
                 </div>
               </div>
@@ -123,14 +117,11 @@ export const UserTypesTable = () => {
                     className="text-truncate d-inline-block"
                     style={{ maxWidth: "120px" }}
                   >
-                    <span
-                      className="lable"
-                      style={{ borderColor: "#096BFF" }}
-                    ></span>{" "}
+                    {" "}
                     PI
                   </span>
                 </div>
-                <div className="col">
+                <div className="col text-center">
                   5
                 </div>
                 <div className="col">
@@ -143,17 +134,18 @@ export const UserTypesTable = () => {
                     color="#ffff"
                     className="mx-4"
                   >
-                    <i className="fas fa-edit"></i>
+                    <img src="/images/pages/edit.svg" alt="radvix" />
                   </CircleIcon>
                 </div>
               </div>
+             </div>
             </div>
           </div>
         </div>
         <div className="accordion-item accordion-item-top">
           <div className="accordion-header" id="headingtwousertype">
             <div
-              className="accordion-button"
+              className="accordion-button py-1"
               data-bs-toggle="collapse"
               data-bs-target="#collapsetwousetype"
               aria-expanded="false"
@@ -165,14 +157,11 @@ export const UserTypesTable = () => {
                     className="text-truncate d-inline-block"
                     style={{ maxWidth: "120px" }}
                   >
-                    <span
-                      className="lable"
-                      style={{ borderColor: "#096BFF" }}
-                    ></span>{" "}
+                    {" "}
                     PI
                   </span>
                 </div>
-                <div className="col">
+                <div className="col text-center">
                   5
                 </div>
                 <div className="col">
@@ -185,7 +174,7 @@ export const UserTypesTable = () => {
                     color="#ffff"
                     className="mx-4"
                   >
-                    <i className="fas fa-edit"></i>
+                    <img src="/images/pages/edit.svg" alt="radvix" />
                   </CircleIcon>
                 </div>
               </div>
@@ -198,21 +187,21 @@ export const UserTypesTable = () => {
             data-bs-parent="#accordionUsertypes"
           >
             <div className="accordion-body ">
-              <span className="sub-accordion">Notification</span>
-              <div className="row w-100 py-2 rounded">
+            <div className="sub-accordian-parent  justify-content-center">
+              <p className="sub-accordion  mb-0 mx-0 text-nowrap py-2">User Labeling</p> 
+              </div>
+             <div className="items">
+             <div className="row w-100 py-2 rounded">
                 <div className="col">
                   <span
                     className="text-truncate d-inline-block"
                     style={{ maxWidth: "120px" }}
                   >
-                    <span
-                      className="lable"
-                      style={{ borderColor: "#096BFF" }}
-                    ></span>{" "}
+                    {" "}
                     PI
                   </span>
                 </div>
-                <div className="col">
+                <div className="col text-center">
                   5
                 </div>
                 <div className="col">
@@ -225,7 +214,7 @@ export const UserTypesTable = () => {
                     color="#ffff"
                     className="mx-4"
                   >
-                    <i className="fas fa-edit"></i>
+                    <img src="/images/pages/edit.svg" alt="radvix" />
                   </CircleIcon>
                 </div>
               </div>
@@ -235,14 +224,11 @@ export const UserTypesTable = () => {
                     className="text-truncate d-inline-block"
                     style={{ maxWidth: "120px" }}
                   >
-                    <span
-                      className="lable"
-                      style={{ borderColor: "#096BFF" }}
-                    ></span>{" "}
+                    {" "}
                     PI
                   </span>
                 </div>
-                <div className="col">
+                <div className="col text-center">
                   5
                 </div>
                 <div className="col">
@@ -255,17 +241,18 @@ export const UserTypesTable = () => {
                     color="#ffff"
                     className="mx-4"
                   >
-                    <i className="fas fa-edit"></i>
+                    <img src="/images/pages/edit.svg" alt="radvix" />
                   </CircleIcon>
                 </div>
               </div>
+             </div>
             </div>
           </div>
         </div>
         <div className="accordion-item accordion-item-top">
           <div className="accordion-header" id="headingthreeusertype">
             <div
-              className="accordion-button"
+              className="accordion-button py-1"
               data-bs-toggle="collapse"
               data-bs-target="#collapsethreeusertype"
               aria-expanded="false"
@@ -277,14 +264,11 @@ export const UserTypesTable = () => {
                     className="text-truncate d-inline-block"
                     style={{ maxWidth: "120px" }}
                   >
-                    <span
-                      className="lable"
-                      style={{ borderColor: "#096BFF" }}
-                    ></span>{" "}
+                    {" "}
                     PI
                   </span>
                 </div>
-                <div className="col">
+                <div className="col text-center">
                   5
                 </div>
                 <div className="col">
@@ -297,7 +281,7 @@ export const UserTypesTable = () => {
                     color="#ffff"
                     className="mx-4"
                   >
-                    <i className="fas fa-edit"></i>
+                    <img src="/images/pages/edit.svg" alt="radvix" />
                   </CircleIcon>
                 </div>
               </div>
@@ -310,21 +294,21 @@ export const UserTypesTable = () => {
             data-bs-parent="#accordionUsertypes"
           >
             <div className="accordion-body ">
-              <span className="sub-accordion">Notification</span>
-              <div className="row w-100 py-2 rounded">
+              <div className="sub-accordian-parent justify-content-center">
+              <p className="sub-accordion  mb-0 mx-0 text-nowrap py-2">User Labeling </p> 
+              </div>
+             <div className="items">
+             <div className="row w-100 py-2 rounded">
                 <div className="col">
                   <span
                     className="text-truncate d-inline-block"
                     style={{ maxWidth: "120px" }}
                   >
-                    <span
-                      className="lable"
-                      style={{ borderColor: "#096BFF" }}
-                    ></span>{" "}
+                    {" "}
                     PI
                   </span>
                 </div>
-                <div className="col">
+                <div className="col text-center">
                   5
                 </div>
                 <div className="col">
@@ -337,7 +321,7 @@ export const UserTypesTable = () => {
                     color="#ffff"
                     className="mx-4"
                   >
-                    <i className="fas fa-edit"></i>
+                    <img src="/images/pages/edit.svg" alt="radvix" />
                   </CircleIcon>
                 </div>
               </div>
@@ -347,14 +331,11 @@ export const UserTypesTable = () => {
                     className="text-truncate d-inline-block"
                     style={{ maxWidth: "120px" }}
                   >
-                    <span
-                      className="lable"
-                      style={{ borderColor: "#096BFF" }}
-                    ></span>{" "}
+                    {" "}
                     PI
                   </span>
                 </div>
-                <div className="col">
+                <div className="col text-center">
                   5
                 </div>
                 <div className="col">
@@ -367,7 +348,7 @@ export const UserTypesTable = () => {
                     color="#ffff"
                     className="mx-4"
                   >
-                    <i className="fas fa-edit"></i>
+                    <img src="/images/pages/edit.svg" alt="radvix" />
                   </CircleIcon>
                 </div>
               </div>
@@ -377,14 +358,11 @@ export const UserTypesTable = () => {
                     className="text-truncate d-inline-block"
                     style={{ maxWidth: "120px" }}
                   >
-                    <span
-                      className="lable"
-                      style={{ borderColor: "#096BFF" }}
-                    ></span>{" "}
+                    {" "}
                     PI
                   </span>
                 </div>
-                <div className="col">
+                <div className="col text-center">
                   5
                 </div>
                 <div className="col">
@@ -397,10 +375,11 @@ export const UserTypesTable = () => {
                     color="#ffff"
                     className="mx-4"
                   >
-                    <i className="fas fa-edit"></i>
+                    <img src="/images/pages/edit.svg" alt="radvix" />
                   </CircleIcon>
                 </div>
               </div>
+             </div>
             </div>
           </div>
         </div>
