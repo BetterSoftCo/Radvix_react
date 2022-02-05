@@ -9,7 +9,7 @@ import { IconTextRow } from "../../components/icon_text_horizontal";
 import { Theme } from "../../../core/utils";
 import { BoxListScroll } from "../../components/box_list_scroll";
 export class DiscusstionPage extends React.Component {
-  RoleUser = store.getState();
+  RoleUser = store.getState().user;
   date = new Date();
   handelChangeDate(params: any): void {
     console.log(params);

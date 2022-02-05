@@ -8,8 +8,6 @@ export class UserController {
     Signin(body: UserSigninReq, action: (res: UserSigninResult) => any) {
         this.remote.signIn(body, res => {
             localStorage.setItem('token', res.result?.token ?? '')
-            console.log(res);
-            
             toast.success(
                 `${res.message}`,
                 {

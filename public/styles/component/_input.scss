@@ -4,6 +4,9 @@
   border-bottom-right-radius: 9px;
   border: none;
 }
+.InputComponentStyle.notValidation{
+  border: 1px solid red;
+}
 
 .InputSelectStyle {
   border-radius: 9px;

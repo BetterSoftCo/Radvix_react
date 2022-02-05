@@ -17,12 +17,14 @@ interface InputsProps {
   className?: string;
   borderRadius?: string;
   onChange?: (e: any) => void;
+  onBlur?: (e: any) => void;
   placeholder?: string;
   type: InputType;
   label?: ReactNode;
   popQuestion?: string;
   optional?: string;
-  rows?:number
+  rows?: number;
+  inValid?: string;
 }
 export const InputComponent: React.FC<InputsProps> = ({
   width,
@@ -33,12 +35,14 @@ export const InputComponent: React.FC<InputsProps> = ({
   className,
   borderRadius,
   onChange,
+  onBlur,
   placeholder,
   type,
   label,
   popQuestion,
   optional,
-  rows=4
+  rows = 4,
+  inValid,
 }) => {
   let styles = {
     width: width,
@@ -84,6 +88,12 @@ export const InputComponent: React.FC<InputsProps> = ({
       </span>
     );
   }
+  let TemplateValidation;
+  let IsinValid;
+  if (inValid) {
+    TemplateValidation = <div>{inValid}</div>;
+    IsinValid = 'is-invalid';
+  }
   return type === InputType.text ? (
     <Fragment>
       {TemplateLabel}
@@ -92,10 +102,12 @@ export const InputComponent: React.FC<InputsProps> = ({
         style={styles}
         onChange={onChange}
         placeholder={placeholder}
+        onBlur={onBlur}
         className={`${
-          IsclassName + " " + "InputComponentStyle" + " " + "form-control"
+          IsclassName + " " + "InputComponentStyle" + " " + "form-control" + " " + IsinValid
         }`}
       />
+      {TemplateValidation}
     </Fragment>
   ) : (
     <Fragment>
@@ -109,6 +121,7 @@ export const InputComponent: React.FC<InputsProps> = ({
         onChange={onChange}
         placeholder={placeholder}
       ></textarea>
+      {TemplateValidation}
     </Fragment>
   );
 };

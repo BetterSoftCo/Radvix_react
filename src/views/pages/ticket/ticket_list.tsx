@@ -9,7 +9,7 @@ import  MyTicketTable  from "./component/my_tickets";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
 class TicketPage extends React.Component<RouteComponentProps> {
-  RoleUser = store.getState();
+  RoleUser = store.getState().user;
   state = {
     Data: {
       Items: [

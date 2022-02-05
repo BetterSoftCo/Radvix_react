@@ -8,7 +8,7 @@ import { SelectComponent } from "../../components/select_input";
 import { PaymentsTbl } from "./component/payment_tbl";
 
 export class AdminPayments extends React.Component {
-  RoleUser = store.getState();
+  RoleUser = store.getState().user;
   state = {
     Data: {
       Items: [

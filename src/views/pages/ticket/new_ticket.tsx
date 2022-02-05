@@ -10,7 +10,7 @@ import { ButtonGroup } from "../../components/botton_group";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
  class TicketPageNew extends React.Component<RouteComponentProps> {
-  RoleUser = store.getState();
+  RoleUser = store.getState().user;
   date = new Date();
   handelChangeDate(params: any): void {
     console.log(params);

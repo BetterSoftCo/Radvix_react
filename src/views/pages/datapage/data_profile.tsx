@@ -10,7 +10,7 @@ import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
 
 class DataPageProfile extends React.Component<RouteComponentProps> {
-  RoleUser = store.getState();
+  RoleUser = store.getState().user;
   state = {
     Data: {
       Items: [

@@ -46,6 +46,10 @@ button {
   border: none;
 }
 
+.InputComponentStyle.notValidation {
+  border: 1px solid red;
+}
+
 .InputSelectStyle {
   border-radius: 9px;
   background-image: url("./../../Images/component/down-arrow-black-circular-button.svg");

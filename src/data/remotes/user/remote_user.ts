@@ -4,6 +4,6 @@ import { UserSigninRes } from "../../models/responses/user/signin_res";
 
 export class RemoteUser {
    signIn(body: UserSigninReq, action: (res: UserSigninRes) => any) {
-    return  HTTP.post("/User/SignIn", body).then((res) => action(res))
+    return  HTTP.post("/User/SignIn", body).then((res) => action(res.data))
   }
 }

@@ -1,26 +1,40 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { MainButton, MainButtonType } from "../../components/button";
 import { InputComponent, InputType } from "../../components/inputs";
 import { RouteComponentProps, withRouter } from "react-router";
 import { UserController } from "../../../controllers/user/user_controller";
 import { UserSigninReq } from "../../../data/models/requests/user/signin_req";
 import { AppRoutes } from "../../../core/constants";
+import SimpleReactValidator from "simple-react-validator";
+import { store } from "../../../data/store";
+import { SetUserRole } from "../../../data/store/actions/user_action";
 const LoginPage: React.FC<RouteComponentProps> = (props) => {
-  const [password, setpassword] = useState('');
-  const [email, setemail] = useState('');
+  const [password, setpassword] = useState("");
+  const [email, setemail] = useState("");
   const controller: UserController = new UserController();
   async function SignIn() {
-    const body: UserSigninReq = {
-      password: password,
-      email: email,
-    };
-   await controller.Signin(body,res=>{
-      if(res){
-        props.history.replace(AppRoutes.dashboard)
-      }
-    })
+    const formValid = Validator.current.allValid();
+    if (!formValid) {
+      Validator.current.showMessages();
+      forceUpdate(1);
+    } else {
+      const body: UserSigninReq = {
+        password: password,
+        email: email,
+      };
+      await controller.Signin(body, (res) => { 
+        if (res) {
+          store.dispatch(SetUserRole(res.role ?? 0))
+          props.history.replace(AppRoutes.dashboard);
+        }
+      });
+    }
   }
+  const Validator = useRef(new SimpleReactValidator({
+    className:'text-danger'
+  }));
+  const [, forceUpdate] = useState(0);
   return (
     <div className="login d-flex flex-column flex-md-row">
       <div className="left">
@@ -50,17 +64,30 @@ const LoginPage: React.FC<RouteComponentProps> = (props) => {
           <InputComponent
             type={InputType.text}
             placeholder="example@email.com"
-            onChange={(e)=>{setemail(e.target.value);
+            onChange={(e) => {
+              setemail(e.target.value);
             }}
+            inValid={Validator.current.message(
+              "email",
+              email,
+              "required|email"
+            )}
           ></InputComponent>
+
           <div className="password mt-2 d-flex justify-content-between align-items-center">
             <div className="input w-75">
               <label className="text-light mb-2">Password:</label>
               <InputComponent
                 type={InputType.text}
                 placeholder="*******"
-                onChange={(e)=>{setpassword(e.target.value);
+                onChange={(e) => {
+                  setpassword(e.target.value);
                 }}
+                inValid={Validator.current.message(
+                  "password",
+                  password,
+                  "required"
+                )}
               ></InputComponent>
             </div>
             <MainButton
@@ -70,7 +97,8 @@ const LoginPage: React.FC<RouteComponentProps> = (props) => {
               minWidth="60px"
               minHeight="37px"
               className="align-self-end"
-              onClick={()=>{SignIn()
+              onClick={() => {
+                SignIn();
               }}
             ></MainButton>
           </div>

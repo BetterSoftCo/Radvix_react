@@ -9,7 +9,7 @@ import { MainButton, MainButtonType } from "../../components/button";
 import { BoxListScroll } from "../../components/box_list_scroll";
 import { RouteComponentProps, withRouter } from "react-router";
  class DataPageEdit extends React.Component<RouteComponentProps> {
-  RoleUser = store.getState();
+  RoleUser = store.getState().user;
   date = new Date();
   handelChangeDate(params: any): void {
     console.log(params);

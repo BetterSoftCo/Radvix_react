@@ -9,7 +9,7 @@ import { BoxListScroll } from "../../components/box_list_scroll";
 import { withRouter , RouteComponentProps } from "react-router";
 import { AppRoutes } from "../../../core/constants";
  class LaboratoryPageProfile extends React.Component<RouteComponentProps> {
-  RoleUser = store.getState();
+  RoleUser = store.getState().user;
 
   render() {
     return (

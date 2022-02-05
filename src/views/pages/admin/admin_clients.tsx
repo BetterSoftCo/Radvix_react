@@ -8,7 +8,7 @@ import { SelectComponent } from "../../components/select_input";
 import { RadvixClients } from "./component/radvix_clients";
 
 export class AdminClients extends React.Component {
-  RoleUser = store.getState();
+  RoleUser = store.getState().user;
   state = {
     Data: {
       Items: [

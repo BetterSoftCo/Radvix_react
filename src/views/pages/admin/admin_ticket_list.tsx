@@ -8,7 +8,7 @@ import { SelectComponent } from "../../components/select_input";
 import { TicketsTbl } from "./component/tickets_tbl";
 
 export class AdminTickets extends React.Component {
-  RoleUser = store.getState();
+  RoleUser = store.getState().user;
   state = {
     Data: {
       Items: [

@@ -7,7 +7,7 @@ import { IconTextRow } from "../../components/icon_text_horizontal";
 import { Theme } from "../../../core/utils";
 import { BoxListScroll } from "../../components/box_list_scroll";
 export class MemberPageProfile extends React.Component {
-  RoleUser = store.getState();
+  RoleUser = store.getState().user;
 
   render() {
     return (

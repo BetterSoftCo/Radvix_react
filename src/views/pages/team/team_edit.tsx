@@ -9,7 +9,7 @@ import { AppRoutes } from "../../../core/constants";
 import { BoxListScroll } from "../../components/box_list_scroll";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 class TeamPageEdit extends React.Component<RouteComponentProps> {
-  RoleUser = store.getState();
+  RoleUser = store.getState().user;
   date = new Date();
   render() {
     return (

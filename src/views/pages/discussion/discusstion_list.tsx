@@ -9,7 +9,7 @@ import  DiscusstionListTable  from "./component/discusstion_list_table";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
  class DiscusstionList extends React.Component<RouteComponentProps> {
-  RoleUser = store.getState();
+  RoleUser = store.getState().user;
   state = {
     Data: {
       Items: [

@@ -7,7 +7,7 @@ import { MainButton, MainButtonType } from "../../components/button";
 import Dropzone from "react-dropzone";
 import { ButtonGroup } from "../../components/botton_group";
 export class AdminBroadcast extends React.Component {
-  RoleUser = store.getState();
+  RoleUser = store.getState().user;
   date = new Date();
   handelChangeDate(params: any): void {
     console.log(params);

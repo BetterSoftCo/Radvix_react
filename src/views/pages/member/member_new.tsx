@@ -7,7 +7,7 @@ import { SelectComponent } from "../../components/select_input";
 import { BoxAlert } from "../../components/box_alert";
 import { ButtonGroup } from "../../components/botton_group";
 export class MemberPageNew extends React.Component {
-  RoleUser = store.getState();
+  RoleUser = store.getState().user;
   date = new Date();
   handelChangeDate(params: any): void {
     console.log(params);

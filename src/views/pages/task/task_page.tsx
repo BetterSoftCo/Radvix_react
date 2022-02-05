@@ -8,7 +8,7 @@ import { SelectComponent } from "../../components/select_input";
 import { AcordienTable } from "./component/recent_tasks";
 
 export class TasksPage extends React.Component {
-  RoleUser = store.getState();
+  RoleUser = store.getState().user;
   state = {
     Data: {
       Items: [

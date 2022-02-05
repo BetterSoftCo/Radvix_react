@@ -39,9 +39,9 @@ HTTP.interceptors.response.use(
   },
   function (error) {
     if (error.response) {
-      if (error.response.status === 401) {
+      if (error.response) {        
         toast.error(
-          `StatusError:${error.response.status} You do not have access to this action !`,
+          `StatusError:${error.response.status} : ${error.response.data.message}`,
           {
             position: toast.POSITION.TOP_RIGHT,
           }

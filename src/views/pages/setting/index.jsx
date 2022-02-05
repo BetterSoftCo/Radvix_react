@@ -9,7 +9,7 @@ import { SelectComponent } from "../../components/select_input";
 import { UserTypesTable } from "./component/user_types_tbl";
 import { UserRoles } from "../../../core/utils";
 export class SettingPage extends React.Component {
-  RoleUser = store.getState();
+  RoleUser = store.getState().user;
   state = {
     Data: {
       Items: [

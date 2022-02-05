@@ -10,7 +10,7 @@ const reducer = (
 ): UserRoleState => {
   switch (action.type) {
     case SET_USER_ROLE:
-      return UserRoles.level1;
+      return action.payload;
   }
   return state;
 };

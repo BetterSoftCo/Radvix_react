@@ -10,7 +10,7 @@ import { SelectComponent } from "../../components/select_input";
 import { ButtonGroup } from "../../components/botton_group";
 import { BoxListScroll } from "../../components/box_list_scroll";
 export class TaskPageEdit extends React.Component {
-  RoleUser = store.getState();
+  RoleUser = store.getState().user;
   date = new Date();
   handelChangeDate(params: any): void {
     console.log(params);

@@ -45,9 +45,11 @@ export class DashboardPage extends React.Component {
       height: 30,
     },
   ];
-  RoleUser = store.getState();
+  RoleUser = store.getState().user;
+  
+  
   componentDidMount() {
-
+    console.log(this.RoleUser);
     // ...
   }
   render() {
@@ -61,7 +63,7 @@ export class DashboardPage extends React.Component {
             <div className="TableBox">
               <div className="TopTableBox d-flex justify-content-between align-items-center">
                 <div className="left d-flex w-50 align-items-center">
-                  <h6 style={{ width: "35%" }}>Research Updates</h6>
+                  <h6 style={{ width: "45%" }}>Research Updates</h6>
                   <InputIcon
                     chilren={<img src="/images/pages/search_box_icon.svg" />}
                     width="100%"
@@ -203,7 +205,7 @@ export class DashboardPage extends React.Component {
             <div className="TableBox">
               <div className="TopTableBox d-flex justify-content-between align-items-center mb-3">
                 <div className="left d-flex w-50 align-items-center">
-                  <h6 style={{ width: "35%" }}>Recent Data Sets</h6>
+                  <h6 style={{ width: "45%" }}>Recent Data Sets</h6>
                   <InputIcon
                     chilren={<img src="/images/pages/search_box_icon.svg" />}
                     width="100%"

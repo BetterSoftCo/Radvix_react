@@ -10,7 +10,7 @@ import { SelectComponent } from "../../components/select_input";
 import  DataCollectionTable  from "./component/data_collection_table";
 
  class DataCollection extends React.Component<RouteComponentProps> {
-  RoleUser = store.getState();
+  RoleUser = store.getState().user;
   state = {
     Data: {
       Items: [
