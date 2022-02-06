@@ -49,7 +49,7 @@ import { AppRoutes } from "../../../core/constants";
                 </h6>
                 <InputIcon
                   chilren={
-                    <img src="/images/pages/search_box_icon.svg" alt="" />
+                    <img src="/images/icons/search_box_icon.svg" alt="" />
                   }
                   width="100%"
                   placeholder="Search..."  TopPosition="15%"

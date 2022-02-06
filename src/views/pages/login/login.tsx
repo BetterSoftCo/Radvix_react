@@ -38,9 +38,9 @@ const LoginPage: React.FC<RouteComponentProps> = (props) => {
   return (
     <div className="login d-flex flex-column flex-md-row">
       <div className="left">
-        <img src="/images/layout/radvix_logo.png" className="logo" alt="" />
+        <img src="/images/images/radvix_logo.png" className="logo" alt="" />
         <span className="sub_logo">Login</span>
-        <img src="/images/pages/member.png" className="logo-Member" alt="" />
+        <img src="/images/images/member.png" className="logo-Member" alt="" />
         <MainButton
           children={"Forgot Email?"}
           type={MainButtonType.dark}
@@ -114,7 +114,7 @@ const LoginPage: React.FC<RouteComponentProps> = (props) => {
           backgroundColor="#A6CE39"
           children={
             <div>
-              <img src="/images/pages/orcid-og-image.png" /> Login using ORCiD
+              <img src="/images/images/orcid-og-image.png" /> Login using ORCiD
             </div>
           }
         ></MainButton>
@@ -128,7 +128,7 @@ const LoginPage: React.FC<RouteComponentProps> = (props) => {
           backgroundColor="#4285F4"
           children={
             <div>
-              <img src="/images/pages/google_scholar_icon_130918.png" /> Login
+              <img src="/images/images/google_scholar_icon_130918.png" /> Login
               using Google
             </div>
           }
@@ -143,7 +143,7 @@ const LoginPage: React.FC<RouteComponentProps> = (props) => {
           backgroundColor="#0274B3"
           children={
             <div>
-              <img src="/images/pages/linkedIn_logo_initials.png" /> Login using
+              <img src="/images/images/linkedIn_logo_initials.png" /> Login using
               LinkedIn
             </div>
           }

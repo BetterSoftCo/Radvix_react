@@ -29,7 +29,7 @@ import { AppRoutes } from "../../../core/constants";
                 className="mx-4 pointer"
                 onClick={()=>{this.props.history.push(AppRoutes.edit_laboratory)}}
               >
-                <img src="/images/pages/edit.svg" alt="radvix" />
+                <img src="/images/icons/edit.svg" alt="radvix" />
               </CircleIcon>
             </h5>
             <MainButton
@@ -92,19 +92,19 @@ import { AppRoutes } from "../../../core/constants";
                   {" "}
                   <ul className="file-list">
                     <li>
-                      <img src='/images/pages/pdf_icon.svg' alt="" />{" "}
+                      <img src='/images/icons/pdf_icon.svg' alt="" />{" "}
                       proposal_general.pdf
                     </li>
                     <li>
-                      <img src='/images/pages/word_icon.svg' alt="" />{" "}
+                      <img src='/images/icons/word_icon.svg' alt="" />{" "}
                       proposal_general.docx
                     </li>
                     <li>
-                      <img src='/images/pages/excel_icon.svg' alt="" />{" "}
+                      <img src='/images/icons/excel_icon.svg' alt="" />{" "}
                       proposal_general.xlsx
                     </li>
                     <li>
-                      <img src='/images/pages/pdf_icon.svg' alt="" />{" "}
+                      <img src='/images/icons/pdf_icon.svg' alt="" />{" "}
                       proposal_general.pdf
                     </li>
                     <li>
@@ -186,17 +186,17 @@ import { AppRoutes } from "../../../core/constants";
                     {
                       text: "Nima Hosseinzadeh",
                       id: 1,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 2,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 3,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                   ]}
                   TextItem="text"
@@ -217,7 +217,7 @@ import { AppRoutes } from "../../../core/constants";
                   text="Teams (Members)"
                   children={
                     <img
-                      src='/images/pages/team_menu.svg'
+                      src='/images/icons/team_menu.svg'
                       className="mx-2"
                       alt=""
                     />
@@ -266,17 +266,17 @@ import { AppRoutes } from "../../../core/constants";
                     {
                       text: "Nima Hosseinzadeh",
                       id: 1,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 2,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadehgg",
                       id: 3,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                   ]}
                   TextItem="text"

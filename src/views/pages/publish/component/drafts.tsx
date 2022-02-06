@@ -38,7 +38,7 @@ export const Drafts: React.FC<TableComponentProp> = ({ Heading, Items }) => {
                     className="pointer mx-1"
                   >
                     <img
-                      src="/images/pages/download.svg"
+                      src="/images/icons/download.svg"
                       alt="radvix"
                       width={15}
                       height={15}
@@ -52,7 +52,7 @@ export const Drafts: React.FC<TableComponentProp> = ({ Heading, Items }) => {
                     className="pointer mx-1"
                   >
                     <img
-                      src="/images/pages/garbage_can.svg"
+                      src="/images/icons/garbage_can.svg"
                       alt="radvix"
                       width={15}
                       height={15}

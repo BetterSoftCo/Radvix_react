@@ -40,7 +40,7 @@ export const UserTypesTable = () => {
                     color="#ffff"
                     className="mx-4"
                   >
-                    <img src="/images/pages/edit.svg" alt="radvix" />
+                    <img src="/images/icons/edit.svg" alt="radvix" />
                   </CircleIcon>
                 </div>
               </div>
@@ -80,7 +80,7 @@ export const UserTypesTable = () => {
                     color="#ffff"
                     className="mx-4"
                   >
-                    <img src="/images/pages/edit.svg" alt="radvix" />
+                    <img src="/images/icons/edit.svg" alt="radvix" />
                   </CircleIcon>
                 </div>
               </div>
@@ -107,7 +107,7 @@ export const UserTypesTable = () => {
                     color="#ffff"
                     className="mx-4"
                   >
-                    <img src="/images/pages/edit.svg" alt="radvix" />
+                    <img src="/images/icons/edit.svg" alt="radvix" />
                   </CircleIcon>
                 </div>
               </div>
@@ -134,7 +134,7 @@ export const UserTypesTable = () => {
                     color="#ffff"
                     className="mx-4"
                   >
-                    <img src="/images/pages/edit.svg" alt="radvix" />
+                    <img src="/images/icons/edit.svg" alt="radvix" />
                   </CircleIcon>
                 </div>
               </div>
@@ -174,7 +174,7 @@ export const UserTypesTable = () => {
                     color="#ffff"
                     className="mx-4"
                   >
-                    <img src="/images/pages/edit.svg" alt="radvix" />
+                    <img src="/images/icons/edit.svg" alt="radvix" />
                   </CircleIcon>
                 </div>
               </div>
@@ -214,7 +214,7 @@ export const UserTypesTable = () => {
                     color="#ffff"
                     className="mx-4"
                   >
-                    <img src="/images/pages/edit.svg" alt="radvix" />
+                    <img src="/images/icons/edit.svg" alt="radvix" />
                   </CircleIcon>
                 </div>
               </div>
@@ -241,7 +241,7 @@ export const UserTypesTable = () => {
                     color="#ffff"
                     className="mx-4"
                   >
-                    <img src="/images/pages/edit.svg" alt="radvix" />
+                    <img src="/images/icons/edit.svg" alt="radvix" />
                   </CircleIcon>
                 </div>
               </div>
@@ -281,7 +281,7 @@ export const UserTypesTable = () => {
                     color="#ffff"
                     className="mx-4"
                   >
-                    <img src="/images/pages/edit.svg" alt="radvix" />
+                    <img src="/images/icons/edit.svg" alt="radvix" />
                   </CircleIcon>
                 </div>
               </div>
@@ -321,7 +321,7 @@ export const UserTypesTable = () => {
                     color="#ffff"
                     className="mx-4"
                   >
-                    <img src="/images/pages/edit.svg" alt="radvix" />
+                    <img src="/images/icons/edit.svg" alt="radvix" />
                   </CircleIcon>
                 </div>
               </div>
@@ -348,7 +348,7 @@ export const UserTypesTable = () => {
                     color="#ffff"
                     className="mx-4"
                   >
-                    <img src="/images/pages/edit.svg" alt="radvix" />
+                    <img src="/images/icons/edit.svg" alt="radvix" />
                   </CircleIcon>
                 </div>
               </div>
@@ -375,7 +375,7 @@ export const UserTypesTable = () => {
                     color="#ffff"
                     className="mx-4"
                   >
-                    <img src="/images/pages/edit.svg" alt="radvix" />
+                    <img src="/images/icons/edit.svg" alt="radvix" />
                   </CircleIcon>
                 </div>
               </div>

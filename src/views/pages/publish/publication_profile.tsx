@@ -145,7 +145,7 @@ import { AppRoutes } from "../../../core/constants";
                     text="Members Collaborating"
                     children={
                       <img
-                        src="/Images/pages/team_menu.svg"
+                        src="/images/icons/team_menu.svg"
                         className="mx-2"
                         alt=""
                       />
@@ -168,17 +168,17 @@ import { AppRoutes } from "../../../core/constants";
                     {
                       text: "Nima Hosseinzadeh",
                       id: 1,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 2,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 3,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                   ]}
                   TextItem="text"
@@ -198,7 +198,7 @@ import { AppRoutes } from "../../../core/constants";
                 <h6 style={{ width: "35%" }}>Drafts</h6>
                 <InputIcon
                   chilren={
-                    <img src="/images/pages/search_box_icon.svg" alt="radvix" />
+                    <img src="/images/icons/search_box_icon.svg" alt="radvix" />
                   }
                   width="100%"
                   placeholder="Search..."  TopPosition="15%"

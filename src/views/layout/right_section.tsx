@@ -15,13 +15,13 @@ const RightSection: React.FC<RouteComponentProps> = (props) => {
           }}
           text={<span>Create <br /> New Task</span>}
           theme={Theme.light}
-          children={<img src="/Images/layout/new_task_icon.svg" />}
+          children={<img src="/images/icons/new_task_icon.svg" />}
           className="pointer"
         ></IconTextVertical>
         <IconTextVertical
           text={<span>New <br /> Discussion</span>}
           theme={Theme.light}
-          children={<img src="/Images/layout/group_27.svg" />}
+          children={<img src="/Images/icons/chat_dark_icon.svg" />}
           onClick={() => {
             props.history.push(AppRoutes.discussion_new);
           }}
@@ -30,7 +30,7 @@ const RightSection: React.FC<RouteComponentProps> = (props) => {
         <IconTextVertical
           text={<span>Data <br /> Collection</span>}
           theme={Theme.light}
-          children={<img src="/Images/layout/quick_data_collection.svg" />}
+          children={<img src="/images/icons/quick_data_collection.svg" />}
           onClick={() => {
             props.history.push(AppRoutes.data_mydata);
           }}
@@ -40,7 +40,7 @@ const RightSection: React.FC<RouteComponentProps> = (props) => {
       <div className="bottom">
         <div className="d-flex flex-column justify-content-center">
           <div className="d-flex justify-content-start align-items-center">
-            <img src="/images/layout/chat.png" className="mx-2" />
+            <img src="/Images/icons/chat.png" className="mx-2" />
             <span
               className="text-light pointer title-recent"
               onClick={() => {

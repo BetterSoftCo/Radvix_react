@@ -57,7 +57,7 @@ import { AppRoutes } from "../../../core/constants";
                   color="#ffff"
                   className="mx-4 pointer"
                 >
-                  <img src="/images/pages/edit.svg" alt="radvix" />
+                  <img src="/images/icons/edit.svg" alt="radvix" />
                 </CircleIcon>
               ) : null}
             </h5>
@@ -152,19 +152,19 @@ import { AppRoutes } from "../../../core/constants";
                   {" "}
                   <ul className="file-list">
                     <li>
-                      <img src="/images/pages/pdf_icon.svg" alt="" />{" "}
+                      <img src="/images/icons/pdf_icon.svg" alt="" />{" "}
                       proposal_general.pdf
                     </li>
                     <li>
-                      <img src="/images/pages/word_icon.svg" alt="" />{" "}
+                      <img src="/images/icons/word_icon.svg" alt="" />{" "}
                       proposal_general.docx
                     </li>
                     <li>
-                      <img src="/images/pages/excel_icon.svg" alt="" />{" "}
+                      <img src="/images/icons/excel_icon.svg" alt="" />{" "}
                       proposal_general.xlsx
                     </li>
                     <li>
-                      <img src="/images/pages/pdf_icon.svg" alt="" />{" "}
+                      <img src="/images/icons/pdf_icon.svg" alt="" />{" "}
                       proposal_general.pdf
                     </li>
                     <li>

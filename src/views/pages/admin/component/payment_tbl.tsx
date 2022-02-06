@@ -51,7 +51,7 @@ export const PaymentsTbl: React.FC<TableComponentProp> = ({
                     className="pointer"
                   >
                     <img
-                      src="/images/pages/google_docs.svg"
+                      src="/images/icons/google_docs.svg"
                       alt="radvix"
                       width={12}
                       height={12}

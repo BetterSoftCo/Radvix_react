@@ -7,10 +7,7 @@ import { SelectComponent } from "../../components/select_input";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import Dropzone from "react-dropzone";
 import { RadioGroup } from "../../components/radio_group";
-import { BoxAlert } from "../../components/box_alert";
-import { RouteComponentProps, withRouter } from "react-router";
-import { AppRoutes } from "../../../core/constants";
- class NewEquip extends React.Component<RouteComponentProps>  {
+export class EditEquip extends React.Component {
   RoleUser = store.getState().user;
   date = new Date();
   handelChangeDate(params: any): void {
@@ -29,7 +26,7 @@ import { AppRoutes } from "../../../core/constants";
         {file.name} - {file.size} bytes
         <CircleIcon type={ThemeCircleIcon.dark} width="22px" height="22px">
           <img
-            src="/images/pages/garbage_can.svg"
+            src="/images/icons/garbage_can.svg"
             alt="radvix"
             width={15}
             height={15}
@@ -77,7 +74,7 @@ import { AppRoutes } from "../../../core/constants";
                 </span>
                 <div className="d-flex justify-content-between align-items-center">
                   <img
-                    src="/images/layout/img_avatar.png"
+                    src="/images/images/img_avatar.png"
                     alt="Avatar"
                     className="rounded-circle avatar mx-2"
                     width="125px"
@@ -87,9 +84,9 @@ import { AppRoutes } from "../../../core/constants";
                     type={ThemeCircleIcon.dark}
                     width="44px"
                     height="30px"
-                    className="mx-2 px-2 pointer"
+                    className="mx-2 pointer px-2"
                   >
-                    <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
+                    <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
                   </CircleIcon>
                   <Dropzone onDrop={this.onDrop}>
                   {({ getRootProps, getInputProps }) => (
@@ -109,7 +106,7 @@ import { AppRoutes } from "../../../core/constants";
                           children={
                             <div className="d-flex justify-content-between align-items-center">
                               <img
-                                src="/Images/component/cloud_computing.svg"
+                                src="/Images/icons/cloud_computing.svg"
                                 alt="sssss"
                                 height="20"
                                 
@@ -211,7 +208,7 @@ import { AppRoutes } from "../../../core/constants";
                           children={
                             <div className="d-flex justify-content-between align-items-center">
                               <img
-                                src="/Images/component/cloud_computing.svg"
+                                src="/Images/icons/cloud_computing.svg"
                                 alt="sssss"
                                 height="20"
                                 
@@ -231,6 +228,56 @@ import { AppRoutes } from "../../../core/constants";
                     </section>
                   )}
                 </Dropzone>
+                <ul className="file-list mt-3">
+                  <li className="d-flex align-items-center mb-1">
+                    <img
+                      src="/images/icons/pdf_icon.svg"
+                      alt=""
+                      className="mx-2"
+                    />{" "}
+                    proposal_general.pdf
+                    <CircleIcon
+                      type={ThemeCircleIcon.dark}
+                      width="22px"
+                      height="22px"
+                      className="mx-3"
+                    >
+                      <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
+                    </CircleIcon>
+                  </li>
+                  <li className="d-flex align-items-center mb-1">
+                    <img
+                      src="/images/icons/pdf_icon.svg"
+                      alt=""
+                      className="mx-2"
+                    />{" "}
+                    proposal_general.pdf
+                    <CircleIcon
+                      type={ThemeCircleIcon.dark}
+                      width="22px"
+                      height="22px"
+                      className="mx-3"
+                    >
+                      <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
+                    </CircleIcon>
+                  </li>
+                  <li className="d-flex align-items-center mb-1">
+                    <img
+                      src="/images/icons/pdf_icon.svg"
+                      alt=""
+                      className="mx-2"
+                    />{" "}
+                    proposal_general.pdf
+                    <CircleIcon
+                      type={ThemeCircleIcon.dark}
+                      width="22px"
+                      height="22px"
+                      className="mx-3"
+                    >
+                      <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
+                    </CircleIcon>
+                  </li>
+                </ul>
               </div>
               <div className="item d-flex justify-content-between align-items-center">
                 <InputComponent
@@ -251,6 +298,44 @@ import { AppRoutes } from "../../../core/constants";
                   <i className="fas fa-plus"></i>
                 </CircleIcon>
               </div>
+              <ul className="file-list mt-3">
+                <li className="my-2 d-flex flex-column flex-md-row">
+                  <MainButton
+                    children="https://drive.google.com/file/234234"
+                    type={MainButtonType.dark}
+                    borderRadius="24px"
+                    fontSize="14px"
+                    backgroundColor="#F5F5F5"
+                    color="#096BFF"
+                  ></MainButton>
+                  <CircleIcon
+                    type={ThemeCircleIcon.dark}
+                    width="22px"
+                    height="22px"
+                    className="mx-3"
+                  >
+                    <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
+                  </CircleIcon>
+                </li>
+                <li className="my-2 d-flex flex-column flex-md-row">
+                  <MainButton
+                    children="https://drive.google.com/file/234234"
+                    type={MainButtonType.dark}
+                    borderRadius="24px"
+                    fontSize="14px"
+                    backgroundColor="#F5F5F5"
+                    color="#096BFF"
+                  ></MainButton>
+                  <CircleIcon
+                    type={ThemeCircleIcon.dark}
+                    width="22px"
+                    height="22px"
+                    className="mx-3"
+                  >
+                    <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
+                  </CircleIcon>
+                </li>
+              </ul>
               <div className="item">
                 <span className="label d-flex align-items-center">
                   Warranty/Technical Support:
@@ -303,14 +388,56 @@ import { AppRoutes } from "../../../core/constants";
                   className="my-2"
                   label="Assign To Laboratory:"
                   popQuestion="Assign To Laboratory:"
+                  placeholder="Click to see the list…"
                 ></SelectComponent>
               </div>
-              <BoxAlert text=" No Laboratory Has Been Added Yet!"></BoxAlert>
+              <div className="teams Labs">
+              <div className="tags p-3">
+                  <MainButton
+                    backgroundColor="#EBEBEB"
+                    className="tag-delete"
+                    children={
+                      <div className="d-flex align-items-center justify-content-between">
+                        <span className="flex-fill">ACCESSLab Team</span>
+                        <CircleIcon
+                          type={ThemeCircleIcon.dark}
+                          width="22px"
+                          height="22px"
+                        >
+                          <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
+                        </CircleIcon>
+                      </div>
+                    }
+                    type={MainButtonType.light}
+                    borderRadius="24px"
+                    fontSize="14px"
+                  ></MainButton>
+                  <MainButton
+                    backgroundColor="#EBEBEB"
+                    className="tag-delete"
+                    children={
+                      <div className="d-flex align-items-center justify-content-between">
+                        <span className="flex-fill">ACCESSLab Team</span>
+                        <CircleIcon
+                          type={ThemeCircleIcon.dark}
+                          width="22px"
+                          height="22px"
+                        >
+                          <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
+                        </CircleIcon>
+                      </div>
+                    }
+                    type={MainButtonType.light}
+                    borderRadius="24px"
+                    fontSize="14px"
+                  ></MainButton>
+                </div>
+              </div>
             </div>
             <div className="col-12 d-flex justify-content-center align-items-center my-4">
               <MainButton
                 type={MainButtonType.light}
-                children={"Start Over"}
+                children={"Cancel"}
                 borderRadius="50px"
                 fontSize="18px"
                 className="mx-2"
@@ -319,9 +446,8 @@ import { AppRoutes } from "../../../core/constants";
               ></MainButton>
               <MainButton
                 type={MainButtonType.dark}
-                children={"Create"}
+                children={"Save"}
                 borderRadius="50px"
-                onClick={()=>{this.props.history.push(AppRoutes.equip_profile)}}
                 fontSize="18px"
                 className="mx-2"
                 minHeight="43px"
@@ -334,4 +460,3 @@ import { AppRoutes } from "../../../core/constants";
     );
   }
 }
-export default withRouter(NewEquip)

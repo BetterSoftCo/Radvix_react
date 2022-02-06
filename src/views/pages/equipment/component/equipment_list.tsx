@@ -31,7 +31,7 @@ export const EquipmentList: React.FC<TableComponentProp> = ({
                   theme={Theme.light}
                   children={
                     <img
-                      src="/images/layout/img_avatar.png"
+                      src="/images/images/img_avatar.png"
                       alt="Avatar"
                       className="rounded-circle avatar mx-2"
                       width={58}
@@ -62,7 +62,7 @@ export const EquipmentList: React.FC<TableComponentProp> = ({
                     className="pointer mx-1"
                   >
                     <img
-                      src="/images/pages/google_docs.svg"
+                      src="/images/icons/google_docs.svg"
                       alt="radvix"
                       width={12}
                       height={12}
@@ -75,7 +75,7 @@ export const EquipmentList: React.FC<TableComponentProp> = ({
                     onClick={(e) => console.log("sgdsa")}
                     className="pointer"
                   >
-                    <img src="/images/pages/edit.svg" alt="radvix" />
+                    <img src="/images/icons/edit.svg" alt="radvix" />
                   </CircleIcon>
                 </div>
               </td>

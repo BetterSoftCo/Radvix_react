@@ -16,7 +16,7 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
             <div className="row h-100">
               <div className="col-md-2 col-6 d-flex justify-content-start align-items-center">
                 <img
-                  src="/images/layout/radvix_logo.png"
+                  src="/images/images/radvix_logo.png"
                   height="42px"
                   width="100px"
                 />
@@ -35,7 +35,7 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
                       children={
                         <div>
                           <img
-                            src="/Images/component/group_1.svg"
+                            src="/images/icons/home.svg"
                             alt="sssss"
                             height='20'
                           />{" "}
@@ -82,7 +82,7 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
             <div className="d-flex align-items-center justify-content-between">
               <img
               onClick={()=>{props.history.push(AppRoutes.member_profile)}}
-                src="/images/layout/img_avatar.png"
+                src="/images/images/img_avatar.png"
                 alt="Avatar"
                 className="rounded-circle avatar pointer"
               />
@@ -98,10 +98,10 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
                 ></MainButton>
               </div>
               <a onClick={()=>{props.history.push(AppRoutes.member_profile)}} className="pointer mx-1">
-                <img src="/Images/layout/profile_view_icon.svg" alt="" />
+                <img src="/images/icons/profile_view_icon.svg" alt="" />
               </a>
               <a onClick={()=>{props.history.push(AppRoutes.login)}} className="pointer mx-1">
-                <img src="/Images/layout/logout_icon.svg" alt="" />
+                <img src="/images/icons/logout_icon.svg" alt="" />
               </a>
             </div>
           </div>

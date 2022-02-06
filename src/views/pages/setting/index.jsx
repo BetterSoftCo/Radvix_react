@@ -65,7 +65,7 @@ export class SettingPage extends React.Component {
                   <h6 className="col-4 t-title mb-0">Payment Method</h6>
                   <div className="col-8 t-desc">
                     <img
-                      src="/Images/pages/mastercard.svg"
+                      src="/images/images/mastercard.svg"
                       className="mx-2"
                       alt="radvix"
                     />

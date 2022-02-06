@@ -12,7 +12,7 @@ const PlanTwo: React.FC<RouteComponentProps> = (props) => {
       <div className="form-register">
         <div className="header-form">
           <img
-            src="/images/pages/toggle_icon_register.svg"
+            src="/images/icons/toggle_icon_register.svg"
             alt="radvix"
             className="mx-3"
           />{" "}
@@ -153,7 +153,7 @@ const PlanTwo: React.FC<RouteComponentProps> = (props) => {
                     <div>
                       Payment
                       <img
-                        src="/Images/pages/arrow.svg"
+                        src="/Images/icons/arrow.svg"
                         alt="sssss"
                         className="mx-2"
                       />

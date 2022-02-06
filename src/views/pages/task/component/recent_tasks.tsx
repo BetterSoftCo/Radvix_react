@@ -67,7 +67,7 @@ export const AcordienTable = (props: IAcordienTable) => {
                         onClick={(e) => handelOnclick(e)}
                         className="pointer mx-1"
                       >
-                        <img src="/images/pages/edit.svg" alt="radvix" />
+                        <img src="/images/icons/edit.svg" alt="radvix" />
                       </CircleIcon>
                     ) : null}
 
@@ -79,7 +79,7 @@ export const AcordienTable = (props: IAcordienTable) => {
                       className="pointer mx-1"
                     >
                       <img
-                        src="/images/pages/start_discussion.svg"
+                        src="/images/icons/start_discussion.svg"
                         alt="radvix"
                       />
                     </CircleIcon>
@@ -91,7 +91,7 @@ export const AcordienTable = (props: IAcordienTable) => {
                       className="pointer mx-1"
                     >
                       <img
-                        src="/images/pages/google_docs.svg"
+                        src="/images/icons/google_docs.svg"
                         alt="radvix"
                         width={12}
                         height={12}

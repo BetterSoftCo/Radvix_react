@@ -29,7 +29,7 @@ import { AppRoutes } from "../../../core/constants";
         {file.name} - {file.size} bytes
         <CircleIcon type={ThemeCircleIcon.dark} width="22px" height="22px">
           <img
-            src="/images/pages/garbage_can.svg"
+            src="/images/icons/garbage_can.svg"
             alt="radvix"
             width={15}
             height={15}
@@ -149,7 +149,7 @@ import { AppRoutes } from "../../../core/constants";
                           children={
                             <div className="d-flex justify-content-between align-items-center">
                               <img
-                                src="/Images/component/cloud_computing.svg"
+                                src="/Images/icons/cloud_computing.svg"
                                 alt="sssss"
                                 height="20"
                                 

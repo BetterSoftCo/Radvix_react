@@ -65,7 +65,7 @@ export class DashboardPage extends React.Component {
                 <div className="left d-flex w-50 align-items-center">
                   <h6 style={{ width: "45%" }}>Research Updates</h6>
                   <InputIcon
-                    chilren={<img src="/images/pages/search_box_icon.svg" />}
+                    chilren={<img src="/images/icons/search_box_icon.svg" />}
                     width="100%"
                     placeholder="Search..."
                     TopPosition="15%"
@@ -136,7 +136,7 @@ export class DashboardPage extends React.Component {
                 <div className="left d-flex w-50 align-items-center">
                   <h6 style={{ width: "35%" }}>Recent Tasks</h6>
                   <InputIcon
-                    chilren={<img src="/images/pages/search_box_icon.svg" />}
+                    chilren={<img src="/images/icons/search_box_icon.svg" />}
                     width="100%"
                     placeholder="Search..."
                     TopPosition="15%"
@@ -207,7 +207,7 @@ export class DashboardPage extends React.Component {
                 <div className="left d-flex w-50 align-items-center">
                   <h6 style={{ width: "45%" }}>Recent Data Sets</h6>
                   <InputIcon
-                    chilren={<img src="/images/pages/search_box_icon.svg" />}
+                    chilren={<img src="/images/icons/search_box_icon.svg" />}
                     width="100%"
                     placeholder="Search..."
                     TopPosition="15%"
@@ -282,7 +282,7 @@ const HeadDashboardPage: React.FC = () => {
       <div className="overviwe-item">
         <div className="d-flex align-items-center justify-content-around">
           <img
-            src="images/pages/members_involved_overview_icon.svg"
+            src="/images/icons/members_involved_overview_icon.svg"
             alt="Avatar"
             className="avatar"
           />
@@ -297,7 +297,7 @@ const HeadDashboardPage: React.FC = () => {
       <div className="overviwe-item">
         <div className="d-flex align-items-center justify-content-around">
           <img
-            src="images/pages/equipment_involved_overview_icon.svg"
+            src="/images/icons/equipment_involved_overview_icon.svg"
             alt="Avatar"
             className="avatar"
           />
@@ -312,7 +312,7 @@ const HeadDashboardPage: React.FC = () => {
       <div className="overviwe-item">
         <div className="d-flex align-items-center justify-content-around">
           <img
-            src="/images/layout/compeleted_tasks_verview_icon.svg"
+            src="/Images/icons/compeleted_tasks_verview_icon.svg"
             alt="Avatar"
             className="avatar"
           />
@@ -327,7 +327,7 @@ const HeadDashboardPage: React.FC = () => {
       <div className="overviwe-item">
         <div className="d-flex align-items-center justify-content-around">
           <img
-            src="/images/pages/pending_tasks_overview_icon.svg"
+            src="/images/icons/pending_tasks_overview_icon.svg"
             alt="Avatar"
             className="avatar"
           />
@@ -342,7 +342,7 @@ const HeadDashboardPage: React.FC = () => {
       <div className="overviwe-item">
         <div className="d-flex align-items-center justify-content-around">
           <img
-            src="/images/layout/project_deadline_overview_icon.svg"
+            src="/images/icons/project_deadline_overview_icon.svg"
             alt="Avatar"
             className="avatar"
           />

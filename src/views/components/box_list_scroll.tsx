@@ -62,7 +62,7 @@ export const BoxListScroll: React.FC<IBoxListScroll> = ({
                 DeleteFunc(e, item[`${ValueItem}`]);
               }}
             >
-              <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
+              <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
             </CircleIcon>
           ) : null}
         </div>

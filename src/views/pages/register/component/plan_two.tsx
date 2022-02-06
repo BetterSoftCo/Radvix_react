@@ -12,7 +12,7 @@ const PlanTwo: React.FC<RouteComponentProps> = (props) => {
       <div className="form-register">
         <div className="header-form">
           <img
-            src="/images/pages/toggle_icon_register.svg"
+            src="/images/icons/toggle_icon_register.svg"
             alt="radvix"
             className="mx-3"
           />{" "}
@@ -55,25 +55,25 @@ const PlanTwo: React.FC<RouteComponentProps> = (props) => {
                     chilren={
                       <div className="d-flex justify-content-end justify-content-center">
                         <img
-                          src="/images/pages/visa.svg"
+                          src="/images/images/visa.svg"
                           width={44}
                           height={34}
                           alt=""
                         />
                         <img
-                          src="/images/pages/discover.svg"
+                          src="/images/images/discover.svg"
                           width={44}
                           height={34}
                           alt=""
                         />
                         <img
-                          src="/images/pages/american-express.svg"
+                          src="/images/images/american-express.svg"
                           width={44}
                           height={34}
                           alt=""
                         />
                         <img
-                          src="/images/pages/mastercard.svg"
+                          src="/images/images/mastercard.svg"
                           width={44}
                           height={34}
                           alt=""
@@ -97,7 +97,7 @@ const PlanTwo: React.FC<RouteComponentProps> = (props) => {
                       TopPosition="4%"
                       chilren={
                         <img
-                          src="/images/pages/cvc.svg"
+                          src="/images/images/cvc.svg"
                           width={44}
                           height={34}
                           alt=""
@@ -135,7 +135,7 @@ const PlanTwo: React.FC<RouteComponentProps> = (props) => {
                       <div>
                         Activate Account
                         <img
-                          src="/Images/pages/arrow.svg"
+                          src="/Images/icons/arrow.svg"
                           alt="sssss"
                           className="mx-2"
                         />

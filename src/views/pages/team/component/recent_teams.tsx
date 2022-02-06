@@ -69,7 +69,7 @@ const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
                       className="pointer m-1"
                     >
                       <img
-                        src="/images/pages/google_docs.svg"
+                        src="/images/icons/google_docs.svg"
                         alt="radvix"
                         width={12}
                         height={12}
@@ -83,7 +83,7 @@ const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
                         onClick={() => props.history.push(AppRoutes.team_edit)}
                         className="pointer m-1"
                       >
-                        <img src="/images/pages/edit.svg" alt="radvix" />
+                        <img src="/images/icons/edit.svg" alt="radvix" />
                       </CircleIcon>
                     ) : null}
                   </div>
@@ -138,7 +138,7 @@ const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
                       className="pointer  m-1"
                     >
                       <img
-                        src="/images/pages/google_docs.svg"
+                        src="/images/icons/google_docs.svg"
                         alt="radvix"
                         width={12}
                         height={12}

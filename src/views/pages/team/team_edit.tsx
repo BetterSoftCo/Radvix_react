@@ -66,17 +66,17 @@ class TeamPageEdit extends React.Component<RouteComponentProps> {
                     {
                       text: "Nima Hosseinzadeh",
                       id: 1,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 2,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 3,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                   ]}
                   TextItem="text"
@@ -111,17 +111,17 @@ class TeamPageEdit extends React.Component<RouteComponentProps> {
                     {
                       text: "Nima Hosseinzadeh",
                       id: 1,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 2,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 3,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                   ]}
                   TextItem="text"
@@ -164,7 +164,7 @@ class TeamPageEdit extends React.Component<RouteComponentProps> {
                           width="22px"
                           height="22px"
                         >
-                          <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
+                          <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
                         </CircleIcon>
                       </div>
                     }
@@ -183,7 +183,7 @@ class TeamPageEdit extends React.Component<RouteComponentProps> {
                           width="22px"
                           height="22px"
                         >
-                          <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
+                          <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
                         </CircleIcon>
                       </div>
                     }
@@ -198,17 +198,17 @@ class TeamPageEdit extends React.Component<RouteComponentProps> {
                     {
                       text: "Nima Hosseinzadeh",
                       id: 1,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 2,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 3,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                   ]}
                   TextItem="text"
@@ -251,7 +251,7 @@ class TeamPageEdit extends React.Component<RouteComponentProps> {
                           width="22px"
                           height="22px"
                         >
-                          <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
+                          <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
                         </CircleIcon>
                       </div>
                     }
@@ -270,7 +270,7 @@ class TeamPageEdit extends React.Component<RouteComponentProps> {
                           width="22px"
                           height="22px"
                         >
-                          <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
+                          <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
                         </CircleIcon>
                       </div>
                     }

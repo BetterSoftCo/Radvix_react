@@ -44,7 +44,7 @@ const TableListLaboratory: React.FC<
                     }
                   >
                     <img
-                      src="/images/pages/google_docs.svg"
+                      src="/images/icons/google_docs.svg"
                       alt="radvix"
                       width={12}
                       height={12}
@@ -59,7 +59,7 @@ const TableListLaboratory: React.FC<
                     }
                     className="pointer"
                   >
-                    <img src="/images/pages/edit.svg" alt="radvix" />
+                    <img src="/images/icons/edit.svg" alt="radvix" />
                   </CircleIcon>
                 </div>
               </td>

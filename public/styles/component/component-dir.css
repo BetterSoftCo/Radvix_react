@@ -52,7 +52,7 @@ button {
 
 .InputSelectStyle {
   border-radius: 9px;
-  background-image: url("./../../Images/component/down-arrow-black-circular-button.svg");
+  background-image: url("./../../Images/icons/down-arrow-black-circular-button.svg");
 }
 
 .Icon-inside {
@@ -327,7 +327,7 @@ button {
   position: absolute;
   left: 4px;
   padding-left: 1rem;
-  background-image: url("./../../Images/pages/toggle_Icon.svg");
+  background-image: url("./../../Images/icons/toggle_Icon.svg");
 }
 
 .TableBox .accordion-button {

@@ -52,7 +52,7 @@ import  MyDataCollectionTable  from "./component/my_data_collection_tbl";
                 <h6 style={{ width: "35%" }}>Data Collection</h6>
                 <InputIcon
                   chilren={
-                    <img src='/images/pages/search_box_icon.svg' alt="" />
+                    <img src='/images/icons/search_box_icon.svg' alt="" />
                   }
                   width="100%"
                   placeholder="Search..."  TopPosition="15%"

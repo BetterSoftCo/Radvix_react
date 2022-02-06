@@ -9,7 +9,7 @@ const PlanThree: React.FC<RouteComponentProps> = (props) => {
       <div className="form-register">
         <div className="header-form">
           <img
-            src="/images/pages/toggle_icon_register.svg"
+            src="/images/icons/toggle_icon_register.svg"
             alt="radvix"
             className="mx-3"
           />{" "}
@@ -48,7 +48,7 @@ const PlanThree: React.FC<RouteComponentProps> = (props) => {
                 <div>
                   Already Activated Your Account?
                   <img
-                    src="/Images/pages/arrow.svg"
+                    src="/Images/icons/arrow.svg"
                     alt="sssss"
                     className="mx-2"
                   />
@@ -66,7 +66,7 @@ const PlanThree: React.FC<RouteComponentProps> = (props) => {
                 <div>
                   Didn’t Receive Any Emails?
                   <img
-                    src="/Images/pages/arrow.svg"
+                    src="/Images/icons/arrow.svg"
                     alt="sssss"
                     className="mx-2"
                   />

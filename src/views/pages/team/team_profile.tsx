@@ -37,7 +37,7 @@ class TeamPageProfile extends React.Component<RouteComponentProps> {
                   this.props.history.push(AppRoutes.team_edit);
                 }}
               >
-                <img src="/images/pages/edit.svg" alt="radvix" />
+                <img src="/images/icons/edit.svg" alt="radvix" />
               </CircleIcon>
             </h5>
             <MainButton
@@ -95,7 +95,7 @@ class TeamPageProfile extends React.Component<RouteComponentProps> {
                   theme={Theme.dark}
                   text="Projects"
                   children={
-                    <img src="/images/pages/lamp.svg" className="mx-2" alt="" />
+                    <img src="/images/icons/lamp.svg" className="mx-2" alt="" />
                   }
                 ></IconTextRow>
                 <div className="tags mt-2">
@@ -221,17 +221,17 @@ class TeamPageProfile extends React.Component<RouteComponentProps> {
                     {
                       text: "Nima Hosseinzadeh",
                       id: 1,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 2,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 3,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                   ]}
                   TextItem="text"
@@ -252,7 +252,7 @@ class TeamPageProfile extends React.Component<RouteComponentProps> {
                   text="Teams (Members)"
                   children={
                     <img
-                      src="/Images/pages/team_menu.svg"
+                      src="/images/icons/team_menu.svg"
                       className="mx-2"
                       alt=""
                     />
@@ -264,17 +264,17 @@ class TeamPageProfile extends React.Component<RouteComponentProps> {
                     {
                       text: "Nima Hosseinzadeh",
                       id: 1,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 2,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 3,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                   ]}
                   TextItem="text"
