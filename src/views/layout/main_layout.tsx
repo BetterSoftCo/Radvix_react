@@ -4,11 +4,16 @@ import Header from "./header_layout";
 import RightSection from "./right_section";
 import Sidebar from "./sidebar";
 import { ToastContainer } from "react-toastify";
+import { AppSettingController } from "../../controllers/app_setting/setting_controller";
 
 interface IMainLayout {
   children: ReactNode;
 }
 class MainLayout extends React.Component<IMainLayout & RouteComponentProps> {
+ private controller: AppSettingController = new AppSettingController();
+  componentDidMount(){
+    this.controller.enumList()
+  }
   render() {
     return (
       <Fragment>
