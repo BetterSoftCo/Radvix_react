@@ -19,6 +19,7 @@ interface InputsProps {
   label?: ReactNode;
   popQuestion?: string;
   optional?: string;
+  inValid?: string;
 }
 export const RadioGroup: React.FC<InputsProps> = ({
   width,
@@ -36,6 +37,7 @@ export const RadioGroup: React.FC<InputsProps> = ({
   label,
   popQuestion,
   optional,
+  inValid,
 }) => {
   let styles = {
     width: width,
@@ -81,6 +83,12 @@ export const RadioGroup: React.FC<InputsProps> = ({
       </span>
     );
   }
+  let TemplateValidation;
+  let IsinValid:string;
+  if (inValid) {
+    TemplateValidation = <div>{inValid}</div>;
+    IsinValid = "is-invalid";
+  }
 
   return (
     <Fragment>
@@ -92,7 +100,9 @@ export const RadioGroup: React.FC<InputsProps> = ({
             " " +
             "RadioButtonGroupStyle" +
             " " +
-            "form-check form-check-inline mt-2"
+            "form-check form-check-inline mt-2" +
+            " " +
+            IsinValid
           }`}
           style={styles}
           key={index}
@@ -101,9 +111,10 @@ export const RadioGroup: React.FC<InputsProps> = ({
             className="form-check-input"
             type="radio"
             name={name}
-            id={item[`${ValueItem}`] + name}
-            value={item[`${ValueItem}`]}
+            id={item[ValueItem] + name}
+            value={item[ValueItem]}
             onChange={onChange}
+            checked
           />
           <label
             className="form-check-label"
@@ -113,6 +124,7 @@ export const RadioGroup: React.FC<InputsProps> = ({
           </label>
         </div>
       ))}
+      {TemplateValidation}
     </Fragment>
   );
 };

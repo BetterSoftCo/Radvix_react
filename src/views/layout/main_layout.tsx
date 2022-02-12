@@ -10,7 +10,9 @@ interface IMainLayout {
   children: ReactNode;
 }
 class MainLayout extends React.Component<IMainLayout & RouteComponentProps> {
+
  private controller: AppSettingController = new AppSettingController();
+ 
   componentDidMount(){
     this.controller.enumList()
   }

@@ -45,7 +45,7 @@ export class DashboardPage extends React.Component {
       height: 30,
     },
   ];
-  RoleUser = store.getState().user;
+  RoleUser = store.getState().userRole;
   
   
   componentDidMount() {

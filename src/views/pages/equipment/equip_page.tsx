@@ -8,7 +8,7 @@ import { SelectComponent } from "../../components/select_input";
 import { EquipmentList } from "./component/equipment_list";
 
 export class EquipPage extends React.Component {
-  RoleUser = store.getState().user;
+  RoleUser = store.getState().userRole;
   state = {
     Data: {
       Items: [

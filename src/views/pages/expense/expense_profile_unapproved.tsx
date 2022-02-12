@@ -7,7 +7,7 @@ import { UserRoles } from "../../../core/utils";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
  class ExpensePageProfile extends React.Component<RouteComponentProps> {
-  RoleUser = store.getState().user;
+  RoleUser = store.getState().userRole;
   state = {
     Data: {
       Items: [

@@ -2,7 +2,7 @@
 import React, { Fragment, ReactNode } from "react";
 import { MainButton, MainButtonType } from "./button";
 import { CircleIcon, ThemeCircleIcon } from "./circle_icon";
-
+import Select from "react-select";
 interface InputsProps {
   width?: string;
   height?: string;
@@ -19,7 +19,8 @@ interface InputsProps {
   label?: ReactNode;
   popQuestion?: string;
   optional?: string;
-  border?:string;
+  border?: string;
+  isMulti?: boolean
 }
 export const SelectComponent: React.FC<InputsProps> = ({
   width,
@@ -33,8 +34,6 @@ export const SelectComponent: React.FC<InputsProps> = ({
   onChange,
   placeholder,
   items,
-  TextItem,
-  ValueItem,
   label,
   popQuestion,
   optional,
@@ -44,10 +43,14 @@ export const SelectComponent: React.FC<InputsProps> = ({
     height: height,
     minWidth: minWidth,
     minHeigth: minHeigth,
-    backgroundColor: backgroundColor,
-    borderRadius: borderRadius,
-    border:border
   };
+  const customStyles = {
+    option: (provided: any, state: { isSelected: any; }) => ({
+      ...provided,
+      ...styles
+    }),
+
+  }
   let IsclassName;
   if (className !== undefined) {
     IsclassName = className;
@@ -55,7 +58,7 @@ export const SelectComponent: React.FC<InputsProps> = ({
     IsclassName = "";
   }
   let TemplateLabel;
-  
+
   if (label !== null && label !== undefined) {
     TemplateLabel = (
       <span className="label d-flex align-items-center">
@@ -85,26 +88,21 @@ export const SelectComponent: React.FC<InputsProps> = ({
       </span>
     );
   }
+  
 
   return (
     <Fragment>
       {TemplateLabel}
-      <select
+      <Select
+        options={items}
         className={`${
-          IsclassName + " " + "InputSelectStyle" + " " + "form-select"
+          IsclassName + " " + "InputSelectStyle"
         }`}
-        style={styles}
-        aria-label="Default select example"
         onChange={onChange}
-        defaultValue={placeholder}
-      >
-        <option disabled>{placeholder}</option>
-        {items.map((item, index) => (
-          <option value={item[`${ValueItem}`]} key={index}>
-            {item[`${TextItem}`]}
-          </option>
-        ))}
-      </select>
+        placeholder={placeholder}
+        styles={customStyles}
+        isMulti
+      />
     </Fragment>
   );
 };

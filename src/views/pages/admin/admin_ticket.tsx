@@ -10,7 +10,7 @@ import { Theme } from "../../../core/utils";
 import { BoxListScroll } from "../../components/box_list_scroll";
 import { ButtonGroup } from "../../components/botton_group";
 export class AdminTicket extends React.Component {
-  RoleUser = store.getState().user;
+  RoleUser = store.getState().userRole;
   date = new Date();
   handelChangeDate(params: any): void {
     console.log(params);

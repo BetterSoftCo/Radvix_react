@@ -16,6 +16,18 @@ button {
   text-shadow: 0px 0px 0px transparent;
 }
 
+button.loading {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 .darkCircleIcon {
   color: white;
   background-color: #474747;
@@ -50,9 +62,30 @@ button {
   border: 1px solid red;
 }
 
-.InputSelectStyle {
+.css-1hb7zxy-IndicatorsContainer {
+  display: none !important;
+}
+
+.css-1s2u09g-control {
+  border: none !important;
+}
+
+.InputSelectStyle .css-319lph-ValueContainer, .InputSelectStyle .css-g1d714-ValueContainer {
   border-radius: 9px;
+  border: 1px solid #adadad;
+  position: relative;
+  background: #fff;
+}
+
+.InputSelectStyle .css-319lph-ValueContainer::after, .InputSelectStyle .css-g1d714-ValueContainer::after {
+  content: '';
+  position: absolute;
+  right: 9px;
   background-image: url("./../../Images/icons/down-arrow-black-circular-button.svg");
+  width: 30px;
+  height: 30px;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .Icon-inside {

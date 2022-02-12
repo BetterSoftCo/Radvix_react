@@ -7,7 +7,7 @@ import { SelectComponent } from "../../components/select_input";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import Dropzone from "react-dropzone";
 export class EditMyProfile extends React.Component {
-  RoleUser = store.getState().user;
+  RoleUser = store.getState().userRole;
   date = new Date();
   handelChangeDate(params: any): void {
     console.log(params);

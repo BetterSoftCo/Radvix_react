@@ -1,6 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import { AppConstants } from "./constants";
+import { AppConstants, AppRoutes } from "./constants";
 export const HTTP = axios.create({
   baseURL: AppConstants.base_url_api,
   headers: {
@@ -10,7 +10,10 @@ export const HTTP = axios.create({
     "Access-Control-Allow-Credentials": "true",
   },
 });
-
+let token = localStorage.getItem("token");
+if (token) {
+  HTTP.defaults.headers.common['authorization'] = `Bearer ${token}`;
+}
 HTTP.interceptors.request.use(
   function (config) {
     return config;
@@ -39,7 +42,11 @@ HTTP.interceptors.response.use(
   },
   function (error) {
     if (error.response) {
-      if (error.response) {        
+      if (error.response) {
+        if(error.response.status === 401){
+          // window.location.replace(AppRoutes.login);
+          // localStorage.clear()
+        }        
         toast.error(
           `StatusError:${error.response.status} : ${error.response.data.message}`,
           {

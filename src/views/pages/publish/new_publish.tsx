@@ -11,7 +11,7 @@ import { BoxAlert } from "../../components/box_alert";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
  class PublishPageNew extends React.Component<RouteComponentProps> {
-  RoleUser = store.getState().user;
+  RoleUser = store.getState().userRole;
   date = new Date();
   handelChangeDate(params: any): void {
     console.log(params);

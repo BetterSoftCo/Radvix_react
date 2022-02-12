@@ -8,10 +8,15 @@ import { UserSigninReq } from "../../../data/models/requests/user/signin_req";
 import { AppRoutes } from "../../../core/constants";
 import SimpleReactValidator from "simple-react-validator";
 import { store } from "../../../data/store";
-import { SetUserRole } from "../../../data/store/actions/user_action";
+import {
+  SetUserInfo,
+  SetUserRole,
+} from "../../../data/store/actions/user_action";
 const LoginPage: React.FC<RouteComponentProps> = (props) => {
   const [password, setpassword] = useState("");
   const [email, setemail] = useState("");
+  const [loading, setloading] = useState(false);
+
   const controller: UserController = new UserController();
   async function SignIn() {
     const formValid = Validator.current.allValid();
@@ -23,17 +28,24 @@ const LoginPage: React.FC<RouteComponentProps> = (props) => {
         password: password,
         email: email,
       };
-      await controller.Signin(body, (res) => { 
+      setloading(true);
+      await controller.Signin(body, (res) => {
+        setloading(false);
         if (res) {
-          store.dispatch(SetUserRole(res.role ?? 0))
+          store.dispatch(SetUserRole(res.role ?? 0));
+          store.dispatch(SetUserInfo(res));
+          const UserInfo = store.getState().userInfo;
+          console.log(UserInfo, "UserInfo");
           props.history.replace(AppRoutes.dashboard);
         }
-      });
+      }, ()=>{setloading(false);})
     }
   }
-  const Validator = useRef(new SimpleReactValidator({
-    className:'text-danger'
-  }));
+  const Validator = useRef(
+    new SimpleReactValidator({
+      className: "text-danger",
+    })
+  );
   const [, forceUpdate] = useState(0);
   return (
     <div className="login d-flex flex-column flex-md-row">
@@ -97,6 +109,7 @@ const LoginPage: React.FC<RouteComponentProps> = (props) => {
               minWidth="60px"
               minHeight="37px"
               className="align-self-end"
+              loading={loading}
               onClick={() => {
                 SignIn();
               }}
@@ -143,8 +156,8 @@ const LoginPage: React.FC<RouteComponentProps> = (props) => {
           backgroundColor="#0274B3"
           children={
             <div>
-              <img src="/images/images/linkedIn_logo_initials.png" /> Login using
-              LinkedIn
+              <img src="/images/images/linkedIn_logo_initials.png" /> Login
+              using LinkedIn
             </div>
           }
         ></MainButton>

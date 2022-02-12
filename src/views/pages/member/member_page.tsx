@@ -7,7 +7,7 @@ import { InputIcon } from "../../components/search_box";
 import { SelectComponent } from "../../components/select_input";
 
 export class MemberPage extends React.Component {
-  RoleUser = store.getState().user;
+  RoleUser = store.getState().userRole;
   render() {
     return (
       <div className="container-fluid research">

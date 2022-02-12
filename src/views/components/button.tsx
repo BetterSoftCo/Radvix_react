@@ -1,6 +1,7 @@
 /* eslint-disable no-extend-native */
 
 import React from "react";
+import ReactLoading from "react-loading";
 export enum MainButtonType {
   dark = "darkButton",
   light = "lightButton",
@@ -19,6 +20,7 @@ interface MainButtonProps {
   fontSize?: string;
   className?: string;
   color?: string;
+  loading?: boolean;
 }
 
 export const MainButton: React.FC<MainButtonProps> = ({
@@ -34,20 +36,32 @@ export const MainButton: React.FC<MainButtonProps> = ({
   fontSize,
   className = "",
   color,
-}) =>
-  <button
-    onClick={onClick}
-    className={`${className + " " + type}`}
-    style={{
-      display: display,
-      backgroundColor,
-      border,
-      borderRadius,
-      minHeight,
-      minWidth,
-      fontSize,
-      color,
-    }}
-  >
-    {children}
-  </button>;
+  loading,
+}) => {
+  let IsLoading ;
+  if(loading){
+    IsLoading = 'loading'
+  }
+  return (
+    <button
+      onClick={onClick}
+      className={`${className + " " + type + " " + IsLoading}`}
+      style={{
+        display: display,
+        backgroundColor,
+        border,
+        borderRadius,
+        minHeight,
+        minWidth,
+        fontSize,
+        color,
+      }}
+    >
+      {loading ? (
+        <ReactLoading type="spin" color={color} height={20} width={20} />
+      ) : (
+        children
+      )}
+    </button>
+  );
+};

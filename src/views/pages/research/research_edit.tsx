@@ -15,7 +15,7 @@ import { RadioGroup } from "../../components/radio_group";
 import { ButtonGroup } from "../../components/botton_group";
 import { BoxListScroll } from "../../components/box_list_scroll";
 class ResearchPageEdit extends React.Component<RouteComponentProps> {
-  RoleUser = store.getState().user;
+  RoleUser = store.getState().userRole;
   date = new Date();
   handelChangeDate(params: any): void {
     console.log(params);

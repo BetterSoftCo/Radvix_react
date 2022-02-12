@@ -10,7 +10,7 @@ import Dropzone from "react-dropzone";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
 class ExpensePageNew extends React.Component<RouteComponentProps> {
-  RoleUser = store.getState().user;
+  RoleUser = store.getState().userRole;
   date = new Date();
   handelChangeDate(params: any): void {
     console.log(params);

@@ -8,7 +8,7 @@ import { SelectComponent } from "../../components/select_input";
 import  ExpenseArchiveTable  from "./component/expense_archive_tbl";
 
 export class ExpenseArchive extends React.Component {
-  RoleUser = store.getState().user;
+  RoleUser = store.getState().userRole;
   state = {
     Data: {
       Items: [

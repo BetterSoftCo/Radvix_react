@@ -10,7 +10,7 @@ import { Theme } from "../../../core/utils";
 import { BoxListScroll } from "../../components/box_list_scroll";
 import { RouteComponentProps, withRouter } from "react-router";
  class Ticket extends React.Component<RouteComponentProps> {
-  RoleUser = store.getState().user;
+  RoleUser = store.getState().userRole;
   date = new Date();
   handelChangeDate(params: any): void {
     console.log(params);

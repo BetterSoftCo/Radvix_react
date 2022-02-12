@@ -10,7 +10,7 @@ import { withRouter, RouteComponentProps } from "react-router";
 import { AppRoutes } from "../../../core/constants";
 
 class TeamPage extends React.Component<RouteComponentProps> {
-  RoleUser = store.getState().user;
+  RoleUser = store.getState().userRole;
   render() {
     return (
       <div className="container-fluid research">

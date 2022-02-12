@@ -71,7 +71,7 @@ import {
   not_found_page,
 } from "./views";
 
-const RoleUser: UserRoles = store.getState().user;
+const RoleUser: UserRoles = store.getState().userRole;
 
 ReactDOM.render(
   <Provider store={store}>

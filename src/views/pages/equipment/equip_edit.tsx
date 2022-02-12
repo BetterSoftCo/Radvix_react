@@ -8,7 +8,7 @@ import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import Dropzone from "react-dropzone";
 import { RadioGroup } from "../../components/radio_group";
 export class EditEquip extends React.Component {
-  RoleUser = store.getState().user;
+  RoleUser = store.getState().userRole;
   date = new Date();
   handelChangeDate(params: any): void {
     console.log(params);

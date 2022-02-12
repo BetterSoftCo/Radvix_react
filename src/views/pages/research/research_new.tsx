@@ -12,15 +12,105 @@ import { ButtonGroup } from "../../components/botton_group";
 import { BoxAlert } from "../../components/box_alert";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
+import { ResearchController } from "../../../controllers/research/research_controller";
+import SimpleReactValidator from "simple-react-validator";
 class ResearchPageNew extends React.Component<RouteComponentProps> {
-  RoleUser = store.getState().user;
-  date = new Date();
-  handelChangeDate(params: any): void {
-    console.log(params);
-  }
+  RoleUser = store.getState().userRole;
+  controller = new ResearchController();
+  validator = new SimpleReactValidator({
+    className: "text-danger",
+  });
   state = {
     files: [],
+    title: "",
+    description: "",
+    startDate: new Date(),
+    endDate: new Date(),
+    currency: 2,
+    priority: 2,
+    teamsId: [],
+    usersId: [],
+    status: 0,
+    listMembers: [],
+    loading: false,
   };
+  handleChange(target: string, val: any) {
+    this.setState({
+      [target]: val,
+    });
+  }
+
+  handelChangeDate(target: string, params: any): void {
+    this.setState({
+      [target]: params,
+    });
+  }
+  handelCreateResearch() {
+    if (this.validator.allValid()) {
+      const body = {
+        title: this.state.title,
+        description: this.state.description,
+        startDate: this.state.startDate,
+        endDate: this.state.endDate,
+        currency: this.state.currency,
+        priority: this.state.priority,
+        teamsId: this.state.teamsId,
+        usersId: this.state.usersId,
+        status: 0,
+      };
+      this.setState({
+        loading: true,
+      });
+      this.controller.createResearch(
+        body,
+        (res) => {
+          console.log(res);
+          this.setState({
+            files: [],
+            title: "",
+            description: "",
+            startDate: new Date(),
+            endDate: new Date(),
+            currency: 2,
+            priority: 2,
+            teamsId: [],
+            usersId: [],
+            status: 0,
+            listMembers: [],
+            loading: false,
+          });
+          this.props.history.push(AppRoutes.profile_research)
+        },
+        (err) => {
+          this.setState({
+            loading: false,
+          });
+        }
+      );
+    } else {
+      this.validator.showMessages();
+      this.forceUpdate();
+    }
+  }
+  handelChangeSelect(
+    e: Array<{ label: string; value: number; isUser: boolean }>
+  ) {
+    this.setState({
+      teamsId: e
+        .filter((item) => item.isUser === false)
+        .map((item) => item.value),
+      usersId: e
+        .filter((item) => item.isUser === true)
+        .map((item) => item.value),
+    });
+  }
+  componentDidMount() {
+    this.controller.researchSearch((res) => {
+      this.setState({
+        listMembers: res,
+      });
+    });
+  }
   onDrop = (files: any) => {
     this.setState({ files });
     console.log(this.state);
@@ -59,6 +149,14 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
                   type={InputType.text}
                   label="Research Name:"
                   popQuestion="Research Name:"
+                  onChange={(e) => {
+                    this.handleChange("title", e.target.value);
+                  }}
+                  inValid={this.validator.message(
+                    "Research Name",
+                    this.state.title,
+                    "required"
+                  )}
                 ></InputComponent>
               </div>
               <div className="item">
@@ -81,12 +179,16 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
                 </span>
                 <div className="d-flex justify-content-between align-items-center">
                   <DatePicker
-                    selected={this.date}
-                    onChange={this.handelChangeDate}
+                    selected={this.state.startDate}
+                    onChange={(e) => {
+                      this.handelChangeDate("startDate", e);
+                    }}
                   />
                   <DatePicker
-                    selected={this.date}
-                    onChange={this.handelChangeDate}
+                    selected={this.state.endDate}
+                    onChange={(e) => {
+                      this.handelChangeDate("endDate", e);
+                    }}
                   />
                 </div>
               </div>
@@ -96,12 +198,20 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
                   label="Currency"
                   popQuestion="Currency"
                   items={[
-                    { name: "U.S. Dollar ($)", value: 1 },
-                    { name: "Pounds ($)", value: 2 },
-                    { name: "Euro (€)", value: 3 },
+                    { name: "U.S. Dollar ($)", value: 0 },
+                    { name: "Pounds ($)", value: 1 },
+                    { name: "Euro (€)", value: 2 },
                   ]}
                   TextItem="name"
                   ValueItem="value"
+                  onChange={(e) => {
+                    this.handleChange("currency", parseInt(e.target.value));
+                  }}
+                  inValid={this.validator.message(
+                    "Currency",
+                    this.state.currency,
+                    "required"
+                  )}
                 ></RadioGroup>
               </div>
               <div className="item">
@@ -110,12 +220,20 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
                   popQuestion="Research Priority:"
                   name="ResearchPriority"
                   items={[
-                    { name: "Low", value: 1 },
-                    { name: "Medium", value: 2 },
-                    { name: "High", value: 3 },
+                    { name: "Low", value: 0 },
+                    { name: "Medium", value: 1 },
+                    { name: "High", value: 2 },
                   ]}
                   TextItem="name"
                   ValueItem="value"
+                  inValid={this.validator.message(
+                    "Research Priority",
+                    this.state.priority,
+                    "required"
+                  )}
+                  onChange={(e) => {
+                    this.handleChange("priority", e.target.value);
+                  }}
                 ></ButtonGroup>
               </div>
               <div className="item">
@@ -125,6 +243,9 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
                   optional="optional"
                   popQuestion="Research Description:"
                   className="mt-2"
+                  onChange={(e) => {
+                    this.handleChange("description", e.target.value);
+                  }}
                 ></InputComponent>
               </div>
             </div>
@@ -183,9 +304,7 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
                       </div>
                       <aside>
                         <h4>Files</h4>
-                        <ul>
-                          {files}{" "}
-                        </ul>
+                        <ul>{files} </ul>
                       </aside>
                     </section>
                   )}
@@ -211,10 +330,7 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
               </div>
               <div className="item">
                 <SelectComponent
-                  items={[
-                    { name: "test1", id: 1 },
-                    { name: "test2", id: 2 },
-                  ]}
+                  items={this.state.listMembers}
                   TextItem="name"
                   ValueItem="id"
                   className="my-2"
@@ -222,6 +338,10 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
                   label="Assign Teams (Members):"
                   popQuestion="Assign Teams (Members):"
                   optional="optional"
+                  onChange={(e) => {
+                    this.handelChangeSelect(e);
+                  }}
+                  isMulti
                 ></SelectComponent>
               </div>
               <BoxAlert
@@ -248,8 +368,9 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
                 minHeight="43px"
                 minWidth="136px"
                 onClick={() => {
-                  this.props.history.push(AppRoutes.profile_research);
+                  this.handelCreateResearch();
                 }}
+                loading={this.state.loading}
               ></MainButton>
             </div>
           </div>

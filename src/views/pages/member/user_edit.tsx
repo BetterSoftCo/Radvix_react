@@ -8,7 +8,7 @@ import { ButtonGroup } from "../../components/botton_group";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import { BoxListScroll } from "../../components/box_list_scroll";
 export class MemberPageUseEdit extends React.Component {
-  RoleUser = store.getState().user;
+  RoleUser = store.getState().userRole;
   date = new Date();
   handelChangeDate(params: any): void {
     console.log(params);

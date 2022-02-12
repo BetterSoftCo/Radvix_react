@@ -42,7 +42,7 @@ export class AdminDashboard extends React.Component {
       height: 30,
     },
   ];
-  RoleUser = store.getState().user;
+  RoleUser = store.getState().userRole;
   date = new Date();
   render() {
     return (
