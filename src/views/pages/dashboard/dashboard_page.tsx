@@ -73,15 +73,17 @@ export class DashboardPage extends React.Component {
                 </div>
                 <div className="right w-50 d-flex justify-content-end align-items-center">
                   <SelectComponent
-                    width="63px"
+                    width="90px"
                     height="44px"
                     items={[
-                      { item: 1, id: 1 },
-                      { item: 2, id: 2 },
-                      { item: 3, id: 3 },
+                      { label: 1, value: 1 },
+                      { label: 2, value: 2 },
+                      { label: 3, value: 3 },
                     ]}
                     TextItem="item"
                     ValueItem="id"
+                    isMulti={false}
+                    placeholder="1"
                   ></SelectComponent>
                 </div>
               </div>

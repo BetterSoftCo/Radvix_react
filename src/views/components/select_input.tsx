@@ -37,6 +37,7 @@ export const SelectComponent: React.FC<InputsProps> = ({
   label,
   popQuestion,
   optional,
+  isMulti,
 }) => {
   let styles = {
     width: width,
@@ -101,7 +102,7 @@ export const SelectComponent: React.FC<InputsProps> = ({
         onChange={onChange}
         placeholder={placeholder}
         styles={customStyles}
-        isMulti
+        isMulti={isMulti}
       />
     </Fragment>
   );
