@@ -114,7 +114,6 @@ export const RadioGroup: React.FC<InputsProps> = ({
             id={item[ValueItem] + name}
             value={item[ValueItem]}
             onChange={onChange}
-            checked
           />
           <label
             className="form-check-label"

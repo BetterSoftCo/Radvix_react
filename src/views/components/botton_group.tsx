@@ -117,7 +117,7 @@ export const ButtonGroup: React.FC<InputsProps> = ({
               autoComplete="off"
               onChange={onChange}
               disabled={item.disable}
-              checked
+              value={item[ValueItem]}
             />
             <label
               className="btn btn-outline-dark"

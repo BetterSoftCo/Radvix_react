@@ -1,7 +1,7 @@
 import { toast } from "react-toastify";
 import { ResearchReq } from "../../data/models/requests/research/research_req";
+import { ResearchesResResult } from "../../data/models/responses/research/researches_res";
 import { ResearchResResult } from "../../data/models/responses/research/research_res";
-import { ResearchSearchResResult } from "../../data/models/responses/research/research_search_res";
 import { RemoteResearch } from "../../data/remotes/research/remote_research";
 export class ResearchController {
   remote = new RemoteResearch();
@@ -36,6 +36,16 @@ export class ResearchController {
       });
       const listMembers = [...users, ...teams];
       action(listMembers);
+    });
+  }
+  getResearches(body:{PageNumber:number , PageSize:number}, action: (res: ResearchesResResult) => any , error:(res:any)=>any) {
+    this.remote.getResearches(body, (res) => {
+      toast.success(`${res.message}`, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      action(res.result!);
+    },(err)=>{
+      error(err)
     });
   }
 }

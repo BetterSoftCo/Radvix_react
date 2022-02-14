@@ -14,13 +14,31 @@ import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
 import { ResearchController } from "../../../controllers/research/research_controller";
 import SimpleReactValidator from "simple-react-validator";
+import { UploadController } from "../../../controllers/upload_media/upload_media";
+type StateType = {
+  files: Array<File>,
+  title: string,
+  description: string,
+  startDate: Date,
+  endDate: Date,
+  currency: number,
+  priority: number,
+  teamsId: Array<number>,
+  usersId: Array<string>,
+  status: number,
+  listMembers: Array<{ label: string; value: number, isUser: boolean } | {}>,
+  loading: boolean,
+  ExternalUrl: Array<string>,
+  External: string
+}
 class ResearchPageNew extends React.Component<RouteComponentProps> {
   RoleUser = store.getState().userRole;
   controller = new ResearchController();
+  UploadController = new UploadController();
   validator = new SimpleReactValidator({
     className: "text-danger",
   });
-  state = {
+  state: StateType = {
     files: [],
     title: "",
     description: "",
@@ -33,6 +51,8 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
     status: 0,
     listMembers: [],
     loading: false,
+    ExternalUrl: [],
+    External: ""
   };
   handleChange(target: string, val: any) {
     this.setState({
@@ -64,7 +84,7 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
       this.controller.createResearch(
         body,
         (res) => {
-          console.log(res);
+          this.handelUpload(res.id)
           this.setState({
             files: [],
             title: "",
@@ -77,7 +97,6 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
             usersId: [],
             status: 0,
             listMembers: [],
-            loading: false,
           });
           this.props.history.push(AppRoutes.profile_research)
         },
@@ -111,15 +130,60 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
       });
     });
   }
+  async handelUpload(id: number) {
+    const formData = new FormData()
+    for (let i = 0; i < this.state.files.length; i++) {
+      const file = this.state.files[i]
+      formData.append('Files', file)
+    }
+    for (let i = 0; i < this.state.ExternalUrl.length; i++) {
+      const file = this.state.ExternalUrl[i]
+      formData.append('ExternalUrls', file)
+    }
+
+    formData.append('UseCase', '0')
+    formData.append('ResearchId', id.toString())
+    
+    
+    await this.UploadController.UloadMedia(formData, (res) => {
+      this.setState({
+        loading: false,
+      });
+    }, () => {
+      this.setState({
+        loading: false,
+      });
+    })
+  }
+
   onDrop = (files: any) => {
     this.setState({ files });
-    console.log(this.state);
   };
+  handelDeleteFile(arg: File) {
+    this.setState({
+      files: this.state.files.filter(file => file.name !== arg.name)
+    })
+  }
+  addExternalUrl() {
+    let Url = [...this.state.ExternalUrl]
+    Url.push(this.state.External)
+    this.setState({
+      ExternalUrl: Url,
+      External: ''
+    });
+  }
+  handelDeleteExternalLink(link:string){
+    this.setState({
+      ExternalUrl:this.state.ExternalUrl.filter(item=>item !== link)
+    })
+  }
   render() {
     const files = this.state.files.map((file: any) => (
       <li key={file.name}>
         {file.name} - {file.size} bytes
-        <CircleIcon type={ThemeCircleIcon.dark} width="22px" height="22px">
+        <CircleIcon type={ThemeCircleIcon.dark} width="22px" height="22px" onClick={() => {
+          this.handelDeleteFile(file)
+        }}>
           <img
             src="/images/icons/garbage_can.svg"
             alt="radvix"
@@ -232,7 +296,7 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
                     "required"
                   )}
                   onChange={(e) => {
-                    this.handleChange("priority", e.target.value);
+                    this.handleChange("priority", parseInt(e.target.value));
                   }}
                 ></ButtonGroup>
               </div>
@@ -315,6 +379,10 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
                   type={InputType.text}
                   placeholder="https://"
                   className="mx-2"
+                  value={this.state.External}
+                  onChange={(e) => {
+                    this.handleChange("External", e.target.value);
+                  }}
                 ></InputComponent>
                 <CircleIcon
                   width="36px"
@@ -323,11 +391,37 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
                   backgroundColor="#9D9D9D"
                   fontSize="18px"
                   color="#ffffff"
-                  className="px-3"
+                  className="px-3 pointer"
+                  onClick={() => { this.addExternalUrl() }}
                 >
                   <i className="fas fa-plus"></i>
                 </CircleIcon>
               </div>
+              <ul className="file-list mt-3">
+                {
+                  this.state.ExternalUrl.map(item => (
+                    <li className="my-2 d-flex flex-column flex-md-row">
+                      <MainButton
+                        children={item}
+                        type={MainButtonType.dark}
+                        borderRadius="24px"
+                        fontSize="14px"
+                        backgroundColor="#F5F5F5"
+                        color="#096BFF"
+                      ></MainButton>
+                      <CircleIcon
+                        type={ThemeCircleIcon.dark}
+                        width="22px"
+                        height="22px"
+                        className="mx-3 pointer"
+                        onClick={()=>this.handelDeleteExternalLink(item)}
+                      >
+                        <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
+                      </CircleIcon>
+                    </li>
+                  ))
+                }
+              </ul>
               <div className="item">
                 <SelectComponent
                   items={this.state.listMembers}

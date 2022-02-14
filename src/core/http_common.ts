@@ -1,6 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import { AppConstants, AppRoutes } from "./constants";
+import { AppConstants } from "./constants";
 export const HTTP = axios.create({
   baseURL: AppConstants.base_url_api,
   headers: {
@@ -42,7 +42,7 @@ HTTP.interceptors.response.use(
   },
   function (error) {
     if (error.response) {
-      if (error.response) {
+      if (error.response.status) {
         if(error.response.status === 401){
           // window.location.replace(AppRoutes.login);
           // localStorage.clear()

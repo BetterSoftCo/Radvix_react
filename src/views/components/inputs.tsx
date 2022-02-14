@@ -25,6 +25,7 @@ interface InputsProps {
   optional?: string;
   rows?: number;
   inValid?: string;
+  value?:string
 }
 export const InputComponent: React.FC<InputsProps> = ({
   width,
@@ -43,6 +44,7 @@ export const InputComponent: React.FC<InputsProps> = ({
   optional,
   rows = 4,
   inValid,
+  value
 }) => {
   let styles = {
     width: width,
@@ -100,6 +102,7 @@ export const InputComponent: React.FC<InputsProps> = ({
       <input
         type="text"
         style={styles}
+        value={value}
         onChange={onChange}
         placeholder={placeholder}
         onBlur={onBlur}
