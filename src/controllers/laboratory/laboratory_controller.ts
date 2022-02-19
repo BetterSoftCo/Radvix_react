@@ -1,6 +1,7 @@
 import { toast } from "react-toastify";
 import { LaboratoryCreateReq } from "../../data/models/requests/laboratory/laboratory_create_req";
 import { LaboratoryCreateResResult } from "../../data/models/responses/laboratory/laboratory_create_res";
+import { LaboratoryUsersCategoriesResResult } from "../../data/models/responses/laboratory/laboratory_users_categories_res";
 import { RemoteLaboratory } from "../../data/remotes/laboratory/remote_laboratory";
 export class LaboratoryController {
   remote = new RemoteLaboratory();
@@ -21,6 +22,16 @@ export class LaboratoryController {
       (err) => {
         error(err);
       }
+    );
+  }
+  getLaboratoryUsersAndCategories(
+    action: (res: LaboratoryUsersCategoriesResResult) => any
+  ) {
+    this.remote.getLaboratoryUsersAndCategories(
+      (res) => {
+        action(res.result);
+      },
+      (err) => {}
     );
   }
 }
