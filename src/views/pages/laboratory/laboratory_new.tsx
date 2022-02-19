@@ -9,19 +9,34 @@ import { SelectComponent } from "../../components/select_input";
 import { BoxAlert } from "../../components/box_alert";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
- class LaboratoryPageNew extends React.Component<RouteComponentProps> {
+type StateType = {
+  listCategory: Array<{ label: string; value: number } | {}>;
+  files: Array<File>;
+  categoryId:number
+};
+class LaboratoryPageNew extends React.Component<RouteComponentProps> {
   RoleUser = store.getState().userRole;
   date = new Date();
   handelChangeDate(params: any): void {
     console.log(params);
   }
-  state = {
+  state: StateType = {
     files: [],
+    listCategory: store.getState().settingApp.categoryType.map((item)=>{
+      return {label:item.title , value:item.id}
+    }),
+    categoryId:0
   };
   onDrop = (files: any) => {
     this.setState({ files });
     console.log(this.state);
   };
+  handelChangeSelect(
+    e: { label: string; value: number }
+  ) {
+    this.setState({categoryId:e.value})
+    
+  }
   render() {
     const files = this.state.files.map((file: any) => (
       <li key={file.name}>
@@ -37,11 +52,17 @@ import { AppRoutes } from "../../../core/constants";
       </li>
     ));
     return (
-        <div className="container-fluid research new-research">
+      <div className="container-fluid research new-research">
         <div className="row"></div>
         <div className="col-12 box-content p-3">
           <h5 className="b-title d-flex">
-            <span onClick={()=>{window.history.back()}} className="backPage"></span> Create A New Laboratory
+            <span
+              onClick={() => {
+                window.history.back();
+              }}
+              className="backPage"
+            ></span>{" "}
+            Create A New Laboratory
           </h5>
           <div className="form row">
             <div className="col-md-6 left">
@@ -76,13 +97,13 @@ import { AppRoutes } from "../../../core/constants";
                 </span>
                 <div className="d-flex justify-content-between align-items-center">
                   <SelectComponent
-                    items={[
-                      { name: "test1", id: 1 },
-                      { name: "test2", id: 2 },
-                    ]}
+                    items={this.state.listCategory}
                     TextItem="name"
                     ValueItem="id"
-                    className="my-2"
+                    className="my-2 w-100"
+                    placeholder="Click to see the list…"
+                    isMulti={false}
+                    onChange={(e)=>{this.handelChangeSelect(e)}}
                   ></SelectComponent>
                   <CircleIcon
                     width="36px"
@@ -176,15 +197,14 @@ import { AppRoutes } from "../../../core/constants";
                                 src="/Images/icons/cloud_computing.svg"
                                 alt="sssss"
                                 height="20"
-                                
                               />{" "}
-                              <span className="flex-fill">Browse Local Files</span>
+                              <span className="flex-fill">
+                                Browse Local Files
+                              </span>
                             </div>
                           }
                         ></MainButton>
-                        <p>
-                        Or drag and drop files here
-                        </p>
+                        <p>Or drag and drop files here</p>
                       </div>
                       <aside>
                         <h4>Files</h4>
@@ -273,7 +293,9 @@ import { AppRoutes } from "../../../core/constants";
               <MainButton
                 type={MainButtonType.dark}
                 children={"Create"}
-                onClick={()=>{this.props.history.push(AppRoutes.profile_laboratory)}}
+                onClick={() => {
+                  this.props.history.push(AppRoutes.profile_laboratory);
+                }}
                 borderRadius="50px"
                 fontSize="18px"
                 className="mx-2"
@@ -287,4 +309,4 @@ import { AppRoutes } from "../../../core/constants";
     );
   }
 }
-export default withRouter(LaboratoryPageNew)
+export default withRouter(LaboratoryPageNew);
