@@ -4,7 +4,9 @@ import { MainButton, MainButtonType } from "../../../components/button";
 import { InputComponent, InputType } from "../../../components/inputs";
 import { InputIcon } from "../../../components/search_box";
 import { RegisterContext } from "../register";
-
+// interface PropsPlaneTwo {
+//   SetLoginCallBack: (pay: any) => void;
+// }
 const PlanTwo: React.FC<RouteComponentProps> = (props) => {
   const nextStep = useContext(RegisterContext)
   return (
