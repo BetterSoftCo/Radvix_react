@@ -1,11 +1,11 @@
 import { toast } from "react-toastify";
 import { TaskReq } from "../../data/models/requests/task/task_req";
 import { TaskResResult } from "../../data/models/responses/task/task_res";
-import { RemoteTask } from "../../data/remotes/task/remote_laboratory";
+import { RemoteTask } from "../../data/remotes/task/remote_task";
 export class TaskController {
   remote = new RemoteTask();
 
-  createLaboratory(
+  createTask(
     body: TaskReq,
     action: (res: TaskResResult) => any,
     error: (res: any) => any
