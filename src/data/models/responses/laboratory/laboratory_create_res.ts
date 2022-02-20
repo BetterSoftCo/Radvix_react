@@ -11,6 +11,7 @@ export interface LaboratoryCreateResResult {
     address:      string;
     equipments:   Equipment[];
     teamMembers:  TeamMember[];
+    id:           number;
 }
 
 export interface Equipment {

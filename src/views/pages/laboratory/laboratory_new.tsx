@@ -139,7 +139,7 @@ class LaboratoryPageNew extends React.Component<RouteComponentProps> {
       this.controller.createLaboratory(
         body,
         (res) => {
-          // this.handelUpload(res.id);
+          this.handelUpload(res.id);
           this.setState({
             files: [],
             title: "",
@@ -494,6 +494,7 @@ class LaboratoryPageNew extends React.Component<RouteComponentProps> {
                 className="mx-2"
                 minHeight="43px"
                 minWidth="136px"
+                loading={this.state.loading}
               ></MainButton>
             </div>
           </div>
