@@ -5,24 +5,16 @@ import RightSection from "./right_section";
 import Sidebar from "./sidebar";
 import { ToastContainer } from "react-toastify";
 import { AppSettingController } from "../../controllers/app_setting/setting_controller";
+import { LocalDataSources } from "../../data/local_datasources";
 
 interface IMainLayout {
   children: ReactNode;
 }
 class MainLayout extends React.Component<IMainLayout & RouteComponentProps> {
   private controller: AppSettingController = new AppSettingController();
-  state = {
-    loading: false,
-  };
+  private local: LocalDataSources = new LocalDataSources();
   componentDidMount() {
-    this.setState({
-      loading: true,
-    });
-    this.controller.enumList().then(() => {
-      this.setState({
-        loading: false,
-      });
-    });
+    this.controller.enumList();
   }
   render() {
     return (
@@ -36,7 +28,7 @@ class MainLayout extends React.Component<IMainLayout & RouteComponentProps> {
                 <div className="col-12 col-md-2 col-lg-1 sidebar">
                   <Sidebar></Sidebar>
                 </div>
-                {this.state.loading === false ? (
+                {this.local.getSetting() ? (
                   <div
                     className={
                       this.props.location.pathname.search("/Admin") >= 0
@@ -47,6 +39,7 @@ class MainLayout extends React.Component<IMainLayout & RouteComponentProps> {
                     {this.props.children}
                   </div>
                 ) : null}
+
                 {this.props.location.pathname.search("/Admin") >= 0 ? null : (
                   <div className="col-xl-3">
                     <RightSection></RightSection>

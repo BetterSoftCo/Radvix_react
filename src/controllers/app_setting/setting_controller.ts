@@ -5,8 +5,9 @@ export class AppSettingController {
   remote = new RemoteSetting();
 
   async enumList() {
-   await this.remote.enumList((res) => {
+    await this.remote.enumList((res) => {
       store.dispatch(SetSettings(res.result));
+      localStorage.setItem("setting", JSON.stringify(res.result));
     });
   }
 }

@@ -1,5 +1,4 @@
 import React from "react";
-import { store } from "../../../data/store";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import { InputComponent, InputType } from "../../components/inputs";
 import DatePicker from "react-datepicker";
@@ -11,24 +10,131 @@ import { ButtonGroup } from "../../components/botton_group";
 import { BoxAlert } from "../../components/box_alert";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
- class TaskPageNew extends React.Component<RouteComponentProps> {
-  RoleUser = store.getState().userRole;
-  date = new Date();
-  handelChangeDate(params: any): void {
-    console.log(params);
+import { TaskReq } from "../../../data/models/requests/task/task_req";
+import { TaskController } from "../../../controllers/task/task_controller";
+import { UploadController } from "../../../controllers/upload_media/upload_media";
+import SimpleReactValidator from "simple-react-validator";
+import { LocalDataSources } from "../../../data/local_datasources";
+type StateType = {
+  formTask: TaskReq;
+  files: Array<File>;
+  loading: boolean;
+  ExternalUrl: Array<string>;
+  External: string;
+  listPriority: Array<{ label: string; value: number; isUser: boolean } | {}>;
+};
+class TaskPageNew extends React.Component<RouteComponentProps> {
+  controller = new TaskController();
+  UploadController = new UploadController();
+  validator = new SimpleReactValidator({
+    className: "text-danger",
+  });
+  local: LocalDataSources = new LocalDataSources();
+  handelChangeDate(target: string, params: any): void {
+    this.setState({
+      formTask: {
+        [target]: params,
+      },
+    });
   }
-  state = {
+  componentDidMount() {
+    this.setState({
+      listPriority:this.local.getSetting().priority.map((item) => {
+        return { name: item.title, id: item.id };
+      })
+    });
+    
+    
+  }
+  state: StateType = {
     files: [],
+    formTask: {
+      addedTeamsId: [],
+      addedUsersId: [],
+      description: "",
+      endDate: new Date(),
+      priority: 2,
+      researchId: 0,
+      startDate: new Date(),
+      suggestedEquipmentsId: [],
+      title: "",
+    },
+    External: "",
+    ExternalUrl: [],
+    loading: false,
+    listPriority: [],
+    
   };
   onDrop = (files: any) => {
     this.setState({ files });
-    console.log(this.state);
   };
+  handelDeleteFile(arg: File) {
+    this.setState({
+      files: this.state.files.filter((file) => file.name !== arg.name),
+    });
+  }
+  addExternalUrl() {
+    let Url = [...this.state.ExternalUrl]
+    Url.push(this.state.External)
+    this.setState({
+      ExternalUrl: Url,
+      External: ''
+    });
+  }
+  handelDeleteExternalLink(link:string){
+    this.setState({
+      ExternalUrl:this.state.ExternalUrl.filter(item=>item !== link)
+    })
+  }
+  handelChangeSelect(e: { label: string; value: number }) {
+    this.setState({ categoryId: e.value });
+  }
+  handleChange(target: string, val: any) {
+    this.setState({
+      formTask: {
+        [target]: val,
+      },
+    });
+  }
+  async handelUpload(id: number) {
+    const formData = new FormData();
+    for (let i = 0; i < this.state.files.length; i++) {
+      const file = this.state.files[i];
+      formData.append("Files", file);
+    }
+    for (let i = 0; i < this.state.ExternalUrl.length; i++) {
+      const file = this.state.ExternalUrl[i];
+      formData.append("ExternalUrls", file);
+    }
+    formData.append("UseCase", "6");
+    formData.append("AppTaskId", id.toString());
+
+    await this.UploadController.UloadMedia(
+      formData,
+      (res) => {
+        this.setState({
+          loading: false,
+        });
+      },
+      () => {
+        this.setState({
+          loading: false,
+        });
+      }
+    );
+  }
   render() {
     const files = this.state.files.map((file: any) => (
       <li key={file.name}>
         {file.name} - {file.size} bytes
-        <CircleIcon type={ThemeCircleIcon.dark} width="22px" height="22px">
+        <CircleIcon
+          type={ThemeCircleIcon.dark}
+          width="22px"
+          height="22px"
+          onClick={() => {
+            this.handelDeleteFile(file);
+          }}
+        >
           <img
             src="/images/icons/garbage_can.svg"
             alt="radvix"
@@ -58,6 +164,14 @@ import { AppRoutes } from "../../../core/constants";
                   type={InputType.text}
                   label="Task Name:"
                   popQuestion="Task Name:"
+                  onChange={(e) => {
+                    this.handleChange("title", e.target.value);
+                  }}
+                  inValid={this.validator.message(
+                    "Task Name",
+                    this.state.formTask.title,
+                    "required"
+                  )}
                 ></InputComponent>
               </div>
               <div className="item">
@@ -65,20 +179,32 @@ import { AppRoutes } from "../../../core/constants";
                   type={InputType.textarea}
                   label="Description:"
                   popQuestion="Description:"
+                  onChange={(e) => {
+                    this.handleChange("description", e.target.value);
+                  }}
+                  inValid={this.validator.message(
+                    "Description",
+                    this.state.formTask.description,
+                    "required"
+                  )}
                 ></InputComponent>
               </div>
               <div className="item">
                 <ButtonGroup
-                  items={[
-                    { name: "Low", id: 1 },
-                    { name: "Medium", id: 2 },
-                    { name: "High", id: 3 },
-                  ]}
+                  items={this.state.listPriority}
                   TextItem="name"
                   ValueItem="id"
                   name="TaskPriority"
                   label="Task Priority :"
                   popQuestion="Task Priority"
+                  inValid={this.validator.message(
+                    "Task Priority",
+                    this.state.formTask.priority,
+                    "required"
+                  )}
+                  onChange={(e) => {
+                    this.handleChange("priority", parseInt(e.target.value));
+                  }}
                 ></ButtonGroup>
               </div>
               <div className="item">
@@ -98,13 +224,17 @@ import { AppRoutes } from "../../../core/constants";
                 </span>
                 <div className="d-flex justify-content-between align-items-center">
                   <DatePicker
-                    selected={this.date}
-                    onChange={this.handelChangeDate}
+                    selected={this.state.formTask.startDate}
+                    onChange={(e) => {
+                      this.handelChangeDate("startDate", e);
+                    }}
                   />
                   <span className="mx-2">Until</span>
                   <DatePicker
-                    selected={this.date}
-                    onChange={this.handelChangeDate}
+                    selected={this.state.formTask.endDate}
+                    onChange={(e) => {
+                      this.handelChangeDate("endDate", e);
+                    }}
                   />
                 </div>
               </div>
@@ -151,15 +281,14 @@ import { AppRoutes } from "../../../core/constants";
                                 src="/Images/icons/cloud_computing.svg"
                                 alt="sssss"
                                 height="20"
-                                
                               />{" "}
-                              <span className="flex-fill">Browse Local Files</span>
+                              <span className="flex-fill">
+                                Browse Local Files
+                              </span>
                             </div>
                           }
                         ></MainButton>
-                        <p>
-                        Or drag and drop files here
-                        </p>
+                        <p>Or drag and drop files here</p>
                       </div>
                       <aside>
                         <h4>Files</h4>
@@ -174,6 +303,9 @@ import { AppRoutes } from "../../../core/constants";
                   type={InputType.text}
                   placeholder="https://"
                   className="mx-2"
+                  onChange={(e) => {
+                    this.handleChange("External", e.target.value);
+                  }}
                 ></InputComponent>
                 <CircleIcon
                   width="36px"
@@ -183,7 +315,7 @@ import { AppRoutes } from "../../../core/constants";
                   fontSize="18px"
                   color="#ffffff"
                   className="px-3"
-                  
+                  onClick={() => { this.addExternalUrl() }}
                 >
                   <i className="fas fa-plus"></i>
                 </CircleIcon>
@@ -238,7 +370,9 @@ import { AppRoutes } from "../../../core/constants";
               <MainButton
                 type={MainButtonType.dark}
                 children={"Create"}
-                onClick={()=>{this.props.history.push(AppRoutes.task_profile)}}
+                onClick={() => {
+                  this.props.history.push(AppRoutes.task_profile);
+                }}
                 borderRadius="50px"
                 fontSize="18px"
                 className="mx-2"
@@ -252,4 +386,4 @@ import { AppRoutes } from "../../../core/constants";
     );
   }
 }
-export default withRouter(TaskPageNew)
+export default withRouter(TaskPageNew);
