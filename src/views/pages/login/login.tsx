@@ -34,8 +34,6 @@ const LoginPage: React.FC<RouteComponentProps> = (props) => {
         if (res) {
           store.dispatch(SetUserRole(res.role ?? 0));
           store.dispatch(SetUserInfo(res));
-          const UserInfo = store.getState().userInfo;
-          console.log(UserInfo, "UserInfo");
           props.history.replace(AppRoutes.dashboard);
         }
       }, ()=>{setloading(false);})

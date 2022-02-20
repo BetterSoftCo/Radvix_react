@@ -16,7 +16,15 @@ import { UploadController } from "../../../controllers/upload_media/upload_media
 import SimpleReactValidator from "simple-react-validator";
 import { LocalDataSources } from "../../../data/local_datasources";
 type StateType = {
-  formTask: TaskReq;
+  title: string;
+  description: string;
+  priority: number;
+  startDate: Date;
+  endDate: Date;
+  researchId: number;
+  suggestedEquipmentsId: number[];
+  addedUsersId: string[];
+  addedTeamsId: number[];
   files: Array<File>;
   loading: boolean;
   ExternalUrl: Array<string>;
@@ -32,38 +40,31 @@ class TaskPageNew extends React.Component<RouteComponentProps> {
   local: LocalDataSources = new LocalDataSources();
   handelChangeDate(target: string, params: any): void {
     this.setState({
-      formTask: {
-        [target]: params,
-      },
+      [target]: params,
     });
   }
   componentDidMount() {
     this.setState({
-      listPriority:this.local.getSetting().priority.map((item) => {
+      listPriority: this.local.getSetting().priority.map((item) => {
         return { name: item.title, id: item.id };
-      })
+      }),
     });
-    
-    
   }
   state: StateType = {
     files: [],
-    formTask: {
-      addedTeamsId: [],
-      addedUsersId: [],
-      description: "",
-      endDate: new Date(),
-      priority: 2,
-      researchId: 0,
-      startDate: new Date(),
-      suggestedEquipmentsId: [],
-      title: "",
-    },
+    addedTeamsId: [],
+    addedUsersId: [],
+    description: "",
+    endDate: new Date(),
+    priority: 2,
+    researchId: 0,
+    startDate: new Date(),
+    suggestedEquipmentsId: [],
+    title: "",
     External: "",
     ExternalUrl: [],
     loading: false,
     listPriority: [],
-    
   };
   onDrop = (files: any) => {
     this.setState({ files });
@@ -74,26 +75,24 @@ class TaskPageNew extends React.Component<RouteComponentProps> {
     });
   }
   addExternalUrl() {
-    let Url = [...this.state.ExternalUrl]
-    Url.push(this.state.External)
+    let Url = [...this.state.ExternalUrl];
+    Url.push(this.state.External);
     this.setState({
       ExternalUrl: Url,
-      External: ''
+      External: "",
     });
   }
-  handelDeleteExternalLink(link:string){
+  handelDeleteExternalLink(link: string) {
     this.setState({
-      ExternalUrl:this.state.ExternalUrl.filter(item=>item !== link)
-    })
+      ExternalUrl: this.state.ExternalUrl.filter((item) => item !== link),
+    });
   }
   handelChangeSelect(e: { label: string; value: number }) {
     this.setState({ categoryId: e.value });
   }
   handleChange(target: string, val: any) {
     this.setState({
-      formTask: {
-        [target]: val,
-      },
+      [target]: val,
     });
   }
   async handelUpload(id: number) {
@@ -169,7 +168,7 @@ class TaskPageNew extends React.Component<RouteComponentProps> {
                   }}
                   inValid={this.validator.message(
                     "Task Name",
-                    this.state.formTask.title,
+                    this.state.title,
                     "required"
                   )}
                 ></InputComponent>
@@ -184,7 +183,7 @@ class TaskPageNew extends React.Component<RouteComponentProps> {
                   }}
                   inValid={this.validator.message(
                     "Description",
-                    this.state.formTask.description,
+                    this.state.description,
                     "required"
                   )}
                 ></InputComponent>
@@ -199,7 +198,7 @@ class TaskPageNew extends React.Component<RouteComponentProps> {
                   popQuestion="Task Priority"
                   inValid={this.validator.message(
                     "Task Priority",
-                    this.state.formTask.priority,
+                    this.state.priority,
                     "required"
                   )}
                   onChange={(e) => {
@@ -224,14 +223,14 @@ class TaskPageNew extends React.Component<RouteComponentProps> {
                 </span>
                 <div className="d-flex justify-content-between align-items-center">
                   <DatePicker
-                    selected={this.state.formTask.startDate}
+                    selected={this.state.startDate}
                     onChange={(e) => {
                       this.handelChangeDate("startDate", e);
                     }}
                   />
                   <span className="mx-2">Until</span>
                   <DatePicker
-                    selected={this.state.formTask.endDate}
+                    selected={this.state.endDate}
                     onChange={(e) => {
                       this.handelChangeDate("endDate", e);
                     }}
@@ -315,7 +314,9 @@ class TaskPageNew extends React.Component<RouteComponentProps> {
                   fontSize="18px"
                   color="#ffffff"
                   className="px-3"
-                  onClick={() => { this.addExternalUrl() }}
+                  onClick={() => {
+                    this.addExternalUrl();
+                  }}
                 >
                   <i className="fas fa-plus"></i>
                 </CircleIcon>

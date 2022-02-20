@@ -10,4 +10,11 @@ export class LocalDataSources {
     }
     return {}
   }
+  getUserId(): string  {
+    const userId = localStorage.getItem("userId");
+    if (userId) {
+      return userId;
+    }
+    return ''
+  }
 }

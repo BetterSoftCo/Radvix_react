@@ -10,6 +10,7 @@ export class UserController {
       body,
       (res) => {
         localStorage.setItem("token", res.result?.token ?? "");
+        localStorage.setItem("userId", res.result?.id ?? "");
         toast.success(`${res.message}`, {
           position: toast.POSITION.TOP_RIGHT,
         });
