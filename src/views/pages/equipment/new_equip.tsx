@@ -10,7 +10,6 @@ import { RadioGroup } from "../../components/radio_group";
 import { BoxAlert } from "../../components/box_alert";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
-import { EquipmentCreateReq } from "../../../data/models/requests/equipment/equipment_create_req";
 import { EquipmentController } from "../../../controllers/equipment/equipment_controller";
 import { UploadController } from "../../../controllers/upload_media/upload_media";
 import SimpleReactValidator from "simple-react-validator";

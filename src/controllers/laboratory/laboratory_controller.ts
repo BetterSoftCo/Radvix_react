@@ -2,7 +2,7 @@ import { toast } from "react-toastify";
 import { LocalDataSources } from "../../data/local_datasources";
 import { LaboratoryCreateReq } from "../../data/models/requests/laboratory/laboratory_create_req";
 import { LaboratoryCreateResResult } from "../../data/models/responses/laboratory/laboratory_create_res";
-import { LaboratoryGetAllRes, LaboratoryGetAllResResult } from "../../data/models/responses/laboratory/laboratory_get_all_res";
+import { LaboratoryGetAllResResult } from "../../data/models/responses/laboratory/laboratory_get_all_res";
 import { LaboratoryUsersCategoriesResResult } from "../../data/models/responses/laboratory/laboratory_users_categories_res";
 import { RemoteLaboratory } from "../../data/remotes/laboratory/remote_laboratory";
 export class LaboratoryController {

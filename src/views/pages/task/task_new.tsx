@@ -10,7 +10,6 @@ import { ButtonGroup } from "../../components/botton_group";
 import { BoxAlert } from "../../components/box_alert";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
-import { TaskReq } from "../../../data/models/requests/task/task_req";
 import { TaskController } from "../../../controllers/task/task_controller";
 import { UploadController } from "../../../controllers/upload_media/upload_media";
 import SimpleReactValidator from "simple-react-validator";
