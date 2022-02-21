@@ -1,5 +1,5 @@
 export interface TeamCreateReq {
-    id:             number;
+    id?:             number;
     title:          string;
     description:    string;
     managersId:     string[];
