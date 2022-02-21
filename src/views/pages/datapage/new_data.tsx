@@ -9,9 +9,17 @@ import { BoxAlert } from "../../components/box_alert";
 import { MainButton, MainButtonType } from "../../components/button";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
- class DataPageNew extends React.Component<RouteComponentProps> {
+type StateType = {
+  researchId: number;
+  equipmentsId: number[];
+  appTasksId: number;
+  subAppTasksId: number;
+  title: string;
+  description: string;
+  listPriority: Array<{ label: string; value: number; isUser: boolean } | {}>;
+};
+class DataPageNew extends React.Component<RouteComponentProps> {
   RoleUser = store.getState().userRole;
-  date = new Date();
   handelChangeDate(params: any): void {
     console.log(params);
   }
@@ -41,7 +49,13 @@ import { AppRoutes } from "../../../core/constants";
         <div className="row"></div>
         <div className="col-12 box-content p-3">
           <h5 className="b-title d-flex">
-            <span onClick={()=>{window.history.back()}} className="backPage"></span> Add New Data Set
+            <span
+              onClick={() => {
+                window.history.back();
+              }}
+              className="backPage"
+            ></span>{" "}
+            Add New Data Set
           </h5>
           <div className="form row">
             <div className="col-md-6 left">
@@ -102,15 +116,14 @@ import { AppRoutes } from "../../../core/constants";
                                 src="/Images/icons/cloud_computing.svg"
                                 alt="sssss"
                                 height="20"
-                                
                               />{" "}
-                              <span className="flex-fill">Browse Local Files</span>
+                              <span className="flex-fill">
+                                Browse Local Files
+                              </span>
                             </div>
                           }
                         ></MainButton>
-                        <p>
-                        Or drag and drop files here
-                        </p>
+                        <p>Or drag and drop files here</p>
                       </div>
                       <aside>
                         <h4>Files</h4>
@@ -134,7 +147,6 @@ import { AppRoutes } from "../../../core/constants";
                   fontSize="18px"
                   color="#ffffff"
                   className="px-3"
-                  
                 >
                   <i className="fas fa-plus"></i>
                 </CircleIcon>
@@ -199,7 +211,9 @@ import { AppRoutes } from "../../../core/constants";
                 className="mx-2"
                 minHeight="43px"
                 minWidth="136px"
-                onClick={()=>{this.props.history.push(AppRoutes.data_profile)}}
+                onClick={() => {
+                  this.props.history.push(AppRoutes.data_profile);
+                }}
               ></MainButton>
             </div>
           </div>
@@ -208,4 +222,4 @@ import { AppRoutes } from "../../../core/constants";
     );
   }
 }
-export default withRouter(DataPageNew)
+export default withRouter(DataPageNew);

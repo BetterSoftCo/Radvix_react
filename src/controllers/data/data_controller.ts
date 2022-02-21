@@ -5,7 +5,7 @@ import { RemoteData } from "../../data/remotes/data/remote_data";
 export class DataController {
   remote = new RemoteData();
 
-  createTeam(
+  createData(
     body: AddDataReq,
     action: (res: AddDataResResult) => any,
     error: (res: any) => any
