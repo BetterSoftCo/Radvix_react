@@ -20,7 +20,7 @@ export interface ResearchesList {
     endDate?:              string;
     currency?:             number;
     priority?:             number;
-    status?:               number;
+    status:               number;
     medias?:               Media[];
 }
 

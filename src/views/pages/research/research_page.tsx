@@ -1,39 +1,30 @@
 import React from "react";
 import ReactPaginate from "react-paginate";
+import { ResearchController } from "../../../controllers/research/research_controller";
+import { ResearchesList } from "../../../data/models/responses/research/researches_res";
 import { store } from "../../../data/store";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import { InputIcon } from "../../components/search_box";
 import { SelectComponent } from "../../components/select_input";
 import AcordienTableResearch from "./component/acordien_table_research";
-
+type StateType = {
+  Researches: ResearchesList[]
+}
 export class ResearchPage extends React.Component {
+  controller = new ResearchController();
   RoleUser = store.getState().userRole;
-  state = {
-    Data: {
-      Items: [
-        {
-          name: "Studying the effects of freeze thaw cycle…",
-          Institution: "07/22/2021",
-          Category: "Material",
-        },
-        {
-          name: "Studying the effects of freeze thaw cycle…",
-          Institution: "07/22/2021",
-          Category: "Material",
-        },
-        {
-          name: "Studying the effects of freeze thaw cycle…",
-          Institution: "07/22/2021",
-          Category: "Material",
-        },
-        {
-          name: "Studying the effects of freeze thaw cycle…",
-          Institution: "07/22/2021",
-          Category: "Material",
-        },
-      ],
-    },
+  state: StateType = {
+    Researches: []
   };
+  componentDidMount() {
+    this.controller.getResearches({ PageNumber: 1, PageSize: 10 }, res => {
+      this.setState({
+        Researches: res.researchesList
+      })
+
+    }, err => console.log(err)
+    )
+  }
   render() {
     return (
       <div className="container-fluid research">
@@ -48,25 +39,27 @@ export class ResearchPage extends React.Component {
                     <img src="/images/icons/search_box_icon.svg" alt="" />
                   }
                   width="100%"
-                  placeholder="Search..."  TopPosition="15%"
+                  placeholder="Search..." TopPosition="15%"
                 ></InputIcon>
               </div>
               <div className="right w-50 d-flex justify-content-end align-items-center">
                 <SelectComponent
-                  width="63px"
+                  width="90px"
                   height="44px"
                   items={[
-                    { item: 1, id: 1 },
-                    { item: 2, id: 2 },
-                    { item: 3, id: 3 },
+                    { label: 1, value: 1 },
+                    { label: 2, value: 2 },
+                    { label: 3, value: 3 },
                   ]}
                   TextItem="item"
                   ValueItem="id"
+                  isMulti={false}
+                  placeholder="1"
                 ></SelectComponent>
               </div>
             </div>
             <AcordienTableResearch
-              Items={this.state.Data.Items}
+              Items={this.state.Researches}
               Heading={[
                 { name: "Research Name", center: false },
                 { name: "Deadline", center: false },

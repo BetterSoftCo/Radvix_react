@@ -12,6 +12,6 @@ export class RemoteResearch {
     return HTTP.get("/Research/Search").then((res) => action(res.data));
   }
   getResearches(body:{PageNumber:number , PageSize:number},action: (res: ResearchesRes) => any,error: (res: any) => any){
-    return HTTP.post("/Research?PageNumber=1&PageSize=10" ).then((res) => action(res.data)).catch((err)=>{error(err)});
+    return HTTP.get(`/Research?PageNumber=${body.PageNumber}&PageSize=${body.PageSize}` ).then((res) => action(res.data)).catch((err)=>{error(err)});
   }
 }

@@ -40,9 +40,6 @@ export class ResearchController {
   }
   getResearches(body:{PageNumber:number , PageSize:number}, action: (res: ResearchesResResult) => any , error:(res:any)=>any) {
     this.remote.getResearches(body, (res) => {
-      toast.success(`${res.message}`, {
-        position: toast.POSITION.TOP_RIGHT,
-      });
       action(res.result!);
     },(err)=>{
       error(err)

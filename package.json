@@ -54,7 +54,8 @@
       "react-app/jest"
     ],
     "rules": {
-      "no-use-before-define": "off"
+      "no-use-before-define": "off",
+      "no-extend-native":"off"
     }
   },
   "browserslist": {
