@@ -11,7 +11,7 @@ export class AppRoutes {
 	static new_research:string ='/dashboard/research/new/';
 	static timeline_research:string ='/dashboard/research/timeline/';
 	static profile_research:string ='/dashboard/research/profile/';
-	static edit_research:string ='/dashboard/research/edit/';
+	static edit_research:string ='/dashboard/research/edit/:id';
 	static team:string ='/dashboard/team/';
 	static team_profile:string ='/dashboard/team/profile';
 	static team_edit:string ='/dashboard/team/edit';

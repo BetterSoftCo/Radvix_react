@@ -97,7 +97,7 @@ ReactDOM.render(
             isAuthenticated={RoleUser === UserRoles.level1 ? true : false}
             authenticationPath={AppRoutes.research}
             exact={true}
-            path={AppRoutes.edit_research}
+            path={`${AppRoutes.edit_research}`}
             component={ResearchPageEdit}
           />
 

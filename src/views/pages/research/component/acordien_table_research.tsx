@@ -60,7 +60,7 @@ const AcordienTableResearch: React.FC<
                     width="26px"
                     height="26px"
                     type={ThemeCircleIcon.dark}
-                    onClick={() => { props.history.push(AppRoutes.edit_research) }}
+                    onClick={() => { props.history.push(`${AppRoutes.edit_research.replace(':id', head.id?.toString() ?? "")}`) }}
                     className="pointer mx-1"
                   >
                     <img src="/images/icons/edit.svg" alt="radvix" />
