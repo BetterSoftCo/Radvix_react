@@ -30,6 +30,9 @@ class DataPageNew extends React.Component<RouteComponentProps> {
     this.setState({ files });
     console.log(this.state);
   };
+  componentDidMount(){
+    console.log(store.getState().ResearchId);   
+  }
   render() {
     const files = this.state.files.map((file: any) => (
       <li key={file.name}>
