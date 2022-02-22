@@ -12,7 +12,6 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
   const toggleSidebar = (pageType: string) => {
     setShowSidebar(!ShowSidebar);
     setPage(pageType);
-    console.log(ShowSidebar);
   };
   return (
     <Fragment>

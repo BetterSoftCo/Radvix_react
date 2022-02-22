@@ -8,22 +8,48 @@ import { InputIcon } from "../../components/search_box";
 import { SelectComponent } from "../../components/select_input";
 import AcordienTableResearch from "./component/acordien_table_research";
 type StateType = {
-  Researches: ResearchesList[]
+  Researches: ResearchesList[],
+  PageNumber: number,
+  PageSize: number,
+  PageCount: number
 }
 export class ResearchPage extends React.Component {
   controller = new ResearchController();
   RoleUser = store.getState().userRole;
   state: StateType = {
-    Researches: []
+    Researches: [],
+    PageNumber: 1,
+    PageSize: 10,
+    PageCount: 0
   };
   componentDidMount() {
-    this.controller.getResearches({ PageNumber: 1, PageSize: 10 }, res => {
+    this.GetResearch(this.state.PageNumber, this.state.PageSize)
+  }
+  GetResearch(PageNumber: number, PageSize: number) {
+    this.controller.getResearches({ PageNumber: PageNumber, PageSize: PageSize }, res => {
       this.setState({
-        Researches: res.researchesList
+        Researches: res.researchesList,
+        PageCount: Math.ceil(res.count! / this.state.PageSize)
       })
 
     }, err => console.log(err)
     )
+  }
+  handelChangePageNumber(
+    e: { selected: number }
+  ) {
+    this.setState({
+      PageNumber: e.selected
+    });
+    this.GetResearch(e.selected + 1, this.state.PageSize)
+  }
+  handelChangePageSize(
+    e: { label: string; value: number }
+  ) {
+    this.setState({
+      PageSize: e.value
+    });
+    this.GetResearch(this.state.PageNumber, e.value)
   }
   render() {
     return (
@@ -47,14 +73,17 @@ export class ResearchPage extends React.Component {
                   width="90px"
                   height="44px"
                   items={[
-                    { label: 1, value: 1 },
-                    { label: 2, value: 2 },
-                    { label: 3, value: 3 },
+                    { label: '10', value: 10 },
+                    { label: '15', value: 15 },
+                    { label: '20', value: 20 },
                   ]}
                   TextItem="item"
                   ValueItem="id"
                   isMulti={false}
-                  placeholder="1"
+                  placeholder={this.state.PageSize.toString()}
+                  onChange={(e) => {
+                    this.handelChangePageSize(e)
+                  }}
                 ></SelectComponent>
               </div>
             </div>
@@ -92,11 +121,11 @@ export class ResearchPage extends React.Component {
                   }
                   breakLabel={"..."}
                   breakClassName={"break-me"}
-                  pageCount={20}
+                  pageCount={this.state.PageCount}
                   marginPagesDisplayed={2}
                   pageRangeDisplayed={5}
-                  onPageChange={() => {
-                    console.log("changepage");
+                  onPageChange={(e) => {
+                    this.handelChangePageNumber(e)
                   }}
                   containerClassName={"pagination"}
                   activeClassName={"active"}

@@ -8,7 +8,6 @@ import { SelectComponent } from "../../components/select_input";
 import { BoxAlert } from "../../components/box_alert";
 import { MainButton, MainButtonType } from "../../components/button";
 import { RouteComponentProps, withRouter } from "react-router";
-import { AppRoutes } from "../../../core/constants";
 import { DataController } from "../../../controllers/data/data_controller";
 import { UploadController } from "../../../controllers/upload_media/upload_media";
 import SimpleReactValidator from "simple-react-validator";

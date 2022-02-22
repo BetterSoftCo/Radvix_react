@@ -153,7 +153,7 @@ export const ShowLibraryPage: React.FC = (props) => {
           width="26px"
           height="26px"
           type={ThemeCircleIcon.dark}
-          onClick={(e) => console.log("s")}
+          onClick={(e) => {}}
           className="pointer"
         >
           <img src="/images/icons/google_docs.svg" alt="radvix" width={12} height={12} />
@@ -162,7 +162,7 @@ export const ShowLibraryPage: React.FC = (props) => {
           width="26px"
           height="26px"
           type={ThemeCircleIcon.light}
-          onClick={(e) => console.log("s")}
+          onClick={(e) => {}}
           className="pointer"
         >
           <img src="/images/icons/google_docs.svg" alt="radvix" width={12} height={12} />

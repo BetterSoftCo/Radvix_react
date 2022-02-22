@@ -10,14 +10,12 @@ export class AdminBroadcast extends React.Component {
   RoleUser = store.getState().userRole;
   date = new Date();
   handelChangeDate(params: any): void {
-    console.log(params);
   }
   state = {
     files: [],
   };
   onDrop = (files: any) => {
     this.setState({ files });
-    console.log(this.state);
   };
   render() {
     const files = this.state.files.map((file: any) => (

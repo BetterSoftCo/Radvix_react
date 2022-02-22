@@ -6,7 +6,6 @@ import Sidebar from "./sidebar";
 import { ToastContainer } from "react-toastify";
 import { AppSettingController } from "../../controllers/app_setting/setting_controller";
 import { LocalDataSources } from "../../data/local_datasources";
-import { store } from "../../data/store";
 
 interface IMainLayout {
   children: ReactNode;

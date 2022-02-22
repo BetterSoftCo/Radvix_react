@@ -1,6 +1,5 @@
 import { toast } from "react-toastify";
 import { TaskReq } from "../../data/models/requests/task/task_req";
-import { SearchDataResResult } from "../../data/models/responses/data/search_data_res";
 import { SearchTaskResResult } from "../../data/models/responses/task/search_task_res";
 import { TaskResResult } from "../../data/models/responses/task/task_res";
 import { RemoteTask } from "../../data/remotes/task/remote_task";

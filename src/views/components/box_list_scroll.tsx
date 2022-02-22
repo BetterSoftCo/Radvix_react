@@ -34,7 +34,6 @@ export const BoxListScroll: React.FC<IBoxListScroll> = ({
       <div className={`${IsclassName + " " + "box-list-scroll"}`}>
       {items.map((item, index) => (
         <>
-        {console.log("item",item)}
         <div
           onClick={onClick}
           className="d-flex justify-content-between align-items-center"
