@@ -14,6 +14,7 @@ import { TaskController } from "../../../controllers/task/task_controller";
 import { UploadController } from "../../../controllers/upload_media/upload_media";
 import SimpleReactValidator from "simple-react-validator";
 import { LocalDataSources } from "../../../data/local_datasources";
+import { store } from "../../../data/store";
 type StateType = {
   title: string;
   description: string;
@@ -28,7 +29,9 @@ type StateType = {
   loading: boolean;
   ExternalUrl: Array<string>;
   External: string;
-  listPriority: Array<{ label: string; value: number; isUser: boolean } | {}>;
+  listTeams: Array<{ label: string; value: number } | {}>;
+  listEquipments: Array<{ label: string; value: number } | {}>;
+  listPriority: Array<{ label: string; value: number } | {}>;
 };
 class TaskPageNew extends React.Component<RouteComponentProps> {
   controller = new TaskController();
@@ -48,6 +51,10 @@ class TaskPageNew extends React.Component<RouteComponentProps> {
         return { name: item.title, id: item.id };
       }),
     });
+    this.GetSearchTask()
+    store.subscribe(() => {
+      this.GetSearchTask()
+    })
   }
   state: StateType = {
     files: [],
@@ -63,7 +70,9 @@ class TaskPageNew extends React.Component<RouteComponentProps> {
     External: "",
     ExternalUrl: [],
     loading: false,
-    listPriority: [],
+    listTeams: [],
+    listEquipments: [],
+    listPriority: []
   };
   onDrop = (files: any) => {
     this.setState({ files });
@@ -120,6 +129,64 @@ class TaskPageNew extends React.Component<RouteComponentProps> {
         });
       }
     );
+  }
+  GetSearchTask() {
+    this.controller.SearchTask(res => {
+      this.setState({
+        listTeams: res.teams?.map(item => {
+          return { label: item.title, value: item.id }
+        }),
+        listEquipments: res.equipments?.map(item => {
+          return { label: item.title, value: item.id }
+        })
+      })
+    }, err => { })
+  }
+  handelChangeSelectMultiple(e: Array<{ label: string; value: number }>, target: string) {
+    const newLabId = e.map((item) => item.value);
+    this.setState({
+      [target]: newLabId,
+    });
+  }
+  CreateTask() {
+    if (this.validator.allValid()) {
+      const body = {
+        title: this.state.title,
+        description: this.state.description,
+        priority: this.state.priority,
+        startDate: this.state.startDate,
+        endDate: this.state.endDate,
+        researchId: store.getState().ResearchId,
+        suggestedEquipmentsId: this.state.suggestedEquipmentsId,
+        addedUsersId: this.state.addedUsersId,
+        addedTeamsId: this.state.addedTeamsId
+      }
+      this.controller.createTask(body, res => {
+        this.handelUpload(res.id);
+        this.props.history.push(AppRoutes.task_profile)
+        this.setState({
+          files: [],
+          appTasksId: 0,
+          description: '',
+          equipmentsId: [],
+          listTasks: [],
+          listEquipment: [],
+          researchId: 0,
+          subAppTasksId: 0,
+          title: '',
+          External: "",
+          ExternalUrl: [],
+        });
+      }, err => {
+        this.setState({
+          loading: false,
+        });
+      })
+    } else {
+      this.validator.showMessages();
+      this.forceUpdate();
+    }
+
   }
   render() {
     const files = this.state.files.map((file: any) => (
@@ -320,20 +387,52 @@ class TaskPageNew extends React.Component<RouteComponentProps> {
                   <i className="fas fa-plus"></i>
                 </CircleIcon>
               </div>
+              <ul className="file-list mt-3">
+                {this.state.ExternalUrl.map((item, index) => (
+                  <li
+                    className="my-2 d-flex flex-column flex-md-row"
+                    key={index}
+                  >
+                    <MainButton
+                      children={item}
+                      type={MainButtonType.dark}
+                      borderRadius="24px"
+                      fontSize="14px"
+                      backgroundColor="#F5F5F5"
+                      color="#096BFF"
+                    ></MainButton>
+                    <CircleIcon
+                      type={ThemeCircleIcon.dark}
+                      width="22px"
+                      height="22px"
+                      className="mx-3 pointer"
+                      onClick={() => this.handelDeleteExternalLink(item)}
+                    >
+                      <img
+                        src="/images/icons/garbage_can.svg"
+                        alt="radvix"
+                        width={15}
+                        height={15}
+                      />
+                    </CircleIcon>
+                  </li>
+                ))}
+              </ul>
             </div>
             <div className="col-md-6 right">
               <div className="item">
                 <SelectComponent
-                  items={[
-                    { name: "test1", id: 1 },
-                    { name: "test2", id: 2 },
-                  ]}
+                  items={this.state.listTeams}
                   TextItem="name"
                   ValueItem="id"
                   className="my-2"
                   label="Assign To Teams (Members):"
                   popQuestion="Assign To Teams (Members):"
                   optional="optional"
+                  onChange={(e) => {
+                    this.handelChangeSelectMultiple(e, 'addedTeamsId');
+                  }}
+                  isMulti
                 ></SelectComponent>
               </div>
 
@@ -343,16 +442,17 @@ class TaskPageNew extends React.Component<RouteComponentProps> {
               ></BoxAlert>
               <div className="item">
                 <SelectComponent
-                  items={[
-                    { name: "test1", id: 1 },
-                    { name: "test2", id: 2 },
-                  ]}
+                  items={this.state.listEquipments}
                   TextItem="name"
                   ValueItem="id"
                   className="my-2"
                   label="Suggest Equipment:"
                   popQuestion="Suggest Equipment:"
                   optional="optional"
+                  onChange={(e) => {
+                    this.handelChangeSelectMultiple(e, 'suggestedEquipmentsId');
+                  }}
+                  isMulti
                 ></SelectComponent>
               </div>
               <BoxAlert text="No Equipment Has Been Added Yet!Start Over"></BoxAlert>
@@ -371,7 +471,7 @@ class TaskPageNew extends React.Component<RouteComponentProps> {
                 type={MainButtonType.dark}
                 children={"Create"}
                 onClick={() => {
-                  this.props.history.push(AppRoutes.task_profile);
+                  this.CreateTask()
                 }}
                 borderRadius="50px"
                 fontSize="18px"

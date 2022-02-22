@@ -1,7 +1,10 @@
 import { toast } from "react-toastify";
 import { TaskReq } from "../../data/models/requests/task/task_req";
+import { SearchDataResResult } from "../../data/models/responses/data/search_data_res";
+import { SearchTaskResResult } from "../../data/models/responses/task/search_task_res";
 import { TaskResResult } from "../../data/models/responses/task/task_res";
 import { RemoteTask } from "../../data/remotes/task/remote_task";
+import { store } from "../../data/store";
 export class TaskController {
   remote = new RemoteTask();
 
@@ -24,5 +27,28 @@ export class TaskController {
         });
       }
     );
+  }
+  SearchTask(
+    action: (res: SearchTaskResResult) => any,
+    error: (res: any) => any
+  ) {
+    if (store.getState().ResearchId > 0) {
+      this.remote.SearchTask(
+        { researchId: store.getState().ResearchId },
+        (res) => {
+          action(res.result!);
+        },
+        (err) => {
+          toast.error(`${err.message}`, {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+          error(err);
+        }
+      );
+    } else {
+      toast.error(`please select research`, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
   }
 }

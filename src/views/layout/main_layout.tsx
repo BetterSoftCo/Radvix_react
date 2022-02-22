@@ -6,6 +6,7 @@ import Sidebar from "./sidebar";
 import { ToastContainer } from "react-toastify";
 import { AppSettingController } from "../../controllers/app_setting/setting_controller";
 import { LocalDataSources } from "../../data/local_datasources";
+import { store } from "../../data/store";
 
 interface IMainLayout {
   children: ReactNode;
@@ -16,11 +17,12 @@ class MainLayout extends React.Component<IMainLayout & RouteComponentProps> {
   componentDidMount() {
     this.controller.enumList();
   }
+
   render() {
     return (
       <Fragment>
         {this.props.location.pathname !== "/login" &&
-        this.props.location.pathname !== "/Register" ? (
+          this.props.location.pathname !== "/Register" ? (
           <Fragment>
             <Header></Header>
             <div className="main">

@@ -9,6 +9,9 @@ import { BoxAlert } from "../../components/box_alert";
 import { MainButton, MainButtonType } from "../../components/button";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
+import { DataController } from "../../../controllers/data/data_controller";
+import { UploadController } from "../../../controllers/upload_media/upload_media";
+import SimpleReactValidator from "simple-react-validator";
 type StateType = {
   researchId: number;
   equipmentsId: number[];
@@ -16,28 +19,173 @@ type StateType = {
   subAppTasksId: number;
   title: string;
   description: string;
-  listPriority: Array<{ label: string; value: number; isUser: boolean } | {}>;
+  listTasks: Array<{ label: string; value: number } | {}>;
+  listEquipment: Array<{ label: string; value: number } | {}>;
+  files: Array<File>;
+  loading: boolean;
+  ExternalUrl: Array<string>;
+  External: string;
 };
 class DataPageNew extends React.Component<RouteComponentProps> {
   RoleUser = store.getState().userRole;
-  handelChangeDate(params: any): void {
-    console.log(params);
-  }
-  state = {
+  controller = new DataController();
+  UploadController = new UploadController();
+  validator = new SimpleReactValidator({
+    className: "text-danger",
+  });
+  state: StateType = {
     files: [],
+    appTasksId: 0,
+    description: '',
+    equipmentsId: [],
+    listTasks: [],
+    listEquipment: [],
+    researchId: 0,
+    subAppTasksId: 0,
+    title: '',
+    External: "",
+    ExternalUrl: [],
+    loading: false,
   };
+  componentDidMount() {
+    this.SearchData()
+    store.subscribe(() => {
+      this.SearchData()
+    })
+  }
+  SearchData() {
+    this.controller.SearchData(res => {
+      this.setState({
+        listTasks: res.appTasks?.map(item => {
+          return { label: item.title, value: item.id }
+        }),
+        listEquipment: res.accessableEquipments?.map(item => {
+          return { label: item.title, value: item.id }
+        })
+      })
+    }, err => { })
+  }
   onDrop = (files: any) => {
     this.setState({ files });
-    console.log(this.state);
   };
-  componentDidMount(){
-    console.log(store.getState().ResearchId);   
+  handelDeleteFile(arg: File) {
+    this.setState({
+      files: this.state.files.filter((file) => file.name !== arg.name),
+    });
+  }
+  addExternalUrl() {
+    let Url = [...this.state.ExternalUrl];
+    Url.push(this.state.External);
+    this.setState({
+      ExternalUrl: Url,
+      External: "",
+    });
+  }
+  handleChange(target: string, val: any) {
+    this.setState({
+      [target]: val,
+    });
+  }
+  handelChangeSelectMultiple(e: Array<{ label: string; value: number }>, target: string) {
+    const newLabId = e.map((item) => item.value);
+    this.setState({
+      [target]: newLabId,
+    });
+  }
+  handelChangeSelect(e: { label: string; value: number }, target: string) {
+    const newLabId = e.value;
+    this.setState({
+      [target]: newLabId,
+    });
+  }
+  handelDeleteExternalLink(link: string) {
+    this.setState({
+      ExternalUrl: this.state.ExternalUrl.filter((item) => item !== link),
+    });
+  }
+  async handelUpload(id: number) {
+    const formData = new FormData();
+    for (let i = 0; i < this.state.files.length; i++) {
+      const file = this.state.files[i];
+      formData.append("Files", file);
+    }
+    for (let i = 0; i < this.state.ExternalUrl.length; i++) {
+      const file = this.state.ExternalUrl[i];
+      formData.append("ExternalUrls", file);
+    }
+    formData.append("DataId", "8");
+    formData.append("EquipmentId", id.toString());
+
+    await this.UploadController.UloadMedia(
+      formData,
+      (res) => {
+        this.setState({
+          loading: false,
+        });
+      },
+      () => {
+        this.setState({
+          loading: false,
+        });
+      }
+    );
+  }
+  handelCreateData() {
+    if (this.validator.allValid()) {
+      const body = {
+        researchId: store.getState().ResearchId,
+        equipmentsId: this.state.equipmentsId,
+        appTasksId: this.state.appTasksId,
+        subAppTasksId: this.state.subAppTasksId,
+        title: this.state.title,
+        description: this.state.description
+      };
+      this.setState({
+        loading: true,
+      });
+      console.log(body);
+
+      this.controller.createData(
+        body,
+        (res) => {
+          this.handelUpload(res.data.id);
+          this.setState({
+            files: [],
+            appTasksId: 0,
+            description: '',
+            equipmentsId: [],
+            listTasks: [],
+            listEquipment: [],
+            researchId: 0,
+            subAppTasksId: 0,
+            title: '',
+            External: "",
+            ExternalUrl: [],
+          });
+        },
+        (err) => {
+          this.setState({
+            loading: false,
+          });
+        }
+      );
+    } else {
+      this.validator.showMessages();
+      this.forceUpdate();
+    }
   }
   render() {
     const files = this.state.files.map((file: any) => (
       <li key={file.name}>
         {file.name} - {file.size} bytes
-        <CircleIcon type={ThemeCircleIcon.dark} width="22px" height="22px">
+        <CircleIcon
+          type={ThemeCircleIcon.dark}
+          width="22px"
+          height="22px"
+          onClick={() => {
+            this.handelDeleteFile(file);
+          }}
+        >
           <img
             src="/images/icons/garbage_can.svg"
             alt="radvix"
@@ -64,16 +212,16 @@ class DataPageNew extends React.Component<RouteComponentProps> {
             <div className="col-md-6 left">
               <div className="item">
                 <SelectComponent
-                  items={[
-                    { name: "test1", id: 1 },
-                    { name: "test2", id: 2 },
-                  ]}
+                  items={this.state.listTasks}
                   TextItem="name"
                   ValueItem="id"
                   className="my-2"
                   placeholder="Click to see the list…"
                   label="Select A Task:"
                   popQuestion="Select A Task:"
+                  onChange={(e) => {
+                    this.handelChangeSelect(e, 'appTasksId');
+                  }}
                 ></SelectComponent>
               </div>
               <div className="item">
@@ -81,6 +229,14 @@ class DataPageNew extends React.Component<RouteComponentProps> {
                   type={InputType.text}
                   label="Data Set Name:"
                   popQuestion="Data Set Name:"
+                  onChange={(e) => {
+                    this.handleChange("title", e.target.value);
+                  }}
+                  inValid={this.validator.message(
+                    "Name",
+                    this.state.title,
+                    "required"
+                  )}
                 ></InputComponent>
               </div>
               <div className="item">
@@ -141,6 +297,9 @@ class DataPageNew extends React.Component<RouteComponentProps> {
                   type={InputType.text}
                   placeholder="https://"
                   className="mx-2"
+                  onChange={(e) => {
+                    this.handleChange("External", e.target.value);
+                  }}
                 ></InputComponent>
                 <CircleIcon
                   width="36px"
@@ -150,10 +309,44 @@ class DataPageNew extends React.Component<RouteComponentProps> {
                   fontSize="18px"
                   color="#ffffff"
                   className="px-3"
+                  onClick={() => {
+                    this.addExternalUrl();
+                  }}
                 >
                   <i className="fas fa-plus"></i>
                 </CircleIcon>
               </div>
+              <ul className="file-list mt-3">
+                {this.state.ExternalUrl.map((item, index) => (
+                  <li
+                    className="my-2 d-flex flex-column flex-md-row"
+                    key={index}
+                  >
+                    <MainButton
+                      children={item}
+                      type={MainButtonType.dark}
+                      borderRadius="24px"
+                      fontSize="14px"
+                      backgroundColor="#F5F5F5"
+                      color="#096BFF"
+                    ></MainButton>
+                    <CircleIcon
+                      type={ThemeCircleIcon.dark}
+                      width="22px"
+                      height="22px"
+                      className="mx-3 pointer"
+                      onClick={() => this.handelDeleteExternalLink(item)}
+                    >
+                      <img
+                        src="/images/icons/garbage_can.svg"
+                        alt="radvix"
+                        width={15}
+                        height={15}
+                      />
+                    </CircleIcon>
+                  </li>
+                ))}
+              </ul>
               <div className="item">
                 <InputComponent
                   type={InputType.textarea}
@@ -161,6 +354,9 @@ class DataPageNew extends React.Component<RouteComponentProps> {
                   optional="optional"
                   popQuestion="Description:"
                   className="mt-2"
+                  onChange={(e) => {
+                    this.handleChange("description", e.target.value);
+                  }}
                 ></InputComponent>
               </div>
             </div>
@@ -182,16 +378,17 @@ class DataPageNew extends React.Component<RouteComponentProps> {
               <BoxAlert text=" No Equipment Has Been Suggested!"></BoxAlert>
               <div className="item">
                 <SelectComponent
-                  items={[
-                    { name: "test1", id: 1 },
-                    { name: "test2", id: 2 },
-                  ]}
+                  items={this.state.listEquipment}
                   TextItem="name"
                   ValueItem="id"
                   className="my-2"
                   placeholder="Click to see the list…"
                   label="Equipment Used For This Data:"
                   popQuestion="Equipment Used For This Data:"
+                  onChange={(e) => {
+                    this.handelChangeSelectMultiple(e, 'equipmentsId');
+                  }}
+                  isMulti
                 ></SelectComponent>
               </div>
               <BoxAlert text=" No Equipment Has Been Assigned Yet!"></BoxAlert>
@@ -215,8 +412,9 @@ class DataPageNew extends React.Component<RouteComponentProps> {
                 minHeight="43px"
                 minWidth="136px"
                 onClick={() => {
-                  this.props.history.push(AppRoutes.data_profile);
+                  this.handelCreateData()
                 }}
+                loading={this.state.loading}
               ></MainButton>
             </div>
           </div>

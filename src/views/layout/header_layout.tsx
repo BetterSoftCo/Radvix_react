@@ -19,7 +19,7 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
         return { label: item?.title, value: item?.id }
       }))
     }, err => { })
-  });
+  }, []);
   const handelChangeSelect = (
     e: { label: string; value: number }
   ) => {
