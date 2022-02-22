@@ -9,24 +9,175 @@ import { SelectComponent } from "../../components/select_input";
 import { BoxAlert } from "../../components/box_alert";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
- class LaboratoryPageNew extends React.Component<RouteComponentProps> {
+import { LaboratoryController } from "../../../controllers/laboratory/laboratory_controller";
+import { UploadController } from "../../../controllers/upload_media/upload_media";
+import SimpleReactValidator from "simple-react-validator";
+type StateType = {
+  listCategory: Array<{ label: string; value: number } | {}>;
+  files: Array<File>;
+  categoryId: number;
+  title: string;
+  webSite: string;
+  description: string;
+  managersId: string[];
+  addressLine1: string;
+  addressLine2: string;
+  zipCode: string;
+  creatorUserId: string;
+  company: string;
+  phone: string;
+  loading: boolean;
+  ExternalUrl: Array<string>;
+  External: string;
+  listmanagers: Array<{ label: string; value: number } | {}>;
+};
+class LaboratoryPageNew extends React.Component<RouteComponentProps> {
   RoleUser = store.getState().userRole;
-  date = new Date();
-  handelChangeDate(params: any): void {
-    console.log(params);
+  controller = new LaboratoryController();
+  UploadController = new UploadController();
+  validator = new SimpleReactValidator({
+    className: "text-danger",
+  });
+  componentDidMount() {
+    this.controller.getLaboratoryUsersAndCategories((res) => {
+      this.setState({
+        listmanagers: res.users.map((item) => {
+          return {
+            label: item.firstName + " " + item.lastName,
+            value: item.id,
+          };
+        }),
+        listCategory: res.categories.map((item) => {
+          return { label: item.title, value: item.id };
+        }),
+      });
+    });
   }
-  state = {
+  state: StateType = {
     files: [],
+    listCategory: [],
+    categoryId: 0,
+    addressLine1: "",
+    addressLine2: "",
+    company: "",
+    creatorUserId: "",
+    description: "",
+    managersId: [],
+    phone: "",
+    title: "",
+    webSite: "",
+    zipCode: "",
+    ExternalUrl: [],
+    External: "",
+    loading: false,
+    listmanagers: [],
   };
   onDrop = (files: any) => {
     this.setState({ files });
-    console.log(this.state);
   };
+  handelDeleteFile(arg: File) {
+    this.setState({
+      files: this.state.files.filter((file) => file.name !== arg.name),
+    });
+  }
+  handelChangeSelect(e: { label: string; value: number }) {
+    this.setState({ categoryId: e.value });
+  }
+  handelSelectManager(e: Array<{ label: string; value: number }>) {
+    this.setState({ managersId: e.map((item) => item.value) });
+  }
+  handleChange(target: string, val: any) {
+    this.setState({
+      [target]: val,
+    });
+  }
+  async handelUpload(id: number) {
+    const formData = new FormData();
+    for (let i = 0; i < this.state.files.length; i++) {
+      const file = this.state.files[i];
+      formData.append("Files", file);
+    }
+    for (let i = 0; i < this.state.ExternalUrl.length; i++) {
+      const file = this.state.ExternalUrl[i];
+      formData.append("ExternalUrls", file);
+    }
+    formData.append("UseCase", "1");
+    formData.append("LaboratoryId", id.toString());
+
+    await this.UploadController.UloadMedia(
+      formData,
+      (res) => {
+        this.setState({
+          loading: false,
+        });
+      },
+      () => {
+        this.setState({
+          loading: false,
+        });
+      }
+    );
+  }
+  handelCreateLaboratory() {
+    if (this.validator.allValid()) {
+      const body = {
+        title: this.state.title,
+        categoryId: this.state.categoryId,
+        webSite: this.state.webSite,
+        description: this.state.description,
+        managersId: this.state.managersId,
+        addressLine1: this.state.addressLine1,
+        addressLine2: this.state.addressLine2,
+        zipCode: this.state.zipCode,
+        company: this.state.company,
+        phone: this.state.phone,
+        creatorUserId: "",
+      };
+      this.setState({
+        loading: true,
+      });
+      this.controller.createLaboratory(
+        body,
+        (res) => {
+          this.handelUpload(res.id);
+          this.setState({
+            files: [],
+            title: "",
+            description: "",
+            startDate: new Date(),
+            endDate: new Date(),
+            currency: 2,
+            priority: 2,
+            teamsId: [],
+            usersId: [],
+            status: 0,
+            listMembers: [],
+          });
+          this.props.history.push(AppRoutes.profile_laboratory);
+        },
+        (err) => {
+          this.setState({
+            loading: false,
+          });
+        }
+      );
+    } else {
+      this.validator.showMessages();
+      this.forceUpdate();
+    }
+  }
   render() {
     const files = this.state.files.map((file: any) => (
       <li key={file.name}>
         {file.name} - {file.size} bytes
-        <CircleIcon type={ThemeCircleIcon.dark} width="22px" height="22px">
+        <CircleIcon
+          type={ThemeCircleIcon.dark}
+          width="22px"
+          height="22px"
+          onClick={() => {
+            this.handelDeleteFile(file);
+          }}
+        >
           <img
             src="/images/icons/garbage_can.svg"
             alt="radvix"
@@ -37,11 +188,17 @@ import { AppRoutes } from "../../../core/constants";
       </li>
     ));
     return (
-        <div className="container-fluid research new-research">
+      <div className="container-fluid research new-research">
         <div className="row"></div>
         <div className="col-12 box-content p-3">
           <h5 className="b-title d-flex">
-            <span onClick={()=>{window.history.back()}} className="backPage"></span> Create A New Laboratory
+            <span
+              onClick={() => {
+                window.history.back();
+              }}
+              className="backPage"
+            ></span>{" "}
+            Create A New Laboratory
           </h5>
           <div className="form row">
             <div className="col-md-6 left">
@@ -50,6 +207,14 @@ import { AppRoutes } from "../../../core/constants";
                   type={InputType.text}
                   label="Laboratory Name:"
                   popQuestion="Laboratory Name:"
+                  onChange={(e) => {
+                    this.handleChange("title", e.target.value);
+                  }}
+                  inValid={this.validator.message(
+                    "Laboratory Name",
+                    this.state.title,
+                    "required"
+                  )}
                 ></InputComponent>
               </div>
               <div className="item">
@@ -76,13 +241,15 @@ import { AppRoutes } from "../../../core/constants";
                 </span>
                 <div className="d-flex justify-content-between align-items-center">
                   <SelectComponent
-                    items={[
-                      { name: "test1", id: 1 },
-                      { name: "test2", id: 2 },
-                    ]}
+                    items={this.state.listCategory}
                     TextItem="name"
                     ValueItem="id"
-                    className="my-2"
+                    className="my-2 w-100"
+                    placeholder="Click to see the list…"
+                    isMulti={false}
+                    onChange={(e) => {
+                      this.handelChangeSelect(e);
+                    }}
                   ></SelectComponent>
                   <CircleIcon
                     width="36px"
@@ -103,6 +270,9 @@ import { AppRoutes } from "../../../core/constants";
                   label=" Website:"
                   popQuestion=" Website:"
                   optional="optional"
+                  onChange={(e) => {
+                    this.handleChange("webSite", e.target.value);
+                  }}
                 ></InputComponent>
               </div>
               <div className="item">
@@ -111,6 +281,9 @@ import { AppRoutes } from "../../../core/constants";
                   label="Description:"
                   popQuestion="Description:"
                   optional="optional"
+                  onChange={(e) => {
+                    this.handleChange("description", e.target.value);
+                  }}
                 ></InputComponent>
               </div>
               <div className="item">
@@ -118,13 +291,14 @@ import { AppRoutes } from "../../../core/constants";
                   label=" Lab Manager(s):"
                   popQuestion=" Lab Manager(s):"
                   optional="optional"
-                  items={[
-                    { name: "test1", id: 1 },
-                    { name: "test2", id: 2 },
-                  ]}
+                  items={this.state.listmanagers}
                   TextItem="name"
                   ValueItem="id"
                   className="my-2"
+                  onChange={(e) => {
+                    this.handelSelectManager(e);
+                  }}
+                  isMulti
                 ></SelectComponent>
               </div>
               <BoxAlert
@@ -176,15 +350,14 @@ import { AppRoutes } from "../../../core/constants";
                                 src="/Images/icons/cloud_computing.svg"
                                 alt="sssss"
                                 height="20"
-                                
                               />{" "}
-                              <span className="flex-fill">Browse Local Files</span>
+                              <span className="flex-fill">
+                                Browse Local Files
+                              </span>
                             </div>
                           }
                         ></MainButton>
-                        <p>
-                        Or drag and drop files here
-                        </p>
+                        <p>Or drag and drop files here</p>
                       </div>
                       <aside>
                         <h4>Files</h4>
@@ -203,6 +376,14 @@ import { AppRoutes } from "../../../core/constants";
                     </span>
                   }
                   popQuestion="Address"
+                  inValid={this.validator.message(
+                    "Address",
+                    this.state.company,
+                    "required"
+                  )}
+                  onChange={(e) => {
+                    this.handleChange("company", e.target.value);
+                  }}
                 ></InputComponent>
               </div>
               <div className="item">
@@ -210,6 +391,14 @@ import { AppRoutes } from "../../../core/constants";
                   type={InputType.text}
                   label=" Address Line 1"
                   popQuestion=" Address Line 1"
+                  inValid={this.validator.message(
+                    "Address Line 1",
+                    this.state.addressLine1,
+                    "required"
+                  )}
+                  onChange={(e) => {
+                    this.handleChange("addressLine1", e.target.value);
+                  }}
                 ></InputComponent>
               </div>
               <div className="item">
@@ -217,6 +406,14 @@ import { AppRoutes } from "../../../core/constants";
                   type={InputType.text}
                   label="Address Line 2"
                   popQuestion="Address Line 2"
+                  inValid={this.validator.message(
+                    "Address Line 2",
+                    this.state.addressLine2,
+                    "required"
+                  )}
+                  onChange={(e) => {
+                    this.handleChange("addressLine2", e.target.value);
+                  }}
                 ></InputComponent>
               </div>
               <div className="row">
@@ -238,12 +435,28 @@ import { AppRoutes } from "../../../core/constants";
                   <InputComponent
                     type={InputType.text}
                     label=" ZIP/Postal Code"
+                    inValid={this.validator.message(
+                      "ZIP/Postal Code",
+                      this.state.zipCode,
+                      "required"
+                    )}
+                    onChange={(e) => {
+                      this.handleChange("zipCode", e.target.value);
+                    }}
                   ></InputComponent>
                 </div>
                 <div className="item col-md-6">
                   <InputComponent
                     type={InputType.text}
                     label="Phone"
+                    inValid={this.validator.message(
+                      "Phone",
+                      this.state.phone,
+                      "required"
+                    )}
+                    onChange={(e) => {
+                      this.handleChange("phone", e.target.value);
+                    }}
                   ></InputComponent>
                 </div>
               </div>
@@ -273,12 +486,15 @@ import { AppRoutes } from "../../../core/constants";
               <MainButton
                 type={MainButtonType.dark}
                 children={"Create"}
-                onClick={()=>{this.props.history.push(AppRoutes.profile_laboratory)}}
+                onClick={() => {
+                  this.handelCreateLaboratory();
+                }}
                 borderRadius="50px"
                 fontSize="18px"
                 className="mx-2"
                 minHeight="43px"
                 minWidth="136px"
+                loading={this.state.loading}
               ></MainButton>
             </div>
           </div>
@@ -287,4 +503,4 @@ import { AppRoutes } from "../../../core/constants";
     );
   }
 }
-export default withRouter(LaboratoryPageNew)
+export default withRouter(LaboratoryPageNew);

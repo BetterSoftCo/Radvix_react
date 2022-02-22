@@ -1,9 +1,14 @@
 import React, { Fragment } from "react";
 import { RouteComponentProps, withRouter } from "react-router";
-import { AppRoutes } from "../../../../core/constants";
 import { MainButton, MainButtonType } from "../../../components/button";
-const PlanThree: React.FC<RouteComponentProps> = (props) => {
-  
+interface PropsPlanThree {
+  handelRegisterCallBack: () => void;
+  loading:boolean
+}
+const PlanThree: React.FC<PropsPlanThree & RouteComponentProps> = (props) => {
+  const handelRegister = () => {
+    props.handelRegisterCallBack()
+  };
   return (
     <Fragment>
       <div className="form-register">
@@ -39,11 +44,15 @@ const PlanThree: React.FC<RouteComponentProps> = (props) => {
             <MainButton
               type={MainButtonType.dark}
               minHeight="42px"
+              minWidth="250px"
               fontSize="15px"
               borderRadius="50px"
               className="px-3"
               backgroundColor="#00A598"
-              onClick={()=>{props.history.push(AppRoutes.login)}}
+              onClick={() => {
+                handelRegister();
+              }}
+              loading={props.loading}
               children={
                 <div>
                   Already Activated Your Account?

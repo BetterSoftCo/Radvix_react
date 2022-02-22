@@ -1,11 +1,17 @@
 export interface AppSettingRes {
-    status:  number;
-    result:  Array<AppSettingResult[]>;
-    message: string;
+    result:                  { [key: string]: AppSettingResResult[] };
+    id:                      number;
+    exception:               null;
+    status:                  number;
+    isCanceled:              boolean;
+    isCompleted:             boolean;
+    isCompletedSuccessfully: boolean;
+    creationOptions:         number;
+    asyncState:              null;
+    isFaulted:               boolean;
 }
 
-export interface AppSettingResult {
-    enumName: string;
-    id:       number;
-    title:    string;
+export interface AppSettingResResult {
+    id:    number;
+    title: string;
 }

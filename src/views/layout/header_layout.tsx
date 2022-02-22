@@ -53,11 +53,9 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
                         { name: "items 3", id: 2 },
                         { name: "items 2", id: 3 },
                       ]}
-                      height="25px"
-                      width="60%"
                       TextItem="name"
                       ValueItem="id"
-                      className="py-0"
+                      className="py-0 select_header_research"
                       backgroundColor="#F5F5F5"
                       border="none"
                       

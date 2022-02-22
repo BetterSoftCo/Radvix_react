@@ -1,12 +1,53 @@
-import React, { Fragment, useContext } from "react";
+import React, { Fragment, useContext, useRef, useState } from "react";
 import { RouteComponentProps, withRouter } from "react-router";
+import SimpleReactValidator from "simple-react-validator";
 import { MainButton, MainButtonType } from "../../../components/button";
 import { InputComponent, InputType } from "../../../components/inputs";
 import { SelectComponent } from "../../../components/select_input";
 import { RegisterContext } from "../register";
+interface PropsPlanOne {
+  SetPaymentCallBack: (pay: any) => void;
+}
+const PlanOne: React.FC<PropsPlanOne & RouteComponentProps> = (props) => {
+  const nextStep = useContext(RegisterContext);
+  const [firstName, setfirstName] = useState("");
+  const [lastName, setlastName] = useState("");
+  const [email, setemail] = useState("");
+  const [password, setpassword] = useState("");
+  const [confirmPassword, setconfirmPassword] = useState("");
+  const [institution, setinstitution] = useState("");
+  const [addressLine1, setaddressLine1] = useState("");
+  const [addressLine2, setaddressLine2] = useState("");
+  const [phone, setPhone] = useState("");
+  const [zipCode, setzipCode] = useState("");
+  const [, forceUpdate] = useState(0);
+  const Validator = useRef(
+    new SimpleReactValidator({
+      className: "text-danger",
+    })
+  );
+  const payment = () => {
+    const formValid = Validator.current.allValid();
+    if (!formValid) {
+      Validator.current.showMessages();
+      forceUpdate(1);
+    } else {
+      props.SetPaymentCallBack({
+        firstName,
+        lastName,
+        email,
+        password,
+        confirmPassword,
+        institution,
+        addressLine1,
+        addressLine2,
+        phone,
+        zipCode
+      })
+      nextStep(2);
+    }
+  };
 
-const PlanTwo: React.FC<RouteComponentProps> = (props) => {
- const nextStep = useContext(RegisterContext)
   return (
     <Fragment>
       <div className="form-register">
@@ -47,6 +88,14 @@ const PlanTwo: React.FC<RouteComponentProps> = (props) => {
                     type={InputType.text}
                     label="First Name:"
                     popQuestion="First Name:"
+                    onChange={(e) => {
+                      setfirstName(e.target.value);
+                    }}
+                    inValid={Validator.current.message(
+                      "First Name",
+                      firstName,
+                      "required"
+                    )}
                   ></InputComponent>
                 </div>
                 <div className="item">
@@ -54,6 +103,14 @@ const PlanTwo: React.FC<RouteComponentProps> = (props) => {
                     type={InputType.text}
                     label="Last Name:"
                     popQuestion="Last Name:"
+                    onChange={(e) => {
+                      setlastName(e.target.value);
+                    }}
+                    inValid={Validator.current.message(
+                      "Last Name",
+                      lastName,
+                      "required"
+                    )}
                   ></InputComponent>
                 </div>
                 <div className="item">
@@ -61,6 +118,14 @@ const PlanTwo: React.FC<RouteComponentProps> = (props) => {
                     type={InputType.text}
                     label="Email:"
                     popQuestion="Email:"
+                    onChange={(e) => {
+                      setemail(e.target.value);
+                    }}
+                    inValid={Validator.current.message(
+                      "Email",
+                      email,
+                      "required|email"
+                    )}
                   ></InputComponent>
                 </div>
                 <div className="item">
@@ -68,6 +133,14 @@ const PlanTwo: React.FC<RouteComponentProps> = (props) => {
                     type={InputType.text}
                     label="Password:"
                     popQuestion="Password:"
+                    onChange={(e) => {
+                      setpassword(e.target.value);
+                    }}
+                    inValid={Validator.current.message(
+                      "Password",
+                      password,
+                      "required"
+                    )}
                   ></InputComponent>
                 </div>
                 <div className="item">
@@ -75,6 +148,14 @@ const PlanTwo: React.FC<RouteComponentProps> = (props) => {
                     type={InputType.text}
                     label="Confirm Password:"
                     popQuestion="Confirm Password:"
+                    onChange={(e) => {
+                      setconfirmPassword(e.target.value);
+                    }}
+                    inValid={Validator.current.message(
+                      "Password",
+                      confirmPassword,
+                      `required|in:${password}`
+                    )}
                   ></InputComponent>
                 </div>
               </div>
@@ -85,18 +166,42 @@ const PlanTwo: React.FC<RouteComponentProps> = (props) => {
                     type={InputType.text}
                     label="Institution/Company"
                     popQuestion="Institution/Company"
+                    onChange={(e) => {
+                      setinstitution(e.target.value);
+                    }}
+                    inValid={Validator.current.message(
+                      "Institution/Company",
+                      institution,
+                      "required"
+                    )}
                   ></InputComponent>
                 </div>
                 <div className="item">
                   <InputComponent
                     type={InputType.text}
                     label="Address Line 1"
+                    onChange={(e) => {
+                      setaddressLine1(e.target.value);
+                    }}
+                    inValid={Validator.current.message(
+                      "Address Line 1",
+                      addressLine1,
+                      "required"
+                    )}
                   ></InputComponent>
                 </div>
                 <div className="item">
                   <InputComponent
                     type={InputType.text}
                     label="Address Line 2"
+                    onChange={(e) => {
+                      setaddressLine2(e.target.value);
+                    }}
+                    inValid={Validator.current.message(
+                      "Address Line 2",
+                      addressLine2,
+                      "required"
+                    )}
                   ></InputComponent>
                 </div>
                 <div className="row">
@@ -118,20 +223,35 @@ const PlanTwo: React.FC<RouteComponentProps> = (props) => {
                     <InputComponent
                       type={InputType.text}
                       label=" ZIP/Postal Code"
+                      onChange={(e) => {
+                        setzipCode(e.target.value);
+                      }}
+                      inValid={Validator.current.message(
+                        "ZIP/Postal Code",
+                        zipCode,
+                        "required"
+                      )}
                     ></InputComponent>
                   </div>
                   <div className="item col-md-6">
                     <InputComponent
                       type={InputType.text}
                       label="Phone"
+                      onChange={(e) => {
+                        setPhone(e.target.value);
+                      }}
+                      inValid={Validator.current.message(
+                        "Phone",
+                        phone,
+                        "required"
+                      )}
                     ></InputComponent>
                   </div>
                 </div>
                 <div className="item">
                   <SelectComponent
                     items={[
-                      { name: "test1", id: 1 },
-                      { name: "test2", id: 2 },
+                      { label: "test1", value: 1 },
                     ]}
                     TextItem="name"
                     ValueItem="id"
@@ -148,7 +268,9 @@ const PlanTwo: React.FC<RouteComponentProps> = (props) => {
                   borderRadius="50px"
                   className="px-3"
                   backgroundColor="#00A598"
-                  onClick={()=>{nextStep(2)}}
+                  onClick={() => {
+                    payment();
+                  }}
                   children={
                     <div>
                       Payment
@@ -168,4 +290,4 @@ const PlanTwo: React.FC<RouteComponentProps> = (props) => {
     </Fragment>
   );
 };
-export default withRouter(PlanTwo);
+export default withRouter(PlanOne);

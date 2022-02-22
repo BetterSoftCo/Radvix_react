@@ -5,16 +5,16 @@ import RightSection from "./right_section";
 import Sidebar from "./sidebar";
 import { ToastContainer } from "react-toastify";
 import { AppSettingController } from "../../controllers/app_setting/setting_controller";
+import { LocalDataSources } from "../../data/local_datasources";
 
 interface IMainLayout {
   children: ReactNode;
 }
 class MainLayout extends React.Component<IMainLayout & RouteComponentProps> {
-
- private controller: AppSettingController = new AppSettingController();
- 
-  componentDidMount(){
-    this.controller.enumList()
+  private controller: AppSettingController = new AppSettingController();
+  private local: LocalDataSources = new LocalDataSources();
+  componentDidMount() {
+    this.controller.enumList();
   }
   render() {
     return (
@@ -28,15 +28,18 @@ class MainLayout extends React.Component<IMainLayout & RouteComponentProps> {
                 <div className="col-12 col-md-2 col-lg-1 sidebar">
                   <Sidebar></Sidebar>
                 </div>
-                <div
-                  className={
-                    this.props.location.pathname.search("/Admin") >= 0
-                      ? "col-12 col-md-10 col-lg-11 col-xl-11"
-                      : "col-12 col-md-10 col-lg-10 col-xl-7"
-                  }
-                >
-                  {this.props.children}
-                </div>
+                {this.local.getSetting() ? (
+                  <div
+                    className={
+                      this.props.location.pathname.search("/Admin") >= 0
+                        ? "col-12 col-md-10 col-lg-11 col-xl-11"
+                        : "col-12 col-md-10 col-lg-10 col-xl-7"
+                    }
+                  >
+                    {this.props.children}
+                  </div>
+                ) : null}
+
                 {this.props.location.pathname.search("/Admin") >= 0 ? null : (
                   <div className="col-xl-3">
                     <RightSection></RightSection>
@@ -48,7 +51,7 @@ class MainLayout extends React.Component<IMainLayout & RouteComponentProps> {
         ) : (
           <div
             className="container-fluid justify-content-center align-items-center d-flex"
-            style={{minHeight: '100vh'}}
+            style={{ minHeight: "100vh" }}
           >
             {this.props.children}
           </div>
