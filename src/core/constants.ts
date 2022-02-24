@@ -18,7 +18,7 @@ export class AppRoutes {
 	static new_team:string ='/dashboard/team/new/';
 	static laboratory:string ='/dashboard/laboratory/';
 	static new_laboratory:string ='/dashboard/laboratory/new/';
-	static profile_laboratory:string ='/dashboard/laboratory/profile/';
+	static profile_laboratory:string ='/dashboard/laboratory/profile/:id';
 	static edit_laboratory:string ='/dashboard/laboratory/edit/';
 	static task:string ='/dashboard/Task/';
 	static task_new:string ='/dashboard/Task/new/';

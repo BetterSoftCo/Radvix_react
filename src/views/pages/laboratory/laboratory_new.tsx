@@ -153,7 +153,7 @@ class LaboratoryPageNew extends React.Component<RouteComponentProps> {
             status: 0,
             listMembers: [],
           });
-          this.props.history.push(AppRoutes.profile_laboratory);
+          this.props.history.push(`${AppRoutes.profile_laboratory.replace(':id', res.id?.toString())}`);
         },
         (err) => {
           this.setState({
