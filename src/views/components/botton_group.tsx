@@ -20,6 +20,7 @@ interface InputsProps {
   popQuestion?: string;
   optional?: string;
   inValid?: string;
+  selected?: number;
 }
 export const ButtonGroup: React.FC<InputsProps> = ({
   width,
@@ -38,6 +39,7 @@ export const ButtonGroup: React.FC<InputsProps> = ({
   popQuestion,
   optional,
   inValid,
+  selected,
 }) => {
   let styles = {
     width: width,
@@ -118,6 +120,7 @@ export const ButtonGroup: React.FC<InputsProps> = ({
               onChange={onChange}
               disabled={item.disable}
               value={item[ValueItem]}
+              checked={item[ValueItem] === selected}
             />
             <label
               className="btn btn-outline-dark"

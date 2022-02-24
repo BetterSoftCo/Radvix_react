@@ -123,6 +123,7 @@ export const InputComponent: React.FC<InputsProps> = ({
         }`}
         onChange={onChange}
         placeholder={placeholder}
+        value={value}
       ></textarea>
       {TemplateValidation}
     </Fragment>

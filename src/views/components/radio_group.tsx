@@ -20,6 +20,7 @@ interface InputsProps {
   popQuestion?: string;
   optional?: string;
   inValid?: string;
+  Selected?:number
 }
 export const RadioGroup: React.FC<InputsProps> = ({
   width,
@@ -38,6 +39,7 @@ export const RadioGroup: React.FC<InputsProps> = ({
   popQuestion,
   optional,
   inValid,
+  Selected
 }) => {
   let styles = {
     width: width,
@@ -84,7 +86,7 @@ export const RadioGroup: React.FC<InputsProps> = ({
     );
   }
   let TemplateValidation;
-  let IsinValid:string;
+  let IsinValid: string;
   if (inValid) {
     TemplateValidation = <div>{inValid}</div>;
     IsinValid = "is-invalid";
@@ -114,6 +116,7 @@ export const RadioGroup: React.FC<InputsProps> = ({
             id={item[ValueItem] + name}
             value={item[ValueItem]}
             onChange={onChange}
+            checked={item[ValueItem] === Selected}
           />
           <label
             className="form-check-label"
