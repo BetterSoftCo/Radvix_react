@@ -98,7 +98,7 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
             status: 0,
             listMembers: [],
           });
-          this.props.history.push(AppRoutes.profile_research)
+          this.props.history.push(`${AppRoutes.profile_research.replace(':id', res.id?.toString() ?? "")}`)
         },
         (err) => {
           this.setState({

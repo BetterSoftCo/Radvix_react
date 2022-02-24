@@ -4,9 +4,15 @@ enum Status {
     OnHold,
     Completed,
   }
+  enum Priority {
+    Low,
+    Medium,
+    High
+  }
   declare global {  
     interface Number {  
      isStatus(): string; 
+     isPriority(): string; 
     }  
    }
   Number.prototype.isStatus = function(): string {  
@@ -19,6 +25,20 @@ enum Status {
             return 'OnHold'
         case Status.Completed:
             return 'Completed'
+        default:
+            return ''
+    };
+   }
+   Number.prototype.isPriority = function(): string {  
+    switch (Number(this)) {
+        case Priority.Low:
+            return 'Low'
+        case Status.Delayed:
+            return 'Delayed'
+        case Priority.Medium:
+            return 'Medium'
+        case Priority.High:
+            return 'High'
         default:
             return ''
     };

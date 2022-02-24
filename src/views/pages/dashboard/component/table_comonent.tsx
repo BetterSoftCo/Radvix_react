@@ -27,7 +27,7 @@ const TableComponent: React.FC<TableComponentProp & RouteComponentProps> = (
                 New Project{" "}
                 <span
                   onClick={() => {
-                    props.history.push(AppRoutes.profile_research);
+                    props.history.push(`${AppRoutes.profile_research.replace(':id', head.id?.toString() ?? "")}`);
                   }}
                   className="pointer"
                 >

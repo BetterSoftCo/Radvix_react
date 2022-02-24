@@ -8,10 +8,51 @@ import { Theme } from "../../../core/utils";
 import { BoxListScroll } from "../../components/box_list_scroll";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
- class ResearchPageProfile extends React.Component<RouteComponentProps> {
+import { GetResearchByidResResult } from "../../../data/models/responses/research/research_by_id_res";
+import { ResearchController } from "../../../controllers/research/research_controller";
+import "../../../core/number_extentions";
+import moment from "moment";
+interface RouteParams {
+  id: string;
+}
+type StateType = {
+  Research: GetResearchByidResResult;
+};
+class ResearchPageProfile extends React.Component<
+  RouteComponentProps<RouteParams>
+> {
   RoleUser = store.getState().userRole;
-
-
+  controller = new ResearchController();
+  state: StateType = {
+    Research: {
+      id: 0,
+      title: "",
+      description: "",
+      creatorUserFirstName: "",
+      creatorUserLastName: "",
+      startDate: new Date(),
+      endDate: new Date(),
+      currency: 0,
+      priority: 0,
+      status: 0,
+      medias: [],
+      users: [],
+      teams: [],
+      laboratories: [],
+      equipments: [],
+    },
+  };
+  componentDidMount() {
+    this.controller.getResearchById(
+      { id: parseInt(this.props.match.params.id) },
+      (res) => {
+        this.setState({
+          Research: res,
+        });
+      },
+      (err) => {}
+    );
+  }
   render() {
     return (
       <div className="container-fluid research new-research">
@@ -19,7 +60,12 @@ import { AppRoutes } from "../../../core/constants";
         <div className="col-12 box-content p-3">
           <div className="d-flex justify-content-between align-items-center flex-wrap">
             <h5 className="b-title d-flex align-items-center flex-wrap">
-              <span onClick={()=>{window.history.back()}} className="backPage"></span>{" "}
+              <span
+                onClick={() => {
+                  window.history.back();
+                }}
+                className="backPage"
+              ></span>{" "}
               {"Research List > Research Profile"}
               <CircleIcon
                 width="22px"
@@ -29,7 +75,14 @@ import { AppRoutes } from "../../../core/constants";
                 fontSize="10px"
                 color="#ffff"
                 className="mx-1 pointer"
-                onClick={()=>{this.props.history.push(AppRoutes.edit_research)}}
+                onClick={() => {
+                  this.props.history.push(
+                    `${AppRoutes.edit_research.replace(
+                      ":id",
+                      this.props.match.params.id
+                    )}`
+                  );
+                }}
               >
                 <img src="/images/icons/edit.svg" alt="radvix" />
               </CircleIcon>
@@ -50,20 +103,14 @@ import { AppRoutes } from "../../../core/constants";
               borderRadius="24px"
               fontSize="14px"
               className="px-3"
-              onClick={()=>{this.props.history.push(AppRoutes.discussion)}}
+              onClick={() => {
+                this.props.history.push(AppRoutes.discussion);
+              }}
             ></MainButton>
           </div>
           <div className="Studying p-4 my-2">
-            <h3 className="px-5 text-center">
-              Studying The Effects Of Freeze Thaw On Durability Of Concrete Made
-              From Recycled Aggregate
-            </h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.{" "}
-            </p>
+            <h3 className="px-5 text-center">{this.state.Research.title}</h3>
+            <p>{this.state.Research.description}</p>
           </div>
           <div className="row">
             <div className="col-md-6  tabel-info ">
@@ -71,7 +118,11 @@ import { AppRoutes } from "../../../core/constants";
                 <h6 className="col-4 t-title mb-0 border-t-l">Priority</h6>
                 <div className="col-8 t-desc border-t-r">
                   <MainButton
-                    children="High Priority"
+                    children={
+                      this.state.Research.priority.isPriority() +
+                      " " +
+                      "Priority"
+                    }
                     type={MainButtonType.dark}
                     borderRadius="24px"
                     fontSize="14px"
@@ -81,29 +132,30 @@ import { AppRoutes } from "../../../core/constants";
               </div>
               <div className="row border-bottom">
                 <h6 className="col-4 t-title mb-0">Created by</h6>
-                <div className="col-8 t-desc">N. Hosseinzadeh</div>
+                <div className="col-8 t-desc">
+                  {this.state.Research.creatorUserFirstName +
+                    " " +
+                    this.state.Research.creatorUserLastName}
+                </div>
               </div>
               <div className="row border-bottom">
                 <h6 className="col-4 t-title mb-0">Start - Deadline</h6>
-                <div className="col-8 t-desc">07/10/2021 - 04/12/2022</div>
+                <div className="col-8 t-desc">
+                  {moment(this.state.Research.startDate).format("YYYY/MM/DD") +
+                    "-" +
+                    moment(this.state.Research.endDate).format("YYYY/MM/DD")}
+                </div>
               </div>
               <div className="row border-bottom">
                 <h6 className="col-4 t-title mb-0">Date Completed</h6>
                 <div className="col-8 t-desc">
                   {" "}
                   <MainButton
-                    children="On Going"
+                    children={this.state.Research.status.isStatus()}
                     type={MainButtonType.dark}
                     borderRadius="24px"
                     fontSize="14px"
                     backgroundColor="#8EE1FF"
-                  ></MainButton>
-                  <MainButton
-                    children="Delayed"
-                    type={MainButtonType.dark}
-                    borderRadius="24px"
-                    fontSize="14px"
-                    backgroundColor="#FE861F"
                   ></MainButton>
                 </div>
               </div>
@@ -112,40 +164,30 @@ import { AppRoutes } from "../../../core/constants";
                 <div className="col-8 t-desc border-b-r">
                   {" "}
                   <ul className="file-list">
-                    <li>
-                      <img src='/images/icons/pdf_icon.svg' alt="" />{" "}
-                      proposal_general.pdf
-                    </li>
-                    <li>
-                      <img src='/images/icons/word_icon.svg' alt="" />{" "}
-                      proposal_general.docx
-                    </li>
-                    <li>
-                      <img src='/images/icons/excel_icon.svg' alt="" />{" "}
-                      proposal_general.xlsx
-                    </li>
-                    <li>
-                      <img src='/images/icons/pdf_icon.svg' alt="" />{" "}
-                      proposal_general.pdf
-                    </li>
+                    {this.state.Research.medias
+                      .filter((item) => item.externalUrl === null)
+                      .map((item) => (
+                        <li key={item.id}>
+                          <img src="/images/icons/pdf_icon.svg" alt="" />{" "}
+                          {item.name}
+                        </li>
+                      ))}
                     <li>
                       Shared Links:
-                      <MainButton
-                        children="https://drive.google.com/file/234234"
-                        type={MainButtonType.dark}
-                        borderRadius="24px"
-                        fontSize="14px"
-                        backgroundColor="#F5F5F5"
-                        color="#096BFF"
-                      ></MainButton>
-                      <MainButton
-                        children="https://drive.google.com/file/234234"
-                        type={MainButtonType.dark}
-                        borderRadius="24px"
-                        fontSize="14px"
-                        backgroundColor="#F5F5F5"
-                        color="#096BFF"
-                      ></MainButton>
+                      {this.state.Research.medias
+                        .filter((item) => item.externalUrl)
+                        .map((item) => (
+                          <div key={item.id}>
+                            <MainButton
+                              children={item.externalUrl}
+                              type={MainButtonType.dark}
+                              borderRadius="24px"
+                              fontSize="14px"
+                              backgroundColor="#F5F5F5"
+                              color="#096BFF"
+                            ></MainButton>
+                          </div>
+                        ))}
                     </li>
                   </ul>
                 </div>
@@ -165,63 +207,30 @@ import { AppRoutes } from "../../../core/constants";
                   }
                 ></IconTextRow>
                 <div className="tags p-3">
-                  <MainButton
-                    children="ACCESSLab Team"
-                    backgroundColor="#EBEBEB"
-                    type={MainButtonType.light}
-                    borderRadius="24px"
-                    fontSize="14px"
-                    onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
-                  ></MainButton>
-                  <MainButton
-                    children="ACCESSLab Team"
-                    backgroundColor="#EBEBEB"
-                    type={MainButtonType.light}
-                    borderRadius="24px"
-                    fontSize="14px"
-                    onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
-                  ></MainButton>
-                  <MainButton
-                    children="ACCESSLab Team"
-                    backgroundColor="#EBEBEB"
-                    type={MainButtonType.light}
-                    borderRadius="24px"
-                    fontSize="14px"
-                    onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
-                  ></MainButton>
-                  <MainButton
-                    children="ACCESSLab Team"
-                    backgroundColor="#EBEBEB"
-                    type={MainButtonType.light}
-                    borderRadius="24px"
-                    fontSize="14px"
-                    className="px-3 m-2"
-                    onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
-                  ></MainButton>
+                  {this.state.Research.teams.map((item) => (
+                    <div>
+                      <MainButton
+                        children={item.title}
+                        backgroundColor="#EBEBEB"
+                        type={MainButtonType.light}
+                        borderRadius="24px"
+                        fontSize="14px"
+                        onClick={() => {
+                          this.props.history.push(AppRoutes.member_profile);
+                        }}
+                      ></MainButton>
+                    </div>
+                  ))}
                 </div>
                 <BoxListScroll
-                  items={[
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 1,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 2,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 3,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                  ]}
-                  TextItem="text"
+                  items={this.state.Research.users}
+                  TextItem="firstName"
                   ValueItem="id"
-                  ImageItem="imagesrc"
+                  ImageItem="image"
                   Deletabel
-                  onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
+                  onClick={() => {
+                    this.props.history.push(AppRoutes.member_profile);
+                  }}
                   className="pointer"
                 ></BoxListScroll>
               </div>
@@ -275,64 +284,30 @@ import { AppRoutes } from "../../../core/constants";
                   }
                 ></IconTextRow>
                 <div className="tags p-3">
-                  <MainButton
-                    children="ACCESSLab Team"
-                    backgroundColor="#EBEBEB"
-                    type={MainButtonType.light}
-                    borderRadius="24px"
-                    fontSize="14px"
-                    className="px-3 pointer"
-                    onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
-                  ></MainButton>
-                  <MainButton
-                    children="ACCESSLab Team"
-                    backgroundColor="#EBEBEB"
-                    type={MainButtonType.light}
-                    borderRadius="24px"
-                    fontSize="14px"
-                    onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
-                  ></MainButton>
-                  <MainButton
-                    children="ACCESSLab Team"
-                    backgroundColor="#EBEBEB"
-                    type={MainButtonType.light}
-                    borderRadius="24px"
-                    fontSize="14px"
-                    onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
-                  ></MainButton>
-                  <MainButton
-                    children="ACCESSLab Team"
-                    backgroundColor="#EBEBEB"
-                    type={MainButtonType.light}
-                    borderRadius="24px"
-                    fontSize="14px"
-                    className="px-3 m-2"
-                    onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
-                  ></MainButton>
+                  {this.state.Research.laboratories.map((item) => (
+                    <div>
+                      <MainButton
+                        children={item.title}
+                        backgroundColor="#EBEBEB"
+                        type={MainButtonType.light}
+                        borderRadius="24px"
+                        fontSize="14px"
+                        onClick={() => {
+                          this.props.history.push(AppRoutes.member_profile);
+                        }}
+                      ></MainButton>
+                    </div>
+                  ))}
                 </div>
                 <BoxListScroll
-                  items={[
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 1,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 2,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 3,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                  ]}
-                  TextItem="text"
+                  items={this.state.Research.equipments}
+                  TextItem="title"
                   ValueItem="id"
                   ImageItem="imagesrc"
                   Deletabel
-                  onClick={()=>{this.props.history.push(AppRoutes.profile_laboratory)}}
+                  onClick={() => {
+                    this.props.history.push(AppRoutes.profile_laboratory);
+                  }}
                   className="pointer"
                 ></BoxListScroll>
               </div>
@@ -343,4 +318,4 @@ import { AppRoutes } from "../../../core/constants";
     );
   }
 }
-export default withRouter(ResearchPageProfile)
+export default withRouter(ResearchPageProfile);
