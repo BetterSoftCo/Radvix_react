@@ -1,11 +1,12 @@
 import React from "react";
 import { Theme } from "../../../../core/utils";
+import { GetAllEquipmentResult } from "../../../../data/models/responses/equipment/get_all_equipment_res";
 import { MainButton, MainButtonType } from "../../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../../components/circle_icon";
 import { IconTextRow } from "../../../components/icon_text_horizontal";
 interface TableComponentProp {
   Heading: string[];
-  Items: any[];
+  Items: GetAllEquipmentResult[];
 }
 export const EquipmentList: React.FC<TableComponentProp> = ({
   Heading,
@@ -38,14 +39,14 @@ export const EquipmentList: React.FC<TableComponentProp> = ({
                       height={58}
                     />
                   }
-                  text={head.name}
+                  text={head.title}
                 ></IconTextRow>
               </td>
-              <td style={{ display: "table-cell", verticalAlign: "middle" }} className="align-items-center">{head.Institution}</td>
-              <td style={{ display: "table-cell", verticalAlign: "middle" }} className="align-items-center">{head.Category}</td>
+              <td style={{ display: "table-cell", verticalAlign: "middle" }} className="align-items-center">{head.title}</td>
+              <td style={{ display: "table-cell", verticalAlign: "middle" }} className="align-items-center">{head.title}</td>
               <td style={{ display: "table-cell", verticalAlign: "middle" }} className="align-items-center">
                 <MainButton
-                  children={head.Eqiups}
+                  children={head.title}
                   type={MainButtonType.dark}
                   borderRadius="24px"
                   fontSize="14px"

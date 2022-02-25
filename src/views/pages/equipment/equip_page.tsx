@@ -1,44 +1,44 @@
 import React from "react";
 import ReactPaginate from "react-paginate";
+import { EquipmentController } from "../../../controllers/equipment/equipment_controller";
+import { LocalDataSources } from "../../../data/local_datasources";
+import { GetAllEquipmentResult } from "../../../data/models/responses/equipment/get_all_equipment_res";
 import { store } from "../../../data/store";
 import { MainButton, MainButtonType } from "../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import { InputIcon } from "../../components/search_box";
 import { SelectComponent } from "../../components/select_input";
 import { EquipmentList } from "./component/equipment_list";
-
+type StateType = {
+  Equipments: GetAllEquipmentResult[];
+  PageNumber: number;
+  PageSize: number;
+  PageCount: number;
+};
 export class EquipPage extends React.Component {
   RoleUser = store.getState().userRole;
-  state = {
-    Data: {
-      Items: [
-        {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "Operational",
-        },
-        {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "Operational",
-        },
-        {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "Operational",
-        },
-        {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "Operational",
-        },
-      ],
-    },
+  controller = new EquipmentController();
+  local = new LocalDataSources();
+  state: StateType = {
+    Equipments: [],
+    PageNumber: 1,
+    PageSize: 10,
+    PageCount: 0,
   };
+  componentDidMount() {
+    this.GetEquipments(this.state.PageNumber, this.state.PageSize);
+  }
+  GetEquipments(PageNumber: number, PageSize: number) {
+    this.controller.getAllEquipments(
+      { userId: this.local.getUserId() },
+      (res) => {
+        this.setState({
+          Equipments: res,
+        });
+      },
+      (err) => console.log(err)
+    );
+  }
   render() {
     return (
       <div className="container-fluid research">
@@ -48,18 +48,25 @@ export class EquipPage extends React.Component {
             <div className="TopTableBox d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3">
               <div className="left d-flex w-50 align-items-center">
                 <h6 className="b-title d-flex" style={{ width: "45%" }}>
-                  <span onClick={()=>{window.history.back()}} className="backPage"></span> Equipment List
+                  <span
+                    onClick={() => {
+                      window.history.back();
+                    }}
+                    className="backPage"
+                  ></span>{" "}
+                  Equipment List
                 </h6>
                 <InputIcon
                   chilren={
                     <img src="/images/icons/search_box_icon.svg" alt="" />
                   }
                   width="100%"
-                  placeholder="Search..."  TopPosition="15%"
+                  placeholder="Search..."
+                  TopPosition="15%"
                 ></InputIcon>
               </div>
               <div className="right  d-flex justify-content-between">
-              <MainButton
+                <MainButton
                   children="New Equip"
                   type={MainButtonType.dark}
                   borderRadius="24px"
@@ -87,13 +94,13 @@ export class EquipPage extends React.Component {
               </div>
             </div>
             <EquipmentList
-              Items={this.state.Data.Items}
+              Items={this.state.Equipments}
               Heading={["Equipment Name", "Laboratory", "Users", "Status"]}
             ></EquipmentList>
 
-           <div className="d-flex justify-content-between align-items-baseline">
-                  <div className="d-flex justify-content-end flex-fill">
-                  <ReactPaginate
+            <div className="d-flex justify-content-between align-items-baseline">
+              <div className="d-flex justify-content-end flex-fill">
+                <ReactPaginate
                   previousLabel={
                     <CircleIcon
                       width="24px"
@@ -119,17 +126,17 @@ export class EquipPage extends React.Component {
                   pageCount={20}
                   marginPagesDisplayed={2}
                   pageRangeDisplayed={5}
-                  onPageChange={()=>{console.log('changepage')}}
+                  onPageChange={() => {
+                    console.log("changepage");
+                  }}
                   containerClassName={"pagination"}
                   activeClassName={"active"}
                 />
-                  </div>
-                  <div className="d-flex justify-content-end flex-fill">
-                  <p className="text-right mb-0 " >Total Results: 45</p>
-                  </div>
-                 
-                
               </div>
+              <div className="d-flex justify-content-end flex-fill">
+                <p className="text-right mb-0 ">Total Results: 45</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
