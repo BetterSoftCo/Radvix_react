@@ -1,5 +1,6 @@
 import { toast } from "react-toastify";
 import { TaskReq } from "../../data/models/requests/task/task_req";
+import { GetAllTasksResult } from "../../data/models/responses/task/get_all_tasks_res";
 import { SearchTaskResResult } from "../../data/models/responses/task/search_task_res";
 import { TaskResResult } from "../../data/models/responses/task/task_res";
 import { RemoteTask } from "../../data/remotes/task/remote_task";
@@ -33,6 +34,29 @@ export class TaskController {
   ) {
     if (store.getState().ResearchId > 0) {
       this.remote.SearchTask(
+        { researchId: store.getState().ResearchId },
+        (res) => {
+          action(res.result!);
+        },
+        (err) => {
+          toast.error(`${err.message}`, {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+          error(err);
+        }
+      );
+    } else {
+      toast.error(`please select research`, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
+  }
+  getTasks(
+    action: (res: GetAllTasksResult[]) => any,
+    error: (res: any) => any
+  ) {
+    if (store.getState().ResearchId > 0) {
+      this.remote.getTasks(
         { researchId: store.getState().ResearchId },
         (res) => {
           action(res.result!);

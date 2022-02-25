@@ -3,7 +3,6 @@ import { LocalDataSources } from "../../data/local_datasources";
 import { LaboratoryCreateReq } from "../../data/models/requests/laboratory/laboratory_create_req";
 import { UpdateLaboratoryReq } from "../../data/models/requests/laboratory/laboratory_update_req";
 import {
-  GetLaboratoryByID,
   GetLaboratoryByIDResult,
 } from "../../data/models/responses/laboratory/laboratory_by_id_res";
 import { LaboratoryCreateResResult } from "../../data/models/responses/laboratory/laboratory_create_res";
