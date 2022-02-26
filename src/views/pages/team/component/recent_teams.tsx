@@ -4,8 +4,10 @@ import { MainButton, MainButtonType } from "../../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../../components/circle_icon";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../../core/constants";
+import { Team } from "../../../../data/models/responses/team/get_all_teams_res";
 interface IAcordienTable {
   role: UserRoles;
+  Teams: Team[];
 }
 const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
   props

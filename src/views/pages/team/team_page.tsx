@@ -8,9 +8,37 @@ import { SelectComponent } from "../../components/select_input";
 import AcordienTable from "./component/recent_teams";
 import { withRouter, RouteComponentProps } from "react-router";
 import { AppRoutes } from "../../../core/constants";
-
+import { Team } from "../../../data/models/responses/team/get_all_teams_res";
+import { TeamController } from "../../../controllers/team/team_controller";
+type StateType = {
+  Teams: Team[];
+  PageNumber: number;
+  PageSize: number;
+  PageCount: number;
+};
 class TeamPage extends React.Component<RouteComponentProps> {
   RoleUser = store.getState().userRole;
+  controller = new TeamController();
+  state: StateType = {
+    Teams: [],
+    PageNumber: 1,
+    PageSize: 10,
+    PageCount: 0,
+  };
+  componentDidMount() {
+    this.GetTeams(this.state.PageNumber, this.state.PageSize);
+  }
+  GetTeams(PageNumber: number, PageSize: number) {
+    this.controller.getAllTeams(
+      { pageNumber: PageNumber, pageSize: PageSize },
+      (res) => {
+        this.setState({
+          Teams: res,
+        });
+        console.log(res);
+      }
+    );
+  }
   render() {
     return (
       <div className="container-fluid research">
@@ -33,7 +61,8 @@ class TeamPage extends React.Component<RouteComponentProps> {
                     <img src="/images/pages/Search Box Icon.svg" alt="" />
                   }
                   width="100%"
-                  placeholder="Search..."  TopPosition="15%"
+                  placeholder="Search..."
+                  TopPosition="15%"
                 ></InputIcon>
               </div>
               <div className="right w-50 d-flex justify-content-end align-items-center">
@@ -68,7 +97,10 @@ class TeamPage extends React.Component<RouteComponentProps> {
                 ></SelectComponent>
               </div>
             </div>
-            <AcordienTable role={this.RoleUser}></AcordienTable>
+            <AcordienTable
+              Teams={this.state.Teams}
+              role={this.RoleUser}
+            ></AcordienTable>
             <div className="d-flex justify-content-between align-items-baseline">
               <div className="d-flex justify-content-end flex-fill">
                 <ReactPaginate

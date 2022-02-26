@@ -1,7 +1,6 @@
 import React from "react";
 import ReactPaginate from "react-paginate";
 import { TaskController } from "../../../controllers/task/task_controller";
-import { AccessPermition, UserRoles } from "../../../core/utils";
 import { GetAllTasksResult } from "../../../data/models/responses/task/get_all_tasks_res";
 import { store } from "../../../data/store";
 import { MainButton, MainButtonType } from "../../components/button";
@@ -35,7 +34,7 @@ export class TasksPage extends React.Component {
     this.controller.getTasks(
       (res) => {
         this.setState({
-          Tasks:res
+          Tasks:res,
         })
       },
       (err) => console.log(err)
