@@ -267,6 +267,7 @@ class TaskPageNew extends React.Component<RouteComponentProps> {
                     this.state.priority,
                     "required"
                   )}
+                  selected={this.state.priority}
                   onChange={(e) => {
                     this.handleChange("priority", parseInt(e.target.value));
                   }}

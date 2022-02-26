@@ -1,6 +1,7 @@
 import React from "react";
 import ReactPaginate from "react-paginate";
 import { TaskController } from "../../../controllers/task/task_controller";
+import { AccessPermition, UserRoles } from "../../../core/utils";
 import { GetAllTasksResult } from "../../../data/models/responses/task/get_all_tasks_res";
 import { store } from "../../../data/store";
 import { MainButton, MainButtonType } from "../../components/button";
@@ -28,6 +29,7 @@ export class TasksPage extends React.Component {
     store.subscribe(() => {
       this.GetTasks(this.state.PageNumber, this.state.PageSize);
     });
+    
   }
   GetTasks(PageNumber: number, PageSize: number) {
     this.controller.getTasks(
