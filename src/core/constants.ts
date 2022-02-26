@@ -26,7 +26,7 @@ export class AppRoutes {
 	static task_edit:string ='/dashboard/Task/edit/';
 	static member:string ='/dashboard/Member';
 	static member_new:string ='/dashboard/Member/new/';
-	static member_profile:string ='/dashboard/Member/profile/';
+	static member_profile:string ='/dashboard/Member/profile/:id';
 	static member_user_edit:string ='/dashboard/Member/UserEdit/';
 	static member_edit_profile:string ='/dashboard/Member/EditProfile/';
 	static equip_new:string ='/dashboard/Equip/new/';
