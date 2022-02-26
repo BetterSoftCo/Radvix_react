@@ -34,7 +34,9 @@ export class TasksPage extends React.Component {
   GetTasks(PageNumber: number, PageSize: number) {
     this.controller.getTasks(
       (res) => {
-        console.log(res);
+        this.setState({
+          Tasks:res
+        })
       },
       (err) => console.log(err)
     );
@@ -78,7 +80,7 @@ export class TasksPage extends React.Component {
                 ></SelectComponent>
               </div>
             </div>
-            <AcordienTable role={this.RoleUser}></AcordienTable>
+            <AcordienTable Tasks={this.state.Tasks} role={this.RoleUser}></AcordienTable>
 
             <div className="d-flex justify-content-between align-items-baseline">
               <div className="d-flex justify-content-end flex-fill">

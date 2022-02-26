@@ -1,9 +1,12 @@
+import moment from "moment";
 import React, { Fragment, useEffect } from "react";
 import { UserRoles } from "../../../../core/utils";
+import { GetAllTasksResult } from "../../../../data/models/responses/task/get_all_tasks_res";
 import { MainButton, MainButtonType } from "../../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../../components/circle_icon";
 interface IAcordienTable {
   role: UserRoles;
+  Tasks: GetAllTasksResult[];
 }
 export const AcordienTable = (props: IAcordienTable) => {
   const handelOnclick = (e: any) => {
@@ -22,7 +25,7 @@ export const AcordienTable = (props: IAcordienTable) => {
         <div className="col"></div>
       </div>
       <div className="accordion" id="accordionResentTask">
-        {["one", "tow", "three"].map((item, index) => (
+        {props.Tasks.map((item, index) => (
           <div className="accordion-item accordion-item-top" key={index}>
             <div className="accordion-header" id={`heading_resentTask${index}`}>
               <div
@@ -42,17 +45,20 @@ export const AcordienTable = (props: IAcordienTable) => {
                         className="lable"
                         style={{ backgroundColor: "#096BFF" }}
                       ></span>{" "}
-                      TGA issues with are...TGA issues with are...TGA issues
-                      with are...
+                      {item.title}
                     </span>
                   </div>
-                  <div className="col">N. Hossein...</div>
-                  <div className="col">K. Pourtorab</div>
-                  <div className="col">07/22/2021</div>
-                  <div className="col">
+                  <div className="col text-truncate">
+                    {item.creatorFirstName + " " + item.creatorLastName}
+                  </div>
+                  <div className="col text-truncate">{}</div>
+                  <div className="col text-truncate">
+                    {moment(item.endDate).format("YYYY/MM/DD")}
+                  </div>
+                  <div className="col text-truncate">
                     <MainButton
                       type={MainButtonType.dark}
-                      children="1 message"
+                      children={item.status.isStatus()}
                       borderRadius="15px"
                       backgroundColor="#8EE1FF"
                       color="#474747"
@@ -101,51 +107,56 @@ export const AcordienTable = (props: IAcordienTable) => {
                 </div>
               </div>
             </div>
-            <div
-              className="accordion-collapse collapse "
-              id={`collapse_resentTask${index}`}
-              aria-labelledby={`heading_resentTask${index}`}
-              data-bs-parent="#accordionResentTask"
-            >
-              <div className="accordion-body ">
-                <div className="sub-accordian-parent">
-                  <p className="sub-accordion" style={{ marginRight: "-7px" }}>
-                    Subtask
-                  </p>
-                </div>
-                <div className="items">
-                {[1, 2, 3].map((item, index) => ( <div className="row w-100 py-2 rounded" key={index}>
-                    <div className="col">
-                      <span
-                        className="text-truncate d-inline-block"
-                        style={{ maxWidth: "120px" }}
-                      >
-                        <span
-                          className="lable"
-                          style={{ backgroundColor: "#096BFF" }}
-                        ></span>{" "}
-                        TGA issues with are...TGA issues with are...TGA issues
-                        with are...
-                      </span>
-                    </div>
-                    <div className="col">N. Hossein...</div>
-                    <div className="col">K. Pourtorab</div>
-                    <div className="col">07/22/2021</div>
-                    <div className="col">
-                      <MainButton
-                        type={MainButtonType.dark}
-                        children="1 message"
-                        borderRadius="15px"
-                        backgroundColor="#8EE1FF"
-                        color="#474747"
-                      ></MainButton>
-                    </div>
-                    <div className="col d-flex justify-content-between align-items-center"></div>
-                  </div>))}
-                 
+            {item.subTasks.length > 0 ? (
+              <div
+                className="accordion-collapse collapse "
+                id={`collapse_resentTask${index}`}
+                aria-labelledby={`heading_resentTask${index}`}
+                data-bs-parent="#accordionResentTask"
+              >
+                <div className="accordion-body ">
+                  <div className="sub-accordian-parent">
+                    <p
+                      className="sub-accordion"
+                      style={{ marginRight: "-7px" }}
+                    >
+                      Subtask
+                    </p>
+                  </div>
+                  <div className="items">
+                    {item.subTasks.map((sub, index) => (
+                      <div className="row w-100 py-2 rounded" key={index}>
+                        <div className="col">
+                          <span
+                            className="text-truncate d-inline-block"
+                            style={{ maxWidth: "120px" }}
+                          >
+                            <span
+                              className="lable"
+                              style={{ backgroundColor: "#096BFF" }}
+                            ></span>{" "}
+                            title
+                          </span>
+                        </div>
+                        <div className="col">N. Hossein...</div>
+                        <div className="col">K. Pourtorab</div>
+                        <div className="col">07/22/2021</div>
+                        <div className="col">
+                          <MainButton
+                            type={MainButtonType.dark}
+                            children="1 message"
+                            borderRadius="15px"
+                            backgroundColor="#8EE1FF"
+                            color="#474747"
+                          ></MainButton>
+                        </div>
+                        <div className="col d-flex justify-content-between align-items-center"></div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
+            ) : null}
           </div>
         ))}
       </div>
