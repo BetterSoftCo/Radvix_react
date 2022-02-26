@@ -271,6 +271,7 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
                   onChange={(e) => {
                     this.handleChange("currency", parseInt(e.target.value));
                   }}
+                  Selected={this.state.currency}
                   inValid={this.validator.message(
                     "Currency",
                     this.state.currency,
@@ -290,6 +291,7 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
                   ]}
                   TextItem="name"
                   ValueItem="value"
+                  selected={this.state.priority}
                   inValid={this.validator.message(
                     "Research Priority",
                     this.state.priority,
