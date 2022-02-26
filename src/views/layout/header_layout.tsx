@@ -10,10 +10,12 @@ import { AppRoutes } from "../../core/constants";
 import { ResearchController } from "../../controllers/research/research_controller";
 import { store } from "../../data/store";
 import { SetResearchId } from "../../data/store/actions/research_action";
+import { LocalDataSources } from "../../data/local_datasources";
 interface IHeader { }
 const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
   const [listResearch, setListResearch] = useState<Array<any>>([])
   const controller = new ResearchController()
+  const local = new LocalDataSources()
   useEffect(() => {
     controller.getResearches({ PageNumber: 1, PageSize: 100 }, res => {
       setListResearch(res.researchesList!.map(item => {
@@ -102,8 +104,8 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
                 className="rounded-circle avatar pointer"
               />
               <div className="d-flex flex-column">
-                <span className="text-center text-black-color">
-                  Welcome, Nima!
+                <span className="text-center text-black-color text-truncate">
+                  Welcome, {local.getUserInfo().firstName}!
                 </span>
                 <MainButton
                   children="Principal Investigator"

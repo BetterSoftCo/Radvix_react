@@ -5,9 +5,11 @@ import { ResearchesList } from "../../../../data/models/responses/research/resea
 import { MainButton, MainButtonType } from "../../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../../components/circle_icon";
 import "../../../../core/number_extentions";
+import { AccessPermition, UserRoles } from "../../../../core/utils";
 interface IAcordienTableResearch {
   Heading: any[];
   Items: ResearchesList[];
+  role: UserRoles;
 }
 const AcordienTableResearch: React.FC<
   IAcordienTableResearch & RouteComponentProps
@@ -76,22 +78,29 @@ const AcordienTableResearch: React.FC<
                       height={12}
                     />
                   </CircleIcon>
-                  <CircleIcon
-                    width="26px"
-                    height="26px"
-                    type={ThemeCircleIcon.dark}
-                    onClick={() => {
-                      props.history.push(
-                        `${AppRoutes.edit_research.replace(
-                          ":id",
-                          head.id?.toString() ?? ""
-                        )}`
-                      );
-                    }}
-                    className="pointer mx-1"
-                  >
-                    <img src="/images/icons/edit.svg" alt="radvix" />
-                  </CircleIcon>
+                  {AccessPermition(props.role, [
+                    UserRoles.Admin,
+                    UserRoles.L1Client,
+                    UserRoles.L2User,
+                  ]) ? (
+                    <CircleIcon
+                      width="26px"
+                      height="26px"
+                      type={ThemeCircleIcon.dark}
+                      onClick={() => {
+                        props.history.push(
+                          `${AppRoutes.edit_research.replace(
+                            ":id",
+                            head.id?.toString() ?? ""
+                          )}`
+                        );
+                      }}
+                      className="pointer mx-1"
+                    >
+                      <img src="/images/icons/edit.svg" alt="radvix" />
+                    </CircleIcon>
+                  ) : null}
+
                   <CircleIcon
                     width="26px"
                     height="26px"

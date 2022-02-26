@@ -4,7 +4,7 @@ import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import "react-datepicker/dist/react-datepicker.css";
 import { MainButton, MainButtonType } from "../../components/button";
 import { IconTextRow } from "../../components/icon_text_horizontal";
-import { Theme, UserRoles } from "../../../core/utils";
+import { Theme } from "../../../core/utils";
 import { BoxListScroll } from "../../components/box_list_scroll";
 import { InputIcon } from "../../components/search_box";
 import { SelectComponent } from "../../components/select_input";

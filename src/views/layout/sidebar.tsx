@@ -2,7 +2,8 @@
 import React, { Fragment, useState } from "react";
 import { NavLink, RouteComponentProps, withRouter } from "react-router-dom";
 import { AppRoutes } from "../../core/constants";
-import { Theme } from "../../core/utils";
+import { AccessPermition, Theme, UserRoles } from "../../core/utils";
+import { store } from "../../data/store";
 import { CircleIcon, ThemeCircleIcon } from "../components/circle_icon";
 import { IconTextVertical } from "../components/Icon_text_vertical";
 
@@ -13,6 +14,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
     setShowSidebar(!ShowSidebar);
     setPage(pageType);
   };
+  const RoleUser = store.getState().userRole;
   return (
     <Fragment>
       <div className="parent-sidebar">
@@ -271,18 +273,25 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
       {page === "Research" && ShowSidebar === true ? (
         <div className="gide-sidebar">
           <div className="d-flex flex-wrap list-icons justify-content-around">
-            <IconTextVertical
-              fontSize="15px"
-              className="lighter mx-2 my-1 pointer"
-              text="New"
-              onClick={() => {
-                props.history.push(AppRoutes.new_research);
-              }}
-              theme={Theme.light}
-              children={
-                <img width="40px" height="40px" src="/Images/icons/add.svg" />
-              }
-            ></IconTextVertical>
+            {AccessPermition(RoleUser, [
+              UserRoles.Admin,
+              UserRoles.L1Client,
+              UserRoles.L1User,
+            ]) ? (
+              <IconTextVertical
+                fontSize="15px"
+                className="lighter mx-2 my-1 pointer"
+                text="New"
+                onClick={() => {
+                  props.history.push(AppRoutes.new_research);
+                }}
+                theme={Theme.light}
+                children={
+                  <img width="40px" height="40px" src="/Images/icons/add.svg" />
+                }
+              ></IconTextVertical>
+            ) : null}
+
             <IconTextVertical
               fontSize="15px"
               className="lighter mx-2 my-1 pointer"
@@ -373,11 +382,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
               text="Lab List"
               theme={Theme.light}
               children={
-                <img
-                  width="40px"
-                  height="40px"
-                  src="/images/icons/hotel.svg"
-                />
+                <img width="40px" height="40px" src="/images/icons/hotel.svg" />
               }
             ></IconTextVertical>
             <IconTextVertical
@@ -477,11 +482,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
               text="Teams List"
               theme={Theme.light}
               children={
-                <img
-                  width="40px"
-                  height="40px"
-                  src="/images/icons/tasks.svg"
-                />
+                <img width="40px" height="40px" src="/images/icons/tasks.svg" />
               }
             ></IconTextVertical>
             <IconTextVertical
@@ -577,11 +578,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
               text="List Task"
               theme={Theme.light}
               children={
-                <img
-                  width="40px"
-                  height="40px"
-                  src="/Images/icons/check.svg"
-                />
+                <img width="40px" height="40px" src="/Images/icons/check.svg" />
               }
             ></IconTextVertical>
           </div>
@@ -649,11 +646,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
               text="Data Archive"
               theme={Theme.light}
               children={
-                <img
-                  width="40px"
-                  height="40px"
-                  src="/images/icons/inbox.svg"
-                />
+                <img width="40px" height="40px" src="/images/icons/inbox.svg" />
               }
             ></IconTextVertical>
           </div>

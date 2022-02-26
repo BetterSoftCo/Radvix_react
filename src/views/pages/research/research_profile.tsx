@@ -4,7 +4,7 @@ import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import "react-datepicker/dist/react-datepicker.css";
 import { MainButton, MainButtonType } from "../../components/button";
 import { IconTextRow } from "../../components/icon_text_horizontal";
-import { Theme } from "../../../core/utils";
+import { AccessPermition, Theme, UserRoles } from "../../../core/utils";
 import { BoxListScroll } from "../../components/box_list_scroll";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
@@ -67,25 +67,31 @@ class ResearchPageProfile extends React.Component<
                 className="backPage"
               ></span>{" "}
               {"Research List > Research Profile"}
-              <CircleIcon
-                width="22px"
-                height="22px"
-                type={ThemeCircleIcon.dark}
-                backgroundColor="#474747"
-                fontSize="10px"
-                color="#ffff"
-                className="mx-1 pointer"
-                onClick={() => {
-                  this.props.history.push(
-                    `${AppRoutes.edit_research.replace(
-                      ":id",
-                      this.props.match.params.id
-                    )}`
-                  );
-                }}
-              >
-                <img src="/images/icons/edit.svg" alt="radvix" />
-              </CircleIcon>
+              {AccessPermition(this.RoleUser, [
+                UserRoles.Admin,
+                UserRoles.L1Client,
+                UserRoles.L2User,
+              ]) ? (
+                <CircleIcon
+                  width="22px"
+                  height="22px"
+                  type={ThemeCircleIcon.dark}
+                  backgroundColor="#474747"
+                  fontSize="10px"
+                  color="#ffff"
+                  className="mx-1 pointer"
+                  onClick={() => {
+                    this.props.history.push(
+                      `${AppRoutes.edit_research.replace(
+                        ":id",
+                        this.props.match.params.id
+                      )}`
+                    );
+                  }}
+                >
+                  <img src="/images/icons/edit.svg" alt="radvix" />
+                </CircleIcon>
+              ) : null}
               <CircleIcon
                 width="22px"
                 height="22px"

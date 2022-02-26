@@ -11,7 +11,8 @@ type StateType = {
   Researches: ResearchesList[],
   PageNumber: number,
   PageSize: number,
-  PageCount: number
+  PageCount: number,
+  TotalCount:number
 }
 export class ResearchPage extends React.Component {
   controller = new ResearchController();
@@ -20,7 +21,8 @@ export class ResearchPage extends React.Component {
     Researches: [],
     PageNumber: 1,
     PageSize: 10,
-    PageCount: 0
+    PageCount: 0,
+    TotalCount:0
   };
   componentDidMount() {
     this.GetResearch(this.state.PageNumber, this.state.PageSize)
@@ -29,7 +31,8 @@ export class ResearchPage extends React.Component {
     this.controller.getResearches({ PageNumber: PageNumber, PageSize: PageSize }, res => {
       this.setState({
         Researches: res.researchesList,
-        PageCount: Math.ceil(res.count! / this.state.PageSize)
+        PageCount: Math.ceil(res.count! / this.state.PageSize),
+        TotalCount:res.count
       })
 
     }, err => console.log(err)
@@ -94,6 +97,7 @@ export class ResearchPage extends React.Component {
                 { name: "Deadline", center: false },
                 { name: "Status", center: true },
               ]}
+              role={this.RoleUser}
             ></AcordienTableResearch>
 
             <div className="d-flex justify-content-between align-items-baseline">
@@ -132,7 +136,7 @@ export class ResearchPage extends React.Component {
                 />
               </div>
               <div className="d-flex justify-content-end flex-fill">
-                <p className="text-right mb-0 ">Total Results: 45</p>
+                <p className="text-right mb-0 ">Total Results: {this.state.TotalCount}</p>
               </div>
             </div>
           </div>
