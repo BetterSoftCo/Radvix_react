@@ -8,5 +8,5 @@ export interface CreateMemberReq {
     laboratoriesId:    number[];
     equipmentsId:      number[];
     researchesId:      number[];
-    role?:              number;
+    role:              number;
 }

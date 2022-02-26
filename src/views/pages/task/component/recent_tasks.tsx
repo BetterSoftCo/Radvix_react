@@ -65,7 +65,7 @@ export const AcordienTable = (props: IAcordienTable) => {
                     ></MainButton>
                   </div>
                   <div className="col d-flex justify-content-end align-items-center">
-                    {props.role !== UserRoles.level3 ? (
+                    {props.role !== UserRoles.L3User ? (
                       <CircleIcon
                         width="26px"
                         height="26px"

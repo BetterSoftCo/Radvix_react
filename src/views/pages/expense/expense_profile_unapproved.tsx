@@ -47,7 +47,7 @@ import { AppRoutes } from "../../../core/constants";
           <div className="d-flex justify-content-between align-items-center">
             <h5 className="b-title d-flex align-items-center">
               <span onClick={()=>{window.history.back()}} className="backPage"></span> {"Expense Profile"}
-              {this.RoleUser === UserRoles.level1 ? (
+              {this.RoleUser === UserRoles.L1Client || this.RoleUser === UserRoles.L1User ? (
                 <CircleIcon
                   width="22px"
                   height="22px"
@@ -74,7 +74,7 @@ import { AppRoutes } from "../../../core/constants";
             <h3 className="px-5 text-center">
               Purchasing Tickets For ACI Conference
             </h3>
-            {this.RoleUser === UserRoles.level1 ? (
+            {this.RoleUser === UserRoles.L1Client || this.RoleUser === UserRoles.L1User ? (
               <div className="d-flex justify-content-center align-items-center mt-3">
                 <MainButton
                   children="Decline"
@@ -102,7 +102,7 @@ import { AppRoutes } from "../../../core/constants";
               <div className="row border-bottom ">
                 <h6 className="col-4 t-title mb-0 border-t-l">Status</h6>
                 <div className="col-8 t-desc border-t-r">
-                  {this.RoleUser === UserRoles.level1 ? (
+                  {this.RoleUser === UserRoles.L1Client || this.RoleUser === UserRoles.L1User ? (
                     <MainButton
                       children="Pending"
                       type={MainButtonType.light}

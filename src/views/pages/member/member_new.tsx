@@ -10,6 +10,7 @@ import SimpleReactValidator from "simple-react-validator";
 import { MemberController } from "../../../controllers/member/member_controller";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
+import { LocalDataSources } from "../../../data/local_datasources";
 type StateType = {
   userEmail: string;
   invitationNote: string;
@@ -27,6 +28,7 @@ type StateType = {
   >;
   listProjects: Array<{ label: string; value: number } | {}>;
   loading: boolean;
+  userRoleEnum: Array<{ label: string; value: number } | {}>;
 };
 class MemberPageNew extends React.Component<RouteComponentProps> {
   RoleUser = store.getState().userRole;
@@ -34,6 +36,7 @@ class MemberPageNew extends React.Component<RouteComponentProps> {
     className: "text-danger",
   });
   controller = new MemberController();
+  local = new LocalDataSources();
   state: StateType = {
     accessLevel: 1,
     currentResearchId: 0,
@@ -49,6 +52,7 @@ class MemberPageNew extends React.Component<RouteComponentProps> {
     teamsId: [],
     userEmail: "",
     loading: false,
+    userRoleEnum: [],
   };
   componentDidMount() {
     this.controller.SearchMember(
@@ -71,6 +75,13 @@ class MemberPageNew extends React.Component<RouteComponentProps> {
       },
       (err) => {}
     );
+    this.setState({
+      userRoleEnum: this.local.getSetting().userRoleEnum.map((item) => {
+        return { label: item.title, value: item.id };
+      }),
+    });
+    console.log(this.RoleUser);
+    
   }
   handleChange(target: string, val: any) {
     this.setState({
@@ -82,6 +93,12 @@ class MemberPageNew extends React.Component<RouteComponentProps> {
     e: Array<{ label: string; value: number }>
   ) {
     this.setState({ [target]: e.map((item) => item.value) });
+  }
+  handelChangeSelectSingle(
+    target: string,
+    e: { label: string; value: number }
+  ) {
+    this.setState({ [target]: e.value });
   }
   handelChangeSelectEqupiAndLab(
     e: Array<{ label: string; value: number; isLab: boolean }>
@@ -108,6 +125,7 @@ class MemberPageNew extends React.Component<RouteComponentProps> {
         subTeamsId: this.state.subTeamsId,
         teamsId: this.state.teamsId,
         userEmail: this.state.userEmail,
+        role: this.state.role,
       };
       this.setState({
         loading: true,
@@ -204,15 +222,14 @@ class MemberPageNew extends React.Component<RouteComponentProps> {
               </div>
               <div className="item">
                 <SelectComponent
-                  items={[
-                    { name: "test1", id: 1 },
-                    { name: "test2", id: 2 },
-                  ]}
+                  items={this.state.userRoleEnum}
                   TextItem="name"
                   ValueItem="id"
                   className="my-2"
                   placeholder="Click to see the list…"
-                  isMulti
+                  onChange={(e) => {
+                    this.handelChangeSelectSingle("role", e);
+                  }}
                 ></SelectComponent>
               </div>
             </div>

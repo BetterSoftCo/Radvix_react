@@ -58,7 +58,7 @@ export const Subtasks = (props: IAcordienTable) => {
                   ></MainButton>
                 </div>
                 <div className="col d-flex justify-content-between align-items-center">
-                  {props.role !== UserRoles.level3 ? (
+                  {props.role !== UserRoles.L3User ? (
                     <CircleIcon
                       width="26px"
                       height="26px"
@@ -227,7 +227,7 @@ export const Subtasks = (props: IAcordienTable) => {
                   ></MainButton>
                 </div>
                 <div className="col d-flex justify-content-between align-items-center">
-                {props.role !== UserRoles.level3 ? (
+                {props.role !== UserRoles.L3User ? (
                     <CircleIcon
                       width="26px"
                       height="26px"
@@ -395,7 +395,7 @@ export const Subtasks = (props: IAcordienTable) => {
                   ></MainButton>
                 </div>
                 <div className="col d-flex justify-content-between align-items-center">
-                {props.role !== UserRoles.level3 ? (
+                {props.role !== UserRoles.L3User ? (
                     <CircleIcon
                       width="26px"
                       height="26px"

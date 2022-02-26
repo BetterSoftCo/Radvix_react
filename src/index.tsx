@@ -94,7 +94,7 @@ ReactDOM.render(
             exact
           />
           <ProtectedRoute
-            isAuthenticated={RoleUser === UserRoles.level1 ? true : false}
+            isAuthenticated={RoleUser === UserRoles.L1User || RoleUser === UserRoles.L1Client ? true : false}
             authenticationPath={AppRoutes.research}
             exact={true}
             path={`${AppRoutes.edit_research}`}
@@ -106,7 +106,7 @@ ReactDOM.render(
           <Route component={TeamPageNew} path={AppRoutes.new_team} exact />
           <ProtectedRoute
             isAuthenticated={
-              RoleUser === UserRoles.level1 || RoleUser === UserRoles.level2
+              RoleUser === UserRoles.L1User || RoleUser === UserRoles.L1Client
                 ? true
                 : false
             }
@@ -122,7 +122,7 @@ ReactDOM.render(
           />
           <ProtectedRoute
             isAuthenticated={
-              RoleUser === UserRoles.level1 || RoleUser === UserRoles.level2
+              RoleUser === UserRoles.L1User || RoleUser === UserRoles.L1Client
                 ? true
                 : false
             }
@@ -134,7 +134,7 @@ ReactDOM.render(
           <Route component={TasksPage} path={AppRoutes.task} exact />
           <ProtectedRoute
             isAuthenticated={
-              RoleUser === UserRoles.level1 || RoleUser === UserRoles.level2
+              RoleUser === UserRoles.L1User || RoleUser === UserRoles.L1Client
                 ? true
                 : false
             }
@@ -150,7 +150,7 @@ ReactDOM.render(
           />
           <ProtectedRoute
             isAuthenticated={
-              RoleUser === UserRoles.level1 || RoleUser === UserRoles.level2
+              RoleUser === UserRoles.L1User || RoleUser === UserRoles.L1Client
                 ? true
                 : false
             }
@@ -162,7 +162,7 @@ ReactDOM.render(
           <Route component={MemberPage} path={AppRoutes.member} exact />
           <ProtectedRoute
             isAuthenticated={
-              RoleUser === UserRoles.level1 || RoleUser === UserRoles.level2
+              RoleUser === UserRoles.L1User || RoleUser === UserRoles.L1Client
                 ? true
                 : false
             }
@@ -178,7 +178,7 @@ ReactDOM.render(
           />
           <ProtectedRoute
             isAuthenticated={
-              RoleUser === UserRoles.level1 || RoleUser === UserRoles.level2
+              RoleUser === UserRoles.L1User || RoleUser === UserRoles.L1Client
                 ? true
                 : false
             }
@@ -194,7 +194,7 @@ ReactDOM.render(
           />
           <ProtectedRoute
             isAuthenticated={
-              RoleUser === UserRoles.level1 || RoleUser === UserRoles.level2
+              RoleUser === UserRoles.L1User || RoleUser === UserRoles.L1Client
                 ? true
                 : false
             }
@@ -211,7 +211,7 @@ ReactDOM.render(
           />
           <ProtectedRoute
             isAuthenticated={
-              RoleUser === UserRoles.level1 || RoleUser === UserRoles.level2
+              RoleUser === UserRoles.L1User || RoleUser === UserRoles.L1Client
                 ? true
                 : false
             }
@@ -249,7 +249,7 @@ ReactDOM.render(
           />
           <ProtectedRoute
             isAuthenticated={
-              RoleUser === UserRoles.level1 || RoleUser === UserRoles.level2
+              RoleUser === UserRoles.L1User || RoleUser === UserRoles.L1Client
                 ? true
                 : false
             }
@@ -294,49 +294,49 @@ ReactDOM.render(
           <Route component={TicketPage} path={AppRoutes.ticketing} exact />
           <Route component={Ticket} path={AppRoutes.ticketing_ticket} exact />
           <ProtectedRoute
-            isAuthenticated={RoleUser === UserRoles.admin ? true : false}
+            isAuthenticated={RoleUser === UserRoles.Admin ? true : false}
             authenticationPath={AppRoutes.dashboard}
             exact={true}
             path={AppRoutes.admin_dashboard}
             component={AdminDashboard}
           />
           <ProtectedRoute
-            isAuthenticated={RoleUser === UserRoles.admin ? true : false}
+            isAuthenticated={RoleUser === UserRoles.Admin ? true : false}
             authenticationPath={AppRoutes.dashboard}
             exact={true}
             path={AppRoutes.admin_clients}
             component={AdminClients}
           />
           <ProtectedRoute
-            isAuthenticated={RoleUser === UserRoles.admin ? true : false}
+            isAuthenticated={RoleUser === UserRoles.Admin ? true : false}
             authenticationPath={AppRoutes.dashboard}
             exact={true}
             path={AppRoutes.admin_member}
             component={AdminMember}
           />
           <ProtectedRoute
-            isAuthenticated={RoleUser === UserRoles.admin ? true : false}
+            isAuthenticated={RoleUser === UserRoles.Admin ? true : false}
             authenticationPath={AppRoutes.dashboard}
             exact={true}
             path={AppRoutes.admin_payments}
             component={AdminPayments}
           />
           <ProtectedRoute
-            isAuthenticated={RoleUser === UserRoles.admin ? true : false}
+            isAuthenticated={RoleUser === UserRoles.Admin ? true : false}
             authenticationPath={AppRoutes.dashboard}
             exact={true}
             path={AppRoutes.admin_tickets}
             component={AdminTickets}
           />
           <ProtectedRoute
-            isAuthenticated={RoleUser === UserRoles.admin ? true : false}
+            isAuthenticated={RoleUser === UserRoles.Admin ? true : false}
             authenticationPath={AppRoutes.dashboard}
             exact={true}
             path={AppRoutes.admin_ticket}
             component={AdminTicket}
           />
           <ProtectedRoute
-            isAuthenticated={RoleUser === UserRoles.admin ? true : false}
+            isAuthenticated={RoleUser === UserRoles.Admin ? true : false}
             authenticationPath={AppRoutes.dashboard}
             exact={true}
             path={AppRoutes.admin_broadcast}
@@ -349,7 +349,7 @@ ReactDOM.render(
           />
           <ProtectedRoute
             isAuthenticated={
-              RoleUser === UserRoles.level1 || RoleUser === UserRoles.level2
+              RoleUser === UserRoles.L1User || RoleUser === UserRoles.L1Client
                 ? true
                 : false
             }

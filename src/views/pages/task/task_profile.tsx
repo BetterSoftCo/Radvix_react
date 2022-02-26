@@ -459,7 +459,7 @@ class TaskPageProfile extends React.Component<RouteComponentProps> {
                 ></SelectComponent>
               </div>
             </div>
-            <Subtasks role={UserRoles.level1}></Subtasks>
+            <Subtasks role={this.RoleUser}></Subtasks>
             <div className="d-flex justify-content-center align-items-center">
               <ReactPaginate
                 previousLabel={

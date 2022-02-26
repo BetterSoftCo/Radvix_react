@@ -44,7 +44,7 @@ export class SettingPage extends React.Component {
   render() {
     return (
       <div className="container-fluid research new-research">
-        {this.RoleUser === UserRoles.level1 ? (
+        {this.RoleUser === UserRoles.L1Client || this.RoleUser === UserRoles.L1User ? (
           <div className="col-12 box-content p-3">
             <div className="d-flex justify-content-between align-items-center">
               <h5 className="b-title d-flex align-items-center">
@@ -233,8 +233,8 @@ export class SettingPage extends React.Component {
             </div>
           </div>
         </div>
-        {this.RoleUser === UserRoles.level1 ||
-        this.RoleUser === UserRoles.level2 ? (
+        {this.RoleUser === UserRoles.L1Client || this.RoleUser === UserRoles.L1User ||
+        this.RoleUser === UserRoles.L2User ? (
           <div className="col-12 box-content p-3">
             <div className="d-flex justify-content-between align-items-center">
               <h5 className="b-title d-flex align-items-center">

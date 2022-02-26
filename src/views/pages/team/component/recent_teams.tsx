@@ -77,7 +77,7 @@ const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
                         height={12}
                       />
                     </CircleIcon>
-                    {props.role !== UserRoles.level3 ? (
+                    {props.role !== UserRoles.L3User ? (
                       <CircleIcon
                         width="26px"
                         height="26px"
