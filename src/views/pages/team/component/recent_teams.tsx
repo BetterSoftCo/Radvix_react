@@ -84,7 +84,7 @@ const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
                         width="26px"
                         height="26px"
                         type={ThemeCircleIcon.dark}
-                        onClick={() => props.history.push(AppRoutes.team_edit)}
+                        onClick={() => props.history.push(`${AppRoutes.team_edit.replace(":id", item.id.toString() ?? "")}`)}
                         className="pointer m-1"
                       >
                         <img src="/images/icons/edit.svg" alt="radvix" />

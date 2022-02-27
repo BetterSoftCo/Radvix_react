@@ -13,8 +13,8 @@ export class AppRoutes {
 	static profile_research:string ='/dashboard/research/profile/:id';
 	static edit_research:string ='/dashboard/research/edit/:id';
 	static team:string ='/dashboard/team/';
-	static team_profile:string ='/dashboard/team/profile';
-	static team_edit:string ='/dashboard/team/edit';
+	static team_profile:string ='/dashboard/team/profile/:id';
+	static team_edit:string ='/dashboard/team/edit/:id';
 	static new_team:string ='/dashboard/team/new/';
 	static laboratory:string ='/dashboard/laboratory/';
 	static new_laboratory:string ='/dashboard/laboratory/new/';

@@ -192,6 +192,9 @@ class ResearchPageEdit extends React.Component<
       addedUsersId: this.state.addedUsersId,
       removedUsersId: this.state.removedUsersId,
     };
+    this.setState({
+      loading:true
+    })
     this.controller.updateResearch(
       body,
       (res) => {
