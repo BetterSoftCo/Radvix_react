@@ -1,18 +1,21 @@
 import React from "react";
 import ReactPaginate from "react-paginate";
 import { TaskController } from "../../../controllers/task/task_controller";
-import { GetAllTasksResult } from "../../../data/models/responses/task/get_all_tasks_res";
+import {
+  AppTask,
+} from "../../../data/models/responses/task/get_all_tasks_res";
 import { store } from "../../../data/store";
 import { MainButton, MainButtonType } from "../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import { InputIcon } from "../../components/search_box";
 import { SelectComponent } from "../../components/select_input";
-import { AcordienTable } from "./component/recent_tasks";
+import AcordienTable from "./component/recent_tasks";
 type StateType = {
-  Tasks: GetAllTasksResult[];
+  Tasks: AppTask[];
   PageNumber: number;
   PageSize: number;
   PageCount: number;
+  TotalCount: number;
 };
 export class TasksPage extends React.Component {
   RoleUser = store.getState().userRole;
@@ -22,23 +25,38 @@ export class TasksPage extends React.Component {
     PageNumber: 1,
     PageSize: 10,
     PageCount: 0,
+    TotalCount: 0,
   };
   componentDidMount() {
     this.GetTasks(this.state.PageNumber, this.state.PageSize);
     store.subscribe(() => {
       this.GetTasks(this.state.PageNumber, this.state.PageSize);
     });
-    
   }
   GetTasks(PageNumber: number, PageSize: number) {
     this.controller.getTasks(
+      { PageNumber, PageSize },
       (res) => {
         this.setState({
-          Tasks:res,
-        })
+          Tasks: res.appTasks,
+          PageCount: Math.ceil(res.count! / this.state.PageSize),
+          TotalCount: res.count,
+        });
       },
       (err) => console.log(err)
     );
+  }
+  handelChangePageNumber(e: { selected: number }) {
+    this.setState({
+      PageNumber: e.selected,
+    });
+    this.GetTasks(e.selected + 1, this.state.PageSize);
+  }
+  handelChangePageSize(e: { label: string; value: number }) {
+    this.setState({
+      PageSize: e.value,
+    });
+    this.GetTasks(this.state.PageNumber, e.value);
   }
   render() {
     return (
@@ -67,19 +85,27 @@ export class TasksPage extends React.Component {
                   className="px-3"
                 ></MainButton>
                 <SelectComponent
-                  width="63px"
+                  width="90px"
                   height="44px"
                   items={[
-                    { item: 1, id: 1 },
-                    { item: 2, id: 2 },
-                    { item: 3, id: 3 },
+                    { label: "10", value: 10 },
+                    { label: "15", value: 15 },
+                    { label: "20", value: 20 },
                   ]}
                   TextItem="item"
                   ValueItem="id"
+                  isMulti={false}
+                  placeholder={this.state.PageSize.toString()}
+                  onChange={(e) => {
+                    this.handelChangePageSize(e);
+                  }}
                 ></SelectComponent>
               </div>
             </div>
-            <AcordienTable Tasks={this.state.Tasks} role={this.RoleUser}></AcordienTable>
+            <AcordienTable
+              Tasks={this.state.Tasks}
+              role={this.RoleUser}
+            ></AcordienTable>
 
             <div className="d-flex justify-content-between align-items-baseline">
               <div className="d-flex justify-content-end flex-fill">
@@ -106,11 +132,11 @@ export class TasksPage extends React.Component {
                   }
                   breakLabel={"..."}
                   breakClassName={"break-me"}
-                  pageCount={20}
+                  pageCount={this.state.PageCount}
                   marginPagesDisplayed={2}
                   pageRangeDisplayed={5}
-                  onPageChange={() => {
-                    console.log("changepage");
+                  onPageChange={(e) => {
+                    this.handelChangePageNumber(e);
                   }}
                   containerClassName={"pagination"}
                   activeClassName={"active"}

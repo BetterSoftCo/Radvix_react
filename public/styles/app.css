@@ -6,6 +6,7 @@
 body {
   background-color: #ffffff;
   font-family: Sanfransisco;
+  overflow-x: hidden;
 }
 
 .text-black-color {
@@ -1437,6 +1438,7 @@ button.loading {
 body {
   background-color: #ffffff;
   font-family: Sanfransisco;
+  overflow-x: hidden;
 }
 
 .text-black-color {

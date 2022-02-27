@@ -1,17 +1,23 @@
 import moment from "moment";
 import React, { Fragment, useEffect } from "react";
+import { RouteComponentProps, withRouter } from "react-router";
+import { AppRoutes } from "../../../../core/constants";
 import { UserRoles } from "../../../../core/utils";
-import { GetAllTasksResult } from "../../../../data/models/responses/task/get_all_tasks_res";
+import { AppTask } from "../../../../data/models/responses/task/get_all_tasks_res";
 import { MainButton, MainButtonType } from "../../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../../components/circle_icon";
 interface IAcordienTable {
   role: UserRoles;
-  Tasks: GetAllTasksResult[];
+  Tasks: AppTask[];
 }
-export const AcordienTable = (props: IAcordienTable) => {
-  const handelOnclick = (e: any) => {
+const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
+  props
+) => {
+  const handelOnclick = (e: any , id:number) => {
     e.stopPropagation();
-    console.log(e);
+    props.history.push(
+      `${AppRoutes.task_edit.replace(":id", id.toString() ?? "")}`
+    );
   };
   useEffect(() => {}, []);
   return (
@@ -45,20 +51,24 @@ export const AcordienTable = (props: IAcordienTable) => {
                         className="lable"
                         style={{ backgroundColor: "#096BFF" }}
                       ></span>{" "}
-                      {item.title}
+                      {item.appTask.title}
                     </span>
                   </div>
                   <div className="col text-truncate">
-                    {item.creatorFirstName + " " + item.creatorLastName}
+                    {item.appTask.creatorFirstName +
+                      " " +
+                      item.appTask.creatorLastName}
                   </div>
-                  <div className="col text-truncate">{}</div>
                   <div className="col text-truncate">
-                    {moment(item.endDate).format("YYYY/MM/DD")}
+                    {item.appTask.teams.map((item) => item.title).join("-")}
+                  </div>
+                  <div className="col text-truncate">
+                    {moment(item.appTask.endDate).format("YYYY/MM/DD")}
                   </div>
                   <div className="col text-truncate">
                     <MainButton
                       type={MainButtonType.dark}
-                      children={item.status.isStatus()}
+                      children={item.appTask.status.isStatus()}
                       borderRadius="15px"
                       backgroundColor="#8EE1FF"
                       color="#474747"
@@ -70,7 +80,7 @@ export const AcordienTable = (props: IAcordienTable) => {
                         width="26px"
                         height="26px"
                         type={ThemeCircleIcon.dark}
-                        onClick={(e) => handelOnclick(e)}
+                        onClick={(e) => handelOnclick(e , item.appTask.id)}
                         className="pointer mx-1"
                       >
                         <img src="/images/icons/edit.svg" alt="radvix" />
@@ -81,7 +91,7 @@ export const AcordienTable = (props: IAcordienTable) => {
                       width="26px"
                       height="26px"
                       type={ThemeCircleIcon.dark}
-                      onClick={(e) => handelOnclick(e)}
+                      onClick={(e) => handelOnclick(e , item.appTask.id)}
                       className="pointer mx-1"
                     >
                       <img
@@ -93,7 +103,7 @@ export const AcordienTable = (props: IAcordienTable) => {
                       width="26px"
                       height="26px"
                       type={ThemeCircleIcon.dark}
-                      onClick={(e) => handelOnclick(e)}
+                      onClick={(e) => handelOnclick(e , item.appTask.id)}
                       className="pointer mx-1"
                     >
                       <img
@@ -107,7 +117,7 @@ export const AcordienTable = (props: IAcordienTable) => {
                 </div>
               </div>
             </div>
-            {item.subTasks.length > 0 ? (
+            {item.subAppTasks.length > 0 ? (
               <div
                 className="accordion-collapse collapse "
                 id={`collapse_resentTask${index}`}
@@ -124,7 +134,7 @@ export const AcordienTable = (props: IAcordienTable) => {
                     </p>
                   </div>
                   <div className="items">
-                    {item.subTasks.map((sub, index) => (
+                    {item.subAppTasks.map((sub, index) => (
                       <div className="row w-100 py-2 rounded" key={index}>
                         <div className="col">
                           <span
@@ -135,16 +145,22 @@ export const AcordienTable = (props: IAcordienTable) => {
                               className="lable"
                               style={{ backgroundColor: "#096BFF" }}
                             ></span>{" "}
-                            title
+                            {sub.title}
                           </span>
                         </div>
-                        <div className="col">N. Hossein...</div>
-                        <div className="col">K. Pourtorab</div>
-                        <div className="col">07/22/2021</div>
-                        <div className="col">
+                        <div className="col text-truncate">
+                          {sub.creatorFirstName + " " + sub.creatorLastName}
+                        </div>
+                        <div className="col text-truncate">
+                          {sub.teams.map((item) => item.title).join("-")}
+                        </div>
+                        <div className="col text-truncate">
+                          {moment(sub.endDate).format("YYYY/MM/DD")}
+                        </div>
+                        <div className="col text-truncate">
                           <MainButton
                             type={MainButtonType.dark}
-                            children="1 message"
+                            children={sub.status.isStatus()}
                             borderRadius="15px"
                             backgroundColor="#8EE1FF"
                             color="#474747"
@@ -163,3 +179,4 @@ export const AcordienTable = (props: IAcordienTable) => {
     </Fragment>
   );
 };
+export default withRouter(AcordienTable);

@@ -1,10 +1,21 @@
 export interface GetAllTasks {
     status:  number;
-    result:  GetAllTasksResult[];
+    result:  GetAllTasksResult;
     message: string;
 }
 
 export interface GetAllTasksResult {
+    researchId: number;
+    appTasks:   AppTask[];
+    count:      number;
+}
+
+export interface AppTask {
+    appTask:     SubAppTaskClass;
+    subAppTasks: SubAppTaskClass[];
+}
+
+export interface SubAppTaskClass {
     id:               number;
     discussionId:     number;
     title:            string;
@@ -16,8 +27,6 @@ export interface GetAllTasksResult {
     endDate:          Date;
     startDate:        Date;
     status:           number;
-    subTasks:         null[];
-    count:            number;
 }
 
 export interface Team {

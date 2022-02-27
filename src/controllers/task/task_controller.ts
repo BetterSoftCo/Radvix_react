@@ -52,12 +52,13 @@ export class TaskController {
     }
   }
   getTasks(
-    action: (res: GetAllTasksResult[]) => any,
+    body: {PageSize: number; PageNumber: number },
+    action: (res: GetAllTasksResult) => any,
     error: (res: any) => any
   ) {
     if (store.getState().ResearchId > 0) {
       this.remote.getTasks(
-        { researchId: store.getState().ResearchId },
+        { researchId: store.getState().ResearchId , ...body },
         (res) => {
           action(res.result!);
         },
