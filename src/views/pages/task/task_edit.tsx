@@ -14,7 +14,6 @@ import SimpleReactValidator from "simple-react-validator";
 import { TaskController } from "../../../controllers/task/task_controller";
 import { LocalDataSources } from "../../../data/local_datasources";
 import { RouteComponentProps, withRouter } from "react-router";
-import { type } from "os";
 type StateType = {
   title: string;
   description: string;

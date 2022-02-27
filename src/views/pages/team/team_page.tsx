@@ -15,6 +15,7 @@ type StateType = {
   PageNumber: number;
   PageSize: number;
   PageCount: number;
+  TotalCount: number;
 };
 class TeamPage extends React.Component<RouteComponentProps> {
   RoleUser = store.getState().userRole;
@@ -24,6 +25,7 @@ class TeamPage extends React.Component<RouteComponentProps> {
     PageNumber: 1,
     PageSize: 10,
     PageCount: 0,
+    TotalCount:0
   };
   componentDidMount() {
     this.GetTeams(this.state.PageNumber, this.state.PageSize);
@@ -33,11 +35,24 @@ class TeamPage extends React.Component<RouteComponentProps> {
       { pageNumber: PageNumber, pageSize: PageSize },
       (res) => {
         this.setState({
-          Teams: res,
+          Teams: res.teams,
+          PageCount: Math.ceil(res.count! / this.state.PageSize),
+          TotalCount: res.count,
         });
-        console.log(res);
       }
     );
+  }
+  handelChangePageNumber(e: { selected: number }) {
+    this.setState({
+      PageNumber: e.selected,
+    });
+    this.GetTeams(e.selected + 1, this.state.PageSize);
+  }
+  handelChangePageSize(e: { label: string; value: number }) {
+    this.setState({
+      PageSize: e.value,
+    });
+    this.GetTeams(this.state.PageNumber, e.value);
   }
   render() {
     return (
@@ -85,15 +100,20 @@ class TeamPage extends React.Component<RouteComponentProps> {
                   }}
                 ></MainButton>
                 <SelectComponent
-                  width="63px"
+                  width="90px"
                   height="44px"
                   items={[
-                    { item: 1, id: 1 },
-                    { item: 2, id: 2 },
-                    { item: 3, id: 3 },
+                    { label: "10", value: 10 },
+                    { label: "15", value: 15 },
+                    { label: "20", value: 20 },
                   ]}
                   TextItem="item"
                   ValueItem="id"
+                  isMulti={false}
+                  placeholder={this.state.PageSize.toString()}
+                  onChange={(e) => {
+                    this.handelChangePageSize(e);
+                  }}
                 ></SelectComponent>
               </div>
             </div>
@@ -126,18 +146,18 @@ class TeamPage extends React.Component<RouteComponentProps> {
                   }
                   breakLabel={"..."}
                   breakClassName={"break-me"}
-                  pageCount={20}
+                  pageCount={this.state.PageCount}
                   marginPagesDisplayed={2}
                   pageRangeDisplayed={5}
-                  onPageChange={() => {
-                    console.log("changepage");
+                  onPageChange={(e) => {
+                    this.handelChangePageNumber(e);
                   }}
                   containerClassName={"pagination"}
                   activeClassName={"active"}
                 />
               </div>
               <div className="d-flex justify-content-end flex-fill">
-                <p className="text-right mb-0 ">Total Results: 45</p>
+                <p className="text-right mb-0 ">Total Results: {this.state.TotalCount}</p>
               </div>
             </div>
           </div>

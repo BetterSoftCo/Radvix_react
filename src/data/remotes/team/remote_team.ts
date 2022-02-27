@@ -12,6 +12,6 @@ export class RemoteTeam {
     return HTTP.get("/Team/search" ).then((res) => action(res.data)).catch((err)=>{error(err)});
   }
   getAllTeams(body:{pageSize:number , pageNumber:number},action: (res: GetAllTeams) => any,error: (res: any) => any){
-    return HTTP.get("/Team").then((res) => action(res.data)).catch((err)=>{error(err)});
+    return HTTP.get(`/Team?PageSize=${body.pageSize}&PageNumber=${body.pageNumber}`).then((res) => action(res.data)).catch((err)=>{error(err)});
   }
 }
