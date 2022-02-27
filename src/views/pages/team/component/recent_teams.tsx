@@ -69,7 +69,10 @@ const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
                       width="26px"
                       height="26px"
                       type={ThemeCircleIcon.dark}
-                      onClick={() => props.history.push(AppRoutes.team_profile)}
+                      onClick={() => props.history.push(`${AppRoutes.team_profile.replace(
+                        ":id",
+                        item.id.toString()
+                      )}`)}
                       className="pointer m-1"
                     >
                       <img

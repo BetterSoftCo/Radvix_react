@@ -95,7 +95,10 @@ class TeamPageNew extends React.Component<RouteComponentProps> {
       this.controller.createTeam(
         body,
         (res) => {
-          this.props.history.push(AppRoutes.team_profile);
+          this.props.history.push(`${AppRoutes.team_profile.replace(
+            ":id",
+            res.id.toString()
+          )}`);
           this.setState({
             title: "",
             description: "",

@@ -8,9 +8,63 @@ import { Theme } from "../../../core/utils";
 import { BoxListScroll } from "../../components/box_list_scroll";
 import { withRouter, RouteComponentProps } from "react-router";
 import { AppRoutes } from "../../../core/constants";
-class TeamPageProfile extends React.Component<RouteComponentProps> {
+import { GetTeamByIDResResult } from "../../../data/models/responses/team/get_by_id_res";
+import { TeamController } from "../../../controllers/team/team_controller";
+interface RouteParams {
+  id: string;
+}
+class TeamPageProfile extends React.Component<
+  RouteComponentProps<RouteParams>
+> {
   RoleUser = store.getState().userRole;
-
+  controller = new TeamController();
+  state: GetTeamByIDResResult = {
+    id: parseInt(this.props.match.params.id),
+    title: "",
+    description: "",
+    discussionId: 0,
+    creatorUserId: "",
+    creatorUserFirstName: "",
+    creatorUserLastName: "",
+    memberCount: 0,
+    managers: [],
+    users: [],
+    laboratories: [],
+    equipments: [],
+    researches: [],
+    appTasks: [],
+    subAppTasks: [],
+    subTeams: [],
+    mainTeam: { id: 0, title: "", users: [] },
+  };
+  componentDidMount() {
+    this.controller.getByIdTeam(
+      {
+        teamId: this.state.id,
+      },
+      (res) => {
+        this.setState({
+          title: res.title,
+          description: res.description,
+          discussionId: res.discussionId,
+          creatorUserId: res.creatorUserId,
+          creatorUserFirstName: res.creatorUserFirstName,
+          creatorUserLastName: res.creatorUserLastName,
+          memberCount: res.memberCount,
+          managers: res.managers,
+          users: res.users,
+          laboratories: res.laboratories,
+          equipments: res.equipments,
+          researches: res.researches,
+          appTasks: res.appTasks,
+          subAppTasks: res.subAppTasks,
+          subTeams: res.subTeams,
+          mainTeam: res.mainTeam,
+        });
+      },
+      (err) => {}
+    );
+  }
   render() {
     return (
       <div className="container-fluid research new-research">
@@ -34,7 +88,12 @@ class TeamPageProfile extends React.Component<RouteComponentProps> {
                 color="#ffff"
                 className="mx-4 pointer"
                 onClick={() => {
-                  this.props.history.push(AppRoutes.team_edit);
+                  this.props.history.push(
+                    `${AppRoutes.team_edit.replace(
+                      ":id",
+                      this.props.match.params.id
+                    )}`
+                  );
                 }}
               >
                 <img src="/images/icons/edit.svg" alt="radvix" />
@@ -52,13 +111,8 @@ class TeamPageProfile extends React.Component<RouteComponentProps> {
             ></MainButton>
           </div>
           <div className="Studying p-4 my-2">
-            <h3 className="px-5 text-center">Material Testing Team</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
-            </p>
+            <h3 className="px-5 text-center">{this.state.title}</h3>
+            <p>{this.state.description}</p>
           </div>
           <div className="row">
             <div className="col-md-6  tabel-info ">
@@ -66,7 +120,9 @@ class TeamPageProfile extends React.Component<RouteComponentProps> {
                 <h6 className="col-4 t-title mb-0 border-t-l">Type</h6>
                 <div className="col-8 t-desc border-t-r">
                   <MainButton
-                    children="Main Team"
+                    children={
+                      this.state.mainTeam !== null ? "Sub Team" : "Main Team"
+                    }
                     type={MainButtonType.light}
                     borderRadius="24px"
                     fontSize="14px"
@@ -76,7 +132,11 @@ class TeamPageProfile extends React.Component<RouteComponentProps> {
               </div>
               <div className="row border-bottom">
                 <h6 className="col-4 t-title mb-0">Team Managers</h6>
-                <div className="col-8 t-desc">D. Jones</div>
+                <div className="col-8 t-desc">
+                  {this.state.managers
+                    .map((item) => item.firstName + " " + item.lastName)
+                    .join(" - ")}
+                </div>
               </div>
 
               <div className="row border-bottom">
@@ -84,9 +144,9 @@ class TeamPageProfile extends React.Component<RouteComponentProps> {
                 <div className="col-8 t-desc border-b-r">
                   {" "}
                   <ul className="file-list">
-                    <li>- Material Testing Team</li>
-                    <li>- Tension Development Team</li>
-                    <li>- 3D Printed Material Team</li>
+                    {this.state.subTeams.map((item) => (
+                      <li key={item.id}>- {item.title}</li>
+                    ))}
                   </ul>
                 </div>
               </div>
@@ -99,28 +159,21 @@ class TeamPageProfile extends React.Component<RouteComponentProps> {
                   }
                 ></IconTextRow>
                 <div className="tags mt-2">
-                  <MainButton
-                    children="Synergistic Effects of Air Content and Supplementary Cementitious Materials on Increasing Concrete Durability"
-                    type={MainButtonType.light}
-                    borderRadius="24px"
-                    fontSize="14px"
-                    className="px-3 pointer"
-                    backgroundColor="#EBEBEB"
-                    onClick={() => {
-                      this.props.history.push(AppRoutes.member_profile);
-                    }}
-                  ></MainButton>
-                  <MainButton
-                    children="Biophilic Concrete Development"
-                    type={MainButtonType.light}
-                    borderRadius="24px"
-                    fontSize="14px"
-                    className="px-3 pointer"
-                    backgroundColor="#EBEBEB"
-                    onClick={() => {
-                      this.props.history.push(AppRoutes.member_profile);
-                    }}
-                  ></MainButton>
+                  {this.state.researches.map((item) => (
+                    <div key={item.id}>
+                      <MainButton
+                        children={item.title}
+                        type={MainButtonType.light}
+                        borderRadius="24px"
+                        fontSize="14px"
+                        className="px-3 pointer"
+                        backgroundColor="#EBEBEB"
+                        onClick={() => {
+                          this.props.history.push(AppRoutes.member_profile);
+                        }}
+                      ></MainButton>
+                    </div>
+                  ))}
                 </div>
               </div>
               <div className="row teams Labs teams-light">
@@ -173,68 +226,25 @@ class TeamPageProfile extends React.Component<RouteComponentProps> {
                   }
                 ></IconTextRow>
                 <div className="tags p-3">
-                  <MainButton
-                    children="ACCESSLab Team"
-                    type={MainButtonType.light}
-                    borderRadius="24px"
-                    fontSize="14px"
-                    className="px-3 pointer"
-                    backgroundColor="#EBEBEB"
-                    onClick={() => {
-                      this.props.history.push(AppRoutes.member_profile);
-                    }}
-                  ></MainButton>
-                  <MainButton
-                    children="ACCESSLab Team"
-                    type={MainButtonType.light}
-                    borderRadius="24px"
-                    fontSize="14px"
-                    backgroundColor="#EBEBEB"
-                    onClick={() => {
-                      this.props.history.push(AppRoutes.member_profile);
-                    }}
-                  ></MainButton>
-                  <MainButton
-                    children="ACCESSLab Team"
-                    type={MainButtonType.light}
-                    borderRadius="24px"
-                    fontSize="14px"
-                    backgroundColor="#EBEBEB"
-                    onClick={() => {
-                      this.props.history.push(AppRoutes.member_profile);
-                    }}
-                  ></MainButton>
-                  <MainButton
-                    children="ACCESSLab Team"
-                    type={MainButtonType.light}
-                    borderRadius="24px"
-                    fontSize="14px"
-                    className="px-3 m-2"
-                    backgroundColor="#EBEBEB"
-                    onClick={() => {
-                      this.props.history.push(AppRoutes.member_profile);
-                    }}
-                  ></MainButton>
+                  {this.state.laboratories.map((item) => (
+                    <div key={item.id}>
+                      <MainButton
+                        children={item.title}
+                        type={MainButtonType.light}
+                        borderRadius="24px"
+                        fontSize="14px"
+                        className="px-3 pointer"
+                        backgroundColor="#EBEBEB"
+                        onClick={() => {
+                          this.props.history.push(AppRoutes.member_profile);
+                        }}
+                      ></MainButton>
+                    </div>
+                  ))}
                 </div>
                 <BoxListScroll
-                  items={[
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 1,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 2,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 3,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                  ]}
-                  TextItem="text"
+                  items={this.state.equipments}
+                  TextItem="title"
                   ValueItem="id"
                   ImageItem="imagesrc"
                   Deletabel
@@ -260,26 +270,10 @@ class TeamPageProfile extends React.Component<RouteComponentProps> {
                 ></IconTextRow>
                 <BoxListScroll
                   className="mt-3 pointer"
-                  items={[
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 1,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 2,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 3,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                  ]}
-                  TextItem="text"
+                  items={this.state.users}
+                  TextItem="firstName"
                   ValueItem="id"
-                  ImageItem="imagesrc"
+                  ImageItem="image"
                   onClick={() => {
                     this.props.history.push(AppRoutes.profile_laboratory);
                   }}
