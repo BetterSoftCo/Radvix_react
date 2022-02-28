@@ -143,7 +143,7 @@ export class TasksPage extends React.Component {
                 />
               </div>
               <div className="d-flex justify-content-end flex-fill">
-                <p className="text-right mb-0 ">Total Results: 45</p>
+                <p className="text-right mb-0 ">Total Results: {this.state.TotalCount}</p>
               </div>
             </div>
           </div>
