@@ -7,7 +7,7 @@ import { SelectComponent } from "../../components/select_input";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import Dropzone from "react-dropzone";
 export class EditMyProfile extends React.Component {
-  RoleUser = store.getState();
+  RoleUser = store.getState().userRole;
   date = new Date();
   handelChangeDate(params: any): void {
     console.log(params);
@@ -25,7 +25,7 @@ export class EditMyProfile extends React.Component {
         {file.name} - {file.size} bytes
         <CircleIcon type={ThemeCircleIcon.dark} width="22px" height="22px">
           <img
-            src="/images/pages/garbage_can.svg"
+            src="/images/icons/garbage_can.svg"
             alt="radvix"
             width={15}
             height={15}
@@ -80,7 +80,7 @@ export class EditMyProfile extends React.Component {
                 </span>
                 <div className="d-flex justify-content-between align-items-center">
                   <img
-                    src="/images/layout/img_avatar.png"
+                    src="/images/images/img_avatar.png"
                     alt="Avatar"
                     className="rounded-circle avatar mx-2"
                     width="125px"
@@ -92,7 +92,7 @@ export class EditMyProfile extends React.Component {
                     height="30px"
                     className="mx-2 pointer"
                   >
-                    <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
+                    <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
                   </CircleIcon>
                   <Dropzone onDrop={this.onDrop}>
                     {({ getRootProps, getInputProps }) => (
@@ -211,7 +211,7 @@ export class EditMyProfile extends React.Component {
                           children={
                             <div className="d-flex justify-content-between align-items-center">
                               <img
-                                src="/Images/component/cloud_computing.svg"
+                                src="/Images/icons/cloud_computing.svg"
                                 alt="sssss"
                                 height="20"
                                 
@@ -354,7 +354,7 @@ export class EditMyProfile extends React.Component {
                   <li className="d-flex justify-content-between align-items-center mb-2">
                     <div>
                       <img
-                        src="/images/pages/linkedIn_logo_initials.png"
+                        src="/images/images/linkedIn_logo_initials.png"
                         alt=""
                       />{" "}
                       <MainButton
@@ -372,13 +372,13 @@ export class EditMyProfile extends React.Component {
                       height="29px"
                       className="mx-2 pointer"
                     >
-                      <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
+                      <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
                     </CircleIcon>
                   </li>
                   <li className="d-flex justify-content-between align-items-center mb-2">
                     <div>
                       <img
-                        src="/images/pages/linkedIn_logo_initials.png"
+                        src="/images/images/linkedIn_logo_initials.png"
                         alt=""
                       />{" "}
                       <MainButton
@@ -396,13 +396,13 @@ export class EditMyProfile extends React.Component {
                       height="29px"
                       className="mx-2 pointer"
                     >
-                      <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
+                      <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
                     </CircleIcon>
                   </li>
                   <li className="d-flex justify-content-between align-items-center mb-2">
                     <div>
                       <img
-                        src="/images/pages/linkedIn_logo_initials.png"
+                        src="/images/images/linkedIn_logo_initials.png"
                         alt=""
                       />{" "}
                       <MainButton
@@ -420,7 +420,7 @@ export class EditMyProfile extends React.Component {
                       height="29px"
                       className="mx-2 pointer"
                     >
-                      <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
+                      <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
                     </CircleIcon>
                   </li>
                 </ul>

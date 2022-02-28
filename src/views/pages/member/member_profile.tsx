@@ -7,7 +7,7 @@ import { IconTextRow } from "../../components/icon_text_horizontal";
 import { Theme } from "../../../core/utils";
 import { BoxListScroll } from "../../components/box_list_scroll";
 export class MemberPageProfile extends React.Component {
-  RoleUser = store.getState();
+  RoleUser = store.getState().userRole;
 
   render() {
     return (
@@ -46,7 +46,7 @@ export class MemberPageProfile extends React.Component {
           </div>
           <div className="Studying p-4 my-2 d-flex flex-column justify-content-center align-items-center">
             <img
-              src="/images/layout/img_avatar.png"
+              src="/images/images/img_avatar.png"
               alt="Avatar"
               className="rounded-circle avatar"
               width="125px"
@@ -100,7 +100,7 @@ export class MemberPageProfile extends React.Component {
                 <div className="col-8 t-desc border-b-r">
                   <ul className="file-list">
                     <li>
-                      <img src="/images/pages/pdf_icon.svg" alt="" />{" "}
+                      <img src="/images/icons/pdf_icon.svg" alt="" />{" "}
                       proposal_general.pdf
                     </li>
                   </ul>
@@ -112,7 +112,7 @@ export class MemberPageProfile extends React.Component {
                   <ul className="file-list">
                     <li>
                       <img
-                        src="/images/pages/linkedIn_logo_initials.png"
+                        src="/images/images/linkedIn_logo_initials.png"
                         alt=""
                       />{" "}
                       <MainButton
@@ -126,7 +126,7 @@ export class MemberPageProfile extends React.Component {
                     </li>
                     <li>
                       <img
-                        src="/images/pages/linkedIn_logo_initials.png"
+                        src="/images/images/linkedIn_logo_initials.png"
                         alt=""
                       />{" "}
                       <MainButton
@@ -140,7 +140,7 @@ export class MemberPageProfile extends React.Component {
                     </li>
                     <li>
                       <img
-                        src="/images/pages/linkedIn_logo_initials.png"
+                        src="/images/images/linkedIn_logo_initials.png"
                         alt=""
                       />{" "}
                       <MainButton
@@ -163,7 +163,7 @@ export class MemberPageProfile extends React.Component {
                   text="Subteams"
                   children={
                     <img
-                      src="/Images/pages/team_menu.svg"
+                      src="/images/icons/team_menu.svg"
                       className="mx-2"
                       alt=""
                     />
@@ -207,7 +207,7 @@ export class MemberPageProfile extends React.Component {
                   text="Projects"
                   children={
                     <img
-                      src="/Images/pages/lamp.svg"
+                      src="/images/icons/lamp.svg"
                       className="mx-2"
                       alt=""
                     />
@@ -330,17 +330,17 @@ export class MemberPageProfile extends React.Component {
                     {
                       text: "Nima Hosseinzadeh",
                       id: 1,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 2,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadehgg",
                       id: 3,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                   ]}
                   TextItem="text"

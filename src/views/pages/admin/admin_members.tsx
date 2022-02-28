@@ -7,7 +7,7 @@ import { InputIcon } from "../../components/search_box";
 import { SelectComponent } from "../../components/select_input";
 
 export class AdminMember extends React.Component {
-  RoleUser = store.getState();
+  RoleUser = store.getState().userRole;
   render() {
     return (
       <div className="container-fluid research">
@@ -27,7 +27,7 @@ export class AdminMember extends React.Component {
               <div className="right w-50 d-flex justify-content-end align-items-center">
                 <InputIcon
                   chilren={
-                    <img src="/images/pages/search_box_icon.svg" alt="" />
+                    <img src="/images/icons/search_box_icon.svg" alt="" />
                   }
                   width="100%"
                   placeholder="Search..."  TopPosition="15%"
@@ -100,7 +100,7 @@ export class AdminMember extends React.Component {
 const MemberItem: React.FC = () => (
   <div className="col-md-3 d-flex justify-content-center align-items-center flex-column mb-4">
     <img
-      src="/images/layout/img_avatar.png"
+      src="/images/images/img_avatar.png"
       alt="Avatar"
       className="rounded-circle avatar"
       width="125px"
@@ -126,7 +126,7 @@ const MemberItem: React.FC = () => (
         }}
         className="pointer mx-1"
       >
-        <img src="/images/pages/edit.svg" alt="radvix" />
+        <img src="/images/icons/edit.svg" alt="radvix" />
       </CircleIcon>
       <CircleIcon
         width="26px"
@@ -137,7 +137,7 @@ const MemberItem: React.FC = () => (
         }}
         className="pointer mx-1"
       >
-        <img src="/images/pages/google_docs.svg" alt="radvix" width={12} height={12} />
+        <img src="/images/icons/google_docs.svg" alt="radvix" width={12} height={12} />
       </CircleIcon>
     </div>
   </div>

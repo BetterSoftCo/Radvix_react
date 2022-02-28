@@ -7,17 +7,15 @@ import { MainButton, MainButtonType } from "../../components/button";
 import Dropzone from "react-dropzone";
 import { ButtonGroup } from "../../components/botton_group";
 export class AdminBroadcast extends React.Component {
-  RoleUser = store.getState();
+  RoleUser = store.getState().userRole;
   date = new Date();
   handelChangeDate(params: any): void {
-    console.log(params);
   }
   state = {
     files: [],
   };
   onDrop = (files: any) => {
     this.setState({ files });
-    console.log(this.state);
   };
   render() {
     const files = this.state.files.map((file: any) => (
@@ -25,7 +23,7 @@ export class AdminBroadcast extends React.Component {
         {file.name} - {file.size} bytes
         <CircleIcon type={ThemeCircleIcon.dark} width="22px" height="22px">
           <img
-            src="/images/pages/garbage_can.svg"
+            src="/images/icons/garbage_can.svg"
             alt="radvix"
             width={15}
             height={15}
@@ -77,7 +75,7 @@ export class AdminBroadcast extends React.Component {
                           children={
                             <div className="d-flex justify-content-between align-items-center">
                               <img
-                                src="/Images/component/cloud_computing.svg"
+                                src="/Images/icons/cloud_computing.svg"
                                 alt="sssss"
                                 height="20"
                                 

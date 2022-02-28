@@ -8,15 +8,71 @@ import Dropzone from "react-dropzone";
 import { SelectComponent } from "../../components/select_input";
 import { BoxAlert } from "../../components/box_alert";
 import { BoxListScroll } from "../../components/box_list_scroll";
-export class LaboratoryPageEdit extends React.Component {
-  RoleUser = store.getState();
-  date = new Date();
+import { RouteComponentProps } from "react-router";
+import { LaboratoryController } from "../../../controllers/laboratory/laboratory_controller";
+import { UploadController } from "../../../controllers/upload_media/upload_media";
+import SimpleReactValidator from "simple-react-validator";
+type StateType = {
+  listCategory: Array<{ label: string; value: number } | {}>;
+  files: Array<File>;
+  categoryId: number;
+  title: string;
+  webSite: string;
+  description: string;
+  managersId: string[];
+  addressLine1: string;
+  addressLine2: string;
+  zipCode: string;
+  creatorUserId: string;
+  company: string;
+  phone: string;
+  loading: boolean;
+  ExternalUrl: Array<string>;
+  External: string;
+  listmanagers: Array<{ label: string; value: number } | {}>;
+};
+interface RouteParams {
+  id: string;
+}
+export class LaboratoryPageEdit extends React.Component<
+  RouteComponentProps<RouteParams>
+> {
+  RoleUser = store.getState().userRole;
+  controller = new LaboratoryController();
+  UploadController = new UploadController();
+  validator = new SimpleReactValidator({
+    className: "text-danger",
+  });
   handelChangeDate(params: any): void {
     console.log(params);
   }
-  state = {
+  state: StateType = {
     files: [],
+    listCategory: [],
+    categoryId: 0,
+    addressLine1: "",
+    addressLine2: "",
+    company: "",
+    creatorUserId: "",
+    description: "",
+    managersId: [],
+    phone: "",
+    title: "",
+    webSite: "",
+    zipCode: "",
+    ExternalUrl: [],
+    External: "",
+    loading: false,
+    listmanagers: [],
   };
+  componentDidMount() {
+    this.controller.getLaboratoryById(
+      { id: parseInt(this.props.match.params.id) },
+      (res) => {
+        console.log(res);
+      }
+    );
+  }
   onDrop = (files: any) => {
     this.setState({ files });
     console.log(this.state);
@@ -27,7 +83,7 @@ export class LaboratoryPageEdit extends React.Component {
         {file.name} - {file.size} bytes
         <CircleIcon type={ThemeCircleIcon.dark} width="22px" height="22px">
           <img
-            src="/images/pages/garbage_can.svg"
+            src="/images/icons/garbage_can.svg"
             alt="radvix"
             width={15}
             height={15}
@@ -40,7 +96,13 @@ export class LaboratoryPageEdit extends React.Component {
         <div className="row"></div>
         <div className="col-12 box-content p-3">
           <h5 className="b-title d-flex">
-            <span onClick={()=>{window.history.back()}} className="backPage"></span> Create A New Laboratory
+            <span
+              onClick={() => {
+                window.history.back();
+              }}
+              className="backPage"
+            ></span>{" "}
+            Create A New Laboratory
           </h5>
           <div className="form row">
             <div className="col-md-6 left">
@@ -138,17 +200,17 @@ export class LaboratoryPageEdit extends React.Component {
                     {
                       text: "Nima Hosseinzadeh",
                       id: 1,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 2,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 3,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                   ]}
                   TextItem="text"
@@ -202,18 +264,17 @@ export class LaboratoryPageEdit extends React.Component {
                           children={
                             <div className="d-flex justify-content-between align-items-center">
                               <img
-                                src="/Images/component/cloud_computing.svg"
+                                src="/Images/icons/cloud_computing.svg"
                                 alt="sssss"
                                 height="20"
-                                
                               />{" "}
-                              <span className="flex-fill">Browse Local Files</span>
+                              <span className="flex-fill">
+                                Browse Local Files
+                              </span>
                             </div>
                           }
                         ></MainButton>
-                        <p>
-                        Or drag and drop files here
-                        </p>
+                        <p>Or drag and drop files here</p>
                       </div>
                       <aside>
                         <h4>Files</h4>
@@ -225,7 +286,7 @@ export class LaboratoryPageEdit extends React.Component {
                 <ul className="file-list mt-3">
                   <li className="d-flex align-items-center mb-1">
                     <img
-                      src='/images/pages/pdf_icon.svg'
+                      src="/images/icons/pdf_icon.svg"
                       alt=""
                       className="mx-2"
                     />{" "}
@@ -236,12 +297,17 @@ export class LaboratoryPageEdit extends React.Component {
                       height="22px"
                       className="mx-3"
                     >
-                      <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
+                      <img
+                        src="/images/icons/garbage_can.svg"
+                        alt="radvix"
+                        width={15}
+                        height={15}
+                      />
                     </CircleIcon>
                   </li>
                   <li className="d-flex align-items-center mb-1">
                     <img
-                      src='/images/pages/pdf_icon.svg'
+                      src="/images/icons/pdf_icon.svg"
                       alt=""
                       className="mx-2"
                     />{" "}
@@ -252,12 +318,17 @@ export class LaboratoryPageEdit extends React.Component {
                       height="22px"
                       className="mx-3"
                     >
-                      <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
+                      <img
+                        src="/images/icons/garbage_can.svg"
+                        alt="radvix"
+                        width={15}
+                        height={15}
+                      />
                     </CircleIcon>
                   </li>
                   <li className="d-flex align-items-center mb-1">
                     <img
-                      src='/images/pages/pdf_icon.svg'
+                      src="/images/icons/pdf_icon.svg"
                       alt=""
                       className="mx-2"
                     />{" "}
@@ -268,7 +339,12 @@ export class LaboratoryPageEdit extends React.Component {
                       height="22px"
                       className="mx-3"
                     >
-                      <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
+                      <img
+                        src="/images/icons/garbage_can.svg"
+                        alt="radvix"
+                        width={15}
+                        height={15}
+                      />
                     </CircleIcon>
                   </li>
                 </ul>
@@ -287,7 +363,6 @@ export class LaboratoryPageEdit extends React.Component {
                   fontSize="18px"
                   color="#ffffff"
                   className="px-3"
-                  
                 >
                   <i className="fas fa-plus"></i>
                 </CircleIcon>
@@ -308,7 +383,12 @@ export class LaboratoryPageEdit extends React.Component {
                     height="22px"
                     className="mx-3"
                   >
-                    <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
+                    <img
+                      src="/images/icons/garbage_can.svg"
+                      alt="radvix"
+                      width={15}
+                      height={15}
+                    />
                   </CircleIcon>
                 </li>
                 <li className="my-2 d-flex flex-column flex-md-row">
@@ -326,7 +406,12 @@ export class LaboratoryPageEdit extends React.Component {
                     height="22px"
                     className="mx-3"
                   >
-                    <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
+                    <img
+                      src="/images/icons/garbage_can.svg"
+                      alt="radvix"
+                      width={15}
+                      height={15}
+                    />
                   </CircleIcon>
                 </li>
               </ul>

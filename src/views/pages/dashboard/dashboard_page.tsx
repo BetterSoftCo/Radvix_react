@@ -45,9 +45,11 @@ export class DashboardPage extends React.Component {
       height: 30,
     },
   ];
-  RoleUser = store.getState();
+  RoleUser = store.getState().userRole;
+  
+  
   componentDidMount() {
-
+    console.log(this.RoleUser);
     // ...
   }
   render() {
@@ -61,9 +63,9 @@ export class DashboardPage extends React.Component {
             <div className="TableBox">
               <div className="TopTableBox d-flex justify-content-between align-items-center">
                 <div className="left d-flex w-50 align-items-center">
-                  <h6 style={{ width: "35%" }}>Research Updates</h6>
+                  <h6 style={{ width: "45%" }}>Research Updates</h6>
                   <InputIcon
-                    chilren={<img src="/images/pages/search_box_icon.svg" />}
+                    chilren={<img src="/images/icons/search_box_icon.svg" />}
                     width="100%"
                     placeholder="Search..."
                     TopPosition="15%"
@@ -71,15 +73,17 @@ export class DashboardPage extends React.Component {
                 </div>
                 <div className="right w-50 d-flex justify-content-end align-items-center">
                   <SelectComponent
-                    width="63px"
+                    width="90px"
                     height="44px"
                     items={[
-                      { item: 1, id: 1 },
-                      { item: 2, id: 2 },
-                      { item: 3, id: 3 },
+                      { label: 1, value: 1 },
+                      { label: 2, value: 2 },
+                      { label: 3, value: 3 },
                     ]}
                     TextItem="item"
                     ValueItem="id"
+                    isMulti={false}
+                    placeholder="1"
                   ></SelectComponent>
                 </div>
               </div>
@@ -134,7 +138,7 @@ export class DashboardPage extends React.Component {
                 <div className="left d-flex w-50 align-items-center">
                   <h6 style={{ width: "35%" }}>Recent Tasks</h6>
                   <InputIcon
-                    chilren={<img src="/images/pages/search_box_icon.svg" />}
+                    chilren={<img src="/images/icons/search_box_icon.svg" />}
                     width="100%"
                     placeholder="Search..."
                     TopPosition="15%"
@@ -203,9 +207,9 @@ export class DashboardPage extends React.Component {
             <div className="TableBox">
               <div className="TopTableBox d-flex justify-content-between align-items-center mb-3">
                 <div className="left d-flex w-50 align-items-center">
-                  <h6 style={{ width: "35%" }}>Recent Data Sets</h6>
+                  <h6 style={{ width: "45%" }}>Recent Data Sets</h6>
                   <InputIcon
-                    chilren={<img src="/images/pages/search_box_icon.svg" />}
+                    chilren={<img src="/images/icons/search_box_icon.svg" />}
                     width="100%"
                     placeholder="Search..."
                     TopPosition="15%"
@@ -280,7 +284,7 @@ const HeadDashboardPage: React.FC = () => {
       <div className="overviwe-item">
         <div className="d-flex align-items-center justify-content-around">
           <img
-            src="images/pages/members_involved_overview_icon.svg"
+            src="/images/icons/members_involved_overview_icon.svg"
             alt="Avatar"
             className="avatar"
           />
@@ -295,7 +299,7 @@ const HeadDashboardPage: React.FC = () => {
       <div className="overviwe-item">
         <div className="d-flex align-items-center justify-content-around">
           <img
-            src="images/pages/equipment_involved_overview_icon.svg"
+            src="/images/icons/equipment_involved_overview_icon.svg"
             alt="Avatar"
             className="avatar"
           />
@@ -310,7 +314,7 @@ const HeadDashboardPage: React.FC = () => {
       <div className="overviwe-item">
         <div className="d-flex align-items-center justify-content-around">
           <img
-            src="/images/layout/compeleted_tasks_verview_icon.svg"
+            src="/Images/icons/compeleted_tasks_verview_icon.svg"
             alt="Avatar"
             className="avatar"
           />
@@ -325,7 +329,7 @@ const HeadDashboardPage: React.FC = () => {
       <div className="overviwe-item">
         <div className="d-flex align-items-center justify-content-around">
           <img
-            src="/images/pages/pending_tasks_overview_icon.svg"
+            src="/images/icons/pending_tasks_overview_icon.svg"
             alt="Avatar"
             className="avatar"
           />
@@ -340,7 +344,7 @@ const HeadDashboardPage: React.FC = () => {
       <div className="overviwe-item">
         <div className="d-flex align-items-center justify-content-around">
           <img
-            src="/images/layout/project_deadline_overview_icon.svg"
+            src="/images/icons/project_deadline_overview_icon.svg"
             alt="Avatar"
             className="avatar"
           />

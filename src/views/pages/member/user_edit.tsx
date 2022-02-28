@@ -8,7 +8,7 @@ import { ButtonGroup } from "../../components/botton_group";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import { BoxListScroll } from "../../components/box_list_scroll";
 export class MemberPageUseEdit extends React.Component {
-  RoleUser = store.getState();
+  RoleUser = store.getState().userRole;
   date = new Date();
   handelChangeDate(params: any): void {
     console.log(params);
@@ -101,7 +101,7 @@ export class MemberPageUseEdit extends React.Component {
                           width="22px"
                           height="22px"
                         >
-                          <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
+                          <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
                         </CircleIcon>
                       </div>
                     }
@@ -120,7 +120,7 @@ export class MemberPageUseEdit extends React.Component {
                           width="22px"
                           height="22px"
                         >
-                          <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
+                          <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
                         </CircleIcon>
                       </div>
                     }
@@ -160,7 +160,7 @@ export class MemberPageUseEdit extends React.Component {
                           width="22px"
                           height="22px"
                         >
-                          <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
+                          <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
                         </CircleIcon>
                       </div>
                     }
@@ -179,7 +179,7 @@ export class MemberPageUseEdit extends React.Component {
                           width="22px"
                           height="22px"
                         >
-                          <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
+                          <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
                         </CircleIcon>
                       </div>
                     }
@@ -193,17 +193,17 @@ export class MemberPageUseEdit extends React.Component {
                     {
                       text: "Nima Hosseinzadeh",
                       id: 1,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 2,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadehgg",
                       id: 3,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                   ]}
                   TextItem="text"
@@ -244,7 +244,7 @@ export class MemberPageUseEdit extends React.Component {
                           width="22px"
                           height="22px"
                         >
-                          <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
+                          <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
                         </CircleIcon>
                       </div>
                     }
@@ -263,7 +263,7 @@ export class MemberPageUseEdit extends React.Component {
                           width="22px"
                           height="22px"
                         >
-                          <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
+                          <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
                         </CircleIcon>
                       </div>
                     }

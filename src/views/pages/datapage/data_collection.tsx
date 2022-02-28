@@ -10,7 +10,7 @@ import { SelectComponent } from "../../components/select_input";
 import  DataCollectionTable  from "./component/data_collection_table";
 
  class DataCollection extends React.Component<RouteComponentProps> {
-  RoleUser = store.getState();
+  RoleUser = store.getState().userRole;
   state = {
     Data: {
       Items: [
@@ -52,7 +52,7 @@ import  DataCollectionTable  from "./component/data_collection_table";
                 <h6 style={{ width: "35%" }}>Data Collection</h6>
                 <InputIcon
                   chilren={
-                    <img src='/images/pages/search_box_icon.svg' alt="" />
+                    <img src='/images/icons/search_box_icon.svg' alt="" />
                   }
                   width="100%"
                   placeholder="Search..."  TopPosition="15%"

@@ -58,7 +58,7 @@ export const Subtasks = (props: IAcordienTable) => {
                   ></MainButton>
                 </div>
                 <div className="col d-flex justify-content-between align-items-center">
-                  {props.role !== UserRoles.level3 ? (
+                  {props.role !== UserRoles.L3User ? (
                     <CircleIcon
                       width="26px"
                       height="26px"
@@ -66,7 +66,7 @@ export const Subtasks = (props: IAcordienTable) => {
                       onClick={(e) => handelOnclick(e)}
                       className="pointer"
                     >
-                      <img src="/images/pages/edit.svg" alt="radvix" />
+                      <img src="/images/icons/edit.svg" alt="radvix" />
                     </CircleIcon>
                   ) : null}
 
@@ -77,7 +77,7 @@ export const Subtasks = (props: IAcordienTable) => {
                     onClick={(e) => handelOnclick(e)}
                     className="pointer"
                   >
-                    <img src="/images/pages/start_discussion.svg" alt="radvix" />
+                    <img src="/images/icons/start_discussion.svg" alt="radvix" />
                   </CircleIcon>
                   <CircleIcon
                     width="26px"
@@ -86,7 +86,7 @@ export const Subtasks = (props: IAcordienTable) => {
                     onClick={(e) => handelOnclick(e)}
                     className="pointer"
                   >
-                    <img src="/images/pages/google_docs.svg" alt="radvix" width={12} height={12} />
+                    <img src="/images/icons/google_docs.svg" alt="radvix" width={12} height={12} />
                   </CircleIcon>
                 </div>
               </div>
@@ -227,7 +227,7 @@ export const Subtasks = (props: IAcordienTable) => {
                   ></MainButton>
                 </div>
                 <div className="col d-flex justify-content-between align-items-center">
-                {props.role !== UserRoles.level3 ? (
+                {props.role !== UserRoles.L3User ? (
                     <CircleIcon
                       width="26px"
                       height="26px"
@@ -235,7 +235,7 @@ export const Subtasks = (props: IAcordienTable) => {
                       onClick={(e) => handelOnclick(e)}
                       className="pointer"
                     >
-                      <img src="/images/pages/edit.svg" alt="radvix" />
+                      <img src="/images/icons/edit.svg" alt="radvix" />
                     </CircleIcon>
                   ) : null}
                   <CircleIcon
@@ -245,7 +245,7 @@ export const Subtasks = (props: IAcordienTable) => {
                     onClick={(e) => handelOnclick(e)}
                     className="pointer"
                   >
-                    <img src="/images/pages/start_discussion.svg" alt="radvix" />
+                    <img src="/images/icons/start_discussion.svg" alt="radvix" />
                   </CircleIcon>
                   <CircleIcon
                     width="26px"
@@ -254,7 +254,7 @@ export const Subtasks = (props: IAcordienTable) => {
                     onClick={(e) => handelOnclick(e)}
                     className="pointer"
                   >
-                    <img src="/images/pages/google_docs.svg" alt="radvix" width={12} height={12} />
+                    <img src="/images/icons/google_docs.svg" alt="radvix" width={12} height={12} />
                   </CircleIcon>
                 </div>
               </div>
@@ -395,7 +395,7 @@ export const Subtasks = (props: IAcordienTable) => {
                   ></MainButton>
                 </div>
                 <div className="col d-flex justify-content-between align-items-center">
-                {props.role !== UserRoles.level3 ? (
+                {props.role !== UserRoles.L3User ? (
                     <CircleIcon
                       width="26px"
                       height="26px"
@@ -403,7 +403,7 @@ export const Subtasks = (props: IAcordienTable) => {
                       onClick={(e) => handelOnclick(e)}
                       className="pointer"
                     >
-                      <img src="/images/pages/edit.svg" alt="radvix" />
+                      <img src="/images/icons/edit.svg" alt="radvix" />
                     </CircleIcon>
                   ) : null}
                   <CircleIcon
@@ -413,7 +413,7 @@ export const Subtasks = (props: IAcordienTable) => {
                     onClick={(e) => handelOnclick(e)}
                     className="pointer"
                   >
-                    <img src="/images/pages/start_discussion.svg" alt="radvix" />
+                    <img src="/images/icons/start_discussion.svg" alt="radvix" />
                   </CircleIcon>
                   <CircleIcon
                     width="26px"
@@ -422,7 +422,7 @@ export const Subtasks = (props: IAcordienTable) => {
                     onClick={(e) => handelOnclick(e)}
                     className="pointer"
                   >
-                    <img src="/images/pages/google_docs.svg" alt="radvix" width={12} height={12} />
+                    <img src="/images/icons/google_docs.svg" alt="radvix" width={12} height={12} />
                   </CircleIcon>
                 </div>
               </div>

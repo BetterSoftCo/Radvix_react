@@ -9,7 +9,7 @@ import { MainButton, MainButtonType } from "../../components/button";
 import { BoxListScroll } from "../../components/box_list_scroll";
 import { RouteComponentProps, withRouter } from "react-router";
  class DataPageEdit extends React.Component<RouteComponentProps> {
-  RoleUser = store.getState();
+  RoleUser = store.getState().userRole;
   date = new Date();
   handelChangeDate(params: any): void {
     console.log(params);
@@ -27,7 +27,7 @@ import { RouteComponentProps, withRouter } from "react-router";
         {file.name} - {file.size} bytes
         <CircleIcon type={ThemeCircleIcon.dark} width="22px" height="22px">
           <img
-            src="/images/pages/garbage_can.svg"
+            src="/images/icons/garbage_can.svg"
             alt="radvix"
             width={15}
             height={15}
@@ -98,7 +98,7 @@ import { RouteComponentProps, withRouter } from "react-router";
                           children={
                             <div className="d-flex justify-content-between align-items-center">
                               <img
-                                src="/Images/component/cloud_computing.svg"
+                                src="/Images/icons/cloud_computing.svg"
                                 alt="sssss"
                                 height="20"
                                 
@@ -121,7 +121,7 @@ import { RouteComponentProps, withRouter } from "react-router";
                 <ul className="file-list mt-3">
                   <li className="d-flex align-items-center mb-1">
                     <img
-                      src="/images/pages/pdf_icon.svg"
+                      src="/images/icons/pdf_icon.svg"
                       alt=""
                       className="mx-2"
                     />{" "}
@@ -132,12 +132,12 @@ import { RouteComponentProps, withRouter } from "react-router";
                       height="22px"
                       className="mx-3"
                     >
-                      <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
+                      <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
                     </CircleIcon>
                   </li>
                   <li className="d-flex align-items-center mb-1">
                     <img
-                      src="/images/pages/pdf_icon.svg"
+                      src="/images/icons/pdf_icon.svg"
                       alt=""
                       className="mx-2"
                     />{" "}
@@ -148,12 +148,12 @@ import { RouteComponentProps, withRouter } from "react-router";
                       height="22px"
                       className="mx-3"
                     >
-                      <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
+                      <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
                     </CircleIcon>
                   </li>
                   <li className="d-flex align-items-center mb-1">
                     <img
-                      src="/images/pages/pdf_icon.svg"
+                      src="/images/icons/pdf_icon.svg"
                       alt=""
                       className="mx-2"
                     />{" "}
@@ -164,7 +164,7 @@ import { RouteComponentProps, withRouter } from "react-router";
                       height="22px"
                       className="mx-3"
                     >
-                      <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
+                      <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
                     </CircleIcon>
                   </li>
                 </ul>
@@ -204,7 +204,7 @@ import { RouteComponentProps, withRouter } from "react-router";
                     height="22px"
                     className="mx-3"
                   >
-                    <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
+                    <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
                   </CircleIcon>
                 </li>
                 <li className="my-2 d-flex flex-column flex-md-row">
@@ -222,7 +222,7 @@ import { RouteComponentProps, withRouter } from "react-router";
                     height="22px"
                     className="mx-3"
                   >
-                    <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
+                    <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
                   </CircleIcon>
                 </li>
               </ul>
@@ -257,17 +257,17 @@ import { RouteComponentProps, withRouter } from "react-router";
                     {
                       text: "Nima Hosseinzadeh",
                       id: 1,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 2,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 3,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                   ]}
                   TextItem="text"

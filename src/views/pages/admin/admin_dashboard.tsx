@@ -42,7 +42,7 @@ export class AdminDashboard extends React.Component {
       height: 30,
     },
   ];
-  RoleUser = store.getState();
+  RoleUser = store.getState().userRole;
   date = new Date();
   render() {
     return (
@@ -133,7 +133,7 @@ const HeadDashboardPage: React.FC = () => {
       <div className="overviwe-item">
         <div className="d-flex align-items-center justify-content-around">
           <img
-            src="/images/pages/members_involved_overview_icon.svg"
+            src="/images/icons/members_involved_overview_icon.svg"
             alt="Avatar"
             className="avatar"
           />
@@ -146,7 +146,7 @@ const HeadDashboardPage: React.FC = () => {
       <div className="overviwe-item">
         <div className="d-flex align-items-center justify-content-around">
           <img
-            src="/images/pages/expense_menu_icon.svg"
+            src="/images/icons/expense_menu_light_icon.svg"
             alt="Avatar"
             className="avatar"
           />
@@ -159,7 +159,7 @@ const HeadDashboardPage: React.FC = () => {
       <div className="overviwe-item">
         <div className="d-flex align-items-center justify-content-around">
           <img
-            src="/images/pages/headphones.svg"
+            src="/images/icons/headphones_dark.svg"
             alt="Avatar"
             className="avatar"
           />
@@ -172,7 +172,7 @@ const HeadDashboardPage: React.FC = () => {
       <div className="overviwe-item">
         <div className="d-flex align-items-center justify-content-around">
           <img
-            src="/images/pages/equipment_involved_overview_icon.svg"
+            src="/images/icons/equipment_involved_overview_icon.svg"
             alt="Avatar"
             className="avatar"
           />
@@ -185,7 +185,7 @@ const HeadDashboardPage: React.FC = () => {
       <div className="overviwe-item">
         <div className="d-flex align-items-center justify-content-around">
           <img
-            src="/images/pages/university.svg"
+            src="/images/icons/university.svg"
             alt="Avatar"
             className="avatar"
           />

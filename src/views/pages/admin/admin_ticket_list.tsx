@@ -8,7 +8,7 @@ import { SelectComponent } from "../../components/select_input";
 import { TicketsTbl } from "./component/tickets_tbl";
 
 export class AdminTickets extends React.Component {
-  RoleUser = store.getState();
+  RoleUser = store.getState().userRole;
   state = {
     Data: {
       Items: [
@@ -50,7 +50,7 @@ export class AdminTickets extends React.Component {
                 <h6 style={{ width: "35%" }}>Tickets</h6>
                 <InputIcon
                   chilren={
-                    <img src="/images/pages/search_box_icon.svg" alt="" />
+                    <img src="/images/icons/search_box_icon.svg" alt="" />
                   }
                   width="100%"
                   placeholder="Search..."  TopPosition="15%"

@@ -10,7 +10,7 @@ import { Theme } from "../../../core/utils";
 import { BoxListScroll } from "../../components/box_list_scroll";
 import { ButtonGroup } from "../../components/botton_group";
 export class AdminTicket extends React.Component {
-  RoleUser = store.getState();
+  RoleUser = store.getState().userRole;
   date = new Date();
   handelChangeDate(params: any): void {
     console.log(params);
@@ -28,7 +28,7 @@ export class AdminTicket extends React.Component {
         {file.name} - {file.size} bytes
         <CircleIcon type={ThemeCircleIcon.dark} width="22px" height="22px">
           <img
-            src="/images/pages/garbage_can.svg"
+            src="/images/icons/garbage_can.svg"
             alt="radvix"
             width={15}
             height={15}
@@ -69,7 +69,7 @@ export class AdminTicket extends React.Component {
                   className="fw-lighter"
                   children={
                     <img
-                      src="/images/layout/img_avatar.png"
+                      src="/images/images/img_avatar.png"
                       alt="Avatar"
                       className="rounded-circle avatar mx-2"
                       width="40px"
@@ -84,7 +84,7 @@ export class AdminTicket extends React.Component {
                   laboris nisi ut aliquip ex ea
                   <ul className="file-list">
                     <li>
-                      <img src="/images/pages/pdf_icon.svg" alt="" />{" "}
+                      <img src="/images/icons/pdf_icon.svg" alt="" />{" "}
                       proposal_general.pdf
                     </li>
                   </ul>
@@ -98,7 +98,7 @@ export class AdminTicket extends React.Component {
                   className="fw-lighter"
                   children={
                     <img
-                      src="/images/layout/img_avatar.png"
+                      src="/images/images/img_avatar.png"
                       alt="Avatar"
                       className="rounded-circle avatar mx-2"
                       width="40px"
@@ -113,7 +113,7 @@ export class AdminTicket extends React.Component {
                   laboris nisi ut aliquip ex ea
                   <ul className="file-list">
                     <li>
-                      <img src="/images/pages/pdf_icon.svg" alt="" />{" "}
+                      <img src="/images/icons/pdf_icon.svg" alt="" />{" "}
                       proposal_general.pdf
                     </li>
                   </ul>
@@ -127,7 +127,7 @@ export class AdminTicket extends React.Component {
                   className="fw-lighter"
                   children={
                     <img
-                      src="/images/layout/img_avatar.png"
+                      src="/images/images/img_avatar.png"
                       alt="Avatar"
                       className="rounded-circle avatar mx-2"
                       width="40px"
@@ -142,7 +142,7 @@ export class AdminTicket extends React.Component {
                   laboris nisi ut aliquip ex ea
                   <ul className="file-list">
                     <li>
-                      <img src="/images/pages/pdf_icon.svg" alt="" />{" "}
+                      <img src="/images/icons/pdf_icon.svg" alt="" />{" "}
                       proposal_general.pdf
                     </li>
                   </ul>
@@ -171,7 +171,7 @@ export class AdminTicket extends React.Component {
                     text="Members In The Loop"
                     children={
                       <img
-                        src="/Images/pages/team_menu.svg"
+                        src="/images/icons/team_menu.svg"
                         className="mx-2"
                         alt=""
                       />
@@ -183,92 +183,92 @@ export class AdminTicket extends React.Component {
                     {
                       text: "Nima Hosseinzadeh",
                       id: 1,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 2,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 3,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 1,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 2,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 3,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 1,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 2,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 3,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 1,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 2,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 3,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 1,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 2,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 3,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 1,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 2,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 3,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                   ]}
                   TextItem="text"
@@ -332,7 +332,7 @@ export class AdminTicket extends React.Component {
                           children={
                             <div className="d-flex justify-content-between align-items-center">
                               <img
-                                src="/Images/component/cloud_computing.svg"
+                                src="/Images/icons/cloud_computing.svg"
                                 alt="sssss"
                                 height="20"
                                 

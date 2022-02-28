@@ -1,15 +1,20 @@
 import React, { Fragment } from "react";
 import { RouteComponentProps, withRouter } from "react-router";
-import { AppRoutes } from "../../../../core/constants";
 import { MainButton, MainButtonType } from "../../../components/button";
-const PlanThree: React.FC<RouteComponentProps> = (props) => {
-  
+interface PropsPlanThree {
+  handelRegisterCallBack: () => void;
+  loading:boolean
+}
+const PlanThree: React.FC<PropsPlanThree & RouteComponentProps> = (props) => {
+  const handelRegister = () => {
+    props.handelRegisterCallBack()
+  };
   return (
     <Fragment>
       <div className="form-register">
         <div className="header-form">
           <img
-            src="/images/pages/toggle_icon_register.svg"
+            src="/images/icons/toggle_icon_register.svg"
             alt="radvix"
             className="mx-3"
           />{" "}
@@ -39,16 +44,20 @@ const PlanThree: React.FC<RouteComponentProps> = (props) => {
             <MainButton
               type={MainButtonType.dark}
               minHeight="42px"
+              minWidth="250px"
               fontSize="15px"
               borderRadius="50px"
               className="px-3"
               backgroundColor="#00A598"
-              onClick={()=>{props.history.push(AppRoutes.login)}}
+              onClick={() => {
+                handelRegister();
+              }}
+              loading={props.loading}
               children={
                 <div>
                   Already Activated Your Account?
                   <img
-                    src="/Images/pages/arrow.svg"
+                    src="/Images/icons/arrow.svg"
                     alt="sssss"
                     className="mx-2"
                   />
@@ -66,7 +75,7 @@ const PlanThree: React.FC<RouteComponentProps> = (props) => {
                 <div>
                   Didn’t Receive Any Emails?
                   <img
-                    src="/Images/pages/arrow.svg"
+                    src="/Images/icons/arrow.svg"
                     alt="sssss"
                     className="mx-2"
                   />

@@ -9,7 +9,7 @@ import { SelectComponent } from "../../components/select_input";
 import { UserTypesTable } from "./component/user_types_tbl";
 import { UserRoles } from "../../../core/utils";
 export class SettingPage extends React.Component {
-  RoleUser = store.getState();
+  RoleUser = store.getState().userRole;
   state = {
     Data: {
       Items: [
@@ -44,7 +44,7 @@ export class SettingPage extends React.Component {
   render() {
     return (
       <div className="container-fluid research new-research">
-        {this.RoleUser === UserRoles.level1 ? (
+        {this.RoleUser === UserRoles.L1Client || this.RoleUser === UserRoles.L1User ? (
           <div className="col-12 box-content p-3">
             <div className="d-flex justify-content-between align-items-center">
               <h5 className="b-title d-flex align-items-center">
@@ -65,7 +65,7 @@ export class SettingPage extends React.Component {
                   <h6 className="col-4 t-title mb-0">Payment Method</h6>
                   <div className="col-8 t-desc">
                     <img
-                      src="/Images/pages/mastercard.svg"
+                      src="/images/images/mastercard.svg"
                       className="mx-2"
                       alt="radvix"
                     />
@@ -233,8 +233,8 @@ export class SettingPage extends React.Component {
             </div>
           </div>
         </div>
-        {this.RoleUser === UserRoles.level1 ||
-        this.RoleUser === UserRoles.level2 ? (
+        {this.RoleUser === UserRoles.L1Client || this.RoleUser === UserRoles.L1User ||
+        this.RoleUser === UserRoles.L2User ? (
           <div className="col-12 box-content p-3">
             <div className="d-flex justify-content-between align-items-center">
               <h5 className="b-title d-flex align-items-center">

@@ -10,7 +10,7 @@ import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
 
 class DataPageProfile extends React.Component<RouteComponentProps> {
-  RoleUser = store.getState();
+  RoleUser = store.getState().userRole;
   state = {
     Data: {
       Items: [
@@ -68,7 +68,7 @@ class DataPageProfile extends React.Component<RouteComponentProps> {
                   this.props.history.push(AppRoutes.data_edit);
                 }}
               >
-                <img src="/images/pages/edit.svg" alt="radvix" />
+                <img src="/images/icons/edit.svg" alt="radvix" />
               </CircleIcon>
               <CircleIcon
                 width="22px"
@@ -79,7 +79,7 @@ class DataPageProfile extends React.Component<RouteComponentProps> {
                 color="#ffff"
                 className="mx-1"
               >
-                <img src="/images/pages/start_discussion.svg" alt="radvix" />
+                <img src="/images/icons/start_discussion.svg" alt="radvix" />
               </CircleIcon>
             </h5>
             <MainButton
@@ -111,19 +111,19 @@ class DataPageProfile extends React.Component<RouteComponentProps> {
                 <div className="col-8 t-desc">
                   <ul className="file-list">
                     <li>
-                      <img src="/images/pages/pdf_icon.svg" alt="" />{" "}
+                      <img src="/images/icons/pdf_icon.svg" alt="" />{" "}
                       proposal_general.pdf
                     </li>
                     <li>
-                      <img src="/images/pages/word_icon.svg" alt="" />{" "}
+                      <img src="/images/icons/word_icon.svg" alt="" />{" "}
                       proposal_general.docx
                     </li>
                     <li>
-                      <img src="/images/pages/excel_icon.svg" alt="" />{" "}
+                      <img src="/images/icons/excel_icon.svg" alt="" />{" "}
                       proposal_general.xlsx
                     </li>
                     <li>
-                      <img src="/images/pages/pdf_icon.svg" alt="" />{" "}
+                      <img src="/images/icons/pdf_icon.svg" alt="" />{" "}
                       proposal_general.pdf
                     </li>
                     <li>
@@ -232,17 +232,17 @@ class DataPageProfile extends React.Component<RouteComponentProps> {
                     {
                       text: "Nima Hosseinzadeh",
                       id: 1,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 2,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 3,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                   ]}
                   TextItem="text"
@@ -258,7 +258,7 @@ class DataPageProfile extends React.Component<RouteComponentProps> {
                   className="mb-2"
                   children={
                     <img
-                      src="/Images/pages/team_menu.svg"
+                      src="/images/icons/team_menu.svg"
                       className="mx-2"
                       alt=""
                     />
@@ -269,17 +269,17 @@ class DataPageProfile extends React.Component<RouteComponentProps> {
                     {
                       text: "Nima Hosseinzadeh",
                       id: 1,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 2,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 3,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                   ]}
                   TextItem="text"

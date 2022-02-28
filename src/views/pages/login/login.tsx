@@ -1,32 +1,56 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { MainButton, MainButtonType } from "../../components/button";
 import { InputComponent, InputType } from "../../components/inputs";
 import { RouteComponentProps, withRouter } from "react-router";
 import { UserController } from "../../../controllers/user/user_controller";
 import { UserSigninReq } from "../../../data/models/requests/user/signin_req";
 import { AppRoutes } from "../../../core/constants";
+import SimpleReactValidator from "simple-react-validator";
+import { store } from "../../../data/store";
+import {
+  SetUserInfo,
+  SetUserRole,
+} from "../../../data/store/actions/user_action";
 const LoginPage: React.FC<RouteComponentProps> = (props) => {
-  const [password, setpassword] = useState('');
-  const [email, setemail] = useState('');
+  const [password, setpassword] = useState("");
+  const [email, setemail] = useState("");
+  const [loading, setloading] = useState(false);
+
   const controller: UserController = new UserController();
   async function SignIn() {
-    const body: UserSigninReq = {
-      password: password,
-      email: email,
-    };
-   await controller.Signin(body,res=>{
-      if(res){
-        props.history.replace(AppRoutes.dashboard)
-      }
-    })
+    const formValid = Validator.current.allValid();
+    if (!formValid) {
+      Validator.current.showMessages();
+      forceUpdate(1);
+    } else {
+      const body: UserSigninReq = {
+        password: password,
+        email: email,
+      };
+      setloading(true);
+      await controller.Signin(body, (res) => {
+        setloading(false);
+        if (res) {
+          store.dispatch(SetUserRole(res.role ?? 0));
+          store.dispatch(SetUserInfo(res));
+          props.history.replace(AppRoutes.dashboard);
+        }
+      }, ()=>{setloading(false);})
+    }
   }
+  const Validator = useRef(
+    new SimpleReactValidator({
+      className: "text-danger",
+    })
+  );
+  const [, forceUpdate] = useState(0);
   return (
     <div className="login d-flex flex-column flex-md-row">
       <div className="left">
-        <img src="/images/layout/radvix_logo.png" className="logo" alt="" />
+        <img src="/images/images/radvix_logo.png" className="logo" alt="" />
         <span className="sub_logo">Login</span>
-        <img src="/images/pages/member.png" className="logo-Member" alt="" />
+        <img src="/images/images/member.png" className="logo-Member" alt="" />
         <MainButton
           children={"Forgot Email?"}
           type={MainButtonType.dark}
@@ -50,17 +74,30 @@ const LoginPage: React.FC<RouteComponentProps> = (props) => {
           <InputComponent
             type={InputType.text}
             placeholder="example@email.com"
-            onChange={(e)=>{setemail(e.target.value);
+            onChange={(e) => {
+              setemail(e.target.value);
             }}
+            inValid={Validator.current.message(
+              "email",
+              email,
+              "required|email"
+            )}
           ></InputComponent>
+
           <div className="password mt-2 d-flex justify-content-between align-items-center">
             <div className="input w-75">
               <label className="text-light mb-2">Password:</label>
               <InputComponent
                 type={InputType.text}
                 placeholder="*******"
-                onChange={(e)=>{setpassword(e.target.value);
+                onChange={(e) => {
+                  setpassword(e.target.value);
                 }}
+                inValid={Validator.current.message(
+                  "password",
+                  password,
+                  "required"
+                )}
               ></InputComponent>
             </div>
             <MainButton
@@ -70,7 +107,9 @@ const LoginPage: React.FC<RouteComponentProps> = (props) => {
               minWidth="60px"
               minHeight="37px"
               className="align-self-end"
-              onClick={()=>{SignIn()
+              loading={loading}
+              onClick={() => {
+                SignIn();
               }}
             ></MainButton>
           </div>
@@ -86,7 +125,7 @@ const LoginPage: React.FC<RouteComponentProps> = (props) => {
           backgroundColor="#A6CE39"
           children={
             <div>
-              <img src="/images/pages/orcid-og-image.png" /> Login using ORCiD
+              <img src="/images/images/orcid-og-image.png" /> Login using ORCiD
             </div>
           }
         ></MainButton>
@@ -100,7 +139,7 @@ const LoginPage: React.FC<RouteComponentProps> = (props) => {
           backgroundColor="#4285F4"
           children={
             <div>
-              <img src="/images/pages/google_scholar_icon_130918.png" /> Login
+              <img src="/images/images/google_scholar_icon_130918.png" /> Login
               using Google
             </div>
           }
@@ -115,8 +154,8 @@ const LoginPage: React.FC<RouteComponentProps> = (props) => {
           backgroundColor="#0274B3"
           children={
             <div>
-              <img src="/images/pages/linkedIn_logo_initials.png" /> Login using
-              LinkedIn
+              <img src="/images/images/linkedIn_logo_initials.png" /> Login
+              using LinkedIn
             </div>
           }
         ></MainButton>

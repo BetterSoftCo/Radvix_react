@@ -4,11 +4,39 @@
   border-bottom-right-radius: 9px;
   border: none;
 }
+.InputComponentStyle.notValidation{
+  border: 1px solid red;
+}
+.css-1hb7zxy-IndicatorsContainer{
+  display: none !important;
+}
+.css-1s2u09g-control {
+  border: none !important;
+}
 
 .InputSelectStyle {
-  border-radius: 9px;
-  background-image: url("./../../Images/component/down-arrow-black-circular-button.svg");
+  .css-1s2u09g-control{
+    min-width: 72px;
+  }
+  .css-319lph-ValueContainer ,  .css-g1d714-ValueContainer {
+    border-radius: 9px;
+    border: 1px solid #adadad;
+    position: relative;
+    background: #fff;
+    min-width: 72px;
+    &::after{
+      content: '';
+      position: absolute;
+      right: 9px;
+      background-image: url('./../../Images/icons/down-arrow-black-circular-button.svg');
+      width: 30px;
+      height: 30px;
+      background-repeat: no-repeat;
+      background-position: center;  
+    }
+  }
 }
+
 .Icon-inside {
   position: relative;
   span.icon {

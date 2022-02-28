@@ -38,92 +38,92 @@ export const ShowLibraryPage: React.FC = (props) => {
             {
               text: "Nima Hosseinzadeh",
               id: 1,
-              imagesrc: "/images/layout/img_avatar.png",
+              imagesrc: "/images/images/img_avatar.png",
             },
             {
               text: "Nima Hosseinzadeh",
               id: 2,
-              imagesrc: "/images/layout/img_avatar.png",
+              imagesrc: "/images/images/img_avatar.png",
             },
             {
               text: "Nima Hosseinzadeh",
               id: 3,
-              imagesrc: "/images/layout/img_avatar.png",
+              imagesrc: "/images/images/img_avatar.png",
             },
             {
               text: "Nima Hosseinzadeh",
               id: 1,
-              imagesrc: "/images/layout/img_avatar.png",
+              imagesrc: "/images/images/img_avatar.png",
             },
             {
               text: "Nima Hosseinzadeh",
               id: 2,
-              imagesrc: "/images/layout/img_avatar.png",
+              imagesrc: "/images/images/img_avatar.png",
             },
             {
               text: "Nima Hosseinzadeh",
               id: 3,
-              imagesrc: "/images/layout/img_avatar.png",
+              imagesrc: "/images/images/img_avatar.png",
             },
             {
               text: "Nima Hosseinzadeh",
               id: 1,
-              imagesrc: "/images/layout/img_avatar.png",
+              imagesrc: "/images/images/img_avatar.png",
             },
             {
               text: "Nima Hosseinzadeh",
               id: 2,
-              imagesrc: "/images/layout/img_avatar.png",
+              imagesrc: "/images/images/img_avatar.png",
             },
             {
               text: "Nima Hosseinzadeh",
               id: 3,
-              imagesrc: "/images/layout/img_avatar.png",
+              imagesrc: "/images/images/img_avatar.png",
             },
             {
               text: "Nima Hosseinzadeh",
               id: 1,
-              imagesrc: "/images/layout/img_avatar.png",
+              imagesrc: "/images/images/img_avatar.png",
             },
             {
               text: "Nima Hosseinzadeh",
               id: 2,
-              imagesrc: "/images/layout/img_avatar.png",
+              imagesrc: "/images/images/img_avatar.png",
             },
             {
               text: "Nima Hosseinzadeh",
               id: 3,
-              imagesrc: "/images/layout/img_avatar.png",
+              imagesrc: "/images/images/img_avatar.png",
             },
             {
               text: "Nima Hosseinzadeh",
               id: 1,
-              imagesrc: "/images/layout/img_avatar.png",
+              imagesrc: "/images/images/img_avatar.png",
             },
             {
               text: "Nima Hosseinzadeh",
               id: 2,
-              imagesrc: "/images/layout/img_avatar.png",
+              imagesrc: "/images/images/img_avatar.png",
             },
             {
               text: "Nima Hosseinzadeh",
               id: 3,
-              imagesrc: "/images/layout/img_avatar.png",
+              imagesrc: "/images/images/img_avatar.png",
             },
             {
               text: "Nima Hosseinzadeh",
               id: 1,
-              imagesrc: "/images/layout/img_avatar.png",
+              imagesrc: "/images/images/img_avatar.png",
             },
             {
               text: "Nima Hosseinzadeh",
               id: 2,
-              imagesrc: "/images/layout/img_avatar.png",
+              imagesrc: "/images/images/img_avatar.png",
             },
             {
               text: "Nima Hosseinzadeh",
               id: 3,
-              imagesrc: "/images/layout/img_avatar.png",
+              imagesrc: "/images/images/img_avatar.png",
             },
           ]}
           TextItem="text"
@@ -153,19 +153,19 @@ export const ShowLibraryPage: React.FC = (props) => {
           width="26px"
           height="26px"
           type={ThemeCircleIcon.dark}
-          onClick={(e) => console.log("s")}
+          onClick={(e) => {}}
           className="pointer"
         >
-          <img src="/images/pages/google_docs.svg" alt="radvix" width={12} height={12} />
+          <img src="/images/icons/google_docs.svg" alt="radvix" width={12} height={12} />
         </CircleIcon>
         <CircleIcon
           width="26px"
           height="26px"
           type={ThemeCircleIcon.light}
-          onClick={(e) => console.log("s")}
+          onClick={(e) => {}}
           className="pointer"
         >
-          <img src="/images/pages/google_docs.svg" alt="radvix" width={12} height={12} />
+          <img src="/images/icons/google_docs.svg" alt="radvix" width={12} height={12} />
         </CircleIcon>
       </div>
       <div className="col-12 border-bottom my-4 py-2 item d-flex">
@@ -176,7 +176,7 @@ export const ShowLibraryPage: React.FC = (props) => {
           className="fw-lighter"
           children={
             <img
-              src="/images/layout/img_avatar.png"
+              src="/images/images/img_avatar.png"
               alt="Avatar"
               className="rounded-circle avatar mx-2"
               width="40px"
@@ -190,7 +190,7 @@ export const ShowLibraryPage: React.FC = (props) => {
           text="New
           Discussion"
           theme={Theme.light}
-          children={<img src="/Images/layout/group_27.svg" alt="test" />}
+          children={<img src="/Images/icons/chat_dark_icon.svg" alt="test" />}
           className="pointer"
         ></IconTextVertical>
       </div>
@@ -221,7 +221,7 @@ export const ShowLibraryPage: React.FC = (props) => {
       </div>
       <div className="col-12 border-bottom my-4 py-2 item">
         <InputIcon
-          chilren={<img src="/images/pages/search_box_icon.svg" alt="" />}
+          chilren={<img src="/images/icons/search_box_icon.svg" alt="" />}
           width="100%"
           placeholder="Search..."  TopPosition="15%"
           

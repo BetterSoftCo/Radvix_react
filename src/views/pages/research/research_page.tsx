@@ -1,39 +1,59 @@
 import React from "react";
 import ReactPaginate from "react-paginate";
+import { ResearchController } from "../../../controllers/research/research_controller";
+import { ResearchesList } from "../../../data/models/responses/research/researches_res";
 import { store } from "../../../data/store";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import { InputIcon } from "../../components/search_box";
 import { SelectComponent } from "../../components/select_input";
 import AcordienTableResearch from "./component/acordien_table_research";
-
+type StateType = {
+  Researches: ResearchesList[],
+  PageNumber: number,
+  PageSize: number,
+  PageCount: number,
+  TotalCount:number
+}
 export class ResearchPage extends React.Component {
-  RoleUser = store.getState();
-  state = {
-    Data: {
-      Items: [
-        {
-          name: "Studying the effects of freeze thaw cycle…",
-          Institution: "07/22/2021",
-          Category: "Material",
-        },
-        {
-          name: "Studying the effects of freeze thaw cycle…",
-          Institution: "07/22/2021",
-          Category: "Material",
-        },
-        {
-          name: "Studying the effects of freeze thaw cycle…",
-          Institution: "07/22/2021",
-          Category: "Material",
-        },
-        {
-          name: "Studying the effects of freeze thaw cycle…",
-          Institution: "07/22/2021",
-          Category: "Material",
-        },
-      ],
-    },
+  controller = new ResearchController();
+  RoleUser = store.getState().userRole;
+  state: StateType = {
+    Researches: [],
+    PageNumber: 1,
+    PageSize: 10,
+    PageCount: 0,
+    TotalCount:0
   };
+  componentDidMount() {
+    this.GetResearch(this.state.PageNumber, this.state.PageSize)
+  }
+  GetResearch(PageNumber: number, PageSize: number) {
+    this.controller.getResearches({ PageNumber: PageNumber, PageSize: PageSize }, res => {
+      this.setState({
+        Researches: res.researchesList,
+        PageCount: Math.ceil(res.count! / this.state.PageSize),
+        TotalCount:res.count
+      })
+
+    }, err => console.log(err)
+    )
+  }
+  handelChangePageNumber(
+    e: { selected: number }
+  ) {
+    this.setState({
+      PageNumber: e.selected
+    });
+    this.GetResearch(e.selected + 1, this.state.PageSize)
+  }
+  handelChangePageSize(
+    e: { label: string; value: number }
+  ) {
+    this.setState({
+      PageSize: e.value
+    });
+    this.GetResearch(this.state.PageNumber, e.value)
+  }
   render() {
     return (
       <div className="container-fluid research">
@@ -45,33 +65,39 @@ export class ResearchPage extends React.Component {
                 <h6 style={{ width: "35%" }}>Research List</h6>
                 <InputIcon
                   chilren={
-                    <img src="/images/pages/search_box_icon.svg" alt="" />
+                    <img src="/images/icons/search_box_icon.svg" alt="" />
                   }
                   width="100%"
-                  placeholder="Search..."  TopPosition="15%"
+                  placeholder="Search..." TopPosition="15%"
                 ></InputIcon>
               </div>
               <div className="right w-50 d-flex justify-content-end align-items-center">
                 <SelectComponent
-                  width="63px"
+                  width="90px"
                   height="44px"
                   items={[
-                    { item: 1, id: 1 },
-                    { item: 2, id: 2 },
-                    { item: 3, id: 3 },
+                    { label: '10', value: 10 },
+                    { label: '15', value: 15 },
+                    { label: '20', value: 20 },
                   ]}
                   TextItem="item"
                   ValueItem="id"
+                  isMulti={false}
+                  placeholder={this.state.PageSize.toString()}
+                  onChange={(e) => {
+                    this.handelChangePageSize(e)
+                  }}
                 ></SelectComponent>
               </div>
             </div>
             <AcordienTableResearch
-              Items={this.state.Data.Items}
+              Items={this.state.Researches}
               Heading={[
                 { name: "Research Name", center: false },
                 { name: "Deadline", center: false },
                 { name: "Status", center: true },
               ]}
+              role={this.RoleUser}
             ></AcordienTableResearch>
 
             <div className="d-flex justify-content-between align-items-baseline">
@@ -99,18 +125,18 @@ export class ResearchPage extends React.Component {
                   }
                   breakLabel={"..."}
                   breakClassName={"break-me"}
-                  pageCount={20}
+                  pageCount={this.state.PageCount}
                   marginPagesDisplayed={2}
                   pageRangeDisplayed={5}
-                  onPageChange={() => {
-                    console.log("changepage");
+                  onPageChange={(e) => {
+                    this.handelChangePageNumber(e)
                   }}
                   containerClassName={"pagination"}
                   activeClassName={"active"}
                 />
               </div>
               <div className="d-flex justify-content-end flex-fill">
-                <p className="text-right mb-0 ">Total Results: 45</p>
+                <p className="text-right mb-0 ">Total Results: {this.state.TotalCount}</p>
               </div>
             </div>
           </div>

@@ -1,44 +1,63 @@
 import React from "react";
 import ReactPaginate from "react-paginate";
+import { TaskController } from "../../../controllers/task/task_controller";
+import {
+  AppTask,
+} from "../../../data/models/responses/task/get_all_tasks_res";
 import { store } from "../../../data/store";
 import { MainButton, MainButtonType } from "../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import { InputIcon } from "../../components/search_box";
 import { SelectComponent } from "../../components/select_input";
-import { AcordienTable } from "./component/recent_tasks";
-
+import AcordienTable from "./component/recent_tasks";
+type StateType = {
+  Tasks: AppTask[];
+  PageNumber: number;
+  PageSize: number;
+  PageCount: number;
+  TotalCount: number;
+};
 export class TasksPage extends React.Component {
-  RoleUser = store.getState();
-  state = {
-    Data: {
-      Items: [
-        {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
-        },
-        {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
-        },
-        {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
-        },
-        {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
-        },
-      ],
-    },
+  RoleUser = store.getState().userRole;
+  controller = new TaskController();
+  state: StateType = {
+    Tasks: [],
+    PageNumber: 1,
+    PageSize: 10,
+    PageCount: 0,
+    TotalCount: 0,
   };
+  componentDidMount() {
+    this.GetTasks(this.state.PageNumber, this.state.PageSize);
+    store.subscribe(() => {
+      this.GetTasks(this.state.PageNumber, this.state.PageSize);
+    });
+  }
+  GetTasks(PageNumber: number, PageSize: number) {
+    this.controller.getTasks(
+      { PageNumber, PageSize },
+      (res) => {
+        this.setState({
+          Tasks: res.appTasks,
+          PageCount: Math.ceil(res.count! / this.state.PageSize),
+          TotalCount: res.count,
+        });
+      },
+      (err) => console.log(err)
+    );
+  }
+  handelChangePageNumber(e: { selected: number }) {
+    this.setState({
+      PageNumber: e.selected,
+    });
+    this.GetTasks(e.selected + 1, this.state.PageSize);
+  }
+  handelChangePageSize(e: { label: string; value: number }) {
+    this.setState({
+      PageSize: e.value,
+    });
+    this.GetTasks(this.state.PageNumber, e.value);
+  }
   render() {
     return (
       <div className="container-fluid research task">
@@ -50,10 +69,11 @@ export class TasksPage extends React.Component {
                 <h6 style={{ width: "35%" }}>Task List</h6>
                 <InputIcon
                   chilren={
-                    <img src='/images/pages/search_box_icon.svg' alt="" />
+                    <img src="/images/icons/search_box_icon.svg" alt="" />
                   }
                   width="100%"
-                  placeholder="Search..."  TopPosition="15%"
+                  placeholder="Search..."
+                  TopPosition="15%"
                 ></InputIcon>
               </div>
               <div className="right w-50 d-flex justify-content-end align-items-center">
@@ -65,23 +85,31 @@ export class TasksPage extends React.Component {
                   className="px-3"
                 ></MainButton>
                 <SelectComponent
-                  width="63px"
+                  width="90px"
                   height="44px"
                   items={[
-                    { item: 1, id: 1 },
-                    { item: 2, id: 2 },
-                    { item: 3, id: 3 },
+                    { label: "10", value: 10 },
+                    { label: "15", value: 15 },
+                    { label: "20", value: 20 },
                   ]}
                   TextItem="item"
                   ValueItem="id"
+                  isMulti={false}
+                  placeholder={this.state.PageSize.toString()}
+                  onChange={(e) => {
+                    this.handelChangePageSize(e);
+                  }}
                 ></SelectComponent>
               </div>
             </div>
-            <AcordienTable role={this.RoleUser}></AcordienTable>
+            <AcordienTable
+              Tasks={this.state.Tasks}
+              role={this.RoleUser}
+            ></AcordienTable>
 
-           <div className="d-flex justify-content-between align-items-baseline">
-                  <div className="d-flex justify-content-end flex-fill">
-                  <ReactPaginate
+            <div className="d-flex justify-content-between align-items-baseline">
+              <div className="d-flex justify-content-end flex-fill">
+                <ReactPaginate
                   previousLabel={
                     <CircleIcon
                       width="24px"
@@ -104,20 +132,20 @@ export class TasksPage extends React.Component {
                   }
                   breakLabel={"..."}
                   breakClassName={"break-me"}
-                  pageCount={20}
+                  pageCount={this.state.PageCount}
                   marginPagesDisplayed={2}
                   pageRangeDisplayed={5}
-                  onPageChange={()=>{console.log('changepage')}}
+                  onPageChange={(e) => {
+                    this.handelChangePageNumber(e);
+                  }}
                   containerClassName={"pagination"}
                   activeClassName={"active"}
                 />
-                  </div>
-                  <div className="d-flex justify-content-end flex-fill">
-                  <p className="text-right mb-0 " >Total Results: 45</p>
-                  </div>
-                 
-                
               </div>
+              <div className="d-flex justify-content-end flex-fill">
+                <p className="text-right mb-0 ">Total Results: 45</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

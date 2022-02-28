@@ -19,6 +19,8 @@ interface InputsProps {
   label?: ReactNode;
   popQuestion?: string;
   optional?: string;
+  inValid?: string;
+  selected?: number;
 }
 export const ButtonGroup: React.FC<InputsProps> = ({
   width,
@@ -36,6 +38,8 @@ export const ButtonGroup: React.FC<InputsProps> = ({
   label,
   popQuestion,
   optional,
+  inValid,
+  selected,
 }) => {
   let styles = {
     width: width,
@@ -81,13 +85,25 @@ export const ButtonGroup: React.FC<InputsProps> = ({
       </span>
     );
   }
+  let TemplateValidation;
+  let IsinValid;
+  if (inValid) {
+    TemplateValidation = <div>{inValid}</div>;
+    IsinValid = "is-invalid";
+  }
 
   return (
     <Fragment>
       {TemplateLabel}
       <div
         className={`${
-          IsclassName + " " + "btngroupComponentStyle" + " " + "btn-group"
+          IsclassName +
+          " " +
+          "btngroupComponentStyle" +
+          " " +
+          "btn-group" +
+          " " +
+          IsinValid
         }`}
         style={styles}
         role="group"
@@ -103,16 +119,19 @@ export const ButtonGroup: React.FC<InputsProps> = ({
               autoComplete="off"
               onChange={onChange}
               disabled={item.disable}
+              value={item[ValueItem]}
+              checked={item[ValueItem] === selected}
             />
             <label
               className="btn btn-outline-dark"
               htmlFor={item[`${ValueItem}`] + name}
             >
-              {item[`${TextItem}`]} {item.disable ? '(Locked)' : ''}
+              {item[`${TextItem}`]} {item.disable ? "(Locked)" : ""}
             </label>
           </Fragment>
         ))}
       </div>
+      {TemplateValidation}
     </Fragment>
   );
 };

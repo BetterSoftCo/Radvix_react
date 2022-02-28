@@ -35,7 +35,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
             <div className="items d-flex flex-column align-items-center">
               <div className="item d-flex justify-content-center align-items-center">
                 <img
-                  src="/Images/layout/teamwork.svg"
+                  src="/images/icons/teamwork.svg"
                   width={22}
                   height={22}
                   alt="radvix"
@@ -60,7 +60,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               </div>
               <div className="item d-flex justify-content-center align-items-center">
                 <img
-                  src="/Images/layout/user.svg"
+                  src="/images/icons/user.svg"
                   width={22}
                   height={22}
                   alt="radvix"
@@ -85,7 +85,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               </div>
               <div className="item d-flex justify-content-center align-items-center">
                 <img
-                  src="/Images/pages/lamp.svg"
+                  src="/images/icons/lamp.svg"
                   width={22}
                   height={22}
                   alt="radvix"
@@ -110,7 +110,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               </div>
               <div className="item d-flex justify-content-center align-items-center">
                 <img
-                  src="/Images/pages/university.svg"
+                  src="/images/icons/university.svg"
                   width={22}
                   height={22}
                   alt="radvix"
@@ -135,7 +135,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               </div>
               <div className="item d-flex justify-content-center align-items-center">
                 <img
-                  src="/Images/layout/equipment_Icon.svg"
+                  src="/images/icons/equipment_Icon.svg"
                   width={22}
                   height={22}
                   alt="radvix"
@@ -160,7 +160,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               </div>
               <div className="item d-flex justify-content-center align-items-center">
                 <img
-                  src="/Images/layout/server_storage.svg"
+                  src="/images/icons/server_storage.svg"
                   width={22}
                   height={22}
                   alt="radvix"
@@ -185,7 +185,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               </div>
               <div className="item d-flex justify-content-center align-items-center">
                 <img
-                  src="/Images/layout/clock_circular_outline.svg"
+                  src="/Images/icons/clock_circular_outline.svg"
                   width={22}
                   height={22}
                   alt="radvix"
@@ -210,7 +210,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               </div>
               <div className="item d-flex justify-content-center align-items-center">
                 <img
-                  src="/Images/layout/chat.svg"
+                  src="/Images/icons/chat.svg"
                   width={22}
                   height={22}
                   alt="radvix"
@@ -235,7 +235,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               </div>
               <div className="item d-flex justify-content-center align-items-center">
                 <img
-                  src="/Images/layout/writing.svg"
+                  src="/images/icons/writing.svg"
                   width={22}
                   height={22}
                   alt="radvix"
@@ -260,7 +260,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               </div>
               <div className="item d-flex justify-content-center align-items-center">
                 <img
-                  src="/Images/layout/money_back.svg"
+                  src="/images/icons/money_back.svg"
                   width={22}
                   height={22}
                   alt="radvix"
@@ -314,7 +314,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
             <div className="items d-flex flex-column align-items-center">
               <div className="item d-flex justify-content-center align-items-center">
                 <img
-                  src="/Images/layout/teamwork.svg"
+                  src="/images/icons/teamwork.svg"
                   width={22}
                   height={22}
                   alt="radvix"
@@ -339,7 +339,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               </div>
               <div className="item d-flex justify-content-center align-items-center">
                 <img
-                  src="/Images/layout/user.svg"
+                  src="/images/icons/user.svg"
                   width={22}
                   height={22}
                   alt="radvix"
@@ -364,7 +364,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               </div>
               <div className="item d-flex justify-content-center align-items-center">
                 <img
-                  src="/Images/pages/lamp.svg"
+                  src="/images/icons/lamp.svg"
                   width={22}
                   height={22}
                   alt="radvix"
@@ -389,7 +389,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               </div>
               <div className="item d-flex justify-content-center align-items-center">
                 <img
-                  src="/Images/pages/university.svg"
+                  src="/images/icons/university.svg"
                   width={22}
                   height={22}
                   alt="radvix"
@@ -414,7 +414,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               </div>
               <div className="item d-flex justify-content-center align-items-center">
                 <img
-                  src="/Images/layout/equipment_Icon.svg"
+                  src="/images/icons/equipment_Icon.svg"
                   width={22}
                   height={22}
                   alt="radvix"
@@ -439,7 +439,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               </div>
               <div className="item d-flex justify-content-center align-items-center">
                 <img
-                  src="/Images/layout/server_storage.svg"
+                  src="/images/icons/server_storage.svg"
                   width={22}
                   height={22}
                   alt="radvix"
@@ -464,7 +464,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               </div>
               <div className="item d-flex justify-content-center align-items-center">
                 <img
-                  src="/Images/layout/clock_circular_outline.svg"
+                  src="/Images/icons/clock_circular_outline.svg"
                   width={22}
                   height={22}
                   alt="radvix"
@@ -489,7 +489,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               </div>
               <div className="item d-flex justify-content-center align-items-center">
                 <img
-                  src="/Images/layout/chat.svg"
+                  src="/Images/icons/chat.svg"
                   width={22}
                   height={22}
                   alt="radvix"
@@ -514,7 +514,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               </div>
               <div className="item d-flex justify-content-center align-items-center">
                 <img
-                  src="/Images/layout/writing.svg"
+                  src="/images/icons/writing.svg"
                   width={22}
                   height={22}
                   alt="radvix"
@@ -539,7 +539,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               </div>
               <div className="item d-flex justify-content-center align-items-center">
                 <img
-                  src="/Images/layout/money_back.svg"
+                  src="/images/icons/money_back.svg"
                   width={22}
                   height={22}
                   alt="radvix"
@@ -598,7 +598,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
             <div className="items d-flex flex-column align-items-center">
               <div className="item d-flex justify-content-center align-items-center">
                 <img
-                  src="/Images/layout/teamwork.svg"
+                  src="/images/icons/teamwork.svg"
                   width={22}
                   height={22}
                   alt="radvix"
@@ -623,7 +623,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               </div>
               <div className="item d-flex justify-content-center align-items-center">
                 <img
-                  src="/Images/layout/user.svg"
+                  src="/images/icons/user.svg"
                   width={22}
                   height={22}
                   alt="radvix"
@@ -648,7 +648,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               </div>
               <div className="item d-flex justify-content-center align-items-center">
                 <img
-                  src="/Images/pages/lamp.svg"
+                  src="/images/icons/lamp.svg"
                   width={22}
                   height={22}
                   alt="radvix"
@@ -673,7 +673,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               </div>
               <div className="item d-flex justify-content-center align-items-center">
                 <img
-                  src="/Images/pages/university.svg"
+                  src="/images/icons/university.svg"
                   width={22}
                   height={22}
                   alt="radvix"
@@ -698,7 +698,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               </div>
               <div className="item d-flex justify-content-center align-items-center">
                 <img
-                  src="/Images/layout/equipment_Icon.svg"
+                  src="/images/icons/equipment_Icon.svg"
                   width={22}
                   height={22}
                   alt="radvix"
@@ -723,7 +723,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               </div>
               <div className="item d-flex justify-content-center align-items-center">
                 <img
-                  src="/Images/layout/server_storage.svg"
+                  src="/images/icons/server_storage.svg"
                   width={22}
                   height={22}
                   alt="radvix"
@@ -748,7 +748,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               </div>
               <div className="item d-flex justify-content-center align-items-center">
                 <img
-                  src="/Images/layout/clock_circular_outline.svg"
+                  src="/Images/icons/clock_circular_outline.svg"
                   width={22}
                   height={22}
                   alt="radvix"
@@ -773,7 +773,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               </div>
               <div className="item d-flex justify-content-center align-items-center">
                 <img
-                  src="/Images/layout/chat.svg"
+                  src="/Images/icons/chat.svg"
                   width={22}
                   height={22}
                   alt="radvix"
@@ -798,7 +798,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               </div>
               <div className="item d-flex justify-content-center align-items-center">
                 <img
-                  src="/Images/layout/writing.svg"
+                  src="/images/icons/writing.svg"
                   width={22}
                   height={22}
                   alt="radvix"
@@ -823,7 +823,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               </div>
               <div className="item d-flex justify-content-center align-items-center">
                 <img
-                  src="/Images/layout/money_back.svg"
+                  src="/images/icons/money_back.svg"
                   width={22}
                   height={22}
                   alt="radvix"
@@ -874,7 +874,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
             <div className="items d-flex flex-column align-items-center">
               <div className="item d-flex justify-content-center align-items-center">
                 <img
-                  src="/Images/layout/teamwork.svg"
+                  src="/images/icons/teamwork.svg"
                   width={22}
                   height={22}
                   alt="radvix"
@@ -899,7 +899,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               </div>
               <div className="item d-flex justify-content-center align-items-center">
                 <img
-                  src="/Images/layout/user.svg"
+                  src="/images/icons/user.svg"
                   width={22}
                   height={22}
                   alt="radvix"
@@ -924,7 +924,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               </div>
               <div className="item d-flex justify-content-center align-items-center">
                 <img
-                  src="/Images/pages/lamp.svg"
+                  src="/images/icons/lamp.svg"
                   width={22}
                   height={22}
                   alt="radvix"
@@ -949,7 +949,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               </div>
               <div className="item d-flex justify-content-center align-items-center">
                 <img
-                  src="/Images/pages/university.svg"
+                  src="/images/icons/university.svg"
                   width={22}
                   height={22}
                   alt="radvix"
@@ -974,7 +974,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               </div>
               <div className="item d-flex justify-content-center align-items-center">
                 <img
-                  src="/Images/layout/equipment_Icon.svg"
+                  src="/images/icons/equipment_Icon.svg"
                   width={22}
                   height={22}
                   alt="radvix"
@@ -999,7 +999,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               </div>
               <div className="item d-flex justify-content-center align-items-center">
                 <img
-                  src="/Images/layout/server_storage.svg"
+                  src="/images/icons/server_storage.svg"
                   width={22}
                   height={22}
                   alt="radvix"
@@ -1024,7 +1024,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               </div>
               <div className="item d-flex justify-content-center align-items-center">
                 <img
-                  src="/Images/layout/clock_circular_outline.svg"
+                  src="/Images/icons/clock_circular_outline.svg"
                   width={22}
                   height={22}
                   alt="radvix"
@@ -1049,7 +1049,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               </div>
               <div className="item d-flex justify-content-center align-items-center">
                 <img
-                  src="/Images/layout/chat.svg"
+                  src="/Images/icons/chat.svg"
                   width={22}
                   height={22}
                   alt="radvix"
@@ -1074,7 +1074,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               </div>
               <div className="item d-flex justify-content-center align-items-center">
                 <img
-                  src="/Images/layout/writing.svg"
+                  src="/images/icons/writing.svg"
                   width={22}
                   height={22}
                   alt="radvix"
@@ -1099,7 +1099,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               </div>
               <div className="item d-flex justify-content-center align-items-center">
                 <img
-                  src="/Images/layout/money_back.svg"
+                  src="/images/icons/money_back.svg"
                   width={22}
                   height={22}
                   alt="radvix"

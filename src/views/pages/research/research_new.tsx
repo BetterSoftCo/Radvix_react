@@ -12,26 +12,180 @@ import { ButtonGroup } from "../../components/botton_group";
 import { BoxAlert } from "../../components/box_alert";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
+import { ResearchController } from "../../../controllers/research/research_controller";
+import SimpleReactValidator from "simple-react-validator";
+import { UploadController } from "../../../controllers/upload_media/upload_media";
+type StateType = {
+  files: Array<File>,
+  title: string,
+  description: string,
+  startDate: Date,
+  endDate: Date,
+  currency: number,
+  priority: number,
+  teamsId: Array<number>,
+  usersId: Array<string>,
+  status: number,
+  listMembers: Array<{ label: string; value: number, isUser: boolean } | {}>,
+  loading: boolean,
+  ExternalUrl: Array<string>,
+  External: string
+}
 class ResearchPageNew extends React.Component<RouteComponentProps> {
-  RoleUser = store.getState();
-  date = new Date();
-  handelChangeDate(params: any): void {
-    console.log(params);
-  }
-  state = {
+  RoleUser = store.getState().userRole;
+  controller = new ResearchController();
+  UploadController = new UploadController();
+  validator = new SimpleReactValidator({
+    className: "text-danger",
+  });
+  state: StateType = {
     files: [],
+    title: "",
+    description: "",
+    startDate: new Date(),
+    endDate: new Date(),
+    currency: 2,
+    priority: 2,
+    teamsId: [],
+    usersId: [],
+    status: 0,
+    listMembers: [],
+    loading: false,
+    ExternalUrl: [],
+    External: ""
   };
+  handleChange(target: string, val: any) {
+    this.setState({
+      [target]: val,
+    });
+  }
+
+  handelChangeDate(target: string, params: any): void {
+    this.setState({
+      [target]: params,
+    });
+  }
+  handelCreateResearch() {
+    if (this.validator.allValid()) {
+      const body = {
+        title: this.state.title,
+        description: this.state.description,
+        startDate: this.state.startDate,
+        endDate: this.state.endDate,
+        currency: this.state.currency,
+        priority: this.state.priority,
+        teamsId: this.state.teamsId,
+        usersId: this.state.usersId,
+        status: 0,
+      };
+      this.setState({
+        loading: true,
+      });
+      this.controller.createResearch(
+        body,
+        (res) => {
+          this.handelUpload(res.id)
+          this.setState({
+            files: [],
+            title: "",
+            description: "",
+            startDate: new Date(),
+            endDate: new Date(),
+            currency: 2,
+            priority: 2,
+            teamsId: [],
+            usersId: [],
+            status: 0,
+            listMembers: [],
+          });
+          this.props.history.push(`${AppRoutes.profile_research.replace(':id', res.id?.toString() ?? "")}`)
+        },
+        (err) => {
+          this.setState({
+            loading: false,
+          });
+        }
+      );
+    } else {
+      this.validator.showMessages();
+      this.forceUpdate();
+    }
+  }
+  handelChangeSelect(
+    e: Array<{ label: string; value: number; isUser: boolean }>
+  ) {
+    this.setState({
+      teamsId: e
+        .filter((item) => item.isUser === false)
+        .map((item) => item.value),
+      usersId: e
+        .filter((item) => item.isUser === true)
+        .map((item) => item.value),
+    });
+  }
+  componentDidMount() {
+    this.controller.researchSearch((res) => {
+      this.setState({
+        listMembers: res,
+      });
+    });
+  }
+  async handelUpload(id: number) {
+    const formData = new FormData()
+    for (let i = 0; i < this.state.files.length; i++) {
+      const file = this.state.files[i]
+      formData.append('Files', file)
+    }
+    for (let i = 0; i < this.state.ExternalUrl.length; i++) {
+      const file = this.state.ExternalUrl[i]
+      formData.append('ExternalUrls', file)
+    }
+
+    formData.append('UseCase', '0')
+    formData.append('ResearchId', id.toString())
+    
+    
+    await this.UploadController.UloadMedia(formData, (res) => {
+      this.setState({
+        loading: false,
+      });
+    }, () => {
+      this.setState({
+        loading: false,
+      });
+    })
+  }
+
   onDrop = (files: any) => {
     this.setState({ files });
-    console.log(this.state);
   };
+  handelDeleteFile(arg: File) {
+    this.setState({
+      files: this.state.files.filter(file => file.name !== arg.name)
+    })
+  }
+  addExternalUrl() {
+    let Url = [...this.state.ExternalUrl]
+    Url.push(this.state.External)
+    this.setState({
+      ExternalUrl: Url,
+      External: ''
+    });
+  }
+  handelDeleteExternalLink(link:string){
+    this.setState({
+      ExternalUrl:this.state.ExternalUrl.filter(item=>item !== link)
+    })
+  }
   render() {
     const files = this.state.files.map((file: any) => (
       <li key={file.name}>
         {file.name} - {file.size} bytes
-        <CircleIcon type={ThemeCircleIcon.dark} width="22px" height="22px">
+        <CircleIcon type={ThemeCircleIcon.dark} width="22px" height="22px" onClick={() => {
+          this.handelDeleteFile(file)
+        }}>
           <img
-            src="/images/pages/garbage_can.svg"
+            src="/images/icons/garbage_can.svg"
             alt="radvix"
             width={15}
             height={15}
@@ -59,6 +213,14 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
                   type={InputType.text}
                   label="Research Name:"
                   popQuestion="Research Name:"
+                  onChange={(e) => {
+                    this.handleChange("title", e.target.value);
+                  }}
+                  inValid={this.validator.message(
+                    "Research Name",
+                    this.state.title,
+                    "required"
+                  )}
                 ></InputComponent>
               </div>
               <div className="item">
@@ -81,12 +243,16 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
                 </span>
                 <div className="d-flex justify-content-between align-items-center">
                   <DatePicker
-                    selected={this.date}
-                    onChange={this.handelChangeDate}
+                    selected={this.state.startDate}
+                    onChange={(e) => {
+                      this.handelChangeDate("startDate", e);
+                    }}
                   />
                   <DatePicker
-                    selected={this.date}
-                    onChange={this.handelChangeDate}
+                    selected={this.state.endDate}
+                    onChange={(e) => {
+                      this.handelChangeDate("endDate", e);
+                    }}
                   />
                 </div>
               </div>
@@ -96,12 +262,21 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
                   label="Currency"
                   popQuestion="Currency"
                   items={[
-                    { name: "U.S. Dollar ($)", value: 1 },
-                    { name: "Pounds ($)", value: 2 },
-                    { name: "Euro (€)", value: 3 },
+                    { name: "U.S. Dollar ($)", value: 0 },
+                    { name: "Pounds ($)", value: 1 },
+                    { name: "Euro (€)", value: 2 },
                   ]}
                   TextItem="name"
                   ValueItem="value"
+                  onChange={(e) => {
+                    this.handleChange("currency", parseInt(e.target.value));
+                  }}
+                  Selected={this.state.currency}
+                  inValid={this.validator.message(
+                    "Currency",
+                    this.state.currency,
+                    "required"
+                  )}
                 ></RadioGroup>
               </div>
               <div className="item">
@@ -110,12 +285,21 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
                   popQuestion="Research Priority:"
                   name="ResearchPriority"
                   items={[
-                    { name: "Low", value: 1 },
-                    { name: "Medium", value: 2 },
-                    { name: "High", value: 3 },
+                    { name: "Low", value: 0 },
+                    { name: "Medium", value: 1 },
+                    { name: "High", value: 2 },
                   ]}
                   TextItem="name"
                   ValueItem="value"
+                  selected={this.state.priority}
+                  inValid={this.validator.message(
+                    "Research Priority",
+                    this.state.priority,
+                    "required"
+                  )}
+                  onChange={(e) => {
+                    this.handleChange("priority", parseInt(e.target.value));
+                  }}
                 ></ButtonGroup>
               </div>
               <div className="item">
@@ -125,6 +309,9 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
                   optional="optional"
                   popQuestion="Research Description:"
                   className="mt-2"
+                  onChange={(e) => {
+                    this.handleChange("description", e.target.value);
+                  }}
                 ></InputComponent>
               </div>
             </div>
@@ -169,7 +356,7 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
                           children={
                             <div className="d-flex justify-content-between align-items-center">
                               <img
-                                src="/Images/component/cloud_computing.svg"
+                                src="/Images/icons/cloud_computing.svg"
                                 alt="sssss"
                                 height="20"
                               />{" "}
@@ -183,9 +370,7 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
                       </div>
                       <aside>
                         <h4>Files</h4>
-                        <ul>
-                          {files}{" "}
-                        </ul>
+                        <ul>{files} </ul>
                       </aside>
                     </section>
                   )}
@@ -196,6 +381,10 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
                   type={InputType.text}
                   placeholder="https://"
                   className="mx-2"
+                  value={this.state.External}
+                  onChange={(e) => {
+                    this.handleChange("External", e.target.value);
+                  }}
                 ></InputComponent>
                 <CircleIcon
                   width="36px"
@@ -204,17 +393,40 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
                   backgroundColor="#9D9D9D"
                   fontSize="18px"
                   color="#ffffff"
-                  className="px-3"
+                  className="px-3 pointer"
+                  onClick={() => { this.addExternalUrl() }}
                 >
                   <i className="fas fa-plus"></i>
                 </CircleIcon>
               </div>
+              <ul className="file-list mt-3">
+                {
+                  this.state.ExternalUrl.map(item => (
+                    <li className="my-2 d-flex flex-column flex-md-row">
+                      <MainButton
+                        children={item}
+                        type={MainButtonType.dark}
+                        borderRadius="24px"
+                        fontSize="14px"
+                        backgroundColor="#F5F5F5"
+                        color="#096BFF"
+                      ></MainButton>
+                      <CircleIcon
+                        type={ThemeCircleIcon.dark}
+                        width="22px"
+                        height="22px"
+                        className="mx-3 pointer"
+                        onClick={()=>this.handelDeleteExternalLink(item)}
+                      >
+                        <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
+                      </CircleIcon>
+                    </li>
+                  ))
+                }
+              </ul>
               <div className="item">
                 <SelectComponent
-                  items={[
-                    { name: "test1", id: 1 },
-                    { name: "test2", id: 2 },
-                  ]}
+                  items={this.state.listMembers}
                   TextItem="name"
                   ValueItem="id"
                   className="my-2"
@@ -222,6 +434,10 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
                   label="Assign Teams (Members):"
                   popQuestion="Assign Teams (Members):"
                   optional="optional"
+                  onChange={(e) => {
+                    this.handelChangeSelect(e);
+                  }}
+                  isMulti
                 ></SelectComponent>
               </div>
               <BoxAlert
@@ -248,8 +464,9 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
                 minHeight="43px"
                 minWidth="136px"
                 onClick={() => {
-                  this.props.history.push(AppRoutes.profile_research);
+                  this.handelCreateResearch();
                 }}
+                loading={this.state.loading}
               ></MainButton>
             </div>
           </div>

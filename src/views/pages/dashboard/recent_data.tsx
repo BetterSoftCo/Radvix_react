@@ -54,7 +54,7 @@ const AcordienTableData: React.FC<RouteComponentProps> = (props) => {
                       className="pointer"
                     >
                       <img
-                        src="/images/pages/google_docs.svg"
+                        src="/images/icons/google_docs.svg"
                         alt="radvix"
                         width={12}
                         height={12}
@@ -152,7 +152,7 @@ const AcordienTableData: React.FC<RouteComponentProps> = (props) => {
                           className="pointer mx-1"
                         >
                           <img
-                            src="/images/pages/edit.svg"
+                            src="/images/icons/edit.svg"
                             alt="radvix"
                             width={12}
                             height={12}
@@ -168,7 +168,7 @@ const AcordienTableData: React.FC<RouteComponentProps> = (props) => {
                           className="pointer mx-1"
                         >
                           <img
-                            src="/images/pages/start_discussion.svg"
+                            src="/images/icons/start_discussion.svg"
                             alt="radvix"
                             width={12}
                             height={12}
@@ -184,7 +184,7 @@ const AcordienTableData: React.FC<RouteComponentProps> = (props) => {
                           className="pointer mx-1"
                         >
                           <img
-                            src="/images/pages/google_docs.svg"
+                            src="/images/icons/google_docs.svg"
                             alt="radvix"
                             width={12}
                             height={12}

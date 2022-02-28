@@ -8,9 +8,52 @@ import { SelectComponent } from "../../components/select_input";
 import AcordienTable from "./component/recent_teams";
 import { withRouter, RouteComponentProps } from "react-router";
 import { AppRoutes } from "../../../core/constants";
-
+import { Team } from "../../../data/models/responses/team/get_all_teams_res";
+import { TeamController } from "../../../controllers/team/team_controller";
+type StateType = {
+  Teams: Team[];
+  PageNumber: number;
+  PageSize: number;
+  PageCount: number;
+  TotalCount: number;
+};
 class TeamPage extends React.Component<RouteComponentProps> {
-  RoleUser = store.getState();
+  RoleUser = store.getState().userRole;
+  controller = new TeamController();
+  state: StateType = {
+    Teams: [],
+    PageNumber: 1,
+    PageSize: 10,
+    PageCount: 0,
+    TotalCount:0
+  };
+  componentDidMount() {
+    this.GetTeams(this.state.PageNumber, this.state.PageSize);
+  }
+  GetTeams(PageNumber: number, PageSize: number) {
+    this.controller.getAllTeams(
+      { pageNumber: PageNumber, pageSize: PageSize },
+      (res) => {
+        this.setState({
+          Teams: res.teams,
+          PageCount: Math.ceil(res.count! / this.state.PageSize),
+          TotalCount: res.count,
+        });
+      }
+    );
+  }
+  handelChangePageNumber(e: { selected: number }) {
+    this.setState({
+      PageNumber: e.selected,
+    });
+    this.GetTeams(e.selected + 1, this.state.PageSize);
+  }
+  handelChangePageSize(e: { label: string; value: number }) {
+    this.setState({
+      PageSize: e.value,
+    });
+    this.GetTeams(this.state.PageNumber, e.value);
+  }
   render() {
     return (
       <div className="container-fluid research">
@@ -33,7 +76,8 @@ class TeamPage extends React.Component<RouteComponentProps> {
                     <img src="/images/pages/Search Box Icon.svg" alt="" />
                   }
                   width="100%"
-                  placeholder="Search..."  TopPosition="15%"
+                  placeholder="Search..."
+                  TopPosition="15%"
                 ></InputIcon>
               </div>
               <div className="right w-50 d-flex justify-content-end align-items-center">
@@ -56,19 +100,27 @@ class TeamPage extends React.Component<RouteComponentProps> {
                   }}
                 ></MainButton>
                 <SelectComponent
-                  width="63px"
+                  width="90px"
                   height="44px"
                   items={[
-                    { item: 1, id: 1 },
-                    { item: 2, id: 2 },
-                    { item: 3, id: 3 },
+                    { label: "10", value: 10 },
+                    { label: "15", value: 15 },
+                    { label: "20", value: 20 },
                   ]}
                   TextItem="item"
                   ValueItem="id"
+                  isMulti={false}
+                  placeholder={this.state.PageSize.toString()}
+                  onChange={(e) => {
+                    this.handelChangePageSize(e);
+                  }}
                 ></SelectComponent>
               </div>
             </div>
-            <AcordienTable role={this.RoleUser}></AcordienTable>
+            <AcordienTable
+              Teams={this.state.Teams}
+              role={this.RoleUser}
+            ></AcordienTable>
             <div className="d-flex justify-content-between align-items-baseline">
               <div className="d-flex justify-content-end flex-fill">
                 <ReactPaginate
@@ -94,18 +146,18 @@ class TeamPage extends React.Component<RouteComponentProps> {
                   }
                   breakLabel={"..."}
                   breakClassName={"break-me"}
-                  pageCount={20}
+                  pageCount={this.state.PageCount}
                   marginPagesDisplayed={2}
                   pageRangeDisplayed={5}
-                  onPageChange={() => {
-                    console.log("changepage");
+                  onPageChange={(e) => {
+                    this.handelChangePageNumber(e);
                   }}
                   containerClassName={"pagination"}
                   activeClassName={"active"}
                 />
               </div>
               <div className="d-flex justify-content-end flex-fill">
-                <p className="text-right mb-0 ">Total Results: 45</p>
+                <p className="text-right mb-0 ">Total Results: {this.state.TotalCount}</p>
               </div>
             </div>
           </div>

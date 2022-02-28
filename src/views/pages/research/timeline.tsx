@@ -111,7 +111,7 @@ class TimeLine extends React.Component<RouteComponentProps> {
           {[1, 2, 3, 4, 5, 6].map((item, i) => (
             <div className="image" key={i}>
               <img
-                src={"/images/layout/img_avatar.png"}
+                src={"/images/images/img_avatar.png"}
                 alt={props.ImageName}
                 width="50"
                 height="50"

@@ -1,12 +1,15 @@
 import React, { useEffect } from "react";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../../core/constants";
+import { ResearchesList } from "../../../../data/models/responses/research/researches_res";
 import { MainButton, MainButtonType } from "../../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../../components/circle_icon";
-
+import "../../../../core/number_extentions";
+import { AccessPermition, UserRoles } from "../../../../core/utils";
 interface IAcordienTableResearch {
   Heading: any[];
-  Items: any[];
+  Items: ResearchesList[];
+  role: UserRoles;
 }
 const AcordienTableResearch: React.FC<
   IAcordienTableResearch & RouteComponentProps
@@ -21,7 +24,11 @@ const AcordienTableResearch: React.FC<
         <thead>
           <tr>
             {props.Heading.map((head, index) => (
-              <th scope="col" className={head.center ? 'text-center' : ''} key={index}>
+              <th
+                scope="col"
+                className={head.center ? "text-center" : ""}
+                key={index}
+              >
                 {head.name}
               </th>
             ))}
@@ -30,12 +37,18 @@ const AcordienTableResearch: React.FC<
         <tbody>
           {props.Items.map((head, index) => (
             <tr key={index}>
-              <td><span className="lable" style={{backgroundColor:'rgb(9, 107, 255)'}}></span> {head.name}</td>
-              <td>{head.Institution}</td>
+              <td>
+                <span
+                  className="lable"
+                  style={{ backgroundColor: "rgb(9, 107, 255)" }}
+                ></span>{" "}
+                {head.title}
+              </td>
+              <td>{head.endDate}</td>
               <td className="text-center">
                 {" "}
                 <MainButton
-                  children={head.Category}
+                  children={head.status.isStatus()}
                   type={MainButtonType.dark}
                   borderRadius="24px"
                   fontSize="14px"
@@ -48,21 +61,46 @@ const AcordienTableResearch: React.FC<
                     width="26px"
                     height="26px"
                     type={ThemeCircleIcon.dark}
-                    onClick={() => {props.history.push(AppRoutes.profile_research)}}
-                    className="pointer mx-1"
-                    
-                  >
-                    <img src="/images/pages/google_docs.svg" alt="radvix" width={12} height={12} />
-                  </CircleIcon>
-                  <CircleIcon
-                    width="26px"
-                    height="26px"
-                    type={ThemeCircleIcon.dark}
-                    onClick={() => {props.history.push(AppRoutes.edit_research)}}
+                    onClick={() => {
+                      props.history.push(
+                        `${AppRoutes.profile_research.replace(
+                          ":id",
+                          head.id?.toString() ?? ""
+                        )}`
+                      );
+                    }}
                     className="pointer mx-1"
                   >
-                    <img src="/images/pages/edit.svg" alt="radvix" />
+                    <img
+                      src="/images/icons/google_docs.svg"
+                      alt="radvix"
+                      width={12}
+                      height={12}
+                    />
                   </CircleIcon>
+                  {AccessPermition(props.role, [
+                    UserRoles.Admin,
+                    UserRoles.L1Client,
+                    UserRoles.L2User,
+                  ]) ? (
+                    <CircleIcon
+                      width="26px"
+                      height="26px"
+                      type={ThemeCircleIcon.dark}
+                      onClick={() => {
+                        props.history.push(
+                          `${AppRoutes.edit_research.replace(
+                            ":id",
+                            head.id?.toString() ?? ""
+                          )}`
+                        );
+                      }}
+                      className="pointer mx-1"
+                    >
+                      <img src="/images/icons/edit.svg" alt="radvix" />
+                    </CircleIcon>
+                  ) : null}
+
                   <CircleIcon
                     width="26px"
                     height="26px"
@@ -70,7 +108,14 @@ const AcordienTableResearch: React.FC<
                     backgroundColor="#474747"
                     color="#ffff"
                     className="pointer mx-1"
-                    onClick={() => {props.history.push(AppRoutes.profile_research)}}
+                    onClick={() => {
+                      props.history.push(
+                        `${AppRoutes.profile_research.replace(
+                          ":id",
+                          head.id?.toString() ?? ""
+                        )}`
+                      );
+                    }}
                   >
                     <i className="fas fa-history"></i>
                   </CircleIcon>

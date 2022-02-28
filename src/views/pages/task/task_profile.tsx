@@ -4,7 +4,7 @@ import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import "react-datepicker/dist/react-datepicker.css";
 import { MainButton, MainButtonType } from "../../components/button";
 import { IconTextRow } from "../../components/icon_text_horizontal";
-import { Theme, UserRoles } from "../../../core/utils";
+import { Theme } from "../../../core/utils";
 import { BoxListScroll } from "../../components/box_list_scroll";
 import { InputIcon } from "../../components/search_box";
 import { SelectComponent } from "../../components/select_input";
@@ -14,7 +14,7 @@ import { Subtasks } from "./component/subtasks";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
 class TaskPageProfile extends React.Component<RouteComponentProps> {
-  RoleUser = store.getState();
+  RoleUser = store.getState().userRole;
   state = {
     Data: {
       Items: [
@@ -69,7 +69,7 @@ class TaskPageProfile extends React.Component<RouteComponentProps> {
                 color="#ffff"
                 className="mx-1"
               >
-                <img src="/images/pages/edit.svg" alt="radvix" />
+                <img src="/images/icons/edit.svg" alt="radvix" />
               </CircleIcon>
               <CircleIcon
                 width="22px"
@@ -153,19 +153,19 @@ class TaskPageProfile extends React.Component<RouteComponentProps> {
                   {" "}
                   <ul className="file-list">
                     <li>
-                      <img src="/images/pages/pdf_icon.svg" alt="" />{" "}
+                      <img src="/images/icons/pdf_icon.svg" alt="" />{" "}
                       proposal_general.pdf
                     </li>
                     <li>
-                      <img src="/images/pages/word_icon.svg" alt="" />{" "}
+                      <img src="/images/icons/word_icon.svg" alt="" />{" "}
                       proposal_general.docx
                     </li>
                     <li>
-                      <img src="/images/pages/excel_icon.svg" alt="" />{" "}
+                      <img src="/images/icons/excel_icon.svg" alt="" />{" "}
                       proposal_general.xlsx
                     </li>
                     <li>
-                      <img src="/images/pages/pdf_icon.svg" alt="" />{" "}
+                      <img src="/images/icons/pdf_icon.svg" alt="" />{" "}
                       proposal_general.pdf
                     </li>
                     <li>
@@ -198,7 +198,7 @@ class TaskPageProfile extends React.Component<RouteComponentProps> {
                   text="Assigned to Teams (Members)"
                   children={
                     <img
-                      src="/Images/pages/team_menu.svg"
+                      src="/images/icons/team_menu.svg"
                       className="mx-2"
                       alt=""
                     />
@@ -240,17 +240,17 @@ class TaskPageProfile extends React.Component<RouteComponentProps> {
                     {
                       text: "Nima Hosseinzadeh",
                       id: 1,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 2,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 3,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                   ]}
                   TextItem="text"
@@ -343,17 +343,17 @@ class TaskPageProfile extends React.Component<RouteComponentProps> {
                     {
                       text: "Nima Hosseinzadeh",
                       id: 1,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 2,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 3,
-                      imagesrc: "/images/layout/img_avatar.png",
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                   ]}
                   TextItem="text"
@@ -371,7 +371,7 @@ class TaskPageProfile extends React.Component<RouteComponentProps> {
                 <h6 style={{ width: "45%" }}>Task Data Collection</h6>
                 <InputIcon
                   chilren={
-                    <img src="/images/pages/search_box_icon.svg" alt="radvix" />
+                    <img src="/images/icons/search_box_icon.svg" alt="radvix" />
                   }
                   width="100%"
                   placeholder="Search..."  TopPosition="15%"
@@ -439,7 +439,7 @@ class TaskPageProfile extends React.Component<RouteComponentProps> {
                 <h6 style={{ width: "35%" }}>Subtasks</h6>
                 <InputIcon
                   chilren={
-                    <img src="/images/pages/search_box_icon.svg" alt="radvix" />
+                    <img src="/images/icons/search_box_icon.svg" alt="radvix" />
                   }
                   width="100%"
                   placeholder="Search..."  TopPosition="15%"
@@ -459,7 +459,7 @@ class TaskPageProfile extends React.Component<RouteComponentProps> {
                 ></SelectComponent>
               </div>
             </div>
-            <Subtasks role={UserRoles.level1}></Subtasks>
+            <Subtasks role={this.RoleUser}></Subtasks>
             <div className="d-flex justify-content-center align-items-center">
               <ReactPaginate
                 previousLabel={

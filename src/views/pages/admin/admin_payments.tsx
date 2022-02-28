@@ -8,7 +8,7 @@ import { SelectComponent } from "../../components/select_input";
 import { PaymentsTbl } from "./component/payment_tbl";
 
 export class AdminPayments extends React.Component {
-  RoleUser = store.getState();
+  RoleUser = store.getState().userRole;
   state = {
     Data: {
       Items: [
@@ -54,7 +54,7 @@ export class AdminPayments extends React.Component {
                 <h6 style={{ width: "35%" }}>Payments</h6>
                 <InputIcon
                   chilren={
-                    <img src="/images/pages/search_box_icon.svg" alt="" />
+                    <img src="/images/icons/search_box_icon.svg" alt="" />
                   }
                   width="100%"
                   placeholder="Search..."  TopPosition="15%"

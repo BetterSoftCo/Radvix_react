@@ -9,26 +9,160 @@ import Dropzone from "react-dropzone";
 import { SelectComponent } from "../../components/select_input";
 import { ButtonGroup } from "../../components/botton_group";
 import { BoxListScroll } from "../../components/box_list_scroll";
-export class TaskPageEdit extends React.Component {
-  RoleUser = store.getState();
+import { UploadController } from "../../../controllers/upload_media/upload_media";
+import SimpleReactValidator from "simple-react-validator";
+import { TaskController } from "../../../controllers/task/task_controller";
+import { LocalDataSources } from "../../../data/local_datasources";
+import { RouteComponentProps, withRouter } from "react-router";
+type StateType = {
+  title: string;
+  description: string;
+  priority: number;
+  startDate: Date;
+  endDate: Date;
+  researchId: number;
+  suggestedEquipmentsId: number[];
+  addedUsersId: string[];
+  addedTeamsId: number[];
+  files: Array<File>;
+  loading: boolean;
+  ExternalUrl: Array<string>;
+  External: string;
+  listTeams: Array<{ label: string; value: number } | {}>;
+  listEquipments: Array<{ label: string; value: number } | {}>;
+  listPriority: Array<{ label: string; value: number } | {}>;
+};
+type ParamsType = {
+  id: string;
+};
+class TaskPageEdit extends React.Component<RouteComponentProps<ParamsType>> {
+  RoleUser = store.getState().userRole;
   date = new Date();
+  UploadController = new UploadController();
+  validator = new SimpleReactValidator({
+    className: "text-danger",
+  });
+  controller = new TaskController();
+  local: LocalDataSources = new LocalDataSources();
+  state: StateType = {
+    files: [],
+    addedTeamsId: [],
+    addedUsersId: [],
+    description: "",
+    endDate: new Date(),
+    priority: 2,
+    researchId: 0,
+    startDate: new Date(),
+    suggestedEquipmentsId: [],
+    title: "",
+    External: "",
+    ExternalUrl: [],
+    loading: false,
+    listTeams: [],
+    listEquipments: [],
+    listPriority: [],
+  };
+  componentDidMount() {
+    this.setState({
+      listPriority: this.local.getSetting().priority.map((item) => {
+        return { name: item.title, id: item.id };
+      }),
+    });
+    this.GetSearchTask();
+    store.subscribe(() => {
+      this.GetSearchTask();
+    });
+    this.controller.getTaskById(
+      { TaskId: parseInt(this.props.match.params.id) },
+      (res) => {
+        this.setState({
+          
+        });
+      },
+      (err) => {}
+    );
+  }
+  GetSearchTask() {
+    this.controller.SearchTask(
+      (res) => {
+        this.setState({
+          listTeams: res.teams?.map((item) => {
+            return { label: item.title, value: item.id };
+          }),
+          listEquipments: res.equipments?.map((item) => {
+            return { label: item.title, value: item.id };
+          }),
+        });
+      },
+      (err) => {}
+    );
+  }
+  onDrop = (files: any) => {
+    this.setState({ files });
+  };
   handelChangeDate(params: any): void {
     console.log(params);
   }
-  state = {
-    files: [],
-  };
-  onDrop = (files: any) => {
-    this.setState({ files });
-    console.log(this.state);
-  };
+  handelDeleteFile(arg: File) {
+    this.setState({
+      files: this.state.files.filter((file) => file.name !== arg.name),
+    });
+  }
+  addExternalUrl() {
+    let Url = [...this.state.ExternalUrl];
+    Url.push(this.state.External);
+    this.setState({
+      ExternalUrl: Url,
+      External: "",
+    });
+  }
+  handelDeleteExternalLink(link: string) {
+    this.setState({
+      ExternalUrl: this.state.ExternalUrl.filter((item) => item !== link),
+    });
+  }
+  handelChangeSelect(e: { label: string; value: number }) {
+    this.setState({ categoryId: e.value });
+  }
+  handleChange(target: string, val: any) {
+    this.setState({
+      [target]: val,
+    });
+  }
+  async handelUpload(id: number) {
+    const formData = new FormData();
+    for (let i = 0; i < this.state.files.length; i++) {
+      const file = this.state.files[i];
+      formData.append("Files", file);
+    }
+    for (let i = 0; i < this.state.ExternalUrl.length; i++) {
+      const file = this.state.ExternalUrl[i];
+      formData.append("ExternalUrls", file);
+    }
+    formData.append("UseCase", "6");
+    formData.append("AppTaskId", id.toString());
+
+    await this.UploadController.UloadMedia(
+      formData,
+      (res) => {
+        this.setState({
+          loading: false,
+        });
+      },
+      () => {
+        this.setState({
+          loading: false,
+        });
+      }
+    );
+  }
   render() {
     const files = this.state.files.map((file: any) => (
       <li key={file.name}>
         {file.name} - {file.size} bytes
         <CircleIcon type={ThemeCircleIcon.dark} width="22px" height="22px">
           <img
-            src="/images/pages/garbage_can.svg"
+            src="/images/icons/garbage_can.svg"
             alt="radvix"
             width={15}
             height={15}
@@ -41,7 +175,13 @@ export class TaskPageEdit extends React.Component {
         <div className="row"></div>
         <div className="col-12 box-content p-3">
           <h5 className="b-title d-flex">
-            <span onClick={()=>{window.history.back()}} className="backPage"></span> Edit Task
+            <span
+              onClick={() => {
+                window.history.back();
+              }}
+              className="backPage"
+            ></span>{" "}
+            Edit Task
           </h5>
           <div className="form row">
             <div className="col-md-6 left">
@@ -154,18 +294,17 @@ export class TaskPageEdit extends React.Component {
                           children={
                             <div className="d-flex justify-content-between align-items-center">
                               <img
-                                src="/Images/component/cloud_computing.svg"
+                                src="/Images/icons/cloud_computing.svg"
                                 alt="sssss"
                                 height="20"
-                                
                               />{" "}
-                              <span className="flex-fill">Browse Local Files</span>
+                              <span className="flex-fill">
+                                Browse Local Files
+                              </span>
                             </div>
                           }
                         ></MainButton>
-                        <p>
-                        Or drag and drop files here
-                        </p>
+                        <p>Or drag and drop files here</p>
                       </div>
                       <aside>
                         <h4>Files</h4>
@@ -176,7 +315,11 @@ export class TaskPageEdit extends React.Component {
                 </Dropzone>
                 <ul className="file-list mt-3">
                   <li className="d-flex align-items-center mb-1">
-                    <img src="/images/pages/pdf_icon.svg" alt="" className="mx-2" />{" "}
+                    <img
+                      src="/images/icons/pdf_icon.svg"
+                      alt=""
+                      className="mx-2"
+                    />{" "}
                     proposal_general.pdf
                     <CircleIcon
                       type={ThemeCircleIcon.dark}
@@ -184,11 +327,20 @@ export class TaskPageEdit extends React.Component {
                       height="22px"
                       className="mx-3"
                     >
-                      <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
+                      <img
+                        src="/images/icons/garbage_can.svg"
+                        alt="radvix"
+                        width={15}
+                        height={15}
+                      />
                     </CircleIcon>
                   </li>
                   <li className="d-flex align-items-center mb-1">
-                    <img src="/images/pages/pdf_icon.svg" alt="" className="mx-2" />{" "}
+                    <img
+                      src="/images/icons/pdf_icon.svg"
+                      alt=""
+                      className="mx-2"
+                    />{" "}
                     proposal_general.pdf
                     <CircleIcon
                       type={ThemeCircleIcon.dark}
@@ -196,11 +348,20 @@ export class TaskPageEdit extends React.Component {
                       height="22px"
                       className="mx-3"
                     >
-                      <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
+                      <img
+                        src="/images/icons/garbage_can.svg"
+                        alt="radvix"
+                        width={15}
+                        height={15}
+                      />
                     </CircleIcon>
                   </li>
                   <li className="d-flex align-items-center mb-1">
-                    <img src="/images/pages/pdf_icon.svg" alt="" className="mx-2" />{" "}
+                    <img
+                      src="/images/icons/pdf_icon.svg"
+                      alt=""
+                      className="mx-2"
+                    />{" "}
                     proposal_general.pdf
                     <CircleIcon
                       type={ThemeCircleIcon.dark}
@@ -208,7 +369,12 @@ export class TaskPageEdit extends React.Component {
                       height="22px"
                       className="mx-3"
                     >
-                      <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
+                      <img
+                        src="/images/icons/garbage_can.svg"
+                        alt="radvix"
+                        width={15}
+                        height={15}
+                      />
                     </CircleIcon>
                   </li>
                 </ul>
@@ -227,7 +393,6 @@ export class TaskPageEdit extends React.Component {
                   fontSize="18px"
                   color="#ffffff"
                   className="px-3"
-                  
                 >
                   <i className="fas fa-plus"></i>
                 </CircleIcon>
@@ -248,7 +413,12 @@ export class TaskPageEdit extends React.Component {
                     height="22px"
                     className="mx-3"
                   >
-                    <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
+                    <img
+                      src="/images/icons/garbage_can.svg"
+                      alt="radvix"
+                      width={15}
+                      height={15}
+                    />
                   </CircleIcon>
                 </li>
                 <li className="my-2 d-flex flex-column flex-md-row">
@@ -266,7 +436,12 @@ export class TaskPageEdit extends React.Component {
                     height="22px"
                     className="mx-3"
                   >
-                    <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
+                    <img
+                      src="/images/icons/garbage_can.svg"
+                      alt="radvix"
+                      width={15}
+                      height={15}
+                    />
                   </CircleIcon>
                 </li>
               </ul>
@@ -301,7 +476,12 @@ export class TaskPageEdit extends React.Component {
                           width="22px"
                           height="22px"
                         >
-                          <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
+                          <img
+                            src="/images/icons/garbage_can.svg"
+                            alt="radvix"
+                            width={15}
+                            height={15}
+                          />
                         </CircleIcon>
                       </div>
                     }
@@ -320,7 +500,12 @@ export class TaskPageEdit extends React.Component {
                           width="22px"
                           height="22px"
                         >
-                          <img src="/images/pages/garbage_can.svg" alt="radvix" width={15} height={15} />
+                          <img
+                            src="/images/icons/garbage_can.svg"
+                            alt="radvix"
+                            width={15}
+                            height={15}
+                          />
                         </CircleIcon>
                       </div>
                     }
@@ -334,17 +519,17 @@ export class TaskPageEdit extends React.Component {
                     {
                       text: "Nima Hosseinzadeh",
                       id: 1,
-                      imagesrc: '/images/layout/img_avatar.png',
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 2,
-                      imagesrc: '/images/layout/img_avatar.png',
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 3,
-                      imagesrc: '/images/layout/img_avatar.png',
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                   ]}
                   TextItem="text"
@@ -377,17 +562,17 @@ export class TaskPageEdit extends React.Component {
                     {
                       text: "Nima Hosseinzadeh",
                       id: 1,
-                      imagesrc: '/images/layout/img_avatar.png',
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 2,
-                      imagesrc: '/images/layout/img_avatar.png',
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                     {
                       text: "Nima Hosseinzadeh",
                       id: 3,
-                      imagesrc: '/images/layout/img_avatar.png',
+                      imagesrc: "/images/images/img_avatar.png",
                     },
                   ]}
                   TextItem="text"
@@ -426,3 +611,4 @@ export class TaskPageEdit extends React.Component {
     );
   }
 }
+export default withRouter(TaskPageEdit);

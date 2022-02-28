@@ -11,7 +11,6 @@ export default function ProtectedRoute({
   authenticationPath,
   ...routeProps
 }: ProtectedRouteProps) {
-  console.log(routeProps);
 
   if (isAuthenticated) {
     return <Route {...routeProps} />;

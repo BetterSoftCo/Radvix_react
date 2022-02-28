@@ -9,7 +9,7 @@ import  DiscusstionListTable  from "./component/discusstion_list_table";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
  class DiscusstionList extends React.Component<RouteComponentProps> {
-  RoleUser = store.getState();
+  RoleUser = store.getState().userRole;
   state = {
     Data: {
       Items: [
@@ -49,7 +49,7 @@ import { AppRoutes } from "../../../core/constants";
                 </h6>
                 <InputIcon
                   chilren={
-                    <img src="/images/pages/search_box_icon.svg" alt="" />
+                    <img src="/images/icons/search_box_icon.svg" alt="" />
                   }
                   width="100%"
                   placeholder="Search..."  TopPosition="15%"

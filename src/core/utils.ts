@@ -3,8 +3,15 @@ export enum Theme {
   dark,
 }
 export enum UserRoles {
-  level1,
-  level2,
-  level3,
-  admin
+  Admin,
+  L1Client,
+  L1User,
+  L2User,
+  L3User,
 }
+export const AccessPermition = (
+  role: UserRoles,
+  AccessList: Array<UserRoles>
+) => {
+  return AccessList.includes(role);
+};

@@ -7,7 +7,7 @@ import { SelectComponent } from "../../components/select_input";
 import TableListLaboratory from "./component/table_list_laboratory";
 
 export class LaboratoryPage extends React.Component {
-  RoleUser = store.getState();
+  RoleUser = store.getState().userRole;
   state = {
     Data: {
       Items: [
@@ -57,7 +57,7 @@ export class LaboratoryPage extends React.Component {
                 </h6>
                 <InputIcon
                   chilren={
-                    <img src="/images/pages/search_box_icon.svg" alt="" />
+                    <img src="/images/icons/search_box_icon.svg" alt="" />
                   }
                   width="100%"
                   placeholder="Search..."  TopPosition="15%"

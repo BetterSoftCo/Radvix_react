@@ -6,6 +6,7 @@
 body {
   background-color: #ffffff;
   font-family: Sanfransisco;
+  overflow-x: hidden;
 }
 
 .text-black-color {
@@ -43,6 +44,18 @@ button {
   text-shadow: 0px 0px 0px transparent;
 }
 
+button.loading {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 .darkCircleIcon {
   color: white;
   background-color: #474747;
@@ -73,9 +86,39 @@ button {
   border: none;
 }
 
-.InputSelectStyle {
+.InputComponentStyle.notValidation {
+  border: 1px solid red;
+}
+
+.css-1hb7zxy-IndicatorsContainer {
+  display: none !important;
+}
+
+.css-1s2u09g-control {
+  border: none !important;
+}
+
+.InputSelectStyle .css-1s2u09g-control {
+  min-width: 72px;
+}
+
+.InputSelectStyle .css-319lph-ValueContainer, .InputSelectStyle .css-g1d714-ValueContainer {
   border-radius: 9px;
-  background-image: url("./../../Images/component/down-arrow-black-circular-button.svg");
+  border: 1px solid #adadad;
+  position: relative;
+  background: #fff;
+  min-width: 72px;
+}
+
+.InputSelectStyle .css-319lph-ValueContainer::after, .InputSelectStyle .css-g1d714-ValueContainer::after {
+  content: '';
+  position: absolute;
+  right: 9px;
+  background-image: url("./../../Images/icons/down-arrow-black-circular-button.svg");
+  width: 30px;
+  height: 30px;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .Icon-inside {
@@ -135,9 +178,9 @@ button {
 }
 
 .header .left-side {
-  padding-top: .35rem;
-  padding-bottom: .35rem;
-  background-color: #F5F5F5;
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+  background-color: #f5f5f5;
 }
 
 .header .left-side .avatar {
@@ -150,7 +193,24 @@ button {
 }
 
 .header .right-side .Selected-Research {
-  margin-right: .2rem;
+  margin-right: 0.2rem;
+}
+
+.header .select_header_research {
+  width: 60%;
+}
+
+.header .select_header_research .css-1s2u09g-control {
+  background-color: transparent;
+}
+
+.header .select_header_research .css-319lph-ValueContainer {
+  background-color: #f5f5f5;
+  height: 28px;
+}
+
+.header .select_header_research .css-319lph-ValueContainer::after {
+  top: 2px;
 }
 
 .parent-sidebar {
@@ -350,7 +410,7 @@ button {
   position: absolute;
   left: 4px;
   padding-left: 1rem;
-  background-image: url("./../../Images/pages/toggle_Icon.svg");
+  background-image: url("./../../Images/icons/toggle_Icon.svg");
 }
 
 .TableBox .accordion-button {
@@ -930,7 +990,7 @@ button {
 }
 
 .backPage {
-  background-image: url("./../../Images/pages/toggle_icon.png");
+  background-image: url("./../../Images/icons/toggle_icon.png");
   display: block;
   width: 28px;
   height: 28px;
@@ -1378,6 +1438,7 @@ button {
 body {
   background-color: #ffffff;
   font-family: Sanfransisco;
+  overflow-x: hidden;
 }
 
 .text-black-color {
@@ -1415,6 +1476,18 @@ button {
   text-shadow: 0px 0px 0px transparent;
 }
 
+button.loading {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 .darkCircleIcon {
   color: white;
   background-color: #474747;
@@ -1445,9 +1518,39 @@ button {
   border: none;
 }
 
-.InputSelectStyle {
+.InputComponentStyle.notValidation {
+  border: 1px solid red;
+}
+
+.css-1hb7zxy-IndicatorsContainer {
+  display: none !important;
+}
+
+.css-1s2u09g-control {
+  border: none !important;
+}
+
+.InputSelectStyle .css-1s2u09g-control {
+  min-width: 72px;
+}
+
+.InputSelectStyle .css-319lph-ValueContainer, .InputSelectStyle .css-g1d714-ValueContainer {
   border-radius: 9px;
-  background-image: url("./../../Images/component/down-arrow-black-circular-button.svg");
+  border: 1px solid #adadad;
+  position: relative;
+  background: #fff;
+  min-width: 72px;
+}
+
+.InputSelectStyle .css-319lph-ValueContainer::after, .InputSelectStyle .css-g1d714-ValueContainer::after {
+  content: '';
+  position: absolute;
+  right: 9px;
+  background-image: url("./../../Images/icons/down-arrow-black-circular-button.svg");
+  width: 30px;
+  height: 30px;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .Icon-inside {
@@ -1507,9 +1610,9 @@ button {
 }
 
 .header .left-side {
-  padding-top: .35rem;
-  padding-bottom: .35rem;
-  background-color: #F5F5F5;
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+  background-color: #f5f5f5;
 }
 
 .header .left-side .avatar {
@@ -1522,7 +1625,24 @@ button {
 }
 
 .header .right-side .Selected-Research {
-  margin-right: .2rem;
+  margin-right: 0.2rem;
+}
+
+.header .select_header_research {
+  width: 60%;
+}
+
+.header .select_header_research .css-1s2u09g-control {
+  background-color: transparent;
+}
+
+.header .select_header_research .css-319lph-ValueContainer {
+  background-color: #f5f5f5;
+  height: 28px;
+}
+
+.header .select_header_research .css-319lph-ValueContainer::after {
+  top: 2px;
 }
 
 .parent-sidebar {
@@ -1722,7 +1842,7 @@ button {
   position: absolute;
   left: 4px;
   padding-left: 1rem;
-  background-image: url("./../../Images/pages/toggle_Icon.svg");
+  background-image: url("./../../Images/icons/toggle_Icon.svg");
 }
 
 .TableBox .accordion-button {
@@ -2302,7 +2422,7 @@ button {
 }
 
 .backPage {
-  background-image: url("./../../Images/pages/toggle_icon.png");
+  background-image: url("./../../Images/icons/toggle_icon.png");
   display: block;
   width: 28px;
   height: 28px;
