@@ -146,7 +146,7 @@ class DataCollection extends React.Component<RouteComponentProps> {
                 />
               </div>
               <div className="d-flex justify-content-end flex-fill">
-                <p className="text-right mb-0 " >Total Results: 45</p>
+                <p className="text-right mb-0 " >Total Results: {this.state.TotalCount}</p>
               </div>
 
 
