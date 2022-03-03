@@ -54,7 +54,7 @@ const DataCollectionTable: React.FC<IAcordienTable & RouteComponentProps> = (
                       type={ThemeCircleIcon.dark}
                       onClick={(e) =>
                         props.history.push(
-                          `${AppRoutes.data_profile.replace(
+                          `${AppRoutes.task_profile.replace(
                             ":id",
                             item.appTaskId?.toString() ?? ""
                           )}`
@@ -113,19 +113,21 @@ const DataCollectionTable: React.FC<IAcordienTable & RouteComponentProps> = (
                               </div>
                             ))}
                           </div>
-                          <CircleIcon
-                            width="15px"
-                            height="15px"
-                            type={ThemeCircleIcon.dark}
-                            onClick={(e) => handelOnclick(e)}
-                            className="pointer d-flex justify-content-center align-items-center mx-2"
-                          >
-                            <p className="d-flex align-items-center mb-2 px-2">
-                              ...
-                            </p>
-                          </CircleIcon>
+                          {sub.medias?.length ? (
+                            <CircleIcon
+                              width="15px"
+                              height="15px"
+                              type={ThemeCircleIcon.dark}
+                              onClick={(e) => handelOnclick(e)}
+                              className="pointer d-flex justify-content-center align-items-center mx-2"
+                            >
+                              <p className="d-flex align-items-center mb-2 px-2">
+                                ...
+                              </p>
+                            </CircleIcon>
+                          ) : null}
                         </div>
-                        <div className="col-2 text-center">
+                        <div className="col-2 text-center text-truncate">
                           {sub.creatorFirstName + " " + sub.creatorLastName}
                         </div>
                         <div className="col-2 text-center">
@@ -143,10 +145,12 @@ const DataCollectionTable: React.FC<IAcordienTable & RouteComponentProps> = (
                             className="mx-1 pointer"
                             onClick={() => {
                               props.history.push(
-                                `${AppRoutes.data_profile.replace(
-                                  ":id",
-                                  item.appTaskId?.toString() ?? ""
-                                )}`
+                                `${AppRoutes.data_profile
+                                  .replace(":dataid", sub.id?.toString() ?? "")
+                                  .replace(
+                                    ":appTaskId",
+                                    item.appTaskId?.toString() ?? ""
+                                  )}?researchId=${item.researchId}`
                               );
                             }}
                           >

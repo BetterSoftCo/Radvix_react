@@ -8,39 +8,59 @@ import { Theme } from "../../../core/utils";
 import { BoxListScroll } from "../../components/box_list_scroll";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
-
-class DataPageProfile extends React.Component<RouteComponentProps> {
+import { GetDataByIDResResult } from "../../../data/models/responses/data/get_by_id_data_res";
+import { DataController } from "../../../controllers/data/data_controller";
+interface RouteParams {
+  appTaskId: string;
+  dataid: string;
+}
+type StateType = {
+  Data: GetDataByIDResResult;
+};
+class DataPageProfile extends React.Component<
+  RouteComponentProps<RouteParams>
+> {
   RoleUser = store.getState().userRole;
-  state = {
+  controller = new DataController();
+  state: StateType = {
     Data: {
-      Items: [
-        {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
-        },
-        {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
-        },
-        {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
-        },
-        {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
-        },
-      ],
+      taskId: 0,
+      taskTitle: "",
+      subTaskId: 0,
+      subTaskTitle: "",
+      researchId: 0,
+      taskCreatorUserId: "",
+      taskCreatorFirstName: "",
+      taskCreatorLastName: "",
+      data: {
+        id: 0,
+        title: "",
+        creatorUserId: "",
+        creatorFirstName: "",
+        creatorLastName: "",
+        createdDate: new Date(),
+        discussionId: 0,
+        medias: [],
+      },
+      equipments: [],
+      users: [],
     },
   };
+  componentDidMount() {
+    const search = this.props.location.search;
+    const researchId = new URLSearchParams(search).get("researchId");
+    this.controller.getDataById(
+      {
+        dataId: parseInt(this.props.match.params.dataid),
+        researchId: parseInt(researchId ?? ""),
+        appTaskId: parseInt(this.props.match.params.appTaskId),
+      },
+      (res) => {
+        console.log(res);
+      },
+      (err) => {}
+    );
+  }
 
   render() {
     return (
@@ -227,7 +247,6 @@ class DataPageProfile extends React.Component<RouteComponentProps> {
                 ></IconTextRow>
 
                 <BoxListScroll
-                
                   items={[
                     {
                       text: "Nima Hosseinzadeh",
@@ -248,7 +267,6 @@ class DataPageProfile extends React.Component<RouteComponentProps> {
                   TextItem="text"
                   ValueItem="id"
                   ImageItem="imagesrc"
-                  
                 ></BoxListScroll>
               </div>
               <div className="teams teams-light my-3 ">
@@ -286,7 +304,9 @@ class DataPageProfile extends React.Component<RouteComponentProps> {
                   ValueItem="id"
                   ImageItem="imagesrc"
                   className="mt-2 pointer"
-                  onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
+                  onClick={() => {
+                    this.props.history.push(AppRoutes.member_profile);
+                  }}
                 ></BoxListScroll>
               </div>
             </div>

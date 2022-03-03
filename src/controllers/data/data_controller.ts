@@ -1,7 +1,8 @@
 import { toast } from "react-toastify";
 import { AddDataReq } from "../../data/models/requests/data/add_data_req";
 import { AddDataResResult } from "../../data/models/responses/data/add_data_res";
-import { GetAllDataRes, GetAllDataResResult } from "../../data/models/responses/data/get_all_data_res";
+import { GetAllDataResResult } from "../../data/models/responses/data/get_all_data_res";
+import { GetDataByIDResResult } from "../../data/models/responses/data/get_by_id_data_res";
 import { SearchDataResResult } from "../../data/models/responses/data/search_data_res";
 import { RemoteData } from "../../data/remotes/data/remote_data";
 import { store } from "../../data/store";
@@ -53,13 +54,13 @@ export class DataController {
     }
   }
   getAllData(
-    body: { PageSize: number, PageNumber: number },
+    body: { PageSize: number; PageNumber: number },
     action: (res: GetAllDataResResult) => any,
-    error: (res: any) => any,
+    error: (res: any) => any
   ) {
     if (store.getState().ResearchId > 0) {
       this.remote.getAllData(
-        { researchId: store.getState().ResearchId , ...body },
+        { researchId: store.getState().ResearchId, ...body },
         (res) => {
           action(res.result!);
         },
@@ -75,5 +76,23 @@ export class DataController {
         position: toast.POSITION.TOP_RIGHT,
       });
     }
+  }
+  getDataById(
+    body: { dataId: number; researchId: number; appTaskId: number },
+    action: (res: GetDataByIDResResult) => any,
+    error: (res: any) => any
+  ) {
+    this.remote.getDataById(
+      body,
+      (res) => {
+        action(res.result!);
+      },
+      (err) => {
+        toast.error(`${err.message}`, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+        error(err);
+      }
+    );
   }
 }
