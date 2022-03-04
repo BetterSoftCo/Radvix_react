@@ -40,7 +40,7 @@ export class AppRoutes {
 	static data_new:string ='/dashboard/Data/new';
 	static data_mydata:string ='/dashboard/Data/mydata/';
 	static data_profile:string ='/dashboard/Data/profile/:dataid/:appTaskId';
-	static data_edit:string ='/dashboard/Data/edit/';
+	static data_edit:string ='/dashboard/Data/edit/:dataid/:appTaskId';
 	static publish:string ='/dashboard/Publish/';
 	static publish_new:string ='/dashboard/Publish/new';
 	static publish_profile:string ='/dashboard/Publish/profile';
