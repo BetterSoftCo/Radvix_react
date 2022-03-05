@@ -92,12 +92,23 @@ class PublishPageNew extends React.Component<RouteComponentProps> {
       [target]: user_Id,
     });
   }
+
+  handelChangeSelect(
+    target: string,
+    e: { title: string; id: number }
+  ) {
+    this.setState({ [target]: e.id });
+  }
+
+
   GetCategory(Type: number) {
     this.controllerCategory.getAllCategories(
       { type: Type },
       (res) => {
         this.setState({
-          categories: res,
+          categories: res?.map(item => {
+            return { label: item.title, value: item.id }
+          }),
         });
       }
     );
@@ -126,7 +137,6 @@ class PublishPageNew extends React.Component<RouteComponentProps> {
   
 
   render() {
-    console.log(this.state.categories)
     return (
       <div className="container-fluid research new-research">
         <div className="row"></div>
@@ -145,6 +155,10 @@ class PublishPageNew extends React.Component<RouteComponentProps> {
                   label="Select A Category:"
                   placeholder="Please select one…"
                   popQuestion="Select A Category:"
+                  isMulti={false}
+                  onChange={(e) => {
+                    this.handelChangeSelect("categoryId", e);
+                  }}
                 ></SelectComponent>
               </div>
               <div className="item">
