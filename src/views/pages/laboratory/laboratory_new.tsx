@@ -12,6 +12,7 @@ import { AppRoutes } from "../../../core/constants";
 import { LaboratoryController } from "../../../controllers/laboratory/laboratory_controller";
 import { UploadController } from "../../../controllers/upload_media/upload_media";
 import SimpleReactValidator from "simple-react-validator";
+import { LaboratoryCreateReq } from "../../../data/models/requests/laboratory/laboratory_create_req";
 type StateType = {
   listCategory: Array<{ label: string; value: number } | {}>;
   files: Array<File>;
@@ -39,9 +40,9 @@ class LaboratoryPageNew extends React.Component<RouteComponentProps> {
     className: "text-danger",
   });
   componentDidMount() {
-    this.controller.getLaboratoryUsersAndCategories((res) => {
+    this.controller.getLaboratorySearch((res) => {
       this.setState({
-        listmanagers: res.users.map((item) => {
+        listmanagers: res.managers.map((item) => {
           return {
             label: item.firstName + " " + item.lastName,
             value: item.id,
@@ -120,18 +121,20 @@ class LaboratoryPageNew extends React.Component<RouteComponentProps> {
   }
   handelCreateLaboratory() {
     if (this.validator.allValid()) {
-      const body = {
+      const body:LaboratoryCreateReq = {
         title: this.state.title,
         categoryId: this.state.categoryId,
         webSite: this.state.webSite,
         description: this.state.description,
         managersId: this.state.managersId,
+        company: this.state.company,
         addressLine1: this.state.addressLine1,
         addressLine2: this.state.addressLine2,
+        city: "",
+        state: "",
         zipCode: this.state.zipCode,
-        company: this.state.company,
         phone: this.state.phone,
-        creatorUserId: "",
+        countryId: 3
       };
       this.setState({
         loading: true,
