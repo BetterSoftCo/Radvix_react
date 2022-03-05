@@ -1,6 +1,6 @@
 import React from "react";
 import ReactPaginate from "react-paginate";
-import { RouteComponentProps } from "react-router";
+import { RouteComponentProps, withRouter } from "react-router";
 import { MemberController } from "../../../controllers/member/member_controller";
 import { AppRoutes } from "../../../core/constants";
 import { Member } from "../../../data/models/responses/member/member_list_res";
@@ -9,6 +9,7 @@ import { MainButton, MainButtonType } from "../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import { InputIcon } from "../../components/search_box";
 import { SelectComponent } from "../../components/select_input";
+import Memberitem from "./component/member_item";
 type StateType = {
   Members: Member[];
   PageNumber: number;
@@ -16,7 +17,7 @@ type StateType = {
   PageCount: number;
   TotalCount: number;
 };
-export class MemberPage extends React.Component<RouteComponentProps> {
+class MemberPage extends React.Component<RouteComponentProps> {
   RoleUser = store.getState().userRole;
   controller = new MemberController();
   state: StateType = {
@@ -87,7 +88,9 @@ export class MemberPage extends React.Component<RouteComponentProps> {
                   borderRadius="24px"
                   fontSize="14px"
                   className="my-2"
-                  onClick={()=>{this.props.history.push(AppRoutes.member_new)}}
+                  onClick={() => {
+                    this.props.history.push(AppRoutes.member_new);
+                  }}
                 ></MainButton>
                 <MainButton
                   children="Teams"
@@ -95,7 +98,9 @@ export class MemberPage extends React.Component<RouteComponentProps> {
                   borderRadius="24px"
                   fontSize="14px"
                   className="my-2"
-                  onClick={()=>{this.props.history.push(AppRoutes.team)}}
+                  onClick={() => {
+                    this.props.history.push(AppRoutes.team);
+                  }}
                 ></MainButton>
                 <SelectComponent
                   width="90px"
@@ -117,7 +122,7 @@ export class MemberPage extends React.Component<RouteComponentProps> {
             </div>
             <div className="row">
               {this.state.Members.map((item) => (
-                <MemberItem member={item}></MemberItem>
+                <Memberitem key={item.id} member={item}></Memberitem>
               ))}
             </div>
 
@@ -157,7 +162,9 @@ export class MemberPage extends React.Component<RouteComponentProps> {
                 />
               </div>
               <div className="d-flex justify-content-end flex-fill">
-                <p className="text-right mb-0 ">Total Results: {this.state.TotalCount}</p>
+                <p className="text-right mb-0 ">
+                  Total Results: {this.state.TotalCount}
+                </p>
               </div>
             </div>
           </div>
@@ -166,63 +173,4 @@ export class MemberPage extends React.Component<RouteComponentProps> {
     );
   }
 }
-interface IMemberItem {
-  member: Member;
-}
-const MemberItem: React.FC<IMemberItem> = (props) => (
-  <div className="col-md-3 d-flex justify-content-center align-items-center flex-column mb-3">
-    <img
-      src={
-        props.member.profileImage
-          ? props.member.profileImage
-          : "/images/images/img_avatar.png"
-      }
-      alt="Avatar"
-      className="rounded-circle avatar"
-      width="125px"
-      height="125px"
-    />
-
-    <h5 className="mt-2 fw-light">
-      {props.member.firstName + " " + props.member.lastName}
-    </h5>
-    <hr className="w-100 my-0" />
-    <MainButton
-      children="Principal Investigator"
-      type={MainButtonType.dark}
-      borderRadius="24px"
-      fontSize="14px"
-      className="my-2"
-    ></MainButton>
-    <h6 className="fw-light">Structural And Material Lab</h6>
-    <div className="d-flex justify-content-center align-items-center">
-      <CircleIcon
-        width="26px"
-        height="26px"
-        type={ThemeCircleIcon.dark}
-        onClick={() => {
-          console.log("ssss");
-        }}
-        className="pointer mx-1"
-      >
-        <img src="/images/icons/edit.svg" alt="radvix" />
-      </CircleIcon>
-      <CircleIcon
-        width="26px"
-        height="26px"
-        type={ThemeCircleIcon.dark}
-        onClick={() => {
-          console.log("ssss");
-        }}
-        className="pointer mx-1"
-      >
-        <img
-          src="/images/icons/google_docs.svg"
-          alt="radvix"
-          width={12}
-          height={12}
-        />
-      </CircleIcon>
-    </div>
-  </div>
-);
+export default withRouter(MemberPage);

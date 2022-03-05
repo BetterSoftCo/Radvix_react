@@ -11,7 +11,7 @@ import { TasksPage } from "./pages/task/task_page";
 import TaskPageNew from "./pages/task/task_new";
 import TaskPageProfile from "./pages/task/task_profile";
 import  TaskPageEdit  from "./pages/task/task_edit";
-import { MemberPage } from "./pages/member/member_page";
+import  MemberPage  from "./pages/member/member_page";
 import  MemberPageNew  from "./pages/member/member_new";
 import { MemberPageProfile } from "./pages/member/member_profile";
 import { MemberPageUseEdit } from "./pages/member/user_edit";
