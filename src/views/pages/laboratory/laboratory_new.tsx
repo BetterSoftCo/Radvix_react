@@ -13,6 +13,7 @@ import { LaboratoryController } from "../../../controllers/laboratory/laboratory
 import { UploadController } from "../../../controllers/upload_media/upload_media";
 import SimpleReactValidator from "simple-react-validator";
 import { LaboratoryCreateReq } from "../../../data/models/requests/laboratory/laboratory_create_req";
+import countries from "../../../core/json/countries.json";
 type StateType = {
   listCategory: Array<{ label: string; value: number } | {}>;
   files: Array<File>;
@@ -30,7 +31,11 @@ type StateType = {
   loading: boolean;
   ExternalUrl: Array<string>;
   External: string;
+  city: string,
+  state: string,
   listmanagers: Array<{ label: string; value: number } | {}>;
+  listCountry: Array<{ label: string; value: number } | {}>;
+  countryId: number;
 };
 class LaboratoryPageNew extends React.Component<RouteComponentProps> {
   RoleUser = store.getState().userRole;
@@ -50,6 +55,9 @@ class LaboratoryPageNew extends React.Component<RouteComponentProps> {
         }),
         listCategory: res.categories.map((item) => {
           return { label: item.title, value: item.id };
+        }),
+        listCountry: countries.map((item) => {
+          return { label: item.englishName, value: item.id };
         }),
       });
     });
@@ -72,6 +80,10 @@ class LaboratoryPageNew extends React.Component<RouteComponentProps> {
     External: "",
     loading: false,
     listmanagers: [],
+    listCountry: [],
+    countryId: 0,
+    city: "",
+    state: ""
   };
   onDrop = (files: any) => {
     this.setState({ files });
@@ -81,8 +93,8 @@ class LaboratoryPageNew extends React.Component<RouteComponentProps> {
       files: this.state.files.filter((file) => file.name !== arg.name),
     });
   }
-  handelChangeSelect(e: { label: string; value: number }) {
-    this.setState({ categoryId: e.value });
+  handelChangeSelect(e: { label: string; value: number }, target: string) {
+    this.setState({ [target]: e.value });
   }
   handelSelectManager(e: Array<{ label: string; value: number }>) {
     this.setState({ managersId: e.map((item) => item.value) });
@@ -121,7 +133,7 @@ class LaboratoryPageNew extends React.Component<RouteComponentProps> {
   }
   handelCreateLaboratory() {
     if (this.validator.allValid()) {
-      const body:LaboratoryCreateReq = {
+      const body: LaboratoryCreateReq = {
         title: this.state.title,
         categoryId: this.state.categoryId,
         webSite: this.state.webSite,
@@ -130,12 +142,11 @@ class LaboratoryPageNew extends React.Component<RouteComponentProps> {
         company: this.state.company,
         addressLine1: this.state.addressLine1,
         addressLine2: this.state.addressLine2,
-        city: "",
-        state: "",
+        city: this.state.city,
+        state: this.state.state,
         zipCode: this.state.zipCode,
         phone: this.state.phone,
-        countryId: 3,
-        researchId: 15
+        countryId: this.state.countryId,
       };
       this.setState({
         loading: true,
@@ -157,7 +168,9 @@ class LaboratoryPageNew extends React.Component<RouteComponentProps> {
             status: 0,
             listMembers: [],
           });
-          this.props.history.push(`${AppRoutes.profile_laboratory.replace(':id', res.id?.toString())}`);
+          this.props.history.push(
+            `${AppRoutes.profile_laboratory.replace(":id", res.id?.toString())}`
+          );
         },
         (err) => {
           this.setState({
@@ -252,7 +265,7 @@ class LaboratoryPageNew extends React.Component<RouteComponentProps> {
                     placeholder="Click to see the list…"
                     isMulti={false}
                     onChange={(e) => {
-                      this.handelChangeSelect(e);
+                      this.handelChangeSelect(e , 'categoryId');
                     }}
                   ></SelectComponent>
                   <CircleIcon
@@ -425,12 +438,18 @@ class LaboratoryPageNew extends React.Component<RouteComponentProps> {
                   <InputComponent
                     type={InputType.text}
                     label="City"
+                    onChange={(e) => {
+                      this.handleChange("city", e.target.value);
+                    }}
                   ></InputComponent>
                 </div>
                 <div className="item col-md-6">
                   <InputComponent
                     type={InputType.text}
                     label="State/Province"
+                    onChange={(e) => {
+                      this.handleChange("state", e.target.value);
+                    }}
                   ></InputComponent>
                 </div>
               </div>
@@ -466,14 +485,14 @@ class LaboratoryPageNew extends React.Component<RouteComponentProps> {
               </div>
               <div className="item">
                 <SelectComponent
-                  items={[
-                    { name: "test1", id: 1 },
-                    { name: "test2", id: 2 },
-                  ]}
+                  items={this.state.listCountry}
                   TextItem="name"
                   ValueItem="id"
                   className="my-2"
                   label="Country"
+                  onChange={(e) => {
+                    this.handelChangeSelect(e , 'countryId');
+                  }}
                 ></SelectComponent>
               </div>
             </div>
