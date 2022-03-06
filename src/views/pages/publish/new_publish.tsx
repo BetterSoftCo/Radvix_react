@@ -9,14 +9,11 @@ import { SelectComponent } from "../../components/select_input";
 import { ButtonGroup } from "../../components/botton_group";
 import { BoxAlert } from "../../components/box_alert";
 import { RouteComponentProps, withRouter } from "react-router";
-import { AppRoutes } from "../../../core/constants";
 import SimpleReactValidator from "simple-react-validator";
 import { publishController } from "../../../controllers/publish/publish_controller";
-import { CategoryController } from "../../../controllers/category/category_controller";
 class PublishPageNew extends React.Component<RouteComponentProps> {
   RoleUser = store.getState().userRole;
   controller = new publishController();
-  controllerCategory = new CategoryController();
   date = new Date();
   handelChangeDate(target: string, params: any): void {
     this.setState({
@@ -27,7 +24,6 @@ class PublishPageNew extends React.Component<RouteComponentProps> {
     className: "text-danger",
   });
   state = {
-    files: [],
     name: '',
     categoryId: 0,
     submitAt: '',
@@ -38,15 +34,13 @@ class PublishPageNew extends React.Component<RouteComponentProps> {
     draftUploader: '',
     loading: false,
     listMembers: [],
-    categories:[]
-  };
-  onDrop = (files: any) => {
-    this.setState({ files });
-    console.log(this.state);
+    categories: [],
+    drafList: []
   };
   handelCreateData() {
     if (this.validator.allValid()) {
       const body = {
+        researchId: store.getState().ResearchId,
         categoryId: this.state.categoryId,
         name: this.state.name,
         submitAt: this.state.submitAt,
@@ -57,17 +51,21 @@ class PublishPageNew extends React.Component<RouteComponentProps> {
         draftUploader: this.state.draftUploader
       }
       this.controller.createPublish(
-        body , (res) => {
+        body,
+        (res) => {
           this.setState({
+            name: '',
             categoryId: 0,
-            title: '',
             submitAt: '',
             priority: 2,
             startDate: new Date(),
             endDate: new Date(),
             users: [],
             draftUploader: '',
+            loading: false,
             listMembers: [],
+            categories: [],
+            drafList: []
           });
         },
         (err) => {
@@ -88,30 +86,20 @@ class PublishPageNew extends React.Component<RouteComponentProps> {
   }
   handelChangeSelectMultiple(e: Array<{ label: string; value: number }>, target: string) {
     const user_Id = e.map((item) => item.value);
+    const drafList = e.map((item) => item);
+
+
     this.setState({
       [target]: user_Id,
-    });
+      drafList: drafList,
+    })
   }
 
   handelChangeSelect(
     target: string,
-    e: { title: string; id: number }
+    e: { label: string; value: number }
   ) {
-    this.setState({ [target]: e.id });
-  }
-
-
-  GetCategory(Type: number) {
-    this.controllerCategory.getAllCategories(
-      { type: Type },
-      (res) => {
-        this.setState({
-          categories: res?.map(item => {
-            return { label: item.title, value: item.id }
-          }),
-        });
-      }
-    );
+    this.setState({ [target]: e.value });
   }
   componentDidMount() {
     // this.controller.SearchPublish((res) => {
@@ -120,7 +108,6 @@ class PublishPageNew extends React.Component<RouteComponentProps> {
     //   });
     // });
     this.GetSearchPublish()
-    this.GetCategory(1);
     store.subscribe(() => {
       this.GetSearchPublish()
     })
@@ -131,10 +118,13 @@ class PublishPageNew extends React.Component<RouteComponentProps> {
         listMembers: res.users?.map(item => {
           return { label: item.firstName, value: item.id }
         }),
+        categories: res.categories?.map(item => {
+          return { label: item.title, value: item.id }
+        }),
       })
     }, err => { })
   }
-  
+
 
   render() {
     return (
@@ -189,9 +179,9 @@ class PublishPageNew extends React.Component<RouteComponentProps> {
               </div>
               <div className="item">
                 <ButtonGroup
-                    label="Publication Priority:"
-                    popQuestion="Publication Priority:"
-                    name="PublicationPriority"
+                  label="Publication Priority:"
+                  popQuestion="Publication Priority:"
+                  name="PublicationPriority"
                   items={[
                     { name: "Low", id: 1 },
                     { name: "Medium", id: 2 },
@@ -254,7 +244,7 @@ class PublishPageNew extends React.Component<RouteComponentProps> {
                   placeholder="Click to see the list…"
                   optional="optional"
                   onChange={(e) => {
-                    this.handelChangeSelectMultiple(e,"users");
+                    this.handelChangeSelectMultiple(e, "users");
                   }}
                   isMulti
                 ></SelectComponent>
@@ -265,16 +255,17 @@ class PublishPageNew extends React.Component<RouteComponentProps> {
               ></BoxAlert>
               <div className="item">
                 <SelectComponent
-                  items={[
-                    { name: "test1", id: 1 },
-                    { name: "test2", id: 2 },
-                  ]}
+                  items={this.state.drafList}
                   TextItem="name"
                   ValueItem="id"
                   className="my-2"
                   label="Who Will Upload The First Draft?"
                   placeholder="Click to see the list…"
                   popQuestion="Who Will Upload The First Draft?"
+                  onChange={(e) => {
+                    this.handelChangeSelect("draftUploader", e);
+                  }}
+                  isMulti={false}
                 ></SelectComponent>
               </div>
             </div>
