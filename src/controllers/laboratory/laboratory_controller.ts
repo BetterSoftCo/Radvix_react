@@ -7,7 +7,7 @@ import {
 } from "../../data/models/responses/laboratory/laboratory_by_id_res";
 import { LaboratoryCreateResResult } from "../../data/models/responses/laboratory/laboratory_create_res";
 import { LaboratoryGetAllResResult } from "../../data/models/responses/laboratory/laboratory_get_all_res";
-import { UpdateLaboratoryResResult } from "../../data/models/responses/laboratory/laboratory_update_req";
+import { UpdateLaboratoryResResult } from "../../data/models/responses/laboratory/laboratory_update_res";
 import { LboratorySearchResResult } from "../../data/models/responses/laboratory/laboratory_search_res";
 import { RemoteLaboratory } from "../../data/remotes/laboratory/remote_laboratory";
 export class LaboratoryController {

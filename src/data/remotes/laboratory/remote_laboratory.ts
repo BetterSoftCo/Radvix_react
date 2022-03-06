@@ -4,7 +4,7 @@ import { UpdateLaboratoryReq } from "../../models/requests/laboratory/laboratory
 import { GetLaboratoryByID } from "../../models/responses/laboratory/laboratory_by_id_res";
 import { LaboratoryCreateRes } from "../../models/responses/laboratory/laboratory_create_res";
 import { LaboratoryGetAllRes } from "../../models/responses/laboratory/laboratory_get_all_res";
-import { UpdateLaboratoryRes } from "../../models/responses/laboratory/laboratory_update_req";
+import { UpdateLaboratoryRes } from "../../models/responses/laboratory/laboratory_update_res";
 import {LboratorySearchRes} from "../../models/responses/laboratory/laboratory_search_res"
 export class RemoteLaboratory {
   createLaboratory(
@@ -44,7 +44,7 @@ export class RemoteLaboratory {
     action: (res: UpdateLaboratoryRes) => any,
     error: (res: any) => any
   ) {
-    return HTTP.put("/Laboratory/Edit", body)
+    return HTTP.put("/Laboratory", body)
       .then((res) => action(res.data))
       .catch((err) => {
         error(err);
@@ -55,7 +55,7 @@ export class RemoteLaboratory {
     action: (res: GetLaboratoryByID) => any,
     error: (res: any) => any
   ) {
-    return HTTP.get(`/Laboratory/Profile?id=${body.id}`)
+    return HTTP.get(`/Laboratory/${body.id}`)
       .then((res) => action(res.data))
       .catch((err) => {
         error(err);

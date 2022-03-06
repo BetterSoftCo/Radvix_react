@@ -1,5 +1,5 @@
 export interface LaboratoryCreateReq {
-    researchId?:   number;
+    researchId:   number;
     title:        string;
     categoryId:   number;
     webSite:      string;

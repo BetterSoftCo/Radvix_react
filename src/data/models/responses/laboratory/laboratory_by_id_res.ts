@@ -28,6 +28,7 @@ export interface GetLaboratoryByIDResult {
 export interface RemovedMedia {
     id:            number;
     name:          string;
+    title:         string;
     externalUrl:   string;
     inputDataType: number;
 }

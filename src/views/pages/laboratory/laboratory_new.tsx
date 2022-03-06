@@ -134,7 +134,8 @@ class LaboratoryPageNew extends React.Component<RouteComponentProps> {
         state: "",
         zipCode: this.state.zipCode,
         phone: this.state.phone,
-        countryId: 3
+        countryId: 3,
+        researchId: 15
       };
       this.setState({
         loading: true,

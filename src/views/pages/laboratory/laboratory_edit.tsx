@@ -13,23 +13,24 @@ import { LaboratoryController } from "../../../controllers/laboratory/laboratory
 import { UploadController } from "../../../controllers/upload_media/upload_media";
 import SimpleReactValidator from "simple-react-validator";
 type StateType = {
-  listCategory: Array<{ label: string; value: number } | {}>;
-  files: Array<File>;
-  categoryId: number;
+  id: number;
   title: string;
+  categoryId: number;
   webSite: string;
   description: string;
-  managersId: string[];
+  removedManagersId: string[];
+  addedManagersId: string[];
+  removedMedia: number[];
+  company: string;
   addressLine1: string;
   addressLine2: string;
+  city: string;
+  state: string;
   zipCode: string;
   creatorUserId: string;
-  company: string;
   phone: string;
-  loading: boolean;
-  ExternalUrl: Array<string>;
-  External: string;
-  listmanagers: Array<{ label: string; value: number } | {}>;
+  countryId: number;
+  files: Array<File>;
 };
 interface RouteParams {
   id: string;
@@ -47,23 +48,24 @@ export class LaboratoryPageEdit extends React.Component<
     console.log(params);
   }
   state: StateType = {
-    files: [],
-    listCategory: [],
+    id: 0,
+    title: "",
     categoryId: 0,
+    webSite: "",
+    description: "",
+    removedManagersId: [],
+    addedManagersId: [],
+    removedMedia: [],
+    company: "",
     addressLine1: "",
     addressLine2: "",
-    company: "",
-    creatorUserId: "",
-    description: "",
-    managersId: [],
-    phone: "",
-    title: "",
-    webSite: "",
+    city: "",
+    state: "",
     zipCode: "",
-    ExternalUrl: [],
-    External: "",
-    loading: false,
-    listmanagers: [],
+    creatorUserId: "",
+    phone: "",
+    countryId: 0,
+    files: []
   };
   componentDidMount() {
     this.controller.getLaboratoryById(
@@ -144,7 +146,7 @@ export class LaboratoryPageEdit extends React.Component<
                     ]}
                     TextItem="name"
                     ValueItem="id"
-                    className="my-2"
+                    className="my-2 w-100"
                   ></SelectComponent>
                   <CircleIcon
                     width="36px"
