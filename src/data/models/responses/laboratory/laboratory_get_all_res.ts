@@ -1,10 +1,19 @@
 export interface LaboratoryGetAllRes {
     status:  number;
-    result:  LaboratoryGetAllResResult[];
+    result:  LaboratoryGetAllResResult;
     message: string;
 }
 
 export interface LaboratoryGetAllResResult {
-    id:    number;
-    title: string;
+    laboratories: Laboratory[];
+    count:        number;
+}
+
+export interface Laboratory {
+    id:              number;
+    title:           string;
+    company:         string;
+    categoryTitle:   string;
+    equipmentsCount: number;
+    allowedToEdit:   boolean;
 }

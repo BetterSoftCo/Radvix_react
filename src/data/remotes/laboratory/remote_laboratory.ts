@@ -5,7 +5,7 @@ import { GetLaboratoryByID } from "../../models/responses/laboratory/laboratory_
 import { LaboratoryCreateRes } from "../../models/responses/laboratory/laboratory_create_res";
 import { LaboratoryGetAllRes } from "../../models/responses/laboratory/laboratory_get_all_res";
 import { UpdateLaboratoryRes } from "../../models/responses/laboratory/laboratory_update_res";
-import {LboratorySearchRes} from "../../models/responses/laboratory/laboratory_search_res"
+import { LboratorySearchRes } from "../../models/responses/laboratory/laboratory_search_res";
 export class RemoteLaboratory {
   createLaboratory(
     body: LaboratoryCreateReq,
@@ -29,11 +29,13 @@ export class RemoteLaboratory {
       });
   }
   getLaboratoryGetAll(
-    body: string,
+    body: { PageNumber: number; PageSize: number },
     action: (res: LaboratoryGetAllRes) => any,
     error: (res: any) => any
   ) {
-    return HTTP.get(`/Laboratory/GetAll?userId=${body}`)
+    return HTTP.get(
+      `/Laboratory?PageSize=${body.PageSize}&PageNumber=${body.PageNumber}`
+    )
       .then((res) => action(res.data))
       .catch((err) => {
         error(err);
