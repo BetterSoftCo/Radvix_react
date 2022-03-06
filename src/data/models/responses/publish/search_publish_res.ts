@@ -8,6 +8,12 @@ export interface SearchPublishResResult {
     researchId?:  number;
     users?:       TeamsMember[];
     teamsMember?: TeamsMember[];
+    categories?:  Category[];
+}
+
+export interface Category {
+    id?:    number;
+    title?: string;
 }
 
 export interface TeamsMember {
