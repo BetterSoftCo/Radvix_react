@@ -13,7 +13,7 @@ import TaskPageProfile from "./pages/task/task_profile";
 import  TaskPageEdit  from "./pages/task/task_edit";
 import  MemberPage  from "./pages/member/member_page";
 import  MemberPageNew  from "./pages/member/member_new";
-import { MemberPageProfile } from "./pages/member/member_profile";
+import  MemberPageProfile  from "./pages/member/member_profile";
 import  MemberPageUseEdit  from "./pages/member/user_edit";
 import { EditMyProfile } from "./pages/member/Edit_my_profile";
 import NewEquip from "./pages/equipment/new_equip";

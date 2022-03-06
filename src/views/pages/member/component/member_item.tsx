@@ -58,7 +58,9 @@ const MemberItem: React.FC<IMemberItem & RouteComponentProps> = (props) => {
           height="26px"
           type={ThemeCircleIcon.dark}
           onClick={() => {
-            console.log("ssss");
+            props.history.push(
+              `${AppRoutes.member_profile.replace(":id", props.member.id ?? "")}`
+            );
           }}
           className="pointer mx-1"
         >
