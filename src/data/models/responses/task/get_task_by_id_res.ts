@@ -35,10 +35,11 @@ export interface Data {
 }
 
 export interface Media {
-    id:            number;
-    name:          string;
-    externalUrl:   string;
-    inputDataType: number;
+  id: number;
+  name: string;
+  externalUrl: string;
+  inputDataType: number;
+  title: string;
 }
 
 export interface ParentTask {
