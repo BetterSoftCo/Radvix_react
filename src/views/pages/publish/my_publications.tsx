@@ -1,5 +1,6 @@
 import React from "react";
 import ReactPaginate from "react-paginate";
+import { publishController } from "../../../controllers/publish/publish_controller";
 import { store } from "../../../data/store";
 import { MainButton, MainButtonType } from "../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
@@ -9,37 +10,53 @@ import MyPublicationsTable from "./component/my_publications_tbl";
 
 export class MyPublications extends React.Component {
   RoleUser = store.getState().userRole;
+  controller = new publishController();
   state = {
-    Data: {
-      Items: [
-        {
-          name: "Studying the effects of freeze thaw cycle…",
-          Institution: "Report",
-          Category: "N. Hosseinzadeh",
-          Eqiups: "07/22/2021",
-        },
-        {
-          name: "Studying the effects of freeze thaw cycle…",
-          Institution: "Report",
-          Category: "N. Hosseinzadeh",
-          Eqiups: "07/22/2021",
-        },
-        {
-          name: "Studying the effects of freeze thaw cycle…",
-          Institution: "Report",
-          Category: "N. Hosseinzadeh",
-          Eqiups: "07/22/2021",
-        },
-        {
-          name: "Studying the effects of freeze thaw cycle…",
-          Institution: "Report",
-          Category: "N. Hosseinzadeh",
-          Eqiups: "07/22/2021",
-        },
-      ],
-    },
+    Publishes: [],
+    PageNumber: 1,
+    PageSize: 10,
+    PageCount: 0,
+    TotalCount:0,
+    ResearchId:store.getState().ResearchId
   };
+  getPublish(PageNumber: number, PageSize: number , ResearchId : number) {
+    this.controller.getPublishes({ PageNumber: PageNumber, PageSize: PageSize , ResearchId : ResearchId}, res => {
+      this.setState({
+        Publishes: res.publications,
+        PageCount: Math.ceil(res.count! / this.state.PageSize),
+        TotalCount:res.count
+      })
+
+    }, err => console.log(err)
+    )
+  }
+  
+  handelChangePageNumber(
+    e: { selected: number }
+  ) {
+    this.setState({
+      PageNumber: e.selected
+    });
+    this.getPublish(e.selected + 1, this.state.PageSize, store.getState().ResearchId)
+  }
+  handelChangePageSize(
+    e: { label: string; value: number }
+  ) {
+    this.setState({
+      PageSize: e.value
+    });
+    this.getPublish(this.state.PageNumber, e.value , store.getState().ResearchId)
+  }
+
+  componentDidMount() {
+    this.getPublish(this.state.PageNumber, this.state.PageSize , store.getState().ResearchId)
+    store.subscribe(() => {
+      this.getPublish(this.state.PageNumber, this.state.PageSize , store.getState().ResearchId)
+    })
+  }
+  
   render() {
+    console.log(this.state.Publishes);
     return (
       <div className="container-fluid research">
         <div className="row"></div>
@@ -76,17 +93,22 @@ export class MyPublications extends React.Component {
                   width="63px"
                   height="44px"
                   items={[
-                    { item: 1, id: 1 },
-                    { item: 2, id: 2 },
-                    { item: 3, id: 3 },
+                    { label: '10', value: 10 },
+                    { label: '15', value: 15 },
+                    { label: '20', value: 20 },
                   ]}
                   TextItem="item"
                   ValueItem="id"
+                  isMulti={false}
+                  placeholder={this.state.PageSize.toString()}
+                  onChange={(e) => {
+                    this.handelChangePageSize(e)
+                  }}
                 ></SelectComponent>
               </div>
             </div>
             <MyPublicationsTable
-              Items={this.state.Data.Items}
+              Items={this.state.Publishes}
               Heading={["Name", "Category", "Currently Working On", "Deadline"]}
             ></MyPublicationsTable>
 
@@ -115,18 +137,18 @@ export class MyPublications extends React.Component {
                   }
                   breakLabel={"..."}
                   breakClassName={"break-me"}
-                  pageCount={20}
+                  pageCount={this.state.PageCount}
                   marginPagesDisplayed={2}
                   pageRangeDisplayed={5}
-                  onPageChange={() => {
-                    console.log("changepage");
+                  onPageChange={(e) => {
+                    this.handelChangePageNumber(e)
                   }}
                   containerClassName={"pagination"}
                   activeClassName={"active"}
                 />
               </div>
               <div className="d-flex justify-content-end flex-fill">
-                <p className="text-right mb-0 ">Total Results: 45</p>
+                <p className="text-right mb-0 ">Total Results1: {this.state.TotalCount}</p>
               </div>
             </div>
           </div>
