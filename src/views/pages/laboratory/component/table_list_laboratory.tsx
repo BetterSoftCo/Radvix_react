@@ -1,10 +1,11 @@
 import React from "react";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../../core/constants";
+import { Laboratory } from "../../../../data/models/responses/laboratory/laboratory_get_all_res";
 import { CircleIcon, ThemeCircleIcon } from "../../../components/circle_icon";
 interface TableComponentProp {
   Heading: any[];
-  Items: any[];
+  Items: Laboratory[];
 }
 const TableListLaboratory: React.FC<
   TableComponentProp & RouteComponentProps
@@ -28,10 +29,10 @@ const TableListLaboratory: React.FC<
         <tbody>
           {props.Items.map((head, index) => (
             <tr key={index}>
-              <td>{head.name}</td>
-              <td className="text-center">{head.Institution}</td>
-              <td className="text-center">{head.Category}</td>
-              <td className="text-center">{head.Eqiups}</td>
+              <td>{head.title}</td>
+              <td className="text-center">{head.company}</td>
+              <td className="text-center">{head.categoryTitle}</td>
+              <td className="text-center">{head.equipmentsCount}</td>
               <td>
                 <div className="col d-flex justify-content-end align-items-center">
                   <CircleIcon
@@ -40,7 +41,12 @@ const TableListLaboratory: React.FC<
                     type={ThemeCircleIcon.dark}
                     className="pointer mx-1"
                     onClick={() =>
-                      props.history.push(AppRoutes.profile_laboratory)
+                      props.history.push(
+                        `${AppRoutes.profile_laboratory.replace(
+                          ":id",
+                          head.id?.toString()
+                        )}`
+                      )
                     }
                   >
                     <img
@@ -50,17 +56,24 @@ const TableListLaboratory: React.FC<
                       height={12}
                     />
                   </CircleIcon>
-                  <CircleIcon
-                    width="26px"
-                    height="26px"
-                    type={ThemeCircleIcon.dark}
-                    onClick={() =>
-                      props.history.push(AppRoutes.edit_laboratory)
-                    }
-                    className="pointer"
-                  >
-                    <img src="/images/icons/edit.svg" alt="radvix" />
-                  </CircleIcon>
+                  {head.allowedToEdit ? (
+                    <CircleIcon
+                      width="26px"
+                      height="26px"
+                      type={ThemeCircleIcon.dark}
+                      onClick={() =>
+                        props.history.push(
+                          `${AppRoutes.edit_laboratory.replace(
+                            ":id",
+                            head.id?.toString()
+                          )}`
+                        )
+                      }
+                      className="pointer"
+                    >
+                      <img src="/images/icons/edit.svg" alt="radvix" />
+                    </CircleIcon>
+                  ) : null}
                 </div>
               </td>
             </tr>

@@ -11,7 +11,7 @@ interface IBoxListScroll {
   Deletabel?: boolean;
   DeleteFunc?: (e: any, value: any) => void;
   className?: string;
-  onClick?: () => void;
+  onClick?: (e: any, value: any) => void;
 }
 export const BoxListScroll: React.FC<IBoxListScroll> = ({
   items,
@@ -35,7 +35,11 @@ export const BoxListScroll: React.FC<IBoxListScroll> = ({
         {items.map((item, index) => (
           <Fragment key={index}>
             <div
-              onClick={onClick}
+              onClick={(e) => {
+                if (onClick !== undefined) {
+                  onClick(e, item[`${ValueItem}`]);
+                }
+              }}
               className="d-flex justify-content-between align-items-center"
               key={index}
             >
@@ -44,7 +48,8 @@ export const BoxListScroll: React.FC<IBoxListScroll> = ({
                 children={
                   <img
                     src={
-                      item[`${ImageItem}`] === null
+                      item[`${ImageItem}`] === null ||
+                      item[`${ImageItem}`] === ""
                         ? "/images/images/img_avatar.png"
                         : item[`${ImageItem}`]
                     }

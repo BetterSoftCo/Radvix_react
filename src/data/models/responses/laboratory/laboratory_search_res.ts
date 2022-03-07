@@ -1,24 +1,24 @@
-export interface LaboratoryUsersCategoriesRes {
+export interface LboratorySearchRes {
     status:  number;
-    result:  LaboratoryUsersCategoriesResResult;
+    result:  LboratorySearchResResult;
     message: string;
 }
 
-export interface LaboratoryUsersCategoriesResResult {
-    users:      User[];
+export interface LboratorySearchResResult {
+    managers:   Manager[];
     categories: Category[];
 }
 
 export interface Category {
     id:           number;
     title:        string;
-    iconFileName: null;
+    iconFileName: string;
     type:         number;
 }
 
-export interface User {
+export interface Manager {
     id:        string;
     firstName: string;
     lastName:  string;
-    image:     null;
+    image:     string;
 }

@@ -5,29 +5,34 @@ export interface GetLaboratoryByID {
 }
 
 export interface GetLaboratoryByIDResult {
-    title:           string;
-    description:     string;
-    webSite:         string;
-    company:         string;
-    addressLine1:    string;
-    addressLine2:    string;
-    city:            string;
-    state:           string;
-    country:         string;
-    zipCode:         string;
-    phone:           string;
-    externalUrls:    string[];
-    inputFiles:      string[];
-    removedMedias:   RemovedMedia[];
-    equipmentsCount: number;
-    managersId:      string[];
-    discussionId:    number;
-    categoryId:      number;
+    title:        string;
+    id:           number;
+    categoryName: string;
+    labManagers:  LabManager[];
+    webSite:      string;
+    address:      string;
+    media:        Media[];
+    equipments:   Equipment[];
+    teams:        Equipment[];
+    members:      LabManager[];
 }
 
-export interface RemovedMedia {
+export interface Equipment {
+    id:    number;
+    title: string;
+}
+
+export interface LabManager {
+    id:        string;
+    firstName: string;
+    lastName:  string;
+    image:     string;
+}
+
+export interface Media {
     id:            number;
     name:          string;
+    title:         string;
     externalUrl:   string;
     inputDataType: number;
 }

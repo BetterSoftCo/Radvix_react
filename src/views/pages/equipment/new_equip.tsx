@@ -80,13 +80,13 @@ class NewEquip extends React.Component<RouteComponentProps> {
           return { name: item.title, id: item.id };
         }),
     });
-    this.labController.getLaboratoryGetAll((res) => {
-      this.setState({
-        Laboratory: res.map((item) => {
-          return { label: item.title, value: item.id };
-        }),
-      });
-    });
+    // this.labController.getLaboratoryGetAll((res) => {
+    //   this.setState({
+    //     Laboratory: res.laboratories.map((item) => {
+    //       return { label: item.title, value: item.id };
+    //     }),
+    //   });
+    // });
   }
 
   onDropPic = (picture: any) => {

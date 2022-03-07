@@ -80,7 +80,6 @@ class MemberPageNew extends React.Component<RouteComponentProps> {
         return { label: item.title, value: item.id };
       }),
     });
-    console.log(this.RoleUser);
     
   }
   handleChange(target: string, val: any) {
@@ -153,7 +152,11 @@ class MemberPageNew extends React.Component<RouteComponentProps> {
             `${AppRoutes.member_profile.replace(":id", "1")}`
           );
         },
-        (err) => {}
+        (err) => {
+          this.setState({
+            loading: false,
+          });
+        }
       );
     } else {
       this.validator.showMessages();

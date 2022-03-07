@@ -27,8 +27,8 @@ export class AppRoutes {
 	static member:string ='/dashboard/Member';
 	static member_new:string ='/dashboard/Member/new/';
 	static member_profile:string ='/dashboard/Member/profile/:id';
-	static member_user_edit:string ='/dashboard/Member/UserEdit/';
-	static member_edit_profile:string ='/dashboard/Member/EditProfile/';
+	static member_user_edit:string ='/dashboard/Member/UserEdit/:id';
+	static member_edit_profile:string ='/dashboard/Member/EditProfile/:id';
 	static equip_new:string ='/dashboard/Equip/new/';
 	static equip:string ='/dashboard/Equip/';
 	static equip_profile:string ='/dashboard/Equip/profile/';
@@ -39,8 +39,8 @@ export class AppRoutes {
 	static data:string ='/dashboard/Data/';
 	static data_new:string ='/dashboard/Data/new';
 	static data_mydata:string ='/dashboard/Data/mydata/';
-	static data_profile:string ='/dashboard/Data/profile/';
-	static data_edit:string ='/dashboard/Data/edit/';
+	static data_profile:string ='/dashboard/Data/profile/:dataid/:appTaskId';
+	static data_edit:string ='/dashboard/Data/edit/:dataid/:appTaskId';
 	static publish:string ='/dashboard/Publish/';
 	static publish_new:string ='/dashboard/Publish/new';
 	static publish_profile:string ='/dashboard/Publish/profile';

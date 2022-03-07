@@ -4,37 +4,38 @@ import { UpdateLaboratoryReq } from "../../models/requests/laboratory/laboratory
 import { GetLaboratoryByID } from "../../models/responses/laboratory/laboratory_by_id_res";
 import { LaboratoryCreateRes } from "../../models/responses/laboratory/laboratory_create_res";
 import { LaboratoryGetAllRes } from "../../models/responses/laboratory/laboratory_get_all_res";
-import { UpdateLaboratoryRes } from "../../models/responses/laboratory/laboratory_update_req";
-import { LaboratoryUsersCategoriesRes } from "../../models/responses/laboratory/laboratory_users_categories_res";
-
+import { UpdateLaboratoryRes } from "../../models/responses/laboratory/laboratory_update_res";
+import { LboratorySearchRes } from "../../models/responses/laboratory/laboratory_search_res";
 export class RemoteLaboratory {
   createLaboratory(
     body: LaboratoryCreateReq,
     action: (res: LaboratoryCreateRes) => any,
     error: (res: any) => any
   ) {
-    return HTTP.post("/Laboratory/Create", body)
+    return HTTP.post("/Laboratory", body)
       .then((res) => action(res.data))
       .catch((err) => {
         error(err);
       });
   }
-  getLaboratoryUsersAndCategories(
-    action: (res: LaboratoryUsersCategoriesRes) => any,
+  getLaboratorySearch(
+    action: (res: LboratorySearchRes) => any,
     error: (res: any) => any
   ) {
-    return HTTP.get("/Laboratory/Get-Users-Categories")
+    return HTTP.get("/Laboratory/Search")
       .then((res) => action(res.data))
       .catch((err) => {
         error(err);
       });
   }
   getLaboratoryGetAll(
-    body: string,
+    body: { PageNumber: number; PageSize: number },
     action: (res: LaboratoryGetAllRes) => any,
     error: (res: any) => any
   ) {
-    return HTTP.get(`/Laboratory/GetAll?userId=${body}`)
+    return HTTP.get(
+      `/Laboratory?PageSize=${body.PageSize}&PageNumber=${body.PageNumber}`
+    )
       .then((res) => action(res.data))
       .catch((err) => {
         error(err);
@@ -45,7 +46,7 @@ export class RemoteLaboratory {
     action: (res: UpdateLaboratoryRes) => any,
     error: (res: any) => any
   ) {
-    return HTTP.put("/Laboratory/Edit", body)
+    return HTTP.put("/Laboratory", body)
       .then((res) => action(res.data))
       .catch((err) => {
         error(err);
@@ -56,7 +57,7 @@ export class RemoteLaboratory {
     action: (res: GetLaboratoryByID) => any,
     error: (res: any) => any
   ) {
-    return HTTP.get(`/Laboratory/Profile?id=${body.id}`)
+    return HTTP.get(`/Laboratory/${body.id}`)
       .then((res) => action(res.data))
       .catch((err) => {
         error(err);

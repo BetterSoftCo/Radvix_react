@@ -1,12 +1,14 @@
-export interface AddDataRes {
+export interface UpdateDataRes {
     status:  number;
-    result:  AddDataResResult;
+    result:  UpdateDataResResult;
     message: string;
 }
 
-export interface AddDataResResult {
+export interface UpdateDataResResult {
     taskId:               number;
     taskTitle:            string;
+    subTaskId:            number;
+    subTaskTitle:         string;
     researchId:           number;
     taskCreatorUserId:    string;
     taskCreatorFirstName: string;

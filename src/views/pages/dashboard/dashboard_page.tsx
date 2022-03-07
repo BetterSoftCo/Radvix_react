@@ -8,49 +8,141 @@ import AcordienTable from "./recent_tasks";
 import AcordienTableData from "./recent_data";
 import { store } from "../../../data/store";
 import { SelectComponent } from "../../components/select_input";
+import { ResearchController } from "../../../controllers/research/research_controller";
+import { ResearchesList } from "../../../data/models/responses/research/researches_res";
+import { AppTask } from "../../../data/models/responses/task/get_all_tasks_res";
+import { TaskController } from "../../../controllers/task/task_controller";
+import { DataList } from "../../../data/models/responses/data/get_all_data_res";
+import { DataController } from "../../../controllers/data/data_controller";
+type StateType = {
+  Researches: ResearchesList[];
+  ResearchesPageNumber: number;
+  ResearchesPageSize: number;
+  ResearchesPageCount: number;
+  ResearchesTotalCount: number;
+  Tasks: AppTask[];
+  TasksPageNumber: number;
+  TasksPageSize: number;
+  TasksPageCount: number;
+  TasksTotalCount: number;
+  Datas: DataList[];
+  DatasPageNumber: number;
+  DatasPageSize: number;
+  DatasPageCount: number;
+  DatasTotalCount: number;
+};
 export class DashboardPage extends React.Component {
-
   handlePageClick = (data: any) => {};
-  mockData = [
-    {
-      data: { name: "[1](1) Height: 25px." },
-      height: 25,
-      children: [
-        {
-          data: { name: "[2](1)" },
-          children: [
-            {
-              data: { name: "[3](1)" },
-            },
-            {
-              data: { name: "[3](2)" },
-            },
-            {
-              data: { name: "[3](3)" },
-            },
-          ],
-        },
-        {
-          data: { name: "[2](2) Height: 40px." },
-          height: 40,
-        },
-      ],
-    },
-    {
-      data: { name: "[1](2) Height: 30px." },
-      height: 30,
-    },
-    {
-      data: { name: "[1](3) Height: 30px." },
-      height: 30,
-    },
-  ];
   RoleUser = store.getState().userRole;
-  
-  
+  researchController = new ResearchController();
+  taskcontroller = new TaskController();
+  Datacontroller = new DataController();
+
+  state: StateType = {
+    Researches: [],
+    ResearchesPageNumber: 1,
+    ResearchesPageSize: 10,
+    ResearchesPageCount: 0,
+    ResearchesTotalCount: 0,
+    Tasks: [],
+    TasksPageNumber: 1,
+    TasksPageSize: 10,
+    TasksPageCount: 0,
+    TasksTotalCount: 0,
+    Datas: [],
+    DatasPageNumber: 1,
+    DatasPageSize: 10,
+    DatasPageCount: 0,
+    DatasTotalCount: 0,
+  };
   componentDidMount() {
-    console.log(this.RoleUser);
-    // ...
+    this.GetResearch(
+      this.state.ResearchesPageNumber,
+      this.state.ResearchesPageSize
+    );
+    this.GetTasks(this.state.TasksPageNumber, this.state.TasksPageSize);
+    this.GetDatas(this.state.DatasPageNumber, this.state.DatasPageSize);
+    store.subscribe(() => {
+      this.GetTasks(this.state.TasksPageNumber, this.state.TasksPageSize);
+      this.GetDatas(this.state.DatasPageNumber, this.state.DatasPageSize);
+    });
+  }
+  GetResearch(PageNumber: number, PageSize: number) {
+    this.researchController.getResearches(
+      { PageNumber: PageNumber, PageSize: PageSize },
+      (res) => {
+        this.setState({
+          Researches: res.researchesList,
+          ResearchesPageCount: Math.ceil(
+            res.count! / this.state.ResearchesPageSize
+          ),
+          ResearchesTotalCount: res.count,
+        });
+      },
+      (err) => console.log(err)
+    );
+  }
+  GetTasks(PageNumber: number, PageSize: number) {
+    this.taskcontroller.getTasks(
+      { PageNumber, PageSize },
+      (res) => {
+        this.setState({
+          Tasks: res.appTasks,
+          TasksPageCount: Math.ceil(res.count! / this.state.TasksPageSize),
+          TasksTotalCount: res.count,
+        });
+      },
+      (err) => console.log(err)
+    );
+  }
+  GetDatas(PageNumber: number, PageSize: number) {
+    this.Datacontroller.getAllData(
+      { PageNumber, PageSize },
+      (res) => {
+        this.setState({
+          Datas: res.dataLists,
+          DatasPageCount: Math.ceil(res.count! / this.state.DatasPageSize),
+          DatasTotalCount: res.count,
+        });
+      },
+      (err) => console.log(err)
+    );
+  }
+  handelChangePageNumber(e: { selected: number }, Type: string) {
+    if (Type === "Researches") {
+      this.setState({
+        ResearchesPageNumber: e.selected,
+      });
+      this.GetResearch(e.selected + 1, this.state.ResearchesPageSize);
+    } else if (Type === "Tasks") {
+      this.setState({
+        TasksPageNumber: e.selected,
+      });
+      this.GetTasks(e.selected + 1, this.state.TasksPageSize);
+    } else {
+      this.setState({
+        DatasPageNumber: e.selected,
+      });
+      this.GetDatas(e.selected + 1, this.state.DatasPageSize);
+    }
+  }
+  handelChangePageSize(e: { label: string; value: number }, Type: string) {
+    if (Type === "Researches") {
+      this.setState({
+        ResearchesPageSize: e.value,
+      });
+      this.GetResearch(this.state.ResearchesPageNumber, e.value);
+    } else if (Type === "Tasks") {
+      this.setState({
+        TasksPageSize: e.value,
+      });
+      this.GetTasks(this.state.TasksPageNumber, e.value);
+    } else {
+      this.setState({
+        DatasPageSize: e.value,
+      });
+      this.GetDatas(this.state.DatasPageNumber, e.value);
+    }
   }
   render() {
     return (
@@ -76,20 +168,23 @@ export class DashboardPage extends React.Component {
                     width="90px"
                     height="44px"
                     items={[
-                      { label: 1, value: 1 },
-                      { label: 2, value: 2 },
-                      { label: 3, value: 3 },
+                      { label: "10", value: 10 },
+                      { label: "15", value: 15 },
+                      { label: "20", value: 20 },
                     ]}
                     TextItem="item"
                     ValueItem="id"
                     isMulti={false}
-                    placeholder="1"
+                    placeholder={this.state.ResearchesPageSize.toString()}
+                    onChange={(e) => {
+                      this.handelChangePageSize(e, "Researches");
+                    }}
                   ></SelectComponent>
                 </div>
               </div>
               <TableComponent
                 Heading={["Update", "Date"]}
-                Items={[1, 2, 3, 4]}
+                Items={this.state.Researches}
               ></TableComponent>
               <div className="d-flex justify-content-between align-items-baseline">
                 <div className="d-flex justify-content-end flex-fill">
@@ -116,18 +211,20 @@ export class DashboardPage extends React.Component {
                     }
                     breakLabel={"..."}
                     breakClassName={"break-me"}
-                    pageCount={20}
+                    pageCount={this.state.ResearchesPageCount}
                     marginPagesDisplayed={2}
                     pageRangeDisplayed={5}
-                    onPageChange={() => {
-                      console.log("changepage");
+                    onPageChange={(e) => {
+                      this.handelChangePageNumber(e, "Researches");
                     }}
                     containerClassName={"pagination"}
                     activeClassName={"active"}
                   />
                 </div>
                 <div className="d-flex justify-content-end flex-fill">
-                  <p className="text-right mb-0 ">Total Results: 45</p>
+                  <p className="text-right mb-0 ">
+                    Total Results: {this.state.ResearchesTotalCount}
+                  </p>
                 </div>
               </div>
             </div>
@@ -146,21 +243,26 @@ export class DashboardPage extends React.Component {
                 </div>
                 <div className="right w-50 d-flex justify-content-end align-items-center">
                   <SelectComponent
-                    width="63px"
+                    width="90px"
                     height="44px"
                     items={[
-                      { item: 1, id: 1 },
-                      { item: 2, id: 2 },
-                      { item: 3, id: 3 },
+                      { label: "10", value: 10 },
+                      { label: "15", value: 15 },
+                      { label: "20", value: 20 },
                     ]}
                     TextItem="item"
                     ValueItem="id"
+                    isMulti={false}
+                    placeholder={this.state.TasksPageSize.toString()}
+                    onChange={(e) => {
+                      this.handelChangePageSize(e, "Tasks");
+                    }}
                   ></SelectComponent>
                 </div>
               </div>
               <AcordienTable
                 role={this.RoleUser}
-                tasks={[{id:1 , name:'ssss'}]}
+                tasks={this.state.Tasks}
               ></AcordienTable>
               <div className="d-flex justify-content-between align-items-baseline my-2">
                 <div className="d-flex justify-content-end flex-fill">
@@ -187,18 +289,20 @@ export class DashboardPage extends React.Component {
                     }
                     breakLabel={"..."}
                     breakClassName={"break-me"}
-                    pageCount={20}
+                    pageCount={this.state.TasksPageCount}
                     marginPagesDisplayed={2}
                     pageRangeDisplayed={5}
-                    onPageChange={() => {
-                      console.log("changepage");
+                    onPageChange={(e) => {
+                      this.handelChangePageNumber(e, "Tasks");
                     }}
                     containerClassName={"pagination"}
                     activeClassName={"active"}
                   />
                 </div>
                 <div className="d-flex justify-content-end flex-fill">
-                  <p className="text-right mb-0 ">Total Results: 45</p>
+                  <p className="text-right mb-0 ">
+                    Total Results: {this.state.TasksTotalCount}
+                  </p>
                 </div>
               </div>
             </div>
@@ -217,20 +321,25 @@ export class DashboardPage extends React.Component {
                 </div>
                 <div className="right w-50 d-flex justify-content-end align-items-center">
                   <SelectComponent
-                    width="63px"
+                    width="90px"
                     height="44px"
                     items={[
-                      { item: 1, id: 1 },
-                      { item: 2, id: 2 },
-                      { item: 3, id: 3 },
+                      { label: "10", value: 10 },
+                      { label: "15", value: 15 },
+                      { label: "20", value: 20 },
                     ]}
                     TextItem="item"
                     ValueItem="id"
+                    isMulti={false}
+                    placeholder={this.state.DatasPageSize.toString()}
+                    onChange={(e) => {
+                      this.handelChangePageSize(e, "Datas");
+                    }}
                   ></SelectComponent>
                 </div>
               </div>
 
-              <AcordienTableData></AcordienTableData>
+              <AcordienTableData role={this.RoleUser} Datas={this.state.Datas}></AcordienTableData>
               <div className="d-flex justify-content-between align-items-baseline my-2">
                 <div className="d-flex justify-content-end flex-fill">
                   <ReactPaginate
@@ -256,18 +365,18 @@ export class DashboardPage extends React.Component {
                     }
                     breakLabel={"..."}
                     breakClassName={"break-me"}
-                    pageCount={20}
+                    pageCount={this.state.DatasPageCount}
                     marginPagesDisplayed={2}
                     pageRangeDisplayed={5}
-                    onPageChange={() => {
-                      console.log("changepage");
+                    onPageChange={(e) => {
+                      this.handelChangePageNumber(e, "Datas");
                     }}
                     containerClassName={"pagination"}
                     activeClassName={"active"}
                   />
                 </div>
                 <div className="d-flex justify-content-end flex-fill">
-                  <p className="text-right mb-0 ">Total Results: 45</p>
+                  <p className="text-right mb-0 ">Total Results: {this.state.DatasTotalCount}</p>
                 </div>
               </div>
             </div>
@@ -350,8 +459,8 @@ const HeadDashboardPage: React.FC = () => {
           />
           <div className="d-flex flex-column align-items-center">
             <h1 className="display-6  fw-bold mb-0">87</h1>
-            <span className="text-center" style={{ fontSize: ".6rem" }}>
-              Days Left To Deadline
+            <span className="text-center">
+              Days Left <br /> To Deadline
             </span>
           </div>
         </div>

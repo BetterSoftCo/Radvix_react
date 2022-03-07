@@ -2,13 +2,11 @@ import { toast } from "react-toastify";
 import { LocalDataSources } from "../../data/local_datasources";
 import { LaboratoryCreateReq } from "../../data/models/requests/laboratory/laboratory_create_req";
 import { UpdateLaboratoryReq } from "../../data/models/requests/laboratory/laboratory_update_req";
-import {
-  GetLaboratoryByIDResult,
-} from "../../data/models/responses/laboratory/laboratory_by_id_res";
+import { GetLaboratoryByIDResult } from "../../data/models/responses/laboratory/laboratory_by_id_res";
 import { LaboratoryCreateResResult } from "../../data/models/responses/laboratory/laboratory_create_res";
 import { LaboratoryGetAllResResult } from "../../data/models/responses/laboratory/laboratory_get_all_res";
-import { UpdateLaboratoryResResult } from "../../data/models/responses/laboratory/laboratory_update_req";
-import { LaboratoryUsersCategoriesResResult } from "../../data/models/responses/laboratory/laboratory_users_categories_res";
+import { UpdateLaboratoryResResult } from "../../data/models/responses/laboratory/laboratory_update_res";
+import { LboratorySearchResResult } from "../../data/models/responses/laboratory/laboratory_search_res";
 import { RemoteLaboratory } from "../../data/remotes/laboratory/remote_laboratory";
 export class LaboratoryController {
   remote = new RemoteLaboratory();
@@ -49,19 +47,20 @@ export class LaboratoryController {
       }
     );
   }
-  getLaboratoryUsersAndCategories(
-    action: (res: LaboratoryUsersCategoriesResResult) => any
-  ) {
-    this.remote.getLaboratoryUsersAndCategories(
+  getLaboratorySearch(action: (res: LboratorySearchResResult) => any) {
+    this.remote.getLaboratorySearch(
       (res) => {
         action(res.result);
       },
       (err) => {}
     );
   }
-  getLaboratoryGetAll(action: (res: LaboratoryGetAllResResult[]) => any) {
+  getLaboratoryGetAll(
+    body: { PageNumber: number; PageSize: number },
+    action: (res: LaboratoryGetAllResResult) => any
+  ) {
     this.remote.getLaboratoryGetAll(
-      this.local.getUserId(),
+      body,
       (res) => {
         action(res.result);
       },

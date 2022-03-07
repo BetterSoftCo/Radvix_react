@@ -174,8 +174,13 @@ class ResearchPageProfile extends React.Component<
                       .filter((item) => item.externalUrl === null)
                       .map((item) => (
                         <li key={item.id}>
-                          <img src="/images/icons/pdf_icon.svg" alt="" />{" "}
-                          {item.name}
+                          <img
+                            src={`/images/icons/${item.inputDataType.isMedia()}`}
+                            alt=""
+                            width={20}
+                            height={20}
+                          />{" "}
+                          {item.title}
                         </li>
                       ))}
                     <li>
