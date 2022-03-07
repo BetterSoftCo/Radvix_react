@@ -53,7 +53,8 @@ class PublishPageNew extends React.Component<RouteComponentProps> {
       this.controller.createPublish(
         body,
         (res) => {
-          this.setState({
+          this.setState(
+            {
             name: '',
             categoryId: 0,
             submitAt: '',
@@ -164,6 +165,7 @@ class PublishPageNew extends React.Component<RouteComponentProps> {
                     this.state.name,
                     "required"
                   )}
+                  value={this.state.name}
                 ></InputComponent>
               </div>
               <div className="item">
@@ -290,6 +292,7 @@ class PublishPageNew extends React.Component<RouteComponentProps> {
                 onClick={() => {
                   this.handelCreateData()
                 }}
+                loading={this.state.loading}
               ></MainButton>
             </div>
           </div>
