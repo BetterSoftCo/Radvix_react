@@ -22,7 +22,7 @@ export class AppRoutes {
 	static edit_laboratory:string ='/dashboard/laboratory/edit/:id';
 	static task:string ='/dashboard/Task/';
 	static task_new:string ='/dashboard/Task/new/';
-	static task_profile:string ='/dashboard/Task/profile/';
+	static task_profile:string ='/dashboard/Task/profile/:id';
 	static task_edit:string ='/dashboard/Task/edit/:id';
 	static member:string ='/dashboard/Member';
 	static member_new:string ='/dashboard/Member/new/';

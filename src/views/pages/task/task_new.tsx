@@ -161,9 +161,12 @@ class TaskPageNew extends React.Component<RouteComponentProps> {
         addedUsersId: this.state.addedUsersId,
         addedTeamsId: this.state.addedTeamsId
       }
+      this.setState({
+        loading: true,
+      });
       this.controller.createTask(body, res => {
         this.handelUpload(res.id);
-        this.props.history.push(AppRoutes.task_profile)
+        this.props.history.push(`${AppRoutes.task_profile.replace(":id", res.id.toString() ?? "")}`)
         this.setState({
           files: [],
           appTasksId: 0,
@@ -176,6 +179,7 @@ class TaskPageNew extends React.Component<RouteComponentProps> {
           title: '',
           External: "",
           ExternalUrl: [],
+          loading:false
         });
       }, err => {
         this.setState({
@@ -479,6 +483,7 @@ class TaskPageNew extends React.Component<RouteComponentProps> {
                 className="mx-2"
                 minHeight="43px"
                 minWidth="136px"
+                loading={this.state.loading}
               ></MainButton>
             </div>
           </div>
