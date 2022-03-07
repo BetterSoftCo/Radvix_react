@@ -6,11 +6,51 @@ import { MainButton, MainButtonType } from "../../components/button";
 import { IconTextRow } from "../../components/icon_text_horizontal";
 import { Theme } from "../../../core/utils";
 import { BoxListScroll } from "../../components/box_list_scroll";
-import { withRouter , RouteComponentProps } from "react-router";
+import { withRouter, RouteComponentProps } from "react-router";
 import { AppRoutes } from "../../../core/constants";
- class LaboratoryPageProfile extends React.Component<RouteComponentProps> {
+import { LaboratoryController } from "../../../controllers/laboratory/laboratory_controller";
+import { GetLaboratoryByIDResult } from "../../../data/models/responses/laboratory/laboratory_by_id_res";
+interface RouteParams {
+  id: string;
+}
+class LaboratoryPageProfile extends React.Component<
+  RouteComponentProps<RouteParams>
+> {
   RoleUser = store.getState().userRole;
-
+  controller = new LaboratoryController();
+  state: GetLaboratoryByIDResult = {
+    title: "",
+    id: 0,
+    categoryName: "",
+    labManagers: [],
+    webSite: "",
+    address: "",
+    media: [],
+    equipments: [],
+    teams: [],
+    members: [],
+  };
+  componentDidMount() {
+    this.controller.getLaboratoryById(
+      {
+        id: parseInt(this.props.match.params.id),
+      },
+      (res) => {
+        this.setState({
+          title: res.title,
+          id: res.id,
+          categoryName: res.categoryName,
+          labManagers: res.labManagers,
+          webSite: res.webSite,
+          address: res.address,
+          media: res.media,
+          equipments: res.equipments,
+          teams: res.teams,
+          members: res.members,
+        });
+      }
+    );
+  }
   render() {
     return (
       <div className="container-fluid research new-research">
@@ -18,7 +58,13 @@ import { AppRoutes } from "../../../core/constants";
         <div className="col-12 box-content p-3">
           <div className="d-flex justify-content-between align-items-center">
             <h5 className="b-title d-flex align-items-center">
-              <span onClick={()=>{window.history.back()}} className="backPage"></span> {"Laboratory List > Lab Profile"}
+              <span
+                onClick={() => {
+                  window.history.back();
+                }}
+                className="backPage"
+              ></span>{" "}
+              {"Laboratory List > Lab Profile"}
               <CircleIcon
                 width="22px"
                 height="22px"
@@ -27,7 +73,9 @@ import { AppRoutes } from "../../../core/constants";
                 fontSize="10px"
                 color="#ffff"
                 className="mx-4 pointer"
-                onClick={()=>{this.props.history.push(AppRoutes.edit_laboratory)}}
+                onClick={() => {
+                  this.props.history.push(AppRoutes.edit_laboratory);
+                }}
               >
                 <img src="/images/icons/edit.svg" alt="radvix" />
               </CircleIcon>
@@ -38,11 +86,13 @@ import { AppRoutes } from "../../../core/constants";
               borderRadius="24px"
               fontSize="14px"
               className="px-3"
-              onClick={()=>{this.props.history.push(AppRoutes.discussion)}}
+              onClick={() => {
+                this.props.history.push(AppRoutes.discussion);
+              }}
             ></MainButton>
           </div>
           <div className="Studying p-4 my-2">
-            <h3 className="px-5 text-center">Structural And Materials Lab</h3>
+            <h3 className="px-5 text-center">{this.state.title}</h3>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
@@ -54,15 +104,19 @@ import { AppRoutes } from "../../../core/constants";
             <div className="col-md-6  tabel-info ">
               <div className="row border-bottom ">
                 <h6 className="col-4 t-title mb-0 border-t-l">Category</h6>
-                <div className="col-8 t-desc border-t-r">Material</div>
+                <div className="col-8 t-desc border-t-r">
+                  {this.state.categoryName}
+                </div>
               </div>
               <div className="row border-bottom">
                 <h6 className="col-4 t-title mb-0">Lab Manager(s)</h6>
                 <div className="col-8 t-desc">
                   <ul>
-                    <li>N. Hosseinzadeh</li>
-                    <li>N. Hosseinzadeh</li>
-                    <li>N. Hosseinzadeh</li>
+                    {this.state.labManagers.map((item) => (
+                      <li key={item.id}>
+                        {item.firstName + " " + item.lastName}
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>
@@ -70,7 +124,7 @@ import { AppRoutes } from "../../../core/constants";
                 <h6 className="col-4 t-title mb-0">Website</h6>
                 <div className="col-8 t-desc">
                   <MainButton
-                    children="https://drive.google.com/file/234234"
+                    children={this.state.webSite}
                     type={MainButtonType.dark}
                     borderRadius="24px"
                     fontSize="14px"
@@ -81,50 +135,43 @@ import { AppRoutes } from "../../../core/constants";
               </div>
               <div className="row border-bottom">
                 <h6 className="col-4 t-title mb-0">Address</h6>
-                <div className="col-8 t-desc">
-                  Beshiktash Institute of Tech 9863 Greystone Street Upland, CA
-                  91784 +1 (235) 123 4567
-                </div>
+                <div className="col-8 t-desc">{this.state.address}</div>
               </div>
               <div className="row border-bottom">
                 <h6 className="col-4 t-title mb-0 border-b-l">Protocols</h6>
                 <div className="col-8 t-desc border-b-r">
                   {" "}
                   <ul className="file-list">
-                    <li>
-                      <img src='/images/icons/pdf_icon.svg' alt="" />{" "}
-                      proposal_general.pdf
-                    </li>
-                    <li>
-                      <img src='/images/icons/word_icon.svg' alt="" />{" "}
-                      proposal_general.docx
-                    </li>
-                    <li>
-                      <img src='/images/icons/excel_icon.svg' alt="" />{" "}
-                      proposal_general.xlsx
-                    </li>
-                    <li>
-                      <img src='/images/icons/pdf_icon.svg' alt="" />{" "}
-                      proposal_general.pdf
-                    </li>
+                    {this.state.media
+                      .filter((item) => !item.externalUrl)
+                      .map((item) => (
+                        <li>
+                          <img
+                            src={`/images/icons/${item.inputDataType.isMedia()}`}
+                            alt=""
+                            width={20}
+                            height={20}
+                          />{" "}
+                          {item.name}
+                        </li>
+                      ))}
+
                     <li>
                       Shared Links:
-                      <MainButton
-                        children="https://drive.google.com/file/234234"
-                        type={MainButtonType.dark}
-                        borderRadius="24px"
-                        fontSize="14px"
-                        backgroundColor="#F5F5F5"
-                        color="#096BFF"
-                      ></MainButton>
-                      <MainButton
-                        children="https://drive.google.com/file/234234"
-                        type={MainButtonType.dark}
-                        borderRadius="24px"
-                        fontSize="14px"
-                        backgroundColor="#F5F5F5"
-                        color="#096BFF"
-                      ></MainButton>
+                      {this.state.media
+                        .filter((item) => item.externalUrl)
+                        .map((item) => (
+                          <div key={item.id}>
+                            <MainButton
+                              children={item.externalUrl}
+                              type={MainButtonType.dark}
+                              borderRadius="24px"
+                              fontSize="14px"
+                              backgroundColor="#F5F5F5"
+                              color="#096BFF"
+                            ></MainButton>
+                          </div>
+                        ))}
                     </li>
                   </ul>
                 </div>
@@ -182,33 +229,18 @@ import { AppRoutes } from "../../../core/constants";
                 ></IconTextRow>
                 <BoxListScroll
                   className="mt-3 pointer"
-                  items={[
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 1,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 2,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 3,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                  ]}
-                  TextItem="text"
+                  items={this.state.equipments}
+                  TextItem="title"
                   ValueItem="id"
                   ImageItem="imagesrc"
-                  Deletabel
-                  DeleteFunc={(p, value) => {
-                    console.log(p, value);
+                  onClick={() => {
+                    this.props.history.push(
+                      `${AppRoutes.profile_laboratory.replace(
+                        ":id",
+                        this.state.id?.toString()
+                      )}`
+                    );
                   }}
-                  
-                  onClick={()=>{this.props.history.push(AppRoutes.profile_laboratory)}}
-                  
                 ></BoxListScroll>
               </div>
               <div className="teams mb-3 teams-light">
@@ -217,80 +249,50 @@ import { AppRoutes } from "../../../core/constants";
                   text="Teams (Members)"
                   children={
                     <img
-                      src='/images/icons/team_menu.svg'
+                      src="/images/icons/team_menu.svg"
                       className="mx-2"
                       alt=""
                     />
                   }
                 ></IconTextRow>
                 <div className="tags p-3">
-                  <MainButton
-                    children="ACCESSLab Team"
-                    type={MainButtonType.light}
-                    borderRadius="24px"
-                    fontSize="14px"
-                    className="px-3 pointer"
-                    backgroundColor="#EBEBEB"
-                    onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
-                  ></MainButton>
-                  <MainButton
-                    children="ACCESSLab Team"
-                    type={MainButtonType.light}
-                    borderRadius="24px"
-                    fontSize="14px"
-                    className="px-3 pointer"
-                    backgroundColor="#EBEBEB"
-                    onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
-                  ></MainButton>
-                  <MainButton
-                    children="ACCESSLab Team"
-                    type={MainButtonType.light}
-                    borderRadius="24px"
-                    fontSize="14px"
-                    className="px-3 pointer"
-                    backgroundColor="#EBEBEB"
-                    onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
-                  ></MainButton>
-                  <MainButton
-                    children="ACCESSLab Team"
-                    type={MainButtonType.light}
-                    borderRadius="24px"
-                    fontSize="14px"
-                    className="px-3 m-2 pointer"
-                    backgroundColor="#EBEBEB"
-                    onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
-                  ></MainButton>
+                  {this.state.teams.map((item) => (
+                    <div key={item.id}>
+                      <MainButton
+                        children={item.title}
+                        type={MainButtonType.light}
+                        borderRadius="24px"
+                        fontSize="14px"
+                        className="px-3 pointer"
+                        backgroundColor="#EBEBEB"
+                        onClick={() => {
+                          this.props.history.push(
+                            `${AppRoutes.team_profile.replace(
+                              ":id",
+                              item.id?.toString() ?? ""
+                            )}`
+                          );
+                        }}
+                      ></MainButton>
+                    </div>
+                  ))}
                 </div>
                 <BoxListScroll
-                  items={[
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 1,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 2,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                    {
-                      text: "Nima Hosseinzadehgg",
-                      id: 3,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                  ]}
-                  TextItem="text"
+                  items={this.state.members}
+                  TextItem="firstName"
                   ValueItem="id"
-                  ImageItem="imagesrc"
-                  Deletabel
-                  DeleteFunc={(p, value) => {
-                    console.log(p, value);
-                  }}
+                  ImageItem="image"
                   className="pointer"
-                  onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
+                  onClick={(e , value) => {
+                    this.props.history.push(
+                      `${AppRoutes.member_profile.replace(
+                        ":id",
+                        value.toString()
+                      )}`
+                    );
+                  }}
                 ></BoxListScroll>
               </div>
-
             </div>
           </div>
         </div>
@@ -298,4 +300,4 @@ import { AppRoutes } from "../../../core/constants";
     );
   }
 }
-export default withRouter(LaboratoryPageProfile)
+export default withRouter(LaboratoryPageProfile);

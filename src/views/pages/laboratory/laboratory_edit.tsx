@@ -477,9 +477,11 @@ export class LaboratoryPageEdit extends React.Component<
                         className="d-flex align-items-center mb-1"
                       >
                         <img
-                          src="/images/icons/pdf_icon.svg"
+                          src={`/images/icons/${item.inputDataType.isMedia()}`}
                           alt=""
                           className="mx-2"
+                          width={20}
+                          height={20}
                         />{" "}
                         {item.name}
                         <CircleIcon

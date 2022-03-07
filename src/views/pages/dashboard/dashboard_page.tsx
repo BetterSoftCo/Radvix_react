@@ -350,8 +350,8 @@ const HeadDashboardPage: React.FC = () => {
           />
           <div className="d-flex flex-column align-items-center">
             <h1 className="display-6  fw-bold mb-0">87</h1>
-            <span className="text-center" style={{ fontSize: ".6rem" }}>
-              Days Left To Deadline
+            <span className="text-center">
+              Days Left <br /> To Deadline
             </span>
           </div>
         </div>
