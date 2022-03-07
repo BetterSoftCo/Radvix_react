@@ -1,9 +1,11 @@
+import moment from "moment";
 import React from "react";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../../core/constants";
+import { ResearchesList } from "../../../../data/models/responses/research/researches_res";
 interface TableComponentProp {
   Heading: string[];
-  Items: any[];
+  Items: ResearchesList[];
 }
 const TableComponent: React.FC<TableComponentProp & RouteComponentProps> = (
   props
@@ -31,9 +33,9 @@ const TableComponent: React.FC<TableComponentProp & RouteComponentProps> = (
                   }}
                   className="pointer"
                 >
-                  "Synergistic Effects Of Air Content And Supplementary”
+                  "{head.title}”
                 </span>{" "}
-                Cementitious Materials On Concrete Durability Has Been Created
+                 Has Been Created
                 By{" "}
                 <span
                   className="pointer"
@@ -41,10 +43,10 @@ const TableComponent: React.FC<TableComponentProp & RouteComponentProps> = (
                     props.history.push(AppRoutes.member_profile);
                   }}
                 >
-                  N. Hosseinzadeh
+                 {head.creatorUserFirstName + ' ' + head.creatorUserLastName}
                 </span>
               </td>
-              <td>07/22/2021 21:24</td>
+              <td> {moment(head.startDate).format("YYYY/MM/DD")}</td>
             </tr>
           ))}
         </tbody>
