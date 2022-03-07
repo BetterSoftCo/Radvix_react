@@ -1,5 +1,6 @@
 import { toast } from "react-toastify";
 import { CreatePublishReq } from "../../data/models/requests/publish/create_publish_req";
+import { GetAllExpensesResult } from "../../data/models/responses/expense/expenses_res";
 import { SearchExpenseResResult } from "../../data/models/responses/expense/search_expense_res";
 import { CreatePublishResResult } from "../../data/models/responses/publish/create_publish_res";
 import { RemoteExpense } from "../../data/remotes/expense/remote_expense";
@@ -50,5 +51,20 @@ export class expenseController {
         position: toast.POSITION.TOP_RIGHT,
       });
     }
+  }
+  getExpenses(
+    body: { PageNumber: number; PageSize: number , ResearchId: number },
+    action: (res: GetAllExpensesResult) => any,
+    error: (res: any) => any
+  ) {
+    this.remote.getExpenses(
+      body,
+      (res) => {
+        action(res.result!);
+      },
+      (err) => {
+        error(err);
+      }
+    );
   }
 }
