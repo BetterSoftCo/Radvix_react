@@ -1,3 +1,4 @@
+import moment from "moment";
 import React from "react";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../../core/constants";
@@ -8,6 +9,7 @@ interface TableComponentProp {
 }
 const MyPublicationsTable: React.FC<TableComponentProp & RouteComponentProps> =
   (props) => {
+    console.log(props.Items);
     return (
       <div className="table-responsive">
         <table className="table table-striped table-light">
@@ -24,9 +26,9 @@ const MyPublicationsTable: React.FC<TableComponentProp & RouteComponentProps> =
             {props.Items.map((head, index) => (
               <tr key={index}>
                 <td>{head.name}</td>
-                <td>{head.Institution}</td>
-                <td>{head.Category}</td>
-                <td>{head.Eqiups}</td>
+                <td>{head.category}</td>
+                <td>{head.assignedUserFirstName}</td>
+                <td>{moment(head.Deadline).format("YYYY/MM/DD")}</td>
                 <td>
                   <div className="col d-flex justify-content-between align-items-center">
                    <CircleIcon
