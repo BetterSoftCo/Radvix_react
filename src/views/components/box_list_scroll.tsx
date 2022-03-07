@@ -44,7 +44,8 @@ export const BoxListScroll: React.FC<IBoxListScroll> = ({
                 children={
                   <img
                     src={
-                      item[`${ImageItem}`] === null
+                      item[`${ImageItem}`] === null ||
+                      item[`${ImageItem}`] === ""
                         ? "/images/images/img_avatar.png"
                         : item[`${ImageItem}`]
                     }
