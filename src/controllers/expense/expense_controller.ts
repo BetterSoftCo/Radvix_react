@@ -1,7 +1,9 @@
 import { toast } from "react-toastify";
 import { CreatePublishReq } from "../../data/models/requests/publish/create_publish_req";
+import { SearchExpenseResResult } from "../../data/models/responses/expense/search_expense_res";
 import { CreatePublishResResult } from "../../data/models/responses/publish/create_publish_res";
 import { RemoteExpense } from "../../data/remotes/expense/remote_expense";
+import { store } from "../../data/store";
 export class expenseController {
   remote = new RemoteExpense();
 
@@ -25,5 +27,28 @@ export class expenseController {
         error(err);
       }
     );
+  }
+  SearchExpense(
+    action: (res: SearchExpenseResResult) => any,
+    error: (res: any) => any
+  ) {
+    if (store.getState().ResearchId > 0) {
+      this.remote.SearchExpense(
+        { researchId: store.getState().ResearchId },
+        (res) => {
+          action(res.result!);
+        },
+        (err) => {
+          toast.error(`${err.message}`, {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+          error(err);
+        }
+      );
+    } else {
+      toast.error(`please select research`, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
   }
 }
