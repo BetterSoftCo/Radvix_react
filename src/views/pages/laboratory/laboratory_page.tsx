@@ -105,6 +105,7 @@ export class LaboratoryPage extends React.Component {
                 { name: "Eqiups", center: true },
                 "",
               ]}
+              role={this.RoleUser}
             ></TableListLaboratory>
 
             <div className="d-flex justify-content-between align-items-baseline">

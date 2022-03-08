@@ -49,6 +49,7 @@ type StateType = {
   members: LabManager[];
   External: string;
   ExternalUrl: Array<string>;
+  loading:boolean
 };
 interface RouteParams {
   id: string;
@@ -94,6 +95,7 @@ export class LaboratoryPageEdit extends React.Component<
     members: [],
     External: "",
     ExternalUrl: [],
+    loading: false
   };
   componentDidMount() {
     this.controller.getLaboratoryById(
@@ -101,15 +103,18 @@ export class LaboratoryPageEdit extends React.Component<
       (res) => {
         this.setState({
           title: res.title,
-          categoryId: 0,
+          categoryId: res.categoryId,
           webSite: res.webSite,
-          description: "",
-          addressLine1: res.address,
-          addressLine2: "",
+          description: res.description,
+          addressLine1: res.addressLine1,
+          addressLine2: res.addressLine2,
           Managers: res.labManagers,
           media: res.media,
           equipments: res.equipments,
           members: res.members,
+          company:res.company,
+          zipCode:res.zipCode,
+          phone:res.phone
         });
       }
     );
@@ -132,7 +137,6 @@ export class LaboratoryPageEdit extends React.Component<
   }
   onDrop = (files: any) => {
     this.setState({ files });
-    console.log(this.state);
   };
   handleChange(target: string, val: any) {
     this.setState({
@@ -374,6 +378,7 @@ export class LaboratoryPageEdit extends React.Component<
                   onChange={(e) => {
                     this.handleChange("description", e.target.value);
                   }}
+                  value={this.state.description}
                 ></InputComponent>
               </div>
               <div className="item">
@@ -397,7 +402,7 @@ export class LaboratoryPageEdit extends React.Component<
               ></BoxAlert>
               <div className="teams mb-3 mt-3 team-edit">
                 <BoxListScroll
-                default_photo="/Images/icons/equipment_Icon.svg"
+                default_photo="/Images/icons/user.svg"
                   items={this.state.Managers}
                   TextItem="firstName"
                   ValueItem="id"
@@ -600,6 +605,10 @@ export class LaboratoryPageEdit extends React.Component<
                     </span>
                   }
                   popQuestion="Address"
+                  value={this.state.company}
+                  onChange={(e) => {
+                    this.handleChange("company", e.target.value);
+                  }}
                 ></InputComponent>
               </div>
               <div className="item">
@@ -665,6 +674,7 @@ export class LaboratoryPageEdit extends React.Component<
                     onChange={(e) => {
                       this.handleChange("zipCode", e.target.value);
                     }}
+                    value={this.state.zipCode}
                   ></InputComponent>
                 </div>
                 <div className="item col-md-6">
@@ -676,6 +686,7 @@ export class LaboratoryPageEdit extends React.Component<
                       this.state.phone,
                       "required"
                     )}
+                    value={this.state.phone}
                   ></InputComponent>
                 </div>
               </div>
@@ -713,6 +724,7 @@ export class LaboratoryPageEdit extends React.Component<
                 onClick={() => {
                   this.UpdateLaboratory();
                 }}
+                loading={this.state.loading}
               ></MainButton>
             </div>
           </div>

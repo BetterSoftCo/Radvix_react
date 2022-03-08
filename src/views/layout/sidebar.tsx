@@ -368,18 +368,26 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
             className="d-flex flex-wrap list-icons justify-content-around"
             style={{ marginTop: "6rem" }}
           >
-            <IconTextVertical
-              onClick={() => {
-                props.history.push(AppRoutes.new_laboratory);
-              }}
-              fontSize="15px"
-              className="lighter mx-2 my-1 pointer"
-              text="New Lab"
-              theme={Theme.light}
-              children={
-                <img width="40px" height="40px" src="/Images/icons/add.svg" />
-              }
-            ></IconTextVertical>
+            {AccessPermition(RoleUser, [
+              UserRoles.Admin,
+              UserRoles.L1Client,
+              UserRoles.L1User,
+              UserRoles.L2User,
+            ]) ? (
+              <IconTextVertical
+                onClick={() => {
+                  props.history.push(AppRoutes.new_laboratory);
+                }}
+                fontSize="15px"
+                className="lighter mx-2 my-1 pointer"
+                text="New Lab"
+                theme={Theme.light}
+                children={
+                  <img width="40px" height="40px" src="/Images/icons/add.svg" />
+                }
+              ></IconTextVertical>
+            ) : null}
+
             <IconTextVertical
               onClick={() => {
                 props.history.push(AppRoutes.laboratory);
@@ -392,22 +400,30 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 <img width="40px" height="40px" src="/images/icons/hotel.svg" />
               }
             ></IconTextVertical>
-            <IconTextVertical
-              onClick={() => {
-                props.history.push(AppRoutes.equip_new);
-              }}
-              fontSize="15px"
-              className="lighter mx-2 my-1 pointer"
-              text="New Equip"
-              theme={Theme.light}
-              children={
-                <img
-                  width="40px"
-                  height="40px"
-                  src="/images/icons/microscope_1.svg"
-                />
-              }
-            ></IconTextVertical>
+            {AccessPermition(RoleUser, [
+              UserRoles.Admin,
+              UserRoles.L1Client,
+              UserRoles.L1User,
+              UserRoles.L2User,
+            ]) ? (
+              <IconTextVertical
+                onClick={() => {
+                  props.history.push(AppRoutes.equip_new);
+                }}
+                fontSize="15px"
+                className="lighter mx-2 my-1 pointer"
+                text="New Equip"
+                theme={Theme.light}
+                children={
+                  <img
+                    width="40px"
+                    height="40px"
+                    src="/images/icons/microscope_1.svg"
+                  />
+                }
+              ></IconTextVertical>
+            ) : null}
+
             <IconTextVertical
               onClick={() => {
                 props.history.push(AppRoutes.equip);
