@@ -97,6 +97,7 @@ class NewEquip extends React.Component<RouteComponentProps> {
 
   onDropPic = (picture: any) => {
     this.setState({ picture, imageUrl: URL.createObjectURL(picture[0]) });
+    this.handelUploadPic(5)
   };
   onDrop = (files: any) => {
     this.setState({ files });
@@ -226,7 +227,7 @@ class NewEquip extends React.Component<RouteComponentProps> {
   }
   async handelUploadPic(id: number) {
     const formData = new FormData();
-    for (let i = 0; i < this.state.files.length; i++) {
+    for (let i = 0; i < this.state.picture.length; i++) {
       const file = this.state.picture[i];
       formData.append("Files", file);
     }

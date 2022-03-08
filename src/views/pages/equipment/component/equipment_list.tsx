@@ -33,7 +33,7 @@ const EquipmentList: React.FC<TableComponentProp & RouteComponentProps> = (
                   theme={Theme.light}
                   children={
                     <img
-                      src="/images/images/img_avatar.png"
+                      src={head.image}
                       alt="Avatar"
                       className="rounded-circle avatar mx-2"
                       width={58}
