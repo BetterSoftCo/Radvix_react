@@ -15,11 +15,13 @@ import { UploadController } from "../../../controllers/upload_media/upload_media
 import SimpleReactValidator from "simple-react-validator";
 import { LocalDataSources } from "../../../data/local_datasources";
 import { LaboratoryController } from "../../../controllers/laboratory/laboratory_controller";
+import { EquipmentCreateReq } from "../../../data/models/requests/equipment/equipment_create_req";
 type StateType = {
   title: string;
   description: string;
   technicianName: string;
   technicianEmail: string;
+  technicianPhone: string;
   model: string;
   manufacturer: string;
   laboratoriesId: number[];
@@ -37,7 +39,7 @@ type StateType = {
   External: string;
   listequipmentStatus: Array<{ name: string; id: number } | {}>;
   imageUrl: string;
-  Laboratory: Array<{ name: string; value: number }>;
+  listLaboratory: Array<{ name: string; value: number }>;
 };
 class NewEquip extends React.Component<RouteComponentProps> {
   RoleUser = store.getState().userRole;
@@ -70,7 +72,8 @@ class NewEquip extends React.Component<RouteComponentProps> {
     loading: false,
     listequipmentStatus: [],
     imageUrl: "",
-    Laboratory: [],
+    listLaboratory: [],
+    technicianPhone: "",
   };
   componentDidMount() {
     this.setState({
@@ -80,13 +83,16 @@ class NewEquip extends React.Component<RouteComponentProps> {
           return { name: item.title, id: item.id };
         }),
     });
-    // this.labController.getLaboratoryGetAll((res) => {
-    //   this.setState({
-    //     Laboratory: res.laboratories.map((item) => {
-    //       return { label: item.title, value: item.id };
-    //     }),
-    //   });
-    // });
+    this.controller.EquipmentsSearch(
+      (res) => {
+        this.setState({
+          listLaboratory: res.map((item) => {
+            return { label: item.title, value: item.id };
+          }),
+        });
+      },
+      (err) => {}
+    );
   }
 
   onDropPic = (picture: any) => {
@@ -134,7 +140,7 @@ class NewEquip extends React.Component<RouteComponentProps> {
   }
   handelCreateEquipment() {
     if (this.validator.allValid()) {
-      const body = {
+      const body: EquipmentCreateReq = {
         title: this.state.title,
         description: this.state.description,
         technicianName: this.state.technicianName,
@@ -142,13 +148,8 @@ class NewEquip extends React.Component<RouteComponentProps> {
         model: this.state.model,
         manufacturer: this.state.manufacturer,
         laboratoriesId: this.state.laboratoriesId,
-        externalUrls: [],
-        addressLine1: this.state.addressLine1,
-        addressLine2: this.state.addressLine2,
-        zipCode: this.state.zipCode,
-        company: this.state.company,
-        phone: this.state.phone,
         status: this.state.status,
+        technicianPhone: this.state.technicianPhone,
       };
       this.setState({
         loading: true,
@@ -158,8 +159,13 @@ class NewEquip extends React.Component<RouteComponentProps> {
       this.controller.createEquipment(
         body,
         (res) => {
-          this.handelUpload(res.id);
-          this.handelUploadPic(res.id);
+          if (this.state.files.length || this.state.picture.length) {
+            this.handelUpload(res.id);
+            this.handelUploadPic(res.id);
+          } else {
+            this.props.history.push(`${AppRoutes.equip_profile.replace(":id", res.id?.toString() ?? "")}`);
+          }
+
           this.setState({
             files: [],
             picture: [],
@@ -179,9 +185,9 @@ class NewEquip extends React.Component<RouteComponentProps> {
             zipCode: "",
             External: "",
             ExternalUrl: [],
-            listequipmentStatus: [],
+            loading: false,
             imageUrl: "",
-            Laboratory: [],
+            technicianPhone: "",
           });
         },
         (err) => {
@@ -233,7 +239,9 @@ class NewEquip extends React.Component<RouteComponentProps> {
         this.setState({
           loading: false,
         });
-        this.props.history.push(AppRoutes.equip_profile);
+        this.props.history.push(
+          `${AppRoutes.equip_profile.replace(":id", id?.toString() ?? "")}`
+        );
       },
       () => {
         this.setState({
@@ -450,6 +458,7 @@ class NewEquip extends React.Component<RouteComponentProps> {
                   onChange={(e) => {
                     this.handleChange("status", parseInt(e.target.value));
                   }}
+                  Selected={this.state.status}
                 ></RadioGroup>
               </div>
             </div>
@@ -621,7 +630,7 @@ class NewEquip extends React.Component<RouteComponentProps> {
               </div>
               <div className="item">
                 <SelectComponent
-                  items={this.state.Laboratory}
+                  items={this.state.listLaboratory}
                   TextItem="title"
                   ValueItem="id"
                   className="my-2"
