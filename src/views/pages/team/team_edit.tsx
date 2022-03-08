@@ -18,6 +18,7 @@ import {
 } from "../../../data/models/responses/team/get_by_id_res";
 import { User } from "../../../data/models/responses/team/team_search_res";
 import { UpdateTeamReq } from "../../../data/models/requests/team/update_team_req";
+import { AccessPermition, UserRoles } from "../../../core/utils";
 type StateType = {
   id: number;
   title: string;
@@ -215,14 +216,28 @@ class TeamPageEdit extends React.Component<RouteComponentProps<RouteParams>> {
               }}
               className="backPage"
             ></span>{" "}
-            Edit Team
+            {AccessPermition(this.RoleUser, [
+              UserRoles.Admin,
+              UserRoles.L1Client,
+              UserRoles.L1User,
+            ])
+              ? "Edit Team"
+              : "Edit Subteam"}
           </h5>
           <div className="form row">
             <div className="col-md-6 left">
               <div className="item">
                 <InputComponent
                   type={InputType.text}
-                  label="Team Name:"
+                  label={
+                    AccessPermition(this.RoleUser, [
+                      UserRoles.Admin,
+                      UserRoles.L1Client,
+                      UserRoles.L1User,
+                    ])
+                      ? "Team Name:"
+                      : "Subteam Name:"
+                  }
                   popQuestion="Team Name:"
                   onChange={(e) => {
                     this.handleChange("title", e.target.value);
@@ -249,36 +264,46 @@ class TeamPageEdit extends React.Component<RouteComponentProps<RouteParams>> {
                   value={this.state.description}
                 ></InputComponent>
               </div>
-              <div className="item">
-                <SelectComponent
-                  items={this.state.listManagers}
-                  TextItem="name"
-                  ValueItem="id"
-                  className="my-2"
-                  placeholder="Click to see the list…"
-                  label=" Team Manager (s):"
-                  popQuestion=" Team Manager (s):"
-                  optional="optional"
-                  onChange={(e) => {
-                    this.handelChangeSelect("addedManagersId", e);
-                  }}
-                  isMulti
-                ></SelectComponent>
-              </div>
-              <div className="teams Labs mb-3">
-                <BoxListScroll
-                  default_photo="/Images/icons/user.svg"
-                  className="mt-3 pointer"
-                  items={this.state.Managers}
-                  TextItem="firstName"
-                  ValueItem="userId"
-                  ImageItem="image"
-                  Deletabel
-                  DeleteFunc={(e, value) => {
-                    this.handeldeletedManagers(value);
-                  }}
-                ></BoxListScroll>
-              </div>
+              {AccessPermition(this.RoleUser, [
+                UserRoles.Admin,
+                UserRoles.L1Client,
+                UserRoles.L1User,
+              ]) ? (
+                <>
+                  <div className="item">
+                    <SelectComponent
+                      items={this.state.listManagers}
+                      TextItem="name"
+                      ValueItem="id"
+                      className="my-2"
+                      placeholder="Click to see the list…"
+                      label=" Team Manager (s):"
+                      popQuestion=" Team Manager (s):"
+                      optional="optional"
+                      onChange={(e) => {
+                        this.handelChangeSelect("addedManagersId", e);
+                      }}
+                      isMulti
+                    ></SelectComponent>
+                  </div>
+                  <div className="teams Labs mb-3">
+                    <BoxListScroll
+                      default_photo="/Images/icons/user.svg"
+                      className="mt-3 pointer"
+                      items={this.state.Managers}
+                      TextItem="firstName"
+                      ValueItem="userId"
+                      ImageItem="image"
+                      Deletabel
+                      DeleteFunc={(e, value) => {
+                        this.handeldeletedManagers(value);
+                      }}
+                    ></BoxListScroll>
+                  </div>
+                </>
+              ) : (
+                ""
+              )}
             </div>
             <div className="col-md-6 right">
               <div className="item">
@@ -288,8 +313,24 @@ class TeamPageEdit extends React.Component<RouteComponentProps<RouteParams>> {
                   ValueItem="id"
                   className="my-2"
                   placeholder="Click to see the list…"
-                  label="Add Members To This Team:"
-                  popQuestion="Add Members To This Team:"
+                  label={
+                    AccessPermition(this.RoleUser, [
+                      UserRoles.Admin,
+                      UserRoles.L1Client,
+                      UserRoles.L1User,
+                    ])
+                      ? "Add Members To This Team:"
+                      : "Add Members To This subteam::"
+                  }
+                  popQuestion={
+                    AccessPermition(this.RoleUser, [
+                      UserRoles.Admin,
+                      UserRoles.L1Client,
+                      UserRoles.L1User,
+                    ])
+                      ? "Add Members To This Team:"
+                      : "Add Members To This subteam::"
+                  }
                   optional=""
                   onChange={(e) => {
                     this.handelChangeSelect("addedUsersId", e);
@@ -318,8 +359,24 @@ class TeamPageEdit extends React.Component<RouteComponentProps<RouteParams>> {
                   ValueItem="id"
                   className="my-2"
                   placeholder="Click to see the list…"
-                  label="Assign Team To Labs (Equips):"
-                  popQuestion="Assign Team To Labs (Equips):"
+                  popQuestion={
+                    AccessPermition(this.RoleUser, [
+                      UserRoles.Admin,
+                      UserRoles.L1Client,
+                      UserRoles.L1User,
+                    ])
+                      ? "Assign Team To Labs (Equips):"
+                      : "Assign Subteam To Labs (Equips):"
+                  }
+                  label={
+                    AccessPermition(this.RoleUser, [
+                      UserRoles.Admin,
+                      UserRoles.L1Client,
+                      UserRoles.L1User,
+                    ])
+                      ? "Assign Team To Labs (Equips):"
+                      : "Assign Subteam To Labs (Equips):"
+                  }
                   optional="optional"
                   onChange={(e) => {
                     this.handelChangeSelect("addedLaboratoriesId", e);
@@ -381,8 +438,24 @@ class TeamPageEdit extends React.Component<RouteComponentProps<RouteParams>> {
                   ValueItem="id"
                   className="my-2"
                   placeholder="Click to see the list…"
-                  label="Assign Team To Projects:                  "
-                  popQuestion="Assign Team To Projects:"
+                  label={
+                    AccessPermition(this.RoleUser, [
+                      UserRoles.Admin,
+                      UserRoles.L1Client,
+                      UserRoles.L1User,
+                    ])
+                      ? "Assign Team To Projects:"
+                      : "Assign Subteam To Projects:"
+                  }
+                  popQuestion={
+                    AccessPermition(this.RoleUser, [
+                      UserRoles.Admin,
+                      UserRoles.L1Client,
+                      UserRoles.L1User,
+                    ])
+                      ? "Assign Team To Projects:"
+                      : "Assign Subteam To Projects:"
+                  }
                   optional="optional"
                   onChange={(e) => {
                     this.handelChangeSelect("addedResearchesId", e);

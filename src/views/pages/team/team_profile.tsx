@@ -4,7 +4,7 @@ import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import "react-datepicker/dist/react-datepicker.css";
 import { MainButton, MainButtonType } from "../../components/button";
 import { IconTextRow } from "../../components/icon_text_horizontal";
-import { Theme } from "../../../core/utils";
+import { AccessPermition, Theme, UserRoles } from "../../../core/utils";
 import { BoxListScroll } from "../../components/box_list_scroll";
 import { withRouter, RouteComponentProps } from "react-router";
 import { AppRoutes } from "../../../core/constants";
@@ -77,27 +77,36 @@ class TeamPageProfile extends React.Component<
                   window.history.back();
                 }}
                 className="backPage"
-              ></span>{" "}
-              {"Team Profile"}
-              <CircleIcon
-                width="22px"
-                height="22px"
-                type={ThemeCircleIcon.dark}
-                backgroundColor="#474747"
-                fontSize="10px"
-                color="#ffff"
-                className="mx-4 pointer"
-                onClick={() => {
-                  this.props.history.push(
-                    `${AppRoutes.team_edit.replace(
-                      ":id",
-                      this.props.match.params.id
-                    )}`
-                  );
-                }}
-              >
-                <img src="/images/icons/edit.svg" alt="radvix" />
-              </CircleIcon>
+              ></span>
+              {this.state.mainTeam.id === null
+                ? "Team Profile"
+                : "SubTeam Profile"}
+              {AccessPermition(this.RoleUser, [
+                UserRoles.Admin,
+                UserRoles.L1Client,
+                UserRoles.L1User,
+                UserRoles.L2User,
+              ]) ? (
+                <CircleIcon
+                  width="22px"
+                  height="22px"
+                  type={ThemeCircleIcon.dark}
+                  backgroundColor="#474747"
+                  fontSize="10px"
+                  color="#ffff"
+                  className="mx-4 pointer"
+                  onClick={() => {
+                    this.props.history.push(
+                      `${AppRoutes.team_edit.replace(
+                        ":id",
+                        this.props.match.params.id
+                      )}`
+                    );
+                  }}
+                >
+                  <img src="/images/icons/edit.svg" alt="radvix" />
+                </CircleIcon>
+              ) : null}
             </h5>
             <MainButton
               children="Discussion Panel"
@@ -121,7 +130,7 @@ class TeamPageProfile extends React.Component<
                 <div className="col-8 t-desc border-t-r">
                   <MainButton
                     children={
-                      this.state.mainTeam !== null ? "Sub Team" : "Main Team"
+                      this.state.mainTeam.id !== null ? "Sub Team" : "Main Team"
                     }
                     type={MainButtonType.light}
                     borderRadius="24px"
@@ -138,18 +147,30 @@ class TeamPageProfile extends React.Component<
                     .join(" - ")}
                 </div>
               </div>
-
-              <div className="row border-bottom">
-                <h6 className="col-4 t-title mb-0 border-b-l">Subteams</h6>
-                <div className="col-8 t-desc border-b-r">
-                  {" "}
-                  <ul className="file-list">
-                    {this.state.subTeams.map((item) => (
-                      <li key={item.id}>- {item.title}</li>
-                    ))}
-                  </ul>
+              {this.state.mainTeam.id === null ? (
+                <div className="row border-bottom">
+                  <h6 className="col-4 t-title mb-0 border-b-l">Subteams</h6>
+                  <div className="col-8 t-desc border-b-r">
+                    {" "}
+                    <ul className="file-list">
+                      {this.state.subTeams.map((item) => (
+                        <li key={item.id}>- {item.title}</li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-              </div>
+              ) : (
+                <div className="row border-bottom">
+                  <h6 className="col-4 t-title mb-0 border-b-l">Main Team</h6>
+                  <div className="col-8 t-desc border-b-r">
+                    {" "}
+                    <ul className="file-list">
+                      <li>- {this.state.mainTeam.title}</li>
+                    </ul>
+                  </div>
+                </div>
+              )}
+
               <div className="row teams my-3 teams-light">
                 <IconTextRow
                   theme={Theme.dark}
@@ -169,7 +190,12 @@ class TeamPageProfile extends React.Component<
                         className="px-3 pointer"
                         backgroundColor="#EBEBEB"
                         onClick={() => {
-                          this.props.history.push(AppRoutes.member_profile);
+                          this.props.history.push(
+                            `${AppRoutes.profile_research.replace(
+                              ":id",
+                              item.id?.toString() ?? ""
+                            )}`
+                          );
                         }}
                       ></MainButton>
                     </div>
@@ -236,21 +262,31 @@ class TeamPageProfile extends React.Component<
                         className="px-3 pointer"
                         backgroundColor="#EBEBEB"
                         onClick={() => {
-                          this.props.history.push(AppRoutes.member_profile);
+                          this.props.history.push(
+                            `${AppRoutes.member_profile.replace(
+                              ":id",
+                              item.id.toString()
+                            )}`
+                          );
                         }}
                       ></MainButton>
                     </div>
                   ))}
                 </div>
                 <BoxListScroll
-                default_photo="/Images/icons/equipment_Icon.svg"
+                  default_photo="/Images/icons/equipment_Icon.svg"
                   items={this.state.equipments}
                   TextItem="title"
                   ValueItem="id"
                   ImageItem="imagesrc"
                   Deletabel
-                  onClick={() => {
-                    this.props.history.push(AppRoutes.profile_laboratory);
+                  onClick={(e, val) => {
+                    this.props.history.push(
+                      `${AppRoutes.equip_profile.replace(
+                        ":id",
+                        val.toString()
+                      )}`
+                    );
                   }}
                   className="pointer"
                 ></BoxListScroll>
@@ -260,7 +296,15 @@ class TeamPageProfile extends React.Component<
               <div className="teams Labs mb-3 teams-light">
                 <IconTextRow
                   theme={Theme.dark}
-                  text="Teams (Members)"
+                  text={
+                    AccessPermition(this.RoleUser, [
+                      UserRoles.Admin,
+                      UserRoles.L1Client,
+                      UserRoles.L1User,
+                    ])
+                      ? "Teams (Members)"
+                      : "SubTeam (Members)"
+                  }
                   children={
                     <img
                       src="/images/icons/team_menu.svg"
@@ -268,16 +312,22 @@ class TeamPageProfile extends React.Component<
                       alt=""
                     />
                   }
+                  className="mb-2"
                 ></IconTextRow>
                 <BoxListScroll
-                default_photo="/Images/icons/user.svg"
+                  default_photo="/Images/icons/user.svg"
                   className="mt-3 pointer"
                   items={this.state.users}
                   TextItem="firstName"
                   ValueItem="id"
                   ImageItem="image"
-                  onClick={() => {
-                    this.props.history.push(AppRoutes.profile_laboratory);
+                  onClick={(e, val) => {
+                    this.props.history.push(
+                      `${AppRoutes.member_profile.replace(
+                        ":id",
+                        val?.toString()
+                      )}`
+                    );
                   }}
                 ></BoxListScroll>
               </div>

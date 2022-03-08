@@ -10,6 +10,7 @@ import { withRouter, RouteComponentProps } from "react-router";
 import { AppRoutes } from "../../../core/constants";
 import { Team } from "../../../data/models/responses/team/get_all_teams_res";
 import { TeamController } from "../../../controllers/team/team_controller";
+import { AccessPermition, UserRoles } from "../../../core/utils";
 type StateType = {
   Teams: Team[];
   PageNumber: number;
@@ -25,7 +26,7 @@ class TeamPage extends React.Component<RouteComponentProps> {
     PageNumber: 1,
     PageSize: 10,
     PageCount: 0,
-    TotalCount:0
+    TotalCount: 0,
   };
   componentDidMount() {
     this.GetTeams(this.state.PageNumber, this.state.PageSize);
@@ -36,8 +37,8 @@ class TeamPage extends React.Component<RouteComponentProps> {
       (res) => {
         this.setState({
           Teams: res.teams,
-          PageCount: Math.ceil(res.count! / this.state.PageSize),
-          TotalCount: res.count,
+          PageCount: Math.ceil(res.teamCount! / this.state.PageSize),
+          TotalCount: res.teamCount,
         });
       }
     );
@@ -81,15 +82,32 @@ class TeamPage extends React.Component<RouteComponentProps> {
                 ></InputIcon>
               </div>
               <div className="right w-50 d-flex justify-content-end align-items-center">
-                <MainButton
-                  children="New Team"
-                  type={MainButtonType.dark}
-                  borderRadius="24px"
-                  fontSize="14px"
-                  onClick={() => {
-                    this.props.history.push(AppRoutes.new_team);
-                  }}
-                ></MainButton>
+                {AccessPermition(this.RoleUser, [
+                  UserRoles.Admin,
+                  UserRoles.L1Client,
+                  UserRoles.L1User,
+                ]) ? (
+                  <MainButton
+                    children="New Team"
+                    type={MainButtonType.dark}
+                    borderRadius="24px"
+                    fontSize="14px"
+                    onClick={() => {
+                      this.props.history.push(AppRoutes.new_team);
+                    }}
+                  ></MainButton>
+                ) : this.RoleUser === UserRoles.L2User ? (
+                  <MainButton
+                    children="Only Subteam"
+                    type={MainButtonType.dark}
+                    borderRadius="24px"
+                    fontSize="14px"
+                    onClick={() => {
+                      this.props.history.push(AppRoutes.new_team);
+                    }}
+                  ></MainButton>
+                ) : null}
+
                 <MainButton
                   children="Member"
                   type={MainButtonType.dark}
@@ -157,7 +175,9 @@ class TeamPage extends React.Component<RouteComponentProps> {
                 />
               </div>
               <div className="d-flex justify-content-end flex-fill">
-                <p className="text-right mb-0 ">Total Results: {this.state.TotalCount}</p>
+                <p className="text-right mb-0 ">
+                  Total Results: {this.state.TotalCount}
+                </p>
               </div>
             </div>
           </div>

@@ -480,22 +480,38 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
             className="d-flex flex-wrap list-icons px-0 justify-content-around"
             style={{ marginTop: "10rem" }}
           >
-            <IconTextVertical
-              onClick={() => {
-                props.history.push(AppRoutes.new_team);
-              }}
-              fontSize="15px"
-              className="lighter mx-1 my-1 pointer"
-              text="Add Team"
-              theme={Theme.light}
-              children={
-                <img
-                  width="40px"
-                  height="40px"
-                  src="/images/icons/teamwork.svg"
-                />
-              }
-            ></IconTextVertical>
+            {AccessPermition(RoleUser, [
+              UserRoles.Admin,
+              UserRoles.L1Client,
+              UserRoles.L1User,
+              UserRoles.L2User,
+            ]) ? (
+              <IconTextVertical
+                onClick={() => {
+                  props.history.push(AppRoutes.new_team);
+                }}
+                fontSize="15px"
+                className="lighter mx-1 my-1 pointer"
+                text={
+                  AccessPermition(RoleUser, [
+                    UserRoles.Admin,
+                    UserRoles.L1Client,
+                    UserRoles.L1User,
+                  ])
+                    ? "Add Team"
+                    : "Add"
+                }
+                theme={Theme.light}
+                children={
+                  <img
+                    width="40px"
+                    height="40px"
+                    src="/images/icons/teamwork.svg"
+                  />
+                }
+              ></IconTextVertical>
+            ) : null}
+
             <IconTextVertical
               onClick={() => {
                 props.history.push(AppRoutes.team);
@@ -508,22 +524,30 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 <img width="40px" height="40px" src="/images/icons/tasks.svg" />
               }
             ></IconTextVertical>
-            <IconTextVertical
-              onClick={() => {
-                props.history.push(AppRoutes.member_new);
-              }}
-              fontSize="15px"
-              className="lighter mx-1 my-1 pointer"
-              text="Invite Members"
-              theme={Theme.light}
-              children={
-                <img
-                  width="40px"
-                  height="40px"
-                  src="/images/icons/scientist.svg"
-                />
-              }
-            ></IconTextVertical>
+            {AccessPermition(RoleUser, [
+              UserRoles.Admin,
+              UserRoles.L1Client,
+              UserRoles.L1User,
+              UserRoles.L2User,
+            ]) ? (
+              <IconTextVertical
+                onClick={() => {
+                  props.history.push(AppRoutes.member_new);
+                }}
+                fontSize="15px"
+                className="lighter mx-1 my-1 pointer"
+                text="Invite Members"
+                theme={Theme.light}
+                children={
+                  <img
+                    width="40px"
+                    height="40px"
+                    src="/images/icons/scientist.svg"
+                  />
+                }
+              ></IconTextVertical>
+            ) : null}
+
             <IconTextVertical
               onClick={() => {
                 props.history.push(AppRoutes.member);

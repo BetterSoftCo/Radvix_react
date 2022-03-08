@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import { Route, Switch } from "react-router";
-import  SplashPage  from "./views/pages/landing/splash_page";
+import SplashPage from "./views/pages/landing/splash_page";
 import { AppRoutes } from "./core/constants";
 import { DashboardPage } from "./views/pages/dashboard/dashboard_page";
 import MainLayout from "./views/layout/main_layout";
@@ -81,7 +81,11 @@ ReactDOM.render(
           <Route component={SplashPage} path={AppRoutes.splash} exact />
           <Route component={DashboardPage} path={AppRoutes.dashboard} exact />
           <Route component={LoginPage} path={AppRoutes.login} exact />
-          <Route component={RegisterPage} path={AppRoutes.register_page} exact />
+          <Route
+            component={RegisterPage}
+            path={AppRoutes.register_page}
+            exact
+          />
           <Route component={ResearchPage} path={AppRoutes.research} exact />
           <Route
             component={ResearchPageNew}
@@ -94,7 +98,11 @@ ReactDOM.render(
             exact
           />
           <ProtectedRoute
-            isAuthenticated={RoleUser === UserRoles.L1User || RoleUser === UserRoles.L1Client ? true : false}
+            isAuthenticated={
+              RoleUser === UserRoles.L1User || RoleUser === UserRoles.L1Client
+                ? true
+                : false
+            }
             authenticationPath={AppRoutes.research}
             exact={true}
             path={`${AppRoutes.edit_research}`}
@@ -349,7 +357,9 @@ ReactDOM.render(
           />
           <ProtectedRoute
             isAuthenticated={
-              RoleUser === UserRoles.L1User || RoleUser === UserRoles.L1Client
+              RoleUser === UserRoles.L1User ||
+              RoleUser === UserRoles.L1Client ||
+              RoleUser === UserRoles.L2User
                 ? true
                 : false
             }
@@ -368,7 +378,7 @@ ReactDOM.render(
             path={AppRoutes.library_page}
             exact
           />
-          <Route path='*' exact={true} component={not_found_page} />
+          <Route path="*" exact={true} component={not_found_page} />
         </Switch>
       </MainLayout>
     </BrowserRouter>
