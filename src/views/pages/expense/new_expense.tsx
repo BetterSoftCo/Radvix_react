@@ -9,24 +9,169 @@ import { SelectComponent } from "../../components/select_input";
 import Dropzone from "react-dropzone";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
+import SimpleReactValidator from "simple-react-validator";
+import { expenseController } from "../../../controllers/expense/expense_controller";
+type StateType = {
+  files: Array<File>;
+  categoryId: number;
+  title: string;
+  appTaskId: number;
+  description: string;
+  amount: number;
+  date: Date;
+  appTasksList: Array<string>;
+  categories: Array<string>
+  External: string,
+  ExternalUrl: Array<string>,
+};
 class ExpensePageNew extends React.Component<RouteComponentProps> {
+  controller = new expenseController();
+
   RoleUser = store.getState().userRole;
   date = new Date();
-  handelChangeDate(params: any): void {
-    console.log(params);
+  handelChangeDate(target: string, params: any): void {
+    this.setState({
+      [target]: params,
+    });
   }
-  state = {
+  state: StateType = {
     files: [],
+    categoryId: 0,
+    title: "",
+    appTaskId: 0,
+    description: "",
+    amount: 0,
+    date: new Date(),
+    appTasksList: [],
+    categories: [],
+    ExternalUrl: [],
+    External: ""
   };
   onDrop = (files: any) => {
     this.setState({ files });
-    console.log(this.state);
   };
+  handelDeleteFile(arg: File) {
+    this.setState({
+      files: this.state.files.filter((file) => file.name !== arg.name),
+    });
+  }
+  async handelUpload(id: number) {
+    const formData = new FormData();
+    for (let i = 0; i < this.state.files.length; i++) {
+      const file = this.state.files[i];
+      formData.append("Files", file);
+    }
+    // for (let i = 0; i < this.state.ExternalUrl.length; i++) {
+    //   const file = this.state.ExternalUrl[i];
+    //   formData.append("ExternalUrls", file);
+    // }
+    // formData.append("UseCase", "1");
+    // formData.append("LaboratoryId", id.toString());
+
+    // await this.UploadController.UloadMedia(
+    //   formData,
+    //   (res) => {
+    //     this.setState({
+    //       loading: false,
+    //     });
+    //   },
+    //   () => {
+    //     this.setState({
+    //       loading: false,
+    //     });
+    //   }
+    // );
+  }
+  handleChange(target: string, val: any) {
+    this.setState({
+      [target]: val,
+    });
+  }
+  addExternalUrl() {
+    let Url = [...this.state.ExternalUrl]
+    Url.push(this.state.External)
+    this.setState({
+      ExternalUrl: Url,
+      External: ''
+    });
+  }
+  validator = new SimpleReactValidator({
+    className: "text-danger",
+  });
+  handelCreateExpense() {
+    if (this.validator.allValid()) {
+      const body = {
+        categoryId: this.state.categoryId,
+        title: this.state.title,
+        appTaskId: this.state.appTaskId,
+        description: this.state.description,
+        amount: this.state.amount,
+        date: this.state.date,
+      }
+      this.controller.createExpense(
+        body,
+        (res) => {
+          this.setState({
+            categoryId: 0,
+            title: '',
+            appTaskId: '',
+            description: 2,
+            amount: new Date(),
+            date: new Date(),
+          });
+        },
+        (err) => {
+          this.setState({
+            loading: false,
+          });
+        }
+      );
+    } else {
+      this.validator.showMessages();
+      this.forceUpdate();
+    }
+  }
+  componentDidMount() {
+    // this.controller.SearchPublish((res) => {
+    //   this.setState({
+    //     listMembers: res,
+    //   });
+    // });
+    this.GetSearchExpense()
+    store.subscribe(() => {
+      this.GetSearchExpense()
+    })
+  }
+  GetSearchExpense() {
+    this.controller.SearchExpense(res => {
+      this.setState({
+        appTasksList: res.appTasks?.map(item => {
+          return { label: item.title, value: item.id }
+        }),
+        categories: res.category?.map(item => {
+          return { label: item.title, value: item.id }
+        }),
+      })
+    }, err => { })
+  }
+  handelChangeSelect(
+    target: string,
+    e: { label: string; value: number }
+  ) {
+    this.setState({ [target]: e.value });
+  }
+  handelDeleteExternalLink(link: string) {
+    this.setState({
+      ExternalUrl: this.state.ExternalUrl.filter(item => item !== link)
+    })
+  }
   render() {
     const files = this.state.files.map((file: any) => (
       <li key={file.name}>
         {file.name} - {file.size} bytes
-        <CircleIcon type={ThemeCircleIcon.dark} width="22px" height="22px">
+        <CircleIcon type={ThemeCircleIcon.dark} width="22px" height="22px" onClick={() => {
+          this.handelDeleteFile(file);
+        }}>
           <img
             src="/images/icons/garbage_can.svg"
             alt="radvix"
@@ -56,21 +201,50 @@ class ExpensePageNew extends React.Component<RouteComponentProps> {
                   type={InputType.text}
                   label="Expense Name:"
                   popQuestion="Expense Name:"
+                  onChange={(e) => {
+                    this.handleChange("title", e.target.value);
+                  }}
+                  inValid={this.validator.message(
+                    "Name",
+                    this.state.title,
+                    "required"
+                  )}
                 ></InputComponent>
               </div>
               <div className="item">
-                <InputComponent
+                {/* <InputComponent
                   type={InputType.text}
                   label="Associated Task:"
                   popQuestion="Associated Task:"
-                ></InputComponent>
+                ></InputComponent> */}
+                <span className="label d-flex align-items-center">
+                  Associated Task:
+                </span>
+                <SelectComponent
+                  items={this.state.appTasksList}
+                  TextItem="name"
+                  ValueItem="id"
+                  className="my-2"
+                  placeholder="Click to see the list…"
+                  isMulti={false}
+                  onChange={(e) => {
+                    this.handelChangeSelect("appTaskId", e);
+                  }}
+                ></SelectComponent>
               </div>
               <div className="item">
                 <InputComponent
                   type={InputType.textarea}
                   label="Description:"
-                  popQuestion="Description:"
                   optional="optional"
+                  onChange={(e) => {
+                    this.handleChange("description", e.target.value);
+                  }}
+                  inValid={this.validator.message(
+                    "description",
+                    this.state.description,
+                    "required"
+                  )}
                 ></InputComponent>
               </div>
             </div>
@@ -83,6 +257,9 @@ class ExpensePageNew extends React.Component<RouteComponentProps> {
                       label="Amount:"
                       popQuestion="Amount:"
                       placeholder="$0.00"
+                      onChange={(e) => {
+                        this.handleChange("amount", e.target.value);
+                      }}
                     ></InputComponent>
                   </div>
                 </div>
@@ -103,8 +280,10 @@ class ExpensePageNew extends React.Component<RouteComponentProps> {
                       </CircleIcon>
                     </span>
                     <DatePicker
-                      selected={this.date}
-                      onChange={this.handelChangeDate}
+                      selected={this.state.date}
+                      onChange={(e) => {
+                        this.handelChangeDate("date", e);
+                      }}
                     />
                   </div>
                 </div>
@@ -152,14 +331,14 @@ class ExpensePageNew extends React.Component<RouteComponentProps> {
                                 src="/Images/icons/cloud_computing.svg"
                                 alt="sssss"
                                 height="20"
-                                
+
                               />{" "}
                               <span className="flex-fill">Browse Local Files</span>
                             </div>
                           }
                         ></MainButton>
                         <p>
-                        Or drag and drop files here
+                          Or drag and drop files here
                         </p>
                       </div>
                       <aside>
@@ -175,6 +354,10 @@ class ExpensePageNew extends React.Component<RouteComponentProps> {
                   type={InputType.text}
                   placeholder="https://"
                   className="mx-2"
+                  value={this.state.External}
+                  onChange={(e) => {
+                    this.handleChange("External", e.target.value);
+                  }}
                 ></InputComponent>
                 <CircleIcon
                   width="36px"
@@ -184,11 +367,36 @@ class ExpensePageNew extends React.Component<RouteComponentProps> {
                   fontSize="18px"
                   color="#ffffff"
                   className="px-3"
-                  
+                  onClick={() => { this.addExternalUrl() }}
                 >
                   <i className="fas fa-plus"></i>
                 </CircleIcon>
               </div>
+              <ul className="file-list mt-3">
+                {
+                  this.state.ExternalUrl.map(item => (
+                    <li className="my-2 d-flex flex-column flex-md-row">
+                      <MainButton
+                        children={item}
+                        type={MainButtonType.dark}
+                        borderRadius="24px"
+                        fontSize="14px"
+                        backgroundColor="#F5F5F5"
+                        color="#096BFF"
+                      ></MainButton>
+                      <CircleIcon
+                        type={ThemeCircleIcon.dark}
+                        width="22px"
+                        height="22px"
+                        className="mx-3 pointer"
+                        onClick={() => this.handelDeleteExternalLink(item)}
+                      >
+                        <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
+                      </CircleIcon>
+                    </li>
+                  ))
+                }
+              </ul>
               <div className="item">
                 <span className="label d-flex align-items-center">
                   Category:
@@ -213,14 +421,15 @@ class ExpensePageNew extends React.Component<RouteComponentProps> {
                 </span>
                 <div className="d-flex justify-content-between align-items-center">
                   <SelectComponent
-                    items={[
-                      { name: "test1", id: 1 },
-                      { name: "test2", id: 2 },
-                    ]}
+                    items={this.state.categories}
                     TextItem="name"
                     ValueItem="id"
                     className="my-2"
                     placeholder="Click to see the list…"
+                    isMulti={false}
+                    onChange={(e) => {
+                      this.handelChangeSelect("categoryId", e);
+                    }}
                   ></SelectComponent>
                   <CircleIcon
                     width="36px"
@@ -254,7 +463,7 @@ class ExpensePageNew extends React.Component<RouteComponentProps> {
                 className="mx-2"
                 minHeight="43px"
                 minWidth="136px"
-                onClick={()=>{this.props.history.push(AppRoutes.expense_profile)}}
+                onClick={() => { this.handelCreateExpense() }}
               ></MainButton>
             </div>
           </div>
