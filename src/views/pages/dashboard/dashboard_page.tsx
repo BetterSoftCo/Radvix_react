@@ -14,6 +14,7 @@ import { AppTask } from "../../../data/models/responses/task/get_all_tasks_res";
 import { TaskController } from "../../../controllers/task/task_controller";
 import { DataList } from "../../../data/models/responses/data/get_all_data_res";
 import { DataController } from "../../../controllers/data/data_controller";
+import { LocalDataSources } from "../../../data/local_datasources";
 type StateType = {
   Researches: ResearchesList[];
   ResearchesPageNumber: number;
@@ -37,7 +38,7 @@ export class DashboardPage extends React.Component {
   researchController = new ResearchController();
   taskcontroller = new TaskController();
   Datacontroller = new DataController();
-
+  local = new LocalDataSources();
   state: StateType = {
     Researches: [],
     ResearchesPageNumber: 1,
@@ -68,19 +69,23 @@ export class DashboardPage extends React.Component {
     });
   }
   GetResearch(PageNumber: number, PageSize: number) {
-    this.researchController.getResearches(
-      { PageNumber: PageNumber, PageSize: PageSize },
-      (res) => {
-        this.setState({
-          Researches: res.researchesList,
-          ResearchesPageCount: Math.ceil(
-            res.count! / this.state.ResearchesPageSize
-          ),
-          ResearchesTotalCount: res.count,
-        });
-      },
-      (err) => console.log(err)
-    );
+    if (this.local.logedin()) {
+      this.researchController.getResearches(
+        { PageNumber: PageNumber, PageSize: PageSize },
+        (res) => {
+          this.setState({
+            Researches: res.researchesList,
+            ResearchesPageCount: Math.ceil(
+              res.count! / this.state.ResearchesPageSize
+            ),
+            ResearchesTotalCount: res.count,
+          });
+        },
+        (err) => {
+          console.log('GetResearch dash');
+        }
+      );
+    }
   }
   GetTasks(PageNumber: number, PageSize: number) {
     this.taskcontroller.getTasks(
@@ -339,7 +344,10 @@ export class DashboardPage extends React.Component {
                 </div>
               </div>
 
-              <AcordienTableData role={this.RoleUser} Datas={this.state.Datas}></AcordienTableData>
+              <AcordienTableData
+                role={this.RoleUser}
+                Datas={this.state.Datas}
+              ></AcordienTableData>
               <div className="d-flex justify-content-between align-items-baseline my-2">
                 <div className="d-flex justify-content-end flex-fill">
                   <ReactPaginate
@@ -376,7 +384,9 @@ export class DashboardPage extends React.Component {
                   />
                 </div>
                 <div className="d-flex justify-content-end flex-fill">
-                  <p className="text-right mb-0 ">Total Results: {this.state.DatasTotalCount}</p>
+                  <p className="text-right mb-0 ">
+                    Total Results: {this.state.DatasTotalCount}
+                  </p>
                 </div>
               </div>
             </div>
