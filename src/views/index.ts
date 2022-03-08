@@ -17,7 +17,7 @@ import  MemberPageProfile  from "./pages/member/member_profile";
 import  MemberPageUseEdit  from "./pages/member/user_edit";
 import { EditMyProfile } from "./pages/member/Edit_my_profile";
 import NewEquip from "./pages/equipment/new_equip";
-import { EquipPage } from "./pages/equipment/equip_page";
+import  EquipPage  from "./pages/equipment/equip_page";
 import EquipProfile from "./pages/equipment/equip_profile";
 import { EditEquip } from "./pages/equipment/equip_edit";
 import NewDiscusstion from "./pages/discussion/new_discusstion";

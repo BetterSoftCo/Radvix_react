@@ -28,7 +28,7 @@ export class EquipmentController {
     );
   }
   getAllEquipments(
-    body: { userId: string },
+    body: { PageNumber: number; PageSize: number },
     action: (res: GetAllEquipmentResult) => any,
     error: (res: any) => any
   ) {
