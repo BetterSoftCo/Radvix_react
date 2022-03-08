@@ -11,18 +11,18 @@ import moment from "moment";
 interface RouteParams {
   id: string;
 }
- class ExpensePageProfile extends React.Component<RouteComponentProps<RouteParams>> {
+class ExpensePageProfile extends React.Component<RouteComponentProps<RouteParams>> {
   RoleUser = store.getState().userRole;
   controller = new expenseController();
   state = {
     researchId: 0,
-    creatorFirstName:"",
-    creatorLastName:"",
-    status:"",
-    date:new Date(),
-    title:"",
-    amount:0,
-    description:""
+    creatorFirstName: "",
+    creatorLastName: "",
+    status: "",
+    date: new Date(),
+    title: "",
+    amount: 0,
+    description: ""
   };
   componentDidMount() {
     this.controller.getExpenseById(
@@ -30,18 +30,24 @@ interface RouteParams {
       (res) => {
         this.setState({
           creatorFirstName: res.creatorFirstName,
-          creatorLastName:res.creatorLastName,
-          date:res.date,
-          title:res.title,
-          amount:res.amount,
-          description:res.description,
-          status:res.status === 0 ? "OnGoing" : 
-          res.status === 1 ? "Delayed" : 
-          res.status === 2 ? "OnHold" : 
-          "Completed"
+          creatorLastName: res.creatorLastName,
+          date: res.date,
+          title: res.title,
+          amount: res.amount,
+          description: res.description,
+          status: res.status === 0 ? "OnGoing" :
+            res.status === 1 ? "Delayed" :
+              res.status === 2 ? "OnHold" :
+                "Completed"
         });
       }
     );
+  }
+  handelCreateExpenseState(isApproved:boolean){
+    this.controller.createState({ expenseId: parseInt(this.props.match.params.id), isApproved: isApproved}, res => {
+      this.props.history.push(`${AppRoutes.expense}`)
+    }, err => console.log(err)
+    )
   }
   render() {
     return (
@@ -50,7 +56,7 @@ interface RouteParams {
         <div className="col-12 box-content p-3">
           <div className="d-flex justify-content-between align-items-center">
             <h5 className="b-title d-flex align-items-center">
-              <span onClick={()=>{window.history.back()}} className="backPage"></span> {"Expense Profile"}
+              <span onClick={() => { window.history.back() }} className="backPage"></span> {"Expense Profile"}
               {this.RoleUser === UserRoles.L1Client || this.RoleUser === UserRoles.L1User ? (
                 <CircleIcon
                   width="22px"
@@ -71,7 +77,7 @@ interface RouteParams {
               borderRadius="24px"
               fontSize="14px"
               className="px-3"
-              onClick={()=>{this.props.history.push(AppRoutes.discussion)}}
+              onClick={() => { this.props.history.push(AppRoutes.discussion) }}
             ></MainButton>
           </div>
           <div className="Studying p-4 my-2">
@@ -88,6 +94,7 @@ interface RouteParams {
                   className="mx-3 px-3"
                   minHeight="34px"
                   backgroundColor="#F5C602"
+                  onClick={() => { this.handelCreateExpenseState(false) }}
                 ></MainButton>
                 <MainButton
                   children="Approve"
@@ -97,6 +104,7 @@ interface RouteParams {
                   className="mx-3 px-3"
                   minHeight="34px"
                   backgroundColor="#53A501"
+                  onClick={() => { this.handelCreateExpenseState(true) }}
                 ></MainButton>
               </div>
             ) : null}

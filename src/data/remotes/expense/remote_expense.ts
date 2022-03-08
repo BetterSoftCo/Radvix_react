@@ -24,7 +24,7 @@ export class RemoteExpense {
   getExpenses(body:{PageNumber:number , PageSize:number , ResearchId: number},action: (res: GetAllExpenses) => any,error: (res: any) => any){
     return HTTP.get(`/Expense?PageNumber=${body.PageNumber}&PageSize=${body.PageSize}&ResearchId=${body.ResearchId}` ).then((res) => action(res.data)).catch((err)=>{error(err)});
   }
-  createState(body:{expenseId:number , isApproved:number },action: (res: CreateStateExpenseRes) => any,error: (res: any) => any){
+  createState(body:{expenseId:number , isApproved:boolean },action: (res: CreateStateExpenseRes) => any,error: (res: any) => any){
     return HTTP.post(`/Expense/State/?expenseId=${body.expenseId}&isApproved=${body.isApproved}` ).then((res) => action(res.data)).catch((err)=>{error(err)});
   }
   getExpenseById(

@@ -70,7 +70,7 @@ export class expenseController {
     );
   }
   createState(
-    body: { expenseId: number; isApproved: number},
+    body: { expenseId: number; isApproved: boolean},
     action: (res: CreateStateExpenseResResult) => any,
     error: (res: any) => any
   ) {
@@ -78,8 +78,14 @@ export class expenseController {
       body,
       (res) => {
         action(res.result!);
+        toast.success(`${res.message}`, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
       },
       (err) => {
+        toast.error(`${err.message}`, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
         error(err);
       }
     );
