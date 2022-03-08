@@ -1,5 +1,5 @@
 import React from "react";
-import { Theme } from "../../../../core/utils";
+import { AccessPermition, Theme, UserRoles } from "../../../../core/utils";
 import { Equipment } from "../../../../data/models/responses/equipment/get_all_equipment_res";
 import { MainButton, MainButtonType } from "../../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../../components/circle_icon";
@@ -9,6 +9,7 @@ import { AppRoutes } from "../../../../core/constants";
 interface TableComponentProp {
   Heading: string[];
   Items: Equipment[];
+  role:UserRoles
 }
 const EquipmentList: React.FC<TableComponentProp & RouteComponentProps> = (
   props
@@ -90,7 +91,13 @@ const EquipmentList: React.FC<TableComponentProp & RouteComponentProps> = (
                       height={12}
                     />
                   </CircleIcon>
-                  {head.allowedToEdit ? (
+                  {head.allowedToEdit &&
+                  AccessPermition(props.role, [
+                    UserRoles.Admin,
+                    UserRoles.L1Client,
+                    UserRoles.L1User,
+                    UserRoles.L2User,
+                  ]) ? (
                     <CircleIcon
                       width="26px"
                       height="26px"

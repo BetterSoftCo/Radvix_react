@@ -2,17 +2,16 @@ import React from "react";
 import ReactPaginate from "react-paginate";
 import { EquipmentController } from "../../../controllers/equipment/equipment_controller";
 import { LocalDataSources } from "../../../data/local_datasources";
-import {
-  Equipment,
-} from "../../../data/models/responses/equipment/get_all_equipment_res";
+import { Equipment } from "../../../data/models/responses/equipment/get_all_equipment_res";
 import { store } from "../../../data/store";
 import { MainButton, MainButtonType } from "../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import { InputIcon } from "../../components/search_box";
 import { SelectComponent } from "../../components/select_input";
-import  EquipmentList  from "./component/equipment_list";
+import EquipmentList from "./component/equipment_list";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
+import { AccessPermition, UserRoles } from "../../../core/utils";
 type StateType = {
   Equipments: Equipment[];
   PageNumber: number;
@@ -20,7 +19,7 @@ type StateType = {
   PageCount: number;
   TotalCount: number;
 };
- class EquipPage extends React.Component<RouteComponentProps> {
+class EquipPage extends React.Component<RouteComponentProps> {
   RoleUser = store.getState().userRole;
   controller = new EquipmentController();
   local = new LocalDataSources();
@@ -89,21 +88,33 @@ type StateType = {
                 ></InputIcon>
               </div>
               <div className="right  d-flex justify-content-between">
-                <MainButton
-                  children="New Equip"
-                  type={MainButtonType.dark}
-                  borderRadius="24px"
-                  fontSize="14px"
-                  className="my-2 mx-2"
-                  onClick={()=>{this.props.history.push(AppRoutes.equip_new)}}
-                ></MainButton>
+                {AccessPermition(this.RoleUser, [
+                  UserRoles.Admin,
+                  UserRoles.L1Client,
+                  UserRoles.L1User,
+                  UserRoles.L2User,
+                ]) ? (
+                  <MainButton
+                    children="New Equip"
+                    type={MainButtonType.dark}
+                    borderRadius="24px"
+                    fontSize="14px"
+                    className="my-2 mx-2"
+                    onClick={() => {
+                      this.props.history.push(AppRoutes.equip_new);
+                    }}
+                  ></MainButton>
+                ) : null}
+
                 <MainButton
                   children="Laboratories"
                   type={MainButtonType.dark}
                   borderRadius="24px"
                   fontSize="14px"
                   className="my-2 mx-2"
-                  onClick={()=>{this.props.history.push(AppRoutes.library_page)}}
+                  onClick={() => {
+                    this.props.history.push(AppRoutes.laboratory);
+                  }}
                 ></MainButton>
                 <SelectComponent
                   width="90px"
@@ -126,6 +137,7 @@ type StateType = {
             <EquipmentList
               Items={this.state.Equipments}
               Heading={["Equipment Name", "Laboratory", "Users", "Status"]}
+              role={this.RoleUser}
             ></EquipmentList>
 
             <div className="d-flex justify-content-between align-items-baseline">
@@ -164,7 +176,9 @@ type StateType = {
                 />
               </div>
               <div className="d-flex justify-content-end flex-fill">
-                <p className="text-right mb-0 ">Total Results: {this.state.TotalCount}</p>
+                <p className="text-right mb-0 ">
+                  Total Results: {this.state.TotalCount}
+                </p>
               </div>
             </div>
           </div>

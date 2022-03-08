@@ -4,7 +4,7 @@ import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import "react-datepicker/dist/react-datepicker.css";
 import { MainButton, MainButtonType } from "../../components/button";
 import { IconTextRow } from "../../components/icon_text_horizontal";
-import { Theme } from "../../../core/utils";
+import { AccessPermition, Theme, UserRoles } from "../../../core/utils";
 import { BoxListScroll } from "../../components/box_list_scroll";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
@@ -30,6 +30,7 @@ class EquipProfile extends React.Component<RouteComponentProps<RouteParams>> {
     medias: [],
     teams: [],
     members: [],
+    description: "",
   };
   componentDidMount() {
     this.controller.getEquipment(
@@ -46,6 +47,12 @@ class EquipProfile extends React.Component<RouteComponentProps<RouteParams>> {
           technicianEmail: res.technicianEmail,
           technicianPhone: res.technicianPhone,
           status: res.status,
+          medias: res.medias,
+          laboratories: res.laboratories,
+          teams: res.teams,
+          members: res.members,
+          description: res.description,
+          image: res.image,
         });
       },
       (err) => {}
@@ -65,25 +72,32 @@ class EquipProfile extends React.Component<RouteComponentProps<RouteParams>> {
                 className="backPage"
               ></span>{" "}
               {"Equipment Profile"}
-              <CircleIcon
-                width="22px"
-                height="22px"
-                type={ThemeCircleIcon.dark}
-                backgroundColor="#474747"
-                fontSize="10px"
-                color="#ffff"
-                onClick={() => {
-                  this.props.history.push(
-                    `${AppRoutes.equip_edit.replace(
-                      ":id",
-                      this.state.id?.toString() ?? ""
-                    )}`
-                  );
-                }}
-                className="mx-2 pointer"
-              >
-                <img src="/images/icons/edit.svg" alt="radvix" />
-              </CircleIcon>
+              {AccessPermition(this.RoleUser, [
+                UserRoles.Admin,
+                UserRoles.L1Client,
+                UserRoles.L1User,
+                UserRoles.L2User,
+              ]) ? (
+                <CircleIcon
+                  width="22px"
+                  height="22px"
+                  type={ThemeCircleIcon.dark}
+                  backgroundColor="#474747"
+                  fontSize="10px"
+                  color="#ffff"
+                  onClick={() => {
+                    this.props.history.push(
+                      `${AppRoutes.equip_edit.replace(
+                        ":id",
+                        this.state.id?.toString() ?? ""
+                      )}`
+                    );
+                  }}
+                  className="mx-2 pointer"
+                >
+                  <img src="/images/icons/edit.svg" alt="radvix" />
+                </CircleIcon>
+              ) : null}
             </h5>
             <div className="d-flex justify-content-around align-items-center w-25">
               <MainButton
@@ -97,7 +111,7 @@ class EquipProfile extends React.Component<RouteComponentProps<RouteParams>> {
           </div>
           <div className="Studying p-4 my-2 d-flex flex-column justify-content-center align-items-center">
             <img
-              src="/images/images/img_avatar.png"
+              src={this.state.image}
               alt="Avatar"
               className="rounded-circle avatar"
               width="125px"
@@ -105,7 +119,7 @@ class EquipProfile extends React.Component<RouteComponentProps<RouteParams>> {
             />
 
             <h3 className="px-5 text-center">{this.state.title}</h3>
-            <p>{/* {this.state.description} */}</p>
+            <p>{this.state.description}</p>
           </div>
           <div className="row">
             <div className="col-md-6  tabel-info ">
@@ -148,7 +162,7 @@ class EquipProfile extends React.Component<RouteComponentProps<RouteParams>> {
                 <div className="col-8 t-desc border-b-r">
                   <ul className="file-list">
                     {this.state.medias
-                      .filter((item) => !item.externalUrl)
+                      .filter((media) => media.externalUrl === null)
                       .map((item) => (
                         <li>
                           <img
@@ -157,7 +171,7 @@ class EquipProfile extends React.Component<RouteComponentProps<RouteParams>> {
                             width={20}
                             height={20}
                           />{" "}
-                          {item.name}
+                          {item.title}
                         </li>
                       ))}
 

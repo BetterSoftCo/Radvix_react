@@ -97,7 +97,6 @@ class NewEquip extends React.Component<RouteComponentProps> {
 
   onDropPic = (picture: any) => {
     this.setState({ picture, imageUrl: URL.createObjectURL(picture[0]) });
-    this.handelUploadPic(5)
   };
   onDrop = (files: any) => {
     this.setState({ files });
