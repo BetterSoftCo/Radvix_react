@@ -2,6 +2,7 @@ import { HTTP } from "../../../core/http_common";
 import { CreatePublishReq } from "../../models/requests/publish/create_publish_req";
 import { CreatePublishRes } from "../../models/responses/publish/create_publish_res";
 import { GetAllPublishes } from "../../models/responses/publish/publishes_res";
+import { GetPublishByID } from "../../models/responses/publish/publish_by_id_res";
 import { SearchPublishRes } from "../../models/responses/publish/search_publish_res";
 
 export class RemotePublish {
@@ -21,5 +22,16 @@ export class RemotePublish {
   }
   getPublishes(body:{PageNumber:number , PageSize:number , ResearchId: number},action: (res: GetAllPublishes) => any,error: (res: any) => any){
     return HTTP.get(`/Publish?PageNumber=${body.PageNumber}&PageSize=${body.PageSize}&ResearchId=${body.ResearchId}` ).then((res) => action(res.data)).catch((err)=>{error(err)});
+  }
+  getExpenseById(
+    body: { publicationId: number },
+    action: (res: GetPublishByID) => any,
+    error: (res: any) => any
+  ) {
+    return HTTP.get(`/Expense/${body.publicationId}`)
+      .then((res) => action(res.data))
+      .catch((err) => {
+        error(err);
+      });
   }
 }
