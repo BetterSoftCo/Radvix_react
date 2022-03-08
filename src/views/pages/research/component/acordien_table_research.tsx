@@ -81,7 +81,7 @@ const AcordienTableResearch: React.FC<
                   {AccessPermition(props.role, [
                     UserRoles.Admin,
                     UserRoles.L1Client,
-                    UserRoles.L2User,
+                    UserRoles.L1User,
                   ]) ? (
                     <CircleIcon
                       width="26px"
@@ -100,25 +100,30 @@ const AcordienTableResearch: React.FC<
                       <img src="/images/icons/edit.svg" alt="radvix" />
                     </CircleIcon>
                   ) : null}
-
-                  <CircleIcon
-                    width="26px"
-                    height="26px"
-                    type={ThemeCircleIcon.dark}
-                    backgroundColor="#474747"
-                    color="#ffff"
-                    className="pointer mx-1"
-                    onClick={() => {
-                      props.history.push(
-                        `${AppRoutes.profile_research.replace(
-                          ":id",
-                          head.id?.toString() ?? ""
-                        )}`
-                      );
-                    }}
-                  >
-                    <i className="fas fa-history"></i>
-                  </CircleIcon>
+                  {AccessPermition(props.role, [
+                    UserRoles.Admin,
+                    UserRoles.L1Client,
+                    UserRoles.L1User,
+                  ]) ? (
+                    <CircleIcon
+                      width="26px"
+                      height="26px"
+                      type={ThemeCircleIcon.dark}
+                      backgroundColor="#474747"
+                      color="#ffff"
+                      className="pointer mx-1"
+                      onClick={() => {
+                        props.history.push(
+                          `${AppRoutes.profile_research.replace(
+                            ":id",
+                            head.id?.toString() ?? ""
+                          )}`
+                        );
+                      }}
+                    >
+                      <i className="fas fa-history"></i>
+                    </CircleIcon>
+                  ) : null}
                 </div>
               </td>
             </tr>

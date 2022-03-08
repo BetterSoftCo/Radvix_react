@@ -308,19 +308,26 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 />
               }
             ></IconTextVertical>
-            <IconTextVertical
-              fontSize="15px"
-              className="lighter mx-2 my-1 pointer"
-              text="Timeline"
-              theme={Theme.light}
-              children={
-                <img
-                  width="40px"
-                  height="40px"
-                  src="/images/icons/timeline.svg"
-                />
-              }
-            ></IconTextVertical>
+            {AccessPermition(RoleUser, [
+              UserRoles.Admin,
+              UserRoles.L1Client,
+              UserRoles.L1User,
+              UserRoles.L2User,
+            ]) ? (
+              <IconTextVertical
+                fontSize="15px"
+                className="lighter mx-2 my-1 pointer"
+                text="Timeline"
+                theme={Theme.light}
+                children={
+                  <img
+                    width="40px"
+                    height="40px"
+                    src="/images/icons/timeline.svg"
+                  />
+                }
+              ></IconTextVertical>
+            ) : null}
           </div>
           <div className="d-flex flex-column text-center align-items-center helptext">
             <CircleIcon

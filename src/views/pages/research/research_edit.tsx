@@ -287,7 +287,7 @@ class ResearchPageEdit extends React.Component<
                 this.props.history.push(AppRoutes.research);
               }}
             ></span>{" "}
-            Create A New Research Project
+            Edit Research Project
           </h5>
           <div className="form row">
             <div className="col-md-6 left">
@@ -466,7 +466,7 @@ class ResearchPageEdit extends React.Component<
                           alt=""
                           className="mx-2"
                         />{" "}
-                        {item.name}
+                        {item.title}
                         <CircleIcon
                           type={ThemeCircleIcon.dark}
                           width="22px"
