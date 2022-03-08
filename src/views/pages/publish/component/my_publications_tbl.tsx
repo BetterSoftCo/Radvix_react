@@ -35,9 +35,14 @@ const MyPublicationsTable: React.FC<TableComponentProp & RouteComponentProps> =
                       width="26px"
                       height="26px"
                       type={ThemeCircleIcon.dark}
-                      onClick={(e) => {
-                        props.history.push(AppRoutes.data_profile);
-                      }}
+                      onClick={() =>
+                        props.history.push(
+                          `${AppRoutes.publish_profile.replace(
+                            ":id",
+                            head.id?.toString()
+                          )}`
+                        )
+                      }
                       className="pointer"
                     >
                       <img src="/images/icons/google_docs.svg" alt="radvix" width={12} height={12} />

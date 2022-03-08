@@ -23,12 +23,12 @@ export class RemotePublish {
   getPublishes(body:{PageNumber:number , PageSize:number , ResearchId: number},action: (res: GetAllPublishes) => any,error: (res: any) => any){
     return HTTP.get(`/Publish?PageNumber=${body.PageNumber}&PageSize=${body.PageSize}&ResearchId=${body.ResearchId}` ).then((res) => action(res.data)).catch((err)=>{error(err)});
   }
-  getExpenseById(
+  getPublishById(
     body: { publicationId: number },
     action: (res: GetPublishByID) => any,
     error: (res: any) => any
   ) {
-    return HTTP.get(`/Expense/${body.publicationId}`)
+    return HTTP.get(`/Publish/${body.publicationId}`)
       .then((res) => action(res.data))
       .catch((err) => {
         error(err);

@@ -12,37 +12,39 @@ import ReactPaginate from "react-paginate";
 import { Drafts } from "./component/drafts";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
- class PublicationProfile extends React.Component<RouteComponentProps> {
+import { publishController } from "../../../controllers/publish/publish_controller";
+import moment from "moment";
+interface RouteParams {
+  id: string;
+}
+ class PublicationProfile extends React.Component<RouteComponentProps<RouteParams>> {
   RoleUser = store.getState().userRole;
+  controller = new publishController();
+  componentDidMount() {
+    this.controller.getPublishById(
+      { publicationId: parseInt(this.props.match.params.id) },
+      (res) => {
+        this.setState({
+          publication:res
+        });
+      }
+    );
+  }
   state = {
-    Data: {
-      Items: [
-        {
-          name: "synergic_paper_v1.docx",
-          Institution: "N. Hosseinzadeh",
-          Category: "07/22/2021   21:24",
-          Eqiups: "1.0",
-        },
-        {
-          name: "synergic_paper_v1.docx",
-          Institution: "N. Hosseinzadeh",
-          Category: "07/22/2021   21:24",
-          Eqiups: "1.0",
-        },
-        {
-          name: "synergic_paper_v1.docx",
-          Institution: "N. Hosseinzadeh",
-          Category: "07/22/2021   21:24",
-          Eqiups: "1.0",
-        },
-        {
-          name: "synergic_paper_v1.docx",
-          Institution: "N. Hosseinzadeh",
-          Category: "07/22/2021   21:24",
-          Eqiups: "1.0",
-        },
-      ],
-    },
+    publication:{
+      category: "",
+      creatorFirstName: "",
+      creatorLastName: "",
+      drafts: "",
+      name:"",
+      nextDraftUploader:"",
+      priority:0,
+      startDate:new Date(),
+      endDate: new Date(),
+      submitAt: "",
+      users:[],
+      publication:[]
+    }
   };
 
   render() {
@@ -101,19 +103,19 @@ import { AppRoutes } from "../../../core/constants";
               </div>
               <div className="row border-bottom">
                 <h6 className="col-4 t-title mb-0">Category</h6>
-                <div className="col-8 t-desc">Journal Paper</div>
+                <div className="col-8 t-desc">{this.state.publication.category}</div>
               </div>
               <div className="row border-bottom">
                 <h6 className="col-4 t-title mb-0">Submitting For</h6>
-                <div className="col-8 t-desc">Journal of Materials</div>
+                <div className="col-8 t-desc">{this.state.publication.submitAt}</div>
               </div>
               <div className="row border-bottom">
                 <h6 className="col-4 t-title mb-0">Started by</h6>
-                <div className="col-8 t-desc"> N. Hosseinzadeh</div>
+                <div className="col-8 t-desc">{this.state.publication.creatorFirstName} {this.state.publication.creatorLastName}</div>
               </div>
               <div className="row border-bottom">
                 <h6 className="col-4 t-title mb-0">Start - Deadline</h6>
-                <div className="col-8 t-desc"> 07/10/2021 - 04/12/2022</div>
+                <div className="col-8 t-desc">{moment(this.state.publication.startDate).format("YYYY/MM/DD")} -{moment(this.state.publication.endDate).format("YYYY/MM/DD")}</div>
               </div>
               <div className="row border-bottom">
                 <h6 className="col-4 t-title mb-0 border-b-l">
@@ -164,28 +166,19 @@ import { AppRoutes } from "../../../core/constants";
                   </CircleIcon>
                 </div>
                 <BoxListScroll
-                  items={[
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 1,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 2,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 3,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                  ]}
-                  TextItem="text"
+                  items={this.state.publication.users}
+                  TextItem="firstName"
                   ValueItem="id"
-                  ImageItem="imagesrc"
+                  ImageItem="image"
                   className="mt-2 pointer"
-                  onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
+                  onClick={(e , value) => {
+                    this.props.history.push(
+                      `${AppRoutes.member_profile.replace(
+                        ":id",
+                        value.toString()
+                      )}`
+                    );
+                  }}
                 ></BoxListScroll>
               </div>
             </div>
@@ -226,10 +219,10 @@ import { AppRoutes } from "../../../core/constants";
                 ></SelectComponent>
               </div>
             </div>
-            <Drafts
-              Items={this.state.Data.Items}
+            {/* <Drafts
+              Items={this.state.publication}
               Heading={[{name:'File',center:false},{name:'Added By',center:true},{name:'Date',center:true},{name:'Version',center:true}]}
-            ></Drafts>
+            ></Drafts> */}
             <div className="d-flex justify-content-center align-items-center">
               <ReactPaginate
                 previousLabel={
