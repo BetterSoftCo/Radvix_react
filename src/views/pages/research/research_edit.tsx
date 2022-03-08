@@ -191,6 +191,7 @@ class ResearchPageEdit extends React.Component<
       removedTeamsId: this.state.removedTeamsId,
       addedUsersId: this.state.addedUsersId,
       removedUsersId: this.state.removedUsersId,
+      status:this.state.status
     };
     this.setState({
       loading: true,
