@@ -1,5 +1,6 @@
 import { toast } from "react-toastify";
 import { CreatePublishReq } from "../../data/models/requests/publish/create_publish_req";
+import { CreateStateExpenseResResult } from "../../data/models/responses/expense/create_state_expense_res";
 import { GetAllExpensesResult } from "../../data/models/responses/expense/expenses_res";
 import { GetExpenseByIDResult } from "../../data/models/responses/expense/expense_by_id_res";
 import { SearchExpenseResResult } from "../../data/models/responses/expense/search_expense_res";
@@ -59,6 +60,21 @@ export class expenseController {
     error: (res: any) => any
   ) {
     this.remote.getExpenses(
+      body,
+      (res) => {
+        action(res.result!);
+      },
+      (err) => {
+        error(err);
+      }
+    );
+  }
+  createState(
+    body: { expenseId: number; isApproved: number},
+    action: (res: CreateStateExpenseResResult) => any,
+    error: (res: any) => any
+  ) {
+    this.remote.createState(
       body,
       (res) => {
         action(res.result!);
