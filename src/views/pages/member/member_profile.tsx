@@ -302,6 +302,7 @@ class MemberPageProfile extends React.Component<
                   ))}
                 </div>
                 <BoxListScroll
+                 default_photo="/Images/icons/equipment_Icon.svg"
                   items={this.state.equipments}
                   TextItem="title"
                   ValueItem="id"

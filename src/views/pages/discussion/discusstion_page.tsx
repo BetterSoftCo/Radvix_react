@@ -40,8 +40,13 @@ export class DiscusstionPage extends React.Component {
         <div className="row"></div>
         <div className="col-12 box-content p-3 discusstion">
           <h5 className="b-title d-flex">
-            <span onClick={()=>{window.history.back()}} className="backPage"></span> Question About The
-            Thermogravimetric Results{" "}
+            <span
+              onClick={() => {
+                window.history.back();
+              }}
+              className="backPage"
+            ></span>{" "}
+            Question About The Thermogravimetric Results{" "}
             <MainButton
               children="Principal Investigator"
               type={MainButtonType.dark}
@@ -174,6 +179,7 @@ export class DiscusstionPage extends React.Component {
                   </CircleIcon>
                 </div>
                 <BoxListScroll
+                  default_photo="/Images/icons/equipment_Icon.svg"
                   items={[
                     {
                       text: "Nima Hosseinzadeh",
@@ -328,15 +334,14 @@ export class DiscusstionPage extends React.Component {
                                 src="/Images/icons/cloud_computing.svg"
                                 alt="sssss"
                                 height="20"
-                                
                               />{" "}
-                              <span className="flex-fill">Browse Local Files</span>
+                              <span className="flex-fill">
+                                Browse Local Files
+                              </span>
                             </div>
                           }
                         ></MainButton>
-                        <p>
-                        Or drag and drop files here
-                        </p>
+                        <p>Or drag and drop files here</p>
                       </div>
                       <aside>
                         <h4>Files</h4>
@@ -360,7 +365,6 @@ export class DiscusstionPage extends React.Component {
                   fontSize="18px"
                   color="#ffffff"
                   className="px-3"
-                  
                 >
                   <i className="fas fa-plus"></i>
                 </CircleIcon>

@@ -397,6 +397,7 @@ export class LaboratoryPageEdit extends React.Component<
               ></BoxAlert>
               <div className="teams mb-3 mt-3 team-edit">
                 <BoxListScroll
+                default_photo="/Images/icons/equipment_Icon.svg"
                   items={this.state.Managers}
                   TextItem="firstName"
                   ValueItem="id"

@@ -267,6 +267,7 @@ class TeamPageEdit extends React.Component<RouteComponentProps<RouteParams>> {
               </div>
               <div className="teams Labs mb-3">
                 <BoxListScroll
+                  default_photo="/Images/icons/user.svg"
                   className="mt-3 pointer"
                   items={this.state.Managers}
                   TextItem="firstName"
@@ -298,6 +299,7 @@ class TeamPageEdit extends React.Component<RouteComponentProps<RouteParams>> {
               </div>
               <div className="teams Labs mb-3">
                 <BoxListScroll
+                  default_photo="/Images/icons/user.svg"
                   className="mt-3 pointer"
                   items={this.state.User}
                   TextItem="firstName"
@@ -360,6 +362,7 @@ class TeamPageEdit extends React.Component<RouteComponentProps<RouteParams>> {
                   ))}
                 </div>
                 <BoxListScroll
+                  default_photo="/Images/icons/user.svg"
                   className="mt-3 pointer"
                   items={this.state.equipments}
                   TextItem="title"

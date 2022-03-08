@@ -8,7 +8,7 @@ import { SelectComponent } from "../../components/select_input";
 import { MainButton, MainButtonType } from "../../components/button";
 import { BoxListScroll } from "../../components/box_list_scroll";
 import { RouteComponentProps, withRouter } from "react-router";
- class DataPageEdit extends React.Component<RouteComponentProps> {
+class DataPageEdit extends React.Component<RouteComponentProps> {
   RoleUser = store.getState().userRole;
   date = new Date();
   handelChangeDate(params: any): void {
@@ -40,7 +40,13 @@ import { RouteComponentProps, withRouter } from "react-router";
         <div className="row"></div>
         <div className="col-12 box-content p-3">
           <h5 className="b-title d-flex">
-            <span onClick={()=>{window.history.back()}} className="backPage"></span> Edit Data Set
+            <span
+              onClick={() => {
+                window.history.back();
+              }}
+              className="backPage"
+            ></span>{" "}
+            Edit Data Set
           </h5>
           <div className="form row">
             <div className="col-md-6 left">
@@ -101,15 +107,14 @@ import { RouteComponentProps, withRouter } from "react-router";
                                 src="/Images/icons/cloud_computing.svg"
                                 alt="sssss"
                                 height="20"
-                                
                               />{" "}
-                              <span className="flex-fill">Browse Local Files</span>
+                              <span className="flex-fill">
+                                Browse Local Files
+                              </span>
                             </div>
                           }
                         ></MainButton>
-                        <p>
-                        Or drag and drop files here
-                        </p>
+                        <p>Or drag and drop files here</p>
                       </div>
                       <aside>
                         <h4>Files</h4>
@@ -132,7 +137,12 @@ import { RouteComponentProps, withRouter } from "react-router";
                       height="22px"
                       className="mx-3"
                     >
-                      <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
+                      <img
+                        src="/images/icons/garbage_can.svg"
+                        alt="radvix"
+                        width={15}
+                        height={15}
+                      />
                     </CircleIcon>
                   </li>
                   <li className="d-flex align-items-center mb-1">
@@ -148,7 +158,12 @@ import { RouteComponentProps, withRouter } from "react-router";
                       height="22px"
                       className="mx-3"
                     >
-                      <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
+                      <img
+                        src="/images/icons/garbage_can.svg"
+                        alt="radvix"
+                        width={15}
+                        height={15}
+                      />
                     </CircleIcon>
                   </li>
                   <li className="d-flex align-items-center mb-1">
@@ -164,7 +179,12 @@ import { RouteComponentProps, withRouter } from "react-router";
                       height="22px"
                       className="mx-3"
                     >
-                      <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
+                      <img
+                        src="/images/icons/garbage_can.svg"
+                        alt="radvix"
+                        width={15}
+                        height={15}
+                      />
                     </CircleIcon>
                   </li>
                 </ul>
@@ -183,7 +203,6 @@ import { RouteComponentProps, withRouter } from "react-router";
                   fontSize="18px"
                   color="#ffffff"
                   className="px-3"
-                  
                 >
                   <i className="fas fa-plus"></i>
                 </CircleIcon>
@@ -204,7 +223,12 @@ import { RouteComponentProps, withRouter } from "react-router";
                     height="22px"
                     className="mx-3"
                   >
-                    <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
+                    <img
+                      src="/images/icons/garbage_can.svg"
+                      alt="radvix"
+                      width={15}
+                      height={15}
+                    />
                   </CircleIcon>
                 </li>
                 <li className="my-2 d-flex flex-column flex-md-row">
@@ -222,7 +246,12 @@ import { RouteComponentProps, withRouter } from "react-router";
                     height="22px"
                     className="mx-3"
                   >
-                    <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
+                    <img
+                      src="/images/icons/garbage_can.svg"
+                      alt="radvix"
+                      width={15}
+                      height={15}
+                    />
                   </CircleIcon>
                 </li>
               </ul>
@@ -253,6 +282,7 @@ import { RouteComponentProps, withRouter } from "react-router";
               </div>
               <div className="teams mb-3">
                 <BoxListScroll
+                  default_photo="/Images/icons/equipment_Icon.svg"
                   items={[
                     {
                       text: "Nima Hosseinzadeh",
@@ -306,4 +336,4 @@ import { RouteComponentProps, withRouter } from "react-router";
     );
   }
 }
-export default withRouter(DataPageEdit)
+export default withRouter(DataPageEdit);

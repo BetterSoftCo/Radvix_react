@@ -182,6 +182,7 @@ import { AppRoutes } from "../../../core/constants";
                   ></MainButton>
                 </div>
                 <BoxListScroll
+                default_photo="/Images/icons/equipment_Icon.svg"
                   items={[
                     {
                       text: "Nima Hosseinzadeh",

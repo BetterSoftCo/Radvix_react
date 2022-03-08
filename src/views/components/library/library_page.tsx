@@ -131,6 +131,7 @@ export const ShowLibraryPage: React.FC = (props) => {
           ImageItem="imagesrc"
           Deletabel
           className="mt-3"
+          default_photo="/Images/icons/equipment_Icon.svg"
         ></BoxListScroll>
       </div>
       <div className="col-12 border-bottom my-4 py-2 item">
@@ -156,7 +157,12 @@ export const ShowLibraryPage: React.FC = (props) => {
           onClick={(e) => {}}
           className="pointer"
         >
-          <img src="/images/icons/google_docs.svg" alt="radvix" width={12} height={12} />
+          <img
+            src="/images/icons/google_docs.svg"
+            alt="radvix"
+            width={12}
+            height={12}
+          />
         </CircleIcon>
         <CircleIcon
           width="26px"
@@ -165,7 +171,12 @@ export const ShowLibraryPage: React.FC = (props) => {
           onClick={(e) => {}}
           className="pointer"
         >
-          <img src="/images/icons/google_docs.svg" alt="radvix" width={12} height={12} />
+          <img
+            src="/images/icons/google_docs.svg"
+            alt="radvix"
+            width={12}
+            height={12}
+          />
         </CircleIcon>
       </div>
       <div className="col-12 border-bottom my-4 py-2 item d-flex">
@@ -223,8 +234,8 @@ export const ShowLibraryPage: React.FC = (props) => {
         <InputIcon
           chilren={<img src="/images/icons/search_box_icon.svg" alt="" />}
           width="100%"
-          placeholder="Search..."  TopPosition="15%"
-          
+          placeholder="Search..."
+          TopPosition="15%"
         ></InputIcon>
       </div>
       <div className="col-12 border-bottom my-4 py-2 item">

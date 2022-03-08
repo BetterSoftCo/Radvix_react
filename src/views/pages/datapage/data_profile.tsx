@@ -247,6 +247,7 @@ class DataPageProfile extends React.Component<
                 ></IconTextRow>
 
                 <BoxListScroll
+                default_photo="/Images/icons/equipment_Icon.svg"
                   items={[
                     {
                       text: "Nima Hosseinzadeh",
@@ -283,6 +284,7 @@ class DataPageProfile extends React.Component<
                   }
                 ></IconTextRow>
                 <BoxListScroll
+                default_photo="/Images/icons/equipment_Icon.svg"
                   items={[
                     {
                       text: "Nima Hosseinzadeh",

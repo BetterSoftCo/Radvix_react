@@ -539,6 +539,7 @@ class TaskPageEdit extends React.Component<RouteComponentProps<ParamsType>> {
                   DeleteFunc={(p, value) => {
                     console.log(p, value);
                   }}
+                  default_photo="/Images/icons/equipment_Icon.svg"
                 ></BoxListScroll>
               </div>
               <div className="item">
@@ -582,6 +583,7 @@ class TaskPageEdit extends React.Component<RouteComponentProps<ParamsType>> {
                   DeleteFunc={(p, value) => {
                     console.log(p, value);
                   }}
+                  default_photo="/Images/icons/equipment_Icon.svg"
                 ></BoxListScroll>
               </div>
             </div>

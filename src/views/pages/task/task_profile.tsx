@@ -226,6 +226,7 @@ class TaskPageProfile extends React.Component<RouteComponentProps<RouteParams>> 
                   TextItem="title"
                   ValueItem="id"
                   ImageItem="image"
+                  default_photo="/Images/icons/user.svg"
                 ></BoxListScroll>
               </div>
               <div className="teams Labs teams-light">
@@ -297,7 +298,6 @@ class TaskPageProfile extends React.Component<RouteComponentProps<RouteParams>> 
                   TextItem="title"
                   ValueItem="id"
                   ImageItem="image"
-                  hasImage={false}
                   default_photo="/Images/icons/equipment_Icon.svg"
                 ></BoxListScroll>
               </div>

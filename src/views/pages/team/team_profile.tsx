@@ -243,6 +243,7 @@ class TeamPageProfile extends React.Component<
                   ))}
                 </div>
                 <BoxListScroll
+                default_photo="/Images/icons/equipment_Icon.svg"
                   items={this.state.equipments}
                   TextItem="title"
                   ValueItem="id"
@@ -269,6 +270,7 @@ class TeamPageProfile extends React.Component<
                   }
                 ></IconTextRow>
                 <BoxListScroll
+                default_photo="/Images/icons/user.svg"
                   className="mt-3 pointer"
                   items={this.state.users}
                   TextItem="firstName"

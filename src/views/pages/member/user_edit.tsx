@@ -404,6 +404,7 @@ class MemberPageUseEdit extends React.Component<
                   ))}
                 </div>
                 <BoxListScroll
+                  default_photo="/Images/icons/equipment_Icon.svg"
                   items={this.state.Equipments}
                   TextItem="title"
                   ValueItem="id"

@@ -228,6 +228,7 @@ class LaboratoryPageProfile extends React.Component<
                   }
                 ></IconTextRow>
                 <BoxListScroll
+                  default_photo="/Images/icons/equipment_Icon.svg"
                   className="mt-3 pointer"
                   items={this.state.equipments}
                   TextItem="title"
@@ -278,12 +279,13 @@ class LaboratoryPageProfile extends React.Component<
                   ))}
                 </div>
                 <BoxListScroll
+                  default_photo="/Images/icons/user.svg"
                   items={this.state.members}
                   TextItem="firstName"
                   ValueItem="id"
                   ImageItem="image"
                   className="pointer"
-                  onClick={(e , value) => {
+                  onClick={(e, value) => {
                     this.props.history.push(
                       `${AppRoutes.member_profile.replace(
                         ":id",

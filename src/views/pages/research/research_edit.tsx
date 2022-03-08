@@ -193,25 +193,29 @@ class ResearchPageEdit extends React.Component<
       removedUsersId: this.state.removedUsersId,
     };
     this.setState({
-      loading:true
-    })
+      loading: true,
+    });
     this.controller.updateResearch(
       body,
       (res) => {
-        if(this.state.files.length || this.state.ExternalUrl.length){
-          this.handelUpload(res.id)
-        }else{
+        if (this.state.files.length || this.state.ExternalUrl.length) {
+          this.handelUpload(res.id);
+        } else {
           this.setState({
-            loading:false
-          })
-          this.props.history.push(`${AppRoutes.profile_research.replace(':id', res.id?.toString() ?? "")}`)
+            loading: false,
+          });
+          this.props.history.push(
+            `${AppRoutes.profile_research.replace(
+              ":id",
+              res.id?.toString() ?? ""
+            )}`
+          );
         }
-        
       },
       (err) => {
         this.setState({
-          loading:false
-        })
+          loading: false,
+        });
       }
     );
     if (this.validator.allValid()) {
@@ -240,7 +244,9 @@ class ResearchPageEdit extends React.Component<
         this.setState({
           loading: false,
         });
-        this.props.history.push(`${AppRoutes.profile_research.replace(':id', id?.toString() ?? "")}`)
+        this.props.history.push(
+          `${AppRoutes.profile_research.replace(":id", id?.toString() ?? "")}`
+        );
       },
       () => {
         this.setState({
@@ -628,6 +634,7 @@ class ResearchPageEdit extends React.Component<
                   ))}
                 </div>
                 <BoxListScroll
+                  default_photo="/Images/icons/user.svg"
                   items={this.state.users}
                   TextItem="firstName"
                   ValueItem="id"

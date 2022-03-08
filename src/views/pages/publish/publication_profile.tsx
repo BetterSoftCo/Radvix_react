@@ -12,7 +12,7 @@ import ReactPaginate from "react-paginate";
 import { Drafts } from "./component/drafts";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
- class PublicationProfile extends React.Component<RouteComponentProps> {
+class PublicationProfile extends React.Component<RouteComponentProps> {
   RoleUser = store.getState().userRole;
   state = {
     Data: {
@@ -52,7 +52,13 @@ import { AppRoutes } from "../../../core/constants";
         <div className="col-12 box-content p-3">
           <div className="d-flex justify-content-between align-items-center">
             <h5 className="b-title d-flex align-items-center">
-              <span onClick={()=>{window.history.back()}} className="backPage"></span> {"Publication Profile"}
+              <span
+                onClick={() => {
+                  window.history.back();
+                }}
+                className="backPage"
+              ></span>{" "}
+              {"Publication Profile"}
             </h5>
             <div>
               <MainButton
@@ -61,7 +67,9 @@ import { AppRoutes } from "../../../core/constants";
                 borderRadius="24px"
                 fontSize="14px"
                 className="mx-2"
-                onClick={()=>{this.props.history.push(AppRoutes.publish_upload)}}
+                onClick={() => {
+                  this.props.history.push(AppRoutes.publish_upload);
+                }}
               ></MainButton>
               <MainButton
                 children="Discussion Panel"
@@ -69,7 +77,9 @@ import { AppRoutes } from "../../../core/constants";
                 borderRadius="24px"
                 fontSize="14px"
                 className="mx-2 px-3"
-                onClick={()=>{this.props.history.push(AppRoutes.discussion)}}
+                onClick={() => {
+                  this.props.history.push(AppRoutes.discussion);
+                }}
               ></MainButton>
             </div>
           </div>
@@ -164,6 +174,7 @@ import { AppRoutes } from "../../../core/constants";
                   </CircleIcon>
                 </div>
                 <BoxListScroll
+                  default_photo="/Images/icons/equipment_Icon.svg"
                   items={[
                     {
                       text: "Nima Hosseinzadeh",
@@ -185,7 +196,9 @@ import { AppRoutes } from "../../../core/constants";
                   ValueItem="id"
                   ImageItem="imagesrc"
                   className="mt-2 pointer"
-                  onClick={()=>{this.props.history.push(AppRoutes.member_profile)}}
+                  onClick={() => {
+                    this.props.history.push(AppRoutes.member_profile);
+                  }}
                 ></BoxListScroll>
               </div>
             </div>
@@ -201,7 +214,8 @@ import { AppRoutes } from "../../../core/constants";
                     <img src="/images/icons/search_box_icon.svg" alt="radvix" />
                   }
                   width="100%"
-                  placeholder="Search..."  TopPosition="15%"
+                  placeholder="Search..."
+                  TopPosition="15%"
                 ></InputIcon>
               </div>
               <div className="right w-50 d-flex justify-content-end align-items-center">
@@ -211,7 +225,9 @@ import { AppRoutes } from "../../../core/constants";
                   borderRadius="24px"
                   fontSize="14px"
                   className="mx-2"
-                  onClick={()=>{this.props.history.push(AppRoutes.publish_upload)}}
+                  onClick={() => {
+                    this.props.history.push(AppRoutes.publish_upload);
+                  }}
                 ></MainButton>
                 <SelectComponent
                   width="63px"
@@ -228,7 +244,12 @@ import { AppRoutes } from "../../../core/constants";
             </div>
             <Drafts
               Items={this.state.Data.Items}
-              Heading={[{name:'File',center:false},{name:'Added By',center:true},{name:'Date',center:true},{name:'Version',center:true}]}
+              Heading={[
+                { name: "File", center: false },
+                { name: "Added By", center: true },
+                { name: "Date", center: true },
+                { name: "Version", center: true },
+              ]}
             ></Drafts>
             <div className="d-flex justify-content-center align-items-center">
               <ReactPaginate
@@ -270,4 +291,4 @@ import { AppRoutes } from "../../../core/constants";
     );
   }
 }
-export default withRouter(PublicationProfile)
+export default withRouter(PublicationProfile);

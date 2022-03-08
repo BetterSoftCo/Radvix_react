@@ -234,6 +234,7 @@ class ResearchPageProfile extends React.Component<
                   ))}
                 </div>
                 <BoxListScroll
+                default_photo="/Images/icons/user.svg"
                   items={this.state.Research.users}
                   TextItem="firstName"
                   ValueItem="id"
@@ -311,6 +312,7 @@ class ResearchPageProfile extends React.Component<
                   ))}
                 </div>
                 <BoxListScroll
+                default_photo="/Images/icons/equipment_Icon.svg"
                   items={this.state.Research.equipments}
                   TextItem="title"
                   ValueItem="id"

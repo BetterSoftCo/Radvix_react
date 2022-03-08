@@ -9,7 +9,7 @@ import { IconTextRow } from "../../components/icon_text_horizontal";
 import { Theme } from "../../../core/utils";
 import { BoxListScroll } from "../../components/box_list_scroll";
 import { RouteComponentProps, withRouter } from "react-router";
- class Ticket extends React.Component<RouteComponentProps> {
+class Ticket extends React.Component<RouteComponentProps> {
   RoleUser = store.getState().userRole;
   date = new Date();
   handelChangeDate(params: any): void {
@@ -41,7 +41,12 @@ import { RouteComponentProps, withRouter } from "react-router";
         <div className="row"></div>
         <div className="col-12 box-content p-3 discusstion">
           <h5 className="b-title d-flex">
-            <span onClick={()=>{window.history.back()}} className="backPage"></span>
+            <span
+              onClick={() => {
+                window.history.back();
+              }}
+              className="backPage"
+            ></span>
             Ticket
             <MainButton
               children="High Priority"
@@ -176,6 +181,7 @@ import { RouteComponentProps, withRouter } from "react-router";
                   ></IconTextRow>
                 </div>
                 <BoxListScroll
+                  default_photo="/Images/icons/user.svg"
                   items={[
                     {
                       text: "Nima Hosseinzadeh",
@@ -330,15 +336,14 @@ import { RouteComponentProps, withRouter } from "react-router";
                                 src="/Images/icons/cloud_computing.svg"
                                 alt="sssss"
                                 height="20"
-                                
                               />{" "}
-                              <span className="flex-fill">Browse Local Files</span>
+                              <span className="flex-fill">
+                                Browse Local Files
+                              </span>
                             </div>
                           }
                         ></MainButton>
-                        <p>
-                        Or drag and drop files here
-                        </p>
+                        <p>Or drag and drop files here</p>
                       </div>
                       <aside>
                         <h4>Files</h4>
@@ -362,7 +367,6 @@ import { RouteComponentProps, withRouter } from "react-router";
                   fontSize="18px"
                   color="#ffffff"
                   className="px-3"
-                  
                 >
                   <i className="fas fa-plus"></i>
                 </CircleIcon>
@@ -385,4 +389,4 @@ import { RouteComponentProps, withRouter } from "react-router";
     );
   }
 }
-export default withRouter(Ticket)
+export default withRouter(Ticket);

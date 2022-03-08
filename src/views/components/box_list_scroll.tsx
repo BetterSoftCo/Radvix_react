@@ -12,8 +12,7 @@ interface IBoxListScroll {
   DeleteFunc?: (e: any, value: any) => void;
   className?: string;
   onClick?: (e: any, value: any) => void;
-  hasImage?: boolean,
-  default_photo?:string
+  default_photo: string;
 }
 export const BoxListScroll: React.FC<IBoxListScroll> = ({
   items,
@@ -24,8 +23,7 @@ export const BoxListScroll: React.FC<IBoxListScroll> = ({
   DeleteFunc,
   className,
   onClick,
-  hasImage,
-  default_photo
+  default_photo,
 }) => {
   let IsclassName;
   if (className !== undefined) {
@@ -53,8 +51,8 @@ export const BoxListScroll: React.FC<IBoxListScroll> = ({
                   <img
                     src={
                       item[`${ImageItem}`] === null ||
-                        item[`${ImageItem}`] === "" ||
-                        hasImage === false
+                      item[`${ImageItem}`] === "" ||
+                      item[`${ImageItem}`] === undefined
                         ? default_photo
                         : item[`${ImageItem}`]
                     }
