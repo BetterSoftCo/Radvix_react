@@ -2,6 +2,7 @@ import { toast } from "react-toastify";
 import { CreatePublishReq } from "../../data/models/requests/publish/create_publish_req";
 import { CreatePublishResResult } from "../../data/models/responses/publish/create_publish_res";
 import { GetAllPublishesResult } from "../../data/models/responses/publish/publishes_res";
+import { GetPublishByIDResult } from "../../data/models/responses/publish/publish_by_id_res";
 import { SearchPublishResResult } from "../../data/models/responses/publish/search_publish_res";
 import { RemotePublish } from "../../data/remotes/publish/remote_publish";
 import { store } from "../../data/store";
@@ -65,6 +66,18 @@ export class publishController {
       (err) => {
         error(err);
       }
+    );
+  }
+  getPublishById(
+    body: { publicationId: number },
+    action: (res: GetPublishByIDResult) => any
+  ) {
+    this.remote.getPublishById(
+      body,
+      (res) => {
+        action(res.result!);
+      },
+      (err) => {}
     );
   }
 }
