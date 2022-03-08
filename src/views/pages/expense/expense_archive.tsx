@@ -1,5 +1,6 @@
 import React from "react";
 import ReactPaginate from "react-paginate";
+import { expenseController } from "../../../controllers/expense/expense_controller";
 import { store } from "../../../data/store";
 import { MainButton, MainButtonType } from "../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
@@ -9,45 +10,50 @@ import  ExpenseArchiveTable  from "./component/expense_archive_tbl";
 
 export class ExpenseArchive extends React.Component {
   RoleUser = store.getState().userRole;
+  controller = new expenseController();
   state = {
-    Data: {
-      Items: [
-        {
-          name: "Structural and Materials Lab",
-          Institution: "Travel",
-          Category: "N. Hosseinzadeh",
-          Eqiups: "$122.23",
-          Receipt:"12/2.2022",
-          status:"approved"
-        },
-        {
-          name: "Structural and Materials Lab",
-          Institution: "Travel",
-          Category: "N. Hosseinzadeh",
-          Eqiups: "$122.23",
-          Receipt:"12/2.2022",
-          status:"approved"
-        },
-        {
-          name: "Structural and Materials Lab",
-          Institution: "Travel",
-          Category: "N. Hosseinzadeh",
-          Eqiups: "$122.23",
-          Receipt:"12/2.2022",
-          status:"approved"
-        },
-        {
-          name: "Structural and Materials Lab",
-          Institution: "Travel",
-          Category: "N. Hosseinzadeh",
-          Eqiups: "$122.23",
-          Receipt:"12/2.2022",
-          status:"approved"
-          
-        },
-      ],
-    },
+    Expenses: [],
+    PageNumber: 1,
+    PageSize: 10,
+    PageCount: 0,
+    TotalCount:0,
+    ResearchId:store.getState().ResearchId
   };
+  getExpense(PageNumber: number, PageSize: number , ResearchId : number) {
+    this.controller.getExpenses({ PageNumber: PageNumber, PageSize: PageSize , ResearchId : ResearchId}, res => {
+      this.setState({
+        Expenses: res.expenses,
+        PageCount: Math.ceil(res.count! / this.state.PageSize),
+        TotalCount:res.count
+      })
+
+    }, err => console.log(err)
+    )
+  }
+  
+  handelChangePageNumber(
+    e: { selected: number }
+  ) {
+    this.setState({
+      PageNumber: e.selected
+    });
+    this.getExpense(e.selected + 1, this.state.PageSize, store.getState().ResearchId)
+  }
+  handelChangePageSize(
+    e: { label: string; value: number }
+  ) {
+    this.setState({
+      PageSize: e.value
+    });
+    this.getExpense(this.state.PageNumber, e.value , store.getState().ResearchId)
+  }
+
+  componentDidMount() {
+    this.getExpense(this.state.PageNumber, this.state.PageSize , store.getState().ResearchId)
+    store.subscribe(() => {
+      this.getExpense(this.state.PageNumber, this.state.PageSize , store.getState().ResearchId)
+    })
+  }
   render() {
     return (
       <div className="container-fluid research">
@@ -85,17 +91,22 @@ export class ExpenseArchive extends React.Component {
                   width="63px"
                   height="44px"
                   items={[
-                    { item: 1, id: 1 },
-                    { item: 2, id: 2 },
-                    { item: 3, id: 3 },
+                    { label: '10', value: 10 },
+                    { label: '15', value: 15 },
+                    { label: '20', value: 20 },
                   ]}
                   TextItem="item"
                   ValueItem="id"
+                  isMulti={false}
+                  placeholder={this.state.PageSize.toString()}
+                  onChange={(e) => {
+                    this.handelChangePageSize(e)
+                  }}
                 ></SelectComponent>
               </div>
             </div>
             <ExpenseArchiveTable
-              Items={this.state.Data.Items}
+              Items={this.state.Expenses}
               Heading={[
                 "Expense Name",
                 "Category",
@@ -131,18 +142,18 @@ export class ExpenseArchive extends React.Component {
                   }
                   breakLabel={"..."}
                   breakClassName={"break-me"}
-                  pageCount={20}
+                  pageCount={this.state.PageCount}
                   marginPagesDisplayed={2}
                   pageRangeDisplayed={5}
-                  onPageChange={() => {
-                    console.log("changepage");
+                  onPageChange={(e) => {
+                    this.handelChangePageNumber(e)
                   }}
                   containerClassName={"pagination"}
                   activeClassName={"active"}
                 />
               </div>
               <div className="d-flex justify-content-end flex-fill">
-                <p className="text-right mb-0 ">Total Results: 45</p>
+                <p className="text-right mb-0 ">Total Results: {this.state.TotalCount}</p>
               </div>
             </div>
           </div>

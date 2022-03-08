@@ -1,3 +1,4 @@
+import moment from "moment";
 import React from "react";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../../core/constants";
@@ -24,11 +25,11 @@ const ExpenseArchiveTable: React.FC<TableComponentProp & RouteComponentProps> =
           <tbody>
             {props.Items.map((head, index) => (
               <tr key={index}>
-                <td>{head.name}</td>
-                <td>{head.Institution}</td>
-                <td>{head.Category}</td>
-                <td>{head.Eqiups}</td>
-                <td>{head.Receipt}</td>
+                <td>{head.title}</td>
+                <td>{head.categoryTitle}</td>
+                <td>{head.creatorFirstName} {head.creatorLastName}</td>
+                <td>{head.amount}</td>
+                <td>{moment(head.Deadline).format("YYYY/MM/DD")}</td>
                 <td>
                   {" "}
                   <MainButton
