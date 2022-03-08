@@ -6,39 +6,43 @@ import { MainButton, MainButtonType } from "../../components/button";
 import { UserRoles } from "../../../core/utils";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
- class ExpensePageProfile extends React.Component<RouteComponentProps> {
+import { expenseController } from "../../../controllers/expense/expense_controller";
+import moment from "moment";
+interface RouteParams {
+  id: string;
+}
+ class ExpensePageProfile extends React.Component<RouteComponentProps<RouteParams>> {
   RoleUser = store.getState().userRole;
+  controller = new expenseController();
   state = {
-    Data: {
-      Items: [
-        {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
-        },
-        {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
-        },
-        {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
-        },
-        {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
-        },
-      ],
-    },
+    researchId: 0,
+    creatorFirstName:"",
+    creatorLastName:"",
+    status:"",
+    date:new Date(),
+    title:"",
+    amount:0,
+    description:""
   };
-
+  componentDidMount() {
+    this.controller.getExpenseById(
+      { id: parseInt(this.props.match.params.id) },
+      (res) => {
+        this.setState({
+          creatorFirstName: res.creatorFirstName,
+          creatorLastName:res.creatorLastName,
+          date:res.date,
+          title:res.title,
+          amount:res.amount,
+          description:res.description,
+          status:res.status === 0 ? "OnGoing" : 
+          res.status === 1 ? "Delayed" : 
+          res.status === 2 ? "OnHold" : 
+          "Completed"
+        });
+      }
+    );
+  }
   render() {
     return (
       <div className="container-fluid research new-research">
@@ -104,7 +108,7 @@ import { AppRoutes } from "../../../core/constants";
                 <div className="col-8 t-desc border-t-r">
                   {this.RoleUser === UserRoles.L1Client || this.RoleUser === UserRoles.L1User ? (
                     <MainButton
-                      children="Pending"
+                      children={this.state.status}
                       type={MainButtonType.light}
                       borderRadius="24px"
                       fontSize="14px"
@@ -126,23 +130,20 @@ import { AppRoutes } from "../../../core/constants";
               </div>
               <div className="row border-bottom">
                 <h6 className="col-4 t-title mb-0">Associated Task</h6>
-                <div className="col-8 t-desc">Running TGA on the Samples…</div>
+                <div className="col-8 t-desc">{this.state.title}</div>
               </div>
               <div className="row border-bottom">
                 <h6 className="col-4 t-title mb-0">Requested by</h6>
-                <div className="col-8 t-desc">N. Hosseinzadeh</div>
+                <div className="col-8 t-desc">{this.state.creatorFirstName} {this.state.creatorLastName}</div>
               </div>
               <div className="row border-bottom">
                 <h6 className="col-4 t-title mb-0">Receipt Date</h6>
-                <div className="col-8 t-desc">07/22/2021</div>
+                <div className="col-8 t-desc">{moment(this.state.date).format("YYYY/MM/DD")}</div>
               </div>
               <div className="row border-bottom">
                 <h6 className="col-4 t-title mb-0">Description </h6>
                 <div className="col-8 t-desc">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea
+                  {this.state.description}
                 </div>
               </div>
 
@@ -196,7 +197,7 @@ import { AppRoutes } from "../../../core/constants";
                   Amount
                 </div>
                 <div className="col-9 d-flex justify-content-start align-items-center price">
-                  $122.23
+                  ${this.state.amount}
                 </div>
               </div>
             </div>
