@@ -24,7 +24,6 @@ class TaskPageProfile extends React.Component<RouteComponentProps<RouteParams>> 
   state: GetTaskByIDResult = {
     id: parseInt(this.props.match.params.id),
     creatorUserId: "",
-    discussionId: 0,
     title: "",
     creatorFirstName: "",
     creatorLastName: "",
@@ -40,7 +39,9 @@ class TaskPageProfile extends React.Component<RouteComponentProps<RouteParams>> 
     medias: [],
     endDate: new Date(),
     startDate: new Date(),
-    status: 0
+    status: 0,
+    discription: "",
+    priority: 0
   };
   componentDidMount() {
     this.controller.getTaskById(
@@ -51,7 +52,6 @@ class TaskPageProfile extends React.Component<RouteComponentProps<RouteParams>> 
         this.setState({
           id: parseInt(this.props.match.params.id),
           creatorUserId: res.creatorUserId,
-          discussionId: res.discussionId,
           title: res.title,
           creatorFirstName: res.creatorFirstName,
           creatorLastName: res.creatorLastName,
@@ -64,7 +64,9 @@ class TaskPageProfile extends React.Component<RouteComponentProps<RouteParams>> 
           medias: res.medias,
           endDate: res.endDate,
           startDate: res.startDate,
-          status: res.status
+          status: res.status,
+          priority:res.priority,
+          discription:res.discription
         });
       },
       (err) => { }
@@ -122,10 +124,7 @@ class TaskPageProfile extends React.Component<RouteComponentProps<RouteParams>> 
               {this.state.title}
             </h3>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.{" "}
+              {this.state.discription}
             </p>
           </div>
           <div className="row">
@@ -134,7 +133,7 @@ class TaskPageProfile extends React.Component<RouteComponentProps<RouteParams>> 
                 <h6 className="col-4 t-title mb-0 border-t-l">Priority</h6>
                 <div className="col-8 t-desc border-t-r">
                   <MainButton
-                    children="High Priority"
+                    children={this.state.priority.isPriority()}
                     type={MainButtonType.dark}
                     borderRadius="24px"
                     fontSize="14px"
@@ -155,18 +154,11 @@ class TaskPageProfile extends React.Component<RouteComponentProps<RouteParams>> 
                 <div className="col-8 t-desc">
                   {" "}
                   <MainButton
-                    children="On Going"
+                    children={this.state.status.isStatus()}
                     type={MainButtonType.dark}
                     borderRadius="24px"
                     fontSize="14px"
                     backgroundColor="#8EE1FF"
-                  ></MainButton>
-                  <MainButton
-                    children="Delayed"
-                    type={MainButtonType.dark}
-                    borderRadius="24px"
-                    fontSize="14px"
-                    backgroundColor="#FE861F"
                   ></MainButton>
                 </div>
               </div>
@@ -306,6 +298,7 @@ class TaskPageProfile extends React.Component<RouteComponentProps<RouteParams>> 
                   ValueItem="id"
                   ImageItem="image"
                   hasImage={false}
+                  default_photo="/Images/icons/equipment_Icon.svg"
                 ></BoxListScroll>
               </div>
             </div>

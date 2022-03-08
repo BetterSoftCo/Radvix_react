@@ -7,7 +7,8 @@ export interface GetTaskByID {
 export interface GetTaskByIDResult {
     id:               number;
     creatorUserId:    string;
-    discussionId:     number;
+    discription:      string;
+    priority:         number;
     title:            string;
     creatorFirstName: string;
     creatorLastName:  string;
@@ -35,11 +36,11 @@ export interface Data {
 }
 
 export interface Media {
-  id: number;
-  name: string;
-  externalUrl: string;
-  inputDataType: number;
-  title: string;
+    id:            number;
+    name:          string;
+    title:         string;
+    externalUrl:   string;
+    inputDataType: number;
 }
 
 export interface ParentTask {
