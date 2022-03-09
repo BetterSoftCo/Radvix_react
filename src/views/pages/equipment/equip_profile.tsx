@@ -7,7 +7,7 @@ import { IconTextRow } from "../../components/icon_text_horizontal";
 import { AccessPermition, Theme, UserRoles } from "../../../core/utils";
 import { BoxListScroll } from "../../components/box_list_scroll";
 import { RouteComponentProps, withRouter } from "react-router";
-import { AppRoutes } from "../../../core/constants";
+import { AppConstants, AppRoutes } from "../../../core/constants";
 import { EquipmentController } from "../../../controllers/equipment/equipment_controller";
 import { GetEquimentByIDResResult } from "../../../data/models/responses/equipment/get_equipment_by_id_res";
 interface RouteParams {
@@ -111,7 +111,7 @@ class EquipProfile extends React.Component<RouteComponentProps<RouteParams>> {
           </div>
           <div className="Studying p-4 my-2 d-flex flex-column justify-content-center align-items-center">
             <img
-              src={this.state.image}
+              src={AppConstants.base_url_image+this.state.image}
               alt="Avatar"
               className="rounded-circle avatar"
               width="125px"

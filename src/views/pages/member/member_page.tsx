@@ -122,7 +122,7 @@ class MemberPage extends React.Component<RouteComponentProps> {
             </div>
             <div className="row">
               {this.state.Members.map((item) => (
-                <Memberitem key={item.id} member={item}></Memberitem>
+                <Memberitem role={this.RoleUser} key={item.id} member={item}></Memberitem>
               ))}
             </div>
 

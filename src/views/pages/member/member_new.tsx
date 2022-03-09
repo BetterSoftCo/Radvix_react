@@ -11,6 +11,7 @@ import { MemberController } from "../../../controllers/member/member_controller"
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
 import { LocalDataSources } from "../../../data/local_datasources";
+import { AccessPermition, UserRoles } from "../../../core/utils";
 type StateType = {
   userEmail: string;
   invitationNote: string;
@@ -80,7 +81,6 @@ class MemberPageNew extends React.Component<RouteComponentProps> {
         return { label: item.title, value: item.id };
       }),
     });
-    
   }
   handleChange(target: string, val: any) {
     this.setState({
@@ -149,7 +149,7 @@ class MemberPageNew extends React.Component<RouteComponentProps> {
             loading: false,
           });
           this.props.history.push(
-            `${AppRoutes.member_profile.replace(":id", "1")}`
+            `${AppRoutes.member_profile.replace(":id", res.id)}`
           );
         },
         (err) => {
@@ -211,10 +211,20 @@ class MemberPageNew extends React.Component<RouteComponentProps> {
                   label="Access Level:"
                   popQuestion="Access Level:"
                   name="AccessLevel"
-                  items={[
-                    { name: "Level 1 ", value: 1 },
-                    { name: "Level 2 ", value: 2 },
-                  ]}
+                  items={
+                    AccessPermition(this.RoleUser, [
+                      UserRoles.Admin,
+                      UserRoles.L1Client,
+                      UserRoles.L1User,
+                    ])
+                      ? [
+                          { name: "Level 1 ", value: 1 },
+                          { name: "Level 2 ", value: 2 },
+                        ]
+                      : [
+                        { name: "Level 3 ", value: 3 },
+                      ]
+                  }
                   TextItem="name"
                   ValueItem="value"
                   selected={this.state.accessLevel}

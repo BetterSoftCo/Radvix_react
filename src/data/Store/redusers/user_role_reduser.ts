@@ -30,7 +30,7 @@ import { UserRoleAction, UserRoleState } from "../actions/user_action";
 // };
 
 // export default reducer;
-const UserRole: UserRoles = UserRoles.L1User;
+const UserRole: UserRoles = UserRoles.L3User;
 
 const reducer = (
   state: UserRoles = UserRole,
@@ -38,7 +38,7 @@ const reducer = (
 ): UserRoleState => {
   switch (action.type) {
     case SET_USER_ROLE:
-      return UserRoles.L1User;
+      return UserRoles.L3User;
   }
   return state;
 };

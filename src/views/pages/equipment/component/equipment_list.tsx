@@ -5,7 +5,7 @@ import { MainButton, MainButtonType } from "../../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../../components/circle_icon";
 import { IconTextRow } from "../../../components/icon_text_horizontal";
 import { RouteComponentProps, withRouter } from "react-router";
-import { AppRoutes } from "../../../../core/constants";
+import { AppConstants, AppRoutes } from "../../../../core/constants";
 interface TableComponentProp {
   Heading: string[];
   Items: Equipment[];
@@ -34,7 +34,7 @@ const EquipmentList: React.FC<TableComponentProp & RouteComponentProps> = (
                   theme={Theme.light}
                   children={
                     <img
-                      src={head.image}
+                      src={AppConstants.base_url_image+head.image}
                       alt="Avatar"
                       className="rounded-circle avatar mx-2"
                       width={58}
