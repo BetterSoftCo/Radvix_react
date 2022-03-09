@@ -8,22 +8,24 @@ import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
 import { expenseController } from "../../../controllers/expense/expense_controller";
 import moment from "moment";
+import { GetExpenseByIDResult } from "../../../data/models/responses/expense/expense_by_id_res";
 interface RouteParams {
   id: string;
 }
 class ExpensePageProfile extends React.Component<RouteComponentProps<RouteParams>> {
   RoleUser = store.getState().userRole;
   controller = new expenseController();
-  state = {
-    researchId: 0,
-    creatorFirstName: "",
-    creatorLastName: "",
-    status: "",
-    date: new Date(),
-    title: "",
-    amount: 0,
-    description: "",
+  state : GetExpenseByIDResult = {
+    id:parseInt(this.props.match.params.id),
+    title:"",
     appTaskTitle:"",
+    creatorFirstName: "",
+    creatorLastName:  "",
+    status:0,
+    date: new Date(),
+    medias:[],
+    amount:0,
+    description:"",
   };
   componentDidMount() {
     this.controller.getExpenseById(
@@ -37,10 +39,8 @@ class ExpensePageProfile extends React.Component<RouteComponentProps<RouteParams
           amount: res.amount,
           description: res.description,
           appTaskTitle:res.appTaskTitle,
-          status: res.status === 0 ? "OnGoing" :
-            res.status === 1 ? "Delayed" :
-              res.status === 2 ? "OnHold" :
-                "Completed"
+          medias: res.medias,
+          status: res.status
         });
       }
     );
@@ -118,7 +118,7 @@ class ExpensePageProfile extends React.Component<RouteComponentProps<RouteParams
                 <div className="col-8 t-desc border-t-r">
                   {this.RoleUser === UserRoles.L1Client || this.RoleUser === UserRoles.L1User ? (
                     <MainButton
-                      children={this.state.status}
+                    children={this.state.status?.isStatus()}
                       type={MainButtonType.light}
                       borderRadius="24px"
                       fontSize="14px"
@@ -127,13 +127,13 @@ class ExpensePageProfile extends React.Component<RouteComponentProps<RouteParams
                   ) : (
                     <div className="d-flex justify-content-start align-items-center">
                       <MainButton
-                        children="Approved"
+                        children={this.state.status?.isStatus()}
                         type={MainButtonType.dark}
                         borderRadius="24px"
                         fontSize="14px"
                         backgroundColor="#53A501"
                       ></MainButton>
-                      <p className="mb-0 mx-2">07/22/2021</p>
+                      <p className="mb-0 mx-2">{moment(this.state.date).format("YYYY/MM/DD")}</p>
                     </div>
                   )}
                 </div>
@@ -162,40 +162,26 @@ class ExpensePageProfile extends React.Component<RouteComponentProps<RouteParams
                 <div className="col-8 t-desc border-b-r">
                   {" "}
                   <ul className="file-list">
-                    <li>
+                  {this.state.medias?.filter(item => !item.externalUrl).map(item => (
+                    <li key={item.id}>
                       <img src="/images/icons/pdf_icon.svg" alt="" />{" "}
                       proposal_general.pdf
                     </li>
-                    <li>
-                      <img src="/images/icons/word_icon.svg" alt="" />{" "}
-                      proposal_general.docx
-                    </li>
-                    <li>
-                      <img src="/images/icons/excel_icon.svg" alt="" />{" "}
-                      proposal_general.xlsx
-                    </li>
-                    <li>
-                      <img src="/images/icons/pdf_icon.svg" alt="" />{" "}
-                      proposal_general.pdf
-                    </li>
+                    ))}
                     <li>
                       Shared Links:
+                      {this.state.medias?.filter(item => item.externalUrl).map(item => (
+                        <div key={item.id}>
                       <MainButton
-                        children="https://drive.google.com/file/234234"
+                        children={item.externalUrl}
                         type={MainButtonType.dark}
                         borderRadius="24px"
                         fontSize="14px"
                         backgroundColor="#F5F5F5"
                         color="#096BFF"
                       ></MainButton>
-                      <MainButton
-                        children="https://drive.google.com/file/234234"
-                        type={MainButtonType.dark}
-                        borderRadius="24px"
-                        fontSize="14px"
-                        backgroundColor="#F5F5F5"
-                        color="#096BFF"
-                      ></MainButton>
+                      </div>
+                      ))}
                     </li>
                   </ul>
                 </div>

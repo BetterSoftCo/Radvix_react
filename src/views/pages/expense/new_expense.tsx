@@ -113,6 +113,7 @@ class ExpensePageNew extends React.Component<RouteComponentProps> {
         body,
         (res) => {
           this.handelUpload(res.id);
+          this.props.history.push(`${AppRoutes.expense_profile.replace(':id', res.id?.toString() ?? "")}`)
           this.setState({
             categoryId: 0,
             title: '',
@@ -121,7 +122,6 @@ class ExpensePageNew extends React.Component<RouteComponentProps> {
             amount: new Date(),
             date: new Date(),
           });
-          this.props.history.push(`${AppRoutes.expense_profile.replace(':id', res.id?.toString() ?? "")}`)
         },
         (err) => {
           this.setState({

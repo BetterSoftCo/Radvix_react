@@ -56,7 +56,6 @@ export class MyPublications extends React.Component {
   }
   
   render() {
-    console.log(this.state.Publishes);
     return (
       <div className="container-fluid research">
         <div className="row"></div>
@@ -148,7 +147,7 @@ export class MyPublications extends React.Component {
                 />
               </div>
               <div className="d-flex justify-content-end flex-fill">
-                <p className="text-right mb-0 ">Total Results1: {this.state.TotalCount}</p>
+                <p className="text-right mb-0 ">Total Results: {this.state.TotalCount}</p>
               </div>
             </div>
           </div>
