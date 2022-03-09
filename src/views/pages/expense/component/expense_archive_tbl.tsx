@@ -33,7 +33,10 @@ const ExpenseArchiveTable: React.FC<TableComponentProp & RouteComponentProps> =
                 <td>
                   {" "}
                   <MainButton
-                    children={head.status}
+                    children={ head.status === 0 ? "OnGoing" :
+                    head.status === 1 ? "Delayed" :
+                      head.status === 2 ? "OnHold" :
+                        "Completed"}
                     type={MainButtonType.dark}
                     borderRadius="24px"
                     fontSize="14px"

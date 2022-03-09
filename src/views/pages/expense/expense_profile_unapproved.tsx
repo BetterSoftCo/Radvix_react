@@ -22,7 +22,8 @@ class ExpensePageProfile extends React.Component<RouteComponentProps<RouteParams
     date: new Date(),
     title: "",
     amount: 0,
-    description: ""
+    description: "",
+    appTaskTitle:"",
   };
   componentDidMount() {
     this.controller.getExpenseById(
@@ -35,6 +36,7 @@ class ExpensePageProfile extends React.Component<RouteComponentProps<RouteParams
           title: res.title,
           amount: res.amount,
           description: res.description,
+          appTaskTitle:res.appTaskTitle,
           status: res.status === 0 ? "OnGoing" :
             res.status === 1 ? "Delayed" :
               res.status === 2 ? "OnHold" :
@@ -82,7 +84,7 @@ class ExpensePageProfile extends React.Component<RouteComponentProps<RouteParams
           </div>
           <div className="Studying p-4 my-2">
             <h3 className="px-5 text-center">
-              Purchasing Tickets For ACI Conference
+              Purchasing Tickets For {this.state.title}
             </h3>
             {this.RoleUser === UserRoles.L1Client || this.RoleUser === UserRoles.L1User ? (
               <div className="d-flex justify-content-center align-items-center mt-3">
@@ -138,7 +140,7 @@ class ExpensePageProfile extends React.Component<RouteComponentProps<RouteParams
               </div>
               <div className="row border-bottom">
                 <h6 className="col-4 t-title mb-0">Associated Task</h6>
-                <div className="col-8 t-desc">{this.state.title}</div>
+                <div className="col-8 t-desc">{this.state.appTaskTitle}</div>
               </div>
               <div className="row border-bottom">
                 <h6 className="col-4 t-title mb-0">Requested by</h6>

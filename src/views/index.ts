@@ -35,7 +35,7 @@ import { MyPublications } from "./pages/publish/my_publications";
 import PublicationProfile from "./pages/publish/publication_profile";
 import UploadNewDraft from "./pages/publish/new_draft_upload";
 import ExpensePageNew from "./pages/expense/new_expense";
-import { ExpenseArchive } from "./pages/expense/expense_archive";
+import ExpenseArchive  from "./pages/expense/expense_archive";
 import ExpensePageProfile from "./pages/expense/expense_profile_unapproved";
 import { SettingPage } from "./pages/setting";
 import TicketPageNew from "./pages/ticket/new_ticket";

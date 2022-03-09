@@ -11,6 +11,7 @@ import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
 import SimpleReactValidator from "simple-react-validator";
 import { expenseController } from "../../../controllers/expense/expense_controller";
+import { UploadController } from "../../../controllers/upload_media/upload_media";
 type StateType = {
   files: Array<File>;
   categoryId: number;
@@ -26,7 +27,7 @@ type StateType = {
 };
 class ExpensePageNew extends React.Component<RouteComponentProps> {
   controller = new expenseController();
-
+  UploadController = new UploadController();
   RoleUser = store.getState().userRole;
   date = new Date();
   handelChangeDate(target: string, params: any): void {
@@ -55,32 +56,32 @@ class ExpensePageNew extends React.Component<RouteComponentProps> {
       files: this.state.files.filter((file) => file.name !== arg.name),
     });
   }
-  async handelUpload(id: number) {
+  async handelUpload(id: any) {
     const formData = new FormData();
     for (let i = 0; i < this.state.files.length; i++) {
       const file = this.state.files[i];
       formData.append("Files", file);
     }
-    // for (let i = 0; i < this.state.ExternalUrl.length; i++) {
-    //   const file = this.state.ExternalUrl[i];
-    //   formData.append("ExternalUrls", file);
-    // }
-    // formData.append("UseCase", "1");
-    // formData.append("LaboratoryId", id.toString());
+    for (let i = 0; i < this.state.ExternalUrl.length; i++) {
+      const file = this.state.ExternalUrl[i];
+      formData.append("ExternalUrls", file);
+    }
+    formData.append("UseCase", "4");
+    formData.append("ExpenseId", id.toString());
 
-    // await this.UploadController.UloadMedia(
-    //   formData,
-    //   (res) => {
-    //     this.setState({
-    //       loading: false,
-    //     });
-    //   },
-    //   () => {
-    //     this.setState({
-    //       loading: false,
-    //     });
-    //   }
-    // );
+    await this.UploadController.UloadMedia(
+      formData,
+      (res) => {
+        this.setState({
+          loading: false,
+        });
+      },
+      () => {
+        this.setState({
+          loading: false,
+        });
+      }
+    );
   }
   handleChange(target: string, val: any) {
     this.setState({
@@ -111,6 +112,7 @@ class ExpensePageNew extends React.Component<RouteComponentProps> {
       this.controller.createExpense(
         body,
         (res) => {
+          this.handelUpload(res.id);
           this.setState({
             categoryId: 0,
             title: '',
@@ -119,6 +121,7 @@ class ExpensePageNew extends React.Component<RouteComponentProps> {
             amount: new Date(),
             date: new Date(),
           });
+          this.props.history.push(`${AppRoutes.expense_profile.replace(':id', res.id?.toString() ?? "")}`)
         },
         (err) => {
           this.setState({
@@ -424,7 +427,7 @@ class ExpensePageNew extends React.Component<RouteComponentProps> {
                     items={this.state.categories}
                     TextItem="name"
                     ValueItem="id"
-                    className="my-2"
+                    className="my-2 w-100"
                     placeholder="Click to see the list…"
                     isMulti={false}
                     onChange={(e) => {
