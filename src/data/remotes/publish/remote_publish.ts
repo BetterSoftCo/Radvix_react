@@ -1,5 +1,7 @@
 import { HTTP } from "../../../core/http_common";
+import { CreateDraftReq } from "../../models/requests/publish/create_draft_req";
 import { CreatePublishReq } from "../../models/requests/publish/create_publish_req";
+import { CreateDraftRes } from "../../models/responses/publish/create_draft_res";
 import { CreatePublishRes } from "../../models/responses/publish/create_publish_res";
 import { GetAllPublishes } from "../../models/responses/publish/publishes_res";
 import { GetPublishByID } from "../../models/responses/publish/publish_by_id_res";
@@ -33,5 +35,8 @@ export class RemotePublish {
       .catch((err) => {
         error(err);
       });
+  }
+  createDraft(body:CreateDraftReq,action: (res: CreateDraftRes) => any,error: (res: any) => any){
+    return HTTP.post("/Publish/NextDraft" , body).then((res) => action(res.data)).catch((err)=>{error(err)});
   }
 }

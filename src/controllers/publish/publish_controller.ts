@@ -1,5 +1,7 @@
 import { toast } from "react-toastify";
+import { CreateDraftReq } from "../../data/models/requests/publish/create_draft_req";
 import { CreatePublishReq } from "../../data/models/requests/publish/create_publish_req";
+import { CreateDraftResResult } from "../../data/models/responses/publish/create_draft_res";
 import { CreatePublishResResult } from "../../data/models/responses/publish/create_publish_res";
 import { GetAllPublishesResult } from "../../data/models/responses/publish/publishes_res";
 import { GetPublishByIDResult } from "../../data/models/responses/publish/publish_by_id_res";
@@ -78,6 +80,27 @@ export class publishController {
         action(res.result!);
       },
       (err) => {}
+    );
+  }
+  createDraft(
+    body: CreateDraftReq,
+    action: (res: CreateDraftResResult) => any,
+    error: (res: any) => any
+  ) {
+    this.remote.createDraft(
+      body,
+      (res) => {
+        toast.success(`${res.message}`, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+        action(res.result!);
+      },
+      (err) => {
+        toast.error(`${err.message}`, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+        error(err);
+      }
     );
   }
 }
