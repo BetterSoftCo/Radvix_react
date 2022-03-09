@@ -25,7 +25,8 @@ interface RouteParams {
       { publicationId: parseInt(this.props.match.params.id) },
       (res) => {
         this.setState({
-          publication:res
+          publication:res,
+          nextDraftUploader:res.nextDraftUploader
         });
       }
     );
@@ -37,14 +38,18 @@ interface RouteParams {
       creatorLastName: "",
       drafts: "",
       name:"",
-      nextDraftUploader:"",
       priority:0,
       startDate:new Date(),
       endDate: new Date(),
       submitAt: "",
       users:[],
       publication:[]
-    }
+    },
+    nextDraftUploader:{
+      firstName: "",
+      image: "",
+      lastName: ""
+    },
   };
 
   render() {
@@ -82,7 +87,7 @@ interface RouteParams {
             </h3>
             <div className="title-discusstion text-center">
               Waiting for
-              <span className="mx-2">Nima Hosseinzadeh</span>
+              <span className="mx-2">{this.state.nextDraftUploader.firstName} {this.state.nextDraftUploader.lastName}</span>
               to upload the next draft since
               <span className="mx-2">Aug 23, 2020.</span>
             </div>
@@ -93,7 +98,7 @@ interface RouteParams {
                 <h6 className="col-4 t-title mb-0 border-t-l">Priority</h6>
                 <div className="col-8 t-desc border-t-r">
                   <MainButton
-                    children="High Priority"
+                    children={this.state.publication.priority === 0 ? "Low" : this.state.publication.priority === 1 ? "Medium" : "High"}
                     type={MainButtonType.dark}
                     borderRadius="24px"
                     fontSize="14px"

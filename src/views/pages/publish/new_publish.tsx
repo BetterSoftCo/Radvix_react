@@ -11,6 +11,7 @@ import { BoxAlert } from "../../components/box_alert";
 import { RouteComponentProps, withRouter } from "react-router";
 import SimpleReactValidator from "simple-react-validator";
 import { publishController } from "../../../controllers/publish/publish_controller";
+import { AppRoutes } from "../../../core/constants";
 class PublishPageNew extends React.Component<RouteComponentProps> {
   RoleUser = store.getState().userRole;
   controller = new publishController();
@@ -67,6 +68,7 @@ class PublishPageNew extends React.Component<RouteComponentProps> {
             categories: [],
             drafList: []
           });
+          this.props.history.push(`${AppRoutes.publish_profile.replace(':id', res.id?.toString() ?? "")}`)
         },
         (err) => {
           this.setState({
