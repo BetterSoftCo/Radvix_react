@@ -8,9 +8,16 @@ export interface GetLaboratoryByIDResult {
     title:        string;
     id:           number;
     categoryName: string;
+    categoryId:   number;
+    description:  string;
     labManagers:  LabManager[];
     webSite:      string;
-    address:      string;
+    addressLine1: string;
+    addressLine2: string;
+    zipCode:      string;
+    company:      string;
+    phone:        string;
+    countryId:    number;
     media:        Media[];
     equipments:   Equipment[];
     teams:        Equipment[];

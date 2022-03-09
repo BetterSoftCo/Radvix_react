@@ -9,6 +9,8 @@ import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
 import { TeamController } from "../../../controllers/team/team_controller";
 import SimpleReactValidator from "simple-react-validator";
+import { AccessPermition, UserRoles } from "../../../core/utils";
+import { TeamCreateReq } from "../../../data/models/requests/team/team_create_req";
 type StateType = {
   title: string;
   description: string;
@@ -17,11 +19,13 @@ type StateType = {
   laboratoriesId: number[];
   equipmentsId: number[];
   researchesId: number[];
+  teamId: number;
   subTeamId: number;
   listManagers: Array<{ label: string; value: string } | {}>;
   listUsers: Array<{ label: string; value: string } | {}>;
   listLaboratories: Array<{ label: string; value: number } | {}>;
   listResearch: Array<{ label: string; value: number } | {}>;
+  listTeam: Array<{ label: string; value: number } | {}>;
   loading: boolean;
 };
 class TeamPageNew extends React.Component<RouteComponentProps> {
@@ -42,8 +46,10 @@ class TeamPageNew extends React.Component<RouteComponentProps> {
     listLaboratories: [],
     listManagers: [],
     listResearch: [],
+    listTeam: [],
     listUsers: [],
     loading: false,
+    teamId: 0,
   };
   componentDidMount() {
     this.controller.TeamSearch((res) => {
@@ -60,6 +66,11 @@ class TeamPageNew extends React.Component<RouteComponentProps> {
         listResearch: res.researches.map((item) => {
           return { label: item.title, value: item.id };
         }),
+        listTeam: res.teams
+          ? res.teams.map((item) => {
+              return { label: item.title, value: item.id };
+            })
+          : [],
         listUsers: res.users.map((item) => {
           return {
             label: item.firstName + " " + item.lastName,
@@ -80,9 +91,15 @@ class TeamPageNew extends React.Component<RouteComponentProps> {
   ) {
     this.setState({ [target]: e.map((item) => item.value) });
   }
+  handelChangeSelectSigle(
+    target: string,
+    e: { label: string; value: number }
+  ) {
+    this.setState({ [target]: e.value });
+  }
   handelCreateTeam() {
     if (this.validator.allValid()) {
-      const body = {
+      const body: TeamCreateReq = {
         title: this.state.title,
         description: this.state.description,
         managersId: this.state.managersId,
@@ -90,15 +107,17 @@ class TeamPageNew extends React.Component<RouteComponentProps> {
         laboratoriesId: this.state.laboratoriesId,
         equipmentsId: this.state.equipmentsId,
         researchesId: this.state.researchesId,
-        subTeamId: 0,
+        teamId: this.state.teamId,
       };
+      this.setState({
+        loading: true,
+      });
       this.controller.createTeam(
         body,
         (res) => {
-          this.props.history.push(`${AppRoutes.team_profile.replace(
-            ":id",
-            res.id.toString()
-          )}`);
+          this.props.history.push(
+            `${AppRoutes.team_profile.replace(":id", res.id.toString())}`
+          );
           this.setState({
             title: "",
             description: "",
@@ -107,7 +126,7 @@ class TeamPageNew extends React.Component<RouteComponentProps> {
             laboratoriesId: [],
             equipmentsId: [],
             researchesId: [],
-            subTeamId: 0,
+            teamId: 0,
             listLaboratories: [],
             listManagers: [],
             listResearch: [],
@@ -138,15 +157,29 @@ class TeamPageNew extends React.Component<RouteComponentProps> {
               }}
               className="backPage"
             ></span>{" "}
-            Create A New Team
+            {AccessPermition(this.RoleUser, [
+              UserRoles.Admin,
+              UserRoles.L1Client,
+              UserRoles.L1User,
+            ])
+              ? "Create A New Team"
+              : "Create A New Subteam"}
           </h5>
           <div className="form row">
             <div className="col-md-6 left">
               <div className="item">
                 <InputComponent
                   type={InputType.text}
-                  label="Team Name:"
-                  popQuestion="Research Name:"
+                  label={
+                    AccessPermition(this.RoleUser, [
+                      UserRoles.Admin,
+                      UserRoles.L1Client,
+                      UserRoles.L1User,
+                    ])
+                      ? "Team Name:"
+                      : "Subteam Name:"
+                  }
+                  popQuestion="Team Name:"
                   onChange={(e) => {
                     this.handleChange("title", e.target.value);
                   }}
@@ -170,26 +203,53 @@ class TeamPageNew extends React.Component<RouteComponentProps> {
                   }}
                 ></InputComponent>
               </div>
-              <div className="item">
-                <SelectComponent
-                  items={this.state.listManagers}
-                  TextItem="name"
-                  ValueItem="id"
-                  className="my-2"
-                  placeholder="Click to see the list…"
-                  label=" Team Manager (s):"
-                  popQuestion=" Team Manager (s):"
-                  optional="optional"
-                  onChange={(e) => {
-                    this.handelChangeSelect("managersId", e);
-                  }}
-                  isMulti
-                ></SelectComponent>
-              </div>
-              <BoxAlert
-                text="No Member Has Been Added Yet! 
+
+              {AccessPermition(this.RoleUser, [
+                UserRoles.Admin,
+                UserRoles.L1Client,
+                UserRoles.L1User,
+              ]) ? (
+                <>
+                  {" "}
+                  <div className="item">
+                    <SelectComponent
+                      items={this.state.listManagers}
+                      TextItem="name"
+                      ValueItem="id"
+                      className="my-2"
+                      placeholder="Click to see the list…"
+                      label=" Team Manager (s):"
+                      popQuestion=" Team Manager (s):"
+                      optional="optional"
+                      onChange={(e) => {
+                        this.handelChangeSelect("managersId", e);
+                      }}
+                      isMulti
+                    ></SelectComponent>
+                  </div>{" "}
+                  <BoxAlert
+                    text="No Member Has Been Added Yet! 
                 (You will automatically be added as a team manager)"
-              ></BoxAlert>
+                  ></BoxAlert>{" "}
+                </>
+              ) : (
+                <div className="item">
+                  <SelectComponent
+                    items={this.state.listTeam}
+                    TextItem="name"
+                    ValueItem="id"
+                    className="my-2"
+                    placeholder="Click to see the list…"
+                    label=" Choose The parent Subteam"
+                    popQuestion=" Choose The parent Subteam"
+                    optional="optional"
+                    onChange={(e) => {
+                      this.handelChangeSelectSigle("teamId", e);
+                    }}
+                    isMulti={false}
+                  ></SelectComponent>
+                </div>
+              )}
             </div>
             <div className="col-md-6 right">
               <div className="item">
@@ -198,9 +258,24 @@ class TeamPageNew extends React.Component<RouteComponentProps> {
                   TextItem="name"
                   ValueItem="id"
                   className="my-2"
-                  placeholder="Click to see the list…"
-                  label="Add Members To This Team:"
-                  popQuestion="Add Members To This Team:"
+                  label={
+                    AccessPermition(this.RoleUser, [
+                      UserRoles.Admin,
+                      UserRoles.L1Client,
+                      UserRoles.L1User,
+                    ])
+                      ? "Add Members To This Team:"
+                      : "Add Members To This subteam::"
+                  }
+                  popQuestion={
+                    AccessPermition(this.RoleUser, [
+                      UserRoles.Admin,
+                      UserRoles.L1Client,
+                      UserRoles.L1User,
+                    ])
+                      ? "Add Members To This Team:"
+                      : "Add Members To This subteam::"
+                  }
                   optional=""
                   onChange={(e) => {
                     this.handelChangeSelect("usersId", e);
@@ -216,8 +291,24 @@ class TeamPageNew extends React.Component<RouteComponentProps> {
                   ValueItem="id"
                   className="my-2"
                   placeholder="Click to see the list…"
-                  label="Assign Team To Labs (Equips):"
-                  popQuestion="Assign Team To Labs (Equips):"
+                  popQuestion={
+                    AccessPermition(this.RoleUser, [
+                      UserRoles.Admin,
+                      UserRoles.L1Client,
+                      UserRoles.L1User,
+                    ])
+                      ? "Assign Team To Labs (Equips):"
+                      : "Assign Subteam To Labs (Equips):"
+                  }
+                  label={
+                    AccessPermition(this.RoleUser, [
+                      UserRoles.Admin,
+                      UserRoles.L1Client,
+                      UserRoles.L1User,
+                    ])
+                      ? "Assign Team To Labs (Equips):"
+                      : "Assign Subteam To Labs (Equips):"
+                  }
                   optional="optional"
                   onChange={(e) => {
                     this.handelChangeSelect("laboratoriesId", e);
@@ -233,8 +324,24 @@ class TeamPageNew extends React.Component<RouteComponentProps> {
                   ValueItem="id"
                   className="my-2"
                   placeholder="Click to see the list…"
-                  label="Assign Team To Projects:                  "
-                  popQuestion="Assign Team To Projects:"
+                  label={
+                    AccessPermition(this.RoleUser, [
+                      UserRoles.Admin,
+                      UserRoles.L1Client,
+                      UserRoles.L1User,
+                    ])
+                      ? "Assign Team To Projects:"
+                      : "Assign Subteam To Projects:"
+                  }
+                  popQuestion={
+                    AccessPermition(this.RoleUser, [
+                      UserRoles.Admin,
+                      UserRoles.L1Client,
+                      UserRoles.L1User,
+                    ])
+                      ? "Assign Team To Projects:"
+                      : "Assign Subteam To Projects:"
+                  }
                   optional="optional"
                   onChange={(e) => {
                     this.handelChangeSelect("researchesId", e);

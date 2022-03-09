@@ -4,12 +4,13 @@ import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import "react-datepicker/dist/react-datepicker.css";
 import { MainButton, MainButtonType } from "../../components/button";
 import { IconTextRow } from "../../components/icon_text_horizontal";
-import { Theme } from "../../../core/utils";
+import { AccessPermition, Theme, UserRoles } from "../../../core/utils";
 import { BoxListScroll } from "../../components/box_list_scroll";
 import { MemberController } from "../../../controllers/member/member_controller";
 import { RouteComponentProps, withRouter } from "react-router";
 import { GetMemberByIDResResult } from "../../../data/models/responses/member/get_member_by_id_res";
 import moment from "moment";
+import { AppConstants } from "../../../core/constants";
 interface RouteParams {
   id: string;
 }
@@ -78,17 +79,24 @@ class MemberPageProfile extends React.Component<
                 className="backPage"
               ></span>{" "}
               {"Member Profile"}
-              <CircleIcon
-                width="22px"
-                height="22px"
-                type={ThemeCircleIcon.dark}
-                backgroundColor="#474747"
-                fontSize="10px"
-                color="#ffff"
-                className="mx-4"
-              >
-                <i className="fas fa-history"></i>
-              </CircleIcon>
+              {AccessPermition(this.RoleUser, [
+                UserRoles.Admin,
+                UserRoles.L1Client,
+                UserRoles.L1User,
+                UserRoles.L2User,
+              ]) ? (
+                <CircleIcon
+                  width="22px"
+                  height="22px"
+                  type={ThemeCircleIcon.dark}
+                  backgroundColor="#474747"
+                  fontSize="10px"
+                  color="#ffff"
+                  className="mx-4"
+                >
+                  <i className="fas fa-history"></i>
+                </CircleIcon>
+              ) : null}
             </h5>
             <div className="d-flex justify-content-around align-items-center w-25">
               <MainButton
@@ -107,7 +115,11 @@ class MemberPageProfile extends React.Component<
           </div>
           <div className="Studying p-4 my-2 d-flex flex-column justify-content-center align-items-center">
             <img
-              src="/images/images/img_avatar.png"
+              src={
+                this.state.profileImage
+                  ? AppConstants.base_url_image + this.state.profileImage
+                  : "/images/images/img_avatar.png"
+              }
               alt="Avatar"
               className="rounded-circle avatar"
               width="125px"
@@ -302,6 +314,7 @@ class MemberPageProfile extends React.Component<
                   ))}
                 </div>
                 <BoxListScroll
+                  default_photo="/Images/icons/equipment_Icon.svg"
                   items={this.state.equipments}
                   TextItem="title"
                   ValueItem="id"

@@ -59,7 +59,13 @@ interface RouteParams {
         <div className="col-12 box-content p-3">
           <div className="d-flex justify-content-between align-items-center">
             <h5 className="b-title d-flex align-items-center">
-              <span onClick={()=>{window.history.back()}} className="backPage"></span> {"Publication Profile"}
+              <span
+                onClick={() => {
+                  window.history.back();
+                }}
+                className="backPage"
+              ></span>{" "}
+              {"Publication Profile"}
             </h5>
             <div>
               <MainButton
@@ -68,7 +74,9 @@ interface RouteParams {
                 borderRadius="24px"
                 fontSize="14px"
                 className="mx-2"
-                onClick={()=>{this.props.history.push(AppRoutes.publish_upload)}}
+                onClick={() => {
+                  this.props.history.push(AppRoutes.publish_upload);
+                }}
               ></MainButton>
               <MainButton
                 children="Discussion Panel"
@@ -76,7 +84,9 @@ interface RouteParams {
                 borderRadius="24px"
                 fontSize="14px"
                 className="mx-2 px-3"
-                onClick={()=>{this.props.history.push(AppRoutes.discussion)}}
+                onClick={() => {
+                  this.props.history.push(AppRoutes.discussion);
+                }}
               ></MainButton>
             </div>
           </div>
@@ -173,6 +183,7 @@ interface RouteParams {
                 <BoxListScroll
                   items={this.state.publication.users}
                   TextItem="firstName"
+                  default_photo="/Images/icons/equipment_Icon.svg"
                   ValueItem="id"
                   ImageItem="image"
                   className="mt-2 pointer"
@@ -183,6 +194,7 @@ interface RouteParams {
                         value.toString()
                       )}`
                     );
+                  
                   }}
                 ></BoxListScroll>
               </div>
@@ -199,7 +211,8 @@ interface RouteParams {
                     <img src="/images/icons/search_box_icon.svg" alt="radvix" />
                   }
                   width="100%"
-                  placeholder="Search..."  TopPosition="15%"
+                  placeholder="Search..."
+                  TopPosition="15%"
                 ></InputIcon>
               </div>
               <div className="right w-50 d-flex justify-content-end align-items-center">
@@ -209,7 +222,9 @@ interface RouteParams {
                   borderRadius="24px"
                   fontSize="14px"
                   className="mx-2"
-                  onClick={()=>{this.props.history.push(AppRoutes.publish_upload)}}
+                  onClick={() => {
+                    this.props.history.push(AppRoutes.publish_upload);
+                  }}
                 ></MainButton>
                 <SelectComponent
                   width="63px"
@@ -268,4 +283,4 @@ interface RouteParams {
     );
   }
 }
-export default withRouter(PublicationProfile)
+export default withRouter(PublicationProfile);

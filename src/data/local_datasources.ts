@@ -27,4 +27,11 @@ export class LocalDataSources {
     }
     return { firstName: "", email: "", lastName: "" };
   }
+  logedin(): boolean {
+    const logedin = localStorage.getItem("logedin");
+    if (logedin) {
+      return JSON.parse(logedin);
+    }
+    return false;
+  }
 }

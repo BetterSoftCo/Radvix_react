@@ -69,10 +69,14 @@ const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
                       width="26px"
                       height="26px"
                       type={ThemeCircleIcon.dark}
-                      onClick={() => props.history.push(`${AppRoutes.team_profile.replace(
-                        ":id",
-                        item.id.toString()
-                      )}`)}
+                      onClick={() =>
+                        props.history.push(
+                          `${AppRoutes.team_profile.replace(
+                            ":id",
+                            item.id.toString()
+                          )}`
+                        )
+                      }
                       className="pointer m-1"
                     >
                       <img
@@ -82,12 +86,20 @@ const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
                         height={12}
                       />
                     </CircleIcon>
-                    {props.role !== UserRoles.L3User ? (
+                    {props.role !== UserRoles.L3User &&
+                    props.role !== UserRoles.L2User ? (
                       <CircleIcon
                         width="26px"
                         height="26px"
                         type={ThemeCircleIcon.dark}
-                        onClick={() => props.history.push(`${AppRoutes.team_edit.replace(":id", item.id.toString() ?? "")}`)}
+                        onClick={() =>
+                          props.history.push(
+                            `${AppRoutes.team_edit.replace(
+                              ":id",
+                              item.id.toString() ?? ""
+                            )}`
+                          )
+                        }
                         className="pointer m-1"
                       >
                         <img src="/images/icons/edit.svg" alt="radvix" />
@@ -131,7 +143,9 @@ const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
                         <div className="col text-truncate">
                           {sub.creatorFirstName + " " + sub.creatorLastName}
                         </div>
-                        <div className="col text-center">{sub.memberCount}</div>
+                        <div className="col text-center">
+                          {sub.subTeamMemberCount}
+                        </div>
 
                         <div className="col">
                           <MainButton

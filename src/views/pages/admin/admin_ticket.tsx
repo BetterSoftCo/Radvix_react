@@ -41,7 +41,12 @@ export class AdminTicket extends React.Component {
         <div className="row"></div>
         <div className="col-12 box-content p-3 discusstion">
           <h5 className="b-title d-flex">
-            <span onClick={()=>{window.history.back()}} className="backPage"></span>
+            <span
+              onClick={() => {
+                window.history.back();
+              }}
+              className="backPage"
+            ></span>
             Question About The Thermogravimetric Results
             <MainButton
               children="High Priority"
@@ -179,6 +184,7 @@ export class AdminTicket extends React.Component {
                   ></IconTextRow>
                 </div>
                 <BoxListScroll
+                  default_photo="/Images/icons/equipment_Icon.svg"
                   items={[
                     {
                       text: "Nima Hosseinzadeh",
@@ -315,43 +321,42 @@ export class AdminTicket extends React.Component {
                       </CircleIcon>
                     </span>
                     <Dropzone onDrop={this.onDrop}>
-                  {({ getRootProps, getInputProps }) => (
-                    <section className="container fileUploadBox">
-                      <div {...getRootProps({ className: "dropzone" })}>
-                        <input {...getInputProps()} />
-                        <MainButton
-                          type={MainButtonType.light}
-                          minHeight="30px"
-                          minWidth="179px"
-                          fontSize="14px"
-                          borderRadius="50px"
-                          backgroundColor="#fff"
-                          border="1px solid #707070"
-                          color="#707070"
-                          className="mt-4"
-                          children={
-                            <div className="d-flex justify-content-between align-items-center">
-                              <img
-                                src="/Images/icons/cloud_computing.svg"
-                                alt="sssss"
-                                height="20"
-                                
-                              />{" "}
-                              <span className="flex-fill">Browse Local Files</span>
-                            </div>
-                          }
-                        ></MainButton>
-                        <p>
-                        Or drag and drop files here
-                        </p>
-                      </div>
-                      <aside>
-                        <h4>Files</h4>
-                        <ul>{files}</ul>
-                      </aside>
-                    </section>
-                  )}
-                </Dropzone>
+                      {({ getRootProps, getInputProps }) => (
+                        <section className="container fileUploadBox">
+                          <div {...getRootProps({ className: "dropzone" })}>
+                            <input {...getInputProps()} />
+                            <MainButton
+                              type={MainButtonType.light}
+                              minHeight="30px"
+                              minWidth="179px"
+                              fontSize="14px"
+                              borderRadius="50px"
+                              backgroundColor="#fff"
+                              border="1px solid #707070"
+                              color="#707070"
+                              className="mt-4"
+                              children={
+                                <div className="d-flex justify-content-between align-items-center">
+                                  <img
+                                    src="/Images/icons/cloud_computing.svg"
+                                    alt="sssss"
+                                    height="20"
+                                  />{" "}
+                                  <span className="flex-fill">
+                                    Browse Local Files
+                                  </span>
+                                </div>
+                              }
+                            ></MainButton>
+                            <p>Or drag and drop files here</p>
+                          </div>
+                          <aside>
+                            <h4>Files</h4>
+                            <ul>{files}</ul>
+                          </aside>
+                        </section>
+                      )}
+                    </Dropzone>
                   </div>
                   <div className="item d-flex justify-content-between align-items-center">
                     <InputComponent

@@ -4,7 +4,7 @@ import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import "react-datepicker/dist/react-datepicker.css";
 import { MainButton, MainButtonType } from "../../components/button";
 import { IconTextRow } from "../../components/icon_text_horizontal";
-import { Theme } from "../../../core/utils";
+import { AccessPermition, Theme, UserRoles } from "../../../core/utils";
 import { BoxListScroll } from "../../components/box_list_scroll";
 import { withRouter, RouteComponentProps } from "react-router";
 import { AppRoutes } from "../../../core/constants";
@@ -22,9 +22,16 @@ class LaboratoryPageProfile extends React.Component<
     title: "",
     id: 0,
     categoryName: "",
+    categoryId: 0,
+    description: "",
     labManagers: [],
     webSite: "",
-    address: "",
+    addressLine1: "",
+    addressLine2: "",
+    zipCode: "",
+    company: "",
+    phone: "",
+    countryId: 0,
     media: [],
     equipments: [],
     teams: [],
@@ -42,11 +49,13 @@ class LaboratoryPageProfile extends React.Component<
           categoryName: res.categoryName,
           labManagers: res.labManagers,
           webSite: res.webSite,
-          address: res.address,
           media: res.media,
           equipments: res.equipments,
           teams: res.teams,
           members: res.members,
+          addressLine1: res.addressLine1,
+          addressLine2: res.addressLine2,
+          description: res.description,
         });
       }
     );
@@ -65,20 +74,32 @@ class LaboratoryPageProfile extends React.Component<
                 className="backPage"
               ></span>{" "}
               {"Laboratory List > Lab Profile"}
-              <CircleIcon
-                width="22px"
-                height="22px"
-                type={ThemeCircleIcon.dark}
-                backgroundColor="#474747"
-                fontSize="10px"
-                color="#ffff"
-                className="mx-4 pointer"
-                onClick={() => {
-                  this.props.history.push(AppRoutes.edit_laboratory);
-                }}
-              >
-                <img src="/images/icons/edit.svg" alt="radvix" />
-              </CircleIcon>
+              {AccessPermition(this.RoleUser, [
+                UserRoles.Admin,
+                UserRoles.L1Client,
+                UserRoles.L1User,
+                UserRoles.L2User,
+              ]) ? (
+                <CircleIcon
+                  width="22px"
+                  height="22px"
+                  type={ThemeCircleIcon.dark}
+                  backgroundColor="#474747"
+                  fontSize="10px"
+                  color="#ffff"
+                  className="mx-4 pointer"
+                  onClick={() => {
+                    this.props.history.push(
+                      `${AppRoutes.edit_laboratory.replace(
+                        ":id",
+                        this.state.id?.toString()
+                      )}`
+                    );
+                  }}
+                >
+                  <img src="/images/icons/edit.svg" alt="radvix" />
+                </CircleIcon>
+              ) : null}
             </h5>
             <MainButton
               children="Discussion Panel"
@@ -93,12 +114,7 @@ class LaboratoryPageProfile extends React.Component<
           </div>
           <div className="Studying p-4 my-2">
             <h3 className="px-5 text-center">{this.state.title}</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
-            </p>
+            <p>{this.state.description}</p>
           </div>
           <div className="row">
             <div className="col-md-6  tabel-info ">
@@ -135,7 +151,9 @@ class LaboratoryPageProfile extends React.Component<
               </div>
               <div className="row border-bottom">
                 <h6 className="col-4 t-title mb-0">Address</h6>
-                <div className="col-8 t-desc">{this.state.address}</div>
+                <div className="col-8 t-desc">
+                  {this.state.addressLine1 + " - " + this.state.addressLine2}
+                </div>
               </div>
               <div className="row border-bottom">
                 <h6 className="col-4 t-title mb-0 border-b-l">Protocols</h6>
@@ -226,8 +244,10 @@ class LaboratoryPageProfile extends React.Component<
                       </g>
                     </svg>
                   }
+                  className="mb-1"
                 ></IconTextRow>
                 <BoxListScroll
+                  default_photo="/Images/icons/equipment_Icon.svg"
                   className="mt-3 pointer"
                   items={this.state.equipments}
                   TextItem="title"
@@ -278,12 +298,13 @@ class LaboratoryPageProfile extends React.Component<
                   ))}
                 </div>
                 <BoxListScroll
+                  default_photo="/Images/icons/user.svg"
                   items={this.state.members}
                   TextItem="firstName"
                   ValueItem="id"
                   ImageItem="image"
                   className="pointer"
-                  onClick={(e , value) => {
+                  onClick={(e, value) => {
                     this.props.history.push(
                       `${AppRoutes.member_profile.replace(
                         ":id",

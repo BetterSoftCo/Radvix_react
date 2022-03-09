@@ -191,27 +191,32 @@ class ResearchPageEdit extends React.Component<
       removedTeamsId: this.state.removedTeamsId,
       addedUsersId: this.state.addedUsersId,
       removedUsersId: this.state.removedUsersId,
+      status:this.state.status
     };
     this.setState({
-      loading:true
-    })
+      loading: true,
+    });
     this.controller.updateResearch(
       body,
       (res) => {
-        if(this.state.files.length || this.state.ExternalUrl.length){
-          this.handelUpload(res.id)
-        }else{
+        if (this.state.files.length || this.state.ExternalUrl.length) {
+          this.handelUpload(res.id);
+        } else {
           this.setState({
-            loading:false
-          })
-          this.props.history.push(`${AppRoutes.profile_research.replace(':id', res.id?.toString() ?? "")}`)
+            loading: false,
+          });
+          this.props.history.push(
+            `${AppRoutes.profile_research.replace(
+              ":id",
+              res.id?.toString() ?? ""
+            )}`
+          );
         }
-        
       },
       (err) => {
         this.setState({
-          loading:false
-        })
+          loading: false,
+        });
       }
     );
     if (this.validator.allValid()) {
@@ -240,7 +245,9 @@ class ResearchPageEdit extends React.Component<
         this.setState({
           loading: false,
         });
-        this.props.history.push(`${AppRoutes.profile_research.replace(':id', id?.toString() ?? "")}`)
+        this.props.history.push(
+          `${AppRoutes.profile_research.replace(":id", id?.toString() ?? "")}`
+        );
       },
       () => {
         this.setState({
@@ -281,7 +288,7 @@ class ResearchPageEdit extends React.Component<
                 this.props.history.push(AppRoutes.research);
               }}
             ></span>{" "}
-            Create A New Research Project
+            Edit Research Project
           </h5>
           <div className="form row">
             <div className="col-md-6 left">
@@ -460,7 +467,7 @@ class ResearchPageEdit extends React.Component<
                           alt=""
                           className="mx-2"
                         />{" "}
-                        {item.name}
+                        {item.title}
                         <CircleIcon
                           type={ThemeCircleIcon.dark}
                           width="22px"
@@ -628,6 +635,7 @@ class ResearchPageEdit extends React.Component<
                   ))}
                 </div>
                 <BoxListScroll
+                  default_photo="/Images/icons/user.svg"
                   items={this.state.users}
                   TextItem="firstName"
                   ValueItem="id"

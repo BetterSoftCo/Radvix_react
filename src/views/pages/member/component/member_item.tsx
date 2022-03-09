@@ -1,11 +1,13 @@
 import React from "react";
 import { RouteComponentProps, withRouter } from "react-router";
-import { AppRoutes } from "../../../../core/constants";
+import { AppConstants, AppRoutes } from "../../../../core/constants";
+import { AccessPermition, UserRoles } from "../../../../core/utils";
 import { Member } from "../../../../data/models/responses/member/member_list_res";
 import { MainButton, MainButtonType } from "../../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../../components/circle_icon";
 interface IMemberItem {
   member: Member;
+  role: UserRoles;
 }
 const MemberItem: React.FC<IMemberItem & RouteComponentProps> = (props) => {
   return (
@@ -13,7 +15,7 @@ const MemberItem: React.FC<IMemberItem & RouteComponentProps> = (props) => {
       <img
         src={
           props.member.profileImage
-            ? props.member.profileImage
+            ? AppConstants.base_url_image + props.member.profileImage
             : "/images/images/img_avatar.png"
         }
         alt="Avatar"
@@ -40,26 +42,40 @@ const MemberItem: React.FC<IMemberItem & RouteComponentProps> = (props) => {
       ) : null}
 
       <div className="d-flex justify-content-center align-items-center">
+        {AccessPermition(props.role, [
+          UserRoles.Admin,
+          UserRoles.L1Client,
+          UserRoles.L1User,
+          UserRoles.L2User,
+        ]) ? (
+          <CircleIcon
+            width="26px"
+            height="26px"
+            type={ThemeCircleIcon.dark}
+            onClick={() => {
+              props.history.push(
+                `${AppRoutes.member_user_edit.replace(
+                  ":id",
+                  props.member.id ?? ""
+                )}`
+              );
+            }}
+            className="pointer mx-1"
+          >
+            <img src="/images/icons/edit.svg" alt="radvix" />
+          </CircleIcon>
+        ) : null}
+
         <CircleIcon
           width="26px"
           height="26px"
           type={ThemeCircleIcon.dark}
           onClick={() => {
             props.history.push(
-              `${AppRoutes.member_user_edit.replace(":id", props.member.id ?? "")}`
-            );
-          }}
-          className="pointer mx-1"
-        >
-          <img src="/images/icons/edit.svg" alt="radvix" />
-        </CircleIcon>
-        <CircleIcon
-          width="26px"
-          height="26px"
-          type={ThemeCircleIcon.dark}
-          onClick={() => {
-            props.history.push(
-              `${AppRoutes.member_profile.replace(":id", props.member.id ?? "")}`
+              `${AppRoutes.member_profile.replace(
+                ":id",
+                props.member.id ?? ""
+              )}`
             );
           }}
           className="pointer mx-1"

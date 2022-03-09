@@ -1,6 +1,7 @@
 export class AppConstants {
-	static token: string = "";
-	static base_url_api:string = "http://185.79.156.134:1024/api"
+  static token: string = "";
+  static base_url_api: string = "http://185.79.156.134:1024/api";
+  static base_url_image: string = "http://185.79.156.134:1024";
 }
 
 export class AppRoutes {
@@ -22,7 +23,7 @@ export class AppRoutes {
 	static edit_laboratory:string ='/dashboard/laboratory/edit/:id';
 	static task:string ='/dashboard/Task/';
 	static task_new:string ='/dashboard/Task/new/';
-	static task_profile:string ='/dashboard/Task/profile/';
+  static task_profile: string = "/dashboard/Task/profile/:id";
 	static task_edit:string ='/dashboard/Task/edit/:id';
 	static member:string ='/dashboard/Member';
 	static member_new:string ='/dashboard/Member/new/';
@@ -31,8 +32,8 @@ export class AppRoutes {
 	static member_edit_profile:string ='/dashboard/Member/EditProfile/:id';
 	static equip_new:string ='/dashboard/Equip/new/';
 	static equip:string ='/dashboard/Equip/';
-	static equip_profile:string ='/dashboard/Equip/profile/';
-	static equip_edit:string ='/dashboard/Equip/edit/';
+  static equip_profile: string = "/dashboard/Equip/profile/:id";
+  static equip_edit: string = "/dashboard/Equip/edit/:id";
 	static discussion:string ='/dashboard/Discussion';
 	static discussion_new:string ='/dashboard/Discussion/new/';
 	static discussion_list:string ='/dashboard/Discussion/list/';

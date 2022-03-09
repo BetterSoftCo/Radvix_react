@@ -2,20 +2,24 @@ import React from "react";
 import ReactPaginate from "react-paginate";
 import { EquipmentController } from "../../../controllers/equipment/equipment_controller";
 import { LocalDataSources } from "../../../data/local_datasources";
-import { GetAllEquipmentResult } from "../../../data/models/responses/equipment/get_all_equipment_res";
+import { Equipment } from "../../../data/models/responses/equipment/get_all_equipment_res";
 import { store } from "../../../data/store";
 import { MainButton, MainButtonType } from "../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import { InputIcon } from "../../components/search_box";
 import { SelectComponent } from "../../components/select_input";
-import { EquipmentList } from "./component/equipment_list";
+import EquipmentList from "./component/equipment_list";
+import { RouteComponentProps, withRouter } from "react-router";
+import { AppRoutes } from "../../../core/constants";
+import { AccessPermition, UserRoles } from "../../../core/utils";
 type StateType = {
-  Equipments: GetAllEquipmentResult[];
+  Equipments: Equipment[];
   PageNumber: number;
   PageSize: number;
   PageCount: number;
+  TotalCount: number;
 };
-export class EquipPage extends React.Component {
+class EquipPage extends React.Component<RouteComponentProps> {
   RoleUser = store.getState().userRole;
   controller = new EquipmentController();
   local = new LocalDataSources();
@@ -24,20 +28,38 @@ export class EquipPage extends React.Component {
     PageNumber: 1,
     PageSize: 10,
     PageCount: 0,
+    TotalCount: 0,
   };
   componentDidMount() {
     this.GetEquipments(this.state.PageNumber, this.state.PageSize);
   }
   GetEquipments(PageNumber: number, PageSize: number) {
     this.controller.getAllEquipments(
-      { userId: this.local.getUserId() },
+      {
+        PageNumber: PageNumber,
+        PageSize: PageSize,
+      },
       (res) => {
         this.setState({
-          Equipments: res,
+          Equipments: res.equipments,
+          PageCount: Math.ceil(res.count! / this.state.PageSize),
+          TotalCount: res.count,
         });
       },
       (err) => console.log(err)
     );
+  }
+  handelChangePageNumber(e: { selected: number }) {
+    this.setState({
+      PageNumber: e.selected,
+    });
+    this.GetEquipments(e.selected + 1, this.state.PageSize);
+  }
+  handelChangePageSize(e: { label: string; value: number }) {
+    this.setState({
+      PageSize: e.value,
+    });
+    this.GetEquipments(this.state.PageNumber, e.value);
   }
   render() {
     return (
@@ -66,36 +88,56 @@ export class EquipPage extends React.Component {
                 ></InputIcon>
               </div>
               <div className="right  d-flex justify-content-between">
-                <MainButton
-                  children="New Equip"
-                  type={MainButtonType.dark}
-                  borderRadius="24px"
-                  fontSize="14px"
-                  className="my-2 mx-2"
-                ></MainButton>
+                {AccessPermition(this.RoleUser, [
+                  UserRoles.Admin,
+                  UserRoles.L1Client,
+                  UserRoles.L1User,
+                  UserRoles.L2User,
+                ]) ? (
+                  <MainButton
+                    children="New Equip"
+                    type={MainButtonType.dark}
+                    borderRadius="24px"
+                    fontSize="14px"
+                    className="my-2 mx-2"
+                    onClick={() => {
+                      this.props.history.push(AppRoutes.equip_new);
+                    }}
+                  ></MainButton>
+                ) : null}
+
                 <MainButton
                   children="Laboratories"
                   type={MainButtonType.dark}
                   borderRadius="24px"
                   fontSize="14px"
                   className="my-2 mx-2"
+                  onClick={() => {
+                    this.props.history.push(AppRoutes.laboratory);
+                  }}
                 ></MainButton>
                 <SelectComponent
-                  width="63px"
+                  width="90px"
                   height="44px"
                   items={[
-                    { item: 1, id: 1 },
-                    { item: 2, id: 2 },
-                    { item: 3, id: 3 },
+                    { label: "10", value: 10 },
+                    { label: "15", value: 15 },
+                    { label: "20", value: 20 },
                   ]}
                   TextItem="item"
                   ValueItem="id"
+                  isMulti={false}
+                  placeholder={this.state.PageSize.toString()}
+                  onChange={(e) => {
+                    this.handelChangePageSize(e);
+                  }}
                 ></SelectComponent>
               </div>
             </div>
             <EquipmentList
               Items={this.state.Equipments}
               Heading={["Equipment Name", "Laboratory", "Users", "Status"]}
+              role={this.RoleUser}
             ></EquipmentList>
 
             <div className="d-flex justify-content-between align-items-baseline">
@@ -123,18 +165,20 @@ export class EquipPage extends React.Component {
                   }
                   breakLabel={"..."}
                   breakClassName={"break-me"}
-                  pageCount={20}
+                  pageCount={this.state.PageCount}
                   marginPagesDisplayed={2}
                   pageRangeDisplayed={5}
-                  onPageChange={() => {
-                    console.log("changepage");
+                  onPageChange={(e) => {
+                    this.handelChangePageNumber(e);
                   }}
                   containerClassName={"pagination"}
                   activeClassName={"active"}
                 />
               </div>
               <div className="d-flex justify-content-end flex-fill">
-                <p className="text-right mb-0 ">Total Results: 45</p>
+                <p className="text-right mb-0 ">
+                  Total Results: {this.state.TotalCount}
+                </p>
               </div>
             </div>
           </div>
@@ -143,3 +187,4 @@ export class EquipPage extends React.Component {
     );
   }
 }
+export default withRouter(EquipPage);

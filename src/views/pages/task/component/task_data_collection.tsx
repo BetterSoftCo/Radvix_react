@@ -1,8 +1,10 @@
+import moment from "moment";
 import React from "react";
+import { Data } from "../../../../data/models/responses/task/get_task_by_id_res";
 import { CircleIcon, ThemeCircleIcon } from "../../../components/circle_icon";
 interface TableComponentProp {
   Heading: string[];
-  Items: any[];
+  Items: Data[];
 }
 export const TaskDataCollection: React.FC<TableComponentProp> = ({
   Heading,
@@ -23,10 +25,10 @@ export const TaskDataCollection: React.FC<TableComponentProp> = ({
         <tbody>
           {Items.map((head, index) => (
             <tr key={index}>
-              <td>{head.name}</td>
-              <td>{head.Institution}</td>
-              <td>{head.Category}</td>
-              <td>{head.Eqiups}</td>
+              <td>{head.title}</td>
+              <td>{head.medias.map(item => item.title).join(' - ')}</td>
+              <td>{head.creatorFirstName + ' ' + head.creatorLastName}</td>
+              <td>{moment(head.createdDate).format("YYYY/MM/DD")}</td>
               <td>
                 <div className="col d-flex justify-content-end align-items-center">
                   <CircleIcon

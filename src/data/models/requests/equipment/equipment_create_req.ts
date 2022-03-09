@@ -1,16 +1,11 @@
 export interface EquipmentCreateReq {
-    title:           string;
-    description:     string;
-    technicianName:  string;
-    technicianEmail: string;
-    model:           string;
-    manufacturer:    string;
-    laboratoriesId:  number[];
-    externalUrls:    string[];
-    addressLine1:    string;
-    addressLine2:    string;
-    zipCode:         string;
-    company:         string;
-    phone:           string;
-    status:          number;
+  title: string;
+  manufacturer: string;
+  model: string;
+  description: string;
+  status: number;
+  technicianName: string;
+  technicianEmail: string;
+  technicianPhone: string;
+  laboratoriesId: number[];
 }

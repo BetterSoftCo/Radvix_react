@@ -1,23 +1,25 @@
 import React from "react";
-import { Theme } from "../../../../core/utils";
-import { GetAllEquipmentResult } from "../../../../data/models/responses/equipment/get_all_equipment_res";
+import { AccessPermition, Theme, UserRoles } from "../../../../core/utils";
+import { Equipment } from "../../../../data/models/responses/equipment/get_all_equipment_res";
 import { MainButton, MainButtonType } from "../../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../../components/circle_icon";
 import { IconTextRow } from "../../../components/icon_text_horizontal";
+import { RouteComponentProps, withRouter } from "react-router";
+import { AppConstants, AppRoutes } from "../../../../core/constants";
 interface TableComponentProp {
   Heading: string[];
-  Items: GetAllEquipmentResult[];
+  Items: Equipment[];
+  role:UserRoles
 }
-export const EquipmentList: React.FC<TableComponentProp> = ({
-  Heading,
-  Items,
-}) => {
+const EquipmentList: React.FC<TableComponentProp & RouteComponentProps> = (
+  props
+) => {
   return (
     <div className="table-responsive">
       <table className="table table-striped table-light">
         <thead>
           <tr>
-            {Heading.map((head, index) => (
+            {props.Heading.map((head, index) => (
               <th scope="col" key={index}>
                 {head}
               </th>
@@ -25,14 +27,14 @@ export const EquipmentList: React.FC<TableComponentProp> = ({
           </tr>
         </thead>
         <tbody>
-          {Items.map((head, index) => (
+          {props.Items.map((head, index) => (
             <tr key={index}>
               <td>
                 <IconTextRow
                   theme={Theme.light}
                   children={
                     <img
-                      src="/images/images/img_avatar.png"
+                      src={AppConstants.base_url_image+head.image}
                       alt="Avatar"
                       className="rounded-circle avatar mx-2"
                       width={58}
@@ -42,11 +44,24 @@ export const EquipmentList: React.FC<TableComponentProp> = ({
                   text={head.title}
                 ></IconTextRow>
               </td>
-              <td style={{ display: "table-cell", verticalAlign: "middle" }} className="align-items-center">{head.title}</td>
-              <td style={{ display: "table-cell", verticalAlign: "middle" }} className="align-items-center">{head.title}</td>
-              <td style={{ display: "table-cell", verticalAlign: "middle" }} className="align-items-center">
+              <td
+                style={{ display: "table-cell", verticalAlign: "middle" }}
+                className="align-items-center"
+              >
+                {head.laboratories.map((item) => item.title).join(" - ")}
+              </td>
+              <td
+                style={{ display: "table-cell", verticalAlign: "middle" }}
+                className="align-items-center"
+              >
+                {head.usersCount}
+              </td>
+              <td
+                style={{ display: "table-cell", verticalAlign: "middle" }}
+                className="align-items-center"
+              >
                 <MainButton
-                  children={head.title}
+                  children={head.status.isStatus()}
                   type={MainButtonType.dark}
                   borderRadius="24px"
                   fontSize="14px"
@@ -59,7 +74,14 @@ export const EquipmentList: React.FC<TableComponentProp> = ({
                     width="26px"
                     height="26px"
                     type={ThemeCircleIcon.dark}
-                    onClick={(e) => console.log("s")}
+                    onClick={(e) =>
+                      props.history.push(
+                        `${AppRoutes.equip_profile.replace(
+                          ":id",
+                          head.id?.toString() ?? ""
+                        )}`
+                      )
+                    }
                     className="pointer mx-1"
                   >
                     <img
@@ -69,15 +91,30 @@ export const EquipmentList: React.FC<TableComponentProp> = ({
                       height={12}
                     />
                   </CircleIcon>
-                  <CircleIcon
-                    width="26px"
-                    height="26px"
-                    type={ThemeCircleIcon.dark}
-                    onClick={(e) => console.log("sgdsa")}
-                    className="pointer"
-                  >
-                    <img src="/images/icons/edit.svg" alt="radvix" />
-                  </CircleIcon>
+                  {head.allowedToEdit &&
+                  AccessPermition(props.role, [
+                    UserRoles.Admin,
+                    UserRoles.L1Client,
+                    UserRoles.L1User,
+                    UserRoles.L2User,
+                  ]) ? (
+                    <CircleIcon
+                      width="26px"
+                      height="26px"
+                      type={ThemeCircleIcon.dark}
+                      onClick={(e) =>
+                        props.history.push(
+                          `${AppRoutes.equip_edit.replace(
+                            ":id",
+                            head.id?.toString() ?? ""
+                          )}`
+                        )
+                      }
+                      className="pointer"
+                    >
+                      <img src="/images/icons/edit.svg" alt="radvix" />
+                    </CircleIcon>
+                  ) : null}
                 </div>
               </td>
             </tr>
@@ -87,3 +124,4 @@ export const EquipmentList: React.FC<TableComponentProp> = ({
     </div>
   );
 };
+export default withRouter(EquipmentList);

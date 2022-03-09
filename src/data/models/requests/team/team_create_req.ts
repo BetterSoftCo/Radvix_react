@@ -7,5 +7,5 @@ export interface TeamCreateReq {
     laboratoriesId: number[];
     equipmentsId:   number[];
     researchesId:   number[];
-    subTeamId:      number;
+    teamId:         number;
 }

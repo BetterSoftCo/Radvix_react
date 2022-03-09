@@ -70,7 +70,7 @@ class ResearchPageProfile extends React.Component<
               {AccessPermition(this.RoleUser, [
                 UserRoles.Admin,
                 UserRoles.L1Client,
-                UserRoles.L2User,
+                UserRoles.L1User,
               ]) ? (
                 <CircleIcon
                   width="22px"
@@ -79,7 +79,7 @@ class ResearchPageProfile extends React.Component<
                   backgroundColor="#474747"
                   fontSize="10px"
                   color="#ffff"
-                  className="mx-1 pointer"
+                  className="mx-2 pointer"
                   onClick={() => {
                     this.props.history.push(
                       `${AppRoutes.edit_research.replace(
@@ -92,16 +92,23 @@ class ResearchPageProfile extends React.Component<
                   <img src="/images/icons/edit.svg" alt="radvix" />
                 </CircleIcon>
               ) : null}
-              <CircleIcon
-                width="22px"
-                height="22px"
-                type={ThemeCircleIcon.dark}
-                backgroundColor="#474747"
-                fontSize="10px"
-                color="#ffff"
-              >
-                <i className="fas fa-history"></i>
-              </CircleIcon>
+              {AccessPermition(this.RoleUser, [
+                UserRoles.Admin,
+                UserRoles.L1Client,
+                UserRoles.L1User,
+              ]) ? (
+                <CircleIcon
+                  width="22px"
+                  height="22px"
+                  type={ThemeCircleIcon.dark}
+                  backgroundColor="#474747"
+                  fontSize="10px"
+                  color="#ffff"
+                  className="mx-1"
+                >
+                  <i className="fas fa-history"></i>
+                </CircleIcon>
+              ) : null}
             </h5>
             <MainButton
               children="Discussion Panel"
@@ -227,20 +234,31 @@ class ResearchPageProfile extends React.Component<
                         borderRadius="24px"
                         fontSize="14px"
                         onClick={() => {
-                          this.props.history.push(AppRoutes.member_profile);
+                          this.props.history.push(
+                            `${AppRoutes.team_profile.replace(
+                              ":id",
+                              item.id.toString()
+                            )}`
+                          );
                         }}
                       ></MainButton>
                     </div>
                   ))}
                 </div>
                 <BoxListScroll
+                  default_photo="/Images/icons/user.svg"
                   items={this.state.Research.users}
                   TextItem="firstName"
                   ValueItem="id"
                   ImageItem="image"
                   Deletabel
-                  onClick={() => {
-                    this.props.history.push(AppRoutes.member_profile);
+                  onClick={(e, value) => {
+                    this.props.history.push(
+                      `${AppRoutes.member_profile.replace(
+                        ":id",
+                        value.toString()
+                      )}`
+                    );
                   }}
                   className="pointer"
                 ></BoxListScroll>
@@ -311,6 +329,7 @@ class ResearchPageProfile extends React.Component<
                   ))}
                 </div>
                 <BoxListScroll
+                  default_photo="/Images/icons/equipment_Icon.svg"
                   items={this.state.Research.equipments}
                   TextItem="title"
                   ValueItem="id"

@@ -38,16 +38,21 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
     setPageSize(e.value);
     GetResearch(PageNumber, e.value);
   };
-  const GetResearch = (PageNumber: number, PageSize: number) => {
-    controller.getResearches(
-      { PageNumber: PageNumber, PageSize: PageSize },
-      (res) => {
-        setListResearch(res.researchesList!);
-        setPageCount(Math.ceil(res.count! / PageSize));
-        setTotalCount(res.count!);
-      },
-      (err) => console.log(err)
-    );
+  const GetResearch = (PageNumber: number, PageSize: number) => {    
+    if (local.logedin()) {
+      controller.getResearches(
+        { PageNumber: PageNumber, PageSize: PageSize },
+        (res) => {
+          setListResearch(res.researchesList!);
+          setPageCount(Math.ceil(res.count! / PageSize));
+          setTotalCount(res.count!);
+        },
+        (err) => {
+          console.log('GetResearch layout');
+          
+        }
+      );
+    }
   };
   const changeResearch = (value: string) => {
     setResearchName(value);

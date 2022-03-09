@@ -15,6 +15,7 @@ export class UserController {
       (res) => {
         localStorage.setItem("token", res.result?.token ?? "");
         localStorage.setItem("userId", res.result?.id ?? "");
+        localStorage.setItem("logedin", 'true');
         const UserInfo = {
           firstName: res.result?.firstName,
           lastName: res.result?.lastName,

@@ -1,11 +1,13 @@
 import React from "react";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../../core/constants";
+import { AccessPermition, UserRoles } from "../../../../core/utils";
 import { Laboratory } from "../../../../data/models/responses/laboratory/laboratory_get_all_res";
 import { CircleIcon, ThemeCircleIcon } from "../../../components/circle_icon";
 interface TableComponentProp {
   Heading: any[];
   Items: Laboratory[];
+  role: UserRoles;
 }
 const TableListLaboratory: React.FC<
   TableComponentProp & RouteComponentProps
@@ -56,7 +58,13 @@ const TableListLaboratory: React.FC<
                       height={12}
                     />
                   </CircleIcon>
-                  {head.allowedToEdit ? (
+                  {head.allowedToEdit &&
+                  AccessPermition(props.role, [
+                    UserRoles.Admin,
+                    UserRoles.L1Client,
+                    UserRoles.L1User,
+                    UserRoles.L2User,
+                  ]) ? (
                     <CircleIcon
                       width="26px"
                       height="26px"

@@ -13,13 +13,11 @@ interface IAcordienTable {
 const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
   props
 ) => {
-  const handelOnclick = (e: any , id:number) => {
+  const handelOnclick = (e: any, id: number) => {
     e.stopPropagation();
-    props.history.push(
-      `${AppRoutes.task_edit.replace(":id", id.toString() ?? "")}`
-    );
+
   };
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
   return (
     <Fragment>
       <div className="row px-3">
@@ -80,7 +78,11 @@ const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
                         width="26px"
                         height="26px"
                         type={ThemeCircleIcon.dark}
-                        onClick={(e) => handelOnclick(e , item.appTask.id)}
+                        onClick={(e) => {
+                          props.history.push(
+                            `${AppRoutes.task_edit.replace(":id", item.appTask.id.toString() ?? "")}`
+                          );
+                        }}
                         className="pointer mx-1"
                       >
                         <img src="/images/icons/edit.svg" alt="radvix" />
@@ -91,7 +93,7 @@ const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
                       width="26px"
                       height="26px"
                       type={ThemeCircleIcon.dark}
-                      onClick={(e) => handelOnclick(e , item.appTask.id)}
+                      onClick={(e) => handelOnclick(e, item.appTask.id)}
                       className="pointer mx-1"
                     >
                       <img
@@ -103,7 +105,11 @@ const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
                       width="26px"
                       height="26px"
                       type={ThemeCircleIcon.dark}
-                      onClick={(e) => handelOnclick(e , item.appTask.id)}
+                      onClick={(e) => {
+                        props.history.push(
+                          `${AppRoutes.task_profile.replace(":id", item.appTask.id.toString() ?? "")}`
+                        );
+                      }}
                       className="pointer mx-1"
                     >
                       <img
