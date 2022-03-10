@@ -17,7 +17,7 @@ import moment from "moment";
 interface RouteParams {
   id: string;
 }
- class PublicationProfile extends React.Component<RouteComponentProps<RouteParams>> {
+class PublicationProfile extends React.Component<RouteComponentProps<RouteParams>> {
   RoleUser = store.getState().userRole;
   controller = new publishController();
   componentDidMount() {
@@ -25,31 +25,38 @@ interface RouteParams {
       { publicationId: parseInt(this.props.match.params.id) },
       (res) => {
         this.setState({
-          publication:res,
-          nextDraft:res.nextDraft
+          publication: res,
+          nextDraft: res.nextDraft,
+          drafts: res.drafts
         });
       }
     );
   }
   state = {
-    publication:{
+    publication: {
       category: "",
       creatorFirstName: "",
       creatorLastName: "",
-      drafts: "",
-      name:"",
-      priority:0,
-      startDate:new Date(),
+      name: "",
+      priority: 0,
+      startDate: new Date(),
       endDate: new Date(),
       submitAt: "",
-      users:[],
-      publication:[]
+      users: [],
+      publication: [],
     },
-    nextDraft:{
+    drafts: [{
+      createdDate: "",
+      finalVersion: false,
+      firstName: "",
+      lastName: "",
+      medias: [],
+    }],
+    nextDraft: {
       nextDrafterFirstName: "",
       image: "",
       nextDrafterLastName: "",
-      createdDate:""
+      createdDate: ""
     },
   };
 
@@ -193,14 +200,14 @@ interface RouteParams {
                   ValueItem="id"
                   ImageItem="image"
                   className="mt-2 pointer"
-                  onClick={(e , value) => {
+                  onClick={(e, value) => {
                     this.props.history.push(
                       `${AppRoutes.member_profile.replace(
                         ":id",
                         value.toString()
                       )}`
                     );
-                  
+
                   }}
                 ></BoxListScroll>
               </div>
@@ -250,10 +257,10 @@ interface RouteParams {
                 ></SelectComponent>
               </div>
             </div>
-            {/* <Drafts
-              Items={this.state.publication}
-              Heading={[{name:'File',center:false},{name:'Added By',center:true},{name:'Date',center:true},{name:'Version',center:true}]}
-            ></Drafts> */}
+            <Drafts
+              Items={this.state.drafts}
+              Heading={[{ name: 'File', center: false }, { name: 'Added By', center: true }, { name: 'Date', center: true }, { name: 'Version', center: true }]}
+            ></Drafts>
             <div className="d-flex justify-content-center align-items-center">
               <ReactPaginate
                 previousLabel={
