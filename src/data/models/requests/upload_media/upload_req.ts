@@ -6,6 +6,8 @@ export interface UploadReq {
     EquipmentId: number;
     DataId: number;
     AppTaskId: number;
+    ExpenseId:number;
+    DraftId:number;
     DiscussionHistoryId: number;
     Files: Array<any>;
 }
