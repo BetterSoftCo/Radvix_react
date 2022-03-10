@@ -5,29 +5,50 @@ export interface GetPublishByID {
 }
 
 export interface GetPublishByIDResult {
-    id?:                number;
-    priority?:          number;
-    name?:              string;
-    category?:          string;
-    submitAt?:          string;
-    creatorUserId?:     string;
-    creatorFirstName?:  string;
-    creatorLastName?:   string;
-    nextDraftUploader?: NextDraftUploader;
-    startDate?:         Date;
-    endDate?:           Date;
-    users?:             NextDraftUploader[];
-    drafts?:            Draft[];
+    id?:               number;
+    priority?:         number;
+    name?:             string;
+    category?:         string;
+    submitAt?:         string;
+    creatorUserId?:    string;
+    creatorFirstName?: string;
+    creatorLastName?:  string;
+    startDate?:        Date;
+    endDate?:          Date;
+    users?:            User[];
+    nextDraft?:        NextDraft;
+    drafts?:           Draft[];
 }
 
 export interface Draft {
-    researchId?:           number;
-    finalVersion?:         boolean;
-    nextPersonToWorkOnId?: string;
-    publicationId?:        number;
+    finalVersion?:  boolean;
+    userId?:        string;
+    firstName?:     string;
+    lastName?:      string;
+    publicationId?: number;
+    medias?:        Media[];
+    createdDate?:   Date;
 }
 
-export interface NextDraftUploader {
+export interface Media {
+    id?:            number;
+    name?:          string;
+    title?:         string;
+    externalUrl?:   string;
+    useCase?:       number;
+    inputDataType?: number;
+}
+
+export interface NextDraft {
+    finalVersion?:         boolean;
+    nextDrafterId?:        string;
+    nextDrafterFirstName?: string;
+    nextDrafterLastName?:  string;
+    publicationId?:        number;
+    createdDate?:          Date;
+}
+
+export interface User {
     id?:        string;
     firstName?: string;
     lastName?:  string;

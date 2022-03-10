@@ -26,7 +26,7 @@ interface RouteParams {
       (res) => {
         this.setState({
           publication:res,
-          nextDraftUploader:res.nextDraftUploader
+          nextDraft:res.nextDraft
         });
       }
     );
@@ -45,10 +45,11 @@ interface RouteParams {
       users:[],
       publication:[]
     },
-    nextDraftUploader:{
-      firstName: "",
+    nextDraft:{
+      nextDrafterFirstName: "",
       image: "",
-      lastName: ""
+      nextDrafterLastName: "",
+      createdDate:""
     },
   };
 
@@ -74,9 +75,14 @@ interface RouteParams {
                 borderRadius="24px"
                 fontSize="14px"
                 className="mx-2"
-                onClick={() => {
-                  this.props.history.push(AppRoutes.publish_upload);
-                }}
+                onClick={() =>
+                  this.props.history.push(
+                    `${AppRoutes.publish_upload.replace(
+                      ":id",
+                      parseInt(this.props.match.params.id)?.toString()
+                    )}`
+                  )
+                }
               ></MainButton>
               <MainButton
                 children="Discussion Panel"
@@ -97,9 +103,9 @@ interface RouteParams {
             </h3>
             <div className="title-discusstion text-center">
               Waiting for
-              <span className="mx-2">{this.state.nextDraftUploader.firstName} {this.state.nextDraftUploader.lastName}</span>
+              <span className="mx-2">{this.state.nextDraft.nextDrafterFirstName} {this.state.nextDraft.nextDrafterLastName}</span>
               to upload the next draft since
-              <span className="mx-2">Aug 23, 2020.</span>
+              <span className="mx-2">{moment(this.state.nextDraft.createdDate).format("LL")}</span>
             </div>
           </div>
           <div className="row">
@@ -222,9 +228,14 @@ interface RouteParams {
                   borderRadius="24px"
                   fontSize="14px"
                   className="mx-2"
-                  onClick={() => {
-                    this.props.history.push(AppRoutes.publish_upload);
-                  }}
+                  onClick={() =>
+                    this.props.history.push(
+                      `${AppRoutes.publish_upload.replace(
+                        ":id",
+                        parseInt(this.props.match.params.id)?.toString()
+                      )}`
+                    )
+                  }
                 ></MainButton>
                 <SelectComponent
                   width="63px"
