@@ -8,24 +8,243 @@ import { SelectComponent } from "../../components/select_input";
 import Dropzone from "react-dropzone";
 import { RadioGroup } from "../../components/radio_group";
 import { RouteComponentProps, withRouter } from "react-router";
+import SimpleReactValidator from "simple-react-validator";
 import { AppRoutes } from "../../../core/constants";
- class UploadNewDraft extends React.Component<RouteComponentProps> {
+import { UploadController } from "../../../controllers/upload_media/upload_media";
+import { publishController } from "../../../controllers/publish/publish_controller";
+interface RouteParams {
+  id: string;
+  
+}
+type StateType = {
+  files: Array<File>;
+  mainFiles:Array<File>;
+  finalVersion: number,
+  publicationId: number,
+  createdDate:Date,
+  External: string,
+  ExternalUrl: Array<string>,
+  MainExternal: string,
+  MainExternalUrl: Array<string>,
+  users: Array<{}>,
+  usersList:Array<{}>,
+  publication:{firstName: string; lastName: string ; id:string};
+
+};
+class UploadNewDraft extends React.Component<RouteComponentProps<RouteParams>> {
+  controller = new publishController();
+  UploadController = new UploadController();
   RoleUser = store.getState().userRole;
   date = new Date();
   handelChangeDate(params: any): void {
     console.log(params);
   }
-  state = {
+  state: StateType = {
     files: [],
+    mainFiles:[],
+    finalVersion: 1,
+    publicationId: 0,
+    createdDate: new Date(),
+    ExternalUrl: [],
+    External: "",
+    MainExternalUrl: [],
+    MainExternal: "",
+    users: [],
+    usersList: [],
+    publication: {
+      firstName: "",
+      lastName: "",
+      id: ""
+    }
   };
+  validator = new SimpleReactValidator({
+    className: "text-danger",
+  });
   onDrop = (files: any) => {
     this.setState({ files });
-    console.log(this.state);
   };
+  onDropMain = (mainFiles: any) => {
+    this.setState({ mainFiles });
+  };
+  handelDeleteFile(arg: File) {
+    this.setState({
+      files: this.state.files.filter((file) => file.name !== arg.name),
+    });
+  }
+  handelDeleteMainFile(arg: File) {
+    this.setState({
+      mainFiles: this.state.mainFiles.filter((file) => file.name !== arg.name),
+    });
+  }
+  async handelUploadPublication(id: any) {
+    const formData = new FormData();
+    for (let i = 0; i < this.state.files.length; i++) {
+      const file = this.state.files[i];
+      formData.append("Files", file);
+    }
+    for (let i = 0; i < this.state.ExternalUrl.length; i++) {
+      const file = this.state.ExternalUrl[i];
+      formData.append("ExternalUrls", file);
+    }
+    formData.append("UseCase", "10");
+    formData.append("DraftId", id.toString());
+
+    await this.UploadController.UloadMedia(
+      formData,
+      (res) => {
+        this.setState({
+          loading: false,
+        });
+      },
+      () => {
+        this.setState({
+          loading: false,
+        });
+      }
+    );
+  }
+  async handelUploadMainPublication(id: any) {
+    const formData = new FormData();
+    for (let i = 0; i < this.state.mainFiles.length; i++) {
+      const file = this.state.files[i];
+      formData.append("Files", file);
+    }
+    for (let i = 0; i < this.state.MainExternalUrl.length; i++) {
+      const file = this.state.MainExternalUrl[i];
+      formData.append("ExternalUrls", file);
+    }
+    formData.append("UseCase", "9");
+    formData.append("DraftId", id.toString());
+
+    await this.UploadController.UloadMedia(
+      formData,
+      (res) => {
+        this.setState({
+          loading: false,
+        });
+      },
+      () => {
+        this.setState({
+          loading: false,
+        });
+      }
+    );
+  }
+  addExternalUrl() {
+    let Url = [...this.state.ExternalUrl]
+    Url.push(this.state.External)
+    this.setState({
+      ExternalUrl: Url,
+      External: ''
+    });
+  }
+  addMainExternalUrl() {
+    let Url = [...this.state.MainExternalUrl]
+    Url.push(this.state.MainExternal)
+    this.setState({
+      MainExternalUrl: Url,
+      MainExternal: ''
+    });
+  }
+  componentDidMount() {
+    this.controller.getPublishById(
+      { publicationId: parseInt(this.props.match.params.id) },
+      (res) => {
+        this.setState({
+          users: res.users?.map(item => {
+            return { label: item.firstName + " " + item.lastName, value: item.id }
+          }),
+          usersList: res.users
+        });
+      }
+    );
+  }
+  handelCreateDraft() {
+    if (this.validator.allValid()) {
+      const body = {
+        createdDate: new Date(),
+        finalVersion: this.state.finalVersion === 1 ? false : true,
+        publicationId: parseInt(this.props.match.params.id),
+        nextDrafterId: this.state.publication.id,
+        nextDrafterFirstName: this.state.publication.firstName,
+        nextDrafterLastName: this.state.publication.lastName,
+      }
+      this.controller.createDraft(
+        body,
+        (res) => {
+          this.handelUploadPublication(res.id);
+          this.handelUploadMainPublication(res.id);
+          this.setState(
+            {
+              files: [],
+              finalVersion: 1,
+              publicationId: 0,
+              createdDate: new Date(),
+              users: [],
+              usersList: [],
+              publication: {
+                firstName: "",
+                lastName: "",
+                id: ""
+              }
+            });
+          this.props.history.push(`${AppRoutes.publish_profile.replace(':id', this.props.match.params.id ?? "")}`)
+        },
+        (err) => {
+          this.setState({
+            loading: false,
+          });
+        }
+      );
+    } else {
+      this.validator.showMessages();
+      this.forceUpdate();
+    }
+  };
+  handelChangeSelect(
+    target: string,
+    e: {
+      label: string;
+      value: number,
+    }
+  ) {
+    const userSelected = this.state.usersList.find((item: any) => item.id === e.value);
+    if (userSelected) {
+      this.setState({ [target]: userSelected });
+    }
+  }
+  handleChange(target: string, val: any) {
+    this.setState({
+      [target]: val,
+    });
+  }
+  handelDeleteMainExternalLink(link: string) {
+    this.setState({
+      MainExternalUrl: this.state.MainExternalUrl.filter(item => item !== link)
+    })
+  }
+  handelDeleteExternalLink(link: string) {
+    this.setState({
+      ExternalUrl: this.state.ExternalUrl.filter(item => item !== link)
+    })
+  }
   render() {
     const files = this.state.files.map((file: any) => (
       <li key={file.name}>
         {file.name} - {file.size} bytes
+        <CircleIcon type={ThemeCircleIcon.dark} width="22px" height="22px">
+          <img
+            src="/images/icons/garbage_can.svg"
+            alt="radvix"
+            width={15}
+            height={15}
+          />
+        </CircleIcon>
+      </li>
+    ));
+    const mainFiles = this.state.mainFiles.map((mainFile: any) => (
+      <li key={mainFile.name}>
+        {mainFile.name} - {mainFile.size} bytes
         <CircleIcon type={ThemeCircleIcon.dark} width="22px" height="22px">
           <img
             src="/images/icons/garbage_can.svg"
@@ -41,7 +260,7 @@ import { AppRoutes } from "../../../core/constants";
         <div className="row"></div>
         <div className="col-12 box-content p-3">
           <h5 className="b-title d-flex">
-            <span onClick={()=>{window.history.back()}} className="backPage"></span> Upload A New Draft
+            <span onClick={() => { window.history.back() }} className="backPage"></span> Upload A New Draft
           </h5>
           <div className="form row">
             <div className="col-md-6 left">
@@ -60,7 +279,7 @@ import { AppRoutes } from "../../../core/constants";
                     <i className="fas fa-question"></i>
                   </CircleIcon>
                 </span>
-                <Dropzone onDrop={this.onDrop}>
+                <Dropzone onDrop={this.onDropMain}>
                   {({ getRootProps, getInputProps }) => (
                     <section className="container fileUploadBox">
                       <div {...getRootProps({ className: "dropzone" })}>
@@ -81,19 +300,19 @@ import { AppRoutes } from "../../../core/constants";
                                 src="/Images/icons/cloud_computing.svg"
                                 alt="sssss"
                                 height="20"
-                                
+
                               />{" "}
                               <span className="flex-fill">Browse Local Files</span>
                             </div>
                           }
                         ></MainButton>
                         <p>
-                        Or drag and drop files here
+                          Or drag and drop files here
                         </p>
                       </div>
                       <aside>
                         <h4>Files</h4>
-                        <ul>{files}</ul>
+                        <ul>{mainFiles}</ul>
                       </aside>
                     </section>
                   )}
@@ -104,6 +323,10 @@ import { AppRoutes } from "../../../core/constants";
                   type={InputType.text}
                   placeholder="https://"
                   className="mx-2"
+                  value={this.state.MainExternal}
+                  onChange={(e) => {
+                    this.handleChange("MainExternal", e.target.value);
+                  }}
                 ></InputComponent>
                 <CircleIcon
                   width="36px"
@@ -113,11 +336,36 @@ import { AppRoutes } from "../../../core/constants";
                   fontSize="18px"
                   color="#ffffff"
                   className="px-3"
-                  
+                  onClick={() => { this.addMainExternalUrl() }}
                 >
                   <i className="fas fa-plus"></i>
                 </CircleIcon>
               </div>
+              <ul className="file-list mt-3">
+                {
+                  this.state.MainExternalUrl.map(item => (
+                    <li className="my-2 d-flex flex-column flex-md-row">
+                      <MainButton
+                        children={item}
+                        type={MainButtonType.dark}
+                        borderRadius="24px"
+                        fontSize="14px"
+                        backgroundColor="#F5F5F5"
+                        color="#096BFF"
+                      ></MainButton>
+                      <CircleIcon
+                        type={ThemeCircleIcon.dark}
+                        width="22px"
+                        height="22px"
+                        className="mx-3 pointer"
+                        onClick={() => this.handelDeleteMainExternalLink(item)}
+                      >
+                        <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
+                      </CircleIcon>
+                    </li>
+                  ))
+                }
+              </ul>
               <div className="item">
                 <span className="label d-flex align-items-center">
                   Attachments:
@@ -161,14 +409,14 @@ import { AppRoutes } from "../../../core/constants";
                                 src="/Images/icons/cloud_computing.svg"
                                 alt="sssss"
                                 height="20"
-                                
+
                               />{" "}
                               <span className="flex-fill">Browse Local Files</span>
                             </div>
                           }
                         ></MainButton>
                         <p>
-                        Or drag and drop files here
+                          Or drag and drop files here
                         </p>
                       </div>
                       <aside>
@@ -184,6 +432,10 @@ import { AppRoutes } from "../../../core/constants";
                   type={InputType.text}
                   placeholder="https://"
                   className="mx-2"
+                  value={this.state.External}
+                  onChange={(e) => {
+                    this.handleChange("External", e.target.value);
+                  }}
                 ></InputComponent>
                 <CircleIcon
                   width="36px"
@@ -193,11 +445,36 @@ import { AppRoutes } from "../../../core/constants";
                   fontSize="18px"
                   color="#ffffff"
                   className="px-3"
-                  
+                  onClick={() => { this.addExternalUrl() }}
                 >
                   <i className="fas fa-plus"></i>
                 </CircleIcon>
               </div>
+              <ul className="file-list mt-3">
+                {
+                  this.state.ExternalUrl.map(item => (
+                    <li className="my-2 d-flex flex-column flex-md-row">
+                      <MainButton
+                        children={item}
+                        type={MainButtonType.dark}
+                        borderRadius="24px"
+                        fontSize="14px"
+                        backgroundColor="#F5F5F5"
+                        color="#096BFF"
+                      ></MainButton>
+                      <CircleIcon
+                        type={ThemeCircleIcon.dark}
+                        width="22px"
+                        height="22px"
+                        className="mx-3 pointer"
+                        onClick={() => this.handelDeleteExternalLink(item)}
+                      >
+                        <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
+                      </CircleIcon>
+                    </li>
+                  ))
+                }
+              </ul>
             </div>
             <div className="col-md-6 right">
               <div className="item">
@@ -211,21 +488,31 @@ import { AppRoutes } from "../../../core/constants";
                     { name: "No", id: 1 },
                     { name: " Yes", id: 2 },
                   ]}
+                  onChange={(e) => {
+                    this.handleChange("finalVersion", parseInt(e.target.value));
+                  }}
+                  Selected={this.state.finalVersion}
+                  inValid={this.validator.message(
+                    "FinalVersion",
+                    this.state.finalVersion,
+                    "required"
+                  )}
                 ></RadioGroup>
               </div>
               <div className="item">
                 <SelectComponent
-                  items={[
-                    { name: "test1", id: 1 },
-                    { name: "test2", id: 2 },
-                  ]}
-                  TextItem="name"
+                  items={this.state.users}
+                  TextItem="firstName"
                   ValueItem="id"
                   className="my-2"
                   placeholder="Click to see the list…"
                   label="Who Will Work On This Next?"
                   popQuestion="Who Will Work On This Next?"
                   optional="optional"
+                  isMulti={false}
+                  onChange={(e) => {
+                    this.handelChangeSelect("publication", e);
+                  }}
                 ></SelectComponent>
               </div>
             </div>
@@ -247,7 +534,7 @@ import { AppRoutes } from "../../../core/constants";
                 className="mx-2"
                 minHeight="43px"
                 minWidth="136px"
-                onClick={()=>{this.props.history.push(AppRoutes.publish_profile)}}
+                onClick={() => { this.handelCreateDraft() }}
               ></MainButton>
             </div>
           </div>
