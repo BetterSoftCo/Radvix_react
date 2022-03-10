@@ -8,7 +8,7 @@ export interface GetMemberByIDResResult {
     profileImage:        string;
     firstName:           string;
     lastName:            string;
-    role:                string;
+    role:                number;
     teams:               Equipment[];
     laboratories:        Equipment[];
     equipments:          Equipment[];

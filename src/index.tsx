@@ -142,7 +142,9 @@ ReactDOM.render(
           <Route component={TasksPage} path={AppRoutes.task} exact />
           <ProtectedRoute
             isAuthenticated={
-              RoleUser === UserRoles.L1User || RoleUser === UserRoles.L1Client
+              RoleUser === UserRoles.L1User ||
+              RoleUser === UserRoles.L1Client ||
+              RoleUser === UserRoles.L2User
                 ? true
                 : false
             }

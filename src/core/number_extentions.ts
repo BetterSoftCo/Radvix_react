@@ -1,3 +1,5 @@
+import { UserRoles } from "./utils";
+
 enum Status {
   OnGoing,
   Delayed,
@@ -20,6 +22,7 @@ declare global {
     isStatus(): string;
     isPriority(): string;
     isMedia(): string;
+    isRole(): string;
   }
 }
 Number.prototype.isStatus = function (): string {
@@ -46,6 +49,22 @@ Number.prototype.isPriority = function (): string {
       return "Medium";
     case Priority.High:
       return "High";
+    default:
+      return "";
+  }
+};
+Number.prototype.isRole = function (): string {
+  switch (Number(this)) {
+    case UserRoles.Admin:
+      return "Admin";
+    case UserRoles.L1Client:
+      return "Level 1 Client";
+    case UserRoles.L1User:
+      return "Level 1 ";
+    case UserRoles.L2User:
+      return "Level 2 ";
+      case UserRoles.L3User:
+      return "Level 3 ";
     default:
       return "";
   }
