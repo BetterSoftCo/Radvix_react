@@ -15,6 +15,7 @@ import { UploadController } from "../../../controllers/upload_media/upload_media
 import SimpleReactValidator from "simple-react-validator";
 import { LocalDataSources } from "../../../data/local_datasources";
 import { store } from "../../../data/store";
+import { AccessPermition, UserRoles } from "../../../core/utils";
 type StateType = {
   title: string;
   description: string;
@@ -30,10 +31,12 @@ type StateType = {
   ExternalUrl: Array<string>;
   External: string;
   listTeams: Array<{ label: string; value: number } | {}>;
+  listTask: Array<{ label: string; value: number } | {}>;
   listEquipments: Array<{ label: string; value: number } | {}>;
   listPriority: Array<{ label: string; value: number } | {}>;
 };
 class TaskPageNew extends React.Component<RouteComponentProps> {
+  RoleUser = store.getState().userRole;
   controller = new TaskController();
   UploadController = new UploadController();
   validator = new SimpleReactValidator({
@@ -51,10 +54,10 @@ class TaskPageNew extends React.Component<RouteComponentProps> {
         return { name: item.title, id: item.id };
       }),
     });
-    this.GetSearchTask()
+    this.GetSearchTask();
     store.subscribe(() => {
-      this.GetSearchTask()
-    })
+      this.GetSearchTask();
+    });
   }
   state: StateType = {
     files: [],
@@ -72,7 +75,8 @@ class TaskPageNew extends React.Component<RouteComponentProps> {
     loading: false,
     listTeams: [],
     listEquipments: [],
-    listPriority: []
+    listPriority: [],
+    listTask: [],
   };
   onDrop = (files: any) => {
     this.setState({ files });
@@ -131,18 +135,27 @@ class TaskPageNew extends React.Component<RouteComponentProps> {
     );
   }
   GetSearchTask() {
-    this.controller.SearchTask(res => {
-      this.setState({
-        listTeams: res.teams?.map(item => {
-          return { label: item.title, value: item.id }
-        }),
-        listEquipments: res.equipments?.map(item => {
-          return { label: item.title, value: item.id }
-        })
-      })
-    }, err => { })
+    this.controller.SearchTask(
+      (res) => {
+        this.setState({
+          listTeams: res.teams?.map((item) => {
+            return { label: item.title, value: item.id };
+          }),
+          listEquipments: res.equipments?.map((item) => {
+            return { label: item.title, value: item.id };
+          }),
+          listTask: res.equipments?.map((item) => {
+            return { label: item.title, value: item.id };
+          }),
+        });
+      },
+      (err) => {}
+    );
   }
-  handelChangeSelectMultiple(e: Array<{ label: string; value: number }>, target: string) {
+  handelChangeSelectMultiple(
+    e: Array<{ label: string; value: number }>,
+    target: string
+  ) {
     const newLabId = e.map((item) => item.value);
     this.setState({
       [target]: newLabId,
@@ -159,38 +172,43 @@ class TaskPageNew extends React.Component<RouteComponentProps> {
         researchId: store.getState().ResearchId,
         suggestedEquipmentsId: this.state.suggestedEquipmentsId,
         addedUsersId: this.state.addedUsersId,
-        addedTeamsId: this.state.addedTeamsId
-      }
+        addedTeamsId: this.state.addedTeamsId,
+      };
       this.setState({
         loading: true,
       });
-      this.controller.createTask(body, res => {
-        this.handelUpload(res.id);
-        this.props.history.push(`${AppRoutes.task_profile.replace(":id", res.id.toString() ?? "")}`)
-        this.setState({
-          files: [],
-          appTasksId: 0,
-          description: '',
-          equipmentsId: [],
-          listTasks: [],
-          listEquipment: [],
-          researchId: 0,
-          subAppTasksId: 0,
-          title: '',
-          External: "",
-          ExternalUrl: [],
-          loading:false
-        });
-      }, err => {
-        this.setState({
-          loading: false,
-        });
-      })
+      this.controller.createTask(
+        body,
+        (res) => {
+          this.handelUpload(res.id);
+          this.props.history.push(
+            `${AppRoutes.task_profile.replace(":id", res.id.toString() ?? "")}`
+          );
+          this.setState({
+            files: [],
+            appTasksId: 0,
+            description: "",
+            equipmentsId: [],
+            listTasks: [],
+            listEquipment: [],
+            researchId: 0,
+            subAppTasksId: 0,
+            title: "",
+            External: "",
+            ExternalUrl: [],
+            loading: false,
+          });
+        },
+        (err) => {
+          this.setState({
+            loading: false,
+          });
+        }
+      );
     } else {
       this.validator.showMessages();
       this.forceUpdate();
     }
-
   }
   render() {
     const files = this.state.files.map((file: any) => (
@@ -224,15 +242,37 @@ class TaskPageNew extends React.Component<RouteComponentProps> {
               }}
               className="backPage"
             ></span>{" "}
-            Create A New Task
+            {AccessPermition(this.RoleUser, [
+              UserRoles.Admin,
+              UserRoles.L1Client,
+              UserRoles.L1User,
+            ])
+              ? "Create A New Task"
+              : "Create A New Subtask"}
           </h5>
           <div className="form row">
             <div className="col-md-6 left">
               <div className="item">
                 <InputComponent
                   type={InputType.text}
-                  label="Task Name:"
-                  popQuestion="Task Name:"
+                  label={
+                    AccessPermition(this.RoleUser, [
+                      UserRoles.Admin,
+                      UserRoles.L1Client,
+                      UserRoles.L1User,
+                    ])
+                      ? "Task Name:"
+                      : "Subtask Name:"
+                  }
+                  popQuestion={
+                    AccessPermition(this.RoleUser, [
+                      UserRoles.Admin,
+                      UserRoles.L1Client,
+                      UserRoles.L1User,
+                    ])
+                      ? "Task Name:"
+                      : "Subtask Name:"
+                  }
                   onChange={(e) => {
                     this.handleChange("title", e.target.value);
                   }}
@@ -258,14 +298,49 @@ class TaskPageNew extends React.Component<RouteComponentProps> {
                   )}
                 ></InputComponent>
               </div>
+              {AccessPermition(this.RoleUser, [
+                UserRoles.Admin,
+                UserRoles.L1Client,
+                UserRoles.L1User,
+              ]) ? null : (
+                <div className="item">
+                  <SelectComponent
+                    items={this.state.listTask}
+                    TextItem="name"
+                    ValueItem="id"
+                    className="my-2"
+                    placeholder="Click to see the list…"
+                    label=" Choose The parent Subtask"
+                    popQuestion=" Choose The parent Subtask"
+                    optional="optional"
+                    isMulti={false}
+                  ></SelectComponent>
+                </div>
+              )}
               <div className="item">
                 <ButtonGroup
                   items={this.state.listPriority}
                   TextItem="name"
                   ValueItem="id"
                   name="TaskPriority"
-                  label="Task Priority :"
-                  popQuestion="Task Priority"
+                  label={
+                    AccessPermition(this.RoleUser, [
+                      UserRoles.Admin,
+                      UserRoles.L1Client,
+                      UserRoles.L1User,
+                    ])
+                      ? "Task Priority"
+                      : "Subtask Priority"
+                  }
+                  popQuestion={
+                    AccessPermition(this.RoleUser, [
+                      UserRoles.Admin,
+                      UserRoles.L1Client,
+                      UserRoles.L1User,
+                    ])
+                      ? "Task Priority"
+                      : "Subtask Priority"
+                  }
                   inValid={this.validator.message(
                     "Task Priority",
                     this.state.priority,
@@ -310,7 +385,11 @@ class TaskPageNew extends React.Component<RouteComponentProps> {
               </div>
               <div className="item">
                 <span className="label d-flex align-items-center">
-                  Task Attachments:
+                  {AccessPermition(this.RoleUser, [
+                      UserRoles.Admin,
+                      UserRoles.L1Client,
+                      UserRoles.L1User,
+                    ]) ? 'Task Attachments' : 'Subtask Attachments'}
                   <MainButton
                     type={MainButtonType.light}
                     children={"Optional"}
@@ -431,11 +510,27 @@ class TaskPageNew extends React.Component<RouteComponentProps> {
                   TextItem="name"
                   ValueItem="id"
                   className="my-2"
-                  label="Assign To Teams (Members):"
-                  popQuestion="Assign To Teams (Members):"
+                  label={
+                    AccessPermition(this.RoleUser, [
+                      UserRoles.Admin,
+                      UserRoles.L1Client,
+                      UserRoles.L1User,
+                    ])
+                      ? "Assign To Teams (Members):"
+                      : "Assign To Subteams (Members):"
+                  }
+                  popQuestion={
+                    AccessPermition(this.RoleUser, [
+                      UserRoles.Admin,
+                      UserRoles.L1Client,
+                      UserRoles.L1User,
+                    ])
+                      ? "Assign To Teams (Members):"
+                      : "Assign To Subteams (Members):"
+                  }
                   optional="optional"
                   onChange={(e) => {
-                    this.handelChangeSelectMultiple(e, 'addedTeamsId');
+                    this.handelChangeSelectMultiple(e, "addedTeamsId");
                   }}
                   isMulti
                 ></SelectComponent>
@@ -455,7 +550,7 @@ class TaskPageNew extends React.Component<RouteComponentProps> {
                   popQuestion="Suggest Equipment:"
                   optional="optional"
                   onChange={(e) => {
-                    this.handelChangeSelectMultiple(e, 'suggestedEquipmentsId');
+                    this.handelChangeSelectMultiple(e, "suggestedEquipmentsId");
                   }}
                   isMulti
                 ></SelectComponent>
@@ -476,7 +571,7 @@ class TaskPageNew extends React.Component<RouteComponentProps> {
                 type={MainButtonType.dark}
                 children={"Create"}
                 onClick={() => {
-                  this.CreateTask()
+                  this.CreateTask();
                 }}
                 borderRadius="50px"
                 fontSize="18px"

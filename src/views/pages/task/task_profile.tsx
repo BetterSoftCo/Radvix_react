@@ -4,7 +4,7 @@ import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import "react-datepicker/dist/react-datepicker.css";
 import { MainButton, MainButtonType } from "../../components/button";
 import { IconTextRow } from "../../components/icon_text_horizontal";
-import { Theme } from "../../../core/utils";
+import { AccessPermition, Theme, UserRoles } from "../../../core/utils";
 import { BoxListScroll } from "../../components/box_list_scroll";
 import { InputIcon } from "../../components/search_box";
 import { SelectComponent } from "../../components/select_input";
@@ -18,7 +18,9 @@ import moment from "moment";
 interface RouteParams {
   id: string;
 }
-class TaskPageProfile extends React.Component<RouteComponentProps<RouteParams>> {
+class TaskPageProfile extends React.Component<
+  RouteComponentProps<RouteParams>
+> {
   RoleUser = store.getState().userRole;
   controller = new TaskController();
   state: GetTaskByIDResult = {
@@ -29,7 +31,7 @@ class TaskPageProfile extends React.Component<RouteComponentProps<RouteParams>> 
     creatorLastName: "",
     parentTask: {
       id: 0,
-      title: ''
+      title: "",
     },
     users: [],
     teams: [],
@@ -41,12 +43,12 @@ class TaskPageProfile extends React.Component<RouteComponentProps<RouteParams>> 
     startDate: new Date(),
     status: 0,
     discription: "",
-    priority: 0
+    priority: 0,
   };
   componentDidMount() {
     this.controller.getTaskById(
       {
-        TaskId: parseInt(this.props.match.params.id)
+        TaskId: parseInt(this.props.match.params.id),
       },
       (res) => {
         this.setState({
@@ -65,11 +67,11 @@ class TaskPageProfile extends React.Component<RouteComponentProps<RouteParams>> 
           endDate: res.endDate,
           startDate: res.startDate,
           status: res.status,
-          priority:res.priority,
-          discription:res.discription
+          priority: res.priority,
+          discription: res.discription,
         });
       },
-      (err) => { }
+      (err) => {}
     );
   }
   render() {
@@ -85,7 +87,35 @@ class TaskPageProfile extends React.Component<RouteComponentProps<RouteParams>> 
                 }}
                 className="backPage"
               ></span>{" "}
-              {"Task Profile"}
+              {this.state.parentTask === null
+                ? "Task Profile"
+                : "Subask Profile"}
+              {AccessPermition(this.RoleUser, [
+                UserRoles.Admin,
+                UserRoles.L1Client,
+                UserRoles.L1User,
+                UserRoles.L2User,
+              ]) ? (
+                <CircleIcon
+                  width="22px"
+                  height="22px"
+                  type={ThemeCircleIcon.dark}
+                  backgroundColor="#474747"
+                  fontSize="10px"
+                  color="#ffff"
+                  className="mx-1 pointer"
+                  onClick={() => [
+                    this.props.history.push(
+                      `${AppRoutes.task_edit.replace(
+                        ":id",
+                        this.state.id.toString() ?? ""
+                      )}`
+                    ),
+                  ]}
+                >
+                  <img src="/images/icons/edit.svg" alt="radvix" />
+                </CircleIcon>
+              ) : null}
               <CircleIcon
                 width="22px"
                 height="22px"
@@ -93,17 +123,7 @@ class TaskPageProfile extends React.Component<RouteComponentProps<RouteParams>> 
                 backgroundColor="#474747"
                 fontSize="10px"
                 color="#ffff"
-                className="mx-1"
-              >
-                <img src="/images/icons/edit.svg" alt="radvix" />
-              </CircleIcon>
-              <CircleIcon
-                width="22px"
-                height="22px"
-                type={ThemeCircleIcon.dark}
-                backgroundColor="#474747"
-                fontSize="10px"
-                color="#ffff"
+                className="mx-1 pointer"
               >
                 <i className="fas fa-history"></i>
               </CircleIcon>
@@ -120,12 +140,8 @@ class TaskPageProfile extends React.Component<RouteComponentProps<RouteParams>> 
             ></MainButton>
           </div>
           <div className="Studying p-4 my-2">
-            <h3 className="px-5 text-center">
-              {this.state.title}
-            </h3>
-            <p>
-              {this.state.discription}
-            </p>
+            <h3 className="px-5 text-center">{this.state.title}</h3>
+            <p>{this.state.discription}</p>
           </div>
           <div className="row">
             <div className="col-md-6  tabel-info ">
@@ -143,11 +159,18 @@ class TaskPageProfile extends React.Component<RouteComponentProps<RouteParams>> 
               </div>
               <div className="row border-bottom">
                 <h6 className="col-4 t-title mb-0">Created by</h6>
-                <div className="col-8 t-desc">{this.state.creatorFirstName + ' ' + this.state.creatorLastName}</div>
+                <div className="col-8 t-desc">
+                  {this.state.creatorFirstName +
+                    " " +
+                    this.state.creatorLastName}
+                </div>
               </div>
               <div className="row border-bottom">
                 <h6 className="col-4 t-title mb-0">Start - Deadline</h6>
-                <div className="col-8 t-desc">{moment(this.state.startDate).format("YYYY/MM/DD")} - {moment(this.state.endDate).format("YYYY/MM/DD")}</div>
+                <div className="col-8 t-desc">
+                  {moment(this.state.startDate).format("YYYY/MM/DD")} -{" "}
+                  {moment(this.state.endDate).format("YYYY/MM/DD")}
+                </div>
               </div>
               <div className="row border-bottom">
                 <h6 className="col-4 t-title mb-0">Date Completed</h6>
@@ -167,28 +190,31 @@ class TaskPageProfile extends React.Component<RouteComponentProps<RouteParams>> 
                 <div className="col-8 t-desc border-b-r">
                   {" "}
                   <ul className="file-list">
-                    {this.state.medias.filter(item => !item.externalUrl).map(item => (
-                      <li key={item.id}>
-                        <img src="/images/icons/pdf_icon.svg" alt="" />{" "}
-                        {item.title}
-                      </li>
-                    ))}
+                    {this.state.medias
+                      .filter((item) => !item.externalUrl)
+                      .map((item) => (
+                        <li key={item.id}>
+                          <img src="/images/icons/pdf_icon.svg" alt="" />{" "}
+                          {item.title}
+                        </li>
+                      ))}
 
                     <li>
                       Shared Links:
-                      {this.state.medias.filter(item => item.externalUrl).map(item => (
-                        <div key={item.id}>
-                          <MainButton
-                            children={item.externalUrl}
-                            type={MainButtonType.dark}
-                            borderRadius="24px"
-                            fontSize="14px"
-                            backgroundColor="#F5F5F5"
-                            color="#096BFF"
-                          ></MainButton>
-                        </div>
-                      ))}
-
+                      {this.state.medias
+                        .filter((item) => item.externalUrl)
+                        .map((item) => (
+                          <div key={item.id}>
+                            <MainButton
+                              children={item.externalUrl}
+                              type={MainButtonType.dark}
+                              borderRadius="24px"
+                              fontSize="14px"
+                              backgroundColor="#F5F5F5"
+                              color="#096BFF"
+                            ></MainButton>
+                          </div>
+                        ))}
                     </li>
                   </ul>
                 </div>
@@ -198,7 +224,9 @@ class TaskPageProfile extends React.Component<RouteComponentProps<RouteParams>> 
               <div className="teams mb-3 teams-light">
                 <IconTextRow
                   theme={Theme.dark}
-                  text="Assigned to Teams (Members)"
+                  text={this.state.parentTask === null
+                    ? "Assigned to Teams (Members)"
+                    : "Assigned to SubTeams (Members)"}
                   children={
                     <img
                       src="/images/icons/team_menu.svg"
@@ -208,7 +236,7 @@ class TaskPageProfile extends React.Component<RouteComponentProps<RouteParams>> 
                   }
                 ></IconTextRow>
                 <div className="tags p-3">
-                  {this.state.teams.map(item => (
+                  {this.state.teams.map((item) => (
                     <div key={item.id}>
                       <MainButton
                         children={item.title}
@@ -216,10 +244,17 @@ class TaskPageProfile extends React.Component<RouteComponentProps<RouteParams>> 
                         type={MainButtonType.light}
                         borderRadius="24px"
                         fontSize="14px"
+                        onClick={() => [
+                          this.props.history.push(
+                            `${AppRoutes.team_profile.replace(
+                              ":id",
+                              item.id.toString() ?? ""
+                            )}`
+                          ),
+                        ]}
                       ></MainButton>
                     </div>
                   ))}
-
                 </div>
                 <BoxListScroll
                   items={this.state.users}
@@ -227,6 +262,14 @@ class TaskPageProfile extends React.Component<RouteComponentProps<RouteParams>> 
                   ValueItem="id"
                   ImageItem="image"
                   default_photo="/Images/icons/user.svg"
+                  onClick={(e, val) => {
+                    this.props.history.push(
+                      `${AppRoutes.member_profile.replace(
+                        ":id",
+                        val.toString() ?? ""
+                      )}`
+                    );
+                  }}
                 ></BoxListScroll>
               </div>
               <div className="teams Labs teams-light">
@@ -279,7 +322,7 @@ class TaskPageProfile extends React.Component<RouteComponentProps<RouteParams>> 
                   }
                 ></IconTextRow>
                 <div className="tags p-3">
-                  {this.state.equipments.map(item => (
+                  {this.state.equipments.map((item) => (
                     <div key={item.id}>
                       <MainButton
                         children={item.title}
@@ -287,11 +330,17 @@ class TaskPageProfile extends React.Component<RouteComponentProps<RouteParams>> 
                         type={MainButtonType.light}
                         borderRadius="24px"
                         fontSize="14px"
+                        onClick={() => {
+                          this.props.history.push(
+                            `${AppRoutes.equip_profile.replace(
+                              ":id",
+                              item.id.toString() ?? ""
+                            )}`
+                          );
+                        }}
                       ></MainButton>
                     </div>
                   ))}
-
-
                 </div>
                 <BoxListScroll
                   items={this.state.equipments}
@@ -299,46 +348,59 @@ class TaskPageProfile extends React.Component<RouteComponentProps<RouteParams>> 
                   ValueItem="id"
                   ImageItem="image"
                   default_photo="/Images/icons/equipment_Icon.svg"
+                  onClick={(e, val) => {
+                    this.props.history.push(
+                      `${AppRoutes.equip_profile.replace(
+                        ":id",
+                        val.toString() ?? ""
+                      )}`
+                    );
+                  }}
                 ></BoxListScroll>
               </div>
             </div>
           </div>
         </div>
-        {this.state.datas.length ? <div className="col-12">
-          <div className="TableBox">
-            <div className="TopTableBox d-flex justify-content-between align-items-center">
-              <div className="left d-flex w-50 align-items-center">
-                <h6 style={{ width: "45%" }}>Task Data Collection</h6>
-                <InputIcon
-                  chilren={
-                    <img src="/images/icons/search_box_icon.svg" alt="radvix" />
-                  }
-                  width="100%"
-                  placeholder="Search..." TopPosition="15%"
-                ></InputIcon>
+        {this.state.datas.length ? (
+          <div className="col-12">
+            <div className="TableBox">
+              <div className="TopTableBox d-flex justify-content-between align-items-center">
+                <div className="left d-flex w-50 align-items-center">
+                  <h6 style={{ width: "45%" }}>Task Data Collection</h6>
+                  <InputIcon
+                    chilren={
+                      <img
+                        src="/images/icons/search_box_icon.svg"
+                        alt="radvix"
+                      />
+                    }
+                    width="100%"
+                    placeholder="Search..."
+                    TopPosition="15%"
+                  ></InputIcon>
+                </div>
+                <div className="right w-50 d-flex justify-content-end align-items-center">
+                  <SelectComponent
+                    width="90px"
+                    height="44px"
+                    items={[
+                      { label: "10", value: 10 },
+                      { label: "15", value: 15 },
+                      { label: "20", value: 20 },
+                    ]}
+                    TextItem="item"
+                    ValueItem="id"
+                    isMulti={false}
+                    placeholder={"10"}
+                  ></SelectComponent>
+                </div>
               </div>
-              <div className="right w-50 d-flex justify-content-end align-items-center">
-                <SelectComponent
-                  width="90px"
-                  height="44px"
-                  items={[
-                    { label: "10", value: 10 },
-                    { label: "15", value: 15 },
-                    { label: "20", value: 20 },
-                  ]}
-                  TextItem="item"
-                  ValueItem="id"
-                  isMulti={false}
-                  placeholder={'10'}
-                ></SelectComponent>
-              </div>
-            </div>
-            <TaskDataCollection
-              Items={this.state.datas}
-              Heading={["Data Name", "File", "Added By", "Date"]}
-            ></TaskDataCollection>
-            <div className="d-flex justify-content-center align-items-center">
-              {/* <ReactPaginate
+              <TaskDataCollection
+                Items={this.state.datas}
+                Heading={["Data Name", "File", "Added By", "Date"]}
+              ></TaskDataCollection>
+              <div className="d-flex justify-content-center align-items-center">
+                {/* <ReactPaginate
                 previousLabel={
                   <CircleIcon
                     width="24px"
@@ -370,42 +432,51 @@ class TaskPageProfile extends React.Component<RouteComponentProps<RouteParams>> 
                 containerClassName={"pagination"}
                 activeClassName={"active"}
               /> */}
+              </div>
             </div>
           </div>
-        </div> : null}
+        ) : null}
 
-        {this.state.subTasks.length ? <div className="col-12">
-          <div className="TableBox">
-            <div className="TopTableBox d-flex justify-content-between align-items-center">
-              <div className="left d-flex w-50 align-items-center">
-                <h6 style={{ width: "35%" }}>Subtasks</h6>
-                <InputIcon
-                  chilren={
-                    <img src="/images/icons/search_box_icon.svg" alt="radvix" />
-                  }
-                  width="100%"
-                  placeholder="Search..." TopPosition="15%"
-                ></InputIcon>
+        {this.state.subTasks.length ? (
+          <div className="col-12">
+            <div className="TableBox">
+              <div className="TopTableBox d-flex justify-content-between align-items-center">
+                <div className="left d-flex w-50 align-items-center">
+                  <h6 style={{ width: "35%" }}>Subtasks</h6>
+                  <InputIcon
+                    chilren={
+                      <img
+                        src="/images/icons/search_box_icon.svg"
+                        alt="radvix"
+                      />
+                    }
+                    width="100%"
+                    placeholder="Search..."
+                    TopPosition="15%"
+                  ></InputIcon>
+                </div>
+                <div className="right w-50 d-flex justify-content-end align-items-center">
+                  <SelectComponent
+                    width="90px"
+                    height="44px"
+                    items={[
+                      { label: "10", value: 10 },
+                      { label: "15", value: 15 },
+                      { label: "20", value: 20 },
+                    ]}
+                    TextItem="item"
+                    ValueItem="id"
+                    isMulti={false}
+                    placeholder={"10"}
+                  ></SelectComponent>
+                </div>
               </div>
-              <div className="right w-50 d-flex justify-content-end align-items-center">
-                <SelectComponent
-                  width="90px"
-                  height="44px"
-                  items={[
-                    { label: "10", value: 10 },
-                    { label: "15", value: 15 },
-                    { label: "20", value: 20 },
-                  ]}
-                  TextItem="item"
-                  ValueItem="id"
-                  isMulti={false}
-                  placeholder={'10'}
-                ></SelectComponent>
-              </div>
-            </div>
-            <Subtasks role={this.RoleUser} subTask={this.state.subTasks} ></Subtasks>
-            <div className="d-flex justify-content-center align-items-center">
-              {/* <ReactPaginate
+              <Subtasks
+                role={this.RoleUser}
+                subTask={this.state.subTasks}
+              ></Subtasks>
+              <div className="d-flex justify-content-center align-items-center">
+                {/* <ReactPaginate
                 previousLabel={
                   <CircleIcon
                     width="24px"
@@ -437,9 +508,10 @@ class TaskPageProfile extends React.Component<RouteComponentProps<RouteParams>> 
                 containerClassName={"pagination"}
                 activeClassName={"active"}
               /> */}
+              </div>
             </div>
           </div>
-        </div> : null}
+        ) : null}
       </div>
     );
   }

@@ -15,9 +15,8 @@ const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
 ) => {
   const handelOnclick = (e: any, id: number) => {
     e.stopPropagation();
-
   };
-  useEffect(() => { }, []);
+  useEffect(() => {}, []);
   return (
     <Fragment>
       <div className="row px-3">
@@ -73,14 +72,18 @@ const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
                     ></MainButton>
                   </div>
                   <div className="col d-flex justify-content-end align-items-center">
-                    {props.role !== UserRoles.L3User ? (
+                    {props.role !== UserRoles.L3User &&
+                    props.role !== UserRoles.L2User ? (
                       <CircleIcon
                         width="26px"
                         height="26px"
                         type={ThemeCircleIcon.dark}
                         onClick={(e) => {
                           props.history.push(
-                            `${AppRoutes.task_edit.replace(":id", item.appTask.id.toString() ?? "")}`
+                            `${AppRoutes.task_edit.replace(
+                              ":id",
+                              item.appTask.id.toString() ?? ""
+                            )}`
                           );
                         }}
                         className="pointer mx-1"
@@ -101,24 +104,29 @@ const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
                         alt="radvix"
                       />
                     </CircleIcon>
-                    <CircleIcon
-                      width="26px"
-                      height="26px"
-                      type={ThemeCircleIcon.dark}
-                      onClick={(e) => {
-                        props.history.push(
-                          `${AppRoutes.task_profile.replace(":id", item.appTask.id.toString() ?? "")}`
-                        );
-                      }}
-                      className="pointer mx-1"
-                    >
-                      <img
-                        src="/images/icons/google_docs.svg"
-                        alt="radvix"
-                        width={12}
-                        height={12}
-                      />
-                    </CircleIcon>
+                    {props.role !== UserRoles.L3User ? (
+                      <CircleIcon
+                        width="26px"
+                        height="26px"
+                        type={ThemeCircleIcon.dark}
+                        onClick={(e) => {
+                          props.history.push(
+                            `${AppRoutes.task_profile.replace(
+                              ":id",
+                              item.appTask.id.toString() ?? ""
+                            )}`
+                          );
+                        }}
+                        className="pointer mx-1"
+                      >
+                        <img
+                          src="/images/icons/google_docs.svg"
+                          alt="radvix"
+                          width={12}
+                          height={12}
+                        />
+                      </CircleIcon>
+                    ) : null}
                   </div>
                 </div>
               </div>

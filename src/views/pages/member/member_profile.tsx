@@ -11,6 +11,7 @@ import { RouteComponentProps, withRouter } from "react-router";
 import { GetMemberByIDResResult } from "../../../data/models/responses/member/get_member_by_id_res";
 import moment from "moment";
 import { AppConstants } from "../../../core/constants";
+import "../../../core/number_extentions";
 interface RouteParams {
   id: string;
 }
@@ -23,7 +24,7 @@ class MemberPageProfile extends React.Component<
     profileImage: "",
     firstName: "",
     lastName: "",
-    role: "",
+    role: 0,
     teams: [],
     laboratories: [],
     equipments: [],
@@ -137,7 +138,7 @@ class MemberPageProfile extends React.Component<
                 <h6 className="col-4 t-title mb-0 border-t-l">Role</h6>
                 <div className="col-8 t-desc border-t-r">
                   <MainButton
-                    children="Researcher In Training"
+                    children={this.state.role.isRole()}
                     type={MainButtonType.dark}
                     borderRadius="24px"
                     fontSize="14px"
@@ -146,9 +147,7 @@ class MemberPageProfile extends React.Component<
               </div>
               <div className="row border-bottom">
                 <h6 className="col-4 t-title mb-0">Academic Background</h6>
-                <div className="col-8 t-desc">
-                  PhD (Civil Engineering) University of Miami
-                </div>
+                <div className="col-8 t-desc">{this.state.resume}</div>
               </div>
               <div className="row border-bottom">
                 <h6 className="col-4 t-title mb-0">Reports to</h6>

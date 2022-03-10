@@ -111,7 +111,11 @@ class EquipProfile extends React.Component<RouteComponentProps<RouteParams>> {
           </div>
           <div className="Studying p-4 my-2 d-flex flex-column justify-content-center align-items-center">
             <img
-              src={AppConstants.base_url_image+this.state.image}
+              src={
+                this.state.image
+                  ? AppConstants.base_url_image + this.state.image
+                  : "/Images/icons/equipment_Icon.svg"
+              }
               alt="Avatar"
               className="rounded-circle avatar"
               width="125px"

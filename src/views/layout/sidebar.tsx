@@ -604,18 +604,30 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
             className="d-flex flex-wrap list-icons px-0 justify-content-around"
             style={{ marginTop: "14rem" }}
           >
-            <IconTextVertical
-              onClick={() => {
-                props.history.push(AppRoutes.task_new);
-              }}
-              fontSize="15px"
-              className="lighter mx-1 my-1 pointer"
-              text="Add Task"
-              theme={Theme.light}
-              children={
-                <img width="40px" height="40px" src="/images/icons/task.svg" />
-              }
-            ></IconTextVertical>
+            {AccessPermition(RoleUser, [
+              UserRoles.Admin,
+              UserRoles.L1Client,
+              UserRoles.L1User,
+              UserRoles.L2User,
+            ]) ? (
+              <IconTextVertical
+                onClick={() => {
+                  props.history.push(AppRoutes.task_new);
+                }}
+                fontSize="15px"
+                className="lighter mx-1 my-1 pointer"
+                text="Add Task"
+                theme={Theme.light}
+                children={
+                  <img
+                    width="40px"
+                    height="40px"
+                    src="/images/icons/task.svg"
+                  />
+                }
+              ></IconTextVertical>
+            ) : null}
+
             <IconTextVertical
               onClick={() => {
                 props.history.push(AppRoutes.task);
