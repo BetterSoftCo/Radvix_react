@@ -28,7 +28,7 @@ export const Drafts: React.FC<TableComponentProp> = ({ Heading, Items }) => {
               <td className="text-center">{head.Institution}</td>
               <td>{head.firstName} {head.lastName}</td>
               <td className="text-center">{moment(head.createdDate).format("YYYY/MM/DD")}</td>
-              <td className="text-center">{head.Eqiups}</td>
+              <td className="text-center">{`${index+1}.0`}</td>
               <td>
                 <div className="col d-flex justify-content-end align-items-center">
                   <CircleIcon
