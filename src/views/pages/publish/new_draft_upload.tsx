@@ -14,21 +14,21 @@ import { UploadController } from "../../../controllers/upload_media/upload_media
 import { publishController } from "../../../controllers/publish/publish_controller";
 interface RouteParams {
   id: string;
-  
+
 }
 type StateType = {
   files: Array<File>;
-  mainFiles:Array<File>;
+  mainFiles: Array<File>;
   finalVersion: number,
   publicationId: number,
-  createdDate:Date,
+  createdDate: Date,
   External: string,
   ExternalUrl: Array<string>,
   MainExternal: string,
   MainExternalUrl: Array<string>,
   users: Array<{}>,
-  usersList:Array<{}>,
-  publication:{firstName: string; lastName: string ; id:string};
+  usersList: Array<{}>,
+  publication: { firstName: string; lastName: string; id: string };
 
 };
 class UploadNewDraft extends React.Component<RouteComponentProps<RouteParams>> {
@@ -41,7 +41,7 @@ class UploadNewDraft extends React.Component<RouteComponentProps<RouteParams>> {
   }
   state: StateType = {
     files: [],
-    mainFiles:[],
+    mainFiles: [],
     finalVersion: 1,
     publicationId: 0,
     createdDate: new Date(),
@@ -208,9 +208,19 @@ class UploadNewDraft extends React.Component<RouteComponentProps<RouteParams>> {
       value: number,
     }
   ) {
-    const userSelected = this.state.usersList.find((item: any) => item.id === e.value);
-    if (userSelected) {
-      this.setState({ [target]: userSelected });
+    if (this.state.finalVersion === 1) {
+      const userSelected = this.state.usersList.find((item: any) => item.id === e.value);
+      if (userSelected) {
+        this.setState({ [target]: userSelected });
+      }
+    } else {
+      this.setState({
+        [target]: {
+          firstName: "",
+          lastName: "",
+          id: ""
+        }
+      });
     }
   }
   handleChange(target: string, val: any) {
@@ -525,6 +535,9 @@ class UploadNewDraft extends React.Component<RouteComponentProps<RouteParams>> {
                 className="mx-2"
                 minHeight="43px"
                 minWidth="136px"
+                onClick={() => {
+                  this.props.history.push(`${AppRoutes.publish_profile.replace(':id', this.props.match.params.id ?? "")}`)
+                }}
               ></MainButton>
               <MainButton
                 type={MainButtonType.dark}
