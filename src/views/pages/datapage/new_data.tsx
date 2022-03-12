@@ -11,6 +11,9 @@ import { RouteComponentProps, withRouter } from "react-router";
 import { DataController } from "../../../controllers/data/data_controller";
 import { UploadController } from "../../../controllers/upload_media/upload_media";
 import SimpleReactValidator from "simple-react-validator";
+import { AccessPermition, UserRoles } from "../../../core/utils";
+import { AddDataReq } from "../../../data/models/requests/data/add_data_req";
+import { RadioGroup } from "../../components/radio_group";
 type StateType = {
   researchId: number;
   equipmentsId: number[];
@@ -19,11 +22,13 @@ type StateType = {
   title: string;
   description: string;
   listTasks: Array<{ label: string; value: number } | {}>;
+  listSubTasks: Array<{ label: string; value: number } | {}>;
   listEquipment: Array<{ label: string; value: number } | {}>;
   files: Array<File>;
   loading: boolean;
   ExternalUrl: Array<string>;
   External: string;
+  Only: number;
 };
 class DataPageNew extends React.Component<RouteComponentProps> {
   RoleUser = store.getState().userRole;
@@ -35,34 +40,42 @@ class DataPageNew extends React.Component<RouteComponentProps> {
   state: StateType = {
     files: [],
     appTasksId: 0,
-    description: '',
+    description: "",
     equipmentsId: [],
     listTasks: [],
     listEquipment: [],
     researchId: 0,
     subAppTasksId: 0,
-    title: '',
+    title: "",
     External: "",
     ExternalUrl: [],
     loading: false,
+    Only: 0,
+    listSubTasks: [],
   };
   componentDidMount() {
-    this.SearchData()
+    this.SearchData();
     store.subscribe(() => {
-      this.SearchData()
-    })
+      this.SearchData();
+    });
   }
   SearchData() {
-    this.controller.SearchData(res => {
-      this.setState({
-        listTasks: res.appTasks?.map(item => {
-          return { label: item.title, value: item.id }
-        }),
-        listEquipment: res.accessableEquipments?.map(item => {
-          return { label: item.title, value: item.id }
-        })
-      })
-    }, err => { })
+    this.controller.SearchData(
+      (res) => {
+        this.setState({
+          listTasks: res.appTasks?.map((item) => {
+            return { label: item.title, value: item.id };
+          }),
+          listEquipment: res.accessableEquipments?.map((item) => {
+            return { label: item.title, value: item.id };
+          }),
+          listSubTasks: res.subAppTasks?.map((item) => {
+            return { label: item.title, value: item.id };
+          }),
+        });
+      },
+      (err) => {}
+    );
   }
   onDrop = (files: any) => {
     this.setState({ files });
@@ -85,7 +98,10 @@ class DataPageNew extends React.Component<RouteComponentProps> {
       [target]: val,
     });
   }
-  handelChangeSelectMultiple(e: Array<{ label: string; value: number }>, target: string) {
+  handelChangeSelectMultiple(
+    e: Array<{ label: string; value: number }>,
+    target: string
+  ) {
     const newLabId = e.map((item) => item.value);
     this.setState({
       [target]: newLabId,
@@ -131,14 +147,17 @@ class DataPageNew extends React.Component<RouteComponentProps> {
   }
   handelCreateData() {
     if (this.validator.allValid()) {
-      const body = {
+      const body: AddDataReq = {
         researchId: store.getState().ResearchId,
         equipmentsId: this.state.equipmentsId,
         appTasksId: this.state.appTasksId,
-        subAppTasksId: this.state.subAppTasksId,
+
         title: this.state.title,
-        description: this.state.description
+        description: this.state.description,
       };
+      if (this.RoleUser === UserRoles.L2User) {
+        body.subAppTasksId = this.state.subAppTasksId;
+      }
       this.setState({
         loading: true,
       });
@@ -151,13 +170,13 @@ class DataPageNew extends React.Component<RouteComponentProps> {
           this.setState({
             files: [],
             appTasksId: 0,
-            description: '',
+            description: "",
             equipmentsId: [],
             listTasks: [],
             listEquipment: [],
             researchId: 0,
             subAppTasksId: 0,
-            title: '',
+            title: "",
             External: "",
             ExternalUrl: [],
           });
@@ -219,10 +238,44 @@ class DataPageNew extends React.Component<RouteComponentProps> {
                   label="Select A Task:"
                   popQuestion="Select A Task:"
                   onChange={(e) => {
-                    this.handelChangeSelect(e, 'appTasksId');
+                    this.handelChangeSelect(e, "appTasksId");
                   }}
                 ></SelectComponent>
               </div>
+              {AccessPermition(this.RoleUser, [UserRoles.L2User]) ? (
+                <div className="item">
+                  <RadioGroup
+                    name="Only"
+                    label="Do you Want to Add Data only To A Subtask ?"
+                    popQuestion="Do you Want to Add Data only To A Subtask ?"
+                    items={[
+                      { name: "Yes", value: 0 },
+                      { name: "No", value: 1 },
+                    ]}
+                    TextItem="name"
+                    ValueItem="value"
+                    onChange={(e) => {
+                      this.handleChange("Only", parseInt(e.target.value));
+                    }}
+                    className="mb-3"
+                    Selected={this.state.Only}
+                  ></RadioGroup>
+                  <SelectComponent
+                    items={this.state.listSubTasks}
+                    TextItem="name"
+                    ValueItem="id"
+                    className="my-2"
+                    placeholder="Click to see the list…"
+                    label="Select A SubTasks:"
+                    popQuestion="Select A SubTasks:"
+                    onChange={(e) => {
+                      this.handelChangeSelect(e, "subAppTasksId");
+                    }}
+                  ></SelectComponent>
+                </div>
+              ) : (
+                ""
+              )}
               <div className="item">
                 <InputComponent
                   type={InputType.text}
@@ -385,7 +438,7 @@ class DataPageNew extends React.Component<RouteComponentProps> {
                   label="Equipment Used For This Data:"
                   popQuestion="Equipment Used For This Data:"
                   onChange={(e) => {
-                    this.handelChangeSelectMultiple(e, 'equipmentsId');
+                    this.handelChangeSelectMultiple(e, "equipmentsId");
                   }}
                   isMulti
                 ></SelectComponent>
@@ -411,7 +464,7 @@ class DataPageNew extends React.Component<RouteComponentProps> {
                 minHeight="43px"
                 minWidth="136px"
                 onClick={() => {
-                  this.handelCreateData()
+                  this.handelCreateData();
                 }}
                 loading={this.state.loading}
               ></MainButton>
