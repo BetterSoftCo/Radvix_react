@@ -242,7 +242,7 @@ class DataPageNew extends React.Component<RouteComponentProps> {
                   }}
                 ></SelectComponent>
               </div>
-              {AccessPermition(this.RoleUser, [UserRoles.L2User]) ? (
+              {AccessPermition(this.RoleUser, [UserRoles.L2User , UserRoles.L3User]) ? (
                 <div className="item">
                   <RadioGroup
                     name="Only"

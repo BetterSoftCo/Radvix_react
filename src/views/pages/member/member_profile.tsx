@@ -10,7 +10,7 @@ import { MemberController } from "../../../controllers/member/member_controller"
 import { RouteComponentProps, withRouter } from "react-router";
 import { GetMemberByIDResResult } from "../../../data/models/responses/member/get_member_by_id_res";
 import moment from "moment";
-import { AppConstants } from "../../../core/constants";
+import { AppConstants, AppRoutes } from "../../../core/constants";
 import "../../../core/number_extentions";
 interface RouteParams {
   id: string;
@@ -111,6 +111,9 @@ class MemberPageProfile extends React.Component<
                 type={MainButtonType.dark}
                 borderRadius="24px"
                 fontSize="14px"
+                onClick={()=>{
+                  this.props.history.push(AppRoutes.member_edit_profile)
+                }}
               ></MainButton>
             </div>
           </div>

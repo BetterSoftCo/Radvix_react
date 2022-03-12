@@ -136,7 +136,6 @@ class NewEquip extends React.Component<RouteComponentProps> {
     this.setState({
       [target]: val,
     });
-    console.log(target, val);
   }
   handelCreateEquipment() {
     if (this.validator.allValid()) {

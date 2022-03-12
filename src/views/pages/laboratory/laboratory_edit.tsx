@@ -49,7 +49,7 @@ type StateType = {
   members: LabManager[];
   External: string;
   ExternalUrl: Array<string>;
-  loading:boolean
+  loading: boolean;
 };
 interface RouteParams {
   id: string;
@@ -95,7 +95,7 @@ export class LaboratoryPageEdit extends React.Component<
     members: [],
     External: "",
     ExternalUrl: [],
-    loading: false
+    loading: false,
   };
   componentDidMount() {
     this.controller.getLaboratoryById(
@@ -112,9 +112,9 @@ export class LaboratoryPageEdit extends React.Component<
           media: res.media,
           equipments: res.equipments,
           members: res.members,
-          company:res.company,
-          zipCode:res.zipCode,
-          phone:res.phone
+          company: res.company,
+          zipCode: res.zipCode,
+          phone: res.phone,
         });
       }
     );
@@ -180,52 +180,52 @@ export class LaboratoryPageEdit extends React.Component<
     });
   }
   UpdateLaboratory() {
-    const body: UpdateLaboratoryReq = {
-      id: parseInt(this.props.match.params.id),
-      title: this.state.title,
-      categoryId: this.state.categoryId,
-      webSite: this.state.webSite,
-      description: this.state.description,
-      removedManagersId: this.state.removedManagersId,
-      addedManagersId: this.state.addedManagersId,
-      removedMedia: this.state.removedMedia,
-      company: this.state.company,
-      addressLine1: this.state.addressLine1,
-      addressLine2: this.state.addressLine2,
-      city: this.state.city,
-      state: this.state.state,
-      zipCode: this.state.zipCode,
-      creatorUserId: this.state.creatorUserId,
-      phone: this.state.phone,
-      countryId: this.state.countryId,
-    };
-    this.setState({
-      loading: true,
-    });
-    this.controller.updateLaboratory(
-      body,
-      (res) => {
-        if (this.state.files.length || this.state.ExternalUrl.length) {
-          this.handelUpload(res.id);
-        } else {
+    if (this.validator.allValid()) {
+      const body: UpdateLaboratoryReq = {
+        id: parseInt(this.props.match.params.id),
+        title: this.state.title,
+        categoryId: this.state.categoryId,
+        webSite: this.state.webSite,
+        description: this.state.description,
+        removedManagersId: this.state.removedManagersId,
+        addedManagersId: this.state.addedManagersId,
+        removedMedia: this.state.removedMedia,
+        company: this.state.company,
+        addressLine1: this.state.addressLine1,
+        addressLine2: this.state.addressLine2,
+        city: this.state.city,
+        state: this.state.state,
+        zipCode: this.state.zipCode,
+        creatorUserId: this.state.creatorUserId,
+        phone: this.state.phone,
+        countryId: this.state.countryId,
+      };
+      this.setState({
+        loading: true,
+      });
+      this.controller.updateLaboratory(
+        body,
+        (res) => {
+          if (this.state.files.length || this.state.ExternalUrl.length) {
+            this.handelUpload(res.id);
+          } else {
+            this.setState({
+              loading: false,
+            });
+            this.props.history.push(
+              `${AppRoutes.profile_laboratory.replace(
+                ":id",
+                res.id?.toString() ?? ""
+              )}`
+            );
+          }
+        },
+        (err) => {
           this.setState({
             loading: false,
           });
-          this.props.history.push(
-            `${AppRoutes.profile_laboratory.replace(
-              ":id",
-              res.id?.toString() ?? ""
-            )}`
-          );
         }
-      },
-      (err) => {
-        this.setState({
-          loading: false,
-        });
-      }
-    );
-    if (this.validator.allValid()) {
+      );
     } else {
       this.validator.showMessages();
       this.forceUpdate();
@@ -402,7 +402,7 @@ export class LaboratoryPageEdit extends React.Component<
               ></BoxAlert>
               <div className="teams mb-3 mt-3 team-edit">
                 <BoxListScroll
-                default_photo="/Images/icons/user.svg"
+                  default_photo="/Images/icons/user.svg"
                   items={this.state.Managers}
                   TextItem="firstName"
                   ValueItem="id"

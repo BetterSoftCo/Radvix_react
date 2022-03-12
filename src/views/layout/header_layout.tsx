@@ -38,7 +38,7 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
     setPageSize(e.value);
     GetResearch(PageNumber, e.value);
   };
-  const GetResearch = (PageNumber: number, PageSize: number) => {    
+  const GetResearch = (PageNumber: number, PageSize: number) => {
     if (local.logedin()) {
       controller.getResearches(
         { PageNumber: PageNumber, PageSize: PageSize },
@@ -48,8 +48,7 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
           setTotalCount(res.count!);
         },
         (err) => {
-          console.log('GetResearch layout');
-          
+          console.log("GetResearch layout");
         }
       );
     }
@@ -135,7 +134,12 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
               <div className="d-flex align-items-center justify-content-between">
                 <img
                   onClick={() => {
-                    props.history.push(AppRoutes.member_profile);
+                    props.history.push(
+                      `${AppRoutes.member_profile.replace(
+                        ":id",
+                        local.getUserId()
+                      )}`
+                    );
                   }}
                   src="/images/images/img_avatar.png"
                   alt="Avatar"
