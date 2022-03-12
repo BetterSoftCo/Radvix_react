@@ -54,7 +54,6 @@ type ParamsType = {
 };
 class TaskPageEdit extends React.Component<RouteComponentProps<ParamsType>> {
   RoleUser = store.getState().userRole;
-  date = new Date();
   UploadController = new UploadController();
   validator = new SimpleReactValidator({
     className: "text-danger",

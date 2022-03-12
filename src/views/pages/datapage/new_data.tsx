@@ -128,8 +128,8 @@ class DataPageNew extends React.Component<RouteComponentProps> {
       const file = this.state.ExternalUrl[i];
       formData.append("ExternalUrls", file);
     }
-    formData.append("DataId", "8");
-    formData.append("EquipmentId", id.toString());
+    formData.append("UseCase", "8");
+    formData.append("DataId", id.toString());
 
     await this.UploadController.UloadMedia(
       formData,
