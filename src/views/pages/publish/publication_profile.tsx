@@ -14,6 +14,7 @@ import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
 import { publishController } from "../../../controllers/publish/publish_controller";
 import moment from "moment";
+import { toast } from "react-toastify";
 interface RouteParams {
   id: string;
 }
@@ -59,7 +60,17 @@ class PublicationProfile extends React.Component<RouteComponentProps<RouteParams
       createdDate: ""
     },
   };
-
+  handelAddUser() {
+    if (store.getState().ResearchId > 0) {
+      this.controller.addUser({ publicationId: parseInt(this.props.match.params.id), researchId: store.getState().ResearchId }, res => {
+      }, err => console.log(err)
+      )
+    } else {
+      toast.error(`please select research`, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
+  }
   render() {
     return (
       <div className="container-fluid research new-research">
@@ -189,6 +200,8 @@ class PublicationProfile extends React.Component<RouteComponentProps<RouteParams
                     fontSize="18px"
                     color="#ffffff"
                     className="mx-2"
+                onClick={() => { this.handelAddUser() }}
+                    
                   >
                     <i className="fas fa-plus"></i>
                   </CircleIcon>
