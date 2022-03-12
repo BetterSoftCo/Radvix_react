@@ -3,11 +3,11 @@ import { store } from "../../../data/store";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import "react-datepicker/dist/react-datepicker.css";
 import { MainButton, MainButtonType } from "../../components/button";
-import { UserRoles } from "../../../core/utils";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
 import { expenseController } from "../../../controllers/expense/expense_controller";
 import moment from "moment";
+import { AccessPermition, UserRoles } from "../../../core/utils";
 import { GetExpenseByIDResult } from "../../../data/models/responses/expense/expense_by_id_res";
 interface RouteParams {
   id: string;
@@ -15,17 +15,17 @@ interface RouteParams {
 class ExpensePageProfile extends React.Component<RouteComponentProps<RouteParams>> {
   RoleUser = store.getState().userRole;
   controller = new expenseController();
-  state : GetExpenseByIDResult = {
-    id:parseInt(this.props.match.params.id),
-    title:"",
-    appTaskTitle:"",
+  state: GetExpenseByIDResult = {
+    id: parseInt(this.props.match.params.id),
+    title: "",
+    appTaskTitle: "",
     creatorFirstName: "",
-    creatorLastName:  "",
-    status:0,
+    creatorLastName: "",
+    status: 0,
     date: new Date(),
-    medias:[],
-    amount:0,
-    description:"",
+    medias: [],
+    amount: 0,
+    description: "",
   };
   componentDidMount() {
     this.controller.getExpenseById(
@@ -38,15 +38,15 @@ class ExpensePageProfile extends React.Component<RouteComponentProps<RouteParams
           title: res.title,
           amount: res.amount,
           description: res.description,
-          appTaskTitle:res.appTaskTitle,
+          appTaskTitle: res.appTaskTitle,
           medias: res.medias,
           status: res.status
         });
       }
     );
   }
-  handelCreateExpenseState(isApproved:boolean){
-    this.controller.createState({ expenseId: parseInt(this.props.match.params.id), isApproved: isApproved}, res => {
+  handelCreateExpenseState(isApproved: boolean) {
+    this.controller.createState({ expenseId: parseInt(this.props.match.params.id), isApproved: isApproved }, res => {
       this.props.history.push(`${AppRoutes.expense}`)
     }, err => console.log(err)
     )
@@ -59,7 +59,11 @@ class ExpensePageProfile extends React.Component<RouteComponentProps<RouteParams
           <div className="d-flex justify-content-between align-items-center">
             <h5 className="b-title d-flex align-items-center">
               <span onClick={() => { window.history.back() }} className="backPage"></span> {"Expense Profile"}
-              {this.RoleUser === UserRoles.L1Client || this.RoleUser === UserRoles.L1User ? (
+              {AccessPermition(this.RoleUser, [
+                UserRoles.Admin,
+                UserRoles.L1Client,
+                UserRoles.L1User,
+              ]) ? (
                 <CircleIcon
                   width="22px"
                   height="22px"
@@ -86,7 +90,11 @@ class ExpensePageProfile extends React.Component<RouteComponentProps<RouteParams
             <h3 className="px-5 text-center">
               Purchasing Tickets For {this.state.title}
             </h3>
-            {this.RoleUser === UserRoles.L1Client || this.RoleUser === UserRoles.L1User ? (
+            {AccessPermition(this.RoleUser, [
+              UserRoles.Admin,
+              UserRoles.L1Client,
+              UserRoles.L1User,
+            ]) &&  this.state.status !== 3? (
               <div className="d-flex justify-content-center align-items-center mt-3">
                 <MainButton
                   children="Decline"
@@ -116,9 +124,12 @@ class ExpensePageProfile extends React.Component<RouteComponentProps<RouteParams
               <div className="row border-bottom ">
                 <h6 className="col-4 t-title mb-0 border-t-l">Status</h6>
                 <div className="col-8 t-desc border-t-r">
-                  {this.RoleUser === UserRoles.L1Client || this.RoleUser === UserRoles.L1User ? (
+                  {AccessPermition(this.RoleUser, [
+                    UserRoles.L3User,
+                    UserRoles.L2User,
+                  ]) ? (
                     <MainButton
-                    children={this.state.status?.isStatus()}
+                      children={this.state.status?.isStatus()}
                       type={MainButtonType.light}
                       borderRadius="24px"
                       fontSize="14px"
@@ -162,25 +173,25 @@ class ExpensePageProfile extends React.Component<RouteComponentProps<RouteParams
                 <div className="col-8 t-desc border-b-r">
                   {" "}
                   <ul className="file-list">
-                  {this.state.medias?.filter(item => !item.externalUrl).map(item => (
-                    <li key={item.id}>
-                      <img src="/images/icons/pdf_icon.svg" alt="" />{" "}
-                      proposal_general.pdf
-                    </li>
+                    {this.state.medias?.filter(item => !item.externalUrl).map(item => (
+                      <li key={item.id}>
+                        <img src="/images/icons/pdf_icon.svg" alt="" />{" "}
+                        proposal_general.pdf
+                      </li>
                     ))}
                     <li>
                       Shared Links:
                       {this.state.medias?.filter(item => item.externalUrl).map(item => (
                         <div key={item.id}>
-                      <MainButton
-                        children={item.externalUrl}
-                        type={MainButtonType.dark}
-                        borderRadius="24px"
-                        fontSize="14px"
-                        backgroundColor="#F5F5F5"
-                        color="#096BFF"
-                      ></MainButton>
-                      </div>
+                          <MainButton
+                            children={item.externalUrl}
+                            type={MainButtonType.dark}
+                            borderRadius="24px"
+                            fontSize="14px"
+                            backgroundColor="#F5F5F5"
+                            color="#096BFF"
+                          ></MainButton>
+                        </div>
                       ))}
                     </li>
                   </ul>
