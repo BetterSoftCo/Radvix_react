@@ -6,19 +6,20 @@ export interface GetTaskByID {
 
 export interface GetTaskByIDResult {
     id:               number;
+    researchId:       number;
     creatorUserId:    string;
     discription:      string;
     priority:         number;
     title:            string;
     creatorFirstName: string;
     creatorLastName:  string;
-    parentTask:       ParentTask;
-    users:            User[];
-    teams:            ParentTask[];
-    equipments:       ParentTask[];
+    parentTask:       null;
+    users:            any[];
+    teams:            Equipment[];
+    equipments:       Equipment[];
     datas:            Data[];
-    subTasks:         null[];
-    medias:           Media[];
+    subTasks:         any[];
+    medias:           any[];
     endDate:          Date;
     startDate:        Date;
     status:           number;
@@ -32,25 +33,10 @@ export interface Data {
     creatorLastName:  string;
     createdDate:      Date;
     discussionId:     number;
-    medias:           Media[];
+    medias:           any[];
 }
 
-export interface Media {
-    id:            number;
-    name:          string;
-    title:         string;
-    externalUrl:   string;
-    inputDataType: number;
-}
-
-export interface ParentTask {
+export interface Equipment {
     id:    number;
     title: string;
-}
-
-export interface User {
-    id:        string;
-    firstName: string;
-    lastName:  string;
-    image:     string;
 }

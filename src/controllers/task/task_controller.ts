@@ -101,23 +101,20 @@ export class TaskController {
     action: (res: UpdateTaskResResult) => any,
     error: (res: any) => any
   ) {
-    if (store.getState().ResearchId > 0) {
-      this.remote.updateTask(
-        { ...body, researchId: store.getState().ResearchId },
-        (res) => {
-          action(res.result);
-        },
-        (err) => {
-          toast.error(`${err.message}`, {
-            position: toast.POSITION.TOP_RIGHT,
-          });
-          error(err);
-        }
-      );
-    } else {
-      toast.error(`please select research`, {
-        position: toast.POSITION.TOP_RIGHT,
-      });
-    }
+    this.remote.updateTask(
+      body,
+      (res) => {
+        toast.success(`${res.message}`, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+        action(res.result);
+      },
+      (err) => {
+        toast.error(`${err.message}`, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+        error(err);
+      }
+    );
   }
 }

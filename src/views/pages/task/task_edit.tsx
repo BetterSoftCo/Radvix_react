@@ -15,11 +15,7 @@ import { TaskController } from "../../../controllers/task/task_controller";
 import { LocalDataSources } from "../../../data/local_datasources";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AccessPermition, UserRoles } from "../../../core/utils";
-import {
-  Media,
-  ParentTask,
-  User,
-} from "../../../data/models/responses/task/get_task_by_id_res";
+import { Equipment } from "../../../data/models/responses/task/get_task_by_id_res";
 import { UpdateTaskReq } from "../../../data/models/requests/task/update_task_req";
 import { AppRoutes } from "../../../core/constants";
 type StateType = {
@@ -40,10 +36,10 @@ type StateType = {
   listEquipments: Array<{ label: string; value: number } | {}>;
   listPriority: Array<{ label: string; value: number } | {}>;
   listUsers: Array<{ label: string; value: number } | {}>;
-  Medias: Media[];
-  Teams: ParentTask[];
-  Users: User[];
-  Equipments: ParentTask[];
+  Medias: any[];
+  Teams: Equipment[];
+  Users: any[];
+  Equipments: Equipment[];
   id: number;
   parentId: number;
   status: number;
@@ -115,7 +111,7 @@ class TaskPageEdit extends React.Component<RouteComponentProps<ParamsType>> {
           priority: res.priority,
           startDate: res.startDate,
           endDate: res.endDate,
-          researchId: store.getState().ResearchId,
+          researchId: res.researchId,
           Medias: res.medias,
           Teams: res.teams,
           Users: res.users,
@@ -244,14 +240,14 @@ class TaskPageEdit extends React.Component<RouteComponentProps<ParamsType>> {
   UpdateTask() {
     if (this.validator.allValid()) {
       const body: UpdateTaskReq = {
-        id: this.state.id,
+        id: parseInt(this.props.match.params.id),
         title: this.state.title,
         description: this.state.description,
         priority: this.state.priority,
         startDate: this.state.startDate,
         endDate: this.state.endDate,
         status: this.state.status,
-        researchId: 0,
+        researchId: this.state.researchId,
         addedEquipmentsId: this.state.addedEquipmentsId,
         addedUsersId: this.state.addedUsersId,
         addedTeamsId: this.state.addedTeamsId,
@@ -266,21 +262,18 @@ class TaskPageEdit extends React.Component<RouteComponentProps<ParamsType>> {
       this.controller.updateTask(
         body,
         (res) => {
-          if (
-            this.state.files.length ||
-            this.state.ExternalUrl.length
-          ) {
+          if (this.state.files.length || this.state.ExternalUrl.length) {
             this.handelUpload(res.id);
           } else {
             this.setState({
               loading: false,
             });
-            // this.props.history.push(
-            //   `${AppRoutes.task_profile.replace(
-            //     ":id",
-            //     res.id?.toString() ?? ""
-            //   )}`
-            // );
+            this.props.history.push(
+              `${AppRoutes.task_profile.replace(
+                ":id",
+                res.id?.toString() ?? ""
+              )}`
+            );
           }
         },
         (err) => {
@@ -330,41 +323,6 @@ class TaskPageEdit extends React.Component<RouteComponentProps<ParamsType>> {
           </h5>
           <div className="form row">
             <div className="col-md-6 left">
-              <div className="item">
-                <ButtonGroup
-                  items={this.state.listPriority}
-                  TextItem="name"
-                  ValueItem="id"
-                  name="TaskPriority"
-                  label={
-                    AccessPermition(this.RoleUser, [
-                      UserRoles.Admin,
-                      UserRoles.L1Client,
-                      UserRoles.L1User,
-                    ])
-                      ? "Task Priority"
-                      : "Subtask Priority"
-                  }
-                  popQuestion={
-                    AccessPermition(this.RoleUser, [
-                      UserRoles.Admin,
-                      UserRoles.L1Client,
-                      UserRoles.L1User,
-                    ])
-                      ? "Task Priority"
-                      : "Subtask Priority"
-                  }
-                  inValid={this.validator.message(
-                    "Task Priority",
-                    this.state.priority,
-                    "required"
-                  )}
-                  selected={this.state.priority}
-                  onChange={(e) => {
-                    this.handleChange("priority", parseInt(e.target.value));
-                  }}
-                ></ButtonGroup>
-              </div>
               <div className="item">
                 <InputComponent
                   type={InputType.text}
@@ -788,6 +746,7 @@ class TaskPageEdit extends React.Component<RouteComponentProps<ParamsType>> {
                 onClick={() => {
                   this.UpdateTask();
                 }}
+                loading={this.state.loading}
               ></MainButton>
             </div>
           </div>

@@ -126,10 +126,6 @@ export class EditEquip extends React.Component<
           Medias: res.medias,
           Laboratories: res.laboratories,
           id: res.id,
-          // priority:res.priority,
-          // startDate:res.startDate,
-          // endDate:res.endDate,
-          // researchId:res.researchId,
         });
       },
       (err) => {}

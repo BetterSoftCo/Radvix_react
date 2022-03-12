@@ -59,7 +59,7 @@ export class RemoteTask {
     action: (res: UpdateTaskRes) => any,
     error: (res: any) => any
   ) {
-    return HTTP.put("/AppTask")
+    return HTTP.put("/AppTask", body)
       .then((res) => action(res.data))
       .catch((err) => {
         error(err);

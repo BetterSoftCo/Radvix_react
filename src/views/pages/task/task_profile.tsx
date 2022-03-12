@@ -29,10 +29,6 @@ class TaskPageProfile extends React.Component<
     title: "",
     creatorFirstName: "",
     creatorLastName: "",
-    parentTask: {
-      id: 0,
-      title: "",
-    },
     users: [],
     teams: [],
     equipments: [],
@@ -44,6 +40,8 @@ class TaskPageProfile extends React.Component<
     status: 0,
     discription: "",
     priority: 0,
+    researchId: 0,
+    parentTask: null
   };
   componentDidMount() {
     this.controller.getTaskById(
