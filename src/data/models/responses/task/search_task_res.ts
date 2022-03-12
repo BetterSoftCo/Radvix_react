@@ -1,28 +1,29 @@
 export interface SearchTaskRes {
-    status?:  number;
-    result?:  SearchTaskResResult;
-    message?: string;
+    status:  number;
+    result:  SearchTaskResResult;
+    message: string;
 }
 
 export interface SearchTaskResResult {
-    researchId?:        number;
-    equipments?:        Equipment[];
-    users?:             User[];
-    teams?:             Equipment[];
-    researchStartDate?: string;
-    researchEndDate?:   string;
-    taskhStartDate?:    string;
-    taskEndDate?:       string;
+    researchId:        number;
+    equipments:        Equipment[];
+    users:             User[];
+    teams:             Equipment[];
+    researchStartDate: Date;
+    researchEndDate:   Date;
+    taskhStartDate:    Date;
+    taskEndDate:       Date;
+    tasks:             Equipment[];
 }
 
 export interface Equipment {
-    id?:    number;
-    title?: string;
+    id:    number;
+    title: string;
 }
 
 export interface User {
-    id?:        string;
-    firstName?: string;
-    lastName?:  string;
-    image?:     string;
+    id:        string;
+    firstName: string;
+    lastName:  string;
+    image:     string;
 }

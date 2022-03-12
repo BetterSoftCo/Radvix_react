@@ -16,6 +16,7 @@ import SimpleReactValidator from "simple-react-validator";
 import { LocalDataSources } from "../../../data/local_datasources";
 import { store } from "../../../data/store";
 import { AccessPermition, UserRoles } from "../../../core/utils";
+import { TaskReq } from "../../../data/models/requests/task/task_req";
 type StateType = {
   title: string;
   description: string;
@@ -34,6 +35,7 @@ type StateType = {
   listTask: Array<{ label: string; value: number } | {}>;
   listEquipments: Array<{ label: string; value: number } | {}>;
   listPriority: Array<{ label: string; value: number } | {}>;
+  parentId:number
 };
 class TaskPageNew extends React.Component<RouteComponentProps> {
   RoleUser = store.getState().userRole;
@@ -77,6 +79,7 @@ class TaskPageNew extends React.Component<RouteComponentProps> {
     listEquipments: [],
     listPriority: [],
     listTask: [],
+    parentId: 0,
   };
   onDrop = (files: any) => {
     this.setState({ files });
@@ -144,7 +147,7 @@ class TaskPageNew extends React.Component<RouteComponentProps> {
           listEquipments: res.equipments?.map((item) => {
             return { label: item.title, value: item.id };
           }),
-          listTask: res.equipments?.map((item) => {
+          listTask: res.tasks?.map((item) => {
             return { label: item.title, value: item.id };
           }),
         });
@@ -163,7 +166,7 @@ class TaskPageNew extends React.Component<RouteComponentProps> {
   }
   CreateTask() {
     if (this.validator.allValid()) {
-      const body = {
+      const body: TaskReq = {
         title: this.state.title,
         description: this.state.description,
         priority: this.state.priority,
@@ -173,6 +176,7 @@ class TaskPageNew extends React.Component<RouteComponentProps> {
         suggestedEquipmentsId: this.state.suggestedEquipmentsId,
         addedUsersId: this.state.addedUsersId,
         addedTeamsId: this.state.addedTeamsId,
+        id: this.state.parentId,
       };
       this.setState({
         loading: true,
@@ -314,6 +318,9 @@ class TaskPageNew extends React.Component<RouteComponentProps> {
                     popQuestion=" Choose The parent Subtask"
                     optional="optional"
                     isMulti={false}
+                    onChange={(e) => {
+                      this.handelChangeSelectMultiple(e, "parentId");
+                    }}
                   ></SelectComponent>
                 </div>
               )}
@@ -386,10 +393,12 @@ class TaskPageNew extends React.Component<RouteComponentProps> {
               <div className="item">
                 <span className="label d-flex align-items-center">
                   {AccessPermition(this.RoleUser, [
-                      UserRoles.Admin,
-                      UserRoles.L1Client,
-                      UserRoles.L1User,
-                    ]) ? 'Task Attachments' : 'Subtask Attachments'}
+                    UserRoles.Admin,
+                    UserRoles.L1Client,
+                    UserRoles.L1User,
+                  ])
+                    ? "Task Attachments"
+                    : "Subtask Attachments"}
                   <MainButton
                     type={MainButtonType.light}
                     children={"Optional"}
