@@ -14,6 +14,14 @@ import SimpleReactValidator from "simple-react-validator";
 import { TaskController } from "../../../controllers/task/task_controller";
 import { LocalDataSources } from "../../../data/local_datasources";
 import { RouteComponentProps, withRouter } from "react-router";
+import { AccessPermition, UserRoles } from "../../../core/utils";
+import {
+  Media,
+  ParentTask,
+  User,
+} from "../../../data/models/responses/task/get_task_by_id_res";
+import { UpdateTaskReq } from "../../../data/models/requests/task/update_task_req";
+import { AppRoutes } from "../../../core/constants";
 type StateType = {
   title: string;
   description: string;
@@ -31,6 +39,19 @@ type StateType = {
   listTeams: Array<{ label: string; value: number } | {}>;
   listEquipments: Array<{ label: string; value: number } | {}>;
   listPriority: Array<{ label: string; value: number } | {}>;
+  listUsers: Array<{ label: string; value: number } | {}>;
+  Medias: Media[];
+  Teams: ParentTask[];
+  Users: User[];
+  Equipments: ParentTask[];
+  id: number;
+  parentId: number;
+  status: number;
+  addedEquipmentsId: number[];
+  removedEquipmentsId: number[];
+  removedUsersId: string[];
+  removedTeamsId: number[];
+  removedMedia: number[];
 };
 type ParamsType = {
   id: string;
@@ -61,6 +82,19 @@ class TaskPageEdit extends React.Component<RouteComponentProps<ParamsType>> {
     listTeams: [],
     listEquipments: [],
     listPriority: [],
+    listUsers: [],
+    Medias: [],
+    id: 0,
+    parentId: 0,
+    status: 0,
+    addedEquipmentsId: [],
+    removedEquipmentsId: [],
+    removedUsersId: [],
+    removedTeamsId: [],
+    removedMedia: [],
+    Teams: [],
+    Users: [],
+    Equipments: [],
   };
   componentDidMount() {
     this.setState({
@@ -76,7 +110,16 @@ class TaskPageEdit extends React.Component<RouteComponentProps<ParamsType>> {
       { TaskId: parseInt(this.props.match.params.id) },
       (res) => {
         this.setState({
-          
+          title: res.title,
+          description: res.discription,
+          priority: res.priority,
+          startDate: res.startDate,
+          endDate: res.endDate,
+          researchId: store.getState().ResearchId,
+          Medias: res.medias,
+          Teams: res.teams,
+          Users: res.users,
+          Equipments: res.equipments,
         });
       },
       (err) => {}
@@ -89,6 +132,12 @@ class TaskPageEdit extends React.Component<RouteComponentProps<ParamsType>> {
           listTeams: res.teams?.map((item) => {
             return { label: item.title, value: item.id };
           }),
+          listUsers: res.users?.map((item) => {
+            return {
+              label: item.firstName + " " + item.lastName,
+              value: item.id,
+            };
+          }),
           listEquipments: res.equipments?.map((item) => {
             return { label: item.title, value: item.id };
           }),
@@ -100,8 +149,10 @@ class TaskPageEdit extends React.Component<RouteComponentProps<ParamsType>> {
   onDrop = (files: any) => {
     this.setState({ files });
   };
-  handelChangeDate(params: any): void {
-    console.log(params);
+  handelChangeDate(target: string, params: any): void {
+    this.setState({
+      [target]: params,
+    });
   }
   handelDeleteFile(arg: File) {
     this.setState({
@@ -127,6 +178,40 @@ class TaskPageEdit extends React.Component<RouteComponentProps<ParamsType>> {
   handleChange(target: string, val: any) {
     this.setState({
       [target]: val,
+    });
+  }
+  handelRemoveMedia(id: number) {
+    this.setState({
+      removedMedias: [...this.state.removedMedia, id],
+      Medias: this.state.Medias.filter((item) => item.id !== id),
+    });
+  }
+  handelRemoveTeam(id: number) {
+    this.setState({
+      removedTeamsId: [...this.state.removedTeamsId, id],
+      Teams: this.state.Teams.filter((item) => item.id !== id),
+    });
+  }
+  handelRemoveUser(id: string) {
+    this.setState({
+      removedUsersId: [...this.state.removedUsersId, id],
+      Users: this.state.Users.filter((item) => item.id !== id),
+    });
+  }
+  handelRemoveEquipment(id: number) {
+    this.setState({
+      removedEquipmentsId: [...this.state.removedEquipmentsId, id],
+      Equipments: this.state.Equipments.filter((item) => item.id !== id),
+    });
+  }
+
+  handelChangeSelectMultiple(
+    e: Array<{ label: string; value: number }>,
+    target: string
+  ) {
+    const newLabId = e.map((item) => item.value);
+    this.setState({
+      [target]: newLabId,
     });
   }
   async handelUpload(id: number) {
@@ -156,11 +241,71 @@ class TaskPageEdit extends React.Component<RouteComponentProps<ParamsType>> {
       }
     );
   }
+  UpdateTask() {
+    if (this.validator.allValid()) {
+      const body: UpdateTaskReq = {
+        id: this.state.id,
+        title: this.state.title,
+        description: this.state.description,
+        priority: this.state.priority,
+        startDate: this.state.startDate,
+        endDate: this.state.endDate,
+        status: this.state.status,
+        researchId: 0,
+        addedEquipmentsId: this.state.addedEquipmentsId,
+        addedUsersId: this.state.addedUsersId,
+        addedTeamsId: this.state.addedTeamsId,
+        removedEquipmentsId: this.state.removedEquipmentsId,
+        removedUsersId: this.state.removedUsersId,
+        removedTeamsId: this.state.removedTeamsId,
+        removedMedia: this.state.removedMedia,
+      };
+      this.setState({
+        loading: true,
+      });
+      this.controller.updateTask(
+        body,
+        (res) => {
+          if (
+            this.state.files.length ||
+            this.state.ExternalUrl.length
+          ) {
+            this.handelUpload(res.id);
+          } else {
+            this.setState({
+              loading: false,
+            });
+            // this.props.history.push(
+            //   `${AppRoutes.task_profile.replace(
+            //     ":id",
+            //     res.id?.toString() ?? ""
+            //   )}`
+            // );
+          }
+        },
+        (err) => {
+          this.setState({
+            loading: false,
+          });
+        }
+      );
+    } else {
+      this.validator.showMessages();
+      this.forceUpdate();
+    }
+  }
   render() {
     const files = this.state.files.map((file: any) => (
       <li key={file.name}>
         {file.name} - {file.size} bytes
-        <CircleIcon type={ThemeCircleIcon.dark} width="22px" height="22px">
+        <CircleIcon
+          type={ThemeCircleIcon.dark}
+          width="22px"
+          height="22px"
+          onClick={() => {
+            this.handelDeleteFile(file);
+          }}
+        >
           <img
             src="/images/icons/garbage_can.svg"
             alt="radvix"
@@ -187,23 +332,69 @@ class TaskPageEdit extends React.Component<RouteComponentProps<ParamsType>> {
             <div className="col-md-6 left">
               <div className="item">
                 <ButtonGroup
-                  label="Task Status:"
-                  popQuestion="Task Status:"
+                  items={this.state.listPriority}
                   TextItem="name"
                   ValueItem="id"
-                  name="TaskStatus"
-                  items={[
-                    { name: " On Hold", id: 1 },
-                    { name: " On Going", id: 2 },
-                    { name: "Completed", id: 3 },
-                  ]}
+                  name="TaskPriority"
+                  label={
+                    AccessPermition(this.RoleUser, [
+                      UserRoles.Admin,
+                      UserRoles.L1Client,
+                      UserRoles.L1User,
+                    ])
+                      ? "Task Priority"
+                      : "Subtask Priority"
+                  }
+                  popQuestion={
+                    AccessPermition(this.RoleUser, [
+                      UserRoles.Admin,
+                      UserRoles.L1Client,
+                      UserRoles.L1User,
+                    ])
+                      ? "Task Priority"
+                      : "Subtask Priority"
+                  }
+                  inValid={this.validator.message(
+                    "Task Priority",
+                    this.state.priority,
+                    "required"
+                  )}
+                  selected={this.state.priority}
+                  onChange={(e) => {
+                    this.handleChange("priority", parseInt(e.target.value));
+                  }}
                 ></ButtonGroup>
               </div>
               <div className="item">
                 <InputComponent
                   type={InputType.text}
-                  label="Task Name:"
-                  popQuestion="Task Name:"
+                  label={
+                    AccessPermition(this.RoleUser, [
+                      UserRoles.Admin,
+                      UserRoles.L1Client,
+                      UserRoles.L1User,
+                    ])
+                      ? "Task Name:"
+                      : "Subtask Name:"
+                  }
+                  popQuestion={
+                    AccessPermition(this.RoleUser, [
+                      UserRoles.Admin,
+                      UserRoles.L1Client,
+                      UserRoles.L1User,
+                    ])
+                      ? "Task Name:"
+                      : "Subtask Name:"
+                  }
+                  onChange={(e) => {
+                    this.handleChange("title", e.target.value);
+                  }}
+                  inValid={this.validator.message(
+                    "Task Name",
+                    this.state.title,
+                    "required"
+                  )}
+                  value={this.state.title}
                 ></InputComponent>
               </div>
               <div className="item">
@@ -211,20 +402,50 @@ class TaskPageEdit extends React.Component<RouteComponentProps<ParamsType>> {
                   type={InputType.textarea}
                   label="Description:"
                   popQuestion="Description:"
+                  onChange={(e) => {
+                    this.handleChange("description", e.target.value);
+                  }}
+                  inValid={this.validator.message(
+                    "Description",
+                    this.state.description,
+                    "required"
+                  )}
+                  value={this.state.description}
                 ></InputComponent>
               </div>
               <div className="item">
                 <ButtonGroup
-                  label="Task Priority:"
-                  popQuestion="Task Priority:"
+                  items={this.state.listPriority}
                   TextItem="name"
                   ValueItem="id"
                   name="TaskPriority"
-                  items={[
-                    { name: " Low", id: 1 },
-                    { name: " Medium", id: 2 },
-                    { name: "High", id: 3 },
-                  ]}
+                  label={
+                    AccessPermition(this.RoleUser, [
+                      UserRoles.Admin,
+                      UserRoles.L1Client,
+                      UserRoles.L1User,
+                    ])
+                      ? "Task Priority"
+                      : "Subtask Priority"
+                  }
+                  popQuestion={
+                    AccessPermition(this.RoleUser, [
+                      UserRoles.Admin,
+                      UserRoles.L1Client,
+                      UserRoles.L1User,
+                    ])
+                      ? "Task Priority"
+                      : "Subtask Priority"
+                  }
+                  inValid={this.validator.message(
+                    "Task Priority",
+                    this.state.priority,
+                    "required"
+                  )}
+                  selected={this.state.priority}
+                  onChange={(e) => {
+                    this.handleChange("priority", parseInt(e.target.value));
+                  }}
                 ></ButtonGroup>
               </div>
               <div className="item">
@@ -244,13 +465,17 @@ class TaskPageEdit extends React.Component<RouteComponentProps<ParamsType>> {
                 </span>
                 <div className="d-flex justify-content-between align-items-center">
                   <DatePicker
-                    selected={this.date}
-                    onChange={this.handelChangeDate}
+                    selected={new Date(this.state.startDate)}
+                    onChange={(e) => {
+                      this.handelChangeDate("startDate", e);
+                    }}
                   />
                   <span className="mx-2">Until</span>
                   <DatePicker
-                    selected={this.date}
-                    onChange={this.handelChangeDate}
+                    selected={new Date(this.state.endDate)}
+                    onChange={(e) => {
+                      this.handelChangeDate("endDate", e);
+                    }}
                   />
                 </div>
               </div>
@@ -314,69 +539,37 @@ class TaskPageEdit extends React.Component<RouteComponentProps<ParamsType>> {
                   )}
                 </Dropzone>
                 <ul className="file-list mt-3">
-                  <li className="d-flex align-items-center mb-1">
-                    <img
-                      src="/images/icons/pdf_icon.svg"
-                      alt=""
-                      className="mx-2"
-                    />{" "}
-                    proposal_general.pdf
-                    <CircleIcon
-                      type={ThemeCircleIcon.dark}
-                      width="22px"
-                      height="22px"
-                      className="mx-3"
+                  {this.state.Medias.map((item) => (
+                    <li
+                      className="d-flex align-items-center mb-1"
+                      key={item.id}
                     >
                       <img
-                        src="/images/icons/garbage_can.svg"
-                        alt="radvix"
-                        width={15}
-                        height={15}
-                      />
-                    </CircleIcon>
-                  </li>
-                  <li className="d-flex align-items-center mb-1">
-                    <img
-                      src="/images/icons/pdf_icon.svg"
-                      alt=""
-                      className="mx-2"
-                    />{" "}
-                    proposal_general.pdf
-                    <CircleIcon
-                      type={ThemeCircleIcon.dark}
-                      width="22px"
-                      height="22px"
-                      className="mx-3"
-                    >
-                      <img
-                        src="/images/icons/garbage_can.svg"
-                        alt="radvix"
-                        width={15}
-                        height={15}
-                      />
-                    </CircleIcon>
-                  </li>
-                  <li className="d-flex align-items-center mb-1">
-                    <img
-                      src="/images/icons/pdf_icon.svg"
-                      alt=""
-                      className="mx-2"
-                    />{" "}
-                    proposal_general.pdf
-                    <CircleIcon
-                      type={ThemeCircleIcon.dark}
-                      width="22px"
-                      height="22px"
-                      className="mx-3"
-                    >
-                      <img
-                        src="/images/icons/garbage_can.svg"
-                        alt="radvix"
-                        width={15}
-                        height={15}
-                      />
-                    </CircleIcon>
-                  </li>
+                        src={`/images/icons/${item.inputDataType.isMedia()}`}
+                        alt=""
+                        className="mx-2"
+                        width={25}
+                        height={25}
+                      />{" "}
+                      {item.title}
+                      <CircleIcon
+                        type={ThemeCircleIcon.dark}
+                        width="22px"
+                        height="22px"
+                        className="mx-3 pointer"
+                        onClick={() => {
+                          this.handelRemoveMedia(item.id);
+                        }}
+                      >
+                        <img
+                          src="/images/icons/garbage_can.svg"
+                          alt="radvix"
+                          width={15}
+                          height={15}
+                        />
+                      </CircleIcon>
+                    </li>
+                  ))}
                 </ul>
               </div>
               <div className="item d-flex justify-content-between align-items-center">
@@ -384,6 +577,9 @@ class TaskPageEdit extends React.Component<RouteComponentProps<ParamsType>> {
                   type={InputType.text}
                   placeholder="https://"
                   className="mx-2"
+                  onChange={(e) => {
+                    this.handleChange("External", e.target.value);
+                  }}
                 ></InputComponent>
                 <CircleIcon
                   width="36px"
@@ -393,195 +589,179 @@ class TaskPageEdit extends React.Component<RouteComponentProps<ParamsType>> {
                   fontSize="18px"
                   color="#ffffff"
                   className="px-3"
+                  onClick={() => {
+                    this.addExternalUrl();
+                  }}
                 >
                   <i className="fas fa-plus"></i>
                 </CircleIcon>
               </div>
               <ul className="file-list mt-3">
-                <li className="my-2 d-flex flex-column flex-md-row">
-                  <MainButton
-                    children="https://drive.google.com/file/234234"
-                    type={MainButtonType.dark}
-                    borderRadius="24px"
-                    fontSize="14px"
-                    backgroundColor="#F5F5F5"
-                    color="#096BFF"
-                  ></MainButton>
-                  <CircleIcon
-                    type={ThemeCircleIcon.dark}
-                    width="22px"
-                    height="22px"
-                    className="mx-3"
-                  >
-                    <img
-                      src="/images/icons/garbage_can.svg"
-                      alt="radvix"
-                      width={15}
-                      height={15}
-                    />
-                  </CircleIcon>
-                </li>
-                <li className="my-2 d-flex flex-column flex-md-row">
-                  <MainButton
-                    children="https://drive.google.com/file/234234"
-                    type={MainButtonType.dark}
-                    borderRadius="24px"
-                    fontSize="14px"
-                    backgroundColor="#F5F5F5"
-                    color="#096BFF"
-                  ></MainButton>
-                  <CircleIcon
-                    type={ThemeCircleIcon.dark}
-                    width="22px"
-                    height="22px"
-                    className="mx-3"
-                  >
-                    <img
-                      src="/images/icons/garbage_can.svg"
-                      alt="radvix"
-                      width={15}
-                      height={15}
-                    />
-                  </CircleIcon>
-                </li>
+                {this.state.Medias.filter((item) => item.externalUrl).map(
+                  (item, index) => (
+                    <li
+                      key={index}
+                      className="my-2 d-flex flex-column flex-md-row"
+                    >
+                      <MainButton
+                        children={item.externalUrl}
+                        type={MainButtonType.dark}
+                        borderRadius="24px"
+                        fontSize="14px"
+                        backgroundColor="#F5F5F5"
+                        color="#096BFF"
+                        className="text-truncate"
+                      ></MainButton>
+                      <CircleIcon
+                        type={ThemeCircleIcon.dark}
+                        width="22px"
+                        height="22px"
+                        className="mx-3"
+                        onClick={() => {
+                          this.handelRemoveMedia(item.id!);
+                        }}
+                      >
+                        <img
+                          src="/images/icons/garbage_can.svg"
+                          alt="radvix"
+                          width={15}
+                          height={15}
+                        />
+                      </CircleIcon>
+                    </li>
+                  )
+                )}
+                {this.state.ExternalUrl.map((item) => (
+                  <li className="my-2 d-flex flex-column flex-md-row">
+                    <MainButton
+                      children={item}
+                      type={MainButtonType.dark}
+                      borderRadius="24px"
+                      fontSize="14px"
+                      backgroundColor="#F5F5F5"
+                      color="#096BFF"
+                    ></MainButton>
+                    <CircleIcon
+                      type={ThemeCircleIcon.dark}
+                      width="22px"
+                      height="22px"
+                      className="mx-3 pointer"
+                      onClick={() => this.handelDeleteExternalLink(item)}
+                    >
+                      <img
+                        src="/images/icons/garbage_can.svg"
+                        alt="radvix"
+                        width={15}
+                        height={15}
+                      />
+                    </CircleIcon>
+                  </li>
+                ))}
               </ul>
             </div>
             <div className="col-md-6 right">
               <div className="item">
                 <SelectComponent
-                  items={[
-                    { name: "test1", id: 1 },
-                    { name: "test2", id: 2 },
-                  ]}
+                  items={this.state.listTeams}
                   TextItem="name"
                   ValueItem="id"
                   className="my-2"
-                  label="Assign To Teams (Members):"
-                  popQuestion="Assign To Teams (Members):"
+                  label={
+                    AccessPermition(this.RoleUser, [
+                      UserRoles.Admin,
+                      UserRoles.L1Client,
+                      UserRoles.L1User,
+                    ])
+                      ? "Assign To Teams (Members):"
+                      : "Assign To Subteams (Members):"
+                  }
+                  popQuestion={
+                    AccessPermition(this.RoleUser, [
+                      UserRoles.Admin,
+                      UserRoles.L1Client,
+                      UserRoles.L1User,
+                    ])
+                      ? "Assign To Teams (Members):"
+                      : "Assign To Subteams (Members):"
+                  }
                   optional="optional"
-                  placeholder="Click to see the list…"
+                  onChange={(e) => {
+                    this.handelChangeSelectMultiple(e, "addedTeamsId");
+                  }}
+                  isMulti
                 ></SelectComponent>
               </div>
 
               <div className="teams mb-3">
                 <div className="tags p-3">
-                  <MainButton
-                    backgroundColor="#EBEBEB"
-                    className="tag-delete"
-                    children={
-                      <div className="d-flex align-items-center justify-content-between">
-                        <span className="flex-fill">ACCESSLab Team</span>
-                        <CircleIcon
-                          type={ThemeCircleIcon.dark}
-                          width="22px"
-                          height="22px"
-                        >
-                          <img
-                            src="/images/icons/garbage_can.svg"
-                            alt="radvix"
-                            width={15}
-                            height={15}
-                          />
-                        </CircleIcon>
-                      </div>
-                    }
-                    type={MainButtonType.light}
-                    borderRadius="24px"
-                    fontSize="14px"
-                  ></MainButton>
-                  <MainButton
-                    backgroundColor="#EBEBEB"
-                    className="tag-delete"
-                    children={
-                      <div className="d-flex align-items-center justify-content-between">
-                        <span className="flex-fill">ACCESSLab Team</span>
-                        <CircleIcon
-                          type={ThemeCircleIcon.dark}
-                          width="22px"
-                          height="22px"
-                        >
-                          <img
-                            src="/images/icons/garbage_can.svg"
-                            alt="radvix"
-                            width={15}
-                            height={15}
-                          />
-                        </CircleIcon>
-                      </div>
-                    }
-                    type={MainButtonType.light}
-                    borderRadius="24px"
-                    fontSize="14px"
-                  ></MainButton>
+                  {this.state.Teams.map((item) => (
+                    <div key={item.id}>
+                      <MainButton
+                        backgroundColor="#EBEBEB"
+                        className="tag-delete"
+                        children={
+                          <div className="d-flex align-items-center justify-content-between">
+                            <span className="flex-fill">{item.title}</span>
+                            <CircleIcon
+                              type={ThemeCircleIcon.dark}
+                              width="22px"
+                              height="22px"
+                              onClick={() => {
+                                this.handelRemoveTeam(item.id);
+                              }}
+                            >
+                              <img
+                                src="/images/icons/garbage_can.svg"
+                                alt="radvix"
+                                width={15}
+                                height={15}
+                              />
+                            </CircleIcon>
+                          </div>
+                        }
+                        type={MainButtonType.light}
+                        borderRadius="24px"
+                        fontSize="14px"
+                      ></MainButton>
+                    </div>
+                  ))}
                 </div>
                 <BoxListScroll
-                  items={[
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 1,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 2,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 3,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                  ]}
-                  TextItem="text"
+                  items={this.state.Users}
+                  TextItem="firstName"
                   ValueItem="id"
-                  ImageItem="imagesrc"
+                  ImageItem="image"
                   Deletabel
                   DeleteFunc={(p, value) => {
-                    console.log(p, value);
+                    this.handelRemoveUser(value);
                   }}
-                  default_photo="/Images/icons/equipment_Icon.svg"
+                  default_photo="/Images/icons/user.svg"
                 ></BoxListScroll>
               </div>
               <div className="item">
                 <SelectComponent
-                  items={[
-                    { name: "test1", id: 1 },
-                    { name: "test2", id: 2 },
-                  ]}
+                  items={this.state.listEquipments}
                   TextItem="name"
                   ValueItem="id"
                   className="my-2"
                   label="Suggest Equipment:"
                   popQuestion="Suggest Equipment:"
                   optional="optional"
-                  placeholder="Click to see the list…"
+                  onChange={(e) => {
+                    this.handelChangeSelectMultiple(e, "addedEquipmentsId");
+                  }}
+                  isMulti
                 ></SelectComponent>
               </div>
               <div className="teams mb-3">
                 <BoxListScroll
-                  items={[
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 1,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 2,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 3,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                  ]}
-                  TextItem="text"
+                  items={this.state.Equipments}
+                  TextItem="title"
                   ValueItem="id"
-                  ImageItem="imagesrc"
+                  ImageItem="image"
                   Deletabel
                   DeleteFunc={(p, value) => {
-                    console.log(p, value);
+                    this.handelRemoveEquipment(value);
                   }}
                   default_photo="/Images/icons/equipment_Icon.svg"
                 ></BoxListScroll>
@@ -599,12 +779,15 @@ class TaskPageEdit extends React.Component<RouteComponentProps<ParamsType>> {
               ></MainButton>
               <MainButton
                 type={MainButtonType.dark}
-                children={"Create"}
+                children={"Save"}
                 borderRadius="50px"
                 fontSize="18px"
                 className="mx-2"
                 minHeight="43px"
                 minWidth="136px"
+                onClick={() => {
+                  this.UpdateTask();
+                }}
               ></MainButton>
             </div>
           </div>

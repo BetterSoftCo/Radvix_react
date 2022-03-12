@@ -1,42 +1,27 @@
 export interface GetEquimentByIDRes {
-  status: number;
-  result: GetEquimentByIDResResult;
+  status:  number;
+  result:  GetEquimentByIDResResult;
   message: string;
 }
 
 export interface GetEquimentByIDResResult {
-  id: number;
-  title: string;
-  image: string;
-  status: number;
-  laboratories: Laboratory[];
-  manufacturer: string;
-  model: string;
-  technicianName: string;
+  id:              number;
+  title:           string;
+  image:           string;
+  description:     string;
+  status:          number;
+  laboratories:    Laboratory[];
+  manufacturer:    string;
+  model:           string;
+  technicianName:  string;
   technicianEmail: string;
   technicianPhone: string;
-  medias: Media[];
-  teams: Laboratory[];
-  members: Member[];
-  description: string;
+  medias:          any[];
+  teams:           any[];
+  members:         any[];
 }
 
 export interface Laboratory {
-  id: number;
+  id:    number;
   title: string;
-}
-
-export interface Media {
-  id: number;
-  name: string;
-  title: string;
-  externalUrl: string;
-  inputDataType: number;
-}
-
-export interface Member {
-  id: string;
-  firstName: string;
-  lastName: string;
-  image: string;
 }

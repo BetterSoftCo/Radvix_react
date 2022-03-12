@@ -9,7 +9,6 @@ import Dropzone from "react-dropzone";
 import { RadioGroup } from "../../components/radio_group";
 import {
   Laboratory,
-  Media,
 } from "../../../data/models/responses/equipment/get_equipment_by_id_res";
 import { RouteComponentProps } from "react-router";
 import { UploadController } from "../../../controllers/upload_media/upload_media";
@@ -32,7 +31,7 @@ type StateType = {
   removedLaboratoriesId: number[];
   removedMedias: number[];
   Laboratories: Laboratory[];
-  Medias: Media[];
+  Medias: any[];
   files: Array<File>;
   listLaboratory: Array<{ name: string; value: number }>;
   listequipmentStatus: Array<{ name: string; id: number } | {}>;
@@ -126,6 +125,11 @@ export class EditEquip extends React.Component<
           imageUrl: res.image,
           Medias: res.medias,
           Laboratories: res.laboratories,
+          id: res.id,
+          // priority:res.priority,
+          // startDate:res.startDate,
+          // endDate:res.endDate,
+          // researchId:res.researchId,
         });
       },
       (err) => {}
@@ -211,12 +215,12 @@ export class EditEquip extends React.Component<
             this.setState({
               loading: false,
             });
-            // this.props.history.push(
-            //   `${AppRoutes.equip_profile.replace(
-            //     ":id",
-            //     res.id?.toString() ?? ""
-            //   )}`
-            // );
+            this.props.history.push(
+              `${AppRoutes.equip_profile.replace(
+                ":id",
+                res.id?.toString() ?? ""
+              )}`
+            );
           }
         },
         (err) => {

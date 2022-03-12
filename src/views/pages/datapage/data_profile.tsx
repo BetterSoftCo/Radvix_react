@@ -10,12 +10,13 @@ import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
 import { GetDataByIDResResult } from "../../../data/models/responses/data/get_by_id_data_res";
 import { DataController } from "../../../controllers/data/data_controller";
+import moment from "moment";
 interface RouteParams {
   appTaskId: string;
   dataid: string;
 }
 type StateType = {
-  Data: GetDataByIDResResult;
+  Datas: GetDataByIDResResult;
 };
 class DataPageProfile extends React.Component<
   RouteComponentProps<RouteParams>
@@ -23,7 +24,7 @@ class DataPageProfile extends React.Component<
   RoleUser = store.getState().userRole;
   controller = new DataController();
   state: StateType = {
-    Data: {
+    Datas: {
       taskId: 0,
       taskTitle: "",
       subTaskId: 0,
@@ -56,7 +57,11 @@ class DataPageProfile extends React.Component<
         appTaskId: parseInt(this.props.match.params.appTaskId),
       },
       (res) => {
-        console.log(res);
+        console.log(res , 'sssssssssss');
+        
+        this.setState({
+          Datas: res,
+        });
       },
       (err) => {}
     );
@@ -114,9 +119,7 @@ class DataPageProfile extends React.Component<
             ></MainButton>
           </div>
           <div className="Studying p-4 my-2">
-            <h3 className="px-5 text-center">
-              TGA Results and Exported Data on Soft Samples
-            </h3>
+            <h3 className="px-5 text-center">{this.state.Datas.taskTitle}</h3>
           </div>
           <div className="row justify-content-center">
             <div className="col-md-6  tabel-info ">
@@ -124,74 +127,70 @@ class DataPageProfile extends React.Component<
                 <h6 className="col-4 t-title mb-0 border-t-l">
                   Data Set Added by
                 </h6>
-                <div className="col-8 t-desc border-t-r">N. Hosseinzadeh</div>
+                <div className="col-8 t-desc border-t-r">
+                  {this.state.Datas.data.creatorFirstName +
+                    " " +
+                    this.state.Datas.data.creatorLastName}
+                </div>
               </div>
               <div className="row border-bottom">
                 <h6 className="col-4 t-title mb-0">Data Set Files</h6>
                 <div className="col-8 t-desc">
-                  <ul className="file-list">
+                <ul className="file-list">
+                    {this.state.Datas.data.medias
+                      .filter((media) => media.externalUrl === null)
+                      .map((item) => (
+                        <li>
+                          <img
+                            src={`/images/icons/${item.inputDataType.isMedia()}`}
+                            alt=""
+                            width={20}
+                            height={20}
+                          />{" "}
+                          {item.title}
+                        </li>
+                      ))}
+
                     <li>
-                      <img src="/images/icons/pdf_icon.svg" alt="" />{" "}
-                      proposal_general.pdf
-                    </li>
-                    <li>
-                      <img src="/images/icons/word_icon.svg" alt="" />{" "}
-                      proposal_general.docx
-                    </li>
-                    <li>
-                      <img src="/images/icons/excel_icon.svg" alt="" />{" "}
-                      proposal_general.xlsx
-                    </li>
-                    <li>
-                      <img src="/images/icons/pdf_icon.svg" alt="" />{" "}
-                      proposal_general.pdf
-                    </li>
-                    <li>
-                      Shared Links: <br />
-                      <MainButton
-                        children="https://drive.google.com/file/234234"
-                        type={MainButtonType.dark}
-                        borderRadius="24px"
-                        fontSize="14px"
-                        backgroundColor="#F5F5F5"
-                        color="#096BFF"
-                      ></MainButton>
-                      <MainButton
-                        children="https://drive.google.com/file/234234"
-                        type={MainButtonType.dark}
-                        borderRadius="24px"
-                        fontSize="14px"
-                        backgroundColor="#F5F5F5"
-                        color="#096BFF"
-                      ></MainButton>
+                      Shared Links:
+                      {this.state.Datas.data.medias
+                        .filter((item) => item.externalUrl)
+                        .map((item) => (
+                          <div key={item.id}>
+                            <MainButton
+                              children={item.externalUrl}
+                              type={MainButtonType.dark}
+                              borderRadius="24px"
+                              fontSize="14px"
+                              backgroundColor="#F5F5F5"
+                              color="#096BFF"
+                            ></MainButton>
+                          </div>
+                        ))}
                     </li>
                   </ul>
                 </div>
               </div>
               <div className="row border-bottom">
                 <h6 className="col-4 t-title mb-0">Date</h6>
-                <div className="col-8 t-desc">07/22/2021 21:24</div>
+                <div className="col-8 t-desc">{moment(this.state.Datas.data.createdDate).format("YYYY/MM/DD")}</div>
               </div>
               <div className="row border-bottom">
                 <h6 className="col-4 t-title mb-0">Data Description</h6>
                 <div className="col-8 t-desc">
-                  {" "}
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea
+                  {/* {this.state.Datas.data.d} */}
                 </div>
               </div>
 
               <div className="row border-bottom">
                 <h6 className="col-4 t-title mb-0">Task</h6>
-                <div className="col-8 t-desc">Running TGA On XFG…</div>
+                <div className="col-8 t-desc">{this.state.Datas.taskTitle}</div>
               </div>
               <div className="row border-bottom">
                 <h6 className="col-4 t-title mb-0 border-b-l">
                   Task Assigned by
                 </h6>
-                <div className="col-8 t-desc border-b-r">B. Forouzani</div>
+                <div className="col-8 t-desc border-b-r">{this.state.Datas.users.join(' - ')}</div>
               </div>
             </div>
             <div className="col-md-5">
@@ -247,27 +246,11 @@ class DataPageProfile extends React.Component<
                 ></IconTextRow>
 
                 <BoxListScroll
-                default_photo="/Images/icons/equipment_Icon.svg"
-                  items={[
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 1,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 2,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 3,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                  ]}
-                  TextItem="text"
+                  default_photo="/Images/icons/equipment_Icon.svg"
+                  items={this.state.Datas.equipments}
+                  TextItem="title"
                   ValueItem="id"
-                  ImageItem="imagesrc"
+                  ImageItem="image"
                 ></BoxListScroll>
               </div>
               <div className="teams teams-light my-3 ">
@@ -284,27 +267,11 @@ class DataPageProfile extends React.Component<
                   }
                 ></IconTextRow>
                 <BoxListScroll
-                default_photo="/Images/icons/equipment_Icon.svg"
-                  items={[
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 1,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 2,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 3,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                  ]}
-                  TextItem="text"
+                  default_photo="/Images/icons/user.svg"
+                  items={this.state.Datas.users}
+                  TextItem="firstName"
                   ValueItem="id"
-                  ImageItem="imagesrc"
+                  ImageItem="image"
                   className="mt-2 pointer"
                   onClick={() => {
                     this.props.history.push(AppRoutes.member_profile);

@@ -30,11 +30,12 @@ export interface Data {
 }
 
 export interface Media {
-  id: number;
-  name: string;
-  externalUrl: string;
-  inputDataType: number;
-  title: string;
+    id:            number;
+    name:          string;
+    title:         string;
+    externalUrl:   string;
+    useCase:       number;
+    inputDataType: number;
 }
 
 export interface Equipment {
