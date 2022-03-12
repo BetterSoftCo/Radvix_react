@@ -6,24 +6,121 @@ import { MainButton, MainButtonType } from "../../components/button";
 import { SelectComponent } from "../../components/select_input";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import Dropzone from "react-dropzone";
+import { UserController } from "../../../controllers/user/user_controller";
+import { MemberController } from "../../../controllers/member/member_controller";
+import { LocalDataSources } from "../../../data/local_datasources";
+type StateType = {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  degree: number;
+  major: string;
+  phoneNumber: string;
+  institution: string;
+  addressLine1: string;
+  addressLine2: string;
+  locationId: number;
+  zipCode: string;
+  token: string;
+  role: number;
+  files: Array<File>;
+  loading: boolean;
+  ExternalUrl: Array<string>;
+  External: string;
+  listDegree: Array<{ value: number; label: string }>;
+};
 export class EditMyProfile extends React.Component {
   RoleUser = store.getState().userRole;
-  date = new Date();
-  handelChangeDate(params: any): void {
-    console.log(params);
-  }
-  state = {
+  controller = new UserController();
+  controllerMember = new MemberController();
+  local = new LocalDataSources();
+  state: StateType = {
+    id: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    degree: 0,
+    major: "",
+    phoneNumber: "",
+    institution: "",
+    addressLine1: "",
+    addressLine2: "",
+    locationId: 0,
+    zipCode: "",
+    token: "",
+    role: this.RoleUser,
     files: [],
+    listDegree: [],
+    loading: false,
+    ExternalUrl: [],
+    External: ""
   };
   onDrop = (files: any) => {
     this.setState({ files });
-    console.log(this.state);
   };
+  handelDeleteFile(arg: File) {
+    this.setState({
+      files: this.state.files.filter((file) => file.name !== arg.name),
+    });
+  }
+  componentDidMount() {
+    this.controllerMember.getMember(
+      {
+        userId: this.local.getUserId(),
+      },
+      (res) => {
+        this.setState({
+          id: this.local.getUserId,
+          firstName: res.firstName,
+          lastName: res.lastName,
+          email: res.userEmail,
+          degree: res.degree,
+          major: res.major,
+          phoneNumber: res.phoneNumber,
+          institution: res.invitationSender,
+          addressLine1: res.addressLine1,
+          addressLine2: res.addressLine2,
+          zipCode: res.zipCode,
+          role: this.RoleUser,
+        });
+      },
+      (err) => {}
+    );
+    this.setState({
+      listDegree: this.local.getSetting().degree.map((item) => {
+        return { label: item.title, value: item.id };
+      }),
+    });
+  }
+  handleChange(target: string, val: any) {
+    this.setState({
+      [target]: val,
+    });
+  }
+  handelChangeSelect(e: { label: string; value: number }, target: string) {
+    this.setState({ [target]: e.value });
+  }
+  addExternalUrl() {
+    let Url = [...this.state.ExternalUrl];
+    Url.push(this.state.External);
+    this.setState({
+      ExternalUrl: Url,
+      External: "",
+    });
+  }
   render() {
     const files = this.state.files.map((file: any) => (
       <li key={file.name}>
         {file.name} - {file.size} bytes
-        <CircleIcon type={ThemeCircleIcon.dark} width="22px" height="22px">
+        <CircleIcon
+          type={ThemeCircleIcon.dark}
+          width="22px"
+          height="22px"
+          onClick={() => {
+            this.handelDeleteFile(file);
+          }}
+        >
           <img
             src="/images/icons/garbage_can.svg"
             alt="radvix"
@@ -38,7 +135,13 @@ export class EditMyProfile extends React.Component {
         <div className="row"></div>
         <div className="col-12 box-content p-3">
           <h5 className="b-title d-flex">
-            <span onClick={()=>{window.history.back()}} className="backPage"></span> Edit My Profile
+            <span
+              onClick={() => {
+                window.history.back();
+              }}
+              className="backPage"
+            ></span>{" "}
+            Edit My Profile
           </h5>
           <div className="form row">
             <div className="col-md-6 left">
@@ -47,6 +150,10 @@ export class EditMyProfile extends React.Component {
                   type={InputType.text}
                   label="User Email:"
                   popQuestion="User Email:"
+                  onChange={(e) => {
+                    this.handleChange("email", e.target.value);
+                  }}
+                  value={this.state.email}
                 ></InputComponent>
               </div>
               <div className="item">
@@ -54,6 +161,10 @@ export class EditMyProfile extends React.Component {
                   type={InputType.text}
                   label="Last Name:"
                   popQuestion="Last Name:"
+                  onChange={(e) => {
+                    this.handleChange("lastName", e.target.value);
+                  }}
+                  value={this.state.lastName}
                 ></InputComponent>
               </div>
               <div className="item">
@@ -92,7 +203,12 @@ export class EditMyProfile extends React.Component {
                     height="30px"
                     className="mx-2 pointer"
                   >
-                    <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
+                    <img
+                      src="/images/icons/garbage_can.svg"
+                      alt="radvix"
+                      width={15}
+                      height={15}
+                    />
                   </CircleIcon>
                   <Dropzone onDrop={this.onDrop}>
                     {({ getRootProps, getInputProps }) => (
@@ -118,6 +234,10 @@ export class EditMyProfile extends React.Component {
                   type={InputType.text}
                   label="Email:"
                   popQuestion="Email:"
+                  onChange={(e) => {
+                    this.handleChange("email", e.target.value);
+                  }}
+                  value={this.state.email}
                 ></InputComponent>
               </div>
               <div className="item">
@@ -151,21 +271,22 @@ export class EditMyProfile extends React.Component {
               <div className="d-flex justify-content-between align-items-center">
                 <div className="item w-50">
                   <SelectComponent
-                    items={[
-                      { name: "test1", id: 1 },
-                      { name: "test2", id: 2 },
-                    ]}
-                    TextItem="name"
+                    items={this.state.listDegree}
+                    TextItem="title"
                     ValueItem="id"
                     className="my-2"
                     placeholder="PhD"
                     label="Degree"
+                    onChange={(e) => {
+                      this.handelChangeSelect(e, "degree");
+                    }}
                   ></SelectComponent>
                 </div>
                 <div className="item ">
                   <InputComponent
                     type={InputType.text}
                     label="Major"
+                     
                   ></InputComponent>
                 </div>
               </div>
@@ -214,15 +335,14 @@ export class EditMyProfile extends React.Component {
                                 src="/Images/icons/cloud_computing.svg"
                                 alt="sssss"
                                 height="20"
-                                
                               />{" "}
-                              <span className="flex-fill">Browse Local Files</span>
+                              <span className="flex-fill">
+                                Browse Local Files
+                              </span>
                             </div>
                           }
                         ></MainButton>
-                        <p>
-                        Or drag and drop files here
-                        </p>
+                        <p>Or drag and drop files here</p>
                       </div>
                       <aside>
                         <h4>Files</h4>
@@ -260,12 +380,20 @@ export class EditMyProfile extends React.Component {
                     label="Address Line 1"
                     popQuestion="Address Line 1"
                     className="my-2"
+                    onChange={(e) => {
+                      this.handleChange("addressLine1", e.target.value);
+                    }}
+                    value={this.state.addressLine1}
                   ></InputComponent>
                   <InputComponent
                     type={InputType.text}
                     label="Address Line 2"
                     popQuestion="Address Line 2"
                     className="my-2"
+                    onChange={(e) => {
+                      this.handleChange("addressLine2", e.target.value);
+                    }}
+                    value={this.state.addressLine2}
                   ></InputComponent>
                 </div>
                 <div className="row">
@@ -287,12 +415,20 @@ export class EditMyProfile extends React.Component {
                     <InputComponent
                       type={InputType.text}
                       label=" ZIP/Postal Code"
+                      onChange={(e) => {
+                        this.handleChange("zipCode", e.target.value);
+                      }}
+                      value={this.state.zipCode}
                     ></InputComponent>
                   </div>
                   <div className="item col-md-6">
                     <InputComponent
                       type={InputType.text}
                       label="Phone"
+                      onChange={(e) => {
+                        this.handleChange("phoneNumber", e.target.value);
+                      }}
+                      value={this.state.phoneNumber}
                     ></InputComponent>
                   </div>
                 </div>
@@ -335,6 +471,9 @@ export class EditMyProfile extends React.Component {
                       <InputComponent
                         type={InputType.text}
                         placeholder=""
+                        onChange={(e) => {
+                          this.handleChange("External", e.target.value);
+                        }}
                       ></InputComponent>
                       <CircleIcon
                         width="36px"
@@ -344,6 +483,9 @@ export class EditMyProfile extends React.Component {
                         fontSize="18px"
                         color="#ffffff"
                         className="mx-2"
+                        onClick={() => {
+                          this.addExternalUrl();
+                        }}
                       >
                         <i className="fas fa-plus"></i>
                       </CircleIcon>
@@ -351,6 +493,7 @@ export class EditMyProfile extends React.Component {
                   </div>
                 </div>
                 <ul className="file-list mt-3">
+                  
                   <li className="d-flex justify-content-between align-items-center mb-2">
                     <div>
                       <img
@@ -372,55 +515,12 @@ export class EditMyProfile extends React.Component {
                       height="29px"
                       className="mx-2 pointer"
                     >
-                      <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
-                    </CircleIcon>
-                  </li>
-                  <li className="d-flex justify-content-between align-items-center mb-2">
-                    <div>
                       <img
-                        src="/images/images/linkedIn_logo_initials.png"
-                        alt=""
-                      />{" "}
-                      <MainButton
-                        children="https://drive.google.com/file/234234"
-                        type={MainButtonType.dark}
-                        borderRadius="24px"
-                        fontSize="14px"
-                        backgroundColor="#F5F5F5"
-                        color="#096BFF"
-                      ></MainButton>
-                    </div>
-                    <CircleIcon
-                      type={ThemeCircleIcon.dark}
-                      width="29px"
-                      height="29px"
-                      className="mx-2 pointer"
-                    >
-                      <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
-                    </CircleIcon>
-                  </li>
-                  <li className="d-flex justify-content-between align-items-center mb-2">
-                    <div>
-                      <img
-                        src="/images/images/linkedIn_logo_initials.png"
-                        alt=""
-                      />{" "}
-                      <MainButton
-                        children="https://drive.google.com/file/234234"
-                        type={MainButtonType.dark}
-                        borderRadius="24px"
-                        fontSize="14px"
-                        backgroundColor="#F5F5F5"
-                        color="#096BFF"
-                      ></MainButton>
-                    </div>
-                    <CircleIcon
-                      type={ThemeCircleIcon.dark}
-                      width="29px"
-                      height="29px"
-                      className="mx-2 pointer"
-                    >
-                      <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
+                        src="/images/icons/garbage_can.svg"
+                        alt="radvix"
+                        width={15}
+                        height={15}
+                      />
                     </CircleIcon>
                   </li>
                 </ul>
@@ -445,7 +545,7 @@ export class EditMyProfile extends React.Component {
                 minHeight="43px"
                 minWidth="136px"
               ></MainButton>
-               <MainButton
+              <MainButton
                 type={MainButtonType.dark}
                 children={"Update"}
                 borderRadius="50px"
