@@ -173,7 +173,6 @@ class UploadNewDraft extends React.Component<RouteComponentProps<RouteParams>> {
         body,
         (res) => {
           this.handelUploadPublication(res.id);
-          this.handelUploadMainPublication(res.id);
           this.setState(
             {
               files: [],
@@ -188,7 +187,10 @@ class UploadNewDraft extends React.Component<RouteComponentProps<RouteParams>> {
                 id: ""
               }
             });
-          this.props.history.push(`${AppRoutes.publish_profile.replace(':id', this.props.match.params.id ?? "")}`)
+
+            setInterval(() => {
+              this.props.history.push(`${AppRoutes.publish_profile.replace(':id', this.props.match.params.id ?? "")}`)
+            }, 2000);
         },
         (err) => {
           this.setState({
