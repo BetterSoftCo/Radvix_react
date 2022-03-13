@@ -173,6 +173,7 @@ class UploadNewDraft extends React.Component<RouteComponentProps<RouteParams>> {
         body,
         (res) => {
           this.handelUploadPublication(res.id);
+          this.handelUploadMainPublication(res.id);
           this.setState(
             {
               files: [],
