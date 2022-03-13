@@ -162,18 +162,15 @@ class UploadNewDraft extends React.Component<RouteComponentProps<RouteParams>> {
   handelCreateDraft() {
     if (this.validator.allValid()) {
       const body = {
-        createdDate: new Date(),
         finalVersion: this.state.finalVersion === 1 ? false : true,
         publicationId: parseInt(this.props.match.params.id),
         nextDrafterId: this.state.publication.id,
-        nextDrafterFirstName: this.state.publication.firstName,
-        nextDrafterLastName: this.state.publication.lastName,
       }
       this.controller.createDraft(
         body,
         (res) => {
-          this.handelUploadPublication(res.id);
-          this.handelUploadMainPublication(res.id);
+          this.handelUploadPublication(res.draftId);
+          this.handelUploadMainPublication(res.draftId);
           this.setState(
             {
               files: [],
@@ -189,9 +186,9 @@ class UploadNewDraft extends React.Component<RouteComponentProps<RouteParams>> {
               }
             });
 
-            setInterval(() => {
-              this.props.history.push(`${AppRoutes.publish_profile.replace(':id', this.props.match.params.id ?? "")}`)
-            }, 2000);
+            // setInterval(() => {
+            //   this.props.history.push(`${AppRoutes.publish_profile.replace(':id', this.props.match.params.id ?? "")}`)
+            // }, 2000);
         },
         (err) => {
           this.setState({
