@@ -11,68 +11,45 @@ import {
   ViewDirective,
 } from "@syncfusion/ej2-react-schedule";
 import { Browser, Internationalization } from "@syncfusion/ej2-base";
+import { ResearchController } from "../../../controllers/research/research_controller";
+import { store } from "../../../data/store";
+import { User } from "../../../data/models/responses/research/timeline_res";
 class TimeLine extends React.Component<RouteComponentProps> {
-  data = [
-    {
-      Id: 1,
-      Subject: "Explosion of Betelgeuse Star",
-      StartTime: new Date(2018, 1, 15, 9, 30),
-      EndTime: new Date(2018, 1, 15, 11, 0),
-    },
-    {
-      Id: 2,
-      Subject: "Thule Air Crash Report",
-      StartTime: new Date(2018, 1, 12, 12, 0),
-      EndTime: new Date(2018, 1, 12, 14, 0),
-    },
-    {
-      Id: 3,
-      Subject: "Blue Moon Eclipse",
-      StartTime: new Date(2018, 1, 13, 9, 30),
-      EndTime: new Date(2018, 1, 13, 11, 0),
-    },
-    {
-      Id: 4,
-      Subject: "Meteor Showers in 2018",
-      StartTime: new Date(2018, 1, 14, 13, 0),
-      EndTime: new Date(2018, 1, 14, 14, 30),
-    },
-  ];
-
+  controller = new ResearchController();
+  componentDidMount() {
+    this.getTimeline();
+    store.subscribe(() => {
+      this.getTimeline();
+    });
+  }
+  getTimeline() {
+    this.controller.getTimeline(
+      {
+        id: store.getState().ResearchId,
+      },
+      (res) => {
+        this.setState({
+          data: res.map((item) => {
+            return {
+              Id: 1,
+              Subject: item.title,
+              StartTime: new Date(item.startDate),
+              EndTime: new Date(item.endDate),
+              users:item.users
+            };
+          }),
+        });
+      },
+      (err) => {}
+    );
+  }
+  state = {
+    data: [],
+  };
   private instance: Internationalization = new Internationalization();
 
   private getTimeString(value: Date) {
     return this.instance.formatDate(value, { skeleton: "hm" });
-  }
-  private timelineEventTemplate(props: {
-    PrimaryColor: any;
-    SecondaryColor: any;
-    Subject:
-      | boolean
-      | React.ReactChild
-      | React.ReactFragment
-      | React.ReactPortal
-      | null
-      | undefined;
-  }): JSX.Element {
-    return (
-      <div className="template-wrap" style={{ background: props.PrimaryColor }}>
-        <div
-          className="subject"
-          style={{
-            background: props.SecondaryColor,
-            borderRightWidth: 15,
-            borderLeftWidth: 15,
-            borderLeftColor: props.PrimaryColor,
-            borderRightColor: props.PrimaryColor,
-            borderLeftStyle: "solid",
-            borderRightStyle: "solid",
-          }}
-        >
-          {props.Subject}
-        </div>
-      </div>
-    );
   }
   private eventTemplate(props: {
     SecondaryColor: any;
@@ -87,6 +64,7 @@ class TimeLine extends React.Component<RouteComponentProps> {
     StartTime: Date;
     EndTime: Date;
     ImageName: string | undefined;
+    users:User[];
     Description:
       | boolean
       | React.ReactChild
@@ -108,14 +86,15 @@ class TimeLine extends React.Component<RouteComponentProps> {
           {this.getTimeString(props.EndTime)}
         </div>
         <div className="d-flex flex-nowrap">
-          {[1, 2, 3, 4, 5, 6].map((item, i) => (
+          {props.users.map((item, i) => (
             <div className="image" key={i}>
               <img
-                src={"/images/images/img_avatar.png"}
+                src={item.image}
                 alt={props.ImageName}
                 width="50"
                 height="50"
               />
+              <h1>{item.firstName}</h1>
             </div>
           ))}
         </div>
@@ -131,15 +110,10 @@ class TimeLine extends React.Component<RouteComponentProps> {
   render() {
     return (
       <div className="container-fluid research new-research">
-        {/* <ScheduleComponent
-          height="550px"
-          selectedDate={new Date(2018, 1, 15)}
-          eventSettings={{ dataSource: this.data }}
-        ></ScheduleComponent> */}
         <ScheduleComponent
           height="800px"
-          selectedDate={new Date(2018, 1, 15)}
-          eventSettings={{ dataSource: this.data }}
+          selectedDate={new Date()}
+          eventSettings={{ dataSource: this.state.data }}
           rowAutoHeight={true}
           readonly={true}
         >
@@ -148,7 +122,6 @@ class TimeLine extends React.Component<RouteComponentProps> {
               option={Browser.isDevice ? "Day" : "Week"}
               eventTemplate={this.eventTemplate.bind(this)}
             />
-           
           </ViewsDirective>
           <Inject services={[Day, Week, Month]} />
         </ScheduleComponent>

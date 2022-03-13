@@ -4,6 +4,7 @@ import { UpdateResearchReq } from "../../data/models/requests/research/update_re
 import { ResearchesResResult } from "../../data/models/responses/research/researches_res";
 import { GetResearchByidResResult } from "../../data/models/responses/research/research_by_id_res";
 import { ResearchResResult } from "../../data/models/responses/research/research_res";
+import { TimelineResResult } from "../../data/models/responses/research/timeline_res";
 import { UpdateResearchResResult } from "../../data/models/responses/research/update_research_req";
 import { RemoteResearch } from "../../data/remotes/research/remote_research";
 export class ResearchController {
@@ -99,4 +100,20 @@ export class ResearchController {
       }
     );
   }
+  getTimeline(
+    body: { id: number },
+    action: (res: TimelineResResult[]) => any,
+    error: (res: any) => any
+  ) {
+    this.remote.getTimeline(
+      body,
+      (res) => {
+        action(res.result);
+      },
+      (err) => {
+        error(err);
+      }
+    );
+  }
+  
 }
