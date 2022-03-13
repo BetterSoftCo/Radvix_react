@@ -1,6 +1,7 @@
 import { toast } from "react-toastify";
 import { CreateDraftReq } from "../../data/models/requests/publish/create_draft_req";
 import { CreatePublishReq } from "../../data/models/requests/publish/create_publish_req";
+import { AddUserResResult } from "../../data/models/responses/publish/add_user_res";
 import { CreateDraftResResult } from "../../data/models/responses/publish/create_draft_res";
 import { CreatePublishResResult } from "../../data/models/responses/publish/create_publish_res";
 import { GetAllPublishesResult } from "../../data/models/responses/publish/publishes_res";
@@ -94,6 +95,27 @@ export class publishController {
           position: toast.POSITION.TOP_RIGHT,
         });
         action(res.result!);
+      },
+      (err) => {
+        toast.error(`${err.message}`, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+        error(err);
+      }
+    );
+  }
+  addUser(
+    body: { publicationId: number; researchId: number},
+    action: (res: AddUserResResult) => any,
+    error: (res: any) => any
+  ) {
+    this.remote.addUser(
+      body,
+      (res) => {
+        action(res.result!);
+        toast.success(`${res.message}`, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
       },
       (err) => {
         toast.error(`${err.message}`, {

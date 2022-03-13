@@ -75,6 +75,8 @@ class ExpensePageNew extends React.Component<RouteComponentProps> {
         this.setState({
           loading: false,
         });
+        this.props.history.push(`${AppRoutes.expense_profile.replace(':id', id?.toString() ?? "")}`)
+
       },
       () => {
         this.setState({
@@ -112,8 +114,19 @@ class ExpensePageNew extends React.Component<RouteComponentProps> {
       this.controller.createExpense(
         body,
         (res) => {
-          this.handelUpload(res.id);
-          this.props.history.push(`${AppRoutes.expense_profile.replace(':id', res.id?.toString() ?? "")}`)
+          if (this.state.files.length || this.state.ExternalUrl.length) {
+            this.handelUpload(res.id);
+          }else{
+            this.setState({
+              loading: false,
+            });
+            this.props.history.push(
+              `${AppRoutes.expense_profile.replace(
+                ':id',
+                 res.id?.toString() ?? ""
+                 )}`
+                 )
+          }
           this.setState({
             categoryId: 0,
             title: '',
@@ -243,11 +256,7 @@ class ExpensePageNew extends React.Component<RouteComponentProps> {
                   onChange={(e) => {
                     this.handleChange("description", e.target.value);
                   }}
-                  inValid={this.validator.message(
-                    "description",
-                    this.state.description,
-                    "required"
-                  )}
+                  
                 ></InputComponent>
               </div>
             </div>
@@ -263,6 +272,11 @@ class ExpensePageNew extends React.Component<RouteComponentProps> {
                       onChange={(e) => {
                         this.handleChange("amount", e.target.value);
                       }}
+                      inValid={this.validator.message(
+                        "amount",
+                        this.state.description,
+                        "required"
+                      )}
                     ></InputComponent>
                   </div>
                 </div>
@@ -361,6 +375,11 @@ class ExpensePageNew extends React.Component<RouteComponentProps> {
                   onChange={(e) => {
                     this.handleChange("External", e.target.value);
                   }}
+                  inValid={this.validator.message(
+                    "External",
+                    this.state.description,
+                    "required"
+                  )}
                 ></InputComponent>
                 <CircleIcon
                   width="36px"

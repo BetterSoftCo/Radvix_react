@@ -14,6 +14,7 @@ import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
 import { publishController } from "../../../controllers/publish/publish_controller";
 import moment from "moment";
+import { toast } from "react-toastify";
 interface RouteParams {
   id: string;
 }
@@ -59,7 +60,17 @@ class PublicationProfile extends React.Component<RouteComponentProps<RouteParams
       createdDate: ""
     },
   };
-
+  handelAddUser() {
+    if (store.getState().ResearchId > 0) {
+      this.controller.addUser({ publicationId: parseInt(this.props.match.params.id), researchId: store.getState().ResearchId }, res => {
+      }, err => console.log(err)
+      )
+    } else {
+      toast.error(`please select research`, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
+  }
   render() {
     return (
       <div className="container-fluid research new-research">
@@ -189,6 +200,8 @@ class PublicationProfile extends React.Component<RouteComponentProps<RouteParams
                     fontSize="18px"
                     color="#ffffff"
                     className="mx-2"
+                onClick={() => { this.handelAddUser() }}
+                    
                   >
                     <i className="fas fa-plus"></i>
                   </CircleIcon>
@@ -248,9 +261,9 @@ class PublicationProfile extends React.Component<RouteComponentProps<RouteParams
                   width="63px"
                   height="44px"
                   items={[
-                    { item: 1, id: 1 },
-                    { item: 2, id: 2 },
-                    { item: 3, id: 3 },
+                    { label: '10', value: 10 },
+                    { label: '15', value: 15 },
+                    { label: '20', value: 20 },
                   ]}
                   TextItem="item"
                   ValueItem="id"
@@ -285,7 +298,7 @@ class PublicationProfile extends React.Component<RouteComponentProps<RouteParams
                 }
                 breakLabel={"..."}
                 breakClassName={"break-me"}
-                pageCount={20}
+                pageCount={100}
                 marginPagesDisplayed={2}
                 pageRangeDisplayed={5}
                 onPageChange={() => {

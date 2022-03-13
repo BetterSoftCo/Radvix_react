@@ -25,7 +25,12 @@ export const Drafts: React.FC<TableComponentProp> = ({ Heading, Items }) => {
         <tbody>
           {Items.map((head, index) => (
             <tr key={index}>
-              <td className="text-center">{head.Institution}</td>
+              <td className="text-center">
+                 { 
+                head.medias && head.medias.length > 0 && head.medias[1].externalUrl === null ? 
+                head.medias[1].name :
+                head.medias && head.medias.length > 0 && head.medias[1].externalUrl !== null ?
+                head.medias[1].externalUrl : "" }</td>
               <td>{head.firstName} {head.lastName}</td>
               <td className="text-center">{moment(head.createdDate).format("YYYY/MM/DD")}</td>
               <td className="text-center">{`${index+1}.0`}</td>
