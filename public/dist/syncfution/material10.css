@@ -2411,6 +2411,24 @@
 .e-schedule .e-month-agenda-view .e-content-wrap {
   font-size: 13px;
 }
+.e-content-wrap::-webkit-scrollbar {
+  width: 20px;
+}
+
+.e-content-wrap::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.e-content-wrap::-webkit-scrollbar-thumb {
+  background-color: #5d5d5d;
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+
+.e-content-wrap::-webkit-scrollbar-thumb:hover {
+  background-color: #a0a0a0;
+}
 
 .e-schedule .e-month-agenda-view .e-header-cells {
   cursor: default;

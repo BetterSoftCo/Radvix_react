@@ -55,6 +55,7 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
   };
   const changeResearch = (value: string) => {
     setResearchName(value);
+    document.getElementById("close_modal")?.click();
   };
   return (
     <Fragment>
@@ -186,6 +187,7 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
       >
         <div className="modal-dialog">
           <div className="col-12 modal-content">
+          <button type="button" className="btn-close d-none" data-bs-dismiss="modal" aria-label="Close" id="close_modal"></button>
             <div className="TableBox">
               <div className="TopTableBox d-flex justify-content-between align-items-center mb-3">
                 <div className="left d-flex w-50 align-items-center">

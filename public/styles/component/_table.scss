@@ -109,6 +109,7 @@
   .accordion-body {
     display: flex;
     padding: 0rem;
+    min-height: 65px;
     .sub-accordian-parent {
       display: flex;
       justify-content: end;
