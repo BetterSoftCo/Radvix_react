@@ -14,22 +14,20 @@ import { UploadController } from "../../../controllers/upload_media/upload_media
 import { publishController } from "../../../controllers/publish/publish_controller";
 interface RouteParams {
   id: string;
-
 }
 type StateType = {
   files: Array<File>;
   mainFiles: Array<File>;
-  finalVersion: number,
-  publicationId: number,
-  createdDate: Date,
-  External: string,
-  ExternalUrl: Array<string>,
-  MainExternal: string,
-  MainExternalUrl: Array<string>,
-  users: Array<{}>,
-  usersList: Array<{}>,
+  finalVersion: number;
+  publicationId: number;
+  createdDate: Date;
+  External: string;
+  ExternalUrl: Array<string>;
+  MainExternal: string;
+  MainExternalUrl: Array<string>;
+  users: Array<{}>;
+  usersList: Array<{}>;
   publication: { firstName: string; lastName: string; id: string };
-
 };
 class UploadNewDraft extends React.Component<RouteComponentProps<RouteParams>> {
   controller = new publishController();
@@ -54,8 +52,8 @@ class UploadNewDraft extends React.Component<RouteComponentProps<RouteParams>> {
     publication: {
       firstName: "",
       lastName: "",
-      id: ""
-    }
+      id: "",
+    },
   };
   validator = new SimpleReactValidator({
     className: "text-danger",
@@ -122,6 +120,12 @@ class UploadNewDraft extends React.Component<RouteComponentProps<RouteParams>> {
         this.setState({
           loading: false,
         });
+        this.props.history.push(
+          `${AppRoutes.publish_profile.replace(
+            ":id",
+            this.props.match.params.id ?? ""
+          )}`
+        );
       },
       () => {
         this.setState({
@@ -131,19 +135,19 @@ class UploadNewDraft extends React.Component<RouteComponentProps<RouteParams>> {
     );
   }
   addExternalUrl() {
-    let Url = [...this.state.ExternalUrl]
-    Url.push(this.state.External)
+    let Url = [...this.state.ExternalUrl];
+    Url.push(this.state.External);
     this.setState({
       ExternalUrl: Url,
-      External: ''
+      External: "",
     });
   }
   addMainExternalUrl() {
-    let Url = [...this.state.MainExternalUrl]
-    Url.push(this.state.MainExternal)
+    let Url = [...this.state.MainExternalUrl];
+    Url.push(this.state.MainExternal);
     this.setState({
       MainExternalUrl: Url,
-      MainExternal: ''
+      MainExternal: "",
     });
   }
   componentDidMount() {
@@ -151,10 +155,13 @@ class UploadNewDraft extends React.Component<RouteComponentProps<RouteParams>> {
       { publicationId: parseInt(this.props.match.params.id) },
       (res) => {
         this.setState({
-          users: res.users?.map(item => {
-            return { label: item.firstName + " " + item.lastName, value: item.id }
+          users: res.users?.map((item) => {
+            return {
+              label: item.firstName + " " + item.lastName,
+              value: item.id,
+            };
           }),
-          usersList: res.users
+          usersList: res.users,
         });
       }
     );
@@ -168,14 +175,19 @@ class UploadNewDraft extends React.Component<RouteComponentProps<RouteParams>> {
         nextDrafterId: this.state.publication.id,
         nextDrafterFirstName: this.state.publication.firstName,
         nextDrafterLastName: this.state.publication.lastName,
-      }
+      };
       this.controller.createDraft(
         body,
         (res) => {
-          this.handelUploadPublication(res.id);
-          this.handelUploadMainPublication(res.id);
-          this.setState(
-            {
+          if (
+            this.state.files.length ||
+            this.state.mainFiles.length ||
+            this.state.ExternalUrl.length
+          ) {
+            this.handelUploadPublication(res.id);
+            this.handelUploadMainPublication(res.id);
+          } else {
+            this.setState({
               files: [],
               finalVersion: 1,
               publicationId: 0,
@@ -185,13 +197,16 @@ class UploadNewDraft extends React.Component<RouteComponentProps<RouteParams>> {
               publication: {
                 firstName: "",
                 lastName: "",
-                id: ""
-              }
+                id: "",
+              },
             });
-
-            setInterval(() => {
-              this.props.history.push(`${AppRoutes.publish_profile.replace(':id', this.props.match.params.id ?? "")}`)
-            }, 2000);
+            this.props.history.push(
+              `${AppRoutes.publish_profile.replace(
+                ":id",
+                this.props.match.params.id ?? ""
+              )}`
+            );
+          }
         },
         (err) => {
           this.setState({
@@ -203,16 +218,18 @@ class UploadNewDraft extends React.Component<RouteComponentProps<RouteParams>> {
       this.validator.showMessages();
       this.forceUpdate();
     }
-  };
+  }
   handelChangeSelect(
     target: string,
     e: {
       label: string;
-      value: number,
+      value: number;
     }
   ) {
     if (this.state.finalVersion === 1) {
-      const userSelected = this.state.usersList.find((item: any) => item.id === e.value);
+      const userSelected = this.state.usersList.find(
+        (item: any) => item.id === e.value
+      );
       if (userSelected) {
         this.setState({ [target]: userSelected });
       }
@@ -221,8 +238,8 @@ class UploadNewDraft extends React.Component<RouteComponentProps<RouteParams>> {
         [target]: {
           firstName: "",
           lastName: "",
-          id: ""
-        }
+          id: "",
+        },
       });
     }
   }
@@ -233,13 +250,15 @@ class UploadNewDraft extends React.Component<RouteComponentProps<RouteParams>> {
   }
   handelDeleteMainExternalLink(link: string) {
     this.setState({
-      MainExternalUrl: this.state.MainExternalUrl.filter(item => item !== link)
-    })
+      MainExternalUrl: this.state.MainExternalUrl.filter(
+        (item) => item !== link
+      ),
+    });
   }
   handelDeleteExternalLink(link: string) {
     this.setState({
-      ExternalUrl: this.state.ExternalUrl.filter(item => item !== link)
-    })
+      ExternalUrl: this.state.ExternalUrl.filter((item) => item !== link),
+    });
   }
   render() {
     const files = this.state.files.map((file: any) => (
@@ -273,7 +292,13 @@ class UploadNewDraft extends React.Component<RouteComponentProps<RouteParams>> {
         <div className="row"></div>
         <div className="col-12 box-content p-3">
           <h5 className="b-title d-flex">
-            <span onClick={() => { window.history.back() }} className="backPage"></span> Upload A New Draft
+            <span
+              onClick={() => {
+                window.history.back();
+              }}
+              className="backPage"
+            ></span>{" "}
+            Upload A New Draft
           </h5>
           <div className="form row">
             <div className="col-md-6 left">
@@ -313,15 +338,14 @@ class UploadNewDraft extends React.Component<RouteComponentProps<RouteParams>> {
                                 src="/Images/icons/cloud_computing.svg"
                                 alt="sssss"
                                 height="20"
-
                               />{" "}
-                              <span className="flex-fill">Browse Local Files</span>
+                              <span className="flex-fill">
+                                Browse Local Files
+                              </span>
                             </div>
                           }
                         ></MainButton>
-                        <p>
-                          Or drag and drop files here
-                        </p>
+                        <p>Or drag and drop files here</p>
                       </div>
                       <aside>
                         <h4>Files</h4>
@@ -349,35 +373,40 @@ class UploadNewDraft extends React.Component<RouteComponentProps<RouteParams>> {
                   fontSize="18px"
                   color="#ffffff"
                   className="px-3"
-                  onClick={() => { this.addMainExternalUrl() }}
+                  onClick={() => {
+                    this.addMainExternalUrl();
+                  }}
                 >
                   <i className="fas fa-plus"></i>
                 </CircleIcon>
               </div>
               <ul className="file-list mt-3">
-                {
-                  this.state.MainExternalUrl.map(item => (
-                    <li className="my-2 d-flex flex-column flex-md-row">
-                      <MainButton
-                        children={item}
-                        type={MainButtonType.dark}
-                        borderRadius="24px"
-                        fontSize="14px"
-                        backgroundColor="#F5F5F5"
-                        color="#096BFF"
-                      ></MainButton>
-                      <CircleIcon
-                        type={ThemeCircleIcon.dark}
-                        width="22px"
-                        height="22px"
-                        className="mx-3 pointer"
-                        onClick={() => this.handelDeleteMainExternalLink(item)}
-                      >
-                        <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
-                      </CircleIcon>
-                    </li>
-                  ))
-                }
+                {this.state.MainExternalUrl.map((item) => (
+                  <li className="my-2 d-flex flex-column flex-md-row">
+                    <MainButton
+                      children={item}
+                      type={MainButtonType.dark}
+                      borderRadius="24px"
+                      fontSize="14px"
+                      backgroundColor="#F5F5F5"
+                      color="#096BFF"
+                    ></MainButton>
+                    <CircleIcon
+                      type={ThemeCircleIcon.dark}
+                      width="22px"
+                      height="22px"
+                      className="mx-3 pointer"
+                      onClick={() => this.handelDeleteMainExternalLink(item)}
+                    >
+                      <img
+                        src="/images/icons/garbage_can.svg"
+                        alt="radvix"
+                        width={15}
+                        height={15}
+                      />
+                    </CircleIcon>
+                  </li>
+                ))}
               </ul>
               <div className="item">
                 <span className="label d-flex align-items-center">
@@ -422,15 +451,14 @@ class UploadNewDraft extends React.Component<RouteComponentProps<RouteParams>> {
                                 src="/Images/icons/cloud_computing.svg"
                                 alt="sssss"
                                 height="20"
-
                               />{" "}
-                              <span className="flex-fill">Browse Local Files</span>
+                              <span className="flex-fill">
+                                Browse Local Files
+                              </span>
                             </div>
                           }
                         ></MainButton>
-                        <p>
-                          Or drag and drop files here
-                        </p>
+                        <p>Or drag and drop files here</p>
                       </div>
                       <aside>
                         <h4>Files</h4>
@@ -458,35 +486,40 @@ class UploadNewDraft extends React.Component<RouteComponentProps<RouteParams>> {
                   fontSize="18px"
                   color="#ffffff"
                   className="px-3"
-                  onClick={() => { this.addExternalUrl() }}
+                  onClick={() => {
+                    this.addExternalUrl();
+                  }}
                 >
                   <i className="fas fa-plus"></i>
                 </CircleIcon>
               </div>
               <ul className="file-list mt-3">
-                {
-                  this.state.ExternalUrl.map(item => (
-                    <li className="my-2 d-flex flex-column flex-md-row">
-                      <MainButton
-                        children={item}
-                        type={MainButtonType.dark}
-                        borderRadius="24px"
-                        fontSize="14px"
-                        backgroundColor="#F5F5F5"
-                        color="#096BFF"
-                      ></MainButton>
-                      <CircleIcon
-                        type={ThemeCircleIcon.dark}
-                        width="22px"
-                        height="22px"
-                        className="mx-3 pointer"
-                        onClick={() => this.handelDeleteExternalLink(item)}
-                      >
-                        <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
-                      </CircleIcon>
-                    </li>
-                  ))
-                }
+                {this.state.ExternalUrl.map((item) => (
+                  <li className="my-2 d-flex flex-column flex-md-row">
+                    <MainButton
+                      children={item}
+                      type={MainButtonType.dark}
+                      borderRadius="24px"
+                      fontSize="14px"
+                      backgroundColor="#F5F5F5"
+                      color="#096BFF"
+                    ></MainButton>
+                    <CircleIcon
+                      type={ThemeCircleIcon.dark}
+                      width="22px"
+                      height="22px"
+                      className="mx-3 pointer"
+                      onClick={() => this.handelDeleteExternalLink(item)}
+                    >
+                      <img
+                        src="/images/icons/garbage_can.svg"
+                        alt="radvix"
+                        width={15}
+                        height={15}
+                      />
+                    </CircleIcon>
+                  </li>
+                ))}
               </ul>
             </div>
             <div className="col-md-6 right">
@@ -539,7 +572,12 @@ class UploadNewDraft extends React.Component<RouteComponentProps<RouteParams>> {
                 minHeight="43px"
                 minWidth="136px"
                 onClick={() => {
-                  this.props.history.push(`${AppRoutes.publish_profile.replace(':id', this.props.match.params.id ?? "")}`)
+                  this.props.history.push(
+                    `${AppRoutes.publish_profile.replace(
+                      ":id",
+                      this.props.match.params.id ?? ""
+                    )}`
+                  );
                 }}
               ></MainButton>
               <MainButton
@@ -550,7 +588,9 @@ class UploadNewDraft extends React.Component<RouteComponentProps<RouteParams>> {
                 className="mx-2"
                 minHeight="43px"
                 minWidth="136px"
-                onClick={() => { this.handelCreateDraft() }}
+                onClick={() => {
+                  this.handelCreateDraft();
+                }}
               ></MainButton>
             </div>
           </div>
@@ -559,4 +599,4 @@ class UploadNewDraft extends React.Component<RouteComponentProps<RouteParams>> {
     );
   }
 }
-export default withRouter(UploadNewDraft)
+export default withRouter(UploadNewDraft);
