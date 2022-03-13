@@ -698,7 +698,7 @@ export class LaboratoryPageEdit extends React.Component<
                   className="my-2"
                   label="Country"
                   onChange={(e) => {
-                    this.handelChangeSelect(e, "countryId");
+                    this.handelChangeSelect(e, "locationId");
                   }}
                 ></SelectComponent>
               </div>
