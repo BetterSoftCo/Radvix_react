@@ -55,7 +55,7 @@ class ResearchPageProfile extends React.Component<
   }
   render() {
     return (
-      <div className="container-fluid research new-research">
+      <div className="container-fluid timeline_research research new-research">
         <div className="row"></div>
         <div className="col-12 box-content p-3">
           <div className="d-flex justify-content-between align-items-center flex-wrap">

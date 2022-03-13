@@ -2134,9 +2134,9 @@
 
 .e-schedule .e-timeline-view .e-appointment,
 .e-schedule .e-timeline-month-view .e-appointment {
-  background: #3f51b5;
-  border: 1px solid #3f51b5;
-  border-radius: 2px;
+  background: #2c2c2c;
+  border: 1px solid #2c2c2c;
+  border-radius: 50px;
   color: #fff;
   cursor: default;
   display: -ms-flexbox;

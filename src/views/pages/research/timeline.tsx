@@ -4,16 +4,17 @@ import { RouteComponentProps, withRouter } from "react-router";
 import {
   ScheduleComponent,
   Inject,
-  Day,
-  Week,
-  Month,
   ViewsDirective,
   ViewDirective,
+  TimelineMonth,
+  Resize,
+  DragAndDrop,
 } from "@syncfusion/ej2-react-schedule";
-import { Browser, Internationalization } from "@syncfusion/ej2-base";
+import { Internationalization } from "@syncfusion/ej2-base";
 import { ResearchController } from "../../../controllers/research/research_controller";
 import { store } from "../../../data/store";
 import { User } from "../../../data/models/responses/research/timeline_res";
+import { MainButton, MainButtonType } from "../../components/button";
 class TimeLine extends React.Component<RouteComponentProps> {
   controller = new ResearchController();
   componentDidMount() {
@@ -35,7 +36,12 @@ class TimeLine extends React.Component<RouteComponentProps> {
               Subject: item.title,
               StartTime: new Date(item.startDate),
               EndTime: new Date(item.endDate),
-              users:item.users
+              users: [
+                "https://d5nunyagcicgy.cloudfront.net/external_assets/hero_examples/hair_beach_v391182663/original.jpeg",
+                "https://d5nunyagcicgy.cloudfront.net/external_assets/hero_examples/hair_beach_v391182663/original.jpeg",
+                "https://d5nunyagcicgy.cloudfront.net/external_assets/hero_examples/hair_beach_v391182663/original.jpeg",
+              ],
+              status: item.status,
             };
           }),
         });
@@ -64,7 +70,8 @@ class TimeLine extends React.Component<RouteComponentProps> {
     StartTime: Date;
     EndTime: Date;
     ImageName: string | undefined;
-    users:User[];
+    users: string[];
+    status: number;
     Description:
       | boolean
       | React.ReactChild
@@ -78,53 +85,66 @@ class TimeLine extends React.Component<RouteComponentProps> {
         className="template-wrap"
         style={{ background: props.SecondaryColor }}
       >
-        <div className="subject" style={{ background: props.PrimaryColor }}>
-          {props.Subject}
+        <div className="subject" style={{ background: "#2C2C2C" }}>
+          {props.Subject}{" "}
+          <MainButton
+            children={props.status.isStatus()}
+            type={MainButtonType.dark}
+            borderRadius="24px"
+            fontSize="10px"
+            backgroundColor="#8EE1FF"
+            className="mx-1"
+            color="#707070"
+          ></MainButton>
+          {props.users.map((item) => (
+            <img
+              src={item}
+              alt=""
+              width={15}
+              height={15}
+              className="rounded-circle"
+              style={{ marginRight: "1.5px" }}
+            />
+          ))}
+          {`+3 more`}
         </div>
-        <div className="time" style={{ background: props.PrimaryColor }}>
+        <div className="time" style={{ background: "#2C2C2C" }}>
           Time: {this.getTimeString(props.StartTime)} -{" "}
           {this.getTimeString(props.EndTime)}
         </div>
-        <div className="d-flex flex-nowrap">
-          {props.users.map((item, i) => (
-            <div className="image" key={i}>
-              <img
-                src={item.image}
-                alt={props.ImageName}
-                width="50"
-                height="50"
-              />
-              <h1>{item.firstName}</h1>
-            </div>
-          ))}
-        </div>
 
         <div className="event-description">{props.Description}</div>
-        <div
-          className="footer"
-          style={{ background: props.PrimaryColor }}
-        ></div>
+        <div className="footer" style={{ background: "#2C2C2C" }}></div>
       </div>
     );
   }
   render() {
     return (
       <div className="container-fluid research new-research">
-        <ScheduleComponent
-          height="800px"
-          selectedDate={new Date()}
-          eventSettings={{ dataSource: this.state.data }}
-          rowAutoHeight={true}
-          readonly={true}
-        >
-          <ViewsDirective>
-            <ViewDirective
-              option={Browser.isDevice ? "Day" : "Week"}
-              eventTemplate={this.eventTemplate.bind(this)}
-            />
-          </ViewsDirective>
-          <Inject services={[Day, Week, Month]} />
-        </ScheduleComponent>
+        <div className="schedule-control-section">
+          <div className="col-lg-12 control-section">
+            <div className="control-wrapper">
+              <ScheduleComponent
+                cssClass="virtual-scrolling"
+                height="600px"
+                width="100%"
+                selectedDate={new Date()}
+                eventSettings={{ dataSource: this.state.data }}
+                rowAutoHeight={true}
+                readonly={true}
+              >
+                <ViewsDirective>
+                  <ViewDirective
+                    option="TimelineMonth"
+                    eventTemplate={this.eventTemplate.bind(this)}
+                    allowVirtualScrolling={true}
+                  />
+                </ViewsDirective>
+                <Inject services={[TimelineMonth, Resize, DragAndDrop]} />
+              </ScheduleComponent>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

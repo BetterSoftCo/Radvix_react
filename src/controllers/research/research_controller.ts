@@ -7,6 +7,7 @@ import { ResearchResResult } from "../../data/models/responses/research/research
 import { TimelineResResult } from "../../data/models/responses/research/timeline_res";
 import { UpdateResearchResResult } from "../../data/models/responses/research/update_research_req";
 import { RemoteResearch } from "../../data/remotes/research/remote_research";
+import { store } from "../../data/store";
 export class ResearchController {
   remote = new RemoteResearch();
 
@@ -105,15 +106,20 @@ export class ResearchController {
     action: (res: TimelineResResult[]) => any,
     error: (res: any) => any
   ) {
-    this.remote.getTimeline(
-      body,
-      (res) => {
-        action(res.result);
-      },
-      (err) => {
-        error(err);
-      }
-    );
+    if (store.getState().ResearchId > 0) {
+      this.remote.getTimeline(
+        body,
+        (res) => {
+          action(res.result);
+        },
+        (err) => {
+          error(err);
+        }
+      );
+    } else {
+      toast.error(`please select research`, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
   }
-  
 }
