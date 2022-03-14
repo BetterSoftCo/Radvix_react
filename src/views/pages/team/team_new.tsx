@@ -52,17 +52,21 @@ class TeamPageNew extends React.Component<RouteComponentProps> {
     teamId: 0,
   };
   componentDidMount() {
+    console.log(this.RoleUser , 'role');
+    
     this.controller.TeamSearch((res) => {
       this.setState({
         listLaboratories: res.laboratories.map((item) => {
           return { label: item.title, value: item.id };
         }),
-        listManagers: res.managers.map((item) => {
-          return {
-            label: item.firstName + " " + item.lastName,
-            value: item.userId,
-          };
-        }),
+        listManagers: res.managers
+          ? res.managers.map((item) => {
+              return {
+                label: item.firstName + " " + item.lastName,
+                value: item.userId,
+              };
+            })
+          : [],
         listResearch: res.researches.map((item) => {
           return { label: item.title, value: item.id };
         }),
@@ -79,6 +83,7 @@ class TeamPageNew extends React.Component<RouteComponentProps> {
         }),
       });
     });
+    console.log(this.state.listTeam);
   }
   handleChange(target: string, val: any) {
     this.setState({
@@ -91,10 +96,7 @@ class TeamPageNew extends React.Component<RouteComponentProps> {
   ) {
     this.setState({ [target]: e.map((item) => item.value) });
   }
-  handelChangeSelectSigle(
-    target: string,
-    e: { label: string; value: number }
-  ) {
+  handelChangeSelectSigle(target: string, e: { label: string; value: number }) {
     this.setState({ [target]: e.value });
   }
   handelCreateTeam() {

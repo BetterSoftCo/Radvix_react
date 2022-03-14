@@ -6,7 +6,7 @@ import ProgressBar from "@ramonak/react-progress-bar";
 import { MainButton, MainButtonType } from "../components/button";
 import { SelectComponent } from "../components/select_input";
 import { RouteComponentProps, withRouter } from "react-router";
-import { AppRoutes } from "../../core/constants";
+import { AppConstants, AppRoutes } from "../../core/constants";
 import { ResearchController } from "../../controllers/research/research_controller";
 import { store } from "../../data/store";
 import { LocalDataSources } from "../../data/local_datasources";
@@ -68,11 +68,10 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
         id: store.getState().ResearchId,
       },
       (res) => {
-        const all = res.length
-        const completed = res.filter(item=>item.status === 3).length
-        const peresent = (completed * 100) % all
-        setProgressTimeline(peresent)
-        
+        const all = res.length;
+        const completed = res.filter((item) => item.status === 3).length;
+        const peresent = (completed * 100) % all;
+        setProgressTimeline(peresent);
       },
       (err) => {}
     );
@@ -162,7 +161,11 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
                       )}`
                     );
                   }}
-                  src="/images/images/img_avatar.png"
+                  src={
+                    local.getUserInfo().image.length
+                      ? AppConstants.base_url_image + local.getUserInfo().image
+                      : "/Images/images/img_avatar.png"
+                  }
                   alt="Avatar"
                   className="rounded-circle avatar pointer"
                 />
@@ -171,7 +174,7 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
                     Welcome, {local.getUserInfo().firstName}!
                   </span>
                   <MainButton
-                    children="Principal Investigator"
+                    children={RoleUser.isRole()}
                     type={MainButtonType.dark}
                     borderRadius="24px"
                     fontSize="11px"

@@ -17,17 +17,38 @@ class MainLayout extends React.Component<IMainLayout & RouteComponentProps> {
   private controller: AppSettingController = new AppSettingController();
   private memberController: MemberController = new MemberController();
   private local: LocalDataSources = new LocalDataSources();
+  state = {
+    role: 0,
+    getMmeberInfo: "pending",
+  };
   componentDidMount() {
     this.controller.enumList();
     if (this.local.logedin()) {
+      this.setState({
+        getMmeberInfo: "pending",
+      });
       this.memberController.getMember(
         {
           userId: this.local.getUserId(),
         },
         (res) => {
           store.dispatch(SetUserRole(res.role));
+          const UserInfo = {
+            firstName: res.firstName,
+            lastName: res.lastName,
+            email: res.userEmail,
+            image: res.profileImage,
+          };
+          localStorage.setItem("userInfo", JSON.stringify(UserInfo) ?? "");
+          this.setState({
+            getMmeberInfo: "succsses",
+          });
         },
-        (err) => {}
+        (err) => {
+          this.setState({
+            getMmeberInfo: "succsses",
+          });
+        }
       );
     }
   }
@@ -36,7 +57,8 @@ class MainLayout extends React.Component<IMainLayout & RouteComponentProps> {
     return (
       <Fragment>
         {this.props.location.pathname !== "/login" &&
-        this.props.location.pathname !== "/Register" ? (
+        this.props.location.pathname !== "/Register" &&
+        this.state.getMmeberInfo === "succsses" ? (
           <Fragment>
             <Header></Header>
             <div className="main">
