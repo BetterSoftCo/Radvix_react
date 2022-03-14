@@ -215,7 +215,7 @@ class DataPageEdit extends React.Component<RouteComponentProps<ParamsType>> {
       formData.append("ExternalUrls", file);
     }
     formData.append("UseCase", "8");
-    formData.append("DataId", id.toString());
+    formData.append("SectionId", id.toString());
 
     await this.UploadController.UloadMedia(
       formData,

@@ -237,7 +237,7 @@ class ResearchPageEdit extends React.Component<
     }
 
     formData.append("UseCase", "0");
-    formData.append("ResearchId", id.toString());
+    formData.append("SectionId", id.toString());
 
     await this.UploadController.UloadMedia(
       formData,

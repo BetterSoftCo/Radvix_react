@@ -211,7 +211,7 @@ class NewEquip extends React.Component<RouteComponentProps> {
       formData.append("ExternalUrls", file);
     }
     formData.append("UseCase", "2");
-    formData.append("EquipmentId", id.toString());
+    formData.append("SectionId", id.toString());
 
     await this.UploadController.UloadMedia(
       formData,
@@ -230,7 +230,7 @@ class NewEquip extends React.Component<RouteComponentProps> {
       formData.append("Files", file);
     }
     formData.append("UseCase", "3");
-    formData.append("EquipmentId", id.toString());
+    formData.append("SectionId", id.toString());
 
     await this.UploadController.UloadMedia(
       formData,

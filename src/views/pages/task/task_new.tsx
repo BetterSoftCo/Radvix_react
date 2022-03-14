@@ -121,7 +121,7 @@ class TaskPageNew extends React.Component<RouteComponentProps> {
       formData.append("ExternalUrls", file);
     }
     formData.append("UseCase", "6");
-    formData.append("AppTaskId", id.toString());
+    formData.append("SectionId", id.toString());
 
     await this.UploadController.UloadMedia(
       formData,
