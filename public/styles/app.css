@@ -447,6 +447,7 @@ button.loading {
   display: -ms-flexbox;
   display: flex;
   padding: 0rem;
+  min-height: 65px;
 }
 
 .TableBox .accordion-body .sub-accordian-parent {
@@ -1088,6 +1089,12 @@ button.loading {
 
 .accordion .checkbox > input:active {
   border: 2px solid #707070;
+}
+
+.e-schedule .e-appointment {
+  background: #2c2c2c;
+  border: 1px solid #2c2c2c;
+  border-radius: 50px;
 }
 
 .discusstion .box-list-scroll {
@@ -1896,6 +1903,7 @@ button.loading {
   display: -ms-flexbox;
   display: flex;
   padding: 0rem;
+  min-height: 65px;
 }
 
 .TableBox .accordion-body .sub-accordian-parent {
@@ -2537,6 +2545,12 @@ button.loading {
 
 .accordion .checkbox > input:active {
   border: 2px solid #707070;
+}
+
+.e-schedule .e-appointment {
+  background: #2c2c2c;
+  border: 1px solid #2c2c2c;
+  border-radius: 50px;
 }
 
 .discusstion .box-list-scroll {

@@ -1,10 +1,10 @@
-export interface GetMemberByIDRes {
+export interface UpdateMyProfileRes {
     status:  number;
-    result:  GetMemberByIDResResult;
+    result:  UpdateMyProfileResResult;
     message: string;
 }
 
-export interface GetMemberByIDResResult {
+export interface UpdateMyProfileResResult {
     id:                  string;
     profileImage:        string;
     firstName:           string;

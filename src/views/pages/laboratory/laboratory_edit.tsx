@@ -242,7 +242,7 @@ export class LaboratoryPageEdit extends React.Component<
       formData.append("ExternalUrls", file);
     }
     formData.append("UseCase", "1");
-    formData.append("LaboratoryId", id.toString());
+    formData.append("SectionId", id.toString());
 
     await this.UploadController.UloadMedia(
       formData,
@@ -698,7 +698,7 @@ export class LaboratoryPageEdit extends React.Component<
                   className="my-2"
                   label="Country"
                   onChange={(e) => {
-                    this.handelChangeSelect(e, "countryId");
+                    this.handelChangeSelect(e, "locationId");
                   }}
                 ></SelectComponent>
               </div>

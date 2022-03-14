@@ -9,7 +9,7 @@ import { AppConstants, AppRoutes } from "../../../../core/constants";
 interface TableComponentProp {
   Heading: string[];
   Items: Equipment[];
-  role:UserRoles
+  role: UserRoles;
 }
 const EquipmentList: React.FC<TableComponentProp & RouteComponentProps> = (
   props
@@ -34,7 +34,11 @@ const EquipmentList: React.FC<TableComponentProp & RouteComponentProps> = (
                   theme={Theme.light}
                   children={
                     <img
-                      src={AppConstants.base_url_image+head.image}
+                      src={
+                        head.image
+                          ? AppConstants.base_url_image + head.image
+                          : "/images/icons/equipment_Icon.svg"
+                      }
                       alt="Avatar"
                       className="rounded-circle avatar mx-2"
                       width={58}

@@ -5,6 +5,7 @@ import { ResearchesRes } from "../../models/responses/research/researches_res";
 import { GetResearchByidRes } from "../../models/responses/research/research_by_id_res";
 import { ResearchRes } from "../../models/responses/research/research_res";
 import { ResearchSearchRes } from "../../models/responses/research/research_search_res";
+import { TimelineRes } from "../../models/responses/research/timeline_res";
 import { UpdateResearchRes } from "../../models/responses/research/update_research_req";
 
 export class RemoteResearch {
@@ -22,5 +23,8 @@ export class RemoteResearch {
   }
   getResearchById(body:{id:number},action: (res: GetResearchByidRes) => any,error: (res: any) => any){
     return HTTP.get(`/Research/${body.id}` ).then((res) => action(res.data)).catch((err)=>{error(err)});
+  }
+  getTimeline(body:{id:number},action: (res: TimelineRes) => any,error: (res: any) => any){
+    return HTTP.get(`/Research/TasksTimeline?researchId=${body.id}` ).then((res) => action(res.data)).catch((err)=>{error(err)});
   }
 }

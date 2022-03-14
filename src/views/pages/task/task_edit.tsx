@@ -54,7 +54,6 @@ type ParamsType = {
 };
 class TaskPageEdit extends React.Component<RouteComponentProps<ParamsType>> {
   RoleUser = store.getState().userRole;
-  date = new Date();
   UploadController = new UploadController();
   validator = new SimpleReactValidator({
     className: "text-danger",
@@ -221,7 +220,7 @@ class TaskPageEdit extends React.Component<RouteComponentProps<ParamsType>> {
       formData.append("ExternalUrls", file);
     }
     formData.append("UseCase", "6");
-    formData.append("AppTaskId", id.toString());
+    formData.append("SectionId", id.toString());
 
     await this.UploadController.UloadMedia(
       formData,

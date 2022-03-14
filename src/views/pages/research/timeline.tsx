@@ -4,75 +4,58 @@ import { RouteComponentProps, withRouter } from "react-router";
 import {
   ScheduleComponent,
   Inject,
-  Day,
-  Week,
-  Month,
   ViewsDirective,
   ViewDirective,
+  TimelineMonth,
+  Resize,
+  DragAndDrop,
 } from "@syncfusion/ej2-react-schedule";
-import { Browser, Internationalization } from "@syncfusion/ej2-base";
+import { Internationalization } from "@syncfusion/ej2-base";
+import { ResearchController } from "../../../controllers/research/research_controller";
+import { store } from "../../../data/store";
+import { User } from "../../../data/models/responses/research/timeline_res";
+import { MainButton, MainButtonType } from "../../components/button";
 class TimeLine extends React.Component<RouteComponentProps> {
-  data = [
-    {
-      Id: 1,
-      Subject: "Explosion of Betelgeuse Star",
-      StartTime: new Date(2018, 1, 15, 9, 30),
-      EndTime: new Date(2018, 1, 15, 11, 0),
-    },
-    {
-      Id: 2,
-      Subject: "Thule Air Crash Report",
-      StartTime: new Date(2018, 1, 12, 12, 0),
-      EndTime: new Date(2018, 1, 12, 14, 0),
-    },
-    {
-      Id: 3,
-      Subject: "Blue Moon Eclipse",
-      StartTime: new Date(2018, 1, 13, 9, 30),
-      EndTime: new Date(2018, 1, 13, 11, 0),
-    },
-    {
-      Id: 4,
-      Subject: "Meteor Showers in 2018",
-      StartTime: new Date(2018, 1, 14, 13, 0),
-      EndTime: new Date(2018, 1, 14, 14, 30),
-    },
-  ];
-
+  controller = new ResearchController();
+  componentDidMount() {
+    this.getTimeline();
+    store.subscribe(() => {
+      this.getTimeline();
+    });
+  }
+  getTimeline() {
+    this.controller.getTimeline(
+      {
+        id: store.getState().ResearchId,
+      },
+      (res) => {
+        this.setState({
+          data: res.map((item) => {
+            return {
+              Id: 1,
+              Subject: item.title,
+              StartTime: new Date(item.startDate),
+              EndTime: new Date(item.endDate),
+              users: [
+                "https://d5nunyagcicgy.cloudfront.net/external_assets/hero_examples/hair_beach_v391182663/original.jpeg",
+                "https://d5nunyagcicgy.cloudfront.net/external_assets/hero_examples/hair_beach_v391182663/original.jpeg",
+                "https://d5nunyagcicgy.cloudfront.net/external_assets/hero_examples/hair_beach_v391182663/original.jpeg",
+              ],
+              status: item.status,
+            };
+          }),
+        });
+      },
+      (err) => {}
+    );
+  }
+  state = {
+    data: [],
+  };
   private instance: Internationalization = new Internationalization();
 
   private getTimeString(value: Date) {
     return this.instance.formatDate(value, { skeleton: "hm" });
-  }
-  private timelineEventTemplate(props: {
-    PrimaryColor: any;
-    SecondaryColor: any;
-    Subject:
-      | boolean
-      | React.ReactChild
-      | React.ReactFragment
-      | React.ReactPortal
-      | null
-      | undefined;
-  }): JSX.Element {
-    return (
-      <div className="template-wrap" style={{ background: props.PrimaryColor }}>
-        <div
-          className="subject"
-          style={{
-            background: props.SecondaryColor,
-            borderRightWidth: 15,
-            borderLeftWidth: 15,
-            borderLeftColor: props.PrimaryColor,
-            borderRightColor: props.PrimaryColor,
-            borderLeftStyle: "solid",
-            borderRightStyle: "solid",
-          }}
-        >
-          {props.Subject}
-        </div>
-      </div>
-    );
   }
   private eventTemplate(props: {
     SecondaryColor: any;
@@ -87,6 +70,8 @@ class TimeLine extends React.Component<RouteComponentProps> {
     StartTime: Date;
     EndTime: Date;
     ImageName: string | undefined;
+    users: string[];
+    status: number;
     Description:
       | boolean
       | React.ReactChild
@@ -100,58 +85,66 @@ class TimeLine extends React.Component<RouteComponentProps> {
         className="template-wrap"
         style={{ background: props.SecondaryColor }}
       >
-        <div className="subject" style={{ background: props.PrimaryColor }}>
-          {props.Subject}
+        <div className="subject" style={{ background: "#2C2C2C" }}>
+          {props.Subject}{" "}
+          <MainButton
+            children={props.status.isStatus()}
+            type={MainButtonType.dark}
+            borderRadius="24px"
+            fontSize="10px"
+            backgroundColor="#8EE1FF"
+            className="mx-1"
+            color="#707070"
+          ></MainButton>
+          {props.users.map((item) => (
+            <img
+              src={item}
+              alt=""
+              width={15}
+              height={15}
+              className="rounded-circle"
+              style={{ marginRight: "1.5px" }}
+            />
+          ))}
+          {`+3 more`}
         </div>
-        <div className="time" style={{ background: props.PrimaryColor }}>
+        <div className="time" style={{ background: "#2C2C2C" }}>
           Time: {this.getTimeString(props.StartTime)} -{" "}
           {this.getTimeString(props.EndTime)}
         </div>
-        <div className="d-flex flex-nowrap">
-          {[1, 2, 3, 4, 5, 6].map((item, i) => (
-            <div className="image" key={i}>
-              <img
-                src={"/images/images/img_avatar.png"}
-                alt={props.ImageName}
-                width="50"
-                height="50"
-              />
-            </div>
-          ))}
-        </div>
 
         <div className="event-description">{props.Description}</div>
-        <div
-          className="footer"
-          style={{ background: props.PrimaryColor }}
-        ></div>
+        <div className="footer" style={{ background: "#2C2C2C" }}></div>
       </div>
     );
   }
   render() {
     return (
       <div className="container-fluid research new-research">
-        {/* <ScheduleComponent
-          height="550px"
-          selectedDate={new Date(2018, 1, 15)}
-          eventSettings={{ dataSource: this.data }}
-        ></ScheduleComponent> */}
-        <ScheduleComponent
-          height="800px"
-          selectedDate={new Date(2018, 1, 15)}
-          eventSettings={{ dataSource: this.data }}
-          rowAutoHeight={true}
-          readonly={true}
-        >
-          <ViewsDirective>
-            <ViewDirective
-              option={Browser.isDevice ? "Day" : "Week"}
-              eventTemplate={this.eventTemplate.bind(this)}
-            />
-           
-          </ViewsDirective>
-          <Inject services={[Day, Week, Month]} />
-        </ScheduleComponent>
+        <div className="schedule-control-section">
+          <div className="col-lg-12 control-section">
+            <div className="control-wrapper">
+              <ScheduleComponent
+                cssClass="virtual-scrolling"
+                height="600px"
+                width="100%"
+                selectedDate={new Date()}
+                eventSettings={{ dataSource: this.state.data }}
+                rowAutoHeight={true}
+                readonly={true}
+              >
+                <ViewsDirective>
+                  <ViewDirective
+                    option="TimelineMonth"
+                    eventTemplate={this.eventTemplate.bind(this)}
+                    allowVirtualScrolling={true}
+                  />
+                </ViewsDirective>
+                <Inject services={[TimelineMonth, Resize, DragAndDrop]} />
+              </ScheduleComponent>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

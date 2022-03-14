@@ -419,6 +419,7 @@ button.loading {
   display: -ms-flexbox;
   display: flex;
   padding: 0rem;
+  min-height: 65px;
 }
 
 .TableBox .accordion-body .sub-accordian-parent {

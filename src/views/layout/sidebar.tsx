@@ -319,6 +319,9 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 className="lighter mx-2 my-1 pointer"
                 text="Timeline"
                 theme={Theme.light}
+                onClick={() => {
+                  props.history.push(AppRoutes.timeline_research);
+                }}
                 children={
                   <img
                     width="40px"

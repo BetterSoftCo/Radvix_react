@@ -15,6 +15,7 @@ import { TaskController } from "../../../controllers/task/task_controller";
 import { DataList } from "../../../data/models/responses/data/get_all_data_res";
 import { DataController } from "../../../controllers/data/data_controller";
 import { LocalDataSources } from "../../../data/local_datasources";
+import { MemberController } from "../../../controllers/member/member_controller";
 type StateType = {
   Researches: ResearchesList[];
   ResearchesPageNumber: number;
@@ -35,9 +36,10 @@ type StateType = {
 export class DashboardPage extends React.Component {
   handlePageClick = (data: any) => {};
   RoleUser = store.getState().userRole;
-  researchController = new ResearchController();
-  taskcontroller = new TaskController();
-  Datacontroller = new DataController();
+  private researchController = new ResearchController();
+  private taskcontroller = new TaskController();
+  private Datacontroller = new DataController();
+  private memberController: MemberController = new MemberController();
   local = new LocalDataSources();
   state: StateType = {
     Researches: [],
@@ -67,6 +69,7 @@ export class DashboardPage extends React.Component {
       this.GetTasks(this.state.TasksPageNumber, this.state.TasksPageSize);
       this.GetDatas(this.state.DatasPageNumber, this.state.DatasPageSize);
     });
+    
   }
   GetResearch(PageNumber: number, PageSize: number) {
     if (this.local.logedin()) {

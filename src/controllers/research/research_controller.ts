@@ -4,8 +4,10 @@ import { UpdateResearchReq } from "../../data/models/requests/research/update_re
 import { ResearchesResResult } from "../../data/models/responses/research/researches_res";
 import { GetResearchByidResResult } from "../../data/models/responses/research/research_by_id_res";
 import { ResearchResResult } from "../../data/models/responses/research/research_res";
+import { TimelineResResult } from "../../data/models/responses/research/timeline_res";
 import { UpdateResearchResResult } from "../../data/models/responses/research/update_research_req";
 import { RemoteResearch } from "../../data/remotes/research/remote_research";
+import { store } from "../../data/store";
 export class ResearchController {
   remote = new RemoteResearch();
 
@@ -98,5 +100,26 @@ export class ResearchController {
         error(err);
       }
     );
+  }
+  getTimeline(
+    body: { id: number },
+    action: (res: TimelineResResult[]) => any,
+    error: (res: any) => any
+  ) {
+    if (store.getState().ResearchId > 0) {
+      this.remote.getTimeline(
+        body,
+        (res) => {
+          action(res.result);
+        },
+        (err) => {
+          error(err);
+        }
+      );
+    } else {
+      toast.error(`please select research`, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
   }
 }

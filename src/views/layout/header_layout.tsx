@@ -21,6 +21,7 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
   const [PageSize, setPageSize] = useState<number>(10);
   const [PageCount, setPageCount] = useState<number>(0);
   const [TotalCount, setTotalCount] = useState<number>(0);
+  const [ProgressTimeline, setProgressTimeline] = useState<number>(0);
   const [ResearchName, setResearchName] = useState<string>(
     "Choose your research"
   );
@@ -29,6 +30,10 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
   const RoleUser = store.getState().userRole;
   useEffect(() => {
     GetResearch(PageNumber, PageSize);
+    timelineProgress();
+    store.subscribe(() => {
+      timelineProgress();
+    });
   }, []);
   const handelChangePageNumber = (e: { selected: number }) => {
     setPageNumber(e.selected);
@@ -55,6 +60,22 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
   };
   const changeResearch = (value: string) => {
     setResearchName(value);
+    document.getElementById("close_modal")?.click();
+  };
+  const timelineProgress = () => {
+    controller.getTimeline(
+      {
+        id: store.getState().ResearchId,
+      },
+      (res) => {
+        const all = res.length
+        const completed = res.filter(item=>item.status === 3).length
+        const peresent = (completed * 100) % all
+        setProgressTimeline(peresent)
+        
+      },
+      (err) => {}
+    );
   };
   return (
     <Fragment>
@@ -119,7 +140,7 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
                         Timeline
                       </h6>
                       <ProgressBar
-                        completed={20}
+                        completed={ProgressTimeline}
                         className="w-75"
                         bgColor="#474747"
                         labelAlignment="outside"
@@ -186,6 +207,13 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
       >
         <div className="modal-dialog">
           <div className="col-12 modal-content">
+            <button
+              type="button"
+              className="btn-close d-none"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+              id="close_modal"
+            ></button>
             <div className="TableBox">
               <div className="TopTableBox d-flex justify-content-between align-items-center mb-3">
                 <div className="left d-flex w-50 align-items-center">

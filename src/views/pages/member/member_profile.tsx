@@ -12,6 +12,7 @@ import { GetMemberByIDResResult } from "../../../data/models/responses/member/ge
 import moment from "moment";
 import { AppConstants, AppRoutes } from "../../../core/constants";
 import "../../../core/number_extentions";
+import { LocalDataSources } from "../../../data/local_datasources";
 interface RouteParams {
   id: string;
 }
@@ -20,6 +21,7 @@ class MemberPageProfile extends React.Component<
 > {
   RoleUser = store.getState().userRole;
   controller = new MemberController();
+  local = new LocalDataSources()
   state: GetMemberByIDResResult = {
     profileImage: "",
     firstName: "",
@@ -37,6 +39,10 @@ class MemberPageProfile extends React.Component<
     userEmail: "",
     resume: "",
     socialMediaProfiles: [],
+    id: "",
+    major: "",
+    zipCode: "",
+    phoneNumber: ""
   };
   componentDidMount() {
     this.controller.getMember(
@@ -111,8 +117,13 @@ class MemberPageProfile extends React.Component<
                 type={MainButtonType.dark}
                 borderRadius="24px"
                 fontSize="14px"
-                onClick={()=>{
-                  this.props.history.push(AppRoutes.member_edit_profile)
+                onClick={() => {
+                  this.props.history.push(
+                    `${AppRoutes.member_edit_profile.replace(
+                      ":id",
+                      this.local.getUserId() ?? ""
+                    )}`
+                  );
                 }}
               ></MainButton>
             </div>
