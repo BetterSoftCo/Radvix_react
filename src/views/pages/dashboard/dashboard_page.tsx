@@ -57,6 +57,8 @@ export class DashboardPage extends React.Component {
     DatasTotalCount: 0,
   };
   componentDidMount() {
+    console.log(this.RoleUser);
+    
     this.GetResearch(
       this.state.ResearchesPageNumber,
       this.state.ResearchesPageSize

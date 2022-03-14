@@ -7,9 +7,7 @@ import { SelectComponent } from "../../components/select_input";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import Dropzone from "react-dropzone";
 import { RadioGroup } from "../../components/radio_group";
-import {
-  Laboratory,
-} from "../../../data/models/responses/equipment/get_equipment_by_id_res";
+import { Laboratory } from "../../../data/models/responses/equipment/get_equipment_by_id_res";
 import { RouteComponentProps } from "react-router";
 import { UploadController } from "../../../controllers/upload_media/upload_media";
 import SimpleReactValidator from "simple-react-validator";
@@ -374,7 +372,7 @@ export class EditEquip extends React.Component<
                   </CircleIcon>
                 </span>
                 <div className="d-flex justify-content-between align-items-center">
-                  {this.state.imageUrl.length > 2 ? (
+                  {this.state.imageUrl && this.state.imageUrl.length > 2 ? (
                     <Fragment>
                       <img
                         src={
