@@ -85,7 +85,7 @@ class UploadNewDraft extends React.Component<RouteComponentProps<RouteParams>> {
       formData.append("ExternalUrls", file);
     }
     formData.append("UseCase", "10");
-    formData.append("DraftId", id.toString());
+    formData.append("SectionId", id.toString());
 
     await this.UploadController.UloadMedia(
       formData,
@@ -112,7 +112,7 @@ class UploadNewDraft extends React.Component<RouteComponentProps<RouteParams>> {
       formData.append("ExternalUrls", file);
     }
     formData.append("UseCase", "9");
-    formData.append("DraftId", id.toString());
+    formData.append("SectionId", id.toString());
 
     await this.UploadController.UloadMedia(
       formData,
@@ -169,25 +169,17 @@ class UploadNewDraft extends React.Component<RouteComponentProps<RouteParams>> {
   handelCreateDraft() {
     if (this.validator.allValid()) {
       const body = {
-        createdDate: new Date(),
         finalVersion: this.state.finalVersion === 1 ? false : true,
         publicationId: parseInt(this.props.match.params.id),
         nextDrafterId: this.state.publication.id,
-        nextDrafterFirstName: this.state.publication.firstName,
-        nextDrafterLastName: this.state.publication.lastName,
-      };
+      }
       this.controller.createDraft(
         body,
         (res) => {
-          if (
-            this.state.files.length ||
-            this.state.mainFiles.length ||
-            this.state.ExternalUrl.length
-          ) {
-            this.handelUploadPublication(res.id);
-            this.handelUploadMainPublication(res.id);
-          } else {
-            this.setState({
+          this.handelUploadPublication(res.draftId);
+          this.handelUploadMainPublication(res.draftId);
+          this.setState(
+            {
               files: [],
               finalVersion: 1,
               publicationId: 0,
@@ -200,13 +192,10 @@ class UploadNewDraft extends React.Component<RouteComponentProps<RouteParams>> {
                 id: "",
               },
             });
-            this.props.history.push(
-              `${AppRoutes.publish_profile.replace(
-                ":id",
-                this.props.match.params.id ?? ""
-              )}`
-            );
-          }
+
+            // setInterval(() => {
+            //   this.props.history.push(`${AppRoutes.publish_profile.replace(':id', this.props.match.params.id ?? "")}`)
+            // }, 2000);
         },
         (err) => {
           this.setState({
