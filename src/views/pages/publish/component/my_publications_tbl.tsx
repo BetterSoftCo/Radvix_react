@@ -47,6 +47,22 @@ const MyPublicationsTable: React.FC<TableComponentProp & RouteComponentProps> =
                     >
                       <img src="/images/icons/google_docs.svg" alt="radvix" width={12} height={12} />
                     </CircleIcon>
+                    <CircleIcon
+                      width="26px"
+                      height="26px"
+                      type={ThemeCircleIcon.dark}
+                      onClick={(e) =>
+                        props.history.push(
+                          `${AppRoutes.equip_edit.replace(
+                            ":id",
+                            head.id?.toString() ?? ""
+                          )}`
+                        )
+                      }
+                      className="pointer"
+                    >
+                      <img src="/images/icons/edit.svg" alt="radvix" />
+                    </CircleIcon>
                   </div>
                 </td>
               </tr>
