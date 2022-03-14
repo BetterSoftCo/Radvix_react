@@ -67,7 +67,7 @@ class ExpensePageNew extends React.Component<RouteComponentProps> {
       formData.append("ExternalUrls", file);
     }
     formData.append("UseCase", "4");
-    formData.append("ExpenseId", id.toString());
+    formData.append("SectionId", id.toString());
 
     await this.UploadController.UloadMedia(
       formData,

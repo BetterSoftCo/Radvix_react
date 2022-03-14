@@ -298,9 +298,9 @@ class PublicationProfile extends React.Component<RouteComponentProps<RouteParams
                 }
                 breakLabel={"..."}
                 breakClassName={"break-me"}
-                pageCount={100}
+                pageCount={1}
                 marginPagesDisplayed={2}
-                pageRangeDisplayed={5}
+                pageRangeDisplayed={100}
                 onPageChange={() => {
                   console.log("sssss");
                 }}

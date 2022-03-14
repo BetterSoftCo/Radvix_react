@@ -87,7 +87,7 @@ class UploadNewDraft extends React.Component<RouteComponentProps<RouteParams>> {
       formData.append("ExternalUrls", file);
     }
     formData.append("UseCase", "10");
-    formData.append("DraftId", id.toString());
+    formData.append("SectionId", id.toString());
 
     await this.UploadController.UloadMedia(
       formData,
@@ -114,7 +114,7 @@ class UploadNewDraft extends React.Component<RouteComponentProps<RouteParams>> {
       formData.append("ExternalUrls", file);
     }
     formData.append("UseCase", "9");
-    formData.append("DraftId", id.toString());
+    formData.append("SectionId", id.toString());
 
     await this.UploadController.UloadMedia(
       formData,
