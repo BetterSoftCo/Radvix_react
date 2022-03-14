@@ -6,22 +6,37 @@ import Sidebar from "./sidebar";
 import { ToastContainer } from "react-toastify";
 import { AppSettingController } from "../../controllers/app_setting/setting_controller";
 import { LocalDataSources } from "../../data/local_datasources";
+import { MemberController } from "../../controllers/member/member_controller";
+import { store } from "../../data/store";
+import { SetUserRole } from "../../data/store/actions/user_action";
 
 interface IMainLayout {
   children: ReactNode;
 }
 class MainLayout extends React.Component<IMainLayout & RouteComponentProps> {
   private controller: AppSettingController = new AppSettingController();
+  private memberController: MemberController = new MemberController();
   private local: LocalDataSources = new LocalDataSources();
   componentDidMount() {
     this.controller.enumList();
+    if (this.local.logedin()) {
+      this.memberController.getMember(
+        {
+          userId: this.local.getUserId(),
+        },
+        (res) => {
+          store.dispatch(SetUserRole(res.role));
+        },
+        (err) => {}
+      );
+    }
   }
 
   render() {
     return (
       <Fragment>
         {this.props.location.pathname !== "/login" &&
-          this.props.location.pathname !== "/Register" ? (
+        this.props.location.pathname !== "/Register" ? (
           <Fragment>
             <Header></Header>
             <div className="main">
