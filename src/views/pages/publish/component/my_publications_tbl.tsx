@@ -53,7 +53,7 @@ const MyPublicationsTable: React.FC<TableComponentProp & RouteComponentProps> =
                       type={ThemeCircleIcon.dark}
                       onClick={(e) =>
                         props.history.push(
-                          `${AppRoutes.equip_edit.replace(
+                          `${AppRoutes.publish_edit.replace(
                             ":id",
                             head.id?.toString() ?? ""
                           )}`

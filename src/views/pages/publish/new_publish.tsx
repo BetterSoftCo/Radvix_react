@@ -59,7 +59,7 @@ class PublishPageNew extends React.Component<RouteComponentProps> {
             name: '',
             categoryId: 0,
             submitAt: '',
-            priority: 2,
+            priority: 1,
             startDate: new Date(),
             endDate: new Date(),
             users: [],
@@ -187,9 +187,9 @@ class PublishPageNew extends React.Component<RouteComponentProps> {
                   popQuestion="Publication Priority:"
                   name="PublicationPriority"
                   items={[
-                    { name: "Low", id: 1 },
-                    { name: "Medium", id: 2 },
-                    { name: "High", id: 3 },
+                    { name: "Low", id: 0 },
+                    { name: "Medium", id: 1 },
+                    { name: "High", id: 2 },
                   ]}
                   TextItem="name"
                   ValueItem="id"

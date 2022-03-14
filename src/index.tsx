@@ -70,6 +70,7 @@ import {
   RegisterPage,
   not_found_page,
 } from "./views";
+import edit_publish from "./views/pages/publish/edit_publish";
 
 const RoleUser: UserRoles = store.getState().userRole;
 
@@ -284,6 +285,11 @@ ReactDOM.render(
           <Route
             component={UploadNewDraft}
             path={AppRoutes.publish_upload}
+            exact
+          />
+          <Route
+            component={edit_publish}
+            path={AppRoutes.publish_edit}
             exact
           />
           <Route
