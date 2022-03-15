@@ -66,14 +66,9 @@ class PublishPageEdit extends React.Component<RouteComponentProps<RouteParams>> 
       (res) => {
         this.setState({
           name: res.name,
-          // categoryId: res.categoryId,
           startDate: new Date(),
           endDate: new Date(),
           users: res.users,
-          // draftUploader: res.draftUploader,
-          // listMembers: res.listMembers,
-          // categories: res.categories,
-          // drafList: res.drafList,
 
         });
       }
