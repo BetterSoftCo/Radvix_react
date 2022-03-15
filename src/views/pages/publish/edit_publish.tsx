@@ -6,7 +6,6 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { MainButton, MainButtonType } from "../../components/button";
 import { SelectComponent } from "../../components/select_input";
-import { ButtonGroup } from "../../components/botton_group";
 import { BoxAlert } from "../../components/box_alert";
 import { RouteComponentProps, withRouter } from "react-router";
 import SimpleReactValidator from "simple-react-validator";
@@ -39,48 +38,8 @@ class PublishPageEdit extends React.Component<RouteComponentProps<RouteParams>> 
     loading: false,
     listMembers: [],
     categories: [],
-    drafList: []
   };
-  handelCreateData() {
-    if (this.validator.allValid()) {
-      const body = {
-        researchId: store.getState().ResearchId,
-        categoryId: this.state.categoryId,
-        name: this.state.name,
-        startDate: this.state.startDate,
-        endDate: this.state.endDate,
-        users: this.state.users,
-        draftUploader: this.state.draftUploader
-      }
-      this.controller.createPublish(
-        body,
-        (res) => {
-          this.setState(
-            {
-            name: '',
-            categoryId: 0,
-            startDate: new Date(),
-            endDate: new Date(),
-            users: [],
-            draftUploader: '',
-            loading: false,
-            listMembers: [],
-            categories: [],
-            drafList: []
-          });
-          this.props.history.push(`${AppRoutes.publish_profile.replace(':id', res.id?.toString() ?? "")}`)
-        },
-        (err) => {
-          this.setState({
-            loading: false,
-          });
-        }
-      );
-    } else {
-      this.validator.showMessages();
-      this.forceUpdate();
-    }
-  }
+  
   handleChange(target: string, val: any) {
     this.setState({
       [target]: val,
@@ -89,8 +48,6 @@ class PublishPageEdit extends React.Component<RouteComponentProps<RouteParams>> 
   handelChangeSelectMultiple(e: Array<{ label: string; value: number }>, target: string) {
     const user_Id = e.map((item) => item.value);
     const drafList = e.map((item) => item);
-
-
     this.setState({
       [target]: user_Id,
       drafList: drafList,
@@ -132,19 +89,6 @@ class PublishPageEdit extends React.Component<RouteComponentProps<RouteParams>> 
       })
     }, err => { })
   }
-  GetSearchPublish() {
-    this.controller.SearchPublish(res => {
-      this.setState({
-        listMembers: res.users?.map(item => {
-          return { label: item.firstName, value: item.id }
-        }),
-        categories: res.categories?.map(item => {
-          return { label: item.title, value: item.id }
-        }),
-      })
-    }, err => { })
-  }
-
   UpdatePublish() {
     if (this.validator.allValid()) {
       const body: EditPublishReq = {
@@ -165,10 +109,7 @@ class PublishPageEdit extends React.Component<RouteComponentProps<RouteParams>> 
             loading: false,
           });
           this.props.history.push(
-            `${AppRoutes.publish_profile.replace(
-              ":id",
-              res.id?.toString() ?? ""
-            )}`
+            AppRoutes.publish
           );
         },
         (err) => {
