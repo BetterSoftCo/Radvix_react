@@ -7,6 +7,7 @@ import { CreateDraftResResult } from "../../data/models/responses/publish/create
 import { CreatePublishResResult } from "../../data/models/responses/publish/create_publish_res";
 import { GetAllPublishesResult } from "../../data/models/responses/publish/publishes_res";
 import { GetPublishByIDResult } from "../../data/models/responses/publish/publish_by_id_res";
+import { RemoveDraftRes } from "../../data/models/responses/publish/remove_draft_res";
 import { SearchPublishResResult } from "../../data/models/responses/publish/search_publish_res";
 import { EditPublishResResult } from "../../data/models/responses/publish/update_publish_res";
 import { RemotePublish } from "../../data/remotes/publish/remote_publish";
@@ -144,6 +145,27 @@ export class publishController {
         toast.error(`${err.message}`, {
           position: toast.POSITION.TOP_RIGHT,
         });
+      }
+    );
+  }
+  removeDraft(
+    body: { draftId: number},
+    action: (res: boolean) => boolean,
+    error: (res: any) => any
+  ) {
+    this.remote.removeDraft(
+      body,
+      (res) => {
+        action(res.result!);
+        toast.success(`${res.message}`, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      },
+      (err) => {
+        toast.error(`${err.message}`, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+        error(err);
       }
     );
   }
