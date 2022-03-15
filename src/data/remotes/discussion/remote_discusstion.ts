@@ -1,12 +1,10 @@
 import { HTTP } from "../../../core/http_common";
 import { DiscusstionCreateReq } from "../../models/requests/discussion/discusstion_create_req";
-import { EditEquipmentReq } from "../../models/requests/equipment/equipment_update_req";
+import { CreateMessageRes } from "../../models/responses/discussion/create_massage_res";
 import { DiscusstionCreateRes } from "../../models/responses/discussion/discusstion_create_res";
 import { DiscusstionSearchRes } from "../../models/responses/discussion/discusstion_search_res";
 import { GetAllDiscusstionRes } from "../../models/responses/discussion/get_all_discusstion_res";
-import { EditEquipmentRes } from "../../models/responses/equipment/equipment_update_res";
-import { GetAllEquipment } from "../../models/responses/equipment/get_all_equipment_res";
-import { GetEquimentByIDRes } from "../../models/responses/equipment/get_equipment_by_id_res";
+import { GetDiscusstionPanelRes } from "../../models/responses/discussion/get_discusstion_panel_res";
 
 export class RemoteDiscusstion {
   createDiscusstion(
@@ -20,36 +18,38 @@ export class RemoteDiscusstion {
         error(err);
       });
   }
-  updateEquipment(
-    body: EditEquipmentReq,
-    action: (res: EditEquipmentRes) => any,
+  createMassage(
+    body: { discussionId: number; message: string },
+    action: (res: CreateMessageRes) => any,
     error: (res: any) => any
   ) {
-    return HTTP.put("/Equipment", body)
+    return HTTP.post("/Discussion/CreateMessage", body)
       .then((res) => action(res.data))
       .catch((err) => {
         error(err);
       });
   }
   getAllDiscussion(
-    body: { PageNumber: number; PageSize: number , ticket:boolean },
+    body: { PageNumber: number; PageSize: number; ticket: boolean },
     action: (res: GetAllDiscusstionRes) => any,
     error: (res: any) => any
   ) {
     return HTTP.get(
-      `/Discussion?PageSize=${body.PageSize}&PageNumber=${body.PageNumber}`
+      `/Discussion?PageSize=${body.PageSize}&PageNumber=${body.PageNumber}&Ticket=${body.ticket}`
     )
       .then((res) => action(res.data))
       .catch((err) => {
         error(err);
       });
   }
-  getEquipmentById(
-    body: { equipmentId: number },
-    action: (res: GetEquimentByIDRes) => any,
+  getDiscusstionPanel(
+    body: { discussionId: number; ticket: boolean },
+    action: (res: GetDiscusstionPanelRes) => any,
     error: (res: any) => any
   ) {
-    return HTTP.get(`/Equipment/${body.equipmentId}`)
+    return HTTP.get(
+      `/Discussion/Panel?discussionId=${body.discussionId}&ticket=${body.ticket}`
+    )
       .then((res) => action(res.data))
       .catch((err) => {
         error(err);

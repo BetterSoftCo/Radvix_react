@@ -1,15 +1,10 @@
-export interface GetAllDiscusstionRes {
+export interface GetDiscusstionPanelRes {
     status:  number;
-    result:  GetAllDiscusstionResResult;
+    result:  GetDiscusstionPanelResResult;
     message: string;
 }
 
-export interface GetAllDiscusstionResResult {
-    discussions: Discussion[];
-    count:       number;
-}
-
-export interface Discussion {
+export interface GetDiscusstionPanelResResult {
     id:                   number;
     topic:                number;
     subject:              string;

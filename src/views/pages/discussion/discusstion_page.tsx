@@ -8,24 +8,174 @@ import Dropzone from "react-dropzone";
 import { IconTextRow } from "../../components/icon_text_horizontal";
 import { Theme } from "../../../core/utils";
 import { BoxListScroll } from "../../components/box_list_scroll";
-export class DiscusstionPage extends React.Component {
+import { RouteComponentProps, withRouter } from "react-router";
+import { DiscusstionController } from "../../../controllers/discussion/discusstion_controller";
+import { GetDiscusstionPanelResResult } from "../../../data/models/responses/discussion/get_discusstion_panel_res";
+import { LocalDataSources } from "../../../data/local_datasources";
+import moment from "moment";
+import { AppConstants } from "../../../core/constants";
+import { UploadController } from "../../../controllers/upload_media/upload_media";
+import SimpleReactValidator from "simple-react-validator";
+interface RouteParams {
+  id: string;
+}
+type StateType = {
+  files: Array<File>;
+  Discusstion: GetDiscusstionPanelResResult;
+  myUserId: string;
+  loading: boolean;
+  ExternalUrl: Array<string>;
+  External: string;
+  massage: string;
+};
+class DiscusstionPage extends React.Component<
+  RouteComponentProps<RouteParams>
+> {
   RoleUser = store.getState().userRole;
   date = new Date();
+  controller = new DiscusstionController();
+  local = new LocalDataSources();
+  UploadController = new UploadController();
+  validator = new SimpleReactValidator({
+    className: "text-danger",
+  });
   handelChangeDate(params: any): void {
     console.log(params);
   }
-  state = {
+  state: StateType = {
     files: [],
+    Discusstion: {
+      creatorUserFirstName: "",
+      creatorUserId: "",
+      creatorUserLastName: "",
+      histories: [],
+      id: 0,
+      isTicket: false,
+      priority: 0,
+      subject: "",
+      topic: 0,
+      users: [],
+    },
+    myUserId: this.local.getUserId(),
+    loading: false,
+    ExternalUrl: [],
+    External: "",
+    massage: "",
   };
+  componentDidMount() {
+    this.controller.getDiscusstionPanel(
+      {
+        discussionId: parseInt(this.props.match.params.id),
+        ticket: false,
+      },
+      (res) => {
+        this.setState({
+          Discusstion: res,
+        });
+      },
+      (err) => {}
+    );
+  }
   onDrop = (files: any) => {
     this.setState({ files });
-    console.log(this.state);
   };
+  handleChange(target: string, val: any) {
+    this.setState({
+      [target]: val,
+    });
+  }
+  async handelUpload(id: number) {
+    const formData = new FormData();
+    for (let i = 0; i < this.state.files.length; i++) {
+      const file = this.state.files[i];
+      formData.append("Files", file);
+    }
+    for (let i = 0; i < this.state.ExternalUrl.length; i++) {
+      const file = this.state.ExternalUrl[i];
+      formData.append("ExternalUrls", file);
+    }
+    formData.append("UseCase", "7");
+    formData.append("SectionId", id.toString());
+
+    await this.UploadController.UloadMedia(
+      formData,
+      (res) => {},
+      () => {
+        this.setState({
+          loading: false,
+        });
+      }
+    );
+  }
+  addExternalUrl() {
+    let Url = [...this.state.ExternalUrl];
+    Url.push(this.state.External);
+    this.setState({
+      ExternalUrl: Url,
+      External: "",
+    });
+  }
+  handelDeleteFile(arg: File) {
+    this.setState({
+      files: this.state.files.filter((file) => file.name !== arg.name),
+    });
+  }
+  handelDeleteExternalLink(link: string) {
+    this.setState({
+      ExternalUrl: this.state.ExternalUrl.filter((item) => item !== link),
+    });
+  }
+  SendMassage() {
+    if (this.validator.allValid()) {
+      const body = {
+        discussionId: parseInt(this.props.match.params.id),
+        message: this.state.massage,
+      };
+
+      this.setState({
+        loading: true,
+      });
+      this.controller.createMassage(
+        body,
+        (res) => {
+          if (this.state.files.length) {
+            this.handelUpload(this.state.Discusstion.id);
+          }
+          this.setState({
+            loading: false,
+            ExternalUrl: [],
+            External: "",
+            massage: "",
+            files: [],
+          });
+        },
+        (err) => {
+          this.setState({
+            loading: false,
+            ExternalUrl: [],
+            External: "",
+            massage: "",
+            files: [],
+          });
+        }
+      );
+    } else {
+      this.validator.showMessages();
+      this.forceUpdate();
+    }
+  }
   render() {
     const files = this.state.files.map((file: any) => (
       <li key={file.name}>
         {file.name} - {file.size} bytes
-        <CircleIcon type={ThemeCircleIcon.dark} width="22px" height="22px">
+        <CircleIcon
+          type={ThemeCircleIcon.dark}
+          width="22px"
+          height="22px"
+          onClick={() => {
+            this.handelDeleteFile(file);
+          }}
+        >
           <img
             src="/images/icons/garbage_can.svg"
             alt="radvix"
@@ -46,9 +196,9 @@ export class DiscusstionPage extends React.Component {
               }}
               className="backPage"
             ></span>{" "}
-            Question About The Thermogravimetric Results{" "}
+            {this.state.Discusstion.subject}
             <MainButton
-              children="Principal Investigator"
+              children={this.state.Discusstion.priority.isPriority()}
               type={MainButtonType.dark}
               borderRadius="24px"
               fontSize="14px"
@@ -57,100 +207,67 @@ export class DiscusstionPage extends React.Component {
             ></MainButton>
           </h5>
           <div className="title-discusstion">
-            This discussion is related to the task{" "}
-            <span>
-              Running TGA on XRDF Samples Using Plasma Extracted Samples.
-            </span>
+            This discussion is related to the{" "}
+            {this.state.Discusstion.topic.isTopic()}
+            <span>{this.state.Discusstion.subject}</span>
           </div>
           <div className="row mt-2 justify-content-around">
             <div className="col-md-7 chat">
-              <div className="submit">
-                <IconTextRow
-                  theme={Theme.dark}
-                  text="Nima Hosseinzadeh (Today, 11:23 AM)"
-                  fontSize="14px"
-                  className="fw-lighter"
-                  children={
-                    <img
-                      src="/images/images/img_avatar.png"
-                      alt="Avatar"
-                      className="rounded-circle avatar mx-2"
-                      width="40px"
-                      height="40px"
-                    />
+              {this.state.Discusstion.histories.map((item) => (
+                <div
+                  className={
+                    item.userId === this.state.myUserId ? "submit" : "Received"
                   }
-                ></IconTextRow>
-                <div className="submit-msg w-75">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea
-                  <ul className="file-list">
-                    <li>
-                      <img src="/images/icons/pdf_icon.svg" alt="" />{" "}
-                      proposal_general.pdf
-                    </li>
-                  </ul>
+                  key={item.id}
+                >
+                  <IconTextRow
+                    theme={Theme.dark}
+                    text={`${item.userFirstName} (${moment(
+                      item.createDate
+                    ).format("YYYY/MM/DD")})`}
+                    fontSize="14px"
+                    className="fw-lighter"
+                    children={
+                      <img
+                        src={
+                          item.userProfilePicture
+                            ? AppConstants.base_url_image +
+                              item.userProfilePicture
+                            : "/images/images/img_avatar.png"
+                        }
+                        alt="Avatar"
+                        className="rounded-circle avatar mx-2"
+                        width="40px"
+                        height="40px"
+                      />
+                    }
+                  ></IconTextRow>
+                  <div
+                    className={
+                      item.userId === this.state.myUserId
+                        ? "submit-msg w-75"
+                        : "Received-msg w-75"
+                    }
+                  >
+                    {item.message}
+                    <ul className="file-list">
+                      {item.attachments
+                        .filter((item) => item.externalUrl === null)
+                        .map((item) => (
+                          <li key={item.id}>
+                            <img
+                              src={`/images/icons/${item.inputDataType.isMedia()}`}
+                              alt=""
+                              width={15}
+                              height={15}
+                            />
+                            {item.title}
+                          </li>
+                        ))}
+                    </ul>
+                  </div>
                 </div>
-              </div>
-              <div className="Received">
-                <IconTextRow
-                  theme={Theme.dark}
-                  text="Nima Hosseinzadeh (Today, 11:23 AM)"
-                  fontSize="14px"
-                  className="fw-lighter"
-                  children={
-                    <img
-                      src="/images/images/img_avatar.png"
-                      alt="Avatar"
-                      className="rounded-circle avatar mx-2"
-                      width="40px"
-                      height="40px"
-                    />
-                  }
-                ></IconTextRow>
-                <div className="Received-msg w-75">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea
-                  <ul className="file-list">
-                    <li>
-                      <img src="/images/icons/pdf_icon.svg" alt="" />{" "}
-                      proposal_general.pdf
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div className="Received">
-                <IconTextRow
-                  theme={Theme.dark}
-                  text="Nima Hosseinzadeh (Today, 11:23 AM)"
-                  fontSize="14px"
-                  className="fw-lighter"
-                  children={
-                    <img
-                      src="/images/images/img_avatar.png"
-                      alt="Avatar"
-                      className="rounded-circle avatar mx-2"
-                      width="40px"
-                      height="40px"
-                    />
-                  }
-                ></IconTextRow>
-                <div className="Received-msg w-75">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea
-                  <ul className="file-list">
-                    <li>
-                      <img src="/images/icons/pdf_icon.svg" alt="" />{" "}
-                      proposal_general.pdf
-                    </li>
-                  </ul>
-                </div>
-              </div>
+              ))}
             </div>
             <div className="col-md-4 teams teams-light p-1">
               <div className="teams teams-light p-1 chat-teams-light mb-1">
@@ -179,102 +296,11 @@ export class DiscusstionPage extends React.Component {
                   </CircleIcon>
                 </div>
                 <BoxListScroll
-                  default_photo="/Images/icons/equipment_Icon.svg"
-                  items={[
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 1,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 2,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 3,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 1,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 2,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 3,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 1,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 2,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 3,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 1,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 2,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 3,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 1,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 2,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 3,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 1,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 2,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                    {
-                      text: "Nima Hosseinzadeh",
-                      id: 3,
-                      imagesrc: "/images/images/img_avatar.png",
-                    },
-                  ]}
-                  TextItem="text"
+                  default_photo="/Images/icons/user.svg"
+                  items={this.state.Discusstion.users}
+                  TextItem="firstName"
                   ValueItem="id"
-                  ImageItem="imagesrc"
+                  ImageItem="image"
                   Deletabel
                   className="mt-3"
                 ></BoxListScroll>
@@ -287,6 +313,14 @@ export class DiscusstionPage extends React.Component {
                   label="Message:"
                   className="mt-2"
                   rows={6}
+                  onChange={(e) => {
+                    this.handleChange("massage", e.target.value);
+                  }}
+                  inValid={this.validator.message(
+                    "Message",
+                    this.state.massage,
+                    "required"
+                  )}
                 ></InputComponent>
               </div>
             </div>
@@ -356,6 +390,10 @@ export class DiscusstionPage extends React.Component {
                   type={InputType.text}
                   placeholder="https://"
                   className="mx-2"
+                  onChange={(e) => {
+                    this.handleChange("External", e.target.value);
+                  }}
+                  value={this.state.External}
                 ></InputComponent>
                 <CircleIcon
                   width="36px"
@@ -365,10 +403,44 @@ export class DiscusstionPage extends React.Component {
                   fontSize="18px"
                   color="#ffffff"
                   className="px-3"
+                  onClick={() => {
+                    this.addExternalUrl();
+                  }}
                 >
                   <i className="fas fa-plus"></i>
                 </CircleIcon>
               </div>
+              <ul className="file-list mt-3">
+                {this.state.ExternalUrl.map((item, index) => (
+                  <li
+                    className="my-2 d-flex flex-column flex-md-row"
+                    key={index}
+                  >
+                    <MainButton
+                      children={item}
+                      type={MainButtonType.dark}
+                      borderRadius="24px"
+                      fontSize="14px"
+                      backgroundColor="#F5F5F5"
+                      color="#096BFF"
+                    ></MainButton>
+                    <CircleIcon
+                      type={ThemeCircleIcon.dark}
+                      width="22px"
+                      height="22px"
+                      className="mx-3 pointer"
+                      onClick={() => this.handelDeleteExternalLink(item)}
+                    >
+                      <img
+                        src="/images/icons/garbage_can.svg"
+                        alt="radvix"
+                        width={15}
+                        height={15}
+                      />
+                    </CircleIcon>
+                  </li>
+                ))}
+              </ul>
               <div>
                 <MainButton
                   type={MainButtonType.dark}
@@ -378,6 +450,10 @@ export class DiscusstionPage extends React.Component {
                   className="mx-2 mt-3 btn-block"
                   minHeight="47px"
                   minWidth="100%"
+                  onClick={() => {
+                    this.SendMassage();
+                  }}
+                  loading={this.state.loading}
                 ></MainButton>
               </div>
             </div>
@@ -387,3 +463,4 @@ export class DiscusstionPage extends React.Component {
     );
   }
 }
+export default withRouter(DiscusstionPage);

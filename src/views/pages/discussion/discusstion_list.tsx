@@ -9,9 +9,9 @@ import DiscusstionListTable from "./component/discusstion_list_table";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
 import { DiscusstionController } from "../../../controllers/discussion/discusstion_controller";
-import { GetAllDiscusstionResResult } from "../../../data/models/responses/discussion/get_all_discusstion_res";
+import { Discussion } from "../../../data/models/responses/discussion/get_all_discusstion_res";
 type StateType = {
-  Discusstion: GetAllDiscusstionResResult[];
+  Discusstion: Discussion[];
   PageNumber: number;
   PageSize: number;
   PageCount: number;
@@ -31,17 +31,17 @@ class DiscusstionList extends React.Component<RouteComponentProps> {
     this.GetDiscusstion(this.state.PageNumber, this.state.PageSize);
   }
   GetDiscusstion(PageNumber: number, PageSize: number) {
-    // this.controller.getAllDiscusstion(
-    //   { PageNumber: PageNumber, PageSize: PageSize, ticket: false },
-    //   (res) => {
-    //     this.setState({
-    //       Discusstion: res.Discusstion,
-    //       PageCount: Math.ceil(res.count! / this.state.PageSize),
-    //       TotalCount: res.count,
-    //     });
-    //   },
-    //   (err) => {}
-    // );
+    this.controller.getAllDiscusstion(
+      { PageNumber: PageNumber, PageSize: PageSize, ticket: false },
+      (res) => {
+        this.setState({
+          Discusstion: res.discussions,
+          PageCount: Math.ceil(res.count! / this.state.PageSize),
+          TotalCount: res.count,
+        });
+      },
+      (err) => {}
+    );
   }
   handelChangePageNumber(e: { selected: number }) {
     this.setState({
@@ -103,26 +103,31 @@ class DiscusstionList extends React.Component<RouteComponentProps> {
                   }}
                 ></MainButton>
                 <SelectComponent
-                  width="63px"
+                  width="90px"
                   height="44px"
                   items={[
-                    { item: 1, id: 1 },
-                    { item: 2, id: 2 },
-                    { item: 3, id: 3 },
+                    { label: "10", value: 10 },
+                    { label: "15", value: 15 },
+                    { label: "20", value: 20 },
                   ]}
                   TextItem="item"
                   ValueItem="id"
+                  isMulti={false}
+                  placeholder={this.state.PageSize.toString()}
+                  onChange={(e) => {
+                    this.handelChangePageSize(e);
+                  }}
                 ></SelectComponent>
               </div>
             </div>
-            {/* <DiscusstionListTable
-              Items={this.state.Data.Items}
+            <DiscusstionListTable
+              Items={this.state.Discusstion}
               Heading={["Subject", "Related To", "Update"]}
-            ></DiscusstionListTable> */}
+            ></DiscusstionListTable>
 
             <div className="d-flex justify-content-between align-items-baseline">
               <div className="d-flex justify-content-end flex-fill">
-                <ReactPaginate
+              <ReactPaginate
                   previousLabel={
                     <CircleIcon
                       width="24px"
@@ -145,18 +150,18 @@ class DiscusstionList extends React.Component<RouteComponentProps> {
                   }
                   breakLabel={"..."}
                   breakClassName={"break-me"}
-                  pageCount={20}
+                  pageCount={this.state.PageCount}
                   marginPagesDisplayed={2}
                   pageRangeDisplayed={5}
-                  onPageChange={() => {
-                    console.log("changepage");
+                  onPageChange={(e) => {
+                    this.handelChangePageNumber(e);
                   }}
                   containerClassName={"pagination"}
                   activeClassName={"active"}
                 />
               </div>
               <div className="d-flex justify-content-end flex-fill">
-                <p className="text-right mb-0 ">Total Results: 45</p>
+                <p className="text-right mb-0 ">Total Results: {this.state.TotalCount}</p>
               </div>
             </div>
           </div>

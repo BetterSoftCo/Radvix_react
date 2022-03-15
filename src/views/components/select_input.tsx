@@ -92,10 +92,8 @@ export const SelectComponent: React.FC<InputsProps> = ({
     );
   }
   let TemplateValidation;
-  let IsinValid;
   if (inValid) {
     TemplateValidation = <div>{inValid}</div>;
-    IsinValid = 'is-invalid';
   }
 
   return (

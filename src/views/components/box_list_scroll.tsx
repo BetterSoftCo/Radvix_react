@@ -1,5 +1,6 @@
 /* eslint-disable no-useless-concat */
 import React, { Fragment } from "react";
+import { AppConstants } from "../../core/constants";
 import { Theme } from "../../core/utils";
 import { CircleIcon, ThemeCircleIcon } from "./circle_icon";
 import { IconTextRow } from "./icon_text_horizontal";
@@ -54,7 +55,7 @@ export const BoxListScroll: React.FC<IBoxListScroll> = ({
                       item[`${ImageItem}`] === "" ||
                       item[`${ImageItem}`] === undefined
                         ? default_photo
-                        : item[`${ImageItem}`]
+                        : AppConstants.base_url_image + item[`${ImageItem}`]
                     }
                     alt="Avatar"
                     className="rounded-circle avatar"

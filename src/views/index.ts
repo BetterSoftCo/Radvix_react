@@ -21,7 +21,7 @@ import  EquipPage  from "./pages/equipment/equip_page";
 import EquipProfile from "./pages/equipment/equip_profile";
 import { EditEquip } from "./pages/equipment/equip_edit";
 import NewDiscusstion from "./pages/discussion/new_discusstion";
-import { DiscusstionPage } from "./pages/discussion/discusstion_page";
+import  DiscusstionPage  from "./pages/discussion/discusstion_page";
 import DiscusstionList from "./pages/discussion/discusstion_list";
 import TeamPage from "./pages/team/team_page";
 import TeamPageNew from "./pages/team/team_new";
