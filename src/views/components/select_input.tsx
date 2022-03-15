@@ -20,7 +20,8 @@ interface InputsProps {
   popQuestion?: string;
   optional?: string;
   border?: string;
-  isMulti?: boolean
+  isMulti?: boolean;
+  inValid?: string;
 }
 export const SelectComponent: React.FC<InputsProps> = ({
   width,
@@ -38,6 +39,7 @@ export const SelectComponent: React.FC<InputsProps> = ({
   popQuestion,
   optional,
   isMulti,
+  inValid,
 }) => {
   let styles = {
     width: width,
@@ -89,7 +91,12 @@ export const SelectComponent: React.FC<InputsProps> = ({
       </span>
     );
   }
-  
+  let TemplateValidation;
+  let IsinValid;
+  if (inValid) {
+    TemplateValidation = <div>{inValid}</div>;
+    IsinValid = 'is-invalid';
+  }
 
   return (
     <Fragment>
@@ -97,13 +104,15 @@ export const SelectComponent: React.FC<InputsProps> = ({
       <Select
         options={items}
         className={`${
-          IsclassName + " " + "InputSelectStyle"
+          IsclassName + " " + "InputSelectStyle" 
         }`}
         onChange={onChange}
         placeholder={placeholder}
         styles={customStyles}
         isMulti={isMulti}
+        
       />
+      {TemplateValidation}
     </Fragment>
   );
 };

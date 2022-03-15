@@ -15,6 +15,7 @@ import { ResearchController } from "../../../controllers/research/research_contr
 import { store } from "../../../data/store";
 import { User } from "../../../data/models/responses/research/timeline_res";
 import { MainButton, MainButtonType } from "../../components/button";
+import { AppConstants } from "../../../core/constants";
 class TimeLine extends React.Component<RouteComponentProps> {
   controller = new ResearchController();
   componentDidMount() {
@@ -36,12 +37,10 @@ class TimeLine extends React.Component<RouteComponentProps> {
               Subject: item.title,
               StartTime: new Date(item.startDate),
               EndTime: new Date(item.endDate),
-              users: [
-                "https://d5nunyagcicgy.cloudfront.net/external_assets/hero_examples/hair_beach_v391182663/original.jpeg",
-                "https://d5nunyagcicgy.cloudfront.net/external_assets/hero_examples/hair_beach_v391182663/original.jpeg",
-                "https://d5nunyagcicgy.cloudfront.net/external_assets/hero_examples/hair_beach_v391182663/original.jpeg",
-              ],
+              users:
+                item.users.length > 3 ? item.users.slice(0, 3) : item.users,
               status: item.status,
+              countUser: item.users.length > 3 ? item.users.length : 0,
             };
           }),
         });
@@ -70,7 +69,8 @@ class TimeLine extends React.Component<RouteComponentProps> {
     StartTime: Date;
     EndTime: Date;
     ImageName: string | undefined;
-    users: string[];
+    users: User[];
+    countUser: number;
     status: number;
     Description:
       | boolean
@@ -98,7 +98,11 @@ class TimeLine extends React.Component<RouteComponentProps> {
           ></MainButton>
           {props.users.map((item) => (
             <img
-              src={item}
+              src={
+                item.image
+                  ? AppConstants.base_url_image + item.image
+                  : "/Images/images/img_avatar.png"
+              }
               alt=""
               width={15}
               height={15}
@@ -106,7 +110,7 @@ class TimeLine extends React.Component<RouteComponentProps> {
               style={{ marginRight: "1.5px" }}
             />
           ))}
-          {`+3 more`}
+          {props.countUser > 0 ? `+${props.countUser - 3} more` : ""}
         </div>
         <div className="time" style={{ background: "#2C2C2C" }}>
           Time: {this.getTimeString(props.StartTime)} -{" "}

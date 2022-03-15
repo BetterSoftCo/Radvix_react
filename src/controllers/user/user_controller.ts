@@ -22,6 +22,7 @@ export class UserController {
           firstName: res.result?.firstName,
           lastName: res.result?.lastName,
           email: res.result?.email,
+          image:res.result?.profileImage
         };
         localStorage.setItem("userInfo", JSON.stringify(UserInfo) ?? "");
         toast.success(`${res.message}`, {

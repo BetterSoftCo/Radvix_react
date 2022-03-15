@@ -3,6 +3,7 @@ type UserInfo = {
   email: string;
   firstName: string;
   lastName: string;
+  image: string;
 };
 export class LocalDataSources {
   getSetting(): { [key: string]: AppSettingResResult[] } {
@@ -25,7 +26,7 @@ export class LocalDataSources {
     if (userInfo) {
       return JSON.parse(userInfo);
     }
-    return { firstName: "", email: "", lastName: "" };
+    return { firstName: "", email: "", lastName: "", image: "" };
   }
   logedin(): boolean {
     const logedin = localStorage.getItem("logedin");
