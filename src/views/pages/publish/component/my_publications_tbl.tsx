@@ -27,8 +27,8 @@ const MyPublicationsTable: React.FC<TableComponentProp & RouteComponentProps> =
               <tr key={index}>
                 <td>{head.name}</td>
                 <td>{head.category}</td>
-                <td>{head.assignedUserFirstName}</td>
-                <td>{moment(head.Deadline).format("YYYY/MM/DD")}</td>
+                <td>{head.assignedUserFirstName} {head.assignedUserLastName}</td>
+                <td>{moment(head.endDate).format("YYYY/MM/DD")}</td>
                 <td>
                   <div className="col d-flex justify-content-between align-items-center">
                    <CircleIcon
