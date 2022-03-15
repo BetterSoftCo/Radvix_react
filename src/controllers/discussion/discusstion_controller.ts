@@ -1,6 +1,8 @@
 import { toast } from "react-toastify";
+import { CreateTicketReq } from "../../data/models/requests/discussion/create_ticket_req";
 import { DiscusstionCreateReq } from "../../data/models/requests/discussion/discusstion_create_req";
 import { CreateMessageRes } from "../../data/models/responses/discussion/create_massage_res";
+import { CreateTicketResResult } from "../../data/models/responses/discussion/create_ticket_res";
 import { DiscusstionCreateResResult } from "../../data/models/responses/discussion/discusstion_create_res";
 import { DiscusstionSearchResResult } from "../../data/models/responses/discussion/discusstion_search_res";
 import { GetAllDiscusstionResResult } from "../../data/models/responses/discussion/get_all_discusstion_res";
@@ -42,6 +44,27 @@ export class DiscusstionController {
           position: toast.POSITION.TOP_RIGHT,
         });
         action(res);
+      },
+      (err) => {
+        toast.error(`${err.message}`, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+        error(err);
+      }
+    );
+  }
+  createTicket(
+    body: CreateTicketReq,
+    action: (res: CreateTicketResResult) => any,
+    error: (res: any) => any
+  ) {
+    this.remote.createTicket(
+      body,
+      (res) => {
+        toast.success(`${res.message}`, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+        action(res.result);
       },
       (err) => {
         toast.error(`${err.message}`, {

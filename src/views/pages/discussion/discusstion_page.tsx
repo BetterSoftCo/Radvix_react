@@ -63,6 +63,9 @@ class DiscusstionPage extends React.Component<
     massage: "",
   };
   componentDidMount() {
+    this.getDiscustionPanel()
+  }
+  getDiscustionPanel(){
     this.controller.getDiscusstionPanel(
       {
         discussionId: parseInt(this.props.match.params.id),
@@ -148,6 +151,7 @@ class DiscusstionPage extends React.Component<
             massage: "",
             files: [],
           });
+          this.getDiscustionPanel()
         },
         (err) => {
           this.setState({

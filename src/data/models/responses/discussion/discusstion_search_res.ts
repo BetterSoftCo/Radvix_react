@@ -8,6 +8,7 @@ export interface DiscusstionSearchResResult {
     members:         Member[];
     discussionOn:    DiscussionOn[];
     discussionTopic: number;
+    ticketCategory:  TicketCategory[];
 }
 
 export interface DiscussionOn {
@@ -26,4 +27,11 @@ export interface Member {
     firstName:    string;
     lastName:     string;
     image:        string;
+}
+
+export interface TicketCategory {
+    id:           number;
+    title:        string;
+    iconFileName: string;
+    type:         number;
 }

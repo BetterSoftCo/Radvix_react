@@ -1,6 +1,8 @@
 import { HTTP } from "../../../core/http_common";
+import { CreateTicketReq } from "../../models/requests/discussion/create_ticket_req";
 import { DiscusstionCreateReq } from "../../models/requests/discussion/discusstion_create_req";
 import { CreateMessageRes } from "../../models/responses/discussion/create_massage_res";
+import { CreateTicketRes } from "../../models/responses/discussion/create_ticket_res";
 import { DiscusstionCreateRes } from "../../models/responses/discussion/discusstion_create_res";
 import { DiscusstionSearchRes } from "../../models/responses/discussion/discusstion_search_res";
 import { GetAllDiscusstionRes } from "../../models/responses/discussion/get_all_discusstion_res";
@@ -24,6 +26,17 @@ export class RemoteDiscusstion {
     error: (res: any) => any
   ) {
     return HTTP.post("/Discussion/CreateMessage", body)
+      .then((res) => action(res.data))
+      .catch((err) => {
+        error(err);
+      });
+  }
+  createTicket(
+    body: CreateTicketReq,
+    action: (res: CreateTicketRes) => any,
+    error: (res: any) => any
+  ) {
+    return HTTP.post("/Discussion/CreateTicket", body)
       .then((res) => action(res.data))
       .catch((err) => {
         error(err);
