@@ -71,6 +71,7 @@ import {
   not_found_page,
 } from "./views";
 import edit_publish from "./views/pages/publish/edit_publish";
+import edit_expense from "./views/pages/expense/edit_expense";
 
 const RoleUser: UserRoles = store.getState().userRole;
 
@@ -295,6 +296,11 @@ ReactDOM.render(
           <Route
             component={ExpensePageNew}
             path={AppRoutes.expense_new}
+            exact
+          />
+          <Route
+            component={edit_expense}
+            path={AppRoutes.expense_edit}
             exact
           />
           <Route component={ExpenseArchive} path={AppRoutes.expense} exact />

@@ -72,6 +72,14 @@ class ExpensePageProfile extends React.Component<RouteComponentProps<RouteParams
                   fontSize="10px"
                   color="#ffff"
                   className="mx-4 pointer"
+                  onClick={(e) =>
+                    this.props.history.push(
+                      `${AppRoutes.expense_edit.replace(
+                        ":id",
+                        this.props.match.params.id?.toString() ?? ""
+                      )}`
+                    )
+                  }
                 >
                   <img src="/images/icons/edit.svg" alt="radvix" />
                 </CircleIcon>
