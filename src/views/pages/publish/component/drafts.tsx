@@ -1,11 +1,27 @@
 import moment from "moment";
 import React from "react";
 import { CircleIcon, ThemeCircleIcon } from "../../../components/circle_icon";
+import { publishController } from "../../../../controllers/publish/publish_controller";
 interface TableComponentProp {
   Heading: any[];
   Items: any[];
 }
 export const Drafts: React.FC<TableComponentProp> = ({ Heading, Items }) => {
+  const controller = new publishController();
+   const handelRemove =(id:number)=> {
+      controller.removeDraft({ draftId: id}, (res : boolean ) => {
+
+        controller.getPublishById(
+          { publicationId: id },
+          (res) => {
+            
+          }
+        );
+
+      }, err => console.log(err)
+      )
+    
+  }
   return (
     <div className="table-responsive">
       <table className="table table-striped table-light">
@@ -54,8 +70,8 @@ export const Drafts: React.FC<TableComponentProp> = ({ Heading, Items }) => {
                     width="26px"
                     height="26px"
                     type={ThemeCircleIcon.dark}
-                    onClick={(e) => console.log("sgdsa")}
                     className="pointer mx-1"
+                    onClick={() => {handelRemove(head.id)}}
                   >
                     <img
                       src="/images/icons/garbage_can.svg"

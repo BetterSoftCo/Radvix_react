@@ -150,7 +150,7 @@ export class publishController {
   }
   removeDraft(
     body: { draftId: number},
-    action: (res: boolean) => boolean,
+    action: (res: boolean) => any,
     error: (res: any) => any
   ) {
     this.remote.removeDraft(
