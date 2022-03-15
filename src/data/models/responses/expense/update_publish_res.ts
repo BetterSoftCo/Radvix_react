@@ -1,10 +1,10 @@
 export interface EditExpenseRes {
     status?:  number;
-    result?:  Result;
+    result?:  EditExpenseResResult;
     message?: string;
 }
 
-export interface Result {
+export interface EditExpenseResResult {
     id?:               number;
     title?:            string;
     appTaskId?:        number;
