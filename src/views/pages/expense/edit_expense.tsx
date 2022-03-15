@@ -30,6 +30,7 @@ type StateType = {
   ExternalUrl: Array<string>,
   removedMediasId: number[];
   files: Array<File>;
+  
 };
 class ExpensePageEdit extends React.Component<RouteComponentProps<RouteParams>> {
   controller = new expenseController();
@@ -55,7 +56,6 @@ class ExpensePageEdit extends React.Component<RouteComponentProps<RouteParams>> 
     ExternalUrl: [],
     External: "",
     removedMediasId: [],
-
   };
   onDrop = (files: any) => {
     this.setState({ files });
@@ -84,7 +84,7 @@ class ExpensePageEdit extends React.Component<RouteComponentProps<RouteParams>> 
         this.setState({
           loading: false,
         });
-        this.props.history.push(`${AppRoutes.expense_profile.replace(':id', id?.toString() ?? "")}`)
+        this.props.history.push(`${AppRoutes.expense_profile.replace(':id', this.props.match.params.id.toString() ?? "")}`)
 
       },
       () => {
@@ -111,14 +111,54 @@ class ExpensePageEdit extends React.Component<RouteComponentProps<RouteParams>> 
     className: "text-danger",
   });
   handelEditExpense() {
-
+    const body = {
+      id: parseInt(this.props.match.params.id),
+      title: this.state.title,
+      appTaskId: this.state.appTaskId,
+      description: this.state.description,
+      amount: this.state.amount,
+      date: this.state.date,
+      categoryId: this.state.categoryId,
+      removedMediaId: this.state.removedMediasId,
+    };
+    this.setState({
+      loading: true,
+    });
+    this.controller.updateExpense(
+      body,
+      (res) => {
+        if (this.state.files.length || this.state.ExternalUrl.length) {
+          this.handelUpload(res.id!);
+        } else {
+          debugger
+          this.setState({
+            loading: false,
+          });
+          this.props.history.push(
+            `${AppRoutes.expense_profile.replace(
+              ":id",
+              this.props.match.params.id.toString() ?? ""
+            )}`
+          );
+        }
+      },
+      (err) => {
+        this.setState({
+          loading: false,
+        });
+      }
+    );
+    if (this.validator.allValid()) {
+    } else {
+      this.validator.showMessages();
+      this.forceUpdate();
+    }
   }
   componentDidMount() {
     this.controller.getExpenseById(
       { id: parseInt(this.props.match.params.id) },
       (res) => {
         this.setState({
-          // creatorFirstName: res.creatorFirstName,
           categoryId: res.categoryId,
           date: new Date(),
           title: res.title,
