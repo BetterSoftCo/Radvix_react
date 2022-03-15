@@ -1,23 +1,47 @@
-export interface DisscutionCreateRes {
-    topic:    number;
-    subject:  string;
-    priority: number;
-    usersId:  string[];
-    historiy: Historiy;
+export interface DiscusstionCreateRes {
+  status:  number;
+  result:  DiscusstionCreateResResult;
+  message: string;
 }
 
-
-export interface Historiy {
-    createDate: Date;
-    message:    string;
-    medias:     Media[];
-    userId:     string;
+export interface DiscusstionCreateResResult {
+  id:                   number;
+  topic:                number;
+  subject:              string;
+  priority:             number;
+  users:                User[];
+  histories:            History[];
+  isTicket:             boolean;
+  creatorUserId:        string;
+  creatorUserFirstName: string;
+  creatorUserLastName:  string;
 }
 
-export interface Media {
-  id: number;
-  name: string;
-  externalUrl: string;
+export interface History {
+  id:                 number;
+  createDate:         Date;
+  discussionId:       number;
+  message:            string;
+  attachments:        Attachment[];
+  userId:             string;
+  userFirstName:      string;
+  userLastName:       string;
+  userProfilePicture: string;
+  read:               boolean;
+}
+
+export interface Attachment {
+  id:            number;
+  name:          string;
+  title:         string;
+  externalUrl:   string;
+  useCase:       number;
   inputDataType: number;
-  title: string;
+}
+
+export interface User {
+  id:        string;
+  firstName: string;
+  lastName:  string;
+  image:     string;
 }

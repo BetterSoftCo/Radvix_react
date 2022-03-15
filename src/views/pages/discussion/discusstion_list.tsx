@@ -5,37 +5,56 @@ import { MainButton, MainButtonType } from "../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import { InputIcon } from "../../components/search_box";
 import { SelectComponent } from "../../components/select_input";
-import  DiscusstionListTable  from "./component/discusstion_list_table";
+import DiscusstionListTable from "./component/discusstion_list_table";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
- class DiscusstionList extends React.Component<RouteComponentProps> {
+import { DiscusstionController } from "../../../controllers/discussion/discusstion_controller";
+import { GetAllDiscusstionResResult } from "../../../data/models/responses/discussion/get_all_discusstion_res";
+type StateType = {
+  Discusstion: GetAllDiscusstionResResult[];
+  PageNumber: number;
+  PageSize: number;
+  PageCount: number;
+  TotalCount: number;
+};
+class DiscusstionList extends React.Component<RouteComponentProps> {
   RoleUser = store.getState().userRole;
-  state = {
-    Data: {
-      Items: [
-        {
-          name: "Studying the effects of freeze thaw cycle…",
-          Institution: "Running TGA On XFG…",
-          Category: "Material",
-        },
-        {
-          name: "Studying the effects of freeze thaw cycle…",
-          Institution: "Running TGA On XFG…",
-          Category: "Material",
-        },
-        {
-          name: "Studying the effects of freeze thaw cycle…",
-          Institution: "Running TGA On XFG…",
-          Category: "Material",
-        },
-        {
-          name: "Studying the effects of freeze thaw cycle…",
-          Institution: "Running TGA On XFG…",
-          Category: "Material",
-        },
-      ],
-    },
+  controller = new DiscusstionController();
+  state: StateType = {
+    Discusstion: [],
+    PageNumber: 1,
+    PageSize: 10,
+    PageCount: 0,
+    TotalCount: 0,
   };
+  componentDidMount() {
+    this.GetDiscusstion(this.state.PageNumber, this.state.PageSize);
+  }
+  GetDiscusstion(PageNumber: number, PageSize: number) {
+    // this.controller.getAllDiscusstion(
+    //   { PageNumber: PageNumber, PageSize: PageSize, ticket: false },
+    //   (res) => {
+    //     this.setState({
+    //       Discusstion: res.Discusstion,
+    //       PageCount: Math.ceil(res.count! / this.state.PageSize),
+    //       TotalCount: res.count,
+    //     });
+    //   },
+    //   (err) => {}
+    // );
+  }
+  handelChangePageNumber(e: { selected: number }) {
+    this.setState({
+      PageNumber: e.selected,
+    });
+    this.GetDiscusstion(e.selected + 1, this.state.PageSize);
+  }
+  handelChangePageSize(e: { label: string; value: number }) {
+    this.setState({
+      PageSize: e.value,
+    });
+    this.GetDiscusstion(this.state.PageNumber, e.value);
+  }
   render() {
     return (
       <div className="container-fluid research">
@@ -45,14 +64,21 @@ import { AppRoutes } from "../../../core/constants";
             <div className="TopTableBox d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3">
               <div className="left d-flex w-50 align-items-center">
                 <h6 className="b-title d-flex" style={{ width: "55%" }}>
-                  <span onClick={()=>{window.history.back()}} className="backPage"></span> My Discussion Panels
+                  <span
+                    onClick={() => {
+                      window.history.back();
+                    }}
+                    className="backPage"
+                  ></span>{" "}
+                  My Discussion Panels
                 </h6>
                 <InputIcon
                   chilren={
                     <img src="/images/icons/search_box_icon.svg" alt="" />
                   }
                   width="100%"
-                  placeholder="Search..."  TopPosition="15%"
+                  placeholder="Search..."
+                  TopPosition="15%"
                 ></InputIcon>
               </div>
               <div className="right  d-flex justify-content-between">
@@ -62,7 +88,9 @@ import { AppRoutes } from "../../../core/constants";
                   borderRadius="24px"
                   fontSize="14px"
                   className="my-2 mx-2"
-                  onClick={()=>{this.props.history.push(AppRoutes.equip_new)}}
+                  onClick={() => {
+                    this.props.history.push(AppRoutes.equip_new);
+                  }}
                 ></MainButton>
                 <MainButton
                   children="Laboratories"
@@ -70,7 +98,9 @@ import { AppRoutes } from "../../../core/constants";
                   borderRadius="24px"
                   fontSize="14px"
                   className="my-2 mx-2"
-                  onClick={()=>{this.props.history.push(AppRoutes.laboratory)}}
+                  onClick={() => {
+                    this.props.history.push(AppRoutes.laboratory);
+                  }}
                 ></MainButton>
                 <SelectComponent
                   width="63px"
@@ -85,14 +115,14 @@ import { AppRoutes } from "../../../core/constants";
                 ></SelectComponent>
               </div>
             </div>
-            <DiscusstionListTable
+            {/* <DiscusstionListTable
               Items={this.state.Data.Items}
               Heading={["Subject", "Related To", "Update"]}
-            ></DiscusstionListTable>
+            ></DiscusstionListTable> */}
 
-           <div className="d-flex justify-content-between align-items-baseline">
-                  <div className="d-flex justify-content-end flex-fill">
-                  <ReactPaginate
+            <div className="d-flex justify-content-between align-items-baseline">
+              <div className="d-flex justify-content-end flex-fill">
+                <ReactPaginate
                   previousLabel={
                     <CircleIcon
                       width="24px"
@@ -118,21 +148,21 @@ import { AppRoutes } from "../../../core/constants";
                   pageCount={20}
                   marginPagesDisplayed={2}
                   pageRangeDisplayed={5}
-                  onPageChange={()=>{console.log('changepage')}}
+                  onPageChange={() => {
+                    console.log("changepage");
+                  }}
                   containerClassName={"pagination"}
                   activeClassName={"active"}
                 />
-                  </div>
-                  <div className="d-flex justify-content-end flex-fill">
-                  <p className="text-right mb-0 " >Total Results: 45</p>
-                  </div>
-                 
-                
               </div>
+              <div className="d-flex justify-content-end flex-fill">
+                <p className="text-right mb-0 ">Total Results: 45</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     );
   }
 }
-export default withRouter(DiscusstionList)
+export default withRouter(DiscusstionList);
