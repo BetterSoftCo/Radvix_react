@@ -1,12 +1,15 @@
 import { toast } from "react-toastify";
 import { CreateDraftReq } from "../../data/models/requests/publish/create_draft_req";
 import { CreatePublishReq } from "../../data/models/requests/publish/create_publish_req";
+import { EditPublishReq } from "../../data/models/requests/publish/update_publish_req";
 import { AddUserResResult } from "../../data/models/responses/publish/add_user_res";
 import { CreateDraftResResult } from "../../data/models/responses/publish/create_draft_res";
 import { CreatePublishResResult } from "../../data/models/responses/publish/create_publish_res";
 import { GetAllPublishesResult } from "../../data/models/responses/publish/publishes_res";
 import { GetPublishByIDResult } from "../../data/models/responses/publish/publish_by_id_res";
+import { RemoveDraftRes } from "../../data/models/responses/publish/remove_draft_res";
 import { SearchPublishResResult } from "../../data/models/responses/publish/search_publish_res";
+import { EditPublishResResult } from "../../data/models/responses/publish/update_publish_res";
 import { RemotePublish } from "../../data/remotes/publish/remote_publish";
 import { store } from "../../data/store";
 export class publishController {
@@ -110,6 +113,47 @@ export class publishController {
     error: (res: any) => any
   ) {
     this.remote.addUser(
+      body,
+      (res) => {
+        action(res.result!);
+        toast.success(`${res.message}`, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      },
+      (err) => {
+        toast.error(`${err.message}`, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+        error(err);
+      }
+    );
+  }
+  updatePublish(
+    body: EditPublishReq,
+    action: (res: EditPublishResResult) => any,
+    error: (res: any) => any
+  ) {
+    this.remote.updatePublish(
+      body,
+      (res) => {
+        toast.success(`${res.message}`, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+        action(res.result!);
+      },
+      (err) => {
+        toast.error(`${err.message}`, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      }
+    );
+  }
+  removeDraft(
+    body: { draftId: number},
+    action: (res: boolean) => any,
+    error: (res: any) => any
+  ) {
+    this.remote.removeDraft(
       body,
       (res) => {
         action(res.result!);

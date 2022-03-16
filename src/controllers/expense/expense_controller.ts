@@ -1,9 +1,11 @@
 import { toast } from "react-toastify";
+import { EditExpenseReq } from "../../data/models/requests/expense/update_expense_req";
 import { CreatePublishReq } from "../../data/models/requests/publish/create_publish_req";
 import { CreateStateExpenseResResult } from "../../data/models/responses/expense/create_state_expense_res";
 import { GetAllExpensesResult } from "../../data/models/responses/expense/expenses_res";
 import { GetExpenseByIDResult } from "../../data/models/responses/expense/expense_by_id_res";
 import { SearchExpenseResResult } from "../../data/models/responses/expense/search_expense_res";
+import { EditExpenseResResult } from "../../data/models/responses/expense/update_publish_res";
 import { CreatePublishResResult } from "../../data/models/responses/publish/create_publish_res";
 import { RemoteExpense } from "../../data/remotes/expense/remote_expense";
 import { store } from "../../data/store";
@@ -100,6 +102,26 @@ export class expenseController {
         action(res.result!);
       },
       (err) => {}
+    );
+  }
+  updateExpense(
+    body: EditExpenseReq,
+    action: (res: EditExpenseResResult) => any,
+    error: (res: any) => any
+  ) {
+    this.remote.updateExpense(
+      body,
+      (res) => {
+        toast.success(`${res.message}`, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+        action(res.result!);
+      },
+      (err) => {
+        toast.error(`${err.message}`, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      }
     );
   }
 }

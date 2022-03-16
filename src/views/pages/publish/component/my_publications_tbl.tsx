@@ -27,8 +27,8 @@ const MyPublicationsTable: React.FC<TableComponentProp & RouteComponentProps> =
               <tr key={index}>
                 <td>{head.name}</td>
                 <td>{head.category}</td>
-                <td>{head.assignedUserFirstName}</td>
-                <td>{moment(head.Deadline).format("YYYY/MM/DD")}</td>
+                <td>{head.assignedUserFirstName} {head.assignedUserLastName}</td>
+                <td>{moment(head.endDate).format("YYYY/MM/DD")}</td>
                 <td>
                   <div className="col d-flex justify-content-between align-items-center">
                    <CircleIcon
@@ -46,6 +46,22 @@ const MyPublicationsTable: React.FC<TableComponentProp & RouteComponentProps> =
                       className="pointer"
                     >
                       <img src="/images/icons/google_docs.svg" alt="radvix" width={12} height={12} />
+                    </CircleIcon>
+                    <CircleIcon
+                      width="26px"
+                      height="26px"
+                      type={ThemeCircleIcon.dark}
+                      onClick={(e) =>
+                        props.history.push(
+                          `${AppRoutes.publish_edit.replace(
+                            ":id",
+                            head.id?.toString() ?? ""
+                          )}`
+                        )
+                      }
+                      className="pointer"
+                    >
+                      <img src="/images/icons/edit.svg" alt="radvix" />
                     </CircleIcon>
                   </div>
                 </td>

@@ -1,10 +1,12 @@
 import { HTTP } from "../../../core/http_common";
 import { CreateExpenseReq } from "../../models/requests/expense/create_expense_req";
+import { EditExpenseReq } from "../../models/requests/expense/update_expense_req";
 import { CreateExpenseRes } from "../../models/responses/expense/create_expense_res";
 import { CreateStateExpenseRes } from "../../models/responses/expense/create_state_expense_res";
 import { GetAllExpenses } from "../../models/responses/expense/expenses_res";
 import { GetExpenseByID } from "../../models/responses/expense/expense_by_id_res";
 import { SearchExpenseRes } from "../../models/responses/expense/search_expense_res";
+import { EditExpenseRes } from "../../models/responses/expense/update_publish_res";
 
 export class RemoteExpense {
   createExpense(body:CreateExpenseReq,action: (res: CreateExpenseRes) => any,error: (res: any) => any){
@@ -37,5 +39,8 @@ export class RemoteExpense {
       .catch((err) => {
         error(err);
       });
+  }
+  updateExpense(body:EditExpenseReq,action: (res: EditExpenseRes) => any,error: (res: any) => any){
+    return HTTP.put("/Expense" , body).then((res) => action(res.data)).catch((err)=>{error(err)});
   }
 }

@@ -6,13 +6,16 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { MainButton, MainButtonType } from "../../components/button";
 import { SelectComponent } from "../../components/select_input";
-import { ButtonGroup } from "../../components/botton_group";
 import { BoxAlert } from "../../components/box_alert";
 import { RouteComponentProps, withRouter } from "react-router";
 import SimpleReactValidator from "simple-react-validator";
 import { publishController } from "../../../controllers/publish/publish_controller";
 import { AppRoutes } from "../../../core/constants";
-class PublishPageNew extends React.Component<RouteComponentProps> {
+import { EditPublishReq } from "../../../data/models/requests/publish/update_publish_req";
+interface RouteParams {
+  id: string;
+}
+class PublishPageEdit extends React.Component<RouteComponentProps<RouteParams>> {
   RoleUser = store.getState().userRole;
   controller = new publishController();
   date = new Date();
@@ -25,10 +28,9 @@ class PublishPageNew extends React.Component<RouteComponentProps> {
     className: "text-danger",
   });
   state = {
+    id: 0,
     name: '',
     categoryId: 0,
-    submitAt: '',
-    priority: 2,
     startDate: new Date(),
     endDate: new Date(),
     users: [],
@@ -36,52 +38,8 @@ class PublishPageNew extends React.Component<RouteComponentProps> {
     loading: false,
     listMembers: [],
     categories: [],
-    drafList: []
   };
-  handelCreateData() {
-    if (this.validator.allValid()) {
-      const body = {
-        researchId: store.getState().ResearchId,
-        categoryId: this.state.categoryId,
-        name: this.state.name,
-        submitAt: this.state.submitAt,
-        priority: this.state.priority,
-        startDate: this.state.startDate,
-        endDate: this.state.endDate,
-        users: this.state.users,
-        draftUploader: this.state.draftUploader
-      }
-      this.controller.createPublish(
-        body,
-        (res) => {
-          this.setState(
-            {
-            name: '',
-            categoryId: 0,
-            submitAt: '',
-            priority: 1,
-            startDate: new Date(),
-            endDate: new Date(),
-            users: [],
-            draftUploader: '',
-            loading: false,
-            listMembers: [],
-            categories: [],
-            drafList: []
-          });
-          this.props.history.push(`${AppRoutes.publish_profile.replace(':id', res.id?.toString() ?? "")}`)
-        },
-        (err) => {
-          this.setState({
-            loading: false,
-          });
-        }
-      );
-    } else {
-      this.validator.showMessages();
-      this.forceUpdate();
-    }
-  }
+  
   handleChange(target: string, val: any) {
     this.setState({
       [target]: val,
@@ -90,8 +48,6 @@ class PublishPageNew extends React.Component<RouteComponentProps> {
   handelChangeSelectMultiple(e: Array<{ label: string; value: number }>, target: string) {
     const user_Id = e.map((item) => item.value);
     const drafList = e.map((item) => item);
-
-
     this.setState({
       [target]: user_Id,
       drafList: drafList,
@@ -105,17 +61,18 @@ class PublishPageNew extends React.Component<RouteComponentProps> {
     this.setState({ [target]: e.value });
   }
   componentDidMount() {
-    // this.controller.SearchPublish((res) => {
-    //   this.setState({
-    //     listMembers: res,
-    //   });
-    // });
-    this.GetSearchPublish()
-    store.subscribe(() => {
-      this.GetSearchPublish()
-    })
-  }
-  GetSearchPublish() {
+    this.controller.getPublishById(
+      { publicationId: parseInt(this.props.match.params.id) },
+      (res) => {
+        this.setState({
+          name: res.name,
+          startDate: new Date(),
+          endDate: new Date(),
+          users: res.users,
+
+        });
+      }
+    );
     this.controller.SearchPublish(res => {
       this.setState({
         listMembers: res.users?.map(item => {
@@ -127,15 +84,47 @@ class PublishPageNew extends React.Component<RouteComponentProps> {
       })
     }, err => { })
   }
-
-
+  UpdatePublish() {
+    if (this.validator.allValid()) {
+      const body: EditPublishReq = {
+        id: parseInt(this.props.match.params.id),
+        startDate: this.state.startDate,
+        endDate: this.state.endDate,
+        name: this.state.name,
+        categoryId: this.state.categoryId,
+        addedUsers:this.state.users
+      };
+      this.setState({
+        loading: true,
+      });
+      this.controller.updatePublish(
+        body,
+        (res) => {
+          this.setState({
+            loading: false,
+          });
+          this.props.history.push(
+            AppRoutes.publish
+          );
+        },
+        (err) => {
+          this.setState({
+            loading: false,
+          });
+        }
+      );
+    } else {
+      this.validator.showMessages();
+      this.forceUpdate();
+    }
+  }
   render() {
     return (
       <div className="container-fluid research new-research">
         <div className="row"></div>
         <div className="col-12 box-content p-3">
           <h5 className="b-title d-flex">
-            <span onClick={() => { window.history.back() }} className="backPage"></span> New Publication/Presentation
+            <span onClick={() => { window.history.back() }} className="backPage"></span> Edit Publication/Presentation
           </h5>
           <div className="form row">
             <div className="col-md-6 left">
@@ -169,40 +158,6 @@ class PublishPageNew extends React.Component<RouteComponentProps> {
                   )}
                   value={this.state.name}
                 ></InputComponent>
-              </div>
-              <div className="item">
-                <InputComponent
-                  type={InputType.text}
-                  label="Planning To Submit At:"
-                  popQuestion="Planning To Submit At:"
-                  optional="optional"
-                  onChange={(e) => {
-                    this.handleChange("submitAt", e.target.value);
-                  }}
-                ></InputComponent>
-              </div>
-              <div className="item">
-                <ButtonGroup
-                  label="Publication Priority:"
-                  popQuestion="Publication Priority:"
-                  name="PublicationPriority"
-                  items={[
-                    { name: "Low", id: 0 },
-                    { name: "Medium", id: 1 },
-                    { name: "High", id: 2 },
-                  ]}
-                  TextItem="name"
-                  ValueItem="id"
-                  selected={this.state.priority}
-                  inValid={this.validator.message(
-                    "Research Priority",
-                    this.state.priority,
-                    "required"
-                  )}
-                  onChange={(e) => {
-                    this.handleChange("priority", parseInt(e.target.value));
-                  }}
-                ></ButtonGroup>
               </div>
               <div className="item">
                 <span className="label d-flex align-items-center">
@@ -257,42 +212,19 @@ class PublishPageNew extends React.Component<RouteComponentProps> {
                 text="No Member Has Been Added Yet!
                 (You will automatically be added to this discussion)"
               ></BoxAlert>
-              <div className="item">
-                <SelectComponent
-                  items={this.state.drafList}
-                  TextItem="name"
-                  ValueItem="id"
-                  className="my-2"
-                  label="Who Will Upload The First Draft?"
-                  placeholder="Click to see the list…"
-                  popQuestion="Who Will Upload The First Draft?"
-                  onChange={(e) => {
-                    this.handelChangeSelect("draftUploader", e);
-                  }}
-                  isMulti={false}
-                ></SelectComponent>
-              </div>
             </div>
             <div className="col-12 d-flex justify-content-center align-items-center my-4">
-              <MainButton
-                type={MainButtonType.light}
-                children={"Start Over"}
-                borderRadius="50px"
-                fontSize="18px"
-                className="mx-2"
-                minHeight="43px"
-                minWidth="136px"
-              ></MainButton>
+              
               <MainButton
                 type={MainButtonType.dark}
-                children={"Create"}
+                children={"Edit"}
                 borderRadius="50px"
                 fontSize="18px"
                 className="mx-2"
                 minHeight="43px"
                 minWidth="136px"
                 onClick={() => {
-                  this.handelCreateData()
+                  this.UpdatePublish()
                 }}
                 loading={this.state.loading}
               ></MainButton>
@@ -303,4 +235,4 @@ class PublishPageNew extends React.Component<RouteComponentProps> {
     );
   }
 }
-export default withRouter(PublishPageNew)
+export default withRouter(PublishPageEdit)
