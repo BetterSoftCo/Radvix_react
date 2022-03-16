@@ -36,6 +36,11 @@ export class AppRoutes {
   static equip_edit: string = "/dashboard/Equip/edit/:id";
   static discussion: string = "/dashboard/Discussion/panel/:id";
   static discussion_new: string = "/dashboard/Discussion/new/:topic/:section";
+	static setting:string ='/dashboard/Setting/';
+	static ticketing:string ='/dashboard/Ticketing/';
+	static ticketing_new:string ='/dashboard/Ticketing/new';
+	static library_page:string ='/library/page';
+	static register_page:string ='/register';
   static discussion_list: string = "/dashboard/Discussion/list/";
   static data: string = "/dashboard/Data/";
   static data_new: string = "/dashboard/Data/new";
@@ -44,14 +49,10 @@ export class AppRoutes {
   static data_edit: string = "/dashboard/Data/edit/:dataid/:appTaskId";
   static publish: string = "/dashboard/Publish/";
   static publish_new: string = "/dashboard/Publish/new";
-  static publish_profile: string = "/dashboard/Publish/profile/:id";
   static publish_upload: string = "/dashboard/Publish/upload/:id";
   static expense: string = "/dashboard/Expense/";
   static expense_new: string = "/dashboard/Expense/new";
   static expense_profile: string = "/dashboard/Expense/profile/:id";
-  static setting: string = "/dashboard/Setting/";
-  static ticketing: string = "/dashboard/Ticketing/";
-  static ticketing_new: string = "/dashboard/Ticketing/new";
   static ticketing_ticket: string = "/dashboard/Ticketing/ticket/:id";
   static admin_dashboard: string = "/dashboard/Admin";
   static admin_clients: string = "/dashboard/Admin/clients/";
@@ -60,6 +61,8 @@ export class AppRoutes {
   static admin_tickets: string = "/dashboard/Admin/tickets/";
   static admin_ticket: string = "/dashboard/Admin/ticket/";
   static admin_broadcast: string = "/dashboard/Admin/broadcast/";
-  static library_page: string = "/library/page";
-  static register_page: string = "/register";
+  static publish_profile:string ='/dashboard/Publish/profile/:id';
+	static publish_edit: string = "/dashboard/Publish/edit/:id";
+  static expense_edit: string = "/dashboard/Expense/edit/:id";
 }
+  
