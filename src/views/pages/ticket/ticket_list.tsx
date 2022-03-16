@@ -5,45 +5,56 @@ import { MainButton, MainButtonType } from "../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import { InputIcon } from "../../components/search_box";
 import { SelectComponent } from "../../components/select_input";
-import  MyTicketTable  from "./component/my_tickets";
+import MyTicketTable from "./component/my_tickets";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
+import { Discussion } from "../../../data/models/responses/discussion/get_all_discusstion_res";
+import { DiscusstionController } from "../../../controllers/discussion/discusstion_controller";
+type StateType = {
+  Discusstion: Discussion[];
+  PageNumber: number;
+  PageSize: number;
+  PageCount: number;
+  TotalCount: number;
+};
 class TicketPage extends React.Component<RouteComponentProps> {
   RoleUser = store.getState().userRole;
-  state = {
-    Data: {
-      Items: [
-        {
-          name: "Problem with saving the projects",
-          Institution: "1253335",
-          Category: "07/22/2021   17:13",
-          Eqiups: "1 message",
-          status: "open",
-        },
-        {
-          name: "Problem with saving the projects",
-          Institution: "1253335",
-          Category: "07/22/2021   17:13",
-          Eqiups: "1 message",
-          status: "open",
-        },
-        {
-          name: "Problem with saving the projects",
-          Institution: "1253335",
-          Category: "07/22/2021   17:13",
-          Eqiups: "1 message",
-          status: "open",
-        },
-        {
-          name: "Problem with saving the projects",
-          Institution: "1253335",
-          Category: "07/22/2021   17:13",
-          Eqiups: "1 message",
-          status: "open",
-        },
-      ],
-    },
+  controller = new DiscusstionController();
+  state: StateType = {
+    Discusstion: [],
+    PageNumber: 1,
+    PageSize: 10,
+    PageCount: 0,
+    TotalCount: 0,
   };
+  componentDidMount() {
+    this.GetDiscusstion(this.state.PageNumber, this.state.PageSize);
+  }
+  GetDiscusstion(PageNumber: number, PageSize: number) {
+    this.controller.getAllDiscusstion(
+      { PageNumber: PageNumber, PageSize: PageSize, ticket: true },
+      (res) => {
+        this.setState({
+          Discusstion: res.discussions,
+          PageCount: Math.ceil(res.count! / this.state.PageSize),
+          TotalCount: res.count,
+        });
+      },
+      (err) => {}
+    );
+  }
+  handelChangePageNumber(e: { selected: number }) {
+    this.setState({
+      PageNumber: e.selected,
+    });
+    this.GetDiscusstion(e.selected + 1, this.state.PageSize);
+  }
+  handelChangePageSize(e: { label: string; value: number }) {
+    this.setState({
+      PageSize: e.value,
+    });
+    this.GetDiscusstion(this.state.PageNumber, e.value);
+  }
   render() {
     return (
       <div className="container-fluid research">
@@ -58,7 +69,8 @@ class TicketPage extends React.Component<RouteComponentProps> {
                     <img src="/images/icons/search_box_icon.svg" alt="" />
                   }
                   width="100%"
-                  placeholder="Search..."  TopPosition="15%"
+                  placeholder="Search..."
+                  TopPosition="15%"
                 ></InputIcon>
               </div>
               <div className="right w-50 d-flex justify-content-end align-items-center">
@@ -73,20 +85,25 @@ class TicketPage extends React.Component<RouteComponentProps> {
                   }}
                 ></MainButton>
                 <SelectComponent
-                  width="63px"
+                  width="90px"
                   height="44px"
                   items={[
-                    { item: 1, id: 1 },
-                    { item: 2, id: 2 },
-                    { item: 3, id: 3 },
+                    { label: "10", value: 10 },
+                    { label: "15", value: 15 },
+                    { label: "20", value: 20 },
                   ]}
                   TextItem="item"
                   ValueItem="id"
+                  isMulti={false}
+                  placeholder={this.state.PageSize.toString()}
+                  onChange={(e) => {
+                    this.handelChangePageSize(e);
+                  }}
                 ></SelectComponent>
               </div>
             </div>
             <MyTicketTable
-              Items={this.state.Data.Items}
+              Items={this.state.Discusstion}
               Heading={["Subject", "Ticket #", "Date", "Update", "Status"]}
             ></MyTicketTable>
 
@@ -115,18 +132,20 @@ class TicketPage extends React.Component<RouteComponentProps> {
                   }
                   breakLabel={"..."}
                   breakClassName={"break-me"}
-                  pageCount={20}
+                  pageCount={this.state.PageCount}
                   marginPagesDisplayed={2}
                   pageRangeDisplayed={5}
-                  onPageChange={() => {
-                    console.log("changepage");
+                  onPageChange={(e) => {
+                    this.handelChangePageNumber(e);
                   }}
                   containerClassName={"pagination"}
                   activeClassName={"active"}
                 />
               </div>
               <div className="d-flex justify-content-end flex-fill">
-                <p className="text-right mb-0 ">Total Results: 45</p>
+                <p className="text-right mb-0 ">
+                  Total Results: {this.state.TotalCount}
+                </p>
               </div>
             </div>
           </div>

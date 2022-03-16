@@ -85,7 +85,6 @@ class TicketPageNew extends React.Component<RouteComponentProps> {
   CreateTicket() {
     if (this.validator.allValid()) {
       const body: CreateTicketReq = {
-        id: 0,
         categoryId: this.state.categoryId,
         subject: this.state.subject,
         priority: this.state.priority,
@@ -99,11 +98,9 @@ class TicketPageNew extends React.Component<RouteComponentProps> {
         body,
         (res) => {
           if (this.state.files.length) {
-            // this.handelUpload(res.id);
+            this.handelUpload(res.id);
           } else {
-            this.props.history.push(
-              `${AppRoutes.ticketing.replace(":id", res.id.toString() ?? "")}`
-            );
+            this.props.history.push(AppRoutes.ticketing);
           }
 
           this.setState({
@@ -347,6 +344,7 @@ class TicketPageNew extends React.Component<RouteComponentProps> {
                 onClick={() => {
                   this.CreateTicket();
                 }}
+                loading={this.state.loading}
               ></MainButton>
             </div>
           </div>

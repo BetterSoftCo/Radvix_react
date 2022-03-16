@@ -52,7 +52,7 @@ export class AppRoutes {
   static setting: string = "/dashboard/Setting/";
   static ticketing: string = "/dashboard/Ticketing/";
   static ticketing_new: string = "/dashboard/Ticketing/new";
-  static ticketing_ticket: string = "/dashboard/Ticketing/ticket";
+  static ticketing_ticket: string = "/dashboard/Ticketing/ticket/:id";
   static admin_dashboard: string = "/dashboard/Admin";
   static admin_clients: string = "/dashboard/Admin/clients/";
   static admin_member: string = "/dashboard/Admin/member/";
