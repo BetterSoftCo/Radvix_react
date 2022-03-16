@@ -109,7 +109,11 @@ class PublicationProfile extends React.Component<RouteComponentProps<RouteParams
                 fontSize="14px"
                 className="mx-2 px-3"
                 onClick={() => {
-                  this.props.history.push(AppRoutes.discussion);
+                  this.props.history.push(
+                    `${AppRoutes.discussion_new
+                      .replace(":topic", "7")
+                      .replace(":section", "10")}`
+                  );
                 }}
               ></MainButton>
             </div>

@@ -30,7 +30,11 @@ type StateType = {
   listDiscusstionOn: Array<{ label: string; value: number } | {}>;
   listMembers: Array<{ label: string; value: string } | {}>;
 };
-class NewDiscusstion extends React.Component<RouteComponentProps> {
+interface RouteParams {
+  topic: string;
+  section: string;
+}
+class NewDiscusstion extends React.Component<RouteComponentProps<RouteParams>> {
   RoleUser = store.getState().userRole;
   controller = new DiscusstionController();
   UploadController = new UploadController();
@@ -81,6 +85,27 @@ class NewDiscusstion extends React.Component<RouteComponentProps> {
             return { name: item.title, id: item.id };
           }),
         });
+        if (parseInt(this.props.match.params.topic) !== 1) {
+          this.controller.discusstionSectionUser(
+            {
+              discussionTopic: parseInt(this.props.match.params.topic),
+              sectionId: parseInt(this.props.match.params.section),
+            },
+            (res) => {
+              this.setState({
+                listMembers: res.members
+                  ? res.members.map((item) => {
+                      return {
+                        label: item.firstName + " " + item.lastName,
+                        value: item.id,
+                      };
+                    })
+                  : [],
+              });
+            },
+            (err) => {}
+          );
+        }
       },
       (err) => {}
     );

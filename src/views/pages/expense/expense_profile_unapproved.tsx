@@ -83,7 +83,13 @@ class ExpensePageProfile extends React.Component<RouteComponentProps<RouteParams
               borderRadius="24px"
               fontSize="14px"
               className="px-3"
-              onClick={() => { this.props.history.push(AppRoutes.discussion) }}
+              onClick={() => {
+                this.props.history.push(
+                  `${AppRoutes.discussion_new
+                    .replace(":topic", "8")
+                    .replace(":section", "9")}`
+                );
+              }}
             ></MainButton>
           </div>
           <div className="Studying p-4 my-2">

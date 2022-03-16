@@ -133,7 +133,11 @@ class TaskPageProfile extends React.Component<
               fontSize="14px"
               className="px-3"
               onClick={() => {
-                this.props.history.push(AppRoutes.discussion);
+                this.props.history.push(
+                  `${AppRoutes.discussion_new
+                    .replace(":topic", "2")
+                    .replace(":section", "4")}`
+                );
               }}
             ></MainButton>
           </div>

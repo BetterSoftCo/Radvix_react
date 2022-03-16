@@ -117,7 +117,11 @@ class ResearchPageProfile extends React.Component<
               fontSize="14px"
               className="px-3"
               onClick={() => {
-                this.props.history.push(AppRoutes.discussion);
+                this.props.history.push(
+                  `${AppRoutes.discussion_new
+                    .replace(":topic", "0")
+                    .replace(":section", "1")}`
+                );
               }}
             ></MainButton>
           </div>

@@ -753,7 +753,9 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
           >
             <IconTextVertical
               onClick={() => {
-                props.history.push(AppRoutes.discussion_new);
+                props.history.push(
+                  `${AppRoutes.discussion_new.replace(":topic", "1")}`
+                );
               }}
               fontSize="15px"
               className="lighter mx-1 my-1 pointer"

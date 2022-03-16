@@ -106,6 +106,13 @@ class EquipProfile extends React.Component<RouteComponentProps<RouteParams>> {
                 borderRadius="24px"
                 fontSize="14px"
                 className="px-3"
+                onClick={() => {
+                  this.props.history.push(
+                    `${AppRoutes.discussion_new
+                      .replace(":topic", "4")
+                      .replace(":section", "3")}`
+                  );
+                }}
               ></MainButton>
             </div>
           </div>

@@ -35,7 +35,7 @@ export class AppRoutes {
   static equip_profile: string = "/dashboard/Equip/profile/:id";
   static equip_edit: string = "/dashboard/Equip/edit/:id";
   static discussion: string = "/dashboard/Discussion/panel/:id";
-  static discussion_new: string = "/dashboard/Discussion/new/";
+  static discussion_new: string = "/dashboard/Discussion/new/:topic/:section";
   static discussion_list: string = "/dashboard/Discussion/list/";
   static data: string = "/dashboard/Data/";
   static data_new: string = "/dashboard/Data/new";

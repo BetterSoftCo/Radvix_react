@@ -122,7 +122,11 @@ class DataPageProfile extends React.Component<
               fontSize="14px"
               className="px-3"
               onClick={() => {
-                this.props.history.push(AppRoutes.discussion);
+                this.props.history.push(
+                  `${AppRoutes.discussion_new
+                    .replace(":topic", "3")
+                    .replace(":section", "6")}`
+                );
               }}
             ></MainButton>
           </div>
@@ -182,16 +186,12 @@ class DataPageProfile extends React.Component<
               <div className="row border-bottom">
                 <h6 className="col-4 t-title mb-0">Date</h6>
                 <div className="col-8 t-desc">
-                  {moment(this.state.data.createdDate).format(
-                    "YYYY/MM/DD"
-                  )}
+                  {moment(this.state.data.createdDate).format("YYYY/MM/DD")}
                 </div>
               </div>
               <div className="row border-bottom">
                 <h6 className="col-4 t-title mb-0">Data Description</h6>
-                <div className="col-8 t-desc">
-                  {this.state.description}
-                </div>
+                <div className="col-8 t-desc">{this.state.description}</div>
               </div>
 
               <div className="row border-bottom">

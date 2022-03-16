@@ -7,6 +7,7 @@ import { DiscusstionCreateResResult } from "../../data/models/responses/discussi
 import { DiscusstionSearchResResult } from "../../data/models/responses/discussion/discusstion_search_res";
 import { GetAllDiscusstionResResult } from "../../data/models/responses/discussion/get_all_discusstion_res";
 import { GetDiscusstionPanelResResult } from "../../data/models/responses/discussion/get_discusstion_panel_res";
+import { DiscusstionSectionResResult } from "../../data/models/responses/discussion/section_user_res";
 import { RemoteDiscusstion } from "../../data/remotes/discussion/remote_discusstion";
 export class DiscusstionController {
   remote = new RemoteDiscusstion();
@@ -122,6 +123,27 @@ export class DiscusstionController {
     error: (res: any) => any
   ) {
     this.remote.getDiscusstionPanel(
+      body,
+      (res) => {
+        toast.success(`${res.message}`, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+        action(res.result);
+      },
+      (err) => {
+        toast.error(`${err.message}`, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+        error(err);
+      }
+    );
+  }
+  discusstionSectionUser(
+    body: { discussionTopic: number; sectionId: number },
+    action: (res: DiscusstionSectionResResult) => any,
+    error: (res: any) => any
+  ) {
+    this.remote.discusstionSectionUser(
       body,
       (res) => {
         toast.success(`${res.message}`, {

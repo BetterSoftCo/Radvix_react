@@ -7,6 +7,7 @@ import { DiscusstionCreateRes } from "../../models/responses/discussion/discusst
 import { DiscusstionSearchRes } from "../../models/responses/discussion/discusstion_search_res";
 import { GetAllDiscusstionRes } from "../../models/responses/discussion/get_all_discusstion_res";
 import { GetDiscusstionPanelRes } from "../../models/responses/discussion/get_discusstion_panel_res";
+import { DiscusstionSectionRes } from "../../models/responses/discussion/section_user_res";
 
 export class RemoteDiscusstion {
   createDiscusstion(
@@ -75,6 +76,19 @@ export class RemoteDiscusstion {
   ) {
     return HTTP.get(
       `/Discussion/Search?discussionTopic=${body.discussionTopic}&isTicket=${body.isTicket}`
+    )
+      .then((res) => action(res.data))
+      .catch((err) => {
+        error(err);
+      });
+  }
+  discusstionSectionUser(
+    body: { discussionTopic: number; sectionId: number },
+    action: (res: DiscusstionSectionRes) => any,
+    error: (res: any) => any
+  ) {
+    return HTTP.get(
+      `/Discussion/SectionUsers?discussionTopic=${body.discussionTopic}&sectionId=${body.sectionId}`
     )
       .then((res) => action(res.data))
       .catch((err) => {

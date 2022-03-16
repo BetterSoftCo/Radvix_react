@@ -162,8 +162,11 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
                     );
                   }}
                   src={
-                    local.getUserInfo().image.length
-                      ? AppConstants.base_url_image + local.getUserInfo().image
+                    local.getUserId()
+                      ? local.getUserInfo().image.length
+                        ? AppConstants.base_url_image +
+                          local.getUserInfo().image
+                        : "/Images/images/img_avatar.png"
                       : "/Images/images/img_avatar.png"
                   }
                   alt="Avatar"
