@@ -39,7 +39,7 @@ const MyTicketTable: React.FC<TableComponentProp & RouteComponentProps> = (
                   props.history.push(AppRoutes.ticketing_ticket);
                 }}
               >
-                {head.subject}
+                #{head.id}
               </td>
               <td
                 onClick={() => {
