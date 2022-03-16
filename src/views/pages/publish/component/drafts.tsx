@@ -5,19 +5,13 @@ import { publishController } from "../../../../controllers/publish/publish_contr
 interface TableComponentProp {
   Heading: any[];
   Items: any[];
+  Reload:any
 }
-export const Drafts: React.FC<TableComponentProp> = ({ Heading, Items }) => {
+export const Drafts: React.FC<TableComponentProp> = ({ Heading, Items ,Reload}) => {
   const controller = new publishController();
    const handelRemove =(id:number)=> {
       controller.removeDraft({ draftId: id}, (res : boolean ) => {
-
-        controller.getPublishById(
-          { publicationId: id },
-          (res) => {
-            
-          }
-        );
-
+        Reload()
       }, err => console.log(err)
       )
     

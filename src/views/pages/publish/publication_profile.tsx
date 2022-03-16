@@ -71,6 +71,18 @@ class PublicationProfile extends React.Component<RouteComponentProps<RouteParams
       });
     }
   }
+  handleGetById(){
+    this.controller.getPublishById(
+      { publicationId: parseInt(this.props.match.params.id) },
+      (res) => {
+        this.setState({
+          publication: res,
+          nextDraft: res.nextDraft,
+          drafts: res.drafts
+        });
+      }
+    );
+  }
   render() {
     return (
       <div className="container-fluid research new-research">
@@ -272,6 +284,7 @@ class PublicationProfile extends React.Component<RouteComponentProps<RouteParams
             </div>
             <Drafts
               Items={this.state.drafts}
+               Reload= {() => this.handleGetById()}
               Heading={[{ name: 'File', center: false }, { name: 'Added By', center: true }, { name: 'Date', center: true }, { name: 'Version', center: true }]}
             ></Drafts>
             <div className="d-flex justify-content-center align-items-center">
