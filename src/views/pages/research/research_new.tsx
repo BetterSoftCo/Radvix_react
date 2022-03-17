@@ -142,7 +142,7 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
     }
 
     formData.append('UseCase', '0')
-    formData.append('ResearchId', id.toString())
+    formData.append('SectionId', id.toString())
     
     
     await this.UploadController.UloadMedia(formData, (res) => {

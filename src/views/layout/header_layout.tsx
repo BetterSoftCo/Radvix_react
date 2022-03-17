@@ -14,6 +14,7 @@ import AcordienTableResearchHeader from "./component/acordian_table_research";
 import { InputIcon } from "../components/search_box";
 import ReactPaginate from "react-paginate";
 import { CircleIcon, ThemeCircleIcon } from "../components/circle_icon";
+import { SetResearchId } from "../../data/store/actions/research_action";
 interface IHeader {}
 const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
   const [listResearch, setListResearch] = useState<Array<any>>([]);
@@ -30,9 +31,13 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
   const RoleUser = store.getState().userRole;
   useEffect(() => {
     GetResearch(PageNumber, PageSize);
-    timelineProgress();
-    store.subscribe(() => {
+    if (store.getState().ResearchId >= 0){
       timelineProgress();
+    }
+    store.subscribe(() => {
+      if (store.getState().ResearchId >= 0) {
+        timelineProgress();
+      }
     });
   }, []);
   const handelChangePageNumber = (e: { selected: number }) => {
@@ -51,6 +56,12 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
           setListResearch(res.researchesList!);
           setPageCount(Math.ceil(res.count! / PageSize));
           setTotalCount(res.count!);
+          if (res.count && res.count > 0) {
+            if (res.researchesList) {
+              changeResearch(res.researchesList[0].title!);
+              store.dispatch(SetResearchId(res.researchesList[0].id!));
+            }
+          }
         },
         (err) => {
           console.log("GetResearch layout");

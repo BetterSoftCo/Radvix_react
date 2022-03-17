@@ -6,6 +6,7 @@ import { MainButton, MainButtonType } from "../../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../../components/circle_icon";
 import "../../../../core/number_extentions";
 import { AccessPermition, UserRoles } from "../../../../core/utils";
+import moment from "moment";
 interface IAcordienTableResearch {
   Heading: any[];
   Items: ResearchesList[];
@@ -44,7 +45,7 @@ const AcordienTableResearch: React.FC<
                 ></span>{" "}
                 {head.title}
               </td>
-              <td>{head.endDate}</td>
+              <td>{moment(head.endDate).format("YYYY/MM/DD")}</td>
               <td className="text-center">
                 {" "}
                 <MainButton

@@ -59,17 +59,24 @@ export class DashboardPage extends React.Component {
     DatasTotalCount: 0,
   };
   componentDidMount() {
-    this.GetResearch(
-      this.state.ResearchesPageNumber,
-      this.state.ResearchesPageSize
-    );
-    this.GetTasks(this.state.TasksPageNumber, this.state.TasksPageSize);
-    this.GetDatas(this.state.DatasPageNumber, this.state.DatasPageSize);
-    store.subscribe(() => {
+    if (store.getState().ResearchId >= 0) {
+      this.GetResearch(
+        this.state.ResearchesPageNumber,
+        this.state.ResearchesPageSize
+      );
       this.GetTasks(this.state.TasksPageNumber, this.state.TasksPageSize);
       this.GetDatas(this.state.DatasPageNumber, this.state.DatasPageSize);
+    }
+    store.subscribe(() => {
+      if (store.getState().ResearchId >= 0) {
+        this.GetResearch(
+          this.state.ResearchesPageNumber,
+          this.state.ResearchesPageSize
+        );
+        this.GetTasks(this.state.TasksPageNumber, this.state.TasksPageSize);
+        this.GetDatas(this.state.DatasPageNumber, this.state.DatasPageSize);
+      }
     });
-    
   }
   GetResearch(PageNumber: number, PageSize: number) {
     if (this.local.logedin()) {
@@ -85,7 +92,7 @@ export class DashboardPage extends React.Component {
           });
         },
         (err) => {
-          console.log('GetResearch dash');
+          console.log("GetResearch dash");
         }
       );
     }

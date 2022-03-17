@@ -100,7 +100,7 @@ class TicketPageNew extends React.Component<RouteComponentProps> {
           if (this.state.files.length) {
             this.handelUpload(res.id);
           } else {
-            this.props.history.push(AppRoutes.ticketing);
+            this.props.history.push(`${AppRoutes.ticketing_ticket.replace(":id", res.id.toString() ?? "")}`);
           }
 
           this.setState({
@@ -144,7 +144,7 @@ class TicketPageNew extends React.Component<RouteComponentProps> {
       formData,
       (res) => {
         this.props.history.push(
-          `${AppRoutes.discussion.replace(":id", id.toString() ?? "")}`
+          `${AppRoutes.ticketing_ticket.replace(":id", id.toString() ?? "")}`
         );
         this.setState({
           loading: false,

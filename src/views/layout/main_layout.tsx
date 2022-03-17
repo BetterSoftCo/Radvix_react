@@ -9,6 +9,7 @@ import { LocalDataSources } from "../../data/local_datasources";
 import { MemberController } from "../../controllers/member/member_controller";
 import { store } from "../../data/store";
 import { SetUserRole } from "../../data/store/actions/user_action";
+import { AppRoutes } from "../../core/constants";
 
 interface IMainLayout {
   children: ReactNode;
@@ -50,6 +51,8 @@ class MainLayout extends React.Component<IMainLayout & RouteComponentProps> {
           });
         }
       );
+    }else{
+      this.props.history.push(AppRoutes.login)
     }
   }
 
