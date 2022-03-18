@@ -108,7 +108,7 @@ class ExpensePageProfile extends React.Component<RouteComponentProps<RouteParams
               UserRoles.Admin,
               UserRoles.L1Client,
               UserRoles.L1User,
-            ]) &&  this.state.status !== 3? (
+            ]) &&  this.state.status === 0? (
               <div className="d-flex justify-content-center align-items-center mt-3">
                 <MainButton
                   children="Decline"
