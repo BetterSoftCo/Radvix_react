@@ -29,15 +29,21 @@ const LoginPage: React.FC<RouteComponentProps> = (props) => {
         email: email,
       };
       setloading(true);
-      await controller.Signin(body, (res) => {
-        setloading(false);
-        if (res) {
-          store.dispatch(SetUserRole(res.role ?? 0));
-          store.dispatch(SetUserInfo(res));
-          props.history.replace(AppRoutes.dashboard);
-          window.location.replace(AppRoutes.dashboard)
+      await controller.Signin(
+        body,
+        (res) => {
+          setloading(false);
+          if (res) {
+            store.dispatch(SetUserRole(res.role ?? 0));
+            store.dispatch(SetUserInfo(res));
+            props.history.replace(AppRoutes.dashboard);
+            window.location.replace(AppRoutes.dashboard);
+          }
+        },
+        () => {
+          setloading(false);
         }
-      }, ()=>{setloading(false);})
+      );
     }
   }
   const Validator = useRef(
@@ -49,35 +55,43 @@ const LoginPage: React.FC<RouteComponentProps> = (props) => {
   return (
     <div className="login d-flex flex-column flex-md-row">
       <div className="left">
-        <img src="/images/images/radvix_logo.png" className="logo" alt="" />
-        <span className="sub_logo">Login</span>
+        <img src="/images/images/radvix_logo.svg" className="logo" alt="" />
+        {/* <span className="sub_logo">Login</span> */}
+        <div className="d-flex flex-column">
+          <MainButton
+            children={"Forgot Email?"}
+            type={MainButtonType.dark}
+            borderRadius="50px"
+            minWidth="139px"
+            className="mb-2"
+            fontSize="12px"
+          ></MainButton>
+          <MainButton
+            children={"Reset Password"}
+            type={MainButtonType.dark}
+            borderRadius="50px"
+            minWidth="139px"
+            className="mb-1"
+            fontSize="12px"
+          ></MainButton>
+        </div>
         <img src="/images/images/member.png" className="logo-Member" alt="" />
-        <MainButton
-          children={"Forgot Email?"}
-          type={MainButtonType.dark}
-          borderRadius="50px"
-          minWidth="139px"
-          className="mb-2"
-        ></MainButton>
-        <MainButton
-          children={"Reset Password"}
-          type={MainButtonType.dark}
-          borderRadius="50px"
-          minWidth="139px"
-          className="mb-2"
-        ></MainButton>
+
         <span className="about">Support </span>
         <span className="about text-center">Learn More About Radvix </span>
       </div>
       <div className="right">
         <div className="mt-3 w-100 ">
-          <label className="text-light mb-2">Email:</label>
+          <label className="text-light mb-2" style={{ fontSize: "12px" }}>
+            Email:
+          </label>
           <InputComponent
             type={InputType.text}
             placeholder="example@email.com"
             onChange={(e) => {
               setemail(e.target.value);
             }}
+            fontSize="12px"
             inValid={Validator.current.message(
               "email",
               email,
@@ -87,25 +101,29 @@ const LoginPage: React.FC<RouteComponentProps> = (props) => {
 
           <div className="password mt-2 d-flex justify-content-between align-items-center">
             <div className="input w-75">
-              <label className="text-light mb-2">Password:</label>
+              <label className="text-light mb-2" style={{ fontSize: "12px" }}>
+                Password:
+              </label>
               <InputComponent
                 type={InputType.text}
-                placeholder="*******"
+                placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
                 onChange={(e) => {
                   setpassword(e.target.value);
                 }}
+                fontSize="12px"
                 inValid={Validator.current.message(
                   "password",
                   password,
                   "required"
                 )}
+                isPassword
               ></InputComponent>
             </div>
             <MainButton
               children={"Login"}
               type={MainButtonType.light}
               borderRadius="50px"
-              minWidth="60px"
+              minWidth="75px"
               minHeight="37px"
               className="align-self-end"
               loading={loading}
@@ -116,50 +134,64 @@ const LoginPage: React.FC<RouteComponentProps> = (props) => {
           </div>
         </div>
         <div className="line mt-2">Or login using:</div>
-        <MainButton
-          type={MainButtonType.dark}
-          minHeight="30px"
-          minWidth="70px"
-          fontSize="15px"
-          borderRadius="50px"
-          className="mt-2 mb-2 px-3"
-          backgroundColor="#A6CE39"
-          children={
-            <div>
-              <img src="/images/images/orcid-og-image.png" /> Login using ORCiD
-            </div>
-          }
-        ></MainButton>
-        <MainButton
-          type={MainButtonType.dark}
-          minHeight="35px"
-          minWidth="76px"
-          fontSize="15px"
-          borderRadius="50px"
-          className="mb-2 px-3"
-          backgroundColor="#4285F4"
-          children={
-            <div>
-              <img src="/images/images/google_scholar_icon_130918.png" /> Login
-              using Google
-            </div>
-          }
-        ></MainButton>
-        <MainButton
-          type={MainButtonType.dark}
-          minHeight="35px"
-          minWidth="76px"
-          fontSize="15px"
-          borderRadius="50px"
-          className="mb-2 px-3"
-          backgroundColor="#0274B3"
-          children={
-            <div>
-              <img src="/images/images/linkedIn_logo_initials.png" /> Login
-              using LinkedIn
-            </div>
-          }
-        ></MainButton>
+        <div className="d-flex flex-column">
+          <MainButton
+            type={MainButtonType.dark}
+            minHeight="30px"
+            minWidth="60px"
+            fontSize="12px"
+            borderRadius="50px"
+            className="mb-2 pe-3"
+            backgroundColor="#A6CE39"
+            children={
+              <div className="d-flex justify-content-between align-items-center">
+                <img
+                  src="/images/images/orcid-og-image.png"
+                  width={30}
+                  height={30}
+                  className="me-2"
+                />{" "}
+                Login using ORCiD
+              </div>
+            }
+          ></MainButton>
+          <MainButton
+            type={MainButtonType.dark}
+            minHeight="35px"
+            minWidth="76px"
+            fontSize="12px"
+            borderRadius="50px"
+            className="mb-2 pe-3"
+            backgroundColor="#4285F4"
+            children={
+              <div className="d-flex justify-content-between align-items-center">
+                <img
+                  src="/images/images/google_scholar_icon_130918.png"
+                  className="me-2"
+                />{" "}
+                Login using Google
+              </div>
+            }
+          ></MainButton>
+          <MainButton
+            type={MainButtonType.dark}
+            minHeight="35px"
+            minWidth="76px"
+            fontSize="12px"
+            borderRadius="50px"
+            className="mb-2 pe-3"
+            backgroundColor="#0274B3"
+            children={
+              <div className="d-flex justify-content-between align-items-center">
+                <img
+                  src="/images/images/linkedIn_logo_initials.png"
+                  className="me-2"
+                />{" "}
+                Login using LinkedIn
+              </div>
+            }
+          ></MainButton>
+        </div>
       </div>
     </div>
   );

@@ -11,6 +11,10 @@
     justify-content: space-around;
     border-bottom-left-radius: 20px;
     border-top-left-radius: 20px;
+    @media (min-width: 992px) {
+      min-width: 200px;
+    }
+
     .logo {
       width: 139px;
       height: 43px;
@@ -42,6 +46,9 @@
     justify-content: space-around;
     border-bottom-right-radius: 20px;
     border-top-right-radius: 20px;
+    @media (min-width: 992px) {
+      min-width: 400px;
+    }
     .line {
       font-size: 14px;
       color: $BackgroundColor;
@@ -51,7 +58,7 @@
         content: "";
         width: 105%;
         height: 1px;
-        background-color: #CBCBCB;
+        background-color: #cbcbcb;
         position: absolute;
         top: 50%;
         left: 106%;
@@ -60,7 +67,7 @@
         content: "";
         width: 105%;
         height: 1px;
-        background-color: #CBCBCB;
+        background-color: #cbcbcb;
         position: absolute;
         top: 50%;
         right: 106%;

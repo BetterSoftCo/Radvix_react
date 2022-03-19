@@ -27,6 +27,7 @@ interface InputsProps {
   inValid?: string;
   value?: string;
   isPassword?: boolean;
+  fontSize?: string;
 }
 export const InputComponent: React.FC<InputsProps> = ({
   width,
@@ -47,6 +48,7 @@ export const InputComponent: React.FC<InputsProps> = ({
   inValid,
   value,
   isPassword,
+  fontSize,
 }) => {
   let styles = {
     width: width,
@@ -55,6 +57,7 @@ export const InputComponent: React.FC<InputsProps> = ({
     minHeigth: minHeigth,
     backgroundColor: backgroundColor,
     borderRadius: borderRadius,
+    fontSize: fontSize,
   };
   let IsclassName;
   if (className !== undefined) {
@@ -65,7 +68,9 @@ export const InputComponent: React.FC<InputsProps> = ({
   let TemplateLabel;
   if (label !== null && label !== undefined) {
     TemplateLabel = (
-      <span className="label d-flex align-items-center">
+      <span
+        className="label d-flex align-items-center"
+      >
         {label}
         {optional ? (
           <MainButton

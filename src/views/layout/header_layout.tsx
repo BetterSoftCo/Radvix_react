@@ -96,7 +96,7 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
               <div className="row h-100">
                 <div className="col-md-2 col-6 d-flex justify-content-start align-items-center">
                   <img
-                    src="/images/images/radvix_logo.png"
+                    src="/images/images/radvix_logo.svg"
                     height="42px"
                     width="100px"
                   />

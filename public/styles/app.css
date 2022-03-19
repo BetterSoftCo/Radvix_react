@@ -673,6 +673,12 @@ button.loading {
   border-top-left-radius: 20px;
 }
 
+@media (min-width: 992px) {
+  .login .left {
+    min-width: 200px;
+  }
+}
+
 .login .left .logo {
   width: 139px;
   height: 43px;
@@ -717,6 +723,12 @@ button.loading {
   border-top-right-radius: 20px;
 }
 
+@media (min-width: 992px) {
+  .login .right {
+    min-width: 400px;
+  }
+}
+
 .login .right .line {
   font-size: 14px;
   color: #ebebeb;
@@ -727,7 +739,7 @@ button.loading {
   content: "";
   width: 105%;
   height: 1px;
-  background-color: #CBCBCB;
+  background-color: #cbcbcb;
   position: absolute;
   top: 50%;
   left: 106%;
@@ -737,7 +749,7 @@ button.loading {
   content: "";
   width: 105%;
   height: 1px;
-  background-color: #CBCBCB;
+  background-color: #cbcbcb;
   position: absolute;
   top: 50%;
   right: 106%;
@@ -2213,6 +2225,12 @@ button.loading {
   border-top-left-radius: 20px;
 }
 
+@media (min-width: 992px) {
+  .login .left {
+    min-width: 200px;
+  }
+}
+
 .login .left .logo {
   width: 139px;
   height: 43px;
@@ -2257,6 +2275,12 @@ button.loading {
   border-top-right-radius: 20px;
 }
 
+@media (min-width: 992px) {
+  .login .right {
+    min-width: 400px;
+  }
+}
+
 .login .right .line {
   font-size: 14px;
   color: #ebebeb;
@@ -2267,7 +2291,7 @@ button.loading {
   content: "";
   width: 105%;
   height: 1px;
-  background-color: #CBCBCB;
+  background-color: #cbcbcb;
   position: absolute;
   top: 50%;
   left: 106%;
@@ -2277,7 +2301,7 @@ button.loading {
   content: "";
   width: 105%;
   height: 1px;
-  background-color: #CBCBCB;
+  background-color: #cbcbcb;
   position: absolute;
   top: 50%;
   right: 106%;
