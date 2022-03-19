@@ -25,7 +25,8 @@ interface InputsProps {
   optional?: string;
   rows?: number;
   inValid?: string;
-  value?:string
+  value?: string;
+  isPassword?: boolean;
 }
 export const InputComponent: React.FC<InputsProps> = ({
   width,
@@ -44,7 +45,8 @@ export const InputComponent: React.FC<InputsProps> = ({
   optional,
   rows = 4,
   inValid,
-  value
+  value,
+  isPassword,
 }) => {
   let styles = {
     width: width,
@@ -94,20 +96,26 @@ export const InputComponent: React.FC<InputsProps> = ({
   let IsinValid;
   if (inValid) {
     TemplateValidation = <div>{inValid}</div>;
-    IsinValid = 'is-invalid';
+    IsinValid = "is-invalid";
   }
   return type === InputType.text ? (
     <Fragment>
       {TemplateLabel}
       <input
-        type="text"
+        type={isPassword ? "password" : "text"}
         style={styles}
         value={value}
         onChange={onChange}
         placeholder={placeholder}
         onBlur={onBlur}
         className={`${
-          IsclassName + " " + "InputComponentStyle" + " " + "form-control" + " " + IsinValid
+          IsclassName +
+          " " +
+          "InputComponentStyle" +
+          " " +
+          "form-control" +
+          " " +
+          IsinValid
         }`}
       />
       {TemplateValidation}

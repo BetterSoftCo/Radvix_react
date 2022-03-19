@@ -72,6 +72,7 @@ button.loading {
 
 .InputSelectStyle .css-1s2u09g-control {
   min-width: 72px;
+  background: transparent;
 }
 
 .InputSelectStyle .css-319lph-ValueContainer, .InputSelectStyle .css-g1d714-ValueContainer {

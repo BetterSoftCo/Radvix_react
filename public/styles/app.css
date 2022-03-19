@@ -100,6 +100,7 @@ button.loading {
 
 .InputSelectStyle .css-1s2u09g-control {
   min-width: 72px;
+  background: transparent;
 }
 
 .InputSelectStyle .css-319lph-ValueContainer, .InputSelectStyle .css-g1d714-ValueContainer {
@@ -1171,9 +1172,13 @@ button.loading {
 }
 
 .plans .plan {
-  max-height: 625px;
-  min-width: 313px;
-  margin: 0 1rem;
+  max-height: 550px;
+  width: 213px;
+  margin: 0 2.1rem;
+}
+
+.plans .plan:first-child {
+  margin-left: 0;
 }
 
 .plans .plan .plan-head {
@@ -1188,15 +1193,15 @@ button.loading {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  font-size: 16px;
+  font-size: 13px;
   font-weight: bold;
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
+  border-top-left-radius: 13px;
+  border-top-right-radius: 13px;
   color: #fff;
 }
 
 .plans .plan .plan-price {
-  height: 70px;
+  height: 73px;
   text-align: center;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1211,10 +1216,10 @@ button.loading {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: bold;
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
+  border-top-left-radius: 13px;
+  border-top-right-radius: 13px;
   color: #474747;
   background-color: #f4f4f4;
 }
@@ -1226,23 +1231,34 @@ button.loading {
 }
 
 .plans .plan .plan-price .billed {
-  font-size: 11px;
+  font-size: 9px;
   font-weight: lighter;
   color: #474747ba;
 }
 
 .plans .plan .plan-body {
   background-color: #ebebeb;
-  border-bottom-left-radius: 16px;
-  border-bottom-right-radius: 16px;
-  padding: .4rem .6rem;
+  border-bottom-left-radius: 13px;
+  border-bottom-right-radius: 13px;
+  padding: 0.2rem 0.4rem;
 }
 
 .plans .plan .plan-body p {
   color: #474747ba;
-  font-size: 14px;
+  font-size: 10px;
   font-weight: lighter;
   text-align: center;
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 0;
 }
 
 .plans .plan .plan-body .items {
@@ -1255,17 +1271,25 @@ button.loading {
 }
 
 .plans .plan .plan-body .items .item:first-child {
-  margin-top: .5rem;
+  margin-top: 0.3rem;
 }
 
 .plans .plan .plan-body .items .item:last-child {
-  margin-bottom: .5rem;
+  margin-bottom: 0.3rem;
+}
+
+.plans .plan .plan-body .items .item img {
+  opacity: 0.6;
 }
 
 .plans .plan .plan-body .items .item .title-item {
   color: #474747ba;
-  font-size: 17px;
+  font-size: 12px;
   font-weight: lighter;
+}
+
+.plans .plan .plan-body .button {
+  margin-bottom: 1rem;
 }
 
 .plans .free {
@@ -1284,6 +1308,18 @@ button.loading {
   background-color: #ffba00;
 }
 
+@media (max-width: 1199.98px) {
+  .plans .plan {
+    margin: 0 1.1rem;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .plans .plan {
+    margin: 1rem 1.1rem;
+  }
+}
+
 .Annual {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1291,7 +1327,7 @@ button.loading {
   -webkit-box-align: baseline;
       -ms-flex-align: baseline;
           align-items: baseline;
-  margin: .7rem .3rem;
+  margin: 0.7rem 0.3rem;
 }
 
 .Annual h4 {
@@ -1306,14 +1342,26 @@ button.loading {
   margin-left: 0.4rem;
 }
 
+@media (max-width: 991.98px) {
+  .Annual {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
 .form-register {
-  width: 70vw;
-  margin-top: .4rem;
+  width: 65vw;
+  margin: 3rem 1rem;
 }
 
 .form-register .header-form {
   background-color: #00a598;
-  height: 33px;
+  height: 48px;
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1325,7 +1373,7 @@ button.loading {
       -ms-flex-align: center;
           align-items: center;
   color: #fff;
-  font-size: 17px;
+  font-size: 14px;
   font-weight: bold;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
@@ -1341,24 +1389,24 @@ button.loading {
   background-color: #ebebeb;
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
-  padding-bottom: .4rem;
+  padding-bottom: 0.3rem;
 }
 
 .form-register .body-form .desc-form-body {
   color: #474747ba;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: lighter;
 }
 
 .form-register .body-form .stepper-wrapper {
-  padding-top: .5rem;
+  padding-top: 0.3rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .form-register .body-form .stepper-item {
@@ -1378,16 +1426,25 @@ button.loading {
           flex: 1;
 }
 
+.form-register .body-form .stepper-item::after {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .form-register .body-form .stepper-item {
-    font-size: 10px;
+    font-size: 8px;
   }
+}
+
+.form-register .body-form .step-name {
+  font-size: 12px;
+  margin: 0.3rem 0rem;
 }
 
 .form-register .body-form .stepper-item::before {
   position: absolute;
   content: "";
-  border-bottom: 4px solid #ccc;
+  border-bottom: 4px solid #00a598;
   width: 100%;
   bottom: 20px;
   left: -50%;
@@ -1397,7 +1454,7 @@ button.loading {
 .form-register .body-form .stepper-item::after {
   position: absolute;
   content: "";
-  border-bottom: 4px solid #ccc;
+  border-bottom: 4px solid #00a598;
   width: 100%;
   top: 20px;
   left: 50%;
@@ -1416,16 +1473,22 @@ button.loading {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   background: #ebebeb;
   margin-bottom: 6px;
   border: 3px solid #00a598;
+  font-size: 19px;
+  color: #00a598;
 }
 
 .form-register .body-form .stepper-item.active {
   font-weight: bold;
+}
+
+.form-register .body-form .stepper-item.active::after {
+  display: none;
 }
 
 .form-register .body-form .stepper-item.completed .step-counter {
@@ -1452,7 +1515,27 @@ button.loading {
 }
 
 .form-register .body-form .step-dynamic-form .item {
-  margin: .5rem 0rem;
+  margin: 0.5rem 0rem;
+  font-size: 0.8rem;
+}
+
+.form-register .body-form .step-dynamic-form .item input {
+  height: 30px;
+  margin-top: 5px;
+}
+
+.form-register .body-form .step-dynamic-form .item .CircleIcon {
+  margin: 0 0.5rem;
+}
+
+.form-register .body-form .step-dynamic-form .item .InputSelectStyle .css-319lph-ValueContainer,
+.form-register .body-form .step-dynamic-form .item .InputSelectStyle .css-g1d714-ValueContaine {
+  height: 35px;
+}
+
+.form-register .body-form .step-dynamic-form .item .InputSelectStyle .css-319lph-ValueContainer::after,
+.form-register .body-form .step-dynamic-form .item .InputSelectStyle .css-g1d714-ValueContaine::after {
+  top: 2px;
 }
 
 @font-face {
@@ -1557,6 +1640,7 @@ button.loading {
 
 .InputSelectStyle .css-1s2u09g-control {
   min-width: 72px;
+  background: transparent;
 }
 
 .InputSelectStyle .css-319lph-ValueContainer, .InputSelectStyle .css-g1d714-ValueContainer {
@@ -2628,9 +2712,13 @@ button.loading {
 }
 
 .plans .plan {
-  max-height: 625px;
-  min-width: 313px;
-  margin: 0 1rem;
+  max-height: 550px;
+  width: 213px;
+  margin: 0 2.1rem;
+}
+
+.plans .plan:first-child {
+  margin-left: 0;
 }
 
 .plans .plan .plan-head {
@@ -2645,15 +2733,15 @@ button.loading {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  font-size: 16px;
+  font-size: 13px;
   font-weight: bold;
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
+  border-top-left-radius: 13px;
+  border-top-right-radius: 13px;
   color: #fff;
 }
 
 .plans .plan .plan-price {
-  height: 70px;
+  height: 73px;
   text-align: center;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2668,10 +2756,10 @@ button.loading {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: bold;
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
+  border-top-left-radius: 13px;
+  border-top-right-radius: 13px;
   color: #474747;
   background-color: #f4f4f4;
 }
@@ -2683,23 +2771,34 @@ button.loading {
 }
 
 .plans .plan .plan-price .billed {
-  font-size: 11px;
+  font-size: 9px;
   font-weight: lighter;
   color: #474747ba;
 }
 
 .plans .plan .plan-body {
   background-color: #ebebeb;
-  border-bottom-left-radius: 16px;
-  border-bottom-right-radius: 16px;
-  padding: .4rem .6rem;
+  border-bottom-left-radius: 13px;
+  border-bottom-right-radius: 13px;
+  padding: 0.2rem 0.4rem;
 }
 
 .plans .plan .plan-body p {
   color: #474747ba;
-  font-size: 14px;
+  font-size: 10px;
   font-weight: lighter;
   text-align: center;
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 0;
 }
 
 .plans .plan .plan-body .items {
@@ -2712,17 +2811,25 @@ button.loading {
 }
 
 .plans .plan .plan-body .items .item:first-child {
-  margin-top: .5rem;
+  margin-top: 0.3rem;
 }
 
 .plans .plan .plan-body .items .item:last-child {
-  margin-bottom: .5rem;
+  margin-bottom: 0.3rem;
+}
+
+.plans .plan .plan-body .items .item img {
+  opacity: 0.6;
 }
 
 .plans .plan .plan-body .items .item .title-item {
   color: #474747ba;
-  font-size: 17px;
+  font-size: 12px;
   font-weight: lighter;
+}
+
+.plans .plan .plan-body .button {
+  margin-bottom: 1rem;
 }
 
 .plans .free {
@@ -2741,6 +2848,18 @@ button.loading {
   background-color: #ffba00;
 }
 
+@media (max-width: 1199.98px) {
+  .plans .plan {
+    margin: 0 1.1rem;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .plans .plan {
+    margin: 1rem 1.1rem;
+  }
+}
+
 .Annual {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2748,7 +2867,7 @@ button.loading {
   -webkit-box-align: baseline;
       -ms-flex-align: baseline;
           align-items: baseline;
-  margin: .7rem .3rem;
+  margin: 0.7rem 0.3rem;
 }
 
 .Annual h4 {
@@ -2763,14 +2882,26 @@ button.loading {
   margin-left: 0.4rem;
 }
 
+@media (max-width: 991.98px) {
+  .Annual {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
 .form-register {
-  width: 70vw;
-  margin-top: .4rem;
+  width: 65vw;
+  margin: 3rem 1rem;
 }
 
 .form-register .header-form {
   background-color: #00a598;
-  height: 33px;
+  height: 48px;
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2782,7 +2913,7 @@ button.loading {
       -ms-flex-align: center;
           align-items: center;
   color: #fff;
-  font-size: 17px;
+  font-size: 14px;
   font-weight: bold;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
@@ -2798,24 +2929,24 @@ button.loading {
   background-color: #ebebeb;
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
-  padding-bottom: .4rem;
+  padding-bottom: 0.3rem;
 }
 
 .form-register .body-form .desc-form-body {
   color: #474747ba;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: lighter;
 }
 
 .form-register .body-form .stepper-wrapper {
-  padding-top: .5rem;
+  padding-top: 0.3rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .form-register .body-form .stepper-item {
@@ -2835,16 +2966,25 @@ button.loading {
           flex: 1;
 }
 
+.form-register .body-form .stepper-item::after {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .form-register .body-form .stepper-item {
-    font-size: 10px;
+    font-size: 8px;
   }
+}
+
+.form-register .body-form .step-name {
+  font-size: 12px;
+  margin: 0.3rem 0rem;
 }
 
 .form-register .body-form .stepper-item::before {
   position: absolute;
   content: "";
-  border-bottom: 4px solid #ccc;
+  border-bottom: 4px solid #00a598;
   width: 100%;
   bottom: 20px;
   left: -50%;
@@ -2854,7 +2994,7 @@ button.loading {
 .form-register .body-form .stepper-item::after {
   position: absolute;
   content: "";
-  border-bottom: 4px solid #ccc;
+  border-bottom: 4px solid #00a598;
   width: 100%;
   top: 20px;
   left: 50%;
@@ -2873,16 +3013,22 @@ button.loading {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   background: #ebebeb;
   margin-bottom: 6px;
   border: 3px solid #00a598;
+  font-size: 19px;
+  color: #00a598;
 }
 
 .form-register .body-form .stepper-item.active {
   font-weight: bold;
+}
+
+.form-register .body-form .stepper-item.active::after {
+  display: none;
 }
 
 .form-register .body-form .stepper-item.completed .step-counter {
@@ -2909,6 +3055,26 @@ button.loading {
 }
 
 .form-register .body-form .step-dynamic-form .item {
-  margin: .5rem 0rem;
+  margin: 0.5rem 0rem;
+  font-size: 0.8rem;
+}
+
+.form-register .body-form .step-dynamic-form .item input {
+  height: 30px;
+  margin-top: 5px;
+}
+
+.form-register .body-form .step-dynamic-form .item .CircleIcon {
+  margin: 0 0.5rem;
+}
+
+.form-register .body-form .step-dynamic-form .item .InputSelectStyle .css-319lph-ValueContainer,
+.form-register .body-form .step-dynamic-form .item .InputSelectStyle .css-g1d714-ValueContaine {
+  height: 35px;
+}
+
+.form-register .body-form .step-dynamic-form .item .InputSelectStyle .css-319lph-ValueContainer::after,
+.form-register .body-form .step-dynamic-form .item .InputSelectStyle .css-g1d714-ValueContaine::after {
+  top: 2px;
 }
 /*# sourceMappingURL=app.css.map */

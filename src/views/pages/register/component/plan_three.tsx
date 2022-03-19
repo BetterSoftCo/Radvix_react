@@ -1,13 +1,15 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import { RouteComponentProps, withRouter } from "react-router";
 import { MainButton, MainButtonType } from "../../../components/button";
+import { RegisterContext } from "../register";
 interface PropsPlanThree {
   handelRegisterCallBack: () => void;
-  loading:boolean
+  loading: boolean;
 }
 const PlanThree: React.FC<PropsPlanThree & RouteComponentProps> = (props) => {
+  const nextStep = useContext(RegisterContext);
   const handelRegister = () => {
-    props.handelRegisterCallBack()
+    props.handelRegisterCallBack();
   };
   return (
     <Fragment>
@@ -17,20 +19,23 @@ const PlanThree: React.FC<PropsPlanThree & RouteComponentProps> = (props) => {
             src="/images/icons/toggle_icon_register.svg"
             alt="radvix"
             className="mx-3"
+            onClick={() => {
+              nextStep(2)
+            }}
           />{" "}
           Radvix Essential
         </div>
         <div className="body-form">
           <div className="stepper-wrapper">
-            <div className="stepper-item completed">
+            <div className="stepper-item ">
               <div className="step-name">basic info</div>
               <div className="step-counter">1</div>
             </div>
-            <div className="stepper-item completed">
+            <div className="stepper-item ">
               <div className="step-name">payment</div>
               <div className="step-counter">2</div>
             </div>
-            <div className="stepper-item completed">
+            <div className="stepper-item completed ">
               <div className="step-name">login</div>
               <div className="step-counter">3</div>
             </div>

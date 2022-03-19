@@ -1,10 +1,18 @@
-import React, { Fragment, useContext, useRef, useState } from "react";
+import React, {
+  Fragment,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { RouteComponentProps, withRouter } from "react-router";
 import SimpleReactValidator from "simple-react-validator";
 import { MainButton, MainButtonType } from "../../../components/button";
 import { InputComponent, InputType } from "../../../components/inputs";
 import { SelectComponent } from "../../../components/select_input";
 import { RegisterContext } from "../register";
+import countries from "../../../../core/json/countries.json";
+import { CircleIcon, ThemeCircleIcon } from "../../../components/circle_icon";
 interface PropsPlanOne {
   SetPaymentCallBack: (pay: any) => void;
 }
@@ -20,6 +28,9 @@ const PlanOne: React.FC<PropsPlanOne & RouteComponentProps> = (props) => {
   const [addressLine2, setaddressLine2] = useState("");
   const [phone, setPhone] = useState("");
   const [zipCode, setzipCode] = useState("");
+  const [listCountry, setlistCountry] = useState<
+    Array<{ label: string; value: number } | {}>
+  >([]);
   const [, forceUpdate] = useState(0);
   const Validator = useRef(
     new SimpleReactValidator({
@@ -42,11 +53,17 @@ const PlanOne: React.FC<PropsPlanOne & RouteComponentProps> = (props) => {
         addressLine1,
         addressLine2,
         phone,
-        zipCode
-      })
+        zipCode,
+      });
       nextStep(2);
     }
   };
+  useEffect(() => {
+    const countriesMap = countries.map((item) => {
+      return { label: item.englishName, value: item.id };
+    });
+    setlistCountry(countriesMap);
+  }, []);
 
   return (
     <Fragment>
@@ -56,6 +73,9 @@ const PlanOne: React.FC<PropsPlanOne & RouteComponentProps> = (props) => {
             src="/images/icons/toggle_icon_register.svg"
             alt="radvix"
             className="mx-3"
+            onClick={() => {
+              nextStep(0)
+            }}
           />{" "}
           Radvix Essential
         </div>
@@ -65,11 +85,11 @@ const PlanOne: React.FC<PropsPlanOne & RouteComponentProps> = (props) => {
               <div className="step-name">basic info</div>
               <div className="step-counter">1</div>
             </div>
-            <div className="stepper-item completed">
+            <div className="stepper-item active">
               <div className="step-name">payment</div>
               <div className="step-counter">2</div>
             </div>
-            <div className="stepper-item active">
+            <div className="stepper-item ">
               <div className="step-name">login</div>
               <div className="step-counter">3</div>
             </div>
@@ -81,7 +101,7 @@ const PlanOne: React.FC<PropsPlanOne & RouteComponentProps> = (props) => {
           </p>
           <div className="step-dynamic-form">
             <div className="form row px-3">
-              <div className="col-md-6 left">
+              <div className="col-md-6 px-4 left">
                 <div className="item">
                   <span>Account Information:</span>
                   <InputComponent
@@ -141,6 +161,7 @@ const PlanOne: React.FC<PropsPlanOne & RouteComponentProps> = (props) => {
                       password,
                       "required"
                     )}
+                    isPassword={true}
                   ></InputComponent>
                 </div>
                 <div className="item">
@@ -156,16 +177,32 @@ const PlanOne: React.FC<PropsPlanOne & RouteComponentProps> = (props) => {
                       confirmPassword,
                       `required|in:${password}`
                     )}
+                    isPassword={true}
                   ></InputComponent>
                 </div>
               </div>
-              <div className="col-md-6 right">
+              <div className="col-md-6 px-4 right">
                 <div className="item">
-                  <span>Contact Info:</span>
+                  <div className="d-flex justify-content-start align-items-center">
+                    <span>Contact Info:</span>
+                    <CircleIcon
+                      width="20px"
+                      height="20px"
+                      type={ThemeCircleIcon.dark}
+                      backgroundColor="transparent"
+                      border="1px solid #D5D5D5"
+                      fontSize="10px"
+                      color="#D5D5D5"
+                    >
+                      <i
+                        className="fas fa-question pointer"
+                        title={"Contact Info:"}
+                      ></i>
+                    </CircleIcon>
+                  </div>
                   <InputComponent
                     type={InputType.text}
                     label="Institution/Company"
-                    popQuestion="Institution/Company"
                     onChange={(e) => {
                       setinstitution(e.target.value);
                     }}
@@ -250,21 +287,20 @@ const PlanOne: React.FC<PropsPlanOne & RouteComponentProps> = (props) => {
                 </div>
                 <div className="item">
                   <SelectComponent
-                    items={[
-                      { label: "test1", value: 1 },
-                    ]}
+                    items={listCountry}
                     TextItem="name"
                     ValueItem="id"
-                    className="my-2"
+                    className="my-1"
                     label="Country"
+                    minHeigth="20px"
                   ></SelectComponent>
                 </div>
               </div>
               <div className="col-12 d-flex justify-content-center align-items-center my-4">
                 <MainButton
                   type={MainButtonType.dark}
-                  minHeight="42px"
-                  fontSize="15px"
+                  minHeight="35px"
+                  fontSize="13px"
                   borderRadius="50px"
                   className="px-3"
                   backgroundColor="#00A598"

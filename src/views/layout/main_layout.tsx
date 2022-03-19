@@ -60,7 +60,7 @@ class MainLayout extends React.Component<IMainLayout & RouteComponentProps> {
     return (
       <Fragment>
         {this.props.location.pathname !== "/login" &&
-        this.props.location.pathname !== "/Register" &&
+        this.props.location.pathname !== "/register" &&
         this.state.getMmeberInfo === "succsses" ? (
           <Fragment>
             <Header></Header>

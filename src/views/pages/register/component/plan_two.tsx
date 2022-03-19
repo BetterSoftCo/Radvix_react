@@ -17,12 +17,15 @@ const PlanTwo: React.FC<RouteComponentProps> = (props) => {
             src="/images/icons/toggle_icon_register.svg"
             alt="radvix"
             className="mx-3"
+            onClick={() => {
+              nextStep(1)
+            }}
           />{" "}
           Radvix Essential
         </div>
         <div className="body-form">
-          <div className="stepper-wrapper">
-            <div className="stepper-item completed">
+        <div className="stepper-wrapper">
+            <div className="stepper-item ">
               <div className="step-name">basic info</div>
               <div className="step-counter">1</div>
             </div>
@@ -30,7 +33,7 @@ const PlanTwo: React.FC<RouteComponentProps> = (props) => {
               <div className="step-name">payment</div>
               <div className="step-counter">2</div>
             </div>
-            <div className="stepper-item active">
+            <div className="stepper-item ">
               <div className="step-name">login</div>
               <div className="step-counter">3</div>
             </div>
@@ -42,7 +45,7 @@ const PlanTwo: React.FC<RouteComponentProps> = (props) => {
           </p>
           <div className="step-dynamic-form">
             <div className="form row px-3">
-              <div className="col-md-6 left">
+              <div className="col-lg-6 left">
                 <div className="item">
                   <InputComponent
                     type={InputType.text}
@@ -50,34 +53,34 @@ const PlanTwo: React.FC<RouteComponentProps> = (props) => {
                   ></InputComponent>
                 </div>
               </div>
-              <div className="col-md-6 right">
+              <div className="col-lg-6 right">
                 <div className="item">
                   <InputIcon
                     label="Card Information"
                     chilren={
-                      <div className="d-flex justify-content-end justify-content-center">
+                      <div className="d-flex justify-content-end justify-content-center d-none d-md-flex">
                         <img
                           src="/images/images/visa.svg"
-                          width={44}
-                          height={34}
+                          width={32}
+                          height={24}
                           alt=""
                         />
                         <img
                           src="/images/images/discover.svg"
-                          width={44}
-                          height={34}
+                          width={32}
+                          height={24}
                           alt=""
                         />
                         <img
                           src="/images/images/american-express.svg"
-                          width={44}
-                          height={34}
+                          width={32}
+                          height={24}
                           alt=""
                         />
                         <img
                           src="/images/images/mastercard.svg"
-                          width={44}
-                          height={34}
+                          width={32}
+                          height={24}
                           alt=""
                         />
                       </div>
@@ -100,8 +103,8 @@ const PlanTwo: React.FC<RouteComponentProps> = (props) => {
                       chilren={
                         <img
                           src="/images/images/cvc.svg"
-                          width={44}
-                          height={34}
+                          width={32}
+                          height={24}
                           alt=""
                           className="mb-2"
                         />
@@ -111,13 +114,13 @@ const PlanTwo: React.FC<RouteComponentProps> = (props) => {
                     ></InputIcon>
                   </div>
                 </div>
-                <div className="item">
+                <div className="item mb-3">
                   <InputComponent
                     type={InputType.text}
                     placeholder="Name On Card"
                   ></InputComponent>
                 </div>
-                <div className="item">
+                <div className="item mt-2">
                   <InputComponent
                     type={InputType.text}
                     placeholder="Zipcode"

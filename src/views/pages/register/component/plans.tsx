@@ -23,7 +23,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
           </label>
         </div>
       </div>
-      <div className="plans d-flex justify-content-between">
+      <div className="plans d-flex justify-content-between flex-wrap flex-lg-nowrap">
         <div className="plan">
           <div className="plan-head free">Radvix Basic</div>
           <div className="plan-price">Free</div>
@@ -36,15 +36,15 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               <div className="item d-flex justify-content-center align-items-center">
                 <img
                   src="/images/icons/teamwork.svg"
-                  width={22}
-                  height={22}
+                  width={16}
+                  height={16}
                   alt="radvix"
                   className="mx-1"
                 />
                 <span className="mx-1 title-item">Single Team</span>
                 <CircleIcon
-                  width="20px"
-                  height="20px"
+                  width="16px"
+                  height="16px"
                   type={ThemeCircleIcon.dark}
                   backgroundColor="transparent"
                   border="1px solid #D5D5D5"
@@ -61,15 +61,15 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               <div className="item d-flex justify-content-center align-items-center">
                 <img
                   src="/images/icons/user.svg"
-                  width={22}
-                  height={22}
+                  width={16}
+                  height={16}
                   alt="radvix"
                   className="mx-1"
                 />
                 <span className="mx-1 title-item">Up 5 Members</span>
                 <CircleIcon
-                  width="20px"
-                  height="20px"
+                  width="16px"
+                  height="16px"
                   type={ThemeCircleIcon.dark}
                   backgroundColor="transparent"
                   border="1px solid #D5D5D5"
@@ -86,15 +86,15 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               <div className="item d-flex justify-content-center align-items-center">
                 <img
                   src="/images/icons/lamp.svg"
-                  width={22}
-                  height={22}
+                  width={16}
+                  height={16}
                   alt="radvix"
                   className="mx-1"
                 />
                 <span className="mx-1 title-item">5 Projects/Year</span>
                 <CircleIcon
-                  width="20px"
-                  height="20px"
+                  width="16px"
+                  height="16px"
                   type={ThemeCircleIcon.dark}
                   backgroundColor="transparent"
                   border="1px solid #D5D5D5"
@@ -111,15 +111,15 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               <div className="item d-flex justify-content-center align-items-center">
                 <img
                   src="/images/icons/university.svg"
-                  width={22}
-                  height={22}
+                  width={16}
+                  height={16}
                   alt="radvix"
                   className="mx-1"
                 />
                 <span className="mx-1 title-item">1 Laboratory </span>
                 <CircleIcon
-                  width="20px"
-                  height="20px"
+                  width="16px"
+                  height="16px"
                   type={ThemeCircleIcon.dark}
                   backgroundColor="transparent"
                   border="1px solid #D5D5D5"
@@ -136,15 +136,15 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               <div className="item d-flex justify-content-center align-items-center">
                 <img
                   src="/images/icons/equipment_Icon.svg"
-                  width={22}
-                  height={22}
+                  width={16}
+                  height={16}
                   alt="radvix"
                   className="mx-1"
                 />
                 <span className="mx-1 title-item">10 Equip/Lab </span>
                 <CircleIcon
-                  width="20px"
-                  height="20px"
+                  width="16px"
+                  height="16px"
                   type={ThemeCircleIcon.dark}
                   backgroundColor="transparent"
                   border="1px solid #D5D5D5"
@@ -161,15 +161,15 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               <div className="item d-flex justify-content-center align-items-center">
                 <img
                   src="/images/icons/server_storage.svg"
-                  width={22}
-                  height={22}
+                  width={16}
+                  height={16}
                   alt="radvix"
                   className="mx-1"
                 />
                 <span className="mx-1 title-item">500 MB Storage/Year </span>
                 <CircleIcon
-                  width="20px"
-                  height="20px"
+                  width="16px"
+                  height="16px"
                   type={ThemeCircleIcon.dark}
                   backgroundColor="transparent"
                   border="1px solid #D5D5D5"
@@ -186,15 +186,15 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               <div className="item d-flex justify-content-center align-items-center">
                 <img
                   src="/Images/icons/clock_circular_outline.svg"
-                  width={22}
-                  height={22}
+                  width={16}
+                  height={16}
                   alt="radvix"
                   className="mx-1"
                 />
                 <span className="mx-1 title-item">Gantt Charts </span>
                 <CircleIcon
-                  width="20px"
-                  height="20px"
+                  width="16px"
+                  height="16px"
                   type={ThemeCircleIcon.dark}
                   backgroundColor="transparent"
                   border="1px solid #D5D5D5"
@@ -211,15 +211,15 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               <div className="item d-flex justify-content-center align-items-center">
                 <img
                   src="/Images/icons/chat.svg"
-                  width={22}
-                  height={22}
+                  width={16}
+                  height={16}
                   alt="radvix"
                   className="mx-1"
                 />
                 <span className="mx-1 title-item">Discussion Panels </span>
                 <CircleIcon
-                  width="20px"
-                  height="20px"
+                  width="16px"
+                  height="16px"
                   type={ThemeCircleIcon.dark}
                   backgroundColor="transparent"
                   border="1px solid #D5D5D5"
@@ -236,15 +236,15 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               <div className="item d-flex justify-content-center align-items-center">
                 <img
                   src="/images/icons/writing.svg"
-                  width={22}
-                  height={22}
+                  width={16}
+                  height={16}
                   alt="radvix"
                   className="mx-1"
                 />
                 <span className="mx-1 title-item">Publication Organizer </span>
                 <CircleIcon
-                  width="20px"
-                  height="20px"
+                  width="16px"
+                  height="16px"
                   type={ThemeCircleIcon.dark}
                   backgroundColor="transparent"
                   border="1px solid #D5D5D5"
@@ -261,15 +261,15 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               <div className="item d-flex justify-content-center align-items-center">
                 <img
                   src="/images/icons/money_back.svg"
-                  width={22}
-                  height={22}
+                  width={16}
+                  height={16}
                   alt="radvix"
                   className="mx-1"
                 />
                 <span className="mx-1 title-item"> Expense Manager </span>
                 <CircleIcon
-                  width="20px"
-                  height="20px"
+                  width="16px"
+                  height="16px"
                   type={ThemeCircleIcon.dark}
                   backgroundColor="transparent"
                   border="1px solid #D5D5D5"
@@ -289,7 +289,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
                 type={MainButtonType.light}
                 children="Start Now"
                 borderRadius="15px"
-                fontSize="18px"
+                fontSize="13px"
                 className="mx-2 fw-bold"
                 backgroundColor="#A3A3A3"
                 minWidth="160px"
@@ -311,19 +311,20 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               for small teams that would like to keep track of their data,
               equipment and tasks all in one place!
             </p>
+            
             <div className="items d-flex flex-column align-items-center">
               <div className="item d-flex justify-content-center align-items-center">
                 <img
                   src="/images/icons/teamwork.svg"
-                  width={22}
-                  height={22}
+                  width={16}
+                  height={16}
                   alt="radvix"
                   className="mx-1"
                 />
                 <span className="mx-1 title-item">Single Team</span>
                 <CircleIcon
-                  width="20px"
-                  height="20px"
+                  width="16px"
+                  height="16px"
                   type={ThemeCircleIcon.dark}
                   backgroundColor="transparent"
                   border="1px solid #D5D5D5"
@@ -340,15 +341,15 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               <div className="item d-flex justify-content-center align-items-center">
                 <img
                   src="/images/icons/user.svg"
-                  width={22}
-                  height={22}
+                  width={16}
+                  height={16}
                   alt="radvix"
                   className="mx-1"
                 />
                 <span className="mx-1 title-item">Up 5 Members</span>
                 <CircleIcon
-                  width="20px"
-                  height="20px"
+                  width="16px"
+                  height="16px"
                   type={ThemeCircleIcon.dark}
                   backgroundColor="transparent"
                   border="1px solid #D5D5D5"
@@ -365,15 +366,15 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               <div className="item d-flex justify-content-center align-items-center">
                 <img
                   src="/images/icons/lamp.svg"
-                  width={22}
-                  height={22}
+                  width={16}
+                  height={16}
                   alt="radvix"
                   className="mx-1"
                 />
                 <span className="mx-1 title-item">10 Projects/Year</span>
                 <CircleIcon
-                  width="20px"
-                  height="20px"
+                  width="16px"
+                  height="16px"
                   type={ThemeCircleIcon.dark}
                   backgroundColor="transparent"
                   border="1px solid #D5D5D5"
@@ -390,15 +391,15 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               <div className="item d-flex justify-content-center align-items-center">
                 <img
                   src="/images/icons/university.svg"
-                  width={22}
-                  height={22}
+                  width={16}
+                  height={16}
                   alt="radvix"
                   className="mx-1"
                 />
                 <span className="mx-1 title-item">3 Laboratories </span>
                 <CircleIcon
-                  width="20px"
-                  height="20px"
+                  width="16px"
+                  height="16px"
                   type={ThemeCircleIcon.dark}
                   backgroundColor="transparent"
                   border="1px solid #D5D5D5"
@@ -415,15 +416,15 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               <div className="item d-flex justify-content-center align-items-center">
                 <img
                   src="/images/icons/equipment_Icon.svg"
-                  width={22}
-                  height={22}
+                  width={16}
+                  height={16}
                   alt="radvix"
                   className="mx-1"
                 />
                 <span className="mx-1 title-item">10 Equip/Lab </span>
                 <CircleIcon
-                  width="20px"
-                  height="20px"
+                  width="16px"
+                  height="16px"
                   type={ThemeCircleIcon.dark}
                   backgroundColor="transparent"
                   border="1px solid #D5D5D5"
@@ -440,15 +441,15 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               <div className="item d-flex justify-content-center align-items-center">
                 <img
                   src="/images/icons/server_storage.svg"
-                  width={22}
-                  height={22}
+                  width={16}
+                  height={16}
                   alt="radvix"
                   className="mx-1"
                 />
                 <span className="mx-1 title-item">1 GB Storage/Year </span>
                 <CircleIcon
-                  width="20px"
-                  height="20px"
+                  width="16px"
+                  height="16px"
                   type={ThemeCircleIcon.dark}
                   backgroundColor="transparent"
                   border="1px solid #D5D5D5"
@@ -465,15 +466,15 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               <div className="item d-flex justify-content-center align-items-center">
                 <img
                   src="/Images/icons/clock_circular_outline.svg"
-                  width={22}
-                  height={22}
+                  width={16}
+                  height={16}
                   alt="radvix"
                   className="mx-1"
                 />
                 <span className="mx-1 title-item">Gantt Charts </span>
                 <CircleIcon
-                  width="20px"
-                  height="20px"
+                  width="16px"
+                  height="16px"
                   type={ThemeCircleIcon.dark}
                   backgroundColor="transparent"
                   border="1px solid #D5D5D5"
@@ -490,15 +491,15 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               <div className="item d-flex justify-content-center align-items-center">
                 <img
                   src="/Images/icons/chat.svg"
-                  width={22}
-                  height={22}
+                  width={16}
+                  height={16}
                   alt="radvix"
                   className="mx-1"
                 />
                 <span className="mx-1 title-item">Discussion Panels </span>
                 <CircleIcon
-                  width="20px"
-                  height="20px"
+                  width="16px"
+                  height="16px"
                   type={ThemeCircleIcon.dark}
                   backgroundColor="transparent"
                   border="1px solid #D5D5D5"
@@ -515,15 +516,15 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               <div className="item d-flex justify-content-center align-items-center">
                 <img
                   src="/images/icons/writing.svg"
-                  width={22}
-                  height={22}
+                  width={16}
+                  height={16}
                   alt="radvix"
                   className="mx-1"
                 />
                 <span className="mx-1 title-item">Publication Organizer </span>
                 <CircleIcon
-                  width="20px"
-                  height="20px"
+                  width="16px"
+                  height="16px"
                   type={ThemeCircleIcon.dark}
                   backgroundColor="transparent"
                   border="1px solid #D5D5D5"
@@ -540,15 +541,15 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               <div className="item d-flex justify-content-center align-items-center">
                 <img
                   src="/images/icons/money_back.svg"
-                  width={22}
-                  height={22}
+                  width={16}
+                  height={16}
                   alt="radvix"
                   className="mx-1"
                 />
                 <span className="mx-1 title-item"> Expense Manager </span>
                 <CircleIcon
-                  width="20px"
-                  height="20px"
+                  width="16px"
+                  height="16px"
                   type={ThemeCircleIcon.dark}
                   backgroundColor="transparent"
                   border="1px solid #D5D5D5"
@@ -568,7 +569,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
                 type={MainButtonType.light}
                 children="Try For Free"
                 borderRadius="15px"
-                fontSize="18px"
+                fontSize="13px"
                 className="mx-2 fw-bold"
                 backgroundColor="#00A598"
                 minWidth="160px"
@@ -592,22 +593,22 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
             <p>
               for large research teams collaborating on multiple research
               projects
-              <br />
-              <br />
+              
+              
             </p>
             <div className="items d-flex flex-column align-items-center">
               <div className="item d-flex justify-content-center align-items-center">
                 <img
                   src="/images/icons/teamwork.svg"
-                  width={22}
-                  height={22}
+                  width={16}
+                  height={16}
                   alt="radvix"
                   className="mx-1"
                 />
                 <span className="mx-1 title-item">Up To 10 Teams</span>
                 <CircleIcon
-                  width="20px"
-                  height="20px"
+                  width="16px"
+                  height="16px"
                   type={ThemeCircleIcon.dark}
                   backgroundColor="transparent"
                   border="1px solid #D5D5D5"
@@ -624,15 +625,15 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               <div className="item d-flex justify-content-center align-items-center">
                 <img
                   src="/images/icons/user.svg"
-                  width={22}
-                  height={22}
+                  width={16}
+                  height={16}
                   alt="radvix"
                   className="mx-1"
                 />
                 <span className="mx-1 title-item">Up 20 Members</span>
                 <CircleIcon
-                  width="20px"
-                  height="20px"
+                  width="16px"
+                  height="16px"
                   type={ThemeCircleIcon.dark}
                   backgroundColor="transparent"
                   border="1px solid #D5D5D5"
@@ -649,15 +650,15 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               <div className="item d-flex justify-content-center align-items-center">
                 <img
                   src="/images/icons/lamp.svg"
-                  width={22}
-                  height={22}
+                  width={16}
+                  height={16}
                   alt="radvix"
                   className="mx-1"
                 />
                 <span className="mx-1 title-item">100 Projects/Year</span>
                 <CircleIcon
-                  width="20px"
-                  height="20px"
+                  width="16px"
+                  height="16px"
                   type={ThemeCircleIcon.dark}
                   backgroundColor="transparent"
                   border="1px solid #D5D5D5"
@@ -674,15 +675,15 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               <div className="item d-flex justify-content-center align-items-center">
                 <img
                   src="/images/icons/university.svg"
-                  width={22}
-                  height={22}
+                  width={16}
+                  height={16}
                   alt="radvix"
                   className="mx-1"
                 />
                 <span className="mx-1 title-item">Unlimited Laboratories </span>
                 <CircleIcon
-                  width="20px"
-                  height="20px"
+                  width="16px"
+                  height="16px"
                   type={ThemeCircleIcon.dark}
                   backgroundColor="transparent"
                   border="1px solid #D5D5D5"
@@ -699,15 +700,15 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               <div className="item d-flex justify-content-center align-items-center">
                 <img
                   src="/images/icons/equipment_Icon.svg"
-                  width={22}
-                  height={22}
+                  width={16}
+                  height={16}
                   alt="radvix"
                   className="mx-1"
                 />
                 <span className="mx-1 title-item">Unlimited Equipment </span>
                 <CircleIcon
-                  width="20px"
-                  height="20px"
+                  width="16px"
+                  height="16px"
                   type={ThemeCircleIcon.dark}
                   backgroundColor="transparent"
                   border="1px solid #D5D5D5"
@@ -724,15 +725,15 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               <div className="item d-flex justify-content-center align-items-center">
                 <img
                   src="/images/icons/server_storage.svg"
-                  width={22}
-                  height={22}
+                  width={16}
+                  height={16}
                   alt="radvix"
                   className="mx-1"
                 />
                 <span className="mx-1 title-item">1 TB Storage/Year </span>
                 <CircleIcon
-                  width="20px"
-                  height="20px"
+                  width="16px"
+                  height="16px"
                   type={ThemeCircleIcon.dark}
                   backgroundColor="transparent"
                   border="1px solid #D5D5D5"
@@ -749,15 +750,15 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               <div className="item d-flex justify-content-center align-items-center">
                 <img
                   src="/Images/icons/clock_circular_outline.svg"
-                  width={22}
-                  height={22}
+                  width={16}
+                  height={16}
                   alt="radvix"
                   className="mx-1"
                 />
                 <span className="mx-1 title-item">Gantt Charts </span>
                 <CircleIcon
-                  width="20px"
-                  height="20px"
+                  width="16px"
+                  height="16px"
                   type={ThemeCircleIcon.dark}
                   backgroundColor="transparent"
                   border="1px solid #D5D5D5"
@@ -774,15 +775,15 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               <div className="item d-flex justify-content-center align-items-center">
                 <img
                   src="/Images/icons/chat.svg"
-                  width={22}
-                  height={22}
+                  width={16}
+                  height={16}
                   alt="radvix"
                   className="mx-1"
                 />
                 <span className="mx-1 title-item">Discussion Panels </span>
                 <CircleIcon
-                  width="20px"
-                  height="20px"
+                  width="16px"
+                  height="16px"
                   type={ThemeCircleIcon.dark}
                   backgroundColor="transparent"
                   border="1px solid #D5D5D5"
@@ -799,15 +800,15 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               <div className="item d-flex justify-content-center align-items-center">
                 <img
                   src="/images/icons/writing.svg"
-                  width={22}
-                  height={22}
+                  width={16}
+                  height={16}
                   alt="radvix"
                   className="mx-1"
                 />
                 <span className="mx-1 title-item">Publication Organizer </span>
                 <CircleIcon
-                  width="20px"
-                  height="20px"
+                  width="16px"
+                  height="16px"
                   type={ThemeCircleIcon.dark}
                   backgroundColor="transparent"
                   border="1px solid #D5D5D5"
@@ -824,15 +825,15 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               <div className="item d-flex justify-content-center align-items-center">
                 <img
                   src="/images/icons/money_back.svg"
-                  width={22}
-                  height={22}
+                  width={16}
+                  height={16}
                   alt="radvix"
                   className="mx-1"
                 />
                 <span className="mx-1 title-item"> Expense Manager </span>
                 <CircleIcon
-                  width="20px"
-                  height="20px"
+                  width="16px"
+                  height="16px"
                   type={ThemeCircleIcon.dark}
                   backgroundColor="transparent"
                   border="1px solid #D5D5D5"
@@ -852,7 +853,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
                 type={MainButtonType.light}
                 children="Try For Free"
                 borderRadius="15px"
-                fontSize="18px"
+                fontSize="13px"
                 className="mx-2 fw-bold"
                 backgroundColor="#0020A5"
                 minWidth="160px"
@@ -868,22 +869,22 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
           <div className="plan-body">
             <p>
               for universities, departments and large corporations
-              <br />
-              <br />
+              
+              
             </p>
             <div className="items d-flex flex-column align-items-center">
               <div className="item d-flex justify-content-center align-items-center">
                 <img
                   src="/images/icons/teamwork.svg"
-                  width={22}
-                  height={22}
+                  width={16}
+                  height={16}
                   alt="radvix"
                   className="mx-1"
                 />
                 <span className="mx-1 title-item">Unlimited Teams</span>
                 <CircleIcon
-                  width="20px"
-                  height="20px"
+                  width="16px"
+                  height="16px"
                   type={ThemeCircleIcon.dark}
                   backgroundColor="transparent"
                   border="1px solid #D5D5D5"
@@ -900,15 +901,15 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               <div className="item d-flex justify-content-center align-items-center">
                 <img
                   src="/images/icons/user.svg"
-                  width={22}
-                  height={22}
+                  width={16}
+                  height={16}
                   alt="radvix"
                   className="mx-1"
                 />
                 <span className="mx-1 title-item">Unlimited Members</span>
                 <CircleIcon
-                  width="20px"
-                  height="20px"
+                  width="16px"
+                  height="16px"
                   type={ThemeCircleIcon.dark}
                   backgroundColor="transparent"
                   border="1px solid #D5D5D5"
@@ -925,15 +926,15 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               <div className="item d-flex justify-content-center align-items-center">
                 <img
                   src="/images/icons/lamp.svg"
-                  width={22}
-                  height={22}
+                  width={16}
+                  height={16}
                   alt="radvix"
                   className="mx-1"
                 />
                 <span className="mx-1 title-item">Unlimited Project</span>
                 <CircleIcon
-                  width="20px"
-                  height="20px"
+                  width="16px"
+                  height="16px"
                   type={ThemeCircleIcon.dark}
                   backgroundColor="transparent"
                   border="1px solid #D5D5D5"
@@ -950,15 +951,15 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               <div className="item d-flex justify-content-center align-items-center">
                 <img
                   src="/images/icons/university.svg"
-                  width={22}
-                  height={22}
+                  width={16}
+                  height={16}
                   alt="radvix"
                   className="mx-1"
                 />
                 <span className="mx-1 title-item">Unlimited Laboratories </span>
                 <CircleIcon
-                  width="20px"
-                  height="20px"
+                  width="16px"
+                  height="16px"
                   type={ThemeCircleIcon.dark}
                   backgroundColor="transparent"
                   border="1px solid #D5D5D5"
@@ -975,15 +976,15 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               <div className="item d-flex justify-content-center align-items-center">
                 <img
                   src="/images/icons/equipment_Icon.svg"
-                  width={22}
-                  height={22}
+                  width={16}
+                  height={16}
                   alt="radvix"
                   className="mx-1"
                 />
                 <span className="mx-1 title-item">Unlimited Equipment </span>
                 <CircleIcon
-                  width="20px"
-                  height="20px"
+                  width="16px"
+                  height="16px"
                   type={ThemeCircleIcon.dark}
                   backgroundColor="transparent"
                   border="1px solid #D5D5D5"
@@ -1000,15 +1001,15 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               <div className="item d-flex justify-content-center align-items-center">
                 <img
                   src="/images/icons/server_storage.svg"
-                  width={22}
-                  height={22}
+                  width={16}
+                  height={16}
                   alt="radvix"
                   className="mx-1"
                 />
                 <span className="mx-1 title-item">Unlimited Storage</span>
                 <CircleIcon
-                  width="20px"
-                  height="20px"
+                  width="16px"
+                  height="16px"
                   type={ThemeCircleIcon.dark}
                   backgroundColor="transparent"
                   border="1px solid #D5D5D5"
@@ -1025,15 +1026,15 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               <div className="item d-flex justify-content-center align-items-center">
                 <img
                   src="/Images/icons/clock_circular_outline.svg"
-                  width={22}
-                  height={22}
+                  width={16}
+                  height={16}
                   alt="radvix"
                   className="mx-1"
                 />
                 <span className="mx-1 title-item">Gantt Charts </span>
                 <CircleIcon
-                  width="20px"
-                  height="20px"
+                  width="16px"
+                  height="16px"
                   type={ThemeCircleIcon.dark}
                   backgroundColor="transparent"
                   border="1px solid #D5D5D5"
@@ -1050,15 +1051,15 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               <div className="item d-flex justify-content-center align-items-center">
                 <img
                   src="/Images/icons/chat.svg"
-                  width={22}
-                  height={22}
+                  width={16}
+                  height={16}
                   alt="radvix"
                   className="mx-1"
                 />
                 <span className="mx-1 title-item">Discussion Panels </span>
                 <CircleIcon
-                  width="20px"
-                  height="20px"
+                  width="16px"
+                  height="16px"
                   type={ThemeCircleIcon.dark}
                   backgroundColor="transparent"
                   border="1px solid #D5D5D5"
@@ -1075,15 +1076,15 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               <div className="item d-flex justify-content-center align-items-center">
                 <img
                   src="/images/icons/writing.svg"
-                  width={22}
-                  height={22}
+                  width={16}
+                  height={16}
                   alt="radvix"
                   className="mx-1"
                 />
                 <span className="mx-1 title-item">Publication Organizer </span>
                 <CircleIcon
-                  width="20px"
-                  height="20px"
+                  width="16px"
+                  height="16px"
                   type={ThemeCircleIcon.dark}
                   backgroundColor="transparent"
                   border="1px solid #D5D5D5"
@@ -1100,15 +1101,15 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
               <div className="item d-flex justify-content-center align-items-center">
                 <img
                   src="/images/icons/money_back.svg"
-                  width={22}
-                  height={22}
+                  width={16}
+                  height={16}
                   alt="radvix"
                   className="mx-1"
                 />
                 <span className="mx-1 title-item"> Expense Manager </span>
                 <CircleIcon
-                  width="20px"
-                  height="20px"
+                  width="16px"
+                  height="16px"
                   type={ThemeCircleIcon.dark}
                   backgroundColor="transparent"
                   border="1px solid #D5D5D5"
@@ -1128,7 +1129,7 @@ const Plans: React.FC<RouteComponentProps> = (props) => {
                 type={MainButtonType.light}
                 children="Start Now"
                 borderRadius="15px"
-                fontSize="18px"
+                fontSize="13px"
                 className="mx-2 fw-bold"
                 backgroundColor="#FFBA00"
                 minWidth="160px"
