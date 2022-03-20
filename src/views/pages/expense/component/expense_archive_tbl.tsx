@@ -39,7 +39,7 @@ const ExpenseArchiveTable: React.FC<TableComponentProp & RouteComponentProps> =
                         "Completed"}
                     type={MainButtonType.dark}
                     borderRadius="24px"
-                    fontSize="14px"
+                    fontSize="11px"
                     backgroundColor="#8EE1FF"
                   ></MainButton>
                 </td>

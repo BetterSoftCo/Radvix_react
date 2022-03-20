@@ -1,9 +1,11 @@
 .Studying {
   h3 {
-    font-size: 2rem;
+    font-size: 14px;
+    font-weight: bolder;
   }
   p {
     text-align: center;
+    font-size: 11px;
   }
 }
 .box-content {
@@ -13,6 +15,7 @@
   margin: 1rem 0rem;
   .b-title {
     margin-bottom: 0px;
+    font-size: 16px;
   }
   .left {
     position: relative;
@@ -179,13 +182,16 @@
   }
 
   .tabel-info {
+    padding-left: 1.5rem;
     .t-title {
       background-color: #f5f5f5;
       padding: 1rem;
+      font-size: 12px;
     }
     .t-desc {
       background-color: #ffffff;
       padding: 0.5rem;
+      font-size: 12px;
       ul {
         list-style: none;
         padding-left: 0;

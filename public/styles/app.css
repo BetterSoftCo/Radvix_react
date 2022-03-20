@@ -26,6 +26,23 @@ a, a:hover, a:focus, a:active {
   color: inherit;
 }
 
+body::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #F5F5F5;
+}
+
+body::-webkit-scrollbar {
+  width: 12px;
+  background-color: #F5F5F5;
+}
+
+body::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #555;
+}
+
 .darkButton {
   color: white;
   background-color: #474747;
@@ -275,6 +292,7 @@ button.loading {
 
 .sidebar {
   position: relative;
+  min-width: 139px;
 }
 
 .sidebar .gide-sidebar {
@@ -600,19 +618,25 @@ button.loading {
   overflow-y: scroll;
   background-color: #c7c7c7;
   border-radius: 15px;
-  padding: 1rem 2rem;
-  border-bottom: 2px solid #EBEBEB;
-  border-top: 2px solid #EBEBEB;
+  padding: 1rem 1rem;
+  border-bottom: 2px solid #ebebeb;
+  border-top: 2px solid #ebebeb;
 }
 
 .parent-box-list-scroll .box-list-scroll .IconTextVerticalLight {
   border-bottom: 1px solid #d9d9d9;
+  padding-bottom: 0.3rem;
+  width: 100%;
 }
 
 .parent-box-list-scroll .box-list-scroll .avatar {
-  width: 50px;
-  height: 50px;
+  width: 35px;
+  height: 35px;
   margin-right: 1rem;
+}
+
+.parent-box-list-scroll .box-list-scroll span {
+  font-size: 12px;
 }
 
 .box-list-scroll::-webkit-scrollbar {
@@ -861,11 +885,13 @@ button.loading {
 }
 
 .Studying h3 {
-  font-size: 2rem;
+  font-size: 14px;
+  font-weight: bolder;
 }
 
 .Studying p {
   text-align: center;
+  font-size: 11px;
 }
 
 .box-content {
@@ -877,6 +903,7 @@ button.loading {
 
 .box-content .b-title {
   margin-bottom: 0px;
+  font-size: 16px;
 }
 
 .box-content .left {
@@ -1037,14 +1064,20 @@ button.loading {
   cursor: pointer;
 }
 
+.box-content .tabel-info {
+  padding-left: 1.5rem;
+}
+
 .box-content .tabel-info .t-title {
   background-color: #f5f5f5;
   padding: 1rem;
+  font-size: 12px;
 }
 
 .box-content .tabel-info .t-desc {
   background-color: #ffffff;
   padding: 0.5rem;
+  font-size: 12px;
 }
 
 .box-content .tabel-info .t-desc ul {
@@ -1686,6 +1719,23 @@ a, a:hover, a:focus, a:active {
   color: inherit;
 }
 
+body::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #F5F5F5;
+}
+
+body::-webkit-scrollbar {
+  width: 12px;
+  background-color: #F5F5F5;
+}
+
+body::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #555;
+}
+
 .darkButton {
   color: white;
   background-color: #474747;
@@ -1935,6 +1985,7 @@ button.loading {
 
 .sidebar {
   position: relative;
+  min-width: 139px;
 }
 
 .sidebar .gide-sidebar {
@@ -2260,19 +2311,25 @@ button.loading {
   overflow-y: scroll;
   background-color: #c7c7c7;
   border-radius: 15px;
-  padding: 1rem 2rem;
-  border-bottom: 2px solid #EBEBEB;
-  border-top: 2px solid #EBEBEB;
+  padding: 1rem 1rem;
+  border-bottom: 2px solid #ebebeb;
+  border-top: 2px solid #ebebeb;
 }
 
 .parent-box-list-scroll .box-list-scroll .IconTextVerticalLight {
   border-bottom: 1px solid #d9d9d9;
+  padding-bottom: 0.3rem;
+  width: 100%;
 }
 
 .parent-box-list-scroll .box-list-scroll .avatar {
-  width: 50px;
-  height: 50px;
+  width: 35px;
+  height: 35px;
   margin-right: 1rem;
+}
+
+.parent-box-list-scroll .box-list-scroll span {
+  font-size: 12px;
 }
 
 .box-list-scroll::-webkit-scrollbar {
@@ -2521,11 +2578,13 @@ button.loading {
 }
 
 .Studying h3 {
-  font-size: 2rem;
+  font-size: 14px;
+  font-weight: bolder;
 }
 
 .Studying p {
   text-align: center;
+  font-size: 11px;
 }
 
 .box-content {
@@ -2537,6 +2596,7 @@ button.loading {
 
 .box-content .b-title {
   margin-bottom: 0px;
+  font-size: 16px;
 }
 
 .box-content .left {
@@ -2697,14 +2757,20 @@ button.loading {
   cursor: pointer;
 }
 
+.box-content .tabel-info {
+  padding-left: 1.5rem;
+}
+
 .box-content .tabel-info .t-title {
   background-color: #f5f5f5;
   padding: 1rem;
+  font-size: 12px;
 }
 
 .box-content .tabel-info .t-desc {
   background-color: #ffffff;
   padding: 0.5rem;
+  font-size: 12px;
 }
 
 .box-content .tabel-info .t-desc ul {

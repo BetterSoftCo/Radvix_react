@@ -592,7 +592,7 @@ class ResearchPageEdit extends React.Component<
               <div className="teams mb-3">
                 <IconTextRow
                   theme={Theme.dark}
-                  text="Teams (Members)"
+                  text="Teams (Members)" fontSize="12px"
                   children={
                     <img
                       src="/images/icons/team_menu.svg"

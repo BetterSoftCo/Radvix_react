@@ -54,16 +54,16 @@ export class SettingPage extends React.Component {
             <div className="row mt-4">
               <div className="col-md-6  tabel-info ">
                 <div className="row border-bottom ">
-                  <h6 className="col-4 t-title mb-0 border-t-l">
+                  <h6 className="col-5 t-title mb-0 border-t-l">
                     Subscription Plan
                   </h6>
-                  <div className="col-8 t-desc border-t-r">
+                  <div className="col-7 t-desc border-t-r">
                     <span className="text-primary">Radvix Standard</span>
                   </div>
                 </div>
                 <div className="row border-bottom">
-                  <h6 className="col-4 t-title mb-0">Payment Method</h6>
-                  <div className="col-8 t-desc">
+                  <h6 className="col-5 t-title mb-0">Payment Method</h6>
+                  <div className="col-7 t-desc">
                     <img
                       src="/images/images/mastercard.svg"
                       className="mx-2"
@@ -80,17 +80,17 @@ export class SettingPage extends React.Component {
                   </div>
                 </div>
                 <div className="row border-bottom">
-                  <h6 className="col-4 t-title mb-0">Subscription Price</h6>
-                  <div className="col-8 t-desc">
+                  <h6 className="col-5 t-title mb-0">Subscription Price</h6>
+                  <div className="col-7 t-desc">
                     $xx.x/month (billed annually)
                   </div>
                 </div>
 
                 <div className="row border-bottom">
-                  <h6 className="col-4 t-title mb-0 border-b-l">
+                  <h6 className="col-5 t-title mb-0 border-b-l">
                     Billing Address
                   </h6>
-                  <div className="col-8 t-desc border-b-r">
+                  <div className="col-7 t-desc border-b-r">
                     9863 Greystone Street Upland, CA 91784
                   </div>
                 </div>

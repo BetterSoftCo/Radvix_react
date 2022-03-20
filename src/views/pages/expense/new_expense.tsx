@@ -283,7 +283,7 @@ class ExpensePageNew extends React.Component<RouteComponentProps> {
                 <div className="col-md-6">
                   <div className="item">
                     <span className="label d-flex align-items-center">
-                      Scheduled Timeline:{" "}
+                      Date:{" "}
                       <CircleIcon
                         width="20px"
                         height="20px"

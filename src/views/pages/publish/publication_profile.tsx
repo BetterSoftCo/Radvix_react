@@ -98,7 +98,7 @@ class PublicationProfile extends React.Component<RouteComponentProps<RouteParams
               ></span>{" "}
               {"Publication Profile"}
             </h5>
-            <div>
+            <div className="d-flex justify-content-end"> 
               <MainButton
                 children="Upload Next Draft"
                 type={MainButtonType.dark}
@@ -145,50 +145,50 @@ class PublicationProfile extends React.Component<RouteComponentProps<RouteParams
           <div className="row">
             <div className="col-md-6  tabel-info ">
               <div className="row border-bottom ">
-                <h6 className="col-4 t-title mb-0 border-t-l">Priority</h6>
-                <div className="col-8 t-desc border-t-r">
+                <h6 className="col-5 t-title mb-0 border-t-l">Priority</h6>
+                <div className="col-7 t-desc border-t-r">
                   <MainButton
                     children={this.state.publication.priority === 0 ? "Low" : this.state.publication.priority === 1 ? "Medium" : "High"}
                     type={MainButtonType.dark}
                     borderRadius="24px"
-                    fontSize="14px"
+                    fontSize="11px"
                     backgroundColor="#096BFF"
                   ></MainButton>
                 </div>
               </div>
               <div className="row border-bottom">
-                <h6 className="col-4 t-title mb-0">Category</h6>
-                <div className="col-8 t-desc">{this.state.publication.category}</div>
+                <h6 className="col-5 t-title mb-0">Category</h6>
+                <div className="col-7 t-desc">{this.state.publication.category}</div>
               </div>
               <div className="row border-bottom">
-                <h6 className="col-4 t-title mb-0">Submitting For</h6>
-                <div className="col-8 t-desc">{this.state.publication.submitAt}</div>
+                <h6 className="col-5 t-title mb-0">Submitting For</h6>
+                <div className="col-7 t-desc">{this.state.publication.submitAt}</div>
               </div>
               <div className="row border-bottom">
-                <h6 className="col-4 t-title mb-0">Started by</h6>
-                <div className="col-8 t-desc">{this.state.publication.creatorFirstName} {this.state.publication.creatorLastName}</div>
+                <h6 className="col-5 t-title mb-0">Started by</h6>
+                <div className="col-7 t-desc">{this.state.publication.creatorFirstName} {this.state.publication.creatorLastName}</div>
               </div>
               <div className="row border-bottom">
-                <h6 className="col-4 t-title mb-0">Start - Deadline</h6>
-                <div className="col-8 t-desc">{moment(this.state.publication.startDate).format("YYYY/MM/DD")} -{moment(this.state.publication.endDate).format("YYYY/MM/DD")}</div>
+                <h6 className="col-5 t-title mb-0">Start - Deadline</h6>
+                <div className="col-7 t-desc">{moment(this.state.publication.startDate).format("YYYY/MM/DD")} -{moment(this.state.publication.endDate).format("YYYY/MM/DD")}</div>
               </div>
               <div className="row border-bottom">
-                <h6 className="col-4 t-title mb-0 border-b-l">
+                <h6 className="col-5 t-title mb-0 border-b-l">
                   Date Completed
                 </h6>
-                <div className="col-8 t-desc border-b-r">
+                <div className="col-7 t-desc border-b-r">
                   <MainButton
                     children="On Going"
                     type={MainButtonType.dark}
                     borderRadius="24px"
-                    fontSize="14px"
+                    fontSize="11px"
                     backgroundColor="#8EE1FF"
                   ></MainButton>
                   <MainButton
                     children="Delayed"
                     type={MainButtonType.dark}
                     borderRadius="24px"
-                    fontSize="14px"
+                    fontSize="11px"
                     backgroundColor="#FE861F"
                   ></MainButton>
                 </div>
@@ -200,6 +200,7 @@ class PublicationProfile extends React.Component<RouteComponentProps<RouteParams
                   <IconTextRow
                     theme={Theme.dark}
                     text="Members Collaborating"
+                    fontSize="12px"
                     children={
                       <img
                         src="/images/icons/team_menu.svg"

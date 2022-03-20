@@ -81,6 +81,7 @@ class DataCollection extends React.Component<RouteComponentProps> {
                   type={MainButtonType.dark}
                   borderRadius="24px"
                   fontSize="16px"
+                  minWidth="100px"
                   onClick={() => { this.props.history.push(AppRoutes.data_new) }}
                 ></MainButton>
                 <MainButton
@@ -88,6 +89,7 @@ class DataCollection extends React.Component<RouteComponentProps> {
                   type={MainButtonType.dark}
                   borderRadius="24px"
                   fontSize="16px"
+                  minWidth="100px"
                   onClick={() => { this.props.history.push(AppRoutes.data_mydata) }}
                 ></MainButton>
                 <SelectComponent

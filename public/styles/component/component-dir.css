@@ -247,6 +247,7 @@ button.loading {
 
 .sidebar {
   position: relative;
+  min-width: 139px;
 }
 
 .sidebar .gide-sidebar {
@@ -572,19 +573,25 @@ button.loading {
   overflow-y: scroll;
   background-color: #c7c7c7;
   border-radius: 15px;
-  padding: 1rem 2rem;
-  border-bottom: 2px solid #EBEBEB;
-  border-top: 2px solid #EBEBEB;
+  padding: 1rem 1rem;
+  border-bottom: 2px solid #ebebeb;
+  border-top: 2px solid #ebebeb;
 }
 
 .parent-box-list-scroll .box-list-scroll .IconTextVerticalLight {
   border-bottom: 1px solid #d9d9d9;
+  padding-bottom: 0.3rem;
+  width: 100%;
 }
 
 .parent-box-list-scroll .box-list-scroll .avatar {
-  width: 50px;
-  height: 50px;
+  width: 35px;
+  height: 35px;
   margin-right: 1rem;
+}
+
+.parent-box-list-scroll .box-list-scroll span {
+  font-size: 12px;
 }
 
 .box-list-scroll::-webkit-scrollbar {

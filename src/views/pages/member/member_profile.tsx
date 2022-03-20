@@ -149,35 +149,35 @@ class MemberPageProfile extends React.Component<
           <div className="row">
             <div className="col-md-6  tabel-info ">
               <div className="row border-bottom ">
-                <h6 className="col-4 t-title mb-0 border-t-l">Role</h6>
-                <div className="col-8 t-desc border-t-r">
+                <h6 className="col-5 t-title mb-0 border-t-l">Role</h6>
+                <div className="col-7 t-desc border-t-r">
                   <MainButton
                     children={this.state.role.isRole()}
                     type={MainButtonType.dark}
                     borderRadius="24px"
-                    fontSize="14px"
+                    fontSize="11px"
                   ></MainButton>
                 </div>
               </div>
               <div className="row border-bottom">
-                <h6 className="col-4 t-title mb-0">Academic Background</h6>
-                <div className="col-8 t-desc">{this.state.resume}</div>
+                <h6 className="col-5 t-title mb-0">Academic Background</h6>
+                <div className="col-7 t-desc">{this.state.resume}</div>
               </div>
               <div className="row border-bottom">
-                <h6 className="col-4 t-title mb-0">Reports to</h6>
-                <div className="col-8 t-desc">
+                <h6 className="col-5 t-title mb-0">Reports to</h6>
+                <div className="col-7 t-desc">
                   {this.state.invitationSender}
                 </div>
               </div>
               <div className="row border-bottom">
-                <h6 className="col-4 t-title mb-0">Joined Radvix</h6>
-                <div className="col-8 t-desc">
+                <h6 className="col-5 t-title mb-0">Joined Radvix</h6>
+                <div className="col-7 t-desc">
                   {moment(this.state.joinedDate).format("YYYY/MM/DD")}
                 </div>
               </div>
               <div className="row border-bottom">
-                <h6 className="col-4 t-title mb-0 border-b-l">Contact</h6>
-                <div className="col-8 t-desc border-b-r">
+                <h6 className="col-5 t-title mb-0 border-b-l">Contact</h6>
+                <div className="col-7 t-desc border-b-r">
                   <ul>
                     {this.state.socialMediaProfiles.map((item, index) => (
                       <li key={index}>{item}</li>
@@ -186,16 +186,16 @@ class MemberPageProfile extends React.Component<
                 </div>
               </div>
               <div className="row border-bottom">
-                <h6 className="col-4 t-title mb-0 border-b-l">Public Resume</h6>
-                <div className="col-8 t-desc border-b-r">
+                <h6 className="col-5 t-title mb-0 border-b-l">Public Resume</h6>
+                <div className="col-7 t-desc border-b-r">
                   <ul className="file-list">
                     <li>{this.state.resume}</li>
                   </ul>
                 </div>
               </div>
               <div className="row border-bottom">
-                <h6 className="col-4 t-title mb-0 border-b-l">Links</h6>
-                <div className="col-8 t-desc border-b-r">
+                <h6 className="col-5 t-title mb-0 border-b-l">Links</h6>
+                <div className="col-7 t-desc border-b-r">
                   <ul className="file-list">
                     <li>
                       <img
@@ -220,6 +220,7 @@ class MemberPageProfile extends React.Component<
                 <IconTextRow
                   theme={Theme.dark}
                   text="Subteams"
+                  fontSize="12px"
                   children={
                     <img
                       src="/images/icons/team_menu.svg"
@@ -249,6 +250,7 @@ class MemberPageProfile extends React.Component<
                   children={
                     <img src="/images/icons/lamp.svg" className="mx-2" alt="" />
                   }
+                  fontSize="12px"
                 ></IconTextRow>
                 <div className="tags p-3">
                   {this.state.researches.map((item) => (
@@ -269,49 +271,13 @@ class MemberPageProfile extends React.Component<
                   theme={Theme.dark}
                   text="Laboratory (Equipment)"
                   children={
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="23.91"
-                      height="28.365"
-                      viewBox="0 0 23.91 28.365"
+                    <img
+                      src="/images/icons/labs_equip.svg"
                       className="mx-2"
-                    >
-                      <g
-                        id="Lab_Menu_Icon"
-                        data-name="Lab Menu Icon"
-                        transform="translate(-40.206 0)"
-                      >
-                        <path
-                          id="Path_19"
-                          data-name="Path 19"
-                          d="M100.284,6.467H98V4.628a.831.831,0,0,0-.831-.831H97.11V1.662h.059a.831.831,0,0,0,0-1.662H91.828a.831.831,0,0,0,0,1.662h.059V3.8h-.059A.831.831,0,0,0,91,4.628v8.9a.831.831,0,0,0,.831.831h5.341A.831.831,0,0,0,98,13.529V11.69h2.284a4.065,4.065,0,0,1,0,8.129H89.158a.831.831,0,0,0-.831.831v4.391h11.957a9.3,9.3,0,0,0,9.287-9.287h0a9.3,9.3,0,0,0-9.287-9.287ZM97.169,11.69A2.611,2.611,0,1,1,99.78,9.078,2.614,2.614,0,0,1,97.169,11.69Z"
-                          transform="translate(-45.455)"
-                          fill="#000000"
-                        />
-                        <path
-                          id="Path_20"
-                          data-name="Path 20"
-                          d="M156.984,290.862a.831.831,0,0,0,.831-.831V289.2h-5.222v.831a.831.831,0,0,0,.831.831Z"
-                          transform="translate(-106.161 -273.178)"
-                          fill="#000000"
-                        />
-                        <path
-                          id="Path_21"
-                          data-name="Path 21"
-                          d="M57.055,482H41.033a.831.831,0,0,0,0,1.662H57.055A.831.831,0,0,0,57.055,482Z"
-                          transform="translate(0 -455.297)"
-                          fill="#000000"
-                        />
-                        <path
-                          id="Path_22"
-                          data-name="Path 22"
-                          d="M231.743,146.733a.949.949,0,1,0,.949.949A.95.95,0,0,0,231.743,146.733Z"
-                          transform="translate(-180.029 -138.604)"
-                          fill="#000000"
-                        />
-                      </g>
-                    </svg>
+                      alt=""
+                    />
                   }
+                  fontSize="12px"
                 ></IconTextRow>
                 <div className="tags p-3">
                   {this.state.laboratories.map((item) => (

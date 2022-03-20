@@ -68,8 +68,11 @@ class EquipPage extends React.Component<RouteComponentProps> {
         <div className="col-12">
           <div className="TableBox">
             <div className="TopTableBox d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3">
-              <div className="left d-flex w-50 align-items-baseline">
-                <h6 className="b-title d-flex" style={{ width: "45%" }}>
+              <div className="left d-flex w-50 align-items-center">
+                <h6
+                  className="b-title d-flex align-items-center"
+                  style={{ width: "45%" }}
+                >
                   <span
                     onClick={() => {
                       window.history.back();
@@ -87,7 +90,7 @@ class EquipPage extends React.Component<RouteComponentProps> {
                   TopPosition="15%"
                 ></InputIcon>
               </div>
-              <div className="right  d-flex justify-content-between">
+              <div className="right  d-flex justify-content-between align-items-baseline">
                 {AccessPermition(this.RoleUser, [
                   UserRoles.Admin,
                   UserRoles.L1Client,
@@ -98,7 +101,7 @@ class EquipPage extends React.Component<RouteComponentProps> {
                     children="New Equip"
                     type={MainButtonType.dark}
                     borderRadius="24px"
-                    fontSize="14px"
+                    fontSize="11px"
                     className="my-2 mx-2"
                     onClick={() => {
                       this.props.history.push(AppRoutes.equip_new);

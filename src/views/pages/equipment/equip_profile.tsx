@@ -99,8 +99,7 @@ class EquipProfile extends React.Component<RouteComponentProps<RouteParams>> {
                 </CircleIcon>
               ) : null}
             </h5>
-            <div className="d-flex justify-content-around align-items-center w-25">
-              <MainButton
+            <MainButton
                 children="Discussion Panel"
                 type={MainButtonType.dark}
                 borderRadius="24px"
@@ -114,7 +113,6 @@ class EquipProfile extends React.Component<RouteComponentProps<RouteParams>> {
                   );
                 }}
               ></MainButton>
-            </div>
           </div>
           <div className="Studying p-4 my-2 d-flex flex-column justify-content-center align-items-center">
             <img
@@ -124,7 +122,7 @@ class EquipProfile extends React.Component<RouteComponentProps<RouteParams>> {
                   : "/Images/icons/equipment_Icon.svg"
               }
               alt="Avatar"
-              className="rounded-circle avatar"
+              className="rounded-circle avatar mb-2"
               width="125px"
               height="125px"
             />
@@ -135,20 +133,20 @@ class EquipProfile extends React.Component<RouteComponentProps<RouteParams>> {
           <div className="row">
             <div className="col-md-6  tabel-info ">
               <div className="row border-bottom ">
-                <h6 className="col-4 t-title mb-0 border-t-l">Status</h6>
-                <div className="col-8 t-desc border-t-r">
+                <h6 className="col-5 t-title mb-0 border-t-l">Status</h6>
+                <div className="col-7 t-desc border-t-r">
                   <MainButton
                     children={this.state.status.isStatus()}
                     type={MainButtonType.dark}
                     borderRadius="42px"
-                    fontSize="14px"
+                    fontSize="11px"
                     backgroundColor="#006EA8"
                   ></MainButton>
                 </div>
               </div>
               <div className="row border-bottom">
-                <h6 className="col-4 t-title mb-0">Laboratory</h6>
-                <div className="col-8 t-desc">
+                <h6 className="col-5 t-title mb-0">Laboratory</h6>
+                <div className="col-7 t-desc">
                   <ul className="px-0">
                     {this.state.laboratories.map((item) => (
                       <li key={item.id}>{item.title}</li>
@@ -157,20 +155,20 @@ class EquipProfile extends React.Component<RouteComponentProps<RouteParams>> {
                 </div>
               </div>
               <div className="row border-bottom">
-                <h6 className="col-4 t-title mb-0">Manufacturer (Model)</h6>
-                <div className="col-8 t-desc">{this.state.model}</div>
+                <h6 className="col-5 t-title mb-0">Manufacturer (Model)</h6>
+                <div className="col-7 t-desc">{this.state.model}</div>
               </div>
               <div className="row border-bottom">
-                <h6 className="col-4 t-title mb-0">Warranty (Support)</h6>
-                <div className="col-8 t-desc">
+                <h6 className="col-5 t-title mb-0">Warranty (Support)</h6>
+                <div className="col-7 t-desc">
                   {this.state.technicianName} {this.state.technicianEmail}{" "}
                   {this.state.technicianPhone}
                 </div>
               </div>
 
               <div className="row border-bottom">
-                <h6 className="col-4 t-title mb-0 border-b-l">Protocols</h6>
-                <div className="col-8 t-desc border-b-r">
+                <h6 className="col-5 t-title mb-0 border-b-l">Protocols</h6>
+                <div className="col-7 t-desc border-b-r">
                   <ul className="file-list">
                     {this.state.medias
                       .filter((media) => media.externalUrl === null)
@@ -219,6 +217,7 @@ class EquipProfile extends React.Component<RouteComponentProps<RouteParams>> {
                       alt=""
                     />
                   }
+                  fontSize="12px"
                 ></IconTextRow>
                 <div className="tags p-3">
                   {this.state.teams.map((item) => (

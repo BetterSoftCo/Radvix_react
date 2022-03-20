@@ -12,7 +12,9 @@ import { GetExpenseByIDResult } from "../../../data/models/responses/expense/exp
 interface RouteParams {
   id: string;
 }
-class ExpensePageProfile extends React.Component<RouteComponentProps<RouteParams>> {
+class ExpensePageProfile extends React.Component<
+  RouteComponentProps<RouteParams>
+> {
   RoleUser = store.getState().userRole;
   controller = new expenseController();
   state: GetExpenseByIDResult = {
@@ -40,16 +42,22 @@ class ExpensePageProfile extends React.Component<RouteComponentProps<RouteParams
           description: res.description,
           appTaskTitle: res.appTaskTitle,
           medias: res.medias,
-          status: res.status
+          status: res.status,
         });
       }
     );
   }
   handelCreateExpenseState(isApproved: boolean) {
-    this.controller.createState({ expenseId: parseInt(this.props.match.params.id), isApproved: isApproved }, res => {
-      this.props.history.push(`${AppRoutes.expense}`)
-    }, err => console.log(err)
-    )
+    this.controller.createState(
+      {
+        expenseId: parseInt(this.props.match.params.id),
+        isApproved: isApproved,
+      },
+      (res) => {
+        this.props.history.push(`${AppRoutes.expense}`);
+      },
+      (err) => console.log(err)
+    );
   }
   render() {
     return (
@@ -58,7 +66,13 @@ class ExpensePageProfile extends React.Component<RouteComponentProps<RouteParams
         <div className="col-12 box-content p-3">
           <div className="d-flex justify-content-between align-items-center">
             <h5 className="b-title d-flex align-items-center">
-              <span onClick={() => { window.history.back() }} className="backPage"></span> {"Expense Profile"}
+              <span
+                onClick={() => {
+                  window.history.back();
+                }}
+                className="backPage"
+              ></span>{" "}
+              {"Expense Profile"}
               {AccessPermition(this.RoleUser, [
                 UserRoles.Admin,
                 UserRoles.L1Client,
@@ -89,7 +103,7 @@ class ExpensePageProfile extends React.Component<RouteComponentProps<RouteParams
               children="Discussion Panel"
               type={MainButtonType.dark}
               borderRadius="24px"
-              fontSize="14px"
+              fontSize="12px"
               className="px-3"
               onClick={() => {
                 this.props.history.push(
@@ -108,7 +122,7 @@ class ExpensePageProfile extends React.Component<RouteComponentProps<RouteParams
               UserRoles.Admin,
               UserRoles.L1Client,
               UserRoles.L1User,
-            ]) &&  this.state.status === 0? (
+            ]) && this.state.status === 0 ? (
               <div className="d-flex justify-content-center align-items-center mt-3">
                 <MainButton
                   children="Decline"
@@ -118,7 +132,9 @@ class ExpensePageProfile extends React.Component<RouteComponentProps<RouteParams
                   className="mx-3 px-3"
                   minHeight="34px"
                   backgroundColor="#F5C602"
-                  onClick={() => { this.handelCreateExpenseState(false) }}
+                  onClick={() => {
+                    this.handelCreateExpenseState(false);
+                  }}
                 ></MainButton>
                 <MainButton
                   children="Approve"
@@ -128,7 +144,9 @@ class ExpensePageProfile extends React.Component<RouteComponentProps<RouteParams
                   className="mx-3 px-3"
                   minHeight="34px"
                   backgroundColor="#53A501"
-                  onClick={() => { this.handelCreateExpenseState(true) }}
+                  onClick={() => {
+                    this.handelCreateExpenseState(true);
+                  }}
                 ></MainButton>
               </div>
             ) : null}
@@ -136,8 +154,8 @@ class ExpensePageProfile extends React.Component<RouteComponentProps<RouteParams
           <div className="row">
             <div className="col-md-6  tabel-info ">
               <div className="row border-bottom ">
-                <h6 className="col-4 t-title mb-0 border-t-l">Status</h6>
-                <div className="col-8 t-desc border-t-r">
+                <h6 className="col-5 t-title mb-0 border-t-l">Status</h6>
+                <div className="col-7 t-desc border-t-r">
                   {AccessPermition(this.RoleUser, [
                     UserRoles.L3User,
                     UserRoles.L2User,
@@ -158,66 +176,76 @@ class ExpensePageProfile extends React.Component<RouteComponentProps<RouteParams
                         fontSize="14px"
                         backgroundColor="#53A501"
                       ></MainButton>
-                      <p className="mb-0 mx-2">{moment(this.state.date).format("YYYY/MM/DD")}</p>
+                      <p className="mb-0 mx-2">
+                        {moment(this.state.date).format("YYYY/MM/DD")}
+                      </p>
                     </div>
                   )}
                 </div>
               </div>
               <div className="row border-bottom">
-                <h6 className="col-4 t-title mb-0">Associated Task</h6>
-                <div className="col-8 t-desc">{this.state.appTaskTitle}</div>
+                <h6 className="col-5 t-title mb-0">Associated Task</h6>
+                <div className="col-7 t-desc">{this.state.appTaskTitle}</div>
               </div>
               <div className="row border-bottom">
-                <h6 className="col-4 t-title mb-0">Requested by</h6>
-                <div className="col-8 t-desc">{this.state.creatorFirstName} {this.state.creatorLastName}</div>
-              </div>
-              <div className="row border-bottom">
-                <h6 className="col-4 t-title mb-0">Receipt Date</h6>
-                <div className="col-8 t-desc">{moment(this.state.date).format("YYYY/MM/DD")}</div>
-              </div>
-              <div className="row border-bottom">
-                <h6 className="col-4 t-title mb-0">Description </h6>
-                <div className="col-8 t-desc">
-                  {this.state.description}
+                <h6 className="col-5 t-title mb-0">Requested by</h6>
+                <div className="col-7 t-desc">
+                  {this.state.creatorFirstName} {this.state.creatorLastName}
                 </div>
+              </div>
+              <div className="row border-bottom">
+                <h6 className="col-5 t-title mb-0">Receipt Date</h6>
+                <div className="col-7 t-desc">
+                  {moment(this.state.date).format("YYYY/MM/DD")}
+                </div>
+              </div>
+              <div className="row border-bottom">
+                <h6 className="col-5 t-title mb-0">Description </h6>
+                <div className="col-7 t-desc">{this.state.description}</div>
               </div>
 
               <div className="row border-bottom">
-                <h6 className="col-4 t-title mb-0 border-b-l">Receipt Files</h6>
-                <div className="col-8 t-desc border-b-r">
+                <h6 className="col-5 t-title mb-0 border-b-l">Receipt Files</h6>
+                <div className="col-7 t-desc border-b-r">
                   {" "}
                   <ul className="file-list">
-                    {this.state.medias?.filter(item => !item.externalUrl).map(item => (
-                      <li key={item.id}>
-                         <img
+                    {this.state.medias
+                      ?.filter((item) => !item.externalUrl)
+                      .map((item) => (
+                        <li key={item.id}>
+                          <img
                             src={`/images/icons/${item?.inputDataType?.isMedia()}`}
                             alt=""
                             width={20}
                             height={20}
                           />{" "}
                           {item.name}
-                      </li>
-                    ))}
+                        </li>
+                      ))}
                     <li>
                       Shared Links:
-                      {this.state.medias?.filter(item => item.externalUrl).map(item => (
-                        <div key={item.id}>
-                          <MainButton
-                            children={item.externalUrl}
-                            type={MainButtonType.dark}
-                            borderRadius="24px"
-                            fontSize="14px"
-                            backgroundColor="#F5F5F5"
-                            color="#096BFF"
-                          ></MainButton>
-                        </div>
-                      ))}
+                      {this.state.medias
+                        ?.filter((item) => item.externalUrl)
+                        .map((item) => (
+                          <div key={item.id}>
+                            <MainButton
+                              children={item.externalUrl}
+                              type={MainButtonType.dark}
+                              borderRadius="24px"
+                              fontSize="14px"
+                              backgroundColor="#F5F5F5"
+                              color="#096BFF"
+                              className="col-8 text-truncate"
+                              title={item.externalUrl}
+                            ></MainButton>
+                          </div>
+                        ))}
                     </li>
                   </ul>
                 </div>
               </div>
             </div>
-            <div className="col-md-6">
+            <div className="col-md-6" style={{ paddingRight: "1.5rem" }}>
               <div className="Amount row">
                 <div className="col-3 d-flex justify-content-center align-items-center title">
                   Amount
@@ -233,4 +261,4 @@ class ExpensePageProfile extends React.Component<RouteComponentProps<RouteParams
     );
   }
 }
-export default withRouter(ExpensePageProfile)
+export default withRouter(ExpensePageProfile);

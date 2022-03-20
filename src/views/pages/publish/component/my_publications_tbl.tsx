@@ -43,7 +43,7 @@ const MyPublicationsTable: React.FC<TableComponentProp & RouteComponentProps> =
                           )}`
                         )
                       }
-                      className="pointer"
+                      className="pointer mx-2"
                     >
                       <img src="/images/icons/google_docs.svg" alt="radvix" width={12} height={12} />
                     </CircleIcon>

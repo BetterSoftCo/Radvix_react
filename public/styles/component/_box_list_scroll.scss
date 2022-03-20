@@ -1,5 +1,4 @@
-
-.parent-box-list-scroll{
+.parent-box-list-scroll {
   background-color: #c7c7c7;
   border-radius: 15px;
   .box-list-scroll {
@@ -7,16 +6,21 @@
     overflow-y: scroll;
     background-color: #c7c7c7;
     border-radius: 15px;
-    padding: 1rem 2rem;
-    border-bottom: 2px solid #EBEBEB;
-    border-top: 2px solid #EBEBEB;
+    padding: 1rem 1rem;
+    border-bottom: 2px solid #ebebeb;
+    border-top: 2px solid #ebebeb;
     .IconTextVerticalLight {
       border-bottom: 1px solid #d9d9d9;
+      padding-bottom: 0.3rem;
+      width: 100%;
     }
     .avatar {
-      width: 50px;
-      height: 50px;
+      width: 35px;
+      height: 35px;
       margin-right: 1rem;
+    }
+    span {
+      font-size: 12px;
     }
   }
 }

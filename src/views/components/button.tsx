@@ -21,6 +21,7 @@ interface MainButtonProps {
   className?: string;
   color?: string;
   loading?: boolean;
+  title?: string;
 }
 
 export const MainButton: React.FC<MainButtonProps> = ({
@@ -37,10 +38,11 @@ export const MainButton: React.FC<MainButtonProps> = ({
   className = "",
   color,
   loading,
+  title,
 }) => {
-  let IsLoading ;
-  if(loading){
-    IsLoading = 'loading'
+  let IsLoading;
+  if (loading) {
+    IsLoading = "loading";
   }
   return (
     <button
@@ -56,6 +58,7 @@ export const MainButton: React.FC<MainButtonProps> = ({
         fontSize,
         color,
       }}
+      title={title}
     >
       {loading ? (
         <ReactLoading type="spin" color={color} height={20} width={20} />

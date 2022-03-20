@@ -62,8 +62,11 @@ class TeamPage extends React.Component<RouteComponentProps> {
         <div className="col-12">
           <div className="TableBox">
             <div className="TopTableBox d-flex justify-content-between align-items-center mb-3">
-              <div className="left d-flex w-50 align-items-baseline">
-                <h6 style={{ width: "35%" }} className="b-title d-flex">
+              <div className="left d-flex w-50 align-items-center">
+                <h6
+                  style={{ width: "35%" }}
+                  className="b-title d-flex align-items-center"
+                >
                   <span
                     onClick={() => {
                       window.history.back();
@@ -91,7 +94,8 @@ class TeamPage extends React.Component<RouteComponentProps> {
                     children="New Team"
                     type={MainButtonType.dark}
                     borderRadius="24px"
-                    fontSize="14px"
+                    fontSize="11px"
+                    minWidth="100px"
                     onClick={() => {
                       this.props.history.push(AppRoutes.new_team);
                     }}
@@ -101,7 +105,8 @@ class TeamPage extends React.Component<RouteComponentProps> {
                     children="Only Subteam"
                     type={MainButtonType.dark}
                     borderRadius="24px"
-                    fontSize="14px"
+                    fontSize="11px"
+                    minWidth="100px"
                     onClick={() => {
                       this.props.history.push(AppRoutes.new_team);
                     }}
@@ -112,6 +117,7 @@ class TeamPage extends React.Component<RouteComponentProps> {
                   children="Member"
                   type={MainButtonType.dark}
                   borderRadius="24px"
+                  minWidth="100px"
                   fontSize="14px"
                   onClick={() => {
                     this.props.history.push(AppRoutes.member);
