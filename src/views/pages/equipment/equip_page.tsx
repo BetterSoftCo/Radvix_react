@@ -71,7 +71,7 @@ class EquipPage extends React.Component<RouteComponentProps> {
               <div className="left d-flex w-50 align-items-center">
                 <h6
                   className="b-title d-flex align-items-center"
-                  style={{ width: "45%" }}
+                  style={{ width: "55%" }}
                 >
                   <span
                     onClick={() => {
@@ -103,6 +103,7 @@ class EquipPage extends React.Component<RouteComponentProps> {
                     borderRadius="24px"
                     fontSize="11px"
                     className="my-2 mx-2"
+                    minWidth="100px"
                     onClick={() => {
                       this.props.history.push(AppRoutes.equip_new);
                     }}
@@ -113,8 +114,9 @@ class EquipPage extends React.Component<RouteComponentProps> {
                   children="Laboratories"
                   type={MainButtonType.dark}
                   borderRadius="24px"
-                  fontSize="14px"
+                  fontSize="11px"
                   className="my-2 mx-2"
+                  minWidth="100px"
                   onClick={() => {
                     this.props.history.push(AppRoutes.laboratory);
                   }}
@@ -139,7 +141,7 @@ class EquipPage extends React.Component<RouteComponentProps> {
             </div>
             <EquipmentList
               Items={this.state.Equipments}
-              Heading={["Equipment Name", "Laboratory", "Users", "Status"]}
+              Heading={[{ name: 'Equipment Name', center: false }, { name: 'Laboratory', center: true }, { name: 'Users', center: true }, { name: 'Status', center: true }]}
               role={this.RoleUser}
             ></EquipmentList>
 

@@ -7,7 +7,7 @@ import { IconTextRow } from "../../../components/icon_text_horizontal";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppConstants, AppRoutes } from "../../../../core/constants";
 interface TableComponentProp {
-  Heading: string[];
+  Heading: { name: string; center: boolean }[];
   Items: Equipment[];
   role: UserRoles;
 }
@@ -20,8 +20,12 @@ const EquipmentList: React.FC<TableComponentProp & RouteComponentProps> = (
         <thead>
           <tr>
             {props.Heading.map((head, index) => (
-              <th scope="col" key={index}>
-                {head}
+              <th
+                scope="col"
+                key={index}
+                className={head.center ? "text-center" : ""}
+              >
+                {head.name}
               </th>
             ))}
           </tr>
@@ -40,7 +44,7 @@ const EquipmentList: React.FC<TableComponentProp & RouteComponentProps> = (
                           : "/images/icons/equipment_Icon.svg"
                       }
                       alt="Avatar"
-                      className="rounded-circle avatar mx-2"
+                      className="rounded-circle avatar"
                       width={58}
                       height={58}
                     />
@@ -50,19 +54,19 @@ const EquipmentList: React.FC<TableComponentProp & RouteComponentProps> = (
               </td>
               <td
                 style={{ display: "table-cell", verticalAlign: "middle" }}
-                className="align-items-center"
+                className="align-items-center text-center"
               >
                 {head.laboratories.map((item) => item.title).join(" - ")}
               </td>
               <td
                 style={{ display: "table-cell", verticalAlign: "middle" }}
-                className="align-items-center"
+                className="align-items-center text-center"
               >
                 {head.usersCount}
               </td>
               <td
                 style={{ display: "table-cell", verticalAlign: "middle" }}
-                className="align-items-center"
+                className="align-items-center text-center"
               >
                 <MainButton
                   children={head.status.isStatus()}
@@ -86,7 +90,7 @@ const EquipmentList: React.FC<TableComponentProp & RouteComponentProps> = (
                         )}`
                       )
                     }
-                    className="pointer mx-1"
+                    className="pointer mx-2"
                   >
                     <img
                       src="/images/icons/google_docs.svg"
