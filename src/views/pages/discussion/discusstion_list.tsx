@@ -62,8 +62,8 @@ class DiscusstionList extends React.Component<RouteComponentProps> {
         <div className="col-12">
           <div className="TableBox">
             <div className="TopTableBox d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3">
-              <div className="left d-flex w-50 align-items-baseline">
-                <h6 className="b-title d-flex" style={{ width: "55%" }}>
+              <div className="left d-flex w-50 align-items-center">
+                <h6 className="b-title d-flex align-items-center" style={{ width: "90%" }}>
                   <span
                     onClick={() => {
                       window.history.back();
@@ -81,25 +81,16 @@ class DiscusstionList extends React.Component<RouteComponentProps> {
                   TopPosition="15%"
                 ></InputIcon>
               </div>
-              <div className="right  d-flex justify-content-between">
+              <div className="right  d-flex justify-content-between align-items-baseline">
                 <MainButton
-                  children="New Equip"
+                  children="New discusstion"
                   type={MainButtonType.dark}
                   borderRadius="24px"
                   fontSize="14px"
-                  className="my-2 mx-2"
+                  className="my-2 mx-2 px-2"
+                  minWidth="120px"
                   onClick={() => {
-                    this.props.history.push(AppRoutes.equip_new);
-                  }}
-                ></MainButton>
-                <MainButton
-                  children="Laboratories"
-                  type={MainButtonType.dark}
-                  borderRadius="24px"
-                  fontSize="14px"
-                  className="my-2 mx-2"
-                  onClick={() => {
-                    this.props.history.push(AppRoutes.laboratory);
+                    this.props.history.push(`${AppRoutes.discussion_new.replace(":topic", "1")}`);
                   }}
                 ></MainButton>
                 <SelectComponent

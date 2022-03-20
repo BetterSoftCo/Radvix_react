@@ -70,6 +70,7 @@ export const InputComponent: React.FC<InputsProps> = ({
     TemplateLabel = (
       <span
         className="label d-flex align-items-center"
+        style={{ fontSize: fontSize }}
       >
         {label}
         {optional ? (

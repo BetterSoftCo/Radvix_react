@@ -63,9 +63,9 @@ class DiscusstionPage extends React.Component<
     massage: "",
   };
   componentDidMount() {
-    this.getDiscustionPanel()
+    this.getDiscustionPanel();
   }
-  getDiscustionPanel(){
+  getDiscustionPanel() {
     this.controller.getDiscusstionPanel(
       {
         discussionId: parseInt(this.props.match.params.id),
@@ -151,7 +151,7 @@ class DiscusstionPage extends React.Component<
             massage: "",
             files: [],
           });
-          this.getDiscustionPanel()
+          this.getDiscustionPanel();
         },
         (err) => {
           this.setState({
@@ -193,7 +193,7 @@ class DiscusstionPage extends React.Component<
       <div className="container-fluid research new-research">
         <div className="row"></div>
         <div className="col-12 box-content p-3 discusstion">
-          <h5 className="b-title d-flex">
+          <h5 className="b-title d-flex align-items-center">
             <span
               onClick={() => {
                 window.history.back();
@@ -205,7 +205,7 @@ class DiscusstionPage extends React.Component<
               children={this.state.Discusstion.priority.isPriority()}
               type={MainButtonType.dark}
               borderRadius="24px"
-              fontSize="14px"
+              fontSize="12px"
               className="mx-2"
               backgroundColor="#096BFF"
             ></MainButton>
@@ -215,7 +215,7 @@ class DiscusstionPage extends React.Component<
             {this.state.Discusstion.topic.isTopic()}
             <span>{this.state.Discusstion.subject}</span>
           </div>
-          <div className="row mt-2 justify-content-around">
+          <div className="row mt-3 justify-content-around">
             <div className="col-md-7 chat">
               {this.state.Discusstion.histories.map((item) => (
                 <div
@@ -241,8 +241,8 @@ class DiscusstionPage extends React.Component<
                         }
                         alt="Avatar"
                         className="rounded-circle avatar mx-2"
-                        width="40px"
-                        height="40px"
+                        width="30px"
+                        height="30px"
                       />
                     }
                   ></IconTextRow>
@@ -282,17 +282,20 @@ class DiscusstionPage extends React.Component<
                     children={
                       <img
                         src="/images/icons/team_menu.svg"
-                        className="mx-2"
+                        className="mx-1"
                         alt=""
+                        width={25}
+                        height={25}
                       />
                     }
+                    fontSize="14px"
                   ></IconTextRow>
                   <CircleIcon
-                    width="36px"
-                    height="36px"
+                    width="22px"
+                    height="22px"
                     type={ThemeCircleIcon.dark}
                     backgroundColor="#9D9D9D"
-                    fontSize="18px"
+                    fontSize="14px"
                     color="#ffffff"
                     className="mx-2"
                   >
@@ -310,13 +313,13 @@ class DiscusstionPage extends React.Component<
                 ></BoxListScroll>
               </div>
             </div>
-            <div className="col-md-7">
+            <div className="col-md-7 px-0">
               <div className="item">
                 <InputComponent
                   type={InputType.textarea}
                   label="Message:"
-                  className="mt-2"
-                  rows={6}
+                  className="mt-3"
+                  rows={7}
                   onChange={(e) => {
                     this.handleChange("massage", e.target.value);
                   }}
@@ -325,18 +328,22 @@ class DiscusstionPage extends React.Component<
                     this.state.massage,
                     "required"
                   )}
+                  fontSize="14px"
                 ></InputComponent>
               </div>
             </div>
-            <div className="col-md-4">
+            <div className="col-md-4  px-0">
               <div className="item">
-                <span className="label d-flex align-items-center">
+                <span
+                  className="label d-flex align-items-center"
+                  style={{ fontSize: "14px" }}
+                >
                   Attachment:
                   <MainButton
                     type={MainButtonType.light}
                     children={"Optional"}
                     borderRadius="50px"
-                    fontSize="15px"
+                    fontSize="11px"
                     className="mx-2"
                   ></MainButton>
                   <CircleIcon
@@ -382,7 +389,6 @@ class DiscusstionPage extends React.Component<
                         <p>Or drag and drop files here</p>
                       </div>
                       <aside>
-                        
                         <ul>{files}</ul>
                       </aside>
                     </section>
@@ -397,22 +403,23 @@ class DiscusstionPage extends React.Component<
                   onChange={(e) => {
                     this.handleChange("External", e.target.value);
                   }}
+                  height="35px"
                   value={this.state.External}
                 ></InputComponent>
                 <CircleIcon
-                  width="36px"
-                  height="36px"
-                  type={ThemeCircleIcon.dark}
-                  backgroundColor="#9D9D9D"
-                  fontSize="18px"
-                  color="#ffffff"
-                  className="px-3"
-                  onClick={() => {
-                    this.addExternalUrl();
-                  }}
-                >
-                  <i className="fas fa-plus"></i>
-                </CircleIcon>
+                    width="35px"
+                    height="35px"
+                    type={ThemeCircleIcon.dark}
+                    backgroundColor="#9D9D9D"
+                    fontSize="16px"
+                    color="#ffffff"
+                    className="ms-2"
+                    onClick={() => {
+                      this.addExternalUrl();
+                    }}
+                  >
+                    <i className="fas fa-plus"></i>
+                  </CircleIcon>
               </div>
               <ul className="file-list mt-3">
                 {this.state.ExternalUrl.map((item, index) => (
@@ -450,9 +457,9 @@ class DiscusstionPage extends React.Component<
                   type={MainButtonType.dark}
                   children={"Send"}
                   borderRadius="50px"
-                  fontSize="20px"
-                  className="mx-2 mt-3 btn-block"
-                  minHeight="47px"
+                  fontSize="16px"
+                  className="mt-3 btn-block"
+                  minHeight="37px"
                   minWidth="100%"
                   onClick={() => {
                     this.SendMassage();
