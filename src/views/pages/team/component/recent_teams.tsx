@@ -21,7 +21,7 @@ const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
     <Fragment>
       <div className="row px-3">
         <div className="col"> Team Name</div>
-        <div className="col">Created By</div>
+        <div className="col text-center">Created By</div>
         <div className="col text-center"> Members </div>
         <div className="col text-center"> Type </div>
         <div className="col"></div>
@@ -44,15 +44,11 @@ const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
                       style={{ maxWidth: "120px" }}
                       title={item.title}
                     >
-                      <span
-                        className="lable"
-                        style={{ backgroundColor: "#096BFF" }}
-                      ></span>{" "}
                       {item.title}
                     </span>
                   </div>
                   <div
-                    className="col text-truncate"
+                    className="col text-truncate text-center"
                     title={
                       item.creatorUserFirstName + " " + item.creatorUserLastName
                     }
@@ -106,7 +102,7 @@ const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
                             )}`
                           )
                         }
-                        className="pointer m-1"
+                        className="pointer ms-1"
                       >
                         <img src="/images/icons/edit.svg" alt="radvix" />
                       </CircleIcon>
@@ -135,10 +131,6 @@ const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
                             style={{ maxWidth: "120px" }}
                             title={sub.title}
                           >
-                            <span
-                              className="lable"
-                              style={{ backgroundColor: "#096BFF" }}
-                            ></span>{" "}
                             {sub.title}
                           </span>
                         </div>

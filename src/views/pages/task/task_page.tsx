@@ -108,7 +108,7 @@ export class TasksPage extends React.Component {
             ></AcordienTable>
 
             <div className="d-flex justify-content-between align-items-baseline">
-              <div className="d-flex justify-content-end flex-fill">
+              <div className="d-flex justify-content-end flex-fill mt-3">
                 <ReactPaginate
                   previousLabel={
                     <CircleIcon

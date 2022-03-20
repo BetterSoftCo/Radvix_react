@@ -20,12 +20,13 @@ const MemberItem: React.FC<IMemberItem & RouteComponentProps> = (props) => {
         }
         alt="Avatar"
         className="rounded-circle avatar"
-        width="125px"
-        height="125px"
+        width="100px"
+        height="100px"
       />
 
       <h5
-        className="mt-2 fw-light  text-truncate col-7"
+        className="mt-2 fw-light  text-truncate col-7 text-center"
+        style={{ fontSize: "12px" }}
         title={props.member.firstName + " " + props.member.lastName}
       >
         {props.member.firstName + " " + props.member.lastName}
@@ -35,11 +36,14 @@ const MemberItem: React.FC<IMemberItem & RouteComponentProps> = (props) => {
         children="Principal Investigator"
         type={MainButtonType.dark}
         borderRadius="24px"
-        fontSize="14px"
+        fontSize="11px"
         className="my-2"
       ></MainButton>
       {props.member.teams.length ? (
-        <h6 className="fw-light text-truncate col-7">
+        <h6
+          className="fw-light text-truncate col-7 text-center"
+          style={{ fontSize: "11px" }}
+        >
           {props.member.teams[0].title}...
         </h6>
       ) : null}

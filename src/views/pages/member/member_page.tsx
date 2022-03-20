@@ -62,8 +62,11 @@ class MemberPage extends React.Component<RouteComponentProps> {
         <div className="col-12">
           <div className="TableBox">
             <div className="TopTableBox d-flex justify-content-between align-items-center mb-3">
-              <div className="left d-flex w-50 align-items-baseline ">
-                <h4 style={{ width: "45%" }} className="b-title d-flex">
+              <div className="left d-flex w-50 align-items-center ">
+                <h4
+                  style={{ width: "45%", fontSize: "16px" }}
+                  className="b-title d-flex align-items-center"
+                >
                   <span
                     onClick={() => {
                       window.history.back();
@@ -86,8 +89,9 @@ class MemberPage extends React.Component<RouteComponentProps> {
                   children="New Member"
                   type={MainButtonType.dark}
                   borderRadius="24px"
-                  fontSize="14px"
+                  fontSize="12px"
                   className="my-2"
+                  minWidth="100px"
                   onClick={() => {
                     this.props.history.push(AppRoutes.member_new);
                   }}
@@ -96,7 +100,8 @@ class MemberPage extends React.Component<RouteComponentProps> {
                   children="Teams"
                   type={MainButtonType.dark}
                   borderRadius="24px"
-                  fontSize="14px"
+                  fontSize="12px"
+                  minWidth="100px"
                   className="my-2"
                   onClick={() => {
                     this.props.history.push(AppRoutes.team);
@@ -122,7 +127,11 @@ class MemberPage extends React.Component<RouteComponentProps> {
             </div>
             <div className="row">
               {this.state.Members.map((item) => (
-                <Memberitem role={this.RoleUser} key={item.id} member={item}></Memberitem>
+                <Memberitem
+                  role={this.RoleUser}
+                  key={item.id}
+                  member={item}
+                ></Memberitem>
               ))}
             </div>
 
