@@ -41,7 +41,7 @@ class TaskPageProfile extends React.Component<
     discription: "",
     priority: 0,
     researchId: 0,
-    parentTask: null
+    parentTask: null,
   };
   componentDidMount() {
     this.controller.getTaskById(
@@ -226,9 +226,11 @@ class TaskPageProfile extends React.Component<
               <div className="teams mb-3 teams-light">
                 <IconTextRow
                   theme={Theme.dark}
-                  text={this.state.parentTask === null
-                    ? "Assigned to Teams (Members)"
-                    : "Assigned to SubTeams (Members)"}
+                  text={
+                    this.state.parentTask === null
+                      ? "Assigned to Teams (Members)"
+                      : "Assigned to SubTeams (Members)"
+                  }
                   children={
                     <img
                       src="/images/icons/team_menu.svg"
@@ -363,11 +365,11 @@ class TaskPageProfile extends React.Component<
             </div>
           </div>
         </div>
-        {this.state.datas.length ? (
+        {this.state.datas.length > 0 ? (
           <div className="col-12">
             <div className="TableBox">
               <div className="TopTableBox d-flex justify-content-between align-items-center">
-                <div className="left d-flex w-50 align-items-center">
+                <div className="left d-flex w-50 align-items-baseline">
                   <h6 style={{ width: "45%" }}>Task Data Collection</h6>
                   <InputIcon
                     chilren={
@@ -401,49 +403,15 @@ class TaskPageProfile extends React.Component<
                 Items={this.state.datas}
                 Heading={["Data Name", "File", "Added By", "Date"]}
               ></TaskDataCollection>
-              <div className="d-flex justify-content-center align-items-center">
-                {/* <ReactPaginate
-                previousLabel={
-                  <CircleIcon
-                    width="24px"
-                    backgroundColor="#ADADAD"
-                    height="24px"
-                    type={ThemeCircleIcon.dark}
-                  >
-                    <i className="fas fa-chevron-left"></i>
-                  </CircleIcon>
-                }
-                nextLabel={
-                  <CircleIcon
-                    width="24px"
-                    backgroundColor="#ADADAD"
-                    height="24px"
-                    type={ThemeCircleIcon.dark}
-                  >
-                    <i className="fas fa-angle-right"></i>
-                  </CircleIcon>
-                }
-                breakLabel={"..."}
-                breakClassName={"break-me"}
-                pageCount={20}
-                marginPagesDisplayed={2}
-                pageRangeDisplayed={5}
-                onPageChange={() => {
-                  console.log("sssss");
-                }}
-                containerClassName={"pagination"}
-                activeClassName={"active"}
-              /> */}
-              </div>
             </div>
           </div>
         ) : null}
 
-        {this.state.subTasks.length ? (
+        {this.state.subTasks && this.state.subTasks.length > 0 ? (
           <div className="col-12">
             <div className="TableBox">
               <div className="TopTableBox d-flex justify-content-between align-items-center">
-                <div className="left d-flex w-50 align-items-center">
+                <div className="left d-flex w-50 align-items-baseline">
                   <h6 style={{ width: "35%" }}>Subtasks</h6>
                   <InputIcon
                     chilren={
@@ -477,40 +445,6 @@ class TaskPageProfile extends React.Component<
                 role={this.RoleUser}
                 subTask={this.state.subTasks}
               ></Subtasks>
-              <div className="d-flex justify-content-center align-items-center">
-                {/* <ReactPaginate
-                previousLabel={
-                  <CircleIcon
-                    width="24px"
-                    backgroundColor="#ADADAD"
-                    height="24px"
-                    type={ThemeCircleIcon.dark}
-                  >
-                    <i className="fas fa-chevron-left"></i>
-                  </CircleIcon>
-                }
-                nextLabel={
-                  <CircleIcon
-                    width="24px"
-                    backgroundColor="#ADADAD"
-                    height="24px"
-                    type={ThemeCircleIcon.dark}
-                  >
-                    <i className="fas fa-angle-right"></i>
-                  </CircleIcon>
-                }
-                breakLabel={"..."}
-                breakClassName={"break-me"}
-                pageCount={20}
-                marginPagesDisplayed={2}
-                pageRangeDisplayed={5}
-                onPageChange={() => {
-                  console.log("ssss");
-                }}
-                containerClassName={"pagination"}
-                activeClassName={"active"}
-              /> */}
-              </div>
             </div>
           </div>
         ) : null}

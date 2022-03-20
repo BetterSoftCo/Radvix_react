@@ -7,19 +7,47 @@
     .overviwe-item {
       .avatar {
         margin: 0.5rem;
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      .text-center {
+        font-size: 11px;
+      }
+    }
+    @media (max-width: 1199.98px) {
+      padding: 1rem;
+      .overviwe-item {
+        .avatar {
+          margin: 0.5rem;
+          width: 2.5rem;
+          height: 2.5rem;
+        }
+        h1 {
+          font-size: 1.5rem;
+        }
+        .text-center {
+          font-size: 11px;
+        }
       }
     }
   }
 }
 .pagination {
+  font-size: 11px;
   li {
     margin: 0.3rem;
     font-weight: normal;
-    .fas{
+    .fas {
       font-weight: 600;
     }
   }
   li.previous {
+    font-size: 11px;
+  }
+  li.next {
     font-size: 13px;
   }
   li.active {

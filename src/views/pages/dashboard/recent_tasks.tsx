@@ -45,7 +45,7 @@ interface IAcordienTable {
                 <div className="col">
                   <span
                     className="text-truncate d-inline-block"
-                    style={{ maxWidth: "120px" }}
+                    style={{ maxWidth: "67px" }}
                   >
                     <span
                       className="lable"
@@ -72,13 +72,14 @@ interface IAcordienTable {
                     borderRadius="15px"
                     backgroundColor="#8EE1FF"
                     color="#474747"
+                    fontSize="11px"
                   ></MainButton>
                 </div>
                 <div className="col d-flex justify-content-end align-items-center">
                   {props.role !== UserRoles.L3User ? (
                     <CircleIcon
-                      width="26px"
-                      height="26px"
+                      width="22px"
+                      height="22px"
                       type={ThemeCircleIcon.dark}
                       onClick={(e) => handelOnclick(e , item.appTask.id)}
                       className="pointer mx-1"
@@ -88,8 +89,8 @@ interface IAcordienTable {
                   ) : null}
 
                   <CircleIcon
-                    width="26px"
-                    height="26px"
+                    width="22px"
+                    height="22px"
                     type={ThemeCircleIcon.dark}
                     onClick={(e) => handelOnclick(e , item.appTask.id)}
                     className="pointer mx-1"
@@ -100,8 +101,8 @@ interface IAcordienTable {
                     />
                   </CircleIcon>
                   <CircleIcon
-                    width="26px"
-                    height="26px"
+                    width="22px"
+                    height="22px"
                     type={ThemeCircleIcon.dark}
                     onClick={(e) => handelOnclick(e , item.appTask.id)}
                     className="pointer mx-1"

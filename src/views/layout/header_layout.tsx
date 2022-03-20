@@ -31,7 +31,7 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
   const RoleUser = store.getState().userRole;
   useEffect(() => {
     GetResearch(PageNumber, PageSize);
-    if (store.getState().ResearchId >= 0){
+    if (store.getState().ResearchId >= 0) {
       timelineProgress();
     }
     store.subscribe(() => {
@@ -103,7 +103,7 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
                 </div>
                 {props.location.pathname.search("/Admin") >= 0 ? null : (
                   <Fragment>
-                    <div className="col-md-2 col-6 d-flex justify-content-center align-items-center">
+                    <div className="col-md-2 col-6 d-flex justify-content-start align-items-center">
                       <MainButton
                         type={MainButtonType.dark}
                         minHeight="42px"
@@ -114,19 +114,20 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
                           props.history.push(AppRoutes.dashboard);
                         }}
                         children={
-                          <div>
+                          <div className="d-flex justify-conent-between align-items-baseline">
                             <img
                               src="/images/icons/home.svg"
                               alt="sssss"
                               height="20"
+                              className="mx-1"
                             />{" "}
-                            Home
+                            <span style={{ fontSize: "14px" }}>Home</span>
                           </div>
                         }
                       ></MainButton>
                     </div>
                     <div className="col-md-5 col-8 d-flex justify-content-center align-items-center">
-                      <h6 className="mb-0 Selected-Research fw-light">
+                      <h6 className="mb-0 me-2 Selected-Research fw-light">
                         Selected Research:
                       </h6>
                       <button
@@ -163,28 +164,30 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
             </div>
             <div className="col-lg-2 left-side">
               <div className="d-flex align-items-center justify-content-between">
-                <img
-                  onClick={() => {
-                    props.history.push(
-                      `${AppRoutes.member_profile.replace(
-                        ":id",
-                        local.getUserId()
-                      )}`
-                    );
-                  }}
-                  src={
-                    local.getUserId()
-                      ? local.getUserInfo().image.length
-                        ? AppConstants.base_url_image +
-                          local.getUserInfo().image
+                <div>
+                  <img
+                    onClick={() => {
+                      props.history.push(
+                        `${AppRoutes.member_profile.replace(
+                          ":id",
+                          local.getUserId()
+                        )}`
+                      );
+                    }}
+                    src={
+                      local.getUserId() && local.getUserInfo().image
+                        ? local.getUserInfo().image.length
+                          ? AppConstants.base_url_image +
+                            local.getUserInfo().image
+                          : "/Images/images/img_avatar.png"
                         : "/Images/images/img_avatar.png"
-                      : "/Images/images/img_avatar.png"
-                  }
-                  alt="Avatar"
-                  className="rounded-circle avatar pointer"
-                />
+                    }
+                    alt="Avatar"
+                    className="rounded-circle avatar pointer"
+                  />
+                </div>
                 <div className="d-flex flex-column">
-                  <span className="text-center text-black-color text-truncate">
+                  <span className="text-center text-black-color text-truncate font-14">
                     Welcome, {local.getUserInfo().firstName}!
                   </span>
                   <MainButton
@@ -233,7 +236,7 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
             ></button>
             <div className="TableBox">
               <div className="TopTableBox d-flex justify-content-between align-items-center mb-3">
-                <div className="left d-flex w-50 align-items-center">
+                <div className="left d-flex w-50 align-items-baseline">
                   <h6 style={{ width: "35%" }}>Research List</h6>
                   <InputIcon
                     chilren={

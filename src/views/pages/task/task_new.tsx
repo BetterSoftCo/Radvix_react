@@ -105,6 +105,9 @@ class TaskPageNew extends React.Component<RouteComponentProps> {
   handelChangeSelect(e: { label: string; value: number }) {
     this.setState({ categoryId: e.value });
   }
+  handelChangeSelectTask(e: { label: string; value: number }) {
+    this.setState({ parentId: e.value });
+  }
   handleChange(target: string, val: any) {
     this.setState({
       [target]: val,
@@ -319,7 +322,7 @@ class TaskPageNew extends React.Component<RouteComponentProps> {
                     optional="optional"
                     isMulti={false}
                     onChange={(e) => {
-                      this.handelChangeSelectMultiple(e, "parentId");
+                      this.handelChangeSelectTask(e);
                     }}
                   ></SelectComponent>
                 </div>

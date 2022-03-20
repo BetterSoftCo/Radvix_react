@@ -6,21 +6,20 @@
   .TopTableBox {
     .left {
       h6 {
-        font-size: 18px;
+        font-size: 16px;
       }
       .InputComponentStyle {
         height: 39px;
         border: 1px solid #adadad;
       }
     }
-    .right{
-      button{
+    .right {
+      button {
         min-width: 134px;
         min-height: 34px;
-        margin-right: .5rem;
-        margin-left: .5rem;
+        margin-right: 0.5rem;
+        margin-left: 0.5rem;
       }
-
     }
   }
   .table {
@@ -34,6 +33,7 @@
       border-color: inherit;
       border-style: solid;
       border-width: -1;
+      border: none;
     }
     thead tr th {
       background-color: transparent;
@@ -42,7 +42,7 @@
     }
     tbody {
       border-radius: 10px;
-      font-size: 14px;
+      font-size: 12px;
       td {
         border: none;
       }
@@ -72,7 +72,10 @@
     }
   }
   .table-striped > tbody > tr:nth-of-type(odd) > * {
-    --bs-table-accent-bg: #f5f5f5;
+    --bs-table-accent-bg: #ffffff;
+  }
+  .table-striped > tbody > tr:nth-of-type(even) > * {
+    --bs-table-accent-bg: #efefef;
   }
   span.lable {
     width: 5px;
@@ -83,6 +86,19 @@
     position: relative;
     top: 4px;
   }
+  .row.px-3 {
+    div {
+      font-size: 14px;
+      &:last-child {
+        padding-right: 0;
+      }
+    }
+  }
+  .justify-content-end {
+    .text-right {
+      font-size: 11px;
+    }
+  }
   .accordion-button:not(.collapsed)::after {
     transform: rotate(90deg);
   }
@@ -92,24 +108,32 @@
     padding-left: 1rem;
     background-image: url("./../../Images/icons/toggle_Icon.svg");
   }
- 
+
   .accordion-button {
-    padding: .5rem .75rem;
+    font-size: 12px;
+    padding: 0.5rem 0rem 0.5rem 0.75rem;
     .row.w-100 {
       padding-left: 1rem;
-      .col{
-        span.d-inline-block{
+      .col {
+        &:last-child {
+          padding-right: 0;
+        }
+        span.d-inline-block {
           position: relative;
         }
-
       }
     }
-
+    .CircleIcon {
+      &:last-child {
+        margin-right: 0px !important;
+      }
+    }
   }
   .accordion-body {
     display: flex;
     padding: 0rem;
     min-height: 65px;
+    font-size: 12px;
     .sub-accordian-parent {
       display: flex;
       justify-content: end;
@@ -136,6 +160,9 @@
   .accordion {
     .accordion-item.accordion-item-top {
       border-radius: 15px;
+      .col {
+        align-self: center;
+      }
       &:nth-child(even) {
         .accordion-header .accordion-button {
           background-color: white;

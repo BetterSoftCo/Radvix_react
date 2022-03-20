@@ -1,36 +1,45 @@
 .righ-section {
   .top {
-    min-height: 157px;
+    min-height: 134px;
     background-color: $BackgroundColor;
-    margin: 1rem 2rem 1rem 0rem ;
+    margin: 1rem 2rem 1rem 0rem;
     border-radius: 15px;
+    .IconTextVertical {
+      img {
+        margin-bottom: 6px;
+      }
+    }
   }
   .bottom {
     min-height: 170px;
     background-color: $black-color;
-    margin: 1rem 2rem 1rem 0rem ;
+    margin: 1rem 2rem 1rem 0rem;
     border-radius: 15px;
     padding: 18px 27px 27px 27px;
-    .title-recent{
-      font-size: 18px;
+    img {
+      width: 2.5rem;
+      height: 2.5rem;
     }
-    .massages{
-        background-color: #343434;
-        border-radius: 15px;
-        margin-top: 1rem;
-        
-        ul{
-            padding-left: 0;
-            list-style: none;
-            margin-bottom: 0;
-            li{
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                color: #ffff;
-                padding: .45rem;
-            }
+    .title-recent {
+      font-size: 16px;
+    }
+    .massages {
+      background-color: #343434;
+      border-radius: 15px;
+      margin-top: 1rem;
+      font-size: 12px;
+      ul {
+        padding-left: 0;
+        list-style: none;
+        margin-bottom: 0;
+        li {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          color: #ffff;
+          padding: 0.45rem;
         }
+      }
     }
   }
 }

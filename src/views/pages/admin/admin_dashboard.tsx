@@ -54,7 +54,7 @@ export class AdminDashboard extends React.Component {
           <div className="col-12">
             <div className="TableBox">
               <div className="TopTableBox d-flex justify-content-between align-items-center">
-                <div className="left d-flex w-50 align-items-center">
+                <div className="left d-flex w-50 align-items-baseline">
                   <h6 style={{ width: "35%" }}>User Signups</h6>
                 </div>
               </div>

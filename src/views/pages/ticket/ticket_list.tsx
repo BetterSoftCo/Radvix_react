@@ -62,7 +62,7 @@ class TicketPage extends React.Component<RouteComponentProps> {
         <div className="col-12">
           <div className="TableBox">
             <div className="TopTableBox d-flex justify-content-between align-items-center mb-3">
-              <div className="left d-flex w-50 align-items-center">
+              <div className="left d-flex w-50 align-items-baseline">
                 <h6 style={{ width: "35%" }}>My Tickets</h6>
                 <InputIcon
                   chilren={

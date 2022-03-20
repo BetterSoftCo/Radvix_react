@@ -43,6 +43,7 @@ const RightSection: React.FC<RouteComponentProps> = (props) => {
           theme={Theme.light}
           children={<img src="/images/icons/new_task_icon.svg" />}
           className="pointer"
+          fontSize="14px"
         ></IconTextVertical>
         <IconTextVertical
           text={
@@ -56,6 +57,7 @@ const RightSection: React.FC<RouteComponentProps> = (props) => {
             props.history.push(AppRoutes.discussion_new);
           }}
           className="pointer"
+          fontSize="14px"
         ></IconTextVertical>
         <IconTextVertical
           text={
@@ -69,6 +71,7 @@ const RightSection: React.FC<RouteComponentProps> = (props) => {
             props.history.push(AppRoutes.data_mydata);
           }}
           className="pointer"
+          fontSize="14px"
         ></IconTextVertical>
       </div>
       <div className="bottom">
@@ -81,7 +84,7 @@ const RightSection: React.FC<RouteComponentProps> = (props) => {
                 props.history.push(AppRoutes.discussion_list);
               }}
             >
-              3 Recent Discussions
+              {discusstion?.length} Recent Discussions
             </span>
           </div>
           <div className="massages ">
@@ -96,7 +99,8 @@ const RightSection: React.FC<RouteComponentProps> = (props) => {
                 >
                   <span
                     className="text-truncate d-inline-block"
-                    style={{ maxWidth: "155px" }}
+                    style={{ maxWidth: "115px"  }}
+                    title={item.subject}
                   >
                     {item.subject}
                   </span>
@@ -106,7 +110,7 @@ const RightSection: React.FC<RouteComponentProps> = (props) => {
                     borderRadius="15px"
                     backgroundColor="#202020"
                     color="#8A8A8A"
-                    fontSize="13px"
+                    fontSize="11px"
                   ></MainButton>
                 </li>
               ))}

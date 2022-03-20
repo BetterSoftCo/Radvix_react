@@ -12,13 +12,10 @@ interface CircleIconInterface {
   height?: string;
   fontSize?: string;
   className?: string;
-  onClick?:(e:any)=>void;
-  border?:string
+  onClick?: (e: any) => void;
+  border?: string;
 }
-export const CircleIcon: React.FC<CircleIconInterface> = (
-  props,
-) => {
-  
+export const CircleIcon: React.FC<CircleIconInterface> = (props) => {
   let Theme: string;
   if (props.type === ThemeCircleIcon.dark) {
     Theme = "darkCircleIcon";
@@ -29,18 +26,19 @@ export const CircleIcon: React.FC<CircleIconInterface> = (
   if (props.className !== undefined) {
     IsclassName = props.className;
   } else {
-      IsclassName = ''
+    IsclassName = "";
   }
   return (
     <span
-      className={`${Theme + " " + IsclassName + " " + 'CircleIcon'}`}
+      className={`${Theme + " " + IsclassName + " " + "CircleIcon"}`}
       style={{
-        backgroundColor:props.backgroundColor,
-        color:props.color,
-        width:props.width,
-        height:props.height,
-        fontSize:props.fontSize,
-        border:props.border
+        backgroundColor: props.backgroundColor,
+        color: props.color,
+        width: props.width,
+        height: props.height,
+        fontSize: props.fontSize,
+        border: props.border,
+        minWidth: props.width,
       }}
       onClick={props.onClick}
     >
