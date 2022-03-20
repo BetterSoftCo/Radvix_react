@@ -389,7 +389,7 @@ class ExpensePageEdit extends React.Component<RouteComponentProps<RouteParams>> 
                         </p>
                       </div>
                       <aside>
-                        <h4>Files</h4>
+                        
                         <ul>{files}</ul>
                       </aside>
                     </section>

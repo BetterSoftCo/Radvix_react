@@ -142,7 +142,10 @@ class LaboratoryPageProfile extends React.Component<
               </div>
               <div className="row border-bottom">
                 <h6 className="col-4 t-title mb-0">Website</h6>
-                <div className="col-8 t-desc text-truncate">
+                <div
+                  className="col-8 t-desc text-truncate"
+                  title={this.state.webSite}
+                >
                   <MainButton
                     children={this.state.webSite}
                     type={MainButtonType.dark}

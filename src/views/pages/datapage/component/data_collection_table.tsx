@@ -43,6 +43,7 @@ const DataCollectionTable: React.FC<IAcordienTable & RouteComponentProps> = (
                     <span
                       className="text-truncate d-inline-block"
                       style={{ maxWidth: "120px" }}
+                      title={item.appTaskTitle}
                     >
                       {item.appTaskTitle}
                     </span>
@@ -82,9 +83,7 @@ const DataCollectionTable: React.FC<IAcordienTable & RouteComponentProps> = (
               >
                 <div className="accordion-body ">
                   <div className="sub-accordian-parent">
-                    <p className="sub-accordion" style={{ marginRight: "31%" }}>
-                      Data
-                    </p>
+                    <p className="sub-accordion">Data</p>
                   </div>
 
                   <div className="items">
@@ -94,6 +93,7 @@ const DataCollectionTable: React.FC<IAcordienTable & RouteComponentProps> = (
                           <span
                             className="text-truncate d-inline-block"
                             style={{ maxWidth: "120px" }}
+                            title={sub.title}
                           >
                             {sub.title}
                           </span>
@@ -127,7 +127,12 @@ const DataCollectionTable: React.FC<IAcordienTable & RouteComponentProps> = (
                             </CircleIcon>
                           ) : null}
                         </div>
-                        <div className="col-2 text-center text-truncate">
+                        <div
+                          className="col-2 text-center text-truncate"
+                          title={
+                            sub.creatorFirstName + " " + sub.creatorLastName
+                          }
+                        >
                           {sub.creatorFirstName + " " + sub.creatorLastName}
                         </div>
                         <div className="col-2 text-center">

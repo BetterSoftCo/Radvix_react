@@ -7,10 +7,10 @@ import { MainButton, MainButtonType } from "../../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../../components/circle_icon";
 interface IAcordienTable {
   role: UserRoles;
-  subTask: any[]
+  subTask: any[];
 }
- const Subtasks: React.FC<IAcordienTable & RouteComponentProps> = (props) => {
-  useEffect(() => { }, []);
+const Subtasks: React.FC<IAcordienTable & RouteComponentProps> = (props) => {
+  useEffect(() => {}, []);
   return (
     <Fragment>
       <div className="row px-3">
@@ -37,26 +37,43 @@ interface IAcordienTable {
                     <span
                       className="text-truncate d-inline-block"
                       style={{ maxWidth: "120px" }}
+                      title={item.appTask.title}
                     >
                       <span
                         className="lable"
                         style={{ backgroundColor: "#096BFF" }}
+                        title={item.appTask.title}
                       ></span>{" "}
                       {item.appTask.title}
                     </span>
                   </div>
-                  <div className="col text-truncate">
+                  <div
+                    className="col text-truncate"
+                    title={
+                      item.appTask.creatorFirstName +
+                      " " +
+                      item.appTask.creatorLastName
+                    }
+                  >
                     {item.appTask.creatorFirstName +
                       " " +
                       item.appTask.creatorLastName}
                   </div>
                   <div className="col text-truncate">
-                    {item.teams.map((item: { title: any; }) => item.title).join("-")}
+                    {item.teams
+                      .map((item: { title: any }) => item.title)
+                      .join("-")}
                   </div>
-                  <div className="col text-truncate">
+                  <div
+                    className="col text-truncate"
+                    title={moment(item.appTask.endDate).format("YYYY/MM/DD")}
+                  >
                     {moment(item.appTask.endDate).format("YYYY/MM/DD")}
                   </div>
-                  <div className="col text-truncate">
+                  <div
+                    className="col text-truncate"
+                    title={item.appTask.status.isStatus()}
+                  >
                     <MainButton
                       type={MainButtonType.dark}
                       children={item.appTask.status.isStatus()}
@@ -73,7 +90,10 @@ interface IAcordienTable {
                         type={ThemeCircleIcon.dark}
                         onClick={(e) => {
                           props.history.push(
-                            `${AppRoutes.task_edit.replace(":id", item.appTask.id.toString() ?? "")}`
+                            `${AppRoutes.task_edit.replace(
+                              ":id",
+                              item.appTask.id.toString() ?? ""
+                            )}`
                           );
                         }}
                         className="pointer mx-1"
@@ -88,7 +108,10 @@ interface IAcordienTable {
                       type={ThemeCircleIcon.dark}
                       onClick={(e) => {
                         props.history.push(
-                          `${AppRoutes.task_edit.replace(":id", item.appTask.id.toString() ?? "")}`
+                          `${AppRoutes.task_edit.replace(
+                            ":id",
+                            item.appTask.id.toString() ?? ""
+                          )}`
                         );
                       }}
                       className="pointer mx-1"
@@ -104,7 +127,10 @@ interface IAcordienTable {
                       type={ThemeCircleIcon.dark}
                       onClick={(e) => {
                         props.history.push(
-                          `${AppRoutes.task_profile.replace(":id", item.appTask.id.toString() ?? "")}`
+                          `${AppRoutes.task_profile.replace(
+                            ":id",
+                            item.appTask.id.toString() ?? ""
+                          )}`
                         );
                       }}
                       className="pointer mx-1"

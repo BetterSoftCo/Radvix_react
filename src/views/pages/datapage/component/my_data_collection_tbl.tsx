@@ -10,7 +10,9 @@ interface IAcordienTable {
   role: UserRoles;
   Datas: DataList[];
 }
- const MyDataCollectionTable: React.FC<IAcordienTable & RouteComponentProps>  = (props) => {
+const MyDataCollectionTable: React.FC<IAcordienTable & RouteComponentProps> = (
+  props
+) => {
   const handelOnclick = (e: any) => {
     e.stopPropagation();
     console.log(e);
@@ -41,6 +43,7 @@ interface IAcordienTable {
                     <span
                       className="text-truncate d-inline-block"
                       style={{ maxWidth: "120px" }}
+                      title={item.appTaskTitle}
                     >
                       {item.appTaskTitle}
                     </span>
@@ -80,9 +83,7 @@ interface IAcordienTable {
               >
                 <div className="accordion-body ">
                   <div className="sub-accordian-parent">
-                    <p className="sub-accordion" style={{ marginRight: "31%" }}>
-                      Data
-                    </p>
+                    <p className="sub-accordion">Data</p>
                   </div>
 
                   <div className="items">
@@ -92,6 +93,7 @@ interface IAcordienTable {
                           <span
                             className="text-truncate d-inline-block"
                             style={{ maxWidth: "120px" }}
+                            title={sub.title}
                           >
                             {sub.title}
                           </span>
@@ -125,7 +127,12 @@ interface IAcordienTable {
                             </CircleIcon>
                           ) : null}
                         </div>
-                        <div className="col-2 text-center text-truncate">
+                        <div
+                          className="col-2 text-center text-truncate"
+                          title={
+                            sub.creatorFirstName + " " + sub.creatorLastName
+                          }
+                        >
                           {sub.creatorFirstName + " " + sub.creatorLastName}
                         </div>
                         <div className="col-2 text-center">

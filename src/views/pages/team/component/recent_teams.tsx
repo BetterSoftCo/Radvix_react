@@ -42,6 +42,7 @@ const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
                     <span
                       className="text-truncate d-inline-block"
                       style={{ maxWidth: "120px" }}
+                      title={item.title}
                     >
                       <span
                         className="lable"
@@ -50,7 +51,12 @@ const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
                       {item.title}
                     </span>
                   </div>
-                  <div className="col text-truncate">
+                  <div
+                    className="col text-truncate"
+                    title={
+                      item.creatorUserFirstName + " " + item.creatorUserLastName
+                    }
+                  >
                     {item.creatorUserFirstName + " " + item.creatorUserLastName}
                   </div>
                   <div className="col text-center">{item.memberCount}</div>
@@ -118,12 +124,7 @@ const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
               >
                 <div className="accordion-body ">
                   <div className="sub-accordian-parent">
-                    <p
-                      className="sub-accordion"
-                      style={{ marginRight: "-7px" }}
-                    >
-                      Subteam
-                    </p>
+                    <p className="sub-accordion">Subteam</p>
                   </div>
                   <div className="items">
                     {item.subTeams.map((sub, index) => (
@@ -132,6 +133,7 @@ const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
                           <span
                             className="text-truncate d-inline-block"
                             style={{ maxWidth: "120px" }}
+                            title={sub.title}
                           >
                             <span
                               className="lable"
@@ -140,7 +142,12 @@ const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
                             {sub.title}
                           </span>
                         </div>
-                        <div className="col text-truncate">
+                        <div
+                          className="col text-truncate"
+                          title={
+                            sub.creatorFirstName + " " + sub.creatorLastName
+                          }
+                        >
                           {sub.creatorFirstName + " " + sub.creatorLastName}
                         </div>
                         <div className="col text-center">

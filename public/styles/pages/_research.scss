@@ -12,7 +12,6 @@
   border-radius: 15px;
   margin: 1rem 0rem;
   .b-title {
-    margin-left: 1rem;
     margin-bottom: 0px;
   }
   .left {
@@ -27,7 +26,7 @@
       width: 1px;
       height: 100%;
       top: 10px;
-      right: -5px;
+      right: -1px;
       display: block;
     }
   }
@@ -337,4 +336,8 @@
   background: #2c2c2c;
   border: 1px solid #2c2c2c;
   border-radius: 50px;
+}
+input[placeholder='https://']
+{
+  margin-left: 0 !important;
 }

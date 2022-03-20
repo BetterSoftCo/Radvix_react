@@ -24,7 +24,10 @@ const MemberItem: React.FC<IMemberItem & RouteComponentProps> = (props) => {
         height="125px"
       />
 
-      <h5 className="mt-2 fw-light  text-truncate col-7">
+      <h5
+        className="mt-2 fw-light  text-truncate col-7"
+        title={props.member.firstName + " " + props.member.lastName}
+      >
         {props.member.firstName + " " + props.member.lastName}
       </h5>
       <hr className="w-100 my-0" />

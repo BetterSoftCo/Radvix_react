@@ -343,7 +343,7 @@ class DataPageEdit extends React.Component<RouteComponentProps<ParamsType>> {
                         <p>Or drag and drop files here</p>
                       </div>
                       <aside>
-                        <h4>Files</h4>
+                        
                         <ul>{files}</ul>
                       </aside>
                     </section>

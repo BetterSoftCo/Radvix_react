@@ -43,6 +43,7 @@ const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
                     <span
                       className="text-truncate d-inline-block"
                       style={{ maxWidth: "120px" }}
+                      title={item.appTask.title}
                     >
                       <span
                         className="lable"
@@ -51,7 +52,14 @@ const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
                       {item.appTask.title}
                     </span>
                   </div>
-                  <div className="col text-truncate">
+                  <div
+                    className="col text-truncate"
+                    title={
+                      item.appTask.creatorFirstName +
+                      " " +
+                      item.appTask.creatorLastName
+                    }
+                  >
                     {item.appTask.creatorFirstName +
                       " " +
                       item.appTask.creatorLastName}
@@ -59,10 +67,16 @@ const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
                   <div className="col text-truncate">
                     {item.appTask.teams.map((item) => item.title).join("-")}
                   </div>
-                  <div className="col text-truncate">
+                  <div
+                    className="col text-truncate"
+                    title={moment(item.appTask.endDate).format("YYYY/MM/DD")}
+                  >
                     {moment(item.appTask.endDate).format("YYYY/MM/DD")}
                   </div>
-                  <div className="col text-truncate">
+                  <div
+                    className="col text-truncate"
+                    title={item.appTask.status.isStatus()}
+                  >
                     <MainButton
                       type={MainButtonType.dark}
                       children={item.appTask.status.isStatus()}
@@ -140,12 +154,7 @@ const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
               >
                 <div className="accordion-body ">
                   <div className="sub-accordian-parent">
-                    <p
-                      className="sub-accordion"
-                      style={{ marginRight: "-7px" }}
-                    >
-                      Subtask
-                    </p>
+                    <p className="sub-accordion">Subtask</p>
                   </div>
                   <div className="items">
                     {item.subAppTasks.map((sub, index) => (
@@ -154,10 +163,12 @@ const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
                           <span
                             className="text-truncate d-inline-block"
                             style={{ maxWidth: "120px" }}
+                            title={sub.title}
                           >
                             <span
                               className="lable"
                               style={{ backgroundColor: "#096BFF" }}
+                              title={sub.title}
                             ></span>{" "}
                             {sub.title}
                           </span>

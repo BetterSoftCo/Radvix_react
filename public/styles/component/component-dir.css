@@ -226,18 +226,23 @@ button.loading {
 }
 
 .parent-sidebar ul a.selected li {
-  border-bottom: 0.5px solid #8EE1FF;
+  border-bottom: 0.5px solid #8ee1ff;
 }
 
 .parent-sidebar ul li {
   border-bottom: 0.5px solid #ebebeb69;
   margin-top: 0.5rem;
   margin-bottom: 1rem;
+  font-size: 14px;
 }
 
 .parent-sidebar ul li:first-child {
   margin-top: 0;
   margin-bottom: 1rem;
+}
+
+.parent-sidebar ul li span {
+  margin-bottom: 0.6rem;
 }
 
 .sidebar {
@@ -263,6 +268,10 @@ button.loading {
   font-size: 10px;
   color: #ebebeb;
   padding: 1rem;
+}
+
+.sidebar .gide-sidebar img {
+  opacity: 0.7;
 }
 
 .righ-section .top {
@@ -477,6 +486,7 @@ button.loading {
       -ms-flex-align: center;
           align-items: center;
   width: 5%;
+  border-right: 1px solid #ebebeb;
 }
 
 .TableBox .accordion-body .items {
@@ -498,7 +508,7 @@ button.loading {
 .TableBox .accordion-body p.sub-accordion {
   -webkit-transform: rotate(-90deg);
           transform: rotate(-90deg);
-  margin-right: 11%;
+  margin: auto;
 }
 
 .TableBox .accordion .accordion-item.accordion-item-top {
@@ -607,6 +617,18 @@ button.loading {
 
 .btngroupComponentStyle .btn-outline-dark {
   border-color: #21252900;
+}
+
+.btngroupComponentStyle .btn-outline-dark:hover {
+  color: #212529;
+  background: none;
+  border-color: transparent;
+}
+
+.btngroupComponentStyle input:checked + .btn-outline-dark:hover {
+  color: #fff;
+  background: #212529;
+  border-color: #212529;
 }
 
 .btngroupComponentStyle label.btn {

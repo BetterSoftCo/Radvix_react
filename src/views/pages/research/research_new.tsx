@@ -16,21 +16,21 @@ import { ResearchController } from "../../../controllers/research/research_contr
 import SimpleReactValidator from "simple-react-validator";
 import { UploadController } from "../../../controllers/upload_media/upload_media";
 type StateType = {
-  files: Array<File>,
-  title: string,
-  description: string,
-  startDate: Date,
-  endDate: Date,
-  currency: number,
-  priority: number,
-  teamsId: Array<number>,
-  usersId: Array<string>,
-  status: number,
-  listMembers: Array<{ label: string; value: number, isUser: boolean } | {}>,
-  loading: boolean,
-  ExternalUrl: Array<string>,
-  External: string
-}
+  files: Array<File>;
+  title: string;
+  description: string;
+  startDate: Date;
+  endDate: Date;
+  currency: number;
+  priority: number;
+  teamsId: Array<number>;
+  usersId: Array<string>;
+  status: number;
+  listMembers: Array<{ label: string; value: number; isUser: boolean } | {}>;
+  loading: boolean;
+  ExternalUrl: Array<string>;
+  External: string;
+};
 class ResearchPageNew extends React.Component<RouteComponentProps> {
   RoleUser = store.getState().userRole;
   controller = new ResearchController();
@@ -52,7 +52,7 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
     listMembers: [],
     loading: false,
     ExternalUrl: [],
-    External: ""
+    External: "",
   };
   handleChange(target: string, val: any) {
     this.setState({
@@ -84,7 +84,7 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
       this.controller.createResearch(
         body,
         (res) => {
-          this.handelUpload(res.id)
+          this.handelUpload(res.id);
           this.setState({
             files: [],
             title: "",
@@ -98,7 +98,12 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
             status: 0,
             listMembers: [],
           });
-          this.props.history.push(`${AppRoutes.profile_research.replace(':id', res.id?.toString() ?? "")}`)
+          this.props.history.push(
+            `${AppRoutes.profile_research.replace(
+              ":id",
+              res.id?.toString() ?? ""
+            )}`
+          );
         },
         (err) => {
           this.setState({
@@ -131,29 +136,32 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
     });
   }
   async handelUpload(id: number) {
-    const formData = new FormData()
+    const formData = new FormData();
     for (let i = 0; i < this.state.files.length; i++) {
-      const file = this.state.files[i]
-      formData.append('Files', file)
+      const file = this.state.files[i];
+      formData.append("Files", file);
     }
     for (let i = 0; i < this.state.ExternalUrl.length; i++) {
-      const file = this.state.ExternalUrl[i]
-      formData.append('ExternalUrls', file)
+      const file = this.state.ExternalUrl[i];
+      formData.append("ExternalUrls", file);
     }
 
-    formData.append('UseCase', '0')
-    formData.append('SectionId', id.toString())
-    
-    
-    await this.UploadController.UloadMedia(formData, (res) => {
-      this.setState({
-        loading: false,
-      });
-    }, () => {
-      this.setState({
-        loading: false,
-      });
-    })
+    formData.append("UseCase", "0");
+    formData.append("SectionId", id.toString());
+
+    await this.UploadController.UloadMedia(
+      formData,
+      (res) => {
+        this.setState({
+          loading: false,
+        });
+      },
+      () => {
+        this.setState({
+          loading: false,
+        });
+      }
+    );
   }
 
   onDrop = (files: any) => {
@@ -161,29 +169,34 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
   };
   handelDeleteFile(arg: File) {
     this.setState({
-      files: this.state.files.filter(file => file.name !== arg.name)
-    })
-  }
-  addExternalUrl() {
-    let Url = [...this.state.ExternalUrl]
-    Url.push(this.state.External)
-    this.setState({
-      ExternalUrl: Url,
-      External: ''
+      files: this.state.files.filter((file) => file.name !== arg.name),
     });
   }
-  handelDeleteExternalLink(link:string){
+  addExternalUrl() {
+    let Url = [...this.state.ExternalUrl];
+    Url.push(this.state.External);
     this.setState({
-      ExternalUrl:this.state.ExternalUrl.filter(item=>item !== link)
-    })
+      ExternalUrl: Url,
+      External: "",
+    });
+  }
+  handelDeleteExternalLink(link: string) {
+    this.setState({
+      ExternalUrl: this.state.ExternalUrl.filter((item) => item !== link),
+    });
   }
   render() {
     const files = this.state.files.map((file: any) => (
       <li key={file.name}>
         {file.name} - {file.size} bytes
-        <CircleIcon type={ThemeCircleIcon.dark} width="22px" height="22px" onClick={() => {
-          this.handelDeleteFile(file)
-        }}>
+        <CircleIcon
+          type={ThemeCircleIcon.dark}
+          width="22px"
+          height="22px"
+          onClick={() => {
+            this.handelDeleteFile(file);
+          }}
+        >
           <img
             src="/images/icons/garbage_can.svg"
             alt="radvix"
@@ -241,19 +254,22 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
                     ></i>
                   </CircleIcon>
                 </span>
-                <div className="d-flex justify-content-between align-items-center">
-                  <DatePicker
-                    selected={this.state.startDate}
-                    onChange={(e) => {
-                      this.handelChangeDate("startDate", e);
-                    }}
-                  />
-                  <DatePicker
-                    selected={this.state.endDate}
-                    onChange={(e) => {
-                      this.handelChangeDate("endDate", e);
-                    }}
-                  />
+                <div className="item">
+                  <div className="d-flex justify-content-between align-items-center">
+                    <DatePicker
+                      selected={this.state.startDate}
+                      onChange={(e) => {
+                        this.handelChangeDate("startDate", e);
+                      }}
+                    />
+                    <span className="mx-2">Until</span>
+                    <DatePicker
+                      selected={this.state.endDate}
+                      onChange={(e) => {
+                        this.handelChangeDate("endDate", e);
+                      }}
+                    />
+                  </div>
                 </div>
               </div>
               <div className="item">
@@ -369,7 +385,7 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
                         <p>Or drag and drop files here</p>
                       </div>
                       <aside>
-                        <h4>Files</h4>
+                        
                         <ul>{files} </ul>
                       </aside>
                     </section>
@@ -394,35 +410,40 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
                   fontSize="18px"
                   color="#ffffff"
                   className="px-3 pointer"
-                  onClick={() => { this.addExternalUrl() }}
+                  onClick={() => {
+                    this.addExternalUrl();
+                  }}
                 >
                   <i className="fas fa-plus"></i>
                 </CircleIcon>
               </div>
               <ul className="file-list mt-3">
-                {
-                  this.state.ExternalUrl.map(item => (
-                    <li className="my-2 d-flex flex-column flex-md-row">
-                      <MainButton
-                        children={item}
-                        type={MainButtonType.dark}
-                        borderRadius="24px"
-                        fontSize="14px"
-                        backgroundColor="#F5F5F5"
-                        color="#096BFF"
-                      ></MainButton>
-                      <CircleIcon
-                        type={ThemeCircleIcon.dark}
-                        width="22px"
-                        height="22px"
-                        className="mx-3 pointer"
-                        onClick={()=>this.handelDeleteExternalLink(item)}
-                      >
-                        <img src="/images/icons/garbage_can.svg" alt="radvix" width={15} height={15} />
-                      </CircleIcon>
-                    </li>
-                  ))
-                }
+                {this.state.ExternalUrl.map((item) => (
+                  <li className="my-2 d-flex flex-column flex-md-row">
+                    <MainButton
+                      children={item}
+                      type={MainButtonType.dark}
+                      borderRadius="24px"
+                      fontSize="14px"
+                      backgroundColor="#F5F5F5"
+                      color="#096BFF"
+                    ></MainButton>
+                    <CircleIcon
+                      type={ThemeCircleIcon.dark}
+                      width="22px"
+                      height="22px"
+                      className="mx-3 pointer"
+                      onClick={() => this.handelDeleteExternalLink(item)}
+                    >
+                      <img
+                        src="/images/icons/garbage_can.svg"
+                        alt="radvix"
+                        width={15}
+                        height={15}
+                      />
+                    </CircleIcon>
+                  </li>
+                ))}
               </ul>
               <div className="item">
                 <SelectComponent

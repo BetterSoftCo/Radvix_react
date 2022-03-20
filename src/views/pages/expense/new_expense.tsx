@@ -359,7 +359,7 @@ class ExpensePageNew extends React.Component<RouteComponentProps> {
                         </p>
                       </div>
                       <aside>
-                        <h4>Files</h4>
+                        
                         <ul>{files}</ul>
                       </aside>
                     </section>

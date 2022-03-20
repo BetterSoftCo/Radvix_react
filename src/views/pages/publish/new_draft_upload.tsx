@@ -337,7 +337,7 @@ class UploadNewDraft extends React.Component<RouteComponentProps<RouteParams>> {
                         <p>Or drag and drop files here</p>
                       </div>
                       <aside>
-                        <h4>Files</h4>
+                        
                         <ul>{mainFiles}</ul>
                       </aside>
                     </section>
@@ -450,7 +450,7 @@ class UploadNewDraft extends React.Component<RouteComponentProps<RouteParams>> {
                         <p>Or drag and drop files here</p>
                       </div>
                       <aside>
-                        <h4>Files</h4>
+                        
                         <ul>{files}</ul>
                       </aside>
                     </section>

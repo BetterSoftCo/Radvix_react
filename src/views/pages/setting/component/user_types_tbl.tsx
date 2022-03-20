@@ -54,7 +54,7 @@ export const UserTypesTable = () => {
           >
             <div className="accordion-body ">
               <div className="sub-accordian-parent  justify-content-center">
-              <p className="sub-accordion  mb-0 mx-0 text-nowrap py-2">User Labeling</p> 
+              <p className="sub-accordion text-nowrap py-2">User Labeling</p> 
               </div>
              <div className="items">
              <div className="row w-100 py-2 rounded">
@@ -188,7 +188,7 @@ export const UserTypesTable = () => {
           >
             <div className="accordion-body ">
             <div className="sub-accordian-parent  justify-content-center">
-              <p className="sub-accordion  mb-0 mx-0 text-nowrap py-2">User Labeling</p> 
+              <p className="sub-accordion  text-nowrap py-2">User Labeling</p> 
               </div>
              <div className="items">
              <div className="row w-100 py-2 rounded">
@@ -295,7 +295,7 @@ export const UserTypesTable = () => {
           >
             <div className="accordion-body ">
               <div className="sub-accordian-parent justify-content-center">
-              <p className="sub-accordion  mb-0 mx-0 text-nowrap py-2">User Labeling </p> 
+              <p className="sub-accordion text-nowrap py-2">User Labeling </p> 
               </div>
              <div className="items">
              <div className="row w-100 py-2 rounded">

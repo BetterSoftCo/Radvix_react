@@ -395,7 +395,7 @@ class NewDiscusstion extends React.Component<RouteComponentProps<RouteParams>> {
                         <p>Or drag and drop files here</p>
                       </div>
                       <aside>
-                        <h4>Files</h4>
+                        
                         <ul>{files}</ul>
                       </aside>
                     </section>

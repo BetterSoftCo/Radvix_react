@@ -89,7 +89,7 @@ export class AdminBroadcast extends React.Component {
                         </p>
                       </div>
                       <aside>
-                        <h4>Files</h4>
+                        
                         <ul>{files}</ul>
                       </aside>
                     </section>

@@ -139,6 +139,7 @@
       justify-content: end;
       align-items: center;
       width: 5%;
+      border-right: 1px solid #ebebeb;
     }
     .items {
       width: 97%;
@@ -154,7 +155,7 @@
     }
     p.sub-accordion {
       transform: rotate(-90deg);
-      margin-right: 11%;
+      margin: auto;
     }
   }
   .accordion {

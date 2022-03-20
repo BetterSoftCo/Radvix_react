@@ -5,8 +5,22 @@
   background-color: #fff;
   padding: 2px;
   border-radius: 15px;
-  .btn-outline-dark{
+  .btn-outline-dark {
     border-color: #21252900;
+  }
+  .btn-outline-dark {
+    &:hover {
+      color: #212529;
+      background: none;
+      border-color: transparent;
+    }
+  }
+  input:checked + .btn-outline-dark {
+    &:hover {
+      color: #fff;
+      background: #212529;
+      border-color: #212529;
+    }
   }
   label.btn {
     line-height: 0.5;

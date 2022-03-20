@@ -272,7 +272,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
       </div>
       {page === "Research" && ShowSidebar === true ? (
         <div className="gide-sidebar">
-          <div className="d-flex flex-wrap list-icons justify-content-around">
+          <div className="d-flex flex-wrap list-icons justify-content-between">
             {AccessPermition(RoleUser, [
               UserRoles.Admin,
               UserRoles.L1Client,
@@ -371,7 +371,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
       ) : page === "Laboratory" && ShowSidebar === true ? (
         <div className="gide-sidebar">
           <div
-            className="d-flex flex-wrap list-icons justify-content-around"
+            className="d-flex flex-wrap list-icons justify-content-between"
             style={{ marginTop: "6rem" }}
           >
             {AccessPermition(RoleUser, [
@@ -547,8 +547,12 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                   setShowSidebar(!ShowSidebar);
                 }}
                 fontSize="15px"
-                className="lighter mx-1 my-1 pointer"
-                text="Invite Members"
+                className="lighter mx-1 my-1 pointer text-center"
+                text={
+                  <span>
+                    Invite <br /> Members
+                  </span>
+                }
                 theme={Theme.light}
                 children={
                   <img
@@ -839,7 +843,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
         <div className="gide-sidebar">
           <div
             style={{ marginTop: "8rem" }}
-            className="d-flex flex-column text-center align-items-center helptext"
+            className="d-flex flex-column text-center align-items-center helptext justify-content-around"
           >
             <CircleIcon
               width="20px"
@@ -896,8 +900,12 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 setShowSidebar(!ShowSidebar);
               }}
               fontSize="15px"
-              className="lighter mx-1 my-1 pointer"
-              text="Publication Archive"
+              className="lighter mx-1 my-1 pointer text-center"
+              text={
+                <span>
+                  Publication <br /> Archive
+                </span>
+              }
               theme={Theme.light}
               children={
                 <img
@@ -966,8 +974,12 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 setShowSidebar(!ShowSidebar);
               }}
               fontSize="15px"
-              className="lighter mx-1 my-1  pointer"
-              text="Expense Archive"
+              className="lighter mx-1 my-1  pointer text-center"
+              text={
+                <span>
+                  Expense <br /> Archive
+                </span>
+              }
               theme={Theme.light}
               children={
                 <img

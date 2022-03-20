@@ -377,7 +377,7 @@ class LaboratoryPageNew extends React.Component<RouteComponentProps> {
                         <p>Or drag and drop files here</p>
                       </div>
                       <aside>
-                        <h4>Files</h4>
+                        
                         <ul>{files}</ul>
                       </aside>
                     </section>
