@@ -16,7 +16,7 @@ export class AdminMember extends React.Component {
           <div className="TableBox">
             <div className="TopTableBox d-flex justify-content-between align-items-center mb-3">
               <div className="left d-flex w-50 align-items-baseline ">
-                <h4 style={{ width: "100%" }} className="b-title d-flex">
+                <h4 style={{ width: "100%" }} className="b-title d-flex align-items-center">
                   <span onClick={()=>{window.history.back()}} className="backPage"></span> Members On{" "}
                   <span style={{ color: "#009BB7" }} className="mx-1">
                     Nima Hosseinzadeh’s

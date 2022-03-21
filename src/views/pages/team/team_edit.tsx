@@ -209,7 +209,7 @@ class TeamPageEdit extends React.Component<RouteComponentProps<RouteParams>> {
       <div className="container-fluid research new-research">
         <div className="row"></div>
         <div className="col-12 box-content p-3">
-          <h5 className="b-title d-flex">
+          <h5 className="b-title d-flex align-items-center">
             <span
               onClick={() => {
                 window.history.back();

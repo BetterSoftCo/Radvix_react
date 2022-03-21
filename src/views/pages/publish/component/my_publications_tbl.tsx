@@ -30,7 +30,7 @@ const MyPublicationsTable: React.FC<TableComponentProp & RouteComponentProps> =
                 <td>{head.assignedUserFirstName} {head.assignedUserLastName}</td>
                 <td>{moment(head.endDate).format("YYYY/MM/DD")}</td>
                 <td>
-                  <div className="col d-flex justify-content-between align-items-center">
+                  <div className="col d-flex align-items-center justify-content-end">
                    <CircleIcon
                       width="26px"
                       height="26px"
@@ -43,7 +43,7 @@ const MyPublicationsTable: React.FC<TableComponentProp & RouteComponentProps> =
                           )}`
                         )
                       }
-                      className="pointer mx-2"
+                      className="pointer mx-1"
                     >
                       <img src="/images/icons/google_docs.svg" alt="radvix" width={12} height={12} />
                     </CircleIcon>

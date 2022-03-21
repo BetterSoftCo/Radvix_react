@@ -48,7 +48,7 @@ const DataCollectionTable: React.FC<IAcordienTable & RouteComponentProps> = (
                       {item.appTaskTitle}
                     </span>
                   </div>
-                  <div className="col-2 d-flex justify-content-end">
+                  <div className="col-2 d-flex justify-content-end pe-0">
                     <CircleIcon
                       width="22px"
                       height="22px"

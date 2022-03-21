@@ -275,7 +275,7 @@ class PublicationProfile extends React.Component<RouteComponentProps<RouteParams
                   }
                 ></MainButton>
                 <SelectComponent
-                  width="63px"
+                  width="90px"
                   height="44px"
                   items={[
                     { label: '10', value: 10 },
@@ -284,6 +284,8 @@ class PublicationProfile extends React.Component<RouteComponentProps<RouteParams
                   ]}
                   TextItem="item"
                   ValueItem="id"
+                  isMulti={false}
+                  placeholder="10"
                 ></SelectComponent>
               </div>
             </div>

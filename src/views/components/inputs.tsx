@@ -127,9 +127,9 @@ export const InputComponent: React.FC<InputsProps> = ({
           }`}
         />
       ) : (
-        <div className="input-group">
+        <div className="input-group mt-2">
           <span
-            className="input-group-text pointer"
+            className="input-group-text pointer py-0"
             onClick={() => {
               setShowPass(!ShowPass);
             }}
@@ -149,7 +149,7 @@ export const InputComponent: React.FC<InputsProps> = ({
               " " +
               "InputComponentStyle" +
               " " +
-              "form-control" +
+              "form-control mt-0" +
               " " +
               IsinValid
             }`}

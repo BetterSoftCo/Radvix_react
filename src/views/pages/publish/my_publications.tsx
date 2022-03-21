@@ -62,7 +62,7 @@ export class MyPublications extends React.Component {
         <div className="col-12">
           <div className="TableBox">
             <div className="TopTableBox d-flex flex-column flex-md-row justify-content-between align-items-baseline mb-3">
-              <div className="left d-flex w-50 align-items-baseline">
+              <div className="left d-flex w-50 align-items-center">
                 <h6 className="b-title d-flex align-items-center" style={{ width: "55%" }}>
                   <span
                     onClick={() => {

@@ -64,8 +64,8 @@ class ExpenseArchive extends React.Component<RouteComponentProps<RouteParams>> {
         <div className="col-12">
           <div className="TableBox">
             <div className="TopTableBox d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3">
-              <div className="left d-flex w-50 align-items-baseline">
-                <h6 className="b-title d-flex" style={{ width: "45%" }}>
+              <div className="left d-flex w-50 align-items-center">
+                <h6 className="b-title d-flex align-items-center" style={{ width: "45%" }}>
                   <span
                     onClick={() => {
                       window.history.back();
@@ -88,7 +88,7 @@ class ExpenseArchive extends React.Component<RouteComponentProps<RouteParams>> {
                   type={MainButtonType.dark}
                   borderRadius="24px"
                   fontSize="14px"
-                  className="my-2 mx-2"
+                  className="mx-2"
                   onClick={() => {
                     this.props.history.push(AppRoutes.expense_new);
                   }}

@@ -46,7 +46,7 @@ const MemberItem: React.FC<IMemberItem & RouteComponentProps> = (props) => {
         >
           {props.member.teams[0].title}...
         </h6>
-      ) : null}
+      ) : <br/>}
 
       <div className="d-flex justify-content-center align-items-center">
         {AccessPermition(props.role, [

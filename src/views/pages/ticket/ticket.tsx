@@ -191,7 +191,7 @@ class Ticket extends React.Component<RouteComponentProps<RouteParams>> {
       <div className="container-fluid research new-research">
         <div className="row"></div>
         <div className="col-12 box-content p-3 discusstion">
-          <h5 className="b-title d-flex">
+          <h5 className="b-title d-flex align-items-center">
             <span
               onClick={() => {
                 window.history.back();
@@ -324,7 +324,7 @@ class Ticket extends React.Component<RouteComponentProps<RouteParams>> {
                   type={InputType.textarea}
                   label="Message:"
                   className="mt-2"
-                  rows={6}
+                  rows={7}
                   onChange={(e) => {
                     this.handleChange("massage", e.target.value);
                   }}

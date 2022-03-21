@@ -294,7 +294,7 @@ class NewEquip extends React.Component<RouteComponentProps> {
       <div className="container-fluid research new-research">
         <div className="row"></div>
         <div className="col-12 box-content p-3">
-          <h5 className="b-title d-flex">
+          <h5 className="b-title d-flex align-items-center">
             <span
               onClick={() => {
                 window.history.back();
@@ -354,7 +354,7 @@ class NewEquip extends React.Component<RouteComponentProps> {
                       />
                       <CircleIcon
                         type={ThemeCircleIcon.dark}
-                        width="44px"
+                        width="30px"
                         height="30px"
                         className="mx-2 px-2 pointer"
                         onClick={() => {

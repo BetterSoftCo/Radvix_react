@@ -141,7 +141,7 @@ class MemberPageProfile extends React.Component<
               height="125px"
             />
 
-            <h3 className="px-5 text-center">
+            <h3 className="px-5 text-center mt-2">
               {this.state.firstName + " " + this.state.lastName}
             </h3>
             <p>{this.state.userEmail}</p>
