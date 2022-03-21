@@ -1,5 +1,5 @@
 /* eslint-disable no-useless-concat */
-import React, { Fragment, ReactNode } from "react";
+import React, { Fragment, ReactNode, useState } from "react";
 import { MainButton, MainButtonType } from "./button";
 import { CircleIcon, ThemeCircleIcon } from "./circle_icon";
 
@@ -50,6 +50,7 @@ export const InputComponent: React.FC<InputsProps> = ({
   isPassword,
   fontSize,
 }) => {
+  const [ShowPass, setShowPass] = useState(false);
   let styles = {
     width: width,
     height: height,
@@ -107,23 +108,55 @@ export const InputComponent: React.FC<InputsProps> = ({
   return type === InputType.text ? (
     <Fragment>
       {TemplateLabel}
-      <input
-        type={isPassword ? "password" : "text"}
-        style={styles}
-        value={value}
-        onChange={onChange}
-        placeholder={placeholder}
-        onBlur={onBlur}
-        className={`${
-          IsclassName +
-          " " +
-          "InputComponentStyle" +
-          " " +
-          "form-control" +
-          " " +
-          IsinValid
-        }`}
-      />
+      {!isPassword ? (
+        <input
+          type="text"
+          style={styles}
+          value={value}
+          onChange={onChange}
+          placeholder={placeholder}
+          onBlur={onBlur}
+          className={`${
+            IsclassName +
+            " " +
+            "InputComponentStyle" +
+            " " +
+            "form-control" +
+            " " +
+            IsinValid
+          }`}
+        />
+      ) : (
+        <div className="input-group">
+          <span
+            className="input-group-text pointer"
+            onClick={() => {
+              setShowPass(!ShowPass);
+            }}
+            id="basic-addon1"
+          >
+            <i className={ShowPass ? "fa fa-eye" : "fa fa-eye-slash"}></i>
+          </span>
+          <input
+            type={ShowPass ? "text" : "password"}
+            style={styles}
+            value={value}
+            onChange={onChange}
+            placeholder={placeholder}
+            onBlur={onBlur}
+            className={`${
+              IsclassName +
+              " " +
+              "InputComponentStyle" +
+              " " +
+              "form-control" +
+              " " +
+              IsinValid
+            }`}
+          />
+        </div>
+      )}
+
       {TemplateValidation}
     </Fragment>
   ) : (

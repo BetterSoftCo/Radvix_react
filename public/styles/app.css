@@ -150,6 +150,10 @@ button.loading {
   color: #30a3f1;
 }
 
+.icon-eye-input {
+  position: absolute;
+}
+
 .IconTextVertical {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -690,6 +694,7 @@ button.loading {
   border-top-left-radius: 15px !important;
   border-bottom-right-radius: 15px !important;
   border-bottom-left-radius: 15px !important;
+  font-size: 12px;
 }
 
 @media (max-width: 575.98px) {
@@ -946,7 +951,7 @@ button.loading {
 }
 
 .box-content .item .label {
-  font-size: 1.1rem;
+  font-size: 14px;
   color: #474747;
   margin-right: 1rem;
 }
@@ -1843,6 +1848,10 @@ button.loading {
   color: #30a3f1;
 }
 
+.icon-eye-input {
+  position: absolute;
+}
+
 .IconTextVertical {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2383,6 +2392,7 @@ button.loading {
   border-top-left-radius: 15px !important;
   border-bottom-right-radius: 15px !important;
   border-bottom-left-radius: 15px !important;
+  font-size: 12px;
 }
 
 @media (max-width: 575.98px) {
@@ -2639,7 +2649,7 @@ button.loading {
 }
 
 .box-content .item .label {
-  font-size: 1.1rem;
+  font-size: 14px;
   color: #474747;
   margin-right: 1rem;
 }

@@ -20,7 +20,7 @@ interface InputsProps {
   popQuestion?: string;
   optional?: string;
   inValid?: string;
-  Selected?:number
+  Selected?: number;
 }
 export const RadioGroup: React.FC<InputsProps> = ({
   width,
@@ -39,7 +39,7 @@ export const RadioGroup: React.FC<InputsProps> = ({
   popQuestion,
   optional,
   inValid,
-  Selected
+  Selected,
 }) => {
   let styles = {
     width: width,
@@ -121,6 +121,7 @@ export const RadioGroup: React.FC<InputsProps> = ({
           <label
             className="form-check-label"
             htmlFor={item[`${ValueItem}`] + name}
+            style={{ fontSize: "12px" }}
           >
             {item[`${TextItem}`]}
           </label>
