@@ -5,6 +5,10 @@
   height: 100%;
   direction: rtl;
   border: 1px solid #f5f5f5;
+  @media (max-width: 767.98px) {
+    overflow: scroll;
+    max-height: 100vh;
+  }
 
   ul {
     list-style: none;
@@ -29,10 +33,27 @@
     }
   }
 }
-
+.closeing-sidebar {
+  @media (max-width: 767.98px) {
+    display: none;
+    width: 0;
+  }
+}
+.opening-sidebar {
+  @media (max-width: 767.98px) {
+    display: block;
+    width: auto;
+  }
+}
 .sidebar {
   position: relative;
   min-width: 139px;
+  transition: all 0.3s ease-in;
+  @media (max-width: 767.98px) {
+    position: fixed;
+    top: 0;
+    z-index: 9999;
+  }
   .gide-sidebar {
     position: absolute;
     left: 91%;
@@ -54,4 +75,15 @@
       opacity: 0.7;
     }
   }
+}
+.fa-bars {
+  display: flex;
+  background: #ebebeb;
+  width: 30px;
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+  padding-left: 29px;
+  margin-top: 9px;
+  border-radius: 6px;
 }
