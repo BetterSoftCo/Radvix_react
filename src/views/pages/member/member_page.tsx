@@ -61,7 +61,7 @@ class MemberPage extends React.Component<RouteComponentProps> {
         <div className="row"></div>
         <div className="col-12">
           <div className="TableBox">
-            <div className="TopTableBox d-flex justify-content-between align-items-center mb-3">
+            <div className="TopTableBox d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3">
               <div className="left d-flex w-50 align-items-center ">
                 <h4
                   style={{ width: "45%", fontSize: "16px" }}
@@ -84,7 +84,7 @@ class MemberPage extends React.Component<RouteComponentProps> {
                   TopPosition="15%"
                 ></InputIcon>
               </div>
-              <div className="right w-50 d-flex justify-content-end align-items-center">
+              <div className="right  d-flex justify-content-between align-items-baseline">
                 <MainButton
                   children="New Member"
                   type={MainButtonType.dark}

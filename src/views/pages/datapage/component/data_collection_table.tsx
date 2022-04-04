@@ -88,7 +88,7 @@ const DataCollectionTable: React.FC<IAcordienTable & RouteComponentProps> = (
 
                   <div className="items">
                     {item.appTaskData.map((sub, index) => (
-                      <div className="row w-100 py-1 rounded" key={index}>
+                      <div className="row w-100 py-1 rounded my-auto" key={index}>
                         <div className="col-2 text-center">
                           <span
                             className="text-truncate d-inline-block"
@@ -98,7 +98,7 @@ const DataCollectionTable: React.FC<IAcordienTable & RouteComponentProps> = (
                             {sub.title}
                           </span>
                         </div>
-                        <div className="col-2 text-center d-flex justify-content-center align-items-baseline ">
+                        <div className="col-2 text-center d-flex justify-content-center align-items-baseline text-truncate ">
                           <div className="text-truncate">
                             {sub.medias?.map((media) => (
                               <div key={media.id}>
@@ -135,7 +135,7 @@ const DataCollectionTable: React.FC<IAcordienTable & RouteComponentProps> = (
                         >
                           {sub.creatorFirstName + " " + sub.creatorLastName}
                         </div>
-                        <div className="col-2 text-center">
+                        <div className="col-2 text-center text-truncate">
                           {moment(sub.createdDate).format("YYYY/MM/DD")}
                         </div>
 

@@ -134,30 +134,9 @@
         transparent 5.48px,
         #adadad 8px
       ),
-      repeating-linear-gradient(
-        30deg,
-        #adadad,
-        #adadad 0.64px,
-        transparent 1px,
-        transparent 5.48px,
-        #adadad 8px
-      ),
-      repeating-linear-gradient(
-        120deg,
-        #adadad,
-        #adadad 0.64px,
-        transparent 1px,
-        transparent 5.48px,
-        #adadad 8px
-      ),
-      repeating-linear-gradient(
-        210deg,
-        #adadad,
-        #adadad 0.64px,
-        transparent 1px,
-        transparent 5.48px,
-        #adadad 8px
-      );
+      repeating-linear-gradient(30deg, #adadad, #adadad 0.64px, transparent 1px, transparent 5.48px, #adadad 8px),
+      repeating-linear-gradient(120deg, #adadad, #adadad 0.64px, transparent 1px, transparent 5.48px, #adadad 8px),
+      repeating-linear-gradient(210deg, #adadad, #adadad 0.64px, transparent 1px, transparent 5.48px, #adadad 8px);
     background-size: 2px 100%, 100% 2px, 2px 100%, 100% 2px;
     background-position: 0 0, 0 0, 100% 0, 0 100%;
     background-repeat: no-repeat;
@@ -274,8 +253,8 @@
   background-size: cover;
   background-repeat: no-repeat;
   @media (max-width: 575.98px) {
-    width: 90px;
-    height: 48px;
+    width: 28px;
+    height: 28px;
   }
 }
 .Amount {

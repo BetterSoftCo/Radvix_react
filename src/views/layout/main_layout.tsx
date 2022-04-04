@@ -74,7 +74,7 @@ class MainLayout extends React.Component<IMainLayout & RouteComponentProps> {
             <Header></Header>
             <div className="main">
               <div className="row" style={{ minHeight: "90vh" }}>
-                <i className="fa fa-bars d-flex d-md-none" aria-hidden="true" onClick={() => { this.openSidebar() }}></i>
+                <i className="fa fa-bars d-flex d-lg-none" aria-hidden="true" onClick={() => { this.openSidebar() }}></i>
                 <div className="col-5 col-md-2 col-lg-1 sidebar closeing-sidebar" >
                   <Sidebar></Sidebar>
                 </div>
@@ -82,8 +82,8 @@ class MainLayout extends React.Component<IMainLayout & RouteComponentProps> {
                   <div
                     className={
                       this.props.location.pathname.search("/Admin") >= 0
-                        ? "col-12 col-md-10 col-lg-11 col-xl-11"
-                        : "col-12 col-md-10 col-lg-10 col-xl-7"
+                        ? "col-12 col-md-12 col-lg-11 col-xl-11"
+                        : "col-12 col-md-12 col-lg-10 col-xl-7"
                     }
                   >
                     {this.props.children}
