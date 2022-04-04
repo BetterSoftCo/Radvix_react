@@ -15,9 +15,16 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
     setPage(pageType);
   };
   const RoleUser = store.getState().userRole;
+  const closeSidebar = ()=>{
+    const sidebarElement = document.querySelector('.sidebar')
+    console.log(sidebarElement);
+    sidebarElement?.classList.add('closeing-sidebar')
+    sidebarElement?.classList.remove('opening-sidebar')
+  }
   return (
     <Fragment>
       <div className="parent-sidebar">
+      <i className="fa fa-window-close fa-2x text-white d-block d-md-none" aria-hidden="true" onClick={()=>{closeSidebar()}}></i>
         {props.location.pathname.search("/Admin") >= 0 ? (
           <ul>
             <NavLink to={AppRoutes.admin_member} activeClassName="selected">

@@ -94,7 +94,7 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
         <div className="container-fluid">
           <div className="row ">
             <div className="col-lg-10 right-side">
-              <div className="row h-100">
+              <div className="row h-100 my-1 my-lg-0 ">
                 <div className="col-md-2 col-6 d-flex justify-content-start align-items-center">
                   <img
                     src="/images/images/radvix_logo.svg"
@@ -127,7 +127,7 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
                         }
                       ></MainButton>
                     </div>
-                    <div className="col-md-5 col-8 d-flex justify-content-center align-items-center">
+                    <div className="col-md-5 col-12 d-flex justify-content-center align-items-center">
                       <h6 className="mb-0 me-2 Selected-Research fw-light">
                         Selected Research:
                       </h6>
@@ -147,7 +147,7 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
                         </div>
                       </button>
                     </div>
-                    <div className="col-md-3 col-4 d-flex justify-content-center align-items-center">
+                    <div className="col-md-3 col-12 d-flex justify-content-center align-items-center">
                       <h6 className="mb-0 Selected-Research w-25 fw-light">
                         Timeline
                       </h6>

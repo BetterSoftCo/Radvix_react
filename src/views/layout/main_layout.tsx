@@ -51,22 +51,31 @@ class MainLayout extends React.Component<IMainLayout & RouteComponentProps> {
           });
         }
       );
-    }else{
+    } else {
       this.props.history.push(AppRoutes.login)
     }
+  }
+  openSidebar() {
+    const sidebarElement = document.querySelector('.sidebar')
+    console.log(sidebarElement);
+    console.log("ssssss");
+    
+    sidebarElement?.classList.remove('closeing-sidebar')
+    sidebarElement?.classList.add('opening-sidebar')
   }
 
   render() {
     return (
       <Fragment>
         {this.props.location.pathname !== "/login" &&
-        this.props.location.pathname !== "/register" &&
-        this.state.getMmeberInfo === "succsses" ? (
+          this.props.location.pathname !== "/register" &&
+          this.state.getMmeberInfo === "succsses" ? (
           <Fragment>
             <Header></Header>
             <div className="main">
               <div className="row" style={{ minHeight: "90vh" }}>
-                <div className="col-12 col-md-2 col-lg-1 sidebar">
+                <i className="fa fa-bars d-flex d-md-none" aria-hidden="true" onClick={() => { this.openSidebar() }}></i>
+                <div className="col-5 col-md-2 col-lg-1 sidebar closeing-sidebar" >
                   <Sidebar></Sidebar>
                 </div>
                 {this.local.getSetting() ? (
