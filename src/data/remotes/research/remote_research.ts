@@ -18,8 +18,8 @@ export class RemoteResearch {
   researchSearch(action: (res: ResearchSearchRes) => any) {
     return HTTP.get("/Research/Search").then((res) => action(res.data));
   }
-  getResearches(body:{PageNumber:number , PageSize:number},action: (res: ResearchesRes) => any,error: (res: any) => any){
-    return HTTP.get(`/Research?PageNumber=${body.PageNumber}&PageSize=${body.PageSize}` ).then((res) => action(res.data)).catch((err)=>{error(err)});
+  getResearches(body:{PageNumber:number , PageSize:number , SearchParameter:string},action: (res: ResearchesRes) => any,error: (res: any) => any){
+    return HTTP.get(`/Research?PageNumber=${body.PageNumber}&PageSize=${body.PageSize}&SearchParameter=${body.SearchParameter}` ).then((res) => action(res.data)).catch((err)=>{error(err)});
   }
   getResearchById(body:{id:number},action: (res: GetResearchByidRes) => any,error: (res: any) => any){
     return HTTP.get(`/Research/${body.id}` ).then((res) => action(res.data)).catch((err)=>{error(err)});

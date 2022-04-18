@@ -22,6 +22,7 @@ type StateType = {
   ResearchesPageSize: number;
   ResearchesPageCount: number;
   ResearchesTotalCount: number;
+  ResearchesSearch: string
   Tasks: AppTask[];
   TasksPageNumber: number;
   TasksPageSize: number;
@@ -34,7 +35,7 @@ type StateType = {
   DatasTotalCount: number;
 };
 export class DashboardPage extends React.Component {
-  handlePageClick = (data: any) => {};
+  handlePageClick = (data: any) => { };
   RoleUser = store.getState().userRole;
   private researchController = new ResearchController();
   private taskcontroller = new TaskController();
@@ -57,6 +58,7 @@ export class DashboardPage extends React.Component {
     DatasPageSize: 10,
     DatasPageCount: 0,
     DatasTotalCount: 0,
+    ResearchesSearch: ''
   };
   componentDidMount() {
     if (store.getState().ResearchId >= 0) {
@@ -81,7 +83,7 @@ export class DashboardPage extends React.Component {
   GetResearch(PageNumber: number, PageSize: number) {
     if (this.local.logedin()) {
       this.researchController.getResearches(
-        { PageNumber: PageNumber, PageSize: PageSize },
+        { PageNumber: PageNumber, PageSize: PageSize, SearchParameter: this.state.ResearchesSearch },
         (res) => {
           this.setState({
             Researches: res.researchesList,
@@ -176,6 +178,13 @@ export class DashboardPage extends React.Component {
                     width="100%"
                     placeholder="Search..."
                     TopPosition="15%"
+                    onChange={(e) => {
+                      this.setState({
+                        ResearchesSearch: e.target.value,
+                      });
+                      this.GetResearch(this.state.ResearchesPageNumber, this.state.ResearchesPageSize)
+                    }}
+
                   ></InputIcon>
                 </div>
                 <div className="right w-50 d-flex justify-content-end align-items-center">

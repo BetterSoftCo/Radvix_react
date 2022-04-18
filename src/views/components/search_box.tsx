@@ -88,6 +88,7 @@ export const InputIcon: React.FC<InputsProps> = ({
           className={`${
             IsclassName + " " + "InputComponentStyle" + " " + "form-control"
           }`}
+          onKeyDown={onChange}
           style={styles}
         />
         <span className="icon" style={{top:`${TopPosition}`}}>{chilren}</span>

@@ -72,7 +72,7 @@ export class ResearchController {
     });
   }
   getResearches(
-    body: { PageNumber: number; PageSize: number },
+    body: { PageNumber: number; PageSize: number , SearchParameter:string },
     action: (res: ResearchesResResult) => any,
     error: (res: any) => any
   ) {

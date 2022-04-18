@@ -52,7 +52,7 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
   const GetResearch = (PageNumber: number, PageSize: number) => {
     if (local.logedin()) {
       controller.getResearches(
-        { PageNumber: PageNumber, PageSize: PageSize },
+        { PageNumber: PageNumber, PageSize: PageSize , SearchParameter:'' },
         (res) => {
           setListResearch(res.researchesList!);
           setPageCount(Math.ceil(res.count! / PageSize));
