@@ -22,17 +22,19 @@ type StateType = {
   ResearchesPageSize: number;
   ResearchesPageCount: number;
   ResearchesTotalCount: number;
-  ResearchesSearch: string
+  ResearchesSearch: string;
   Tasks: AppTask[];
   TasksPageNumber: number;
   TasksPageSize: number;
   TasksPageCount: number;
   TasksTotalCount: number;
+  TasksSearch: string;
   Datas: DataList[];
   DatasPageNumber: number;
   DatasPageSize: number;
   DatasPageCount: number;
   DatasTotalCount: number;
+
 };
 export class DashboardPage extends React.Component {
   handlePageClick = (data: any) => { };
@@ -58,7 +60,8 @@ export class DashboardPage extends React.Component {
     DatasPageSize: 10,
     DatasPageCount: 0,
     DatasTotalCount: 0,
-    ResearchesSearch: ''
+    ResearchesSearch: '',
+    TasksSearch: ""
   };
   componentDidMount() {
     if (store.getState().ResearchId >= 0) {
@@ -101,7 +104,7 @@ export class DashboardPage extends React.Component {
   }
   GetTasks(PageNumber: number, PageSize: number) {
     this.taskcontroller.getTasks(
-      { PageNumber, PageSize },
+      { PageNumber, PageSize, SearchParameter: this.state.TasksSearch },
       (res) => {
         this.setState({
           Tasks: res.appTasks,
@@ -262,6 +265,12 @@ export class DashboardPage extends React.Component {
                     chilren={<img src="/images/icons/search_box_icon.svg" />}
                     width="100%"
                     placeholder="Search..."
+                    onChange={(e) => {
+                      this.setState({
+                        TasksSearch: e.target.value,
+                      });
+                      this.GetTasks(this.state.TasksPageNumber, this.state.TasksPageSize)
+                    }}
                     TopPosition="15%"
                   ></InputIcon>
                 </div>

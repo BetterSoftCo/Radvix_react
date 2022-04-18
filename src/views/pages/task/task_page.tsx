@@ -16,6 +16,7 @@ type StateType = {
   PageSize: number;
   PageCount: number;
   TotalCount: number;
+  Search:string
 };
 export class TasksPage extends React.Component {
   RoleUser = store.getState().userRole;
@@ -26,6 +27,7 @@ export class TasksPage extends React.Component {
     PageSize: 10,
     PageCount: 0,
     TotalCount: 0,
+    Search:''
   };
   componentDidMount() {
     this.GetTasks(this.state.PageNumber, this.state.PageSize);
@@ -35,7 +37,7 @@ export class TasksPage extends React.Component {
   }
   GetTasks(PageNumber: number, PageSize: number) {
     this.controller.getTasks(
-      { PageNumber, PageSize },
+      { PageNumber, PageSize , SearchParameter:this.state.Search },
       (res) => {
         this.setState({
           Tasks: res.appTasks,
@@ -74,6 +76,12 @@ export class TasksPage extends React.Component {
                   width="100%"
                   placeholder="Search..."
                   TopPosition="15%"
+                  onChange={(e) => {
+                    this.setState({
+                      Search: e.target.value,
+                    });
+                    this.GetTasks(this.state.PageNumber, this.state.PageSize)
+                  }}
                 ></InputIcon>
               </div>
               <div className="right  d-flex justify-content-between align-items-baseline">
