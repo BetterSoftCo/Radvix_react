@@ -57,7 +57,7 @@ export class expenseController {
     }
   }
   getExpenses(
-    body: { PageNumber: number; PageSize: number , ResearchId: number },
+    body: { PageNumber: number; PageSize: number , ResearchId: number , SearchParameter:string },
     action: (res: GetAllExpensesResult) => any,
     error: (res: any) => any
   ) {

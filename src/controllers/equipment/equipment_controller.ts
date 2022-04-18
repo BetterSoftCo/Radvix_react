@@ -51,7 +51,7 @@ export class EquipmentController {
     );
   }
   getAllEquipments(
-    body: { PageNumber: number; PageSize: number },
+    body: { PageNumber: number; PageSize: number , SearchParameter:string },
     action: (res: GetAllEquipmentResult) => any,
     error: (res: any) => any
   ) {
