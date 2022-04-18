@@ -56,7 +56,7 @@ export class LaboratoryController {
     );
   }
   getLaboratoryGetAll(
-    body: { PageNumber: number; PageSize: number },
+    body: { PageNumber: number; PageSize: number, SearchParameter:string },
     action: (res: LaboratoryGetAllResResult) => any
   ) {
     this.remote.getLaboratoryGetAll(

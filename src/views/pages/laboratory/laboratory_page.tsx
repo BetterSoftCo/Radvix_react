@@ -13,6 +13,7 @@ type StateType = {
   PageSize: number;
   PageCount: number;
   TotalCount: number;
+  Search:string
 };
 export class LaboratoryPage extends React.Component {
   RoleUser = store.getState().userRole;
@@ -23,13 +24,14 @@ export class LaboratoryPage extends React.Component {
     PageSize: 10,
     PageCount: 0,
     TotalCount: 0,
+    Search: ''
   };
   componentDidMount() {
     this.GetLabs(this.state.PageNumber, this.state.PageSize);
   }
   GetLabs(PageNumber: number, PageSize: number) {
     this.controller.getLaboratoryGetAll(
-      { PageNumber: PageNumber, PageSize: PageSize },
+      { PageNumber: PageNumber, PageSize: PageSize, SearchParameter: this.state.Search },
       (res) => {
         this.setState({
           Laboratory: res.laboratories,
@@ -75,6 +77,12 @@ export class LaboratoryPage extends React.Component {
                   width="100%"
                   placeholder="Search..."
                   TopPosition="15%"
+                  onChange={(e) => {
+                    this.setState({
+                      Search: e.target.value,
+                    });
+                    this.GetLabs(this.state.PageNumber, this.state.PageSize)
+                  }}
                 ></InputIcon>
               </div>
               <div className="right w-50 d-flex justify-content-end align-items-center">
