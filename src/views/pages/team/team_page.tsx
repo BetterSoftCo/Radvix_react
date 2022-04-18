@@ -17,6 +17,7 @@ type StateType = {
   PageSize: number;
   PageCount: number;
   TotalCount: number;
+  Search: string
 };
 class TeamPage extends React.Component<RouteComponentProps> {
   RoleUser = store.getState().userRole;
@@ -27,13 +28,14 @@ class TeamPage extends React.Component<RouteComponentProps> {
     PageSize: 10,
     PageCount: 0,
     TotalCount: 0,
+    Search: ''
   };
   componentDidMount() {
     this.GetTeams(this.state.PageNumber, this.state.PageSize);
   }
   GetTeams(PageNumber: number, PageSize: number) {
     this.controller.getAllTeams(
-      { pageNumber: PageNumber, pageSize: PageSize },
+      { pageNumber: PageNumber, pageSize: PageSize, SearchParameter: this.state.Search },
       (res) => {
         this.setState({
           Teams: res.teams,
@@ -82,6 +84,12 @@ class TeamPage extends React.Component<RouteComponentProps> {
                   width="100%"
                   placeholder="Search..."
                   TopPosition="15%"
+                  onChange={(e) => {
+                    this.setState({
+                      Search: e.target.value,
+                    });
+                    this.GetTeams(this.state.PageNumber, this.state.PageSize)
+                  }}
                 ></InputIcon>
               </div>
               <div className="right  d-flex justify-content-between align-items-baseline">

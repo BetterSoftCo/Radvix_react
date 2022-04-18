@@ -84,7 +84,7 @@ export class TeamController {
     );
   }
   getAllTeams(
-    body: { pageSize: number; pageNumber: number },
+    body: { pageSize: number; pageNumber: number  , SearchParameter:string},
     action: (res: GetAllTeamsResult) => any
   ) {
     this.remote.getAllTeams(
