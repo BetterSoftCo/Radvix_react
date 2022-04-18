@@ -34,6 +34,7 @@ type StateType = {
   DatasPageSize: number;
   DatasPageCount: number;
   DatasTotalCount: number;
+  DatasSearch: string
 
 };
 export class DashboardPage extends React.Component {
@@ -61,7 +62,8 @@ export class DashboardPage extends React.Component {
     DatasPageCount: 0,
     DatasTotalCount: 0,
     ResearchesSearch: '',
-    TasksSearch: ""
+    TasksSearch: "",
+    DatasSearch: "",
   };
   componentDidMount() {
     if (store.getState().ResearchId >= 0) {
@@ -117,7 +119,7 @@ export class DashboardPage extends React.Component {
   }
   GetDatas(PageNumber: number, PageSize: number) {
     this.Datacontroller.getAllData(
-      { PageNumber, PageSize },
+      { PageNumber, PageSize, SearchParameter: this.state.DatasSearch },
       (res) => {
         this.setState({
           Datas: res.dataLists,
@@ -350,6 +352,12 @@ export class DashboardPage extends React.Component {
                     width="100%"
                     placeholder="Search..."
                     TopPosition="15%"
+                    onChange={(e) => {
+                      this.setState({
+                        DatasSearch: e.target.value,
+                      });
+                      this.GetDatas(this.state.DatasPageNumber, this.state.DatasPageSize)
+                    }}
                   ></InputIcon>
                 </div>
                 <div className="right w-50 d-flex justify-content-end align-items-center">
