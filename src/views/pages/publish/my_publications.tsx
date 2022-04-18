@@ -16,21 +16,22 @@ export class MyPublications extends React.Component {
     PageNumber: 1,
     PageSize: 10,
     PageCount: 0,
-    TotalCount:0,
-    ResearchId:store.getState().ResearchId
+    TotalCount: 0,
+    ResearchId: store.getState().ResearchId,
+    Search: ''
   };
-  getPublish(PageNumber: number, PageSize: number , ResearchId : number) {
-    this.controller.getPublishes({ PageNumber: PageNumber, PageSize: PageSize , ResearchId : ResearchId}, res => {
+  getPublish(PageNumber: number, PageSize: number, ResearchId: number) {
+    this.controller.getPublishes({ PageNumber: PageNumber, PageSize: PageSize, ResearchId: ResearchId, SearchParameter: this.state.Search }, res => {
       this.setState({
         Publishes: res.publications,
         PageCount: Math.ceil(res.count! / this.state.PageSize),
-        TotalCount:res.count
+        TotalCount: res.count
       })
 
     }, err => console.log(err)
     )
   }
-  
+
   handelChangePageNumber(
     e: { selected: number }
   ) {
@@ -45,16 +46,16 @@ export class MyPublications extends React.Component {
     this.setState({
       PageSize: e.value
     });
-    this.getPublish(this.state.PageNumber, e.value , store.getState().ResearchId)
+    this.getPublish(this.state.PageNumber, e.value, store.getState().ResearchId)
   }
 
   componentDidMount() {
-    this.getPublish(this.state.PageNumber, this.state.PageSize , store.getState().ResearchId)
+    this.getPublish(this.state.PageNumber, this.state.PageSize, store.getState().ResearchId)
     store.subscribe(() => {
-      this.getPublish(this.state.PageNumber, this.state.PageSize , store.getState().ResearchId)
+      this.getPublish(this.state.PageNumber, this.state.PageSize, store.getState().ResearchId)
     })
   }
-  
+
   render() {
     return (
       <div className="container-fluid research">
@@ -77,7 +78,13 @@ export class MyPublications extends React.Component {
                     <img src="/images/icons/search_box_icon.svg" alt="" />
                   }
                   width="100%"
-                  placeholder="Search..."  TopPosition="15%"
+                  placeholder="Search..." TopPosition="15%"
+                  onChange={(e) => {
+                    this.setState({
+                      Search: e.target.value,
+                    });
+                    this.getPublish(this.state.PageNumber, this.state.PageSize , this.state.ResearchId)
+                  }}
                 ></InputIcon>
               </div>
               <div className="right  d-flex justify-content-between align-items-baseline">

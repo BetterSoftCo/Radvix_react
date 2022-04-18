@@ -59,7 +59,7 @@ export class publishController {
     }
   }
   getPublishes(
-    body: { PageNumber: number; PageSize: number , ResearchId: number },
+    body: { PageNumber: number; PageSize: number , ResearchId: number , SearchParameter:string},
     action: (res: GetAllPublishesResult) => any,
     error: (res: any) => any
   ) {

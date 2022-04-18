@@ -12,8 +12,8 @@ import { SearchPublishRes } from "../../models/responses/publish/search_publish_
 import { EditPublishRes } from "../../models/responses/publish/update_publish_res";
 
 export class RemotePublish {
-  createPublish(body:CreatePublishReq,action: (res: CreatePublishRes) => any,error: (res: any) => any){
-    return HTTP.post("/Publish" , body).then((res) => action(res.data)).catch((err)=>{error(err)});
+  createPublish(body: CreatePublishReq, action: (res: CreatePublishRes) => any, error: (res: any) => any) {
+    return HTTP.post("/Publish", body).then((res) => action(res.data)).catch((err) => { error(err) });
   }
   SearchPublish(
     body: { researchId: number },
@@ -26,8 +26,8 @@ export class RemotePublish {
         error(err);
       });
   }
-  getPublishes(body:{PageNumber:number , PageSize:number , ResearchId: number},action: (res: GetAllPublishes) => any,error: (res: any) => any){
-    return HTTP.get(`/Publish?PageNumber=${body.PageNumber}&PageSize=${body.PageSize}&ResearchId=${body.ResearchId}` ).then((res) => action(res.data)).catch((err)=>{error(err)});
+  getPublishes(body: { PageNumber: number, PageSize: number, ResearchId: number, SearchParameter: string }, action: (res: GetAllPublishes) => any, error: (res: any) => any) {
+    return HTTP.get(`/Publish?PageNumber=${body.PageNumber}&PageSize=${body.PageSize}&ResearchId=${body.ResearchId}&SearchParameter=${body.SearchParameter}`).then((res) => action(res.data)).catch((err) => { error(err) });
   }
   getPublishById(
     body: { publicationId: number },
@@ -40,16 +40,16 @@ export class RemotePublish {
         error(err);
       });
   }
-  createDraft(body:CreateDraftReq,action: (res: CreateDraftRes) => any,error: (res: any) => any){
-    return HTTP.post("/Publish/NextDraft" , body).then((res) => action(res.data)).catch((err)=>{error(err)});
+  createDraft(body: CreateDraftReq, action: (res: CreateDraftRes) => any, error: (res: any) => any) {
+    return HTTP.post("/Publish/NextDraft", body).then((res) => action(res.data)).catch((err) => { error(err) });
   }
-  addUser(body:{publicationId:number , researchId:number },action: (res: AddUserRes) => any,error: (res: any) => any){
-    return HTTP.post(`/Publish/AddUser/?publicationId=${body.publicationId}&researchId=${body.researchId}` ).then((res) => action(res.data)).catch((err)=>{error(err)});
+  addUser(body: { publicationId: number, researchId: number }, action: (res: AddUserRes) => any, error: (res: any) => any) {
+    return HTTP.post(`/Publish/AddUser/?publicationId=${body.publicationId}&researchId=${body.researchId}`).then((res) => action(res.data)).catch((err) => { error(err) });
   }
-  updatePublish(body:EditPublishReq,action: (res: EditPublishRes) => any,error: (res: any) => any){
-    return HTTP.put("/Publish" , body).then((res) => action(res.data)).catch((err)=>{error(err)});
+  updatePublish(body: EditPublishReq, action: (res: EditPublishRes) => any, error: (res: any) => any) {
+    return HTTP.put("/Publish", body).then((res) => action(res.data)).catch((err) => { error(err) });
   }
-  removeDraft(body:{draftId:number},action: (res: RemoveDraftRes) => any,error: (res: any) => any){
-    return HTTP.delete(`/Publish/?draftId=${body.draftId}`).then((res) => action(res.data)).catch((err)=>{error(err)});
+  removeDraft(body: { draftId: number }, action: (res: RemoveDraftRes) => any, error: (res: any) => any) {
+    return HTTP.delete(`/Publish/?draftId=${body.draftId}`).then((res) => action(res.data)).catch((err) => { error(err) });
   }
 }
