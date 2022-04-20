@@ -1,8 +1,10 @@
+import moment from "moment";
 import React from "react";
+import { PaymentList } from "../../../../data/models/responses/admin/payments_res";
 import { CircleIcon, ThemeCircleIcon } from "../../../components/circle_icon";
 interface TableComponentProp {
   Heading: string[];
-  Items: any[];
+  Items: PaymentList[];
 }
 export const RadvixClients: React.FC<TableComponentProp> = ({
   Heading,
@@ -23,12 +25,11 @@ export const RadvixClients: React.FC<TableComponentProp> = ({
         <tbody>
           {Items.map((head, index) => (
             <tr key={index}>
-              <td>{head.name}</td>
-              <td>{head.Institution}</td>
-              <td>{head.Category}</td>
-              <td>{head.Eqiups}</td>
-              <td>{head.Eqiups}</td>
-              <td>{head.Eqiups}</td>
+              <td>{head.title}</td>
+              <td>{moment(head.payDate).format("YYYY/MM/DD")}</td>
+              <td>{head.user.firstName+ ' ' + head.user.lastName}</td>
+              <td>{head.user.email}</td>
+              <td>{head.status.isStatus()}</td>
               <td>
                 <div className="col d-flex justify-content-between align-items-center">
                   <CircleIcon
@@ -38,7 +39,12 @@ export const RadvixClients: React.FC<TableComponentProp> = ({
                     onClick={(e) => console.log("s")}
                     className="pointer"
                   >
-                    <img src="/images/icons/google_docs.svg" alt="radvix" width={12} height={12} />
+                    <img
+                      src="/images/icons/google_docs.svg"
+                      alt="radvix"
+                      width={12}
+                      height={12}
+                    />
                   </CircleIcon>
                   <CircleIcon
                     width="26px"
