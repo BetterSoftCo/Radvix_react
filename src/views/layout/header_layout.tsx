@@ -1,4 +1,3 @@
-
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/alt-text */
@@ -52,7 +51,7 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
   const GetResearch = (PageNumber: number, PageSize: number) => {
     if (local.logedin()) {
       controller.getResearches(
-        { PageNumber: PageNumber, PageSize: PageSize , SearchParameter:'' },
+        { PageNumber: PageNumber, PageSize: PageSize, SearchParameter: "" },
         (res) => {
           setListResearch(res.researchesList!);
           setPageCount(Math.ceil(res.count! / PageSize));
@@ -196,6 +195,11 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
                     type={MainButtonType.dark}
                     borderRadius="24px"
                     fontSize="11px"
+                    onClick={() => {
+                      if (RoleUser.isRole() === "Admin") {
+                        props.history.push(AppRoutes.admin_dashboard);
+                      }
+                    }}
                   ></MainButton>
                 </div>
                 <a

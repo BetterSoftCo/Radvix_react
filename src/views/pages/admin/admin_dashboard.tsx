@@ -1,47 +1,59 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React from "react";
+import React, { ReactChildren } from "react";
 import { store } from "../../../data/store";
-import { UserSignups } from "./component/user_signups";
+import { ChartAdmin } from "./component/user_signups";
 import { ButtonGroup } from "../../components/botton_group";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { MainButton, MainButtonType } from "../../components/button";
+import { AdminController } from "../../../controllers/admin/admin_controller";
+import { DashboardReportsResult } from "../../../data/models/responses/admin/dashboard_report_res";
+interface StateType {
+  data: DashboardReportsResult;
+  dateFrom: Date;
+  DateTo: Date;
+}
 export class AdminDashboard extends React.Component {
-  handlePageClick = (data: any) => {};
-  mockData = [
-    {
-      data: { name: "[1](1) Height: 25px." },
-      height: 25,
-      children: [
-        {
-          data: { name: "[2](1)" },
-          children: [
-            {
-              data: { name: "[3](1)" },
-            },
-            {
-              data: { name: "[3](2)" },
-            },
-            {
-              data: { name: "[3](3)" },
-            },
-          ],
-        },
-        {
-          data: { name: "[2](2) Height: 40px." },
-          height: 40,
-        },
-      ],
+  handelChangeDate(target: string, params: any): void {
+    this.setState({
+      [target]: params,
+    });
+  }
+  controller = new AdminController();
+  state: StateType = {
+    data: {
+      countUsers: 0,
+      countOpenTickets: 0,
+      countProjects: 0,
+      countInstitutions: 0,
+      sinceLaunch: 0,
+      userSignUps: [],
     },
-    {
-      data: { name: "[1](2) Height: 30px." },
-      height: 30,
-    },
-    {
-      data: { name: "[1](3) Height: 30px." },
-      height: 30,
-    },
-  ];
+    dateFrom: new Date(),
+    DateTo: new Date(),
+  };
+  getDashboardReport() {
+    this.controller.getDashboardReport(
+      {
+        fromDate: this.state.dateFrom,
+        untilDate: this.state.DateTo,
+      },
+      (res) => {
+        this.setState({
+          data: {
+            ...res,
+            userSignUps: res.userSignUps.map((item) => {
+              return [new Date(item.dateTime).getTime(), item.countUsers];
+            }),
+          },
+        });
+      }
+    );
+  }
+  handelChageDate(){}
+  componentDidMount() {
+    this.getDashboardReport();
+  }
   RoleUser = store.getState().userRole;
   date = new Date();
   render() {
@@ -49,7 +61,13 @@ export class AdminDashboard extends React.Component {
       <div className="container-fluid dashbord">
         <div className="row">
           <div className="col-12">
-            <HeadDashboardPage></HeadDashboardPage>
+            <HeadDashboardPage
+              Institutions={this.state.data.countInstitutions}
+              Launch={this.state.data.sinceLaunch}
+              Projects={this.state.data.countProjects}
+              Tickets={this.state.data.countOpenTickets}
+              users={this.state.data.countUsers}
+            ></HeadDashboardPage>
           </div>
           <div className="col-12">
             <div className="TableBox">
@@ -59,10 +77,12 @@ export class AdminDashboard extends React.Component {
                 </div>
               </div>
               <div className="w-100 bg-light rounded p-2">
-                <UserSignups></UserSignups>
+                {this.state.data.userSignUps.length > 0 ? (
+                  <ChartAdmin data={this.state.data.userSignUps}></ChartAdmin>
+                ) : null}
               </div>
               <div className="row box-content">
-                <div className="col-md-6">
+                <div className="col-md-5">
                   <div className="item ">
                     <ButtonGroup
                       name="AccessLevel"
@@ -73,24 +93,25 @@ export class AdminDashboard extends React.Component {
                       ]}
                       TextItem="name"
                       ValueItem="value"
+                      selected={2}
                     ></ButtonGroup>
                   </div>
                 </div>
-                <div className="col-md-3">
+                <div className="col-md-4">
                   <div className="item">
                     <div className="d-flex justify-content-between align-items-center">
                       <span className="mx-2">From</span>
                       <DatePicker
-                        selected={this.date}
-                        onChange={() => {
-                          console.log("s");
+                        selected={this.state.dateFrom}
+                        onChange={(e) => {
+                          this.handelChangeDate("dateFrom", e);
                         }}
                       />
                       <span className="mx-2">Until</span>
                       <DatePicker
-                        selected={this.date}
-                        onChange={() => {
-                          console.log("s");
+                        selected={this.state.DateTo}
+                        onChange={(e) => {
+                          this.handelChangeDate("DateTo", e);
                         }}
                       />
                     </div>
@@ -115,6 +136,7 @@ export class AdminDashboard extends React.Component {
                       className="mx-2"
                       minHeight="29px"
                       minWidth="100px"
+                      onClick={()=>{this.getDashboardReport()}}
                     ></MainButton>
                   </div>
                 </div>
@@ -126,8 +148,14 @@ export class AdminDashboard extends React.Component {
     );
   }
 }
-
-const HeadDashboardPage: React.FC = () => {
+interface HeadDashboardPageProp {
+  users: number;
+  Launch: number;
+  Tickets: number;
+  Projects: number;
+  Institutions: number;
+}
+const HeadDashboardPage: React.FC<HeadDashboardPageProp> = (props) => {
   return (
     <div className="overviwe d-flex flex-wrap flex-lg-nowrap justify-content-between align-items-center">
       <div className="overviwe-item">
@@ -138,7 +166,7 @@ const HeadDashboardPage: React.FC = () => {
             className="avatar"
           />
           <div className="d-flex flex-column align-items-center">
-            <h1 className="display-5">253</h1>
+            <h1 className="display-5">{props.users}</h1>
             <span className="text-center">Users</span>
           </div>
         </div>
@@ -151,7 +179,7 @@ const HeadDashboardPage: React.FC = () => {
             className="avatar"
           />
           <div className="d-flex flex-column align-items-center">
-            <h1 className="display-5">$24,234.12</h1>
+            <h1 className="display-5">${props.Launch}</h1>
             <span className="text-center">Since Launch</span>
           </div>
         </div>
@@ -164,7 +192,7 @@ const HeadDashboardPage: React.FC = () => {
             className="avatar"
           />
           <div className="d-flex flex-column align-items-center">
-            <h1 className="display-5">13</h1>
+            <h1 className="display-5">{props.Tickets}</h1>
             <span className="text-center">Open Tickets</span>
           </div>
         </div>
@@ -177,7 +205,7 @@ const HeadDashboardPage: React.FC = () => {
             className="avatar"
           />
           <div className="d-flex flex-column align-items-center">
-            <h1 className="display-5">124</h1>
+            <h1 className="display-5">{props.Projects}</h1>
             <span className="text-center">Projects</span>
           </div>
         </div>
@@ -190,7 +218,7 @@ const HeadDashboardPage: React.FC = () => {
             className="avatar"
           />
           <div className="d-flex flex-column align-items-center">
-            <h1 className="display-5">24</h1>
+            <h1 className="display-5">{props.Institutions}</h1>
             <span className="text-center">Institutions </span>
           </div>
         </div>

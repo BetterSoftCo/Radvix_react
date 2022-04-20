@@ -12,6 +12,7 @@ import {
   SetUserInfo,
   SetUserRole,
 } from "../../../data/store/actions/user_action";
+import { UserRoles } from "../../../core/utils";
 const LoginPage: React.FC<RouteComponentProps> = (props) => {
   const [password, setpassword] = useState("");
   const [email, setemail] = useState("");
@@ -36,8 +37,14 @@ const LoginPage: React.FC<RouteComponentProps> = (props) => {
           if (res) {
             store.dispatch(SetUserRole(res.role ?? 0));
             store.dispatch(SetUserInfo(res));
-            props.history.replace(AppRoutes.dashboard);
-            window.location.replace(AppRoutes.dashboard);
+
+            if (res.role === UserRoles.Admin) {
+              props.history.replace(AppRoutes.admin_dashboard);
+              window.location.replace(AppRoutes.admin_dashboard);
+            } else {
+              props.history.replace(AppRoutes.dashboard);
+              window.location.replace(AppRoutes.dashboard);
+            }
           }
         },
         () => {

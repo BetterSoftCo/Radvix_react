@@ -514,7 +514,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                   props.history.push(AppRoutes.new_team);
                 }}
                 fontSize="15px"
-                className="lighter mx-1 my-1 pointer"
+                className="lighter mx-3 my-1 pointer"
                 text={
                   AccessPermition(RoleUser, [
                     UserRoles.Admin,
@@ -542,7 +542,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 closeSidebar()
               }}
               fontSize="15px"
-              className="lighter mx-1 my-1 pointer"
+              className="lighter mx-3 my-1 pointer"
               text="Teams List"
               theme={Theme.light}
               children={

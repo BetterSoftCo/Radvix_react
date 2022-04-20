@@ -39,6 +39,7 @@ class MainLayout extends React.Component<IMainLayout & RouteComponentProps> {
             lastName: res.lastName,
             email: res.userEmail,
             image: res.profileImage,
+            role : res.role
           };
           localStorage.setItem("userInfo", JSON.stringify(UserInfo) ?? "");
           this.setState({
@@ -82,7 +83,7 @@ class MainLayout extends React.Component<IMainLayout & RouteComponentProps> {
                   <div
                     className={
                       this.props.location.pathname.search("/Admin") >= 0
-                        ? "col-12 col-md-12 col-lg-11 col-xl-11"
+                        ? "col-12 col-md-12 col-lg-10 col-xl-10"
                         : "col-12 col-md-12 col-lg-10 col-xl-7"
                     }
                   >

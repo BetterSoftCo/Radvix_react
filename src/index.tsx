@@ -72,8 +72,10 @@ import {
 } from "./views";
 import edit_publish from "./views/pages/publish/edit_publish";
 import edit_expense from "./views/pages/expense/edit_expense";
+import { LocalDataSources } from "./data/local_datasources";
 
-const RoleUser: UserRoles = store.getState().userRole;
+const local: LocalDataSources = new LocalDataSources();
+let RoleUser: UserRoles = local.getUserInfo().role;
 
 ReactDOM.render(
   <Provider store={store}>
