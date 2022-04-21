@@ -1,8 +1,11 @@
+import moment from "moment";
 import React from "react";
+import { Discussion } from "../../../../data/models/responses/discussion/get_all_discusstion_res";
+import { MainButton, MainButtonType } from "../../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../../components/circle_icon";
 interface TableComponentProp {
   Heading: any[];
-  Items: any[];
+  Items: Discussion[];
 }
 export const TicketsTbl: React.FC<TableComponentProp> = ({
   Heading,
@@ -27,12 +30,30 @@ export const TicketsTbl: React.FC<TableComponentProp> = ({
         <tbody>
           {Items.map((head, index) => (
             <tr key={index}>
-              <td>{head.name}</td>
-              <td className="text-center">{head.Institution}</td>
-              <td className="text-center">{head.Category}</td>
-              <td className="text-center">{head.Eqiups}</td>
-              <td className="text-center">{head.Eqiups}</td>
-              <td className="text-center">{head.Eqiups}</td>
+              <td>{head.subject}</td>
+              <td className="text-center">#{head.id}</td>
+              <td className="text-center">
+                {head.creatorUserFirstName + " " + head.creatorUserLastName}
+              </td>
+              <td className="text-center">
+                {moment(head.histories[0].createDate).format("YYYY/MM/DD")}
+              </td>
+              <MainButton
+                children={head.priority.isPriority()}
+                type={MainButtonType.light}
+                borderRadius="24px"
+                fontSize="14px"
+                backgroundColor="#D9D9D9"
+                onClick={() => {}}
+              ></MainButton>
+              <MainButton
+                children={head.priority.isPriority()}
+                type={MainButtonType.light}
+                borderRadius="24px"
+                fontSize="14px"
+                backgroundColor="#D9D9D9"
+                onClick={() => {}}
+              ></MainButton>
               <td>
                 <div className="col d-flex justify-content-end align-items-center">
                   <CircleIcon

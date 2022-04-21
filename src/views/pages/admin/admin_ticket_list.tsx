@@ -1,44 +1,57 @@
 import React from "react";
 import ReactPaginate from "react-paginate";
+import { DiscusstionController } from "../../../controllers/discussion/discusstion_controller";
+import { Discussion } from "../../../data/models/responses/discussion/get_all_discusstion_res";
 import { store } from "../../../data/store";
 import { MainButton, MainButtonType } from "../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import { InputIcon } from "../../components/search_box";
 import { SelectComponent } from "../../components/select_input";
 import { TicketsTbl } from "./component/tickets_tbl";
-
+type StateType = {
+  Discusstion: Discussion[];
+  PageNumber: number;
+  PageSize: number;
+  PageCount: number;
+  TotalCount: number;
+};
 export class AdminTickets extends React.Component {
-  RoleUser = store.getState().userRole;
-  state = {
-    Data: {
-      Items: [
-        {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
-        },
-        {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
-        },
-        {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
-        },
-        {
-          name: "Structural and Materials Lab",
-          Institution: "University Of Miami",
-          Category: "Material",
-          Eqiups: "12",
-        },
-      ],
-    },
+  controller = new DiscusstionController();
+  state: StateType = {
+    Discusstion: [],
+    PageNumber: 1,
+    PageSize: 10,
+    PageCount: 0,
+    TotalCount: 0,
   };
+  componentDidMount() {
+    this.GetDiscusstion(this.state.PageNumber, this.state.PageSize);
+  }
+  GetDiscusstion(PageNumber: number, PageSize: number) {
+    this.controller.getAllDiscusstion(
+      { PageNumber: PageNumber, PageSize: PageSize, ticket: true },
+      (res) => {
+        this.setState({
+          Discusstion: res.discussions,
+          PageCount: Math.ceil(res.count! / this.state.PageSize),
+          TotalCount: res.count,
+        });
+      },
+      (err) => {}
+    );
+  }
+  handelChangePageNumber(e: { selected: number }) {
+    this.setState({
+      PageNumber: e.selected,
+    });
+    this.GetDiscusstion(e.selected + 1, this.state.PageSize);
+  }
+  handelChangePageSize(e: { label: string; value: number }) {
+    this.setState({
+      PageSize: e.value,
+    });
+    this.GetDiscusstion(this.state.PageNumber, e.value);
+  }
   render() {
     return (
       <div className="container-fluid research">
@@ -81,7 +94,7 @@ export class AdminTickets extends React.Component {
               </div>
             </div>
             <TicketsTbl
-              Items={this.state.Data.Items}
+              Items={this.state.Discusstion}
               Heading={[{name:'Subject',center:false},{name:'Ticket',center:true},{name:'Created By',center:true},{name:'Date Created',center:true},{name:'Update',center:true},{name:'Status',center:true}]}
               
             ></TicketsTbl>

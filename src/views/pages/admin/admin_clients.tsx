@@ -1,15 +1,18 @@
 import React from "react";
 import ReactPaginate from "react-paginate";
 import { AdminController } from "../../../controllers/admin/admin_controller";
+import { MemberController } from "../../../controllers/member/member_controller";
+import { UserClients } from "../../../data/models/responses/admin/clients_res";
 import { PaymentList } from "../../../data/models/responses/admin/payments_res";
+import { Member } from "../../../data/models/responses/member/member_list_res";
 import { store } from "../../../data/store";
 import { MainButton, MainButtonType } from "../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import { InputIcon } from "../../components/search_box";
 import { SelectComponent } from "../../components/select_input";
-import { RadvixClients } from "./component/radvix_clients";
+import  RadvixClients  from "./component/radvix_clients";
 type StateType = {
-  Payments: PaymentList[];
+  Members: UserClients[];
   PageNumber: number;
   PageSize: number;
   PageCount: number;
@@ -19,22 +22,26 @@ type StateType = {
 export class AdminClients extends React.Component {
   controller = new AdminController();
   state: StateType = {
-    Payments: [],
+    Members: [],
     PageNumber: 1,
     PageSize: 10,
     PageCount: 0,
     TotalCount: 0,
     Search: "",
   };
-  GetPayments(PageNumber: number, PageSize: number) {
-    this.controller.getPayments(
+  componentDidMount() {
+    this.GetClients(this.state.PageNumber, this.state.PageSize);
+  }
+  GetClients(PageNumber: number, PageSize: number) {
+    this.controller.getClients(
       {
         pageNumber: PageNumber,
         pageSize: PageSize,
+        searchParameter: this.state.Search,
       },
       (res) => {
         this.setState({
-          Equipments: res.paymentList,
+          Members: res.users,
           PageCount: Math.ceil(res.count! / this.state.PageSize),
           TotalCount: res.count,
         });
@@ -45,13 +52,13 @@ export class AdminClients extends React.Component {
     this.setState({
       PageNumber: e.selected,
     });
-    this.GetPayments(e.selected + 1, this.state.PageSize);
+    this.GetClients(e.selected + 1, this.state.PageSize);
   }
   handelChangePageSize(e: { label: string; value: number }) {
     this.setState({
       PageSize: e.value,
     });
-    this.GetPayments(this.state.PageNumber, e.value);
+    this.GetClients(this.state.PageNumber, e.value);
   }
   render() {
     return (
@@ -69,6 +76,12 @@ export class AdminClients extends React.Component {
                   width="100%"
                   placeholder="Search..."
                   TopPosition="15%"
+                  onChange={(e) => {
+                    this.setState({
+                      Search: e.target.value,
+                    });
+                    this.GetClients(this.state.PageNumber, this.state.PageSize)
+                  }}
                 ></InputIcon>
               </div>
               <div className="right w-50 d-flex justify-content-end align-items-center">
@@ -100,15 +113,15 @@ export class AdminClients extends React.Component {
               </div>
             </div>
             <RadvixClients
-              Items={this.state.Payments}
+              Items={this.state.Members}
               Heading={[
-                "Client Name",
-                "Institution",
-                "Date Joined",
-                "Subscription",
-                "Total Members",
-                "Projects",
-                "Storage Usage",
+                { name: "Client Name", center: false },
+                { name: "Institution", center: true },
+                { name: "Date Joined", center: true },
+                { name: "Subscription", center: true },
+                { name: "Total Members", center: true },
+                { name: "Projects", center: true },
+                { name: "Storage Usage", center: true },
               ]}
             ></RadvixClients>
 
@@ -148,7 +161,9 @@ export class AdminClients extends React.Component {
                 />
               </div>
               <div className="d-flex justify-content-end flex-fill">
-                <p className="text-right mb-0 ">Total Results: {this.state.TotalCount}</p>
+                <p className="text-right mb-0 ">
+                  Total Results: {this.state.TotalCount}
+                </p>
               </div>
             </div>
           </div>

@@ -43,7 +43,7 @@ import TicketPage from "./pages/ticket/ticket_list";
 import Ticket from "./pages/ticket/ticket";
 import { AdminDashboard } from "./pages/admin/admin_dashboard";
 import { AdminClients } from "./pages/admin/admin_clients";
-import { AdminMember } from "./pages/admin/admin_members";
+import  AdminMember  from "./pages/admin/admin_members";
 import { AdminPayments } from "./pages/admin/admin_payments";
 import { AdminTickets } from "./pages/admin/admin_ticket_list";
 import { AdminTicket } from "./pages/admin/admin_ticket";

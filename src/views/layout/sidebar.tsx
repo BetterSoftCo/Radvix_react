@@ -26,7 +26,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
       <i className="fa fa-window-close fa-2x text-white d-block d-lg-none" aria-hidden="true" onClick={()=>{closeSidebar()}}></i>
         {props.location.pathname.search("/Admin") >= 0 ? (
           <ul>
-            <NavLink to={AppRoutes.admin_member} activeClassName="selected">
+            <NavLink to={AppRoutes.admin_clients} activeClassName="selected">
               <li>
                 <IconTextVertical
                   fontSize="15px"
