@@ -4,7 +4,6 @@ import { RouteComponentProps, withRouter } from "react-router";
 import { AppConstants, AppRoutes } from "../../../../core/constants";
 import { Theme } from "../../../../core/utils";
 import { UserClients } from "../../../../data/models/responses/admin/clients_res";
-import { Member } from "../../../../data/models/responses/member/member_list_res";
 import { CircleIcon, ThemeCircleIcon } from "../../../components/circle_icon";
 import { IconTextRow } from "../../../components/icon_text_horizontal";
 interface TableComponentProp {

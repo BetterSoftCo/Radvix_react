@@ -1,9 +1,7 @@
 import React from "react";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppConstants, AppRoutes } from "../../../../core/constants";
-import { AccessPermition, UserRoles } from "../../../../core/utils";
 import { MemberUser } from "../../../../data/models/responses/admin/list_member_user_res";
-import { Member } from "../../../../data/models/responses/member/member_list_res";
 import { MainButton, MainButtonType } from "../../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../../components/circle_icon";
 interface IMemberItem {

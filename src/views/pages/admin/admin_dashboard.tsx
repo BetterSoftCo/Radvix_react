@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React, { ReactChildren } from "react";
+import React from "react";
 import { store } from "../../../data/store";
 import { ChartAdmin } from "./component/user_signups";
 import { ButtonGroup } from "../../components/botton_group";

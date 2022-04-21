@@ -2,7 +2,6 @@ import React from "react";
 import ReactPaginate from "react-paginate";
 import { DiscusstionController } from "../../../controllers/discussion/discusstion_controller";
 import { Discussion } from "../../../data/models/responses/discussion/get_all_discusstion_res";
-import { store } from "../../../data/store";
 import { MainButton, MainButtonType } from "../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import { InputIcon } from "../../components/search_box";

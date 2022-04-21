@@ -1,11 +1,7 @@
 import React from "react";
 import ReactPaginate from "react-paginate";
 import { AdminController } from "../../../controllers/admin/admin_controller";
-import { MemberController } from "../../../controllers/member/member_controller";
 import { UserClients } from "../../../data/models/responses/admin/clients_res";
-import { PaymentList } from "../../../data/models/responses/admin/payments_res";
-import { Member } from "../../../data/models/responses/member/member_list_res";
-import { store } from "../../../data/store";
 import { MainButton, MainButtonType } from "../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import { InputIcon } from "../../components/search_box";
