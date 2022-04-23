@@ -59,7 +59,7 @@ export class AppRoutes {
   static admin_member: string = "/dashboard/Admin/member/:id";
   static admin_payments: string = "/dashboard/Admin/payments/";
   static admin_tickets: string = "/dashboard/Admin/tickets/";
-  static admin_ticket: string = "/dashboard/Admin/ticket/";
+  static admin_ticket: string = "/dashboard/Admin/ticket/:id";
   static admin_broadcast: string = "/dashboard/Admin/broadcast/";
   static publish_profile:string ='/dashboard/Publish/profile/:id';
 	static publish_edit: string = "/dashboard/Publish/edit/:id";

@@ -72,7 +72,7 @@ button.loading {
 
 .InputSelectStyle .css-1s2u09g-control {
   min-width: 72px;
-  background: transparent;
+  background: #fff;
 }
 
 .InputSelectStyle .css-319lph-ValueContainer, .InputSelectStyle .css-g1d714-ValueContainer {
@@ -222,6 +222,13 @@ button.loading {
   border: 1px solid #f5f5f5;
 }
 
+@media (max-width: 991.98px) {
+  .parent-sidebar {
+    overflow: scroll;
+    max-height: 100vh;
+  }
+}
+
 .parent-sidebar ul {
   list-style: none;
   padding: 0.5rem 0.5rem;
@@ -249,9 +256,33 @@ button.loading {
   margin-bottom: 0.6rem;
 }
 
+@media (max-width: 991.98px) {
+  .closeing-sidebar {
+    display: none;
+    width: 0;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .opening-sidebar {
+    display: block;
+    width: auto;
+  }
+}
+
 .sidebar {
   position: relative;
   min-width: 139px;
+  -webkit-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+}
+
+@media (max-width: 991.98px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    z-index: 9999;
+  }
 }
 
 .sidebar .gide-sidebar {
@@ -262,6 +293,13 @@ button.loading {
   z-index: 20;
   background-color: #474747;
   width: 200px;
+}
+
+@media (max-width: 991.98px) {
+  .sidebar .gide-sidebar {
+    overflow: scroll;
+    max-height: 100vh;
+  }
 }
 
 .sidebar .gide-sidebar .list-icons {
@@ -279,11 +317,35 @@ button.loading {
   opacity: 0.7;
 }
 
+.fa-bars {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background: #ebebeb;
+  width: 30px;
+  height: 30px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-left: 29px;
+  margin-top: 9px;
+  border-radius: 6px;
+}
+
 .righ-section .top {
   min-height: 134px;
   background-color: #ebebeb;
   margin: 1rem 2rem 1rem 0rem;
   border-radius: 15px;
+}
+
+@media (max-width: 991.98px) {
+  .righ-section .top {
+    margin: 1rem;
+  }
 }
 
 .righ-section .top .IconTextVertical img {
@@ -296,6 +358,12 @@ button.loading {
   margin: 1rem 2rem 1rem 0rem;
   border-radius: 15px;
   padding: 18px 27px 27px 27px;
+}
+
+@media (max-width: 991.98px) {
+  .righ-section .bottom {
+    margin: 1rem;
+  }
 }
 
 .righ-section .bottom img {
@@ -341,8 +409,20 @@ button.loading {
   margin-top: 1rem;
 }
 
+@media (max-width: 767.98px) {
+  .TableBox .TopTableBox .left {
+    width: 100% !important;
+  }
+}
+
 .TableBox .TopTableBox .left h6 {
   font-size: 16px;
+}
+
+@media (max-width: 767.98px) {
+  .TableBox .TopTableBox .left h6 {
+    width: 100% !important;
+  }
 }
 
 .TableBox .TopTableBox .left .InputComponentStyle {
@@ -492,6 +572,12 @@ button.loading {
           align-items: center;
   width: 5%;
   border-right: 1px solid #ebebeb;
+}
+
+@media (max-width: 991.98px) {
+  .TableBox .accordion-body .sub-accordian-parent {
+    width: 9%;
+  }
 }
 
 .TableBox .accordion-body .items {

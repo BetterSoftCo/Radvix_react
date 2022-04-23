@@ -19,14 +19,14 @@ interface ChartAdminProp {
     | [number, number | null][]
     | [number, (number | null)[]][];
 }
-export class ChartAdmin extends React.Component<ChartAdminProp> {
+export class IncomeChart extends React.Component<ChartAdminProp> {
   componentDidMount() {
     console.log(this.props , 'chart props');
   }
   state: ChartAdminStateType = {
     series: [
       {
-        name: "User Signup",
+        name: "income",
         data: this.props.data,
       },
     ],

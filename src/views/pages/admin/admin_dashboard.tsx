@@ -2,6 +2,9 @@
 import React from "react";
 import { store } from "../../../data/store";
 import { ChartAdmin } from "./component/user_signups";
+import { IncomeChart } from "./component/income_chart";
+import { DateUsage } from "./component/date_usage";
+
 import { ButtonGroup } from "../../components/botton_group";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -12,6 +15,7 @@ interface StateType {
   data: DashboardReportsResult;
   dateFrom: Date;
   DateTo: Date;
+  toggleChart: number;
 }
 export class AdminDashboard extends React.Component {
   handelChangeDate(target: string, params: any): void {
@@ -28,9 +32,12 @@ export class AdminDashboard extends React.Component {
       countInstitutions: 0,
       sinceLaunch: 0,
       userSignUps: [],
+      dateUsage: [],
+      income: [],
     },
     dateFrom: new Date(),
     DateTo: new Date(),
+    toggleChart: 2,
   };
   getDashboardReport() {
     this.controller.getDashboardReport(
@@ -45,12 +52,24 @@ export class AdminDashboard extends React.Component {
             userSignUps: res.userSignUps.map((item) => {
               return [new Date(item.dateTime).getTime(), item.countUsers];
             }),
+            dateUsage: res.dateUsage.map((item) => {
+              return [new Date(item.dateTime).getTime(), item.countUsers];
+            }),
+            income: res.income.map((item) => {
+              return [new Date(item.dateTime).getTime(), item.countUsers];
+            }),
           },
         });
       }
     );
   }
-  handelChageDate(){}
+  handleChange(target: string, val: any) {
+    this.setState({
+      [target]: val,
+    });
+    this.render();
+    console.log("ssssssss");
+  }
   componentDidMount() {
     this.getDashboardReport();
   }
@@ -73,13 +92,23 @@ export class AdminDashboard extends React.Component {
             <div className="TableBox">
               <div className="TopTableBox d-flex justify-content-between align-items-center">
                 <div className="left d-flex w-50 align-items-baseline">
-                  <h6 style={{ width: "35%" }}>User Signups</h6>
+                  <h6 style={{ width: "35%" }}>
+                    {this.state.toggleChart === 1
+                      ? "Income ($)"
+                      : this.state.toggleChart === 2
+                      ? "User Signup"
+                      : "Data Usage (GB)"}
+                  </h6>
                 </div>
               </div>
               <div className="w-100 bg-light rounded p-2">
-                {this.state.data.userSignUps.length > 0 ? (
-                  <ChartAdmin data={this.state.data.userSignUps}></ChartAdmin>
-                ) : null}
+                {this.state.toggleChart === 1 ? (
+                  <IncomeChart data={this.state.data.income} />
+                ) : this.state.toggleChart === 2 ? (
+                  <ChartAdmin data={this.state.data.userSignUps} />
+                ) : (
+                  <DateUsage data={this.state.data.dateUsage} />
+                )}
               </div>
               <div className="row box-content">
                 <div className="col-md-5">
@@ -93,7 +122,13 @@ export class AdminDashboard extends React.Component {
                       ]}
                       TextItem="name"
                       ValueItem="value"
-                      selected={2}
+                      selected={this.state.toggleChart}
+                      onChange={(e) => {
+                        this.handleChange(
+                          "toggleChart",
+                          parseInt(e.target.value)
+                        );
+                      }}
                     ></ButtonGroup>
                   </div>
                 </div>
@@ -136,7 +171,9 @@ export class AdminDashboard extends React.Component {
                       className="mx-2"
                       minHeight="29px"
                       minWidth="100px"
-                      onClick={()=>{this.getDashboardReport()}}
+                      onClick={() => {
+                        this.getDashboardReport();
+                      }}
                     ></MainButton>
                   </div>
                 </div>

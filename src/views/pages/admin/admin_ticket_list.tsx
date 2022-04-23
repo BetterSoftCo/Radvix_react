@@ -1,12 +1,12 @@
 import React from "react";
 import ReactPaginate from "react-paginate";
-import { DiscusstionController } from "../../../controllers/discussion/discusstion_controller";
+import { AdminController } from "../../../controllers/admin/admin_controller";
 import { Discussion } from "../../../data/models/responses/discussion/get_all_discusstion_res";
 import { MainButton, MainButtonType } from "../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import { InputIcon } from "../../components/search_box";
 import { SelectComponent } from "../../components/select_input";
-import { TicketsTbl } from "./component/tickets_tbl";
+import  TicketsTbl  from "./component/tickets_tbl";
 type StateType = {
   Discusstion: Discussion[];
   PageNumber: number;
@@ -15,7 +15,7 @@ type StateType = {
   TotalCount: number;
 };
 export class AdminTickets extends React.Component {
-  controller = new DiscusstionController();
+  controller = new AdminController();
   state: StateType = {
     Discusstion: [],
     PageNumber: 1,
@@ -65,7 +65,8 @@ export class AdminTickets extends React.Component {
                     <img src="/images/icons/search_box_icon.svg" alt="" />
                   }
                   width="100%"
-                  placeholder="Search..."  TopPosition="15%"
+                  placeholder="Search..."
+                  TopPosition="15%"
                 ></InputIcon>
               </div>
               <div className="right w-50 d-flex justify-content-end align-items-center">
@@ -78,29 +79,39 @@ export class AdminTickets extends React.Component {
                   minWidth="150px"
                   minHeight="24px"
                 ></MainButton>
-
                 <SelectComponent
-                  width="63px"
+                  width="90px"
                   height="44px"
                   items={[
-                    { item: 1, id: 1 },
-                    { item: 2, id: 2 },
-                    { item: 3, id: 3 },
+                    { label: "10", value: 10 },
+                    { label: "15", value: 15 },
+                    { label: "20", value: 20 },
                   ]}
                   TextItem="item"
                   ValueItem="id"
+                  isMulti={false}
+                  placeholder={this.state.PageSize.toString()}
+                  onChange={(e) => {
+                    this.handelChangePageSize(e);
+                  }}
                 ></SelectComponent>
               </div>
             </div>
             <TicketsTbl
               Items={this.state.Discusstion}
-              Heading={[{name:'Subject',center:false},{name:'Ticket',center:true},{name:'Created By',center:true},{name:'Date Created',center:true},{name:'Update',center:true},{name:'Status',center:true}]}
-              
+              Heading={[
+                { name: "Subject", center: false },
+                { name: "Ticket", center: true },
+                { name: "Created By", center: true },
+                { name: "Date Created", center: true },
+                { name: "Update", center: true },
+                { name: "Status", center: true },
+              ]}
             ></TicketsTbl>
 
-           <div className="d-flex justify-content-between align-items-baseline">
-                  <div className="d-flex justify-content-end flex-fill">
-                  <ReactPaginate
+            <div className="d-flex justify-content-between align-items-baseline">
+              <div className="d-flex justify-content-end flex-fill">
+                <ReactPaginate
                   previousLabel={
                     <CircleIcon
                       width="24px"
@@ -123,20 +134,20 @@ export class AdminTickets extends React.Component {
                   }
                   breakLabel={"..."}
                   breakClassName={"break-me"}
-                  pageCount={20}
+                  pageCount={this.state.PageCount}
                   marginPagesDisplayed={2}
                   pageRangeDisplayed={5}
-                  onPageChange={()=>{console.log('changepage')}}
+                  onPageChange={(e) => {
+                    this.handelChangePageNumber(e);
+                  }}
                   containerClassName={"pagination"}
                   activeClassName={"active"}
                 />
-                  </div>
-                  <div className="d-flex justify-content-end flex-fill">
-                  <p className="text-right mb-0 " >Total Results: 45</p>
-                  </div>
-                 
-                
               </div>
+              <div className="d-flex justify-content-end flex-fill">
+                <p className="text-right mb-0 ">Total Results: 45</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

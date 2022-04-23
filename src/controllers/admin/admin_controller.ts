@@ -3,6 +3,7 @@ import { ClientsResResult } from "../../data/models/responses/admin/clients_res"
 import { DashboardReportsResult } from "../../data/models/responses/admin/dashboard_report_res";
 import { ListMemberUserResResult } from "../../data/models/responses/admin/list_member_user_res";
 import { PaymentsResResult } from "../../data/models/responses/admin/payments_res";
+import { GetAllDiscusstionResResult } from "../../data/models/responses/discussion/get_all_discusstion_res";
 import { RemoteAdmin } from "../../data/remotes/admin/remote_admin";
 export class AdminController {
   remote = new RemoteAdmin();
@@ -39,6 +40,27 @@ export class AdminController {
         toast.error(`${err.message}`, {
           position: toast.POSITION.TOP_RIGHT,
         });
+      }
+    );
+  }
+  getAllDiscusstion(
+    body: { PageNumber: number; PageSize: number; ticket: boolean },
+    action: (res: GetAllDiscusstionResResult) => any,
+    error: (res: any) => any
+  ) {
+    this.remote.getAllDiscussion(
+      body,
+      (res) => {
+        toast.success(`${res.message}`, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+        action(res.result);
+      },
+      (err) => {
+        toast.error(`${err.message}`, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+        error(err);
       }
     );
   }

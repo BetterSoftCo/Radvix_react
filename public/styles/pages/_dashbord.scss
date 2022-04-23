@@ -40,6 +40,9 @@
   li {
     margin: 0.3rem;
     font-weight: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     .fas {
       font-weight: 600;
     }
