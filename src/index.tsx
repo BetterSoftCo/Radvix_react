@@ -118,7 +118,9 @@ ReactDOM.render(
           <Route component={TeamPageNew} path={AppRoutes.new_team} exact />
           <ProtectedRoute
             isAuthenticated={
-              RoleUser === UserRoles.L1User || RoleUser === UserRoles.L1Client
+              RoleUser === UserRoles.L1User ||
+              RoleUser === UserRoles.L1Client ||
+              RoleUser === UserRoles.L2User
                 ? true
                 : false
             }
@@ -134,7 +136,9 @@ ReactDOM.render(
           />
           <ProtectedRoute
             isAuthenticated={
-              RoleUser === UserRoles.L1User || RoleUser === UserRoles.L1Client
+              RoleUser === UserRoles.L1User ||
+              RoleUser === UserRoles.L1Client ||
+              RoleUser === UserRoles.L2User
                 ? true
                 : false
             }
@@ -210,7 +214,9 @@ ReactDOM.render(
           />
           <ProtectedRoute
             isAuthenticated={
-              RoleUser === UserRoles.L1User || RoleUser === UserRoles.L1Client
+              RoleUser === UserRoles.L1User ||
+              RoleUser === UserRoles.L1Client ||
+              RoleUser === UserRoles.L2User
                 ? true
                 : false
             }
@@ -227,7 +233,9 @@ ReactDOM.render(
           />
           <ProtectedRoute
             isAuthenticated={
-              RoleUser === UserRoles.L1User || RoleUser === UserRoles.L1Client
+              RoleUser === UserRoles.L1User ||
+              RoleUser === UserRoles.L1Client ||
+              RoleUser === UserRoles.L2User
                 ? true
                 : false
             }
@@ -290,21 +298,13 @@ ReactDOM.render(
             path={AppRoutes.publish_upload}
             exact
           />
-          <Route
-            component={edit_publish}
-            path={AppRoutes.publish_edit}
-            exact
-          />
+          <Route component={edit_publish} path={AppRoutes.publish_edit} exact />
           <Route
             component={ExpensePageNew}
             path={AppRoutes.expense_new}
             exact
           />
-          <Route
-            component={edit_expense}
-            path={AppRoutes.expense_edit}
-            exact
-          />
+          <Route component={edit_expense} path={AppRoutes.expense_edit} exact />
           <Route component={ExpenseArchive} path={AppRoutes.expense} exact />
           <Route
             component={ExpensePageProfile}

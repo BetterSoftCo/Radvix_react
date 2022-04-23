@@ -86,7 +86,7 @@ const DataCollectionTable: React.FC<IAcordienTable & RouteComponentProps> = (
                     <p className="sub-accordion">Data</p>
                   </div>
 
-                  <div className="items">
+                  <div className="items d-flex flex-column">
                     {item.appTaskData.map((sub, index) => (
                       <div className="row w-100 py-1 rounded my-auto" key={index}>
                         <div className="col-2 text-center">

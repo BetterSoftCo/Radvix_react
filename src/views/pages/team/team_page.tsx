@@ -53,7 +53,20 @@ class TeamPage extends React.Component<RouteComponentProps> {
                   creatorUserFirstName: item.creatorFirstName,
                   creatorUserLastName: item.creatorLastName,
                   memberCount: item.parentTeamMemberCount,
-                  subTeams: item,
+                  subTeams: res.subTeams
+                    .filter((sub) => sub.id === item.id)
+                    .map((submap) => {
+                      return {
+                        id: submap.id,
+                        title: submap.title,
+                        parentId: submap.parentId,
+                        parentTitle: submap.parentTitle,
+                        parentTeamMemberCount: submap.parentTeamMemberCount,
+                        creatorFirstName: submap.creatorFirstName,
+                        creatorLastName: submap.creatorLastName,
+                        subTeamMemberCount: submap.subTeamMemberCount,
+                      };
+                    }),
                 };
               })
             : res.teams;
