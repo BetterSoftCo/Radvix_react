@@ -1,6 +1,7 @@
 import { toast } from "react-toastify";
 import { CreateTicketReq } from "../../data/models/requests/discussion/create_ticket_req";
 import { DiscusstionCreateReq } from "../../data/models/requests/discussion/discusstion_create_req";
+import { BroadCastResResult } from "../../data/models/responses/discussion/create_broadcast_res";
 import { CreateMessageRes } from "../../data/models/responses/discussion/create_massage_res";
 import { CreateTicketResResult } from "../../data/models/responses/discussion/create_ticket_res";
 import { DiscusstionCreateResResult } from "../../data/models/responses/discussion/discusstion_create_res";
@@ -45,6 +46,27 @@ export class DiscusstionController {
           position: toast.POSITION.TOP_RIGHT,
         });
         action(res);
+      },
+      (err) => {
+        toast.error(`${err.message}`, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+        error(err);
+      }
+    );
+  }
+  createBroadCast(
+    body: { subject: string; broadCastTypes: number[]; message: string },
+    action: (res: BroadCastResResult) => any,
+    error: (res: any) => any
+  ) {
+    this.remote.createBroadCast(
+      body,
+      (res) => {
+        toast.success(`${res.message}`, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+        action(res.result);
       },
       (err) => {
         toast.error(`${err.message}`, {

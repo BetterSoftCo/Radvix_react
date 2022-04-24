@@ -1,12 +1,14 @@
 import React from "react";
 import ReactPaginate from "react-paginate";
+import { RouteComponentProps, withRouter } from "react-router";
 import { AdminController } from "../../../controllers/admin/admin_controller";
+import { AppRoutes } from "../../../core/constants";
 import { Discussion } from "../../../data/models/responses/discussion/get_all_discusstion_res";
 import { MainButton, MainButtonType } from "../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import { InputIcon } from "../../components/search_box";
 import { SelectComponent } from "../../components/select_input";
-import  TicketsTbl  from "./component/tickets_tbl";
+import TicketsTbl from "./component/tickets_tbl";
 type StateType = {
   Discusstion: Discussion[];
   PageNumber: number;
@@ -14,7 +16,7 @@ type StateType = {
   PageCount: number;
   TotalCount: number;
 };
-export class AdminTickets extends React.Component {
+class AdminTickets extends React.Component<RouteComponentProps> {
   controller = new AdminController();
   state: StateType = {
     Discusstion: [],
@@ -78,6 +80,7 @@ export class AdminTickets extends React.Component {
                   className="mx-4"
                   minWidth="150px"
                   minHeight="24px"
+                  onClick={() => {this.props.history.push(AppRoutes.admin_broadcast)}}
                 ></MainButton>
                 <SelectComponent
                   width="90px"
@@ -154,3 +157,4 @@ export class AdminTickets extends React.Component {
     );
   }
 }
+export default withRouter(AdminTickets);

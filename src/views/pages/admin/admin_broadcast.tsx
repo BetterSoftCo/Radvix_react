@@ -6,22 +6,145 @@ import "react-datepicker/dist/react-datepicker.css";
 import { MainButton, MainButtonType } from "../../components/button";
 import Dropzone from "react-dropzone";
 import { ButtonGroup } from "../../components/botton_group";
+import { DiscusstionController } from "../../../controllers/discussion/discusstion_controller";
+import { UploadController } from "../../../controllers/upload_media/upload_media";
+import SimpleReactValidator from "simple-react-validator";
+import { LocalDataSources } from "../../../data/local_datasources";
+type StateType = {
+  files: Array<File>;
+  loading: boolean;
+  ExternalUrl: Array<string>;
+  External: string;
+  massage: string;
+  broadCastTypes: number;
+  listbroadCast: Array<{ label: string; value: number }>;
+  subject: string;
+};
 export class AdminBroadcast extends React.Component {
-  RoleUser = store.getState().userRole;
-  date = new Date();
-  handelChangeDate(params: any): void {
+  controller = new DiscusstionController();
+  UploadController = new UploadController();
+  validator = new SimpleReactValidator({
+    className: "text-danger",
+  });
+  local: LocalDataSources = new LocalDataSources();
+  componentDidMount() {
+    this.setState({
+      listbroadCast: this.local.getSetting().broadCastTypeEnum.map((item) => {
+        return { label: item.title, value: item.id };
+      }),
+    });
   }
-  state = {
+  state: StateType = {
     files: [],
+    loading: false,
+    ExternalUrl: [],
+    External: "",
+    massage: "",
+    broadCastTypes: 0,
+    listbroadCast: [],
+    subject: "",
   };
   onDrop = (files: any) => {
     this.setState({ files });
   };
+  handelDeleteFile(arg: File) {
+    this.setState({
+      files: this.state.files.filter((file) => file.name !== arg.name),
+    });
+  }
+  handleChange(target: string, val: any) {
+    this.setState({
+      [target]: val,
+    });
+  }
+  addExternalUrl() {
+    let Url = [...this.state.ExternalUrl];
+    Url.push(this.state.External);
+    this.setState({
+      ExternalUrl: Url,
+      External: "",
+    });
+  }
+  handelDeleteExternalLink(link: string) {
+    this.setState({
+      ExternalUrl: this.state.ExternalUrl.filter((item) => item !== link),
+    });
+  }
+  SendMassage() {
+    if (this.validator.allValid()) {
+      const body = {
+        subject: this.state.subject,
+        broadCastTypes: [this.state.broadCastTypes],
+        message: this.state.massage,
+      };
+
+      this.setState({
+        loading: true,
+      });
+      this.controller.createBroadCast(
+        body,
+        (res) => {
+          if (this.state.files.length) {
+            this.handelUpload(res.id);
+          }
+          this.setState({
+            loading: false,
+            ExternalUrl: [],
+            External: "",
+            massage: "",
+            files: [],
+          });
+        },
+        (err) => {
+          this.setState({
+            loading: false,
+            ExternalUrl: [],
+            External: "",
+            massage: "",
+            files: [],
+          });
+        }
+      );
+    } else {
+      this.validator.showMessages();
+      this.forceUpdate();
+    }
+  }
+  async handelUpload(id: number) {
+    const formData = new FormData();
+    for (let i = 0; i < this.state.files.length; i++) {
+      const file = this.state.files[i];
+      formData.append("Files", file);
+    }
+    for (let i = 0; i < this.state.ExternalUrl.length; i++) {
+      const file = this.state.ExternalUrl[i];
+      formData.append("ExternalUrls", file);
+    }
+    formData.append("UseCase", "7");
+    formData.append("SectionId", id.toString());
+
+    await this.UploadController.UloadMedia(
+      formData,
+      (res) => {},
+      () => {
+        this.setState({
+          loading: false,
+        });
+      }
+    );
+  }
   render() {
     const files = this.state.files.map((file: any) => (
       <li key={file.name}>
         {file.name} - {file.size} bytes
-        <CircleIcon type={ThemeCircleIcon.dark} width="22px" height="22px">
+        <CircleIcon
+          type={ThemeCircleIcon.dark}
+          width="22px"
+          height="22px"
+          onClick={() => {
+            this.handelDeleteFile(file);
+          }}
+        >
           <img
             src="/images/icons/garbage_can.svg"
             alt="radvix"
@@ -36,7 +159,13 @@ export class AdminBroadcast extends React.Component {
         <div className="row"></div>
         <div className="col-12 box-content p-3">
           <h5 className="b-title d-flex align-items-center">
-            <span onClick={()=>{window.history.back()}} className="backPage"></span> New Broadcast 
+            <span
+              onClick={() => {
+                window.history.back();
+              }}
+              className="backPage"
+            ></span>{" "}
+            New Broadcast
           </h5>
           <div className="form row">
             <div className="col-md-4 left">
@@ -44,6 +173,14 @@ export class AdminBroadcast extends React.Component {
                 <InputComponent
                   type={InputType.text}
                   label="Subject:"
+                  onChange={(e) => {
+                    this.handleChange("subject", e.target.value);
+                  }}
+                  inValid={this.validator.message(
+                    "subject",
+                    this.state.massage,
+                    "required"
+                  )}
                 ></InputComponent>
               </div>
               <div className="item">
@@ -78,18 +215,16 @@ export class AdminBroadcast extends React.Component {
                                 src="/Images/icons/cloud_computing.svg"
                                 alt="sssss"
                                 height="20"
-                                
                               />{" "}
-                              <span className="flex-fill">Browse Local Files</span>
+                              <span className="flex-fill">
+                                Browse Local Files
+                              </span>
                             </div>
                           }
                         ></MainButton>
-                        <p>
-                        Or drag and drop files here
-                        </p>
+                        <p>Or drag and drop files here</p>
                       </div>
                       <aside>
-                        
                         <ul>{files}</ul>
                       </aside>
                     </section>
@@ -101,6 +236,10 @@ export class AdminBroadcast extends React.Component {
                   type={InputType.text}
                   placeholder="https://"
                   className="mx-2"
+                  onChange={(e) => {
+                    this.handleChange("External", e.target.value);
+                  }}
+                  value={this.state.External}
                 ></InputComponent>
                 <CircleIcon
                   width="36px"
@@ -110,11 +249,44 @@ export class AdminBroadcast extends React.Component {
                   fontSize="18px"
                   color="#ffffff"
                   className="px-3"
-                  
+                  onClick={() => {
+                    this.addExternalUrl();
+                  }}
                 >
                   <i className="fas fa-plus"></i>
                 </CircleIcon>
               </div>
+              <ul className="file-list mt-3">
+                {this.state.ExternalUrl.map((item, index) => (
+                  <li
+                    className="my-2 d-flex flex-column flex-md-row"
+                    key={index}
+                  >
+                    <MainButton
+                      children={item}
+                      type={MainButtonType.dark}
+                      borderRadius="24px"
+                      fontSize="14px"
+                      backgroundColor="#F5F5F5"
+                      color="#096BFF"
+                    ></MainButton>
+                    <CircleIcon
+                      type={ThemeCircleIcon.dark}
+                      width="22px"
+                      height="22px"
+                      className="mx-3 pointer"
+                      onClick={() => this.handelDeleteExternalLink(item)}
+                    >
+                      <img
+                        src="/images/icons/garbage_can.svg"
+                        alt="radvix"
+                        width={15}
+                        height={15}
+                      />
+                    </CircleIcon>
+                  </li>
+                ))}
+              </ul>
             </div>
             <div className="col-md-8 right">
               <div className="item">
@@ -122,22 +294,31 @@ export class AdminBroadcast extends React.Component {
                   type={InputType.textarea}
                   label="Message:"
                   className="mt-2"
+                  rows={7}
+                  onChange={(e) => {
+                    this.handleChange("massage", e.target.value);
+                  }}
+                  inValid={this.validator.message(
+                    "Message",
+                    this.state.massage,
+                    "required"
+                  )}
                 ></InputComponent>
               </div>
               <div className="item my-4">
                 <ButtonGroup
                   name="SendTo"
                   label="Send To:"
-                  items={[
-                    { name: "All Members ", value: 1 },
-                    { name: "Client Users", value: 2 },
-                    { name: "L1 Users", value: 3 },
-                    { name: "L2 Users", value: 4 },
-                    { name: "L3 Users", value: 5 },
-                    { name: "Custom ", value: 6 },
-                  ]}
-                  TextItem="name"
+                  items={this.state.listbroadCast}
+                  TextItem="label"
                   ValueItem="value"
+                  selected={this.state.broadCastTypes}
+                  onChange={(e) => {
+                    this.handleChange(
+                      "broadCastTypes",
+                      parseInt(e.target.value)
+                    );
+                  }}
                 ></ButtonGroup>
               </div>
               <div className="item">
@@ -159,6 +340,9 @@ export class AdminBroadcast extends React.Component {
                     className="mx-2"
                     minHeight="47px"
                     minWidth="110px"
+                    onClick={() => {
+                      this.SendMassage();
+                    }}
                   ></MainButton>
                 </div>
               </div>

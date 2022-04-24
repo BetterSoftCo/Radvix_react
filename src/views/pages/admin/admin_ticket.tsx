@@ -30,16 +30,12 @@ interface RouteParams {
 }
 class AdminTicket extends React.Component<RouteComponentProps<RouteParams>> {
   RoleUser = store.getState().userRole;
-  date = new Date();
   controller = new DiscusstionController();
   local = new LocalDataSources();
   UploadController = new UploadController();
   validator = new SimpleReactValidator({
     className: "text-danger",
   });
-  handelChangeDate(params: any): void {
-    console.log(params);
-  }
   state: StateType = {
     files: [],
     Discusstion: {

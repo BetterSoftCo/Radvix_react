@@ -45,7 +45,7 @@ import { AdminDashboard } from "./pages/admin/admin_dashboard";
 import { AdminClients } from "./pages/admin/admin_clients";
 import  AdminMember  from "./pages/admin/admin_members";
 import { AdminPayments } from "./pages/admin/admin_payments";
-import { AdminTickets } from "./pages/admin/admin_ticket_list";
+import  AdminTickets  from "./pages/admin/admin_ticket_list";
 import  AdminTicket  from "./pages/admin/admin_ticket";
 import { AdminBroadcast } from "./pages/admin/admin_broadcast";
 import TeamPageProfile from "./pages/team/team_profile";

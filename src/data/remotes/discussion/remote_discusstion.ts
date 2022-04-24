@@ -1,6 +1,7 @@
 import { HTTP } from "../../../core/http_common";
 import { CreateTicketReq } from "../../models/requests/discussion/create_ticket_req";
 import { DiscusstionCreateReq } from "../../models/requests/discussion/discusstion_create_req";
+import { BroadCastRes } from "../../models/responses/discussion/create_broadcast_res";
 import { CreateMessageRes } from "../../models/responses/discussion/create_massage_res";
 import { CreateTicketRes } from "../../models/responses/discussion/create_ticket_res";
 import { DiscusstionCreateRes } from "../../models/responses/discussion/discusstion_create_res";
@@ -27,6 +28,17 @@ export class RemoteDiscusstion {
     error: (res: any) => any
   ) {
     return HTTP.post("/Discussion/CreateMessage", body)
+      .then((res) => action(res.data))
+      .catch((err) => {
+        error(err);
+      });
+  }
+  createBroadCast(
+    body: { subject: string; broadCastTypes: number[]; message: string },
+    action: (res: BroadCastRes) => any,
+    error: (res: any) => any
+  ) {
+    return HTTP.post("/Discussion/CreateBroadCast", body)
       .then((res) => action(res.data))
       .catch((err) => {
         error(err);
