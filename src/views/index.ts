@@ -54,6 +54,8 @@ import TimeLine from "./pages/research/timeline";
 import { ShowLibraryPage } from "./components/library/library_page";
 import RegisterPage from "./pages/register/register";
 import not_found_page from "./pages/404/not_found_page";
+import invite_register from "./pages/register/invite_register";
+
 export {
   ResearchPage,
   ResearchPageNew,
@@ -111,4 +113,5 @@ export {
   ShowLibraryPage,
   RegisterPage,
   not_found_page,
+  invite_register
 };
