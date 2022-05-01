@@ -41,6 +41,7 @@ export class AppRoutes {
 	static ticketing_new:string ='/dashboard/Ticketing/new';
 	static library_page:string ='/library/page';
 	static register_page:string ='/register';
+	static invite_register:string ='/invite_register';
   static discussion_list: string = "/dashboard/Discussion/list/";
   static data: string = "/dashboard/Data/";
   static data_new: string = "/dashboard/Data/new";

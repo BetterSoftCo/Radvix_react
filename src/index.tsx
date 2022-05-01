@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Route, Switch } from "react-router";
 import SplashPage from "./views/pages/landing/splash_page";
 import { AppRoutes } from "./core/constants";
-import { DashboardPage } from "./views/pages/dashboard/dashboard_page";
+import  DashboardPage  from "./views/pages/dashboard/dashboard_page";
 import MainLayout from "./views/layout/main_layout";
 import { Provider } from "react-redux";
 import { store } from "./data/store";
@@ -69,6 +69,7 @@ import {
   ShowLibraryPage,
   RegisterPage,
   not_found_page,
+  invite_register,
 } from "./views";
 import edit_publish from "./views/pages/publish/edit_publish";
 import edit_expense from "./views/pages/expense/edit_expense";
@@ -91,6 +92,7 @@ ReactDOM.render(
             exact
           />
           <Route component={ResearchPage} path={AppRoutes.research} exact />
+          <Route component={invite_register} path={AppRoutes.invite_register} exact />
           <Route
             component={ResearchPageNew}
             path={AppRoutes.new_research}

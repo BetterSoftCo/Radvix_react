@@ -126,9 +126,30 @@
     flex-direction: column;
   }
 }
+#invite-register {
+  width: 53vw;
+  .form-2 {
+    .left {
+      position: relative;
+      &::before {
+        content: "";
+        background-color: #cbcbcb;
+        position: absolute;
+        width: 1px;
+        height: 100%;
+        top: -28px;
+        right: -1px;
+        display: block;
+      }
+    }
+  }
+}
 .form-register {
   width: 65vw;
   margin: 3rem 1rem;
+  .font-bolder {
+    font-weight: bold;
+  }
 
   .header-form {
     background-color: #00a598;
@@ -156,6 +177,9 @@
       color: #474747ba;
       font-size: 14px;
       font-weight: lighter;
+      .font-bolder {
+        display: inline;
+      }
     }
     .stepper-wrapper {
       padding-top: 0.3rem;

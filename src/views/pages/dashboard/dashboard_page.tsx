@@ -16,6 +16,8 @@ import { DataList } from "../../../data/models/responses/data/get_all_data_res";
 import { DataController } from "../../../controllers/data/data_controller";
 import { LocalDataSources } from "../../../data/local_datasources";
 import { MemberController } from "../../../controllers/member/member_controller";
+import { RouteComponentProps, withRouter } from "react-router";
+import { AppRoutes } from "../../../core/constants";
 type StateType = {
   Researches: ResearchesList[];
   ResearchesPageNumber: number;
@@ -34,11 +36,10 @@ type StateType = {
   DatasPageSize: number;
   DatasPageCount: number;
   DatasTotalCount: number;
-  DatasSearch: string
-
+  DatasSearch: string;
 };
-export class DashboardPage extends React.Component {
-  handlePageClick = (data: any) => { };
+class DashboardPage extends React.Component<RouteComponentProps> {
+  handlePageClick = (data: any) => {};
   RoleUser = store.getState().userRole;
   private researchController = new ResearchController();
   private taskcontroller = new TaskController();
@@ -61,11 +62,14 @@ export class DashboardPage extends React.Component {
     DatasPageSize: 10,
     DatasPageCount: 0,
     DatasTotalCount: 0,
-    ResearchesSearch: '',
+    ResearchesSearch: "",
     TasksSearch: "",
     DatasSearch: "",
   };
   componentDidMount() {
+    if (!this.local.logedin()) {
+      this.props.history.push(AppRoutes.login);
+    }
     if (store.getState().ResearchId >= 0) {
       this.GetResearch(
         this.state.ResearchesPageNumber,
@@ -88,7 +92,11 @@ export class DashboardPage extends React.Component {
   GetResearch(PageNumber: number, PageSize: number) {
     if (this.local.logedin()) {
       this.researchController.getResearches(
-        { PageNumber: PageNumber, PageSize: PageSize, SearchParameter: this.state.ResearchesSearch },
+        {
+          PageNumber: PageNumber,
+          PageSize: PageSize,
+          SearchParameter: this.state.ResearchesSearch,
+        },
         (res) => {
           this.setState({
             Researches: res.researchesList,
@@ -187,9 +195,11 @@ export class DashboardPage extends React.Component {
                       this.setState({
                         ResearchesSearch: e.target.value,
                       });
-                      this.GetResearch(this.state.ResearchesPageNumber, this.state.ResearchesPageSize)
+                      this.GetResearch(
+                        this.state.ResearchesPageNumber,
+                        this.state.ResearchesPageSize
+                      );
                     }}
-
                   ></InputIcon>
                 </div>
                 <div className="right w-50 d-flex justify-content-end align-items-center">
@@ -271,7 +281,10 @@ export class DashboardPage extends React.Component {
                       this.setState({
                         TasksSearch: e.target.value,
                       });
-                      this.GetTasks(this.state.TasksPageNumber, this.state.TasksPageSize)
+                      this.GetTasks(
+                        this.state.TasksPageNumber,
+                        this.state.TasksPageSize
+                      );
                     }}
                     TopPosition="15%"
                   ></InputIcon>
@@ -356,7 +369,10 @@ export class DashboardPage extends React.Component {
                       this.setState({
                         DatasSearch: e.target.value,
                       });
-                      this.GetDatas(this.state.DatasPageNumber, this.state.DatasPageSize)
+                      this.GetDatas(
+                        this.state.DatasPageNumber,
+                        this.state.DatasPageSize
+                      );
                     }}
                   ></InputIcon>
                 </div>
@@ -514,3 +530,4 @@ const HeadDashboardPage: React.FC = () => {
     </div>
   );
 };
+export default withRouter(DashboardPage);

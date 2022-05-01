@@ -1607,9 +1607,32 @@ input[placeholder='https://'] {
   }
 }
 
+#invite-register {
+  width: 53vw;
+}
+
+#invite-register .form-2 .left {
+  position: relative;
+}
+
+#invite-register .form-2 .left::before {
+  content: "";
+  background-color: #cbcbcb;
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  top: -28px;
+  right: -1px;
+  display: block;
+}
+
 .form-register {
   width: 65vw;
   margin: 3rem 1rem;
+}
+
+.form-register .font-bolder {
+  font-weight: bold;
 }
 
 .form-register .header-form {
@@ -1649,6 +1672,10 @@ input[placeholder='https://'] {
   color: #474747ba;
   font-size: 14px;
   font-weight: lighter;
+}
+
+.form-register .body-form .desc-form-body .font-bolder {
+  display: inline;
 }
 
 .form-register .body-form .stepper-wrapper {
@@ -3400,9 +3427,32 @@ input[placeholder='https://'] {
   }
 }
 
+#invite-register {
+  width: 53vw;
+}
+
+#invite-register .form-2 .left {
+  position: relative;
+}
+
+#invite-register .form-2 .left::before {
+  content: "";
+  background-color: #cbcbcb;
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  top: -28px;
+  right: -1px;
+  display: block;
+}
+
 .form-register {
   width: 65vw;
   margin: 3rem 1rem;
+}
+
+.form-register .font-bolder {
+  font-weight: bold;
 }
 
 .form-register .header-form {
@@ -3442,6 +3492,10 @@ input[placeholder='https://'] {
   color: #474747ba;
   font-size: 14px;
   font-weight: lighter;
+}
+
+.form-register .body-form .desc-form-body .font-bolder {
+  display: inline;
 }
 
 .form-register .body-form .stepper-wrapper {
