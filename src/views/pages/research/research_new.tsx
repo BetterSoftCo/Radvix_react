@@ -174,7 +174,9 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
   }
   addExternalUrl() {
     let Url = [...this.state.ExternalUrl];
-    Url.push(this.state.External);
+    if (this.state.External.length > 2) {
+      Url.push(this.state.External);
+    }
     this.setState({
       ExternalUrl: Url,
       External: "",
@@ -385,7 +387,7 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
                         <p>Or drag and drop files here</p>
                       </div>
                       <aside>
-                        
+
                         <ul>{files} </ul>
                       </aside>
                     </section>
