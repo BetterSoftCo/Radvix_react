@@ -31,7 +31,7 @@ import MyDataCollection from "./pages/datapage/my_data";
 import DataPageProfile from "./pages/datapage/data_profile";
 import DataPageEdit from "./pages/datapage/edit_data";
 import PublishPageNew from "./pages/publish/new_publish";
-import { MyPublications } from "./pages/publish/my_publications";
+import  MyPublications  from "./pages/publish/my_publications";
 import PublicationProfile from "./pages/publish/publication_profile";
 import UploadNewDraft from "./pages/publish/new_draft_upload";
 import ExpensePageNew from "./pages/expense/new_expense";

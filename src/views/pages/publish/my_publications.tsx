@@ -1,6 +1,8 @@
 import React from "react";
 import ReactPaginate from "react-paginate";
+import { RouteComponentProps, withRouter } from "react-router";
 import { publishController } from "../../../controllers/publish/publish_controller";
+import { AppRoutes } from "../../../core/constants";
 import { store } from "../../../data/store";
 import { MainButton, MainButtonType } from "../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
@@ -8,7 +10,7 @@ import { InputIcon } from "../../components/search_box";
 import { SelectComponent } from "../../components/select_input";
 import MyPublicationsTable from "./component/my_publications_tbl";
 
-export class MyPublications extends React.Component {
+ class MyPublications extends React.Component<RouteComponentProps> {
   RoleUser = store.getState().userRole;
   controller = new publishController();
   state = {
@@ -94,6 +96,9 @@ export class MyPublications extends React.Component {
                   borderRadius="24px"
                   fontSize="14px"
                   className="my-2 mx-2"
+                  onClick={()=>{
+                    this.props.history.push(AppRoutes.publish_new)
+                  }}
                 ></MainButton>
                 <SelectComponent
                   width="63px"
@@ -163,3 +168,4 @@ export class MyPublications extends React.Component {
     );
   }
 }
+export default withRouter(MyPublications)
