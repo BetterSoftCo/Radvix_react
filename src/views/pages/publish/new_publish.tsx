@@ -56,19 +56,19 @@ class PublishPageNew extends React.Component<RouteComponentProps> {
         (res) => {
           this.setState(
             {
-            name: '',
-            categoryId: 0,
-            submitAt: '',
-            priority: 1,
-            startDate: new Date(),
-            endDate: new Date(),
-            users: [],
-            draftUploader: '',
-            loading: false,
-            listMembers: [],
-            categories: [],
-            drafList: []
-          });
+              name: '',
+              categoryId: 0,
+              submitAt: '',
+              priority: 1,
+              startDate: new Date(),
+              endDate: new Date(),
+              users: [],
+              draftUploader: '',
+              loading: false,
+              listMembers: [],
+              categories: [],
+              drafList: []
+            });
           this.props.history.push(`${AppRoutes.publish_profile.replace(':id', res.id?.toString() ?? "")}`)
         },
         (err) => {
