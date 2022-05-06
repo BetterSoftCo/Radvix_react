@@ -14,6 +14,7 @@ import SimpleReactValidator from "simple-react-validator";
 import { AccessPermition, UserRoles } from "../../../core/utils";
 import { AddDataReq } from "../../../data/models/requests/data/add_data_req";
 import { RadioGroup } from "../../components/radio_group";
+import { AppRoutes } from "../../../core/constants";
 type StateType = {
   researchId: number;
   equipmentsId: number[];
@@ -74,7 +75,7 @@ class DataPageNew extends React.Component<RouteComponentProps> {
           }),
         });
       },
-      (err) => {}
+      (err) => { }
     );
   }
   onDrop = (files: any) => {
@@ -137,6 +138,7 @@ class DataPageNew extends React.Component<RouteComponentProps> {
         this.setState({
           loading: false,
         });
+        this.props.history.push(AppRoutes.data_mydata);
       },
       () => {
         this.setState({
@@ -166,7 +168,13 @@ class DataPageNew extends React.Component<RouteComponentProps> {
       this.controller.createData(
         body,
         (res) => {
-          this.handelUpload(res.data.id);
+          if (this.state.files.length > 0) {
+            this.handelUpload(res.data.id);
+
+          } else {
+            this.props.history.push(AppRoutes.data_mydata);
+          }
+
           this.setState({
             files: [],
             appTasksId: 0,
@@ -242,7 +250,7 @@ class DataPageNew extends React.Component<RouteComponentProps> {
                   }}
                 ></SelectComponent>
               </div>
-              {AccessPermition(this.RoleUser, [UserRoles.L2User , UserRoles.L3User]) ? (
+              {AccessPermition(this.RoleUser, [UserRoles.L2User, UserRoles.L3User]) ? (
                 <div className="item">
                   <RadioGroup
                     name="Only"
@@ -337,7 +345,7 @@ class DataPageNew extends React.Component<RouteComponentProps> {
                         <p>Or drag and drop files here</p>
                       </div>
                       <aside>
-                        
+
                         <ul>{files}</ul>
                       </aside>
                     </section>
