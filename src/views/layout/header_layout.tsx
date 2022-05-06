@@ -15,7 +15,7 @@ import { InputIcon } from "../components/search_box";
 import ReactPaginate from "react-paginate";
 import { CircleIcon, ThemeCircleIcon } from "../components/circle_icon";
 import { SetResearchId } from "../../data/store/actions/research_action";
-interface IHeader {}
+interface IHeader { }
 const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
   const [listResearch, setListResearch] = useState<Array<any>>([]);
   const [PageNumber, setPageNumber] = useState<number>(1);
@@ -71,7 +71,6 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
   };
   const changeResearch = (value: string) => {
     setResearchName(value);
-    document.getElementById("close_modal")?.click();
   };
   const timelineProgress = () => {
     controller.getTimeline(
@@ -84,7 +83,7 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
         const peresent = (completed * 100) % all;
         setProgressTimeline(peresent);
       },
-      (err) => {}
+      (err) => { }
     );
   };
   return (
@@ -178,7 +177,7 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
                       local.getUserId() && local.getUserInfo().image
                         ? local.getUserInfo().image.length
                           ? AppConstants.base_url_image +
-                            local.getUserInfo().image
+                          local.getUserInfo().image
                           : "/Images/images/img_avatar.png"
                         : "/Images/images/img_avatar.png"
                     }
@@ -227,8 +226,10 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
         className="modal fade"
         id="exampleModal"
         tabIndex={-1}
-        aria-labelledby="exampleModalLabel"
         aria-hidden="true"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        aria-labelledby="staticBackdropLabel"
       >
         <div className="modal-dialog">
           <div className="col-12 modal-content">
@@ -277,7 +278,7 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
                   { name: "Research Name", center: false },
                   { name: "Status", center: true },
                 ]}
-                changeResearch={changeResearch}
+                changeResearch={(e) => { changeResearch(e); document.getElementById("close_modal")?.click(); }}
                 role={RoleUser}
               ></AcordienTableResearchHeader>
 

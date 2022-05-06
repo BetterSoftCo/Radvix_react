@@ -15,7 +15,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
     setPage(pageType);
   };
   const RoleUser = store.getState().userRole;
-  const closeSidebar = ()=>{
+  const closeSidebar = () => {
     const sidebarElement = document.querySelector('.sidebar')
     sidebarElement?.classList.add('closeing-sidebar')
     sidebarElement?.classList.remove('opening-sidebar')
@@ -23,7 +23,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
   return (
     <Fragment>
       <div className="parent-sidebar">
-      <i className="fa fa-window-close fa-2x text-white d-block d-lg-none" aria-hidden="true" onClick={()=>{closeSidebar()}}></i>
+        <i className="fa fa-window-close fa-2x text-white d-block d-lg-none" aria-hidden="true" onClick={() => { closeSidebar() }}></i>
         {props.location.pathname.search("/Admin") >= 0 ? (
           <ul>
             <NavLink to={AppRoutes.admin_clients} activeClassName="selected">
@@ -512,6 +512,8 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
               <IconTextVertical
                 onClick={() => {
                   props.history.push(AppRoutes.new_team);
+                  setShowSidebar(!ShowSidebar);
+                  closeSidebar()
                 }}
                 fontSize="15px"
                 className="lighter mx-3 my-1 pointer"

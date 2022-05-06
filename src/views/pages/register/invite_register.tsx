@@ -6,8 +6,6 @@ import { RegisterReq } from "../../../data/models/requests/register/register_req
 import { AppRoutes } from "../../../core/constants";
 import { InputComponent, InputType } from "../../components/inputs";
 import SimpleReactValidator from "simple-react-validator";
-import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
-import { SelectComponent } from "../../components/select_input";
 import { MainButton, MainButtonType } from "../../components/button";
 const InviteRegister: React.FC<RouteComponentProps> = (props) => {
   const controller: RegisterController = new RegisterController();
@@ -50,11 +48,11 @@ const InviteRegister: React.FC<RouteComponentProps> = (props) => {
     setloading(true);
     controller.SignUp(
       body,
-      (res) => {
+      () => {
         setloading(false);
         props.history.push(AppRoutes.dashboard);
       },
-      (err) => {
+      () => {
         setloading(false);
       }
     );
