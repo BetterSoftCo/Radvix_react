@@ -74,7 +74,7 @@ class Ticket extends React.Component<RouteComponentProps<RouteParams>> {
           Discusstion: res,
         });
       },
-      (err) => {}
+      (err) => { }
     );
   }
   onDrop = (files: any) => {
@@ -100,7 +100,16 @@ class Ticket extends React.Component<RouteComponentProps<RouteParams>> {
 
     await this.UploadController.UloadMedia(
       formData,
-      (res) => {},
+      (res) => {
+        this.getDiscustionPanel();
+        this.setState({
+          loading: false,
+          ExternalUrl: [],
+          External: "",
+          massage: "",
+          files: [],
+        });
+      },
       () => {
         this.setState({
           loading: false,
@@ -141,17 +150,20 @@ class Ticket extends React.Component<RouteComponentProps<RouteParams>> {
       this.controller.createMassage(
         body,
         (res) => {
-          if (this.state.files.length) {
+          if (this.state.files.length > 0) {
             this.handelUpload(this.state.Discusstion.id);
+          } else {
+            this.getDiscustionPanel();
+            this.setState({
+              loading: false,
+              ExternalUrl: [],
+              External: "",
+              massage: "",
+              files: [],
+            });
           }
-          this.setState({
-            loading: false,
-            ExternalUrl: [],
-            External: "",
-            massage: "",
-            files: [],
-          });
-          this.getDiscustionPanel();
+
+
         },
         (err) => {
           this.setState({
@@ -246,7 +258,7 @@ class Ticket extends React.Component<RouteComponentProps<RouteParams>> {
                         src={
                           item.userProfilePicture
                             ? AppConstants.base_url_image +
-                              item.userProfilePicture
+                            item.userProfilePicture
                             : "/images/images/img_avatar.png"
                         }
                         alt="Avatar"
@@ -335,6 +347,7 @@ class Ticket extends React.Component<RouteComponentProps<RouteParams>> {
                     this.state.massage,
                     "required"
                   )}
+                  value={this.state.massage}
                 ></InputComponent>
               </div>
             </div>
@@ -392,7 +405,7 @@ class Ticket extends React.Component<RouteComponentProps<RouteParams>> {
                         <p>Or drag and drop files here</p>
                       </div>
                       <aside>
-                        
+
                         <ul>{files}</ul>
                       </aside>
                     </section>

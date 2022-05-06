@@ -3,6 +3,7 @@ import ReactPaginate from "react-paginate";
 import { RouteComponentProps, withRouter } from "react-router";
 import { MemberController } from "../../../controllers/member/member_controller";
 import { AppRoutes } from "../../../core/constants";
+import { AccessPermition, UserRoles } from "../../../core/utils";
 import { Member } from "../../../data/models/responses/member/member_list_res";
 import { store } from "../../../data/store";
 import { MainButton, MainButtonType } from "../../components/button";
@@ -85,6 +86,12 @@ class MemberPage extends React.Component<RouteComponentProps> {
                 ></InputIcon>
               </div>
               <div className="right  d-flex justify-content-between align-items-baseline">
+              {AccessPermition(this.RoleUser, [
+                UserRoles.Admin,
+                UserRoles.L1Client,
+                UserRoles.L1User,
+                UserRoles.L2User,
+              ]) ? (
                 <MainButton
                   children="New Member"
                   type={MainButtonType.dark}
@@ -96,6 +103,8 @@ class MemberPage extends React.Component<RouteComponentProps> {
                     this.props.history.push(AppRoutes.member_new);
                   }}
                 ></MainButton>
+              ) : null}
+                
                 <MainButton
                   children="Teams"
                   type={MainButtonType.dark}

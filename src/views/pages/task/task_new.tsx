@@ -321,7 +321,6 @@ class TaskPageNew extends React.Component<RouteComponentProps> {
                     placeholder="Click to see the list…"
                     label=" Choose The parent Subtask"
                     popQuestion=" Choose The parent Subtask"
-                    optional="optional"
                     isMulti={false}
                     onChange={(e) => {
                       this.handelChangeSelectTask(e);
