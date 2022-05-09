@@ -1,14 +1,16 @@
-export interface GetMemberByIDRes {
+export interface AddUserSubscrtiptionRes {
   status: number;
-  result: GetMemberByIDResResult;
+  result: AddUserSubscrtiptionReqResult;
   message: string;
 }
 
-export interface GetMemberByIDResResult {
+export interface AddUserSubscrtiptionReqResult {
   id: string;
   profileImage: string;
   firstName: string;
   lastName: string;
+  university: string;
+  institution: string;
   role: number;
   teams: Equipment[];
   laboratories: Equipment[];

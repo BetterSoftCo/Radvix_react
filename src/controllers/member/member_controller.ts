@@ -66,7 +66,7 @@ export class MemberController {
     );
   }
   getMemberList(
-    body:{PageNumber:number , PageSize:number},
+    body:{PageNumber:number , PageSize:number , SearchParameter: string},
     action: (res: MemberListResResult) => any,
     error: (res: any) => any
   ) {

@@ -17,6 +17,7 @@ type StateType = {
   PageSize: number;
   PageCount: number;
   TotalCount: number;
+  Search: string;
 };
 class MemberPage extends React.Component<RouteComponentProps> {
   RoleUser = store.getState().userRole;
@@ -27,13 +28,18 @@ class MemberPage extends React.Component<RouteComponentProps> {
     PageSize: 10,
     PageCount: 0,
     TotalCount: 0,
+    Search: "",
   };
   componentDidMount() {
     this.GetMember(this.state.PageNumber, this.state.PageSize);
   }
   GetMember(PageNumber: number, PageSize: number) {
     this.controller.getMemberList(
-      { PageNumber: PageNumber, PageSize: PageSize },
+      {
+        PageNumber: PageNumber,
+        PageSize: PageSize,
+        SearchParameter: this.state.Search,
+      },
       (res) => {
         this.setState({
           Members: res.members,
@@ -83,28 +89,37 @@ class MemberPage extends React.Component<RouteComponentProps> {
                   width="100%"
                   placeholder="Search..."
                   TopPosition="15%"
+                  onChange={(e) => {
+                    this.setState({
+                      Search: e.target.value,
+                    });
+                    this.GetMember(
+                      this.state.PageNumber,
+                      this.state.PageSize
+                    );
+                  }}
                 ></InputIcon>
               </div>
               <div className="right  d-flex justify-content-between align-items-baseline">
-              {AccessPermition(this.RoleUser, [
-                UserRoles.Admin,
-                UserRoles.L1Client,
-                UserRoles.L1User,
-                UserRoles.L2User,
-              ]) ? (
-                <MainButton
-                  children="New Member"
-                  type={MainButtonType.dark}
-                  borderRadius="24px"
-                  fontSize="12px"
-                  className="my-2"
-                  minWidth="100px"
-                  onClick={() => {
-                    this.props.history.push(AppRoutes.member_new);
-                  }}
-                ></MainButton>
-              ) : null}
-                
+                {AccessPermition(this.RoleUser, [
+                  UserRoles.Admin,
+                  UserRoles.L1Client,
+                  UserRoles.L1User,
+                  UserRoles.L2User,
+                ]) ? (
+                  <MainButton
+                    children="New Member"
+                    type={MainButtonType.dark}
+                    borderRadius="24px"
+                    fontSize="12px"
+                    className="my-2"
+                    minWidth="100px"
+                    onClick={() => {
+                      this.props.history.push(AppRoutes.member_new);
+                    }}
+                  ></MainButton>
+                ) : null}
+
                 <MainButton
                   children="Teams"
                   type={MainButtonType.dark}

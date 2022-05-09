@@ -41,18 +41,20 @@ export class RemoteMember {
       });
   }
   getMemberList(
-    body:{PageNumber:number , PageSize:number},
+    body: { PageNumber: number; PageSize: number; SearchParameter: string },
     action: (res: MemberListRes) => any,
     error: (res: any) => any
   ) {
-    return HTTP.get(`/Team/MemberList?PageSize=${body.PageSize}&PageNumber=${body.PageNumber}`)
+    return HTTP.get(
+      `/Team/MemberList?PageSize=${body.PageSize}&PageNumber=${body.PageNumber}&SearchParameter=${body.SearchParameter}`
+    )
       .then((res) => action(res.data))
       .catch((err) => {
         error(err);
       });
   }
   getMemberById(
-    body:{userId:string},
+    body: { userId: string },
     action: (res: GetMemberByIDRes) => any,
     error: (res: any) => any
   ) {

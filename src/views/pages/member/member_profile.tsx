@@ -42,7 +42,13 @@ class MemberPageProfile extends React.Component<
     id: "",
     major: "",
     zipCode: "",
-    phoneNumber: ""
+    phoneNumber: "",
+    billingEmail: "",
+    billingAddress: "",
+    cardInfomation: "",
+    cardExpireDate: "",
+    cardCVC: "",
+    nameOnCard: ""
   };
   componentDidMount() {
     this.controller.getMember(

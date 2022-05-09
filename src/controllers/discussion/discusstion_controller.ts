@@ -119,7 +119,12 @@ export class DiscusstionController {
     );
   }
   getAllDiscusstion(
-    body: { PageNumber: number; PageSize: number; ticket: boolean },
+    body: {
+      PageNumber: number;
+      PageSize: number;
+      ticket: boolean;
+      SearchParameter: string;
+    },
     action: (res: GetAllDiscusstionResResult) => any,
     error: (res: any) => any
   ) {

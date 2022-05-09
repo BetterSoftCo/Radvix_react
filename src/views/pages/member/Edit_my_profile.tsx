@@ -39,6 +39,12 @@ type StateType = {
   listDegree: Array<{ value: number; label: string }>;
   socialMediaProfiles: Array<{ value: number; label: string }>;
   listCountry: Array<{ label: string; value: number } | {}>;
+  billingEmail: string;
+  billingAddress: string;
+  cardInfomation: string;
+  cardExpireDate: string;
+  cardCVC: string;
+  nameOnCard: string;
 };
 export class EditMyProfile extends React.Component {
   RoleUser = store.getState().userRole;
@@ -71,6 +77,12 @@ export class EditMyProfile extends React.Component {
     cahngePic: false,
     socialMediaProfiles: [],
     listCountry: [],
+    billingEmail: "",
+    billingAddress: "",
+    cardInfomation: "",
+    cardExpireDate: "",
+    cardCVC: "",
+    nameOnCard: "",
   };
   onDrop = (files: any) => {
     this.setState({ files });
@@ -99,6 +111,12 @@ export class EditMyProfile extends React.Component {
           addressLine2: res.addressLine2,
           zipCode: res.zipCode,
           role: this.RoleUser,
+          billingEmail: res.billingEmail,
+          billingAddress: res.billingAddress,
+          cardInfomation: res.cardInfomation,
+          cardExpireDate: res.cardExpireDate,
+          cardCVC: res.cardCVC,
+          nameOnCard: res.nameOnCard,
           profileImage: res.profileImage,
           socialMediaProfiles: res.socialMediaProfiles.map((item, index) => {
             return { label: item, value: index };
@@ -168,6 +186,12 @@ export class EditMyProfile extends React.Component {
       zipCode: this.state.zipCode,
       token: localStorage.getItem("token")!,
       role: this.state.role,
+      billingEmail: this.state.billingEmail,
+      billingAddress: this.state.billingAddress,
+      cardInfomation: this.state.cardInfomation,
+      cardExpireDate: this.state.cardExpireDate,
+      cardCVC: this.state.cardCVC,
+      nameOnCard: this.state.nameOnCard,
     };
     this.setState({
       loading: true,
@@ -413,7 +437,6 @@ export class EditMyProfile extends React.Component {
                           <p>Or drag and drop files here</p>
                         </div>
                         <aside>
-                          
                           <ul>{picture}</ul>
                         </aside>
                       </section>
@@ -540,7 +563,6 @@ export class EditMyProfile extends React.Component {
                         <p>Or drag and drop files here</p>
                       </div>
                       <aside>
-                        
                         <ul>{files}</ul>
                       </aside>
                     </section>

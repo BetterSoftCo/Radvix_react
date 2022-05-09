@@ -12,5 +12,11 @@ export interface UpdateMyProfileReq {
   locationId: number;
   zipCode: string;
   token: string;
+  billingEmail: string;
+  billingAddress: string;
+  cardInfomation: string;
+  cardExpireDate: string;
+  cardCVC: string;
+  nameOnCard: string;
   role: number;
 }

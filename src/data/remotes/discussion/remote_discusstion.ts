@@ -56,12 +56,17 @@ export class RemoteDiscusstion {
       });
   }
   getAllDiscussion(
-    body: { PageNumber: number; PageSize: number; ticket: boolean },
+    body: {
+      PageNumber: number;
+      PageSize: number;
+      ticket: boolean;
+      SearchParameter: string;
+    },
     action: (res: GetAllDiscusstionRes) => any,
     error: (res: any) => any
   ) {
     return HTTP.get(
-      `/Discussion?PageSize=${body.PageSize}&PageNumber=${body.PageNumber}&Ticket=${body.ticket}`
+      `/Discussion?PageSize=${body.PageSize}&PageNumber=${body.PageNumber}&SearchParameter=${body.SearchParameter}&Ticket=${body.ticket}`
     )
       .then((res) => action(res.data))
       .catch((err) => {

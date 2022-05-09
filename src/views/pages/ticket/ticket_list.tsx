@@ -16,6 +16,7 @@ type StateType = {
   PageSize: number;
   PageCount: number;
   TotalCount: number;
+  Search: string;
 };
 class TicketPage extends React.Component<RouteComponentProps> {
   RoleUser = store.getState().userRole;
@@ -26,13 +27,19 @@ class TicketPage extends React.Component<RouteComponentProps> {
     PageSize: 10,
     PageCount: 0,
     TotalCount: 0,
+    Search: "",
   };
   componentDidMount() {
     this.GetDiscusstion(this.state.PageNumber, this.state.PageSize);
   }
   GetDiscusstion(PageNumber: number, PageSize: number) {
     this.controller.getAllDiscusstion(
-      { PageNumber: PageNumber, PageSize: PageSize, ticket: true },
+      {
+        PageNumber: PageNumber,
+        PageSize: PageSize,
+        ticket: true,
+        SearchParameter: this.state.Search,
+      },
       (res) => {
         this.setState({
           Discusstion: res.discussions,
@@ -71,6 +78,15 @@ class TicketPage extends React.Component<RouteComponentProps> {
                   width="100%"
                   placeholder="Search..."
                   TopPosition="15%"
+                  onChange={(e) => {
+                    this.setState({
+                      Search: e.target.value,
+                    });
+                    this.GetDiscusstion(
+                      this.state.PageNumber,
+                      this.state.PageSize
+                    );
+                  }}
                 ></InputIcon>
               </div>
               <div className="right  d-flex justify-content-between align-items-baseline">
