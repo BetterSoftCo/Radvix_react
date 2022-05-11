@@ -1,5 +1,8 @@
 import { toast } from "react-toastify";
+import { ChangePasswordReq } from "../../data/models/requests/user/change_password_req";
 import { UpdateMyProfileReq } from "../../data/models/requests/user/update_myprofile_req";
+import { ChangePasswordResResult } from "../../data/models/responses/user/change_password_res";
+import { DashboardMyReportResult } from "../../data/models/responses/user/dashboard_report";
 import { UserSigninResult } from "../../data/models/responses/user/signin_res";
 import { UpdateMyProfileResResult } from "../../data/models/responses/user/update_myprofile_req";
 import { RemoteUser } from "../../data/remotes/user/remote_user";
@@ -22,8 +25,8 @@ export class UserController {
           firstName: res.result?.firstName,
           lastName: res.result?.lastName,
           email: res.result?.email,
-          image:res.result?.profileImage,
-          role:res.result?.role
+          image: res.result?.profileImage,
+          role: res.result?.role,
         };
         localStorage.setItem("userInfo", JSON.stringify(UserInfo) ?? "");
         toast.success(`${res.message}`, {
@@ -43,6 +46,40 @@ export class UserController {
   ) {
     this.remote.updateMyProfile(
       body,
+      (res) => {
+        toast.success(`${res.message}`, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+        action(res.result);
+      },
+      (err) => {
+        error();
+      }
+    );
+  }
+  changePassword(
+    body: ChangePasswordReq,
+    action: (res: ChangePasswordResResult) => any,
+    error: () => any
+  ) {
+    this.remote.changePassword(
+      body,
+      (res) => {
+        toast.success(`${res.message}`, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+        action(res.result);
+      },
+      (err) => {
+        error();
+      }
+    );
+  }
+  dashboardReport(
+    action: (res: DashboardMyReportResult) => any,
+    error: () => any
+  ) {
+    this.remote.dshboardReport(
       (res) => {
         toast.success(`${res.message}`, {
           position: toast.POSITION.TOP_RIGHT,

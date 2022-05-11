@@ -66,7 +66,7 @@ export class MemberController {
     );
   }
   getMemberList(
-    body:{PageNumber:number , PageSize:number , SearchParameter: string},
+    body: { PageNumber: number; PageSize: number; SearchParameter: string },
     action: (res: MemberListResResult) => any,
     error: (res: any) => any
   ) {
@@ -81,7 +81,7 @@ export class MemberController {
     );
   }
   getMember(
-    body:{userId:string},
+    body: { userId: string; token: string },
     action: (res: GetMemberByIDResResult) => any,
     error: (res: any) => any
   ) {

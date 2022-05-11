@@ -54,11 +54,16 @@ export class RemoteMember {
       });
   }
   getMemberById(
-    body: { userId: string },
+    body: { userId: string; token: string },
     action: (res: GetMemberByIDRes) => any,
     error: (res: any) => any
   ) {
-    return HTTP.get(`/Team/MemberById?userId=${body.userId}`)
+    let config = {
+      headers: {
+        authorization: `Bearer ${body.token}`,
+      },
+    };
+    return HTTP.get(`/Team/MemberById?userId=${body.userId}`, config)
       .then((res) => action(res.data))
       .catch((err) => {
         error(err);

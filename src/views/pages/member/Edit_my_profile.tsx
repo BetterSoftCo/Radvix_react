@@ -96,6 +96,7 @@ export class EditMyProfile extends React.Component {
     this.controllerMember.getMember(
       {
         userId: this.local.getUserId(),
+        token: localStorage.getItem("token") ?? "",
       },
       (res) => {
         this.setState({

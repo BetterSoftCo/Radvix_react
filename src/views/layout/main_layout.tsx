@@ -30,6 +30,7 @@ class MainLayout extends React.Component<IMainLayout & RouteComponentProps> {
       this.memberController.getMember(
         {
           userId: this.local.getUserId(),
+          token: localStorage.getItem("token") ?? "",
         },
         (res) => {
           store.dispatch(SetUserRole(res.role));
@@ -38,7 +39,7 @@ class MainLayout extends React.Component<IMainLayout & RouteComponentProps> {
             lastName: res.lastName,
             email: res.userEmail,
             image: res.profileImage,
-            role : res.role
+            role: res.role,
           };
           localStorage.setItem("userInfo", JSON.stringify(UserInfo) ?? "");
           this.setState({
@@ -54,27 +55,33 @@ class MainLayout extends React.Component<IMainLayout & RouteComponentProps> {
     }
   }
   openSidebar() {
-    const sidebarElement = document.querySelector('.sidebar')
+    const sidebarElement = document.querySelector(".sidebar");
     console.log(sidebarElement);
     console.log("ssssss");
-    
-    sidebarElement?.classList.remove('closeing-sidebar')
-    sidebarElement?.classList.add('opening-sidebar')
+
+    sidebarElement?.classList.remove("closeing-sidebar");
+    sidebarElement?.classList.add("opening-sidebar");
   }
 
   render() {
     return (
       <Fragment>
         {this.props.location.pathname !== "/login" &&
-          this.props.location.pathname !== "/register" &&
-          this.props.location.pathname !== "/invite_register" &&
-          this.state.getMmeberInfo === "succsses" ? (
+        this.props.location.pathname !== "/register" &&
+        this.props.location.pathname !== "/invite_register" &&
+        this.state.getMmeberInfo === "succsses" ? (
           <Fragment>
             <Header></Header>
             <div className="main">
               <div className="row" style={{ minHeight: "90vh" }}>
-                <i className="fa fa-bars d-flex d-lg-none" aria-hidden="true" onClick={() => { this.openSidebar() }}></i>
-                <div className="col-5 col-md-2 col-lg-1 sidebar closeing-sidebar" >
+                <i
+                  className="fa fa-bars d-flex d-lg-none"
+                  aria-hidden="true"
+                  onClick={() => {
+                    this.openSidebar();
+                  }}
+                ></i>
+                <div className="col-5 col-md-2 col-lg-1 sidebar closeing-sidebar">
                   <Sidebar></Sidebar>
                 </div>
                 {this.local.getSetting() ? (

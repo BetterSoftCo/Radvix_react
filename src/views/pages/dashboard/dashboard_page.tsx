@@ -18,6 +18,9 @@ import { LocalDataSources } from "../../../data/local_datasources";
 import { MemberController } from "../../../controllers/member/member_controller";
 import { RouteComponentProps, withRouter } from "react-router";
 import { AppRoutes } from "../../../core/constants";
+import { UserController } from "../../../controllers/user/user_controller";
+import { DashboardReportsResult } from "../../../data/models/responses/admin/dashboard_report_res";
+import { DashboardMyReportResult } from "../../../data/models/responses/user/dashboard_report";
 type StateType = {
   Researches: ResearchesList[];
   ResearchesPageNumber: number;
@@ -37,6 +40,7 @@ type StateType = {
   DatasPageCount: number;
   DatasTotalCount: number;
   DatasSearch: string;
+  report: DashboardMyReportResult;
 };
 class DashboardPage extends React.Component<RouteComponentProps> {
   handlePageClick = (data: any) => {};
@@ -44,6 +48,7 @@ class DashboardPage extends React.Component<RouteComponentProps> {
   private researchController = new ResearchController();
   private taskcontroller = new TaskController();
   private Datacontroller = new DataController();
+  private userController = new UserController();
   private memberController: MemberController = new MemberController();
   local = new LocalDataSources();
   state: StateType = {
@@ -65,11 +70,19 @@ class DashboardPage extends React.Component<RouteComponentProps> {
     ResearchesSearch: "",
     TasksSearch: "",
     DatasSearch: "",
+    report: {
+      countEquipment: 0,
+      countTaskCompleted: 0,
+      countTaskPending: 0,
+      countUsers: 0,
+      daysLeftDeadline: 0,
+    },
   };
   componentDidMount() {
     if (!this.local.logedin()) {
       this.props.history.push(AppRoutes.login);
     }
+    this.GetDashboardReport();
     if (store.getState().ResearchId >= 0) {
       this.GetResearch(
         this.state.ResearchesPageNumber,
@@ -111,6 +124,22 @@ class DashboardPage extends React.Component<RouteComponentProps> {
         }
       );
     }
+  }
+  GetDashboardReport() {
+    this.userController.dashboardReport(
+      (res) => {
+        this.setState({
+          report: {
+            countEquipment: res.countEquipment,
+            countTaskCompleted: res.countTaskCompleted,
+            countTaskPending: res.countTaskPending,
+            countUsers: res.countUsers,
+            daysLeftDeadline: res.daysLeftDeadline,
+          },
+        });
+      },
+      () => {}
+    );
   }
   GetTasks(PageNumber: number, PageSize: number) {
     this.taskcontroller.getTasks(
@@ -179,7 +208,13 @@ class DashboardPage extends React.Component<RouteComponentProps> {
       <div className="container-fluid dashbord">
         <div className="row">
           <div className="col-12">
-            <HeadDashboardPage></HeadDashboardPage>
+            <HeadDashboardPage
+              countEquipment={this.state.report.countEquipment}
+              countTaskCompleted={this.state.report.countTaskCompleted}
+              countTaskPending={this.state.report.countTaskPending}
+              countUsers={this.state.report.countUsers}
+              daysLeftDeadline={this.state.report.daysLeftDeadline}
+            ></HeadDashboardPage>
           </div>
           <div className="col-12">
             <div className="TableBox">
@@ -449,7 +484,7 @@ class DashboardPage extends React.Component<RouteComponentProps> {
   }
 }
 
-const HeadDashboardPage: React.FC = () => {
+const HeadDashboardPage: React.FC<DashboardMyReportResult> = (props) => {
   return (
     <div className="overviwe d-flex flex-wrap flex-lg-nowrap justify-content-between align-items-center">
       <div className="overviwe-item">
@@ -460,7 +495,7 @@ const HeadDashboardPage: React.FC = () => {
             className="avatar"
           />
           <div className="d-flex flex-column align-items-center">
-            <h1 className="display-6 fw-bold mb-0">12</h1>
+            <h1 className="display-6 fw-bold mb-0">{props.countUsers}</h1>
             <span className="text-center">
               Users <br /> Involved
             </span>
@@ -475,7 +510,7 @@ const HeadDashboardPage: React.FC = () => {
             className="avatar"
           />
           <div className="d-flex flex-column align-items-center">
-            <h1 className="display-6  fw-bold mb-0">8</h1>
+            <h1 className="display-6  fw-bold mb-0">{props.countEquipment}</h1>
             <span className="text-center">
               Equipment <br /> Available
             </span>
@@ -490,7 +525,9 @@ const HeadDashboardPage: React.FC = () => {
             className="avatar"
           />
           <div className="d-flex flex-column align-items-center">
-            <h1 className="display-6  fw-bold mb-0">18</h1>
+            <h1 className="display-6  fw-bold mb-0">
+              {props.countTaskCompleted}
+            </h1>
             <span className="text-center">
               Tasks <br /> Completed
             </span>
@@ -505,7 +542,9 @@ const HeadDashboardPage: React.FC = () => {
             className="avatar"
           />
           <div className="d-flex flex-column align-items-center">
-            <h1 className="display-6  fw-bold mb-0">45</h1>
+            <h1 className="display-6  fw-bold mb-0">
+              {props.countTaskPending}
+            </h1>
             <span className="text-center">
               Tasks <br /> Pending
             </span>
@@ -520,7 +559,9 @@ const HeadDashboardPage: React.FC = () => {
             className="avatar"
           />
           <div className="d-flex flex-column align-items-center">
-            <h1 className="display-6  fw-bold mb-0">87</h1>
+            <h1 className="display-6  fw-bold mb-0">
+              {props.daysLeftDeadline}
+            </h1>
             <span className="text-center">
               Days Left <br /> To Deadline
             </span>

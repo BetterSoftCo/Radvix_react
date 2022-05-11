@@ -11,8 +11,8 @@ export interface DashboardReportsResult {
   countInstitutions: number;
   sinceLaunch: number;
   userSignUps: any[];
-  income:any[];
-  dateUsage:any[];
+  income: any[];
+  dateUsage: any[];
 }
 
 export interface UserSignUp {

@@ -1,14 +1,25 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { RouteComponentProps, withRouter } from "react-router";
-import { RegisterController } from "../../../controllers/register/research_controller";
-import { RegisterReq } from "../../../data/models/requests/register/register_req";
 import { AppRoutes } from "../../../core/constants";
 import { InputComponent, InputType } from "../../components/inputs";
 import SimpleReactValidator from "simple-react-validator";
 import { MainButton, MainButtonType } from "../../components/button";
+import { UpdateMyProfileReq } from "../../../data/models/requests/user/update_myprofile_req";
+import { UserController } from "../../../controllers/user/user_controller";
+import { MemberController } from "../../../controllers/member/member_controller";
 const InviteRegister: React.FC<RouteComponentProps> = (props) => {
-  const controller: RegisterController = new RegisterController();
+  let search = window.location.search;
+  let params = new URLSearchParams(search);
+  let token = params.get("token");
+  let userId = params.get("userId");
+  console.log(userId);
+  console.log(token);
+
+  console.log(token === localStorage.getItem("token"));
+
+  const controller: UserController = new UserController();
+  const memberController: MemberController = new MemberController();
   const [, forceUpdate] = useState(0);
   const [firstName, setfirstName] = useState("");
   const [lastName, setlastName] = useState("");
@@ -20,6 +31,8 @@ const InviteRegister: React.FC<RouteComponentProps> = (props) => {
   const [addressLine2, setaddressLine2] = useState("");
   const [phone, setPhone] = useState("");
   const [zipCode, setzipCode] = useState("");
+  const [role, setRole] = useState(0);
+  const [degree, setdegree] = useState(0);
   const [loading, setloading] = useState(false);
 
   const [listCountry, setlistCountry] = useState<
@@ -30,32 +43,70 @@ const InviteRegister: React.FC<RouteComponentProps> = (props) => {
       className: "text-danger",
     })
   );
-  const handelRegister = () => {
-    const body: RegisterReq = {
-      firstName: firstName,
-      isL1Client: true,
-      lastName: lastName,
-      email: email,
-      username: email,
-      phone: phone,
-      institution: institution,
-      password: password,
-      confirmPassword: confirmPassword,
-      addressLine1: addressLine1,
-      addressLine2: addressLine2,
-      zipCode: zipCode,
-    };
-    setloading(true);
-    controller.SignUp(
-      body,
-      () => {
-        setloading(false);
-        props.history.push(AppRoutes.dashboard);
+  useEffect(() => {
+    memberController.getMember(
+      { userId: userId!, token: token ?? "" },
+      (res) => {
+        setfirstName(res.firstName);
+        setlastName(res.lastName);
+        setemail(res.userEmail);
+        setRole(res.role);
+        setdegree(res.degree);
       },
-      () => {
-        setloading(false);
-      }
+      () => {}
     );
+  }, []);
+  const handelRegister = () => {
+    const formValid = Validator.current.allValid();
+    if (!formValid) {
+      Validator.current.showMessages();
+      forceUpdate(1);
+    } else {
+      const body: UpdateMyProfileReq = {
+        id: userId!,
+        firstName: firstName ?? "",
+        lastName: lastName ?? "",
+        email: email ?? "",
+        degree: degree,
+        major: "",
+        phoneNumber: "",
+        institution: "",
+        addressLine1: "",
+        addressLine2: "",
+        locationId: 0,
+        zipCode: "",
+        token: token ?? "",
+        role: role,
+        billingEmail: email,
+        billingAddress: "",
+        cardInfomation: "",
+        cardExpireDate: "",
+        cardCVC: "",
+        nameOnCard: "",
+      };
+      setloading(true);
+      controller.UpdateMyProfile(
+        body,
+        () => {
+          controller.changePassword(
+            {
+              email: email,
+              oldPassword: password,
+              newPassword: password,
+              token: token ?? "",
+            },
+            () => {
+              setloading(false);
+              props.history.push(AppRoutes.login);
+            },
+            () => {}
+          );
+        },
+        () => {
+          setloading(false);
+        }
+      );
+    }
   };
   return (
     <div className="register">
@@ -142,6 +193,7 @@ const InviteRegister: React.FC<RouteComponentProps> = (props) => {
                       email,
                       "required|email"
                     )}
+                    value={email}
                   ></InputComponent>
                 </div>
                 <div className="item">

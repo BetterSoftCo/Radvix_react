@@ -102,6 +102,7 @@ class MemberPageUseEdit extends React.Component<
     this.controller.getMember(
       {
         userId: this.props.match.params.id,
+        token: localStorage.getItem("token") ?? "",
       },
       (res) => {
         this.setState({

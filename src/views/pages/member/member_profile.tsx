@@ -21,7 +21,7 @@ class MemberPageProfile extends React.Component<
 > {
   RoleUser = store.getState().userRole;
   controller = new MemberController();
-  local = new LocalDataSources()
+  local = new LocalDataSources();
   state: GetMemberByIDResResult = {
     profileImage: "",
     firstName: "",
@@ -48,12 +48,13 @@ class MemberPageProfile extends React.Component<
     cardInfomation: "",
     cardExpireDate: "",
     cardCVC: "",
-    nameOnCard: ""
+    nameOnCard: "",
   };
   componentDidMount() {
     this.controller.getMember(
       {
         userId: this.props.match.params.id,
+        token: localStorage.getItem("token") ?? "",
       },
       (res) => {
         this.setState({
