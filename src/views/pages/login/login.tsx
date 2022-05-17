@@ -53,6 +53,13 @@ const LoginPage: React.FC<RouteComponentProps> = (props) => {
       );
     }
   }
+  const emailValidation = () => {
+    controller.requestConfirmEmail(
+      email,
+      () => {},
+      () => {}
+    );
+  };
   const Validator = useRef(
     new SimpleReactValidator({
       className: "text-danger",
@@ -65,6 +72,17 @@ const LoginPage: React.FC<RouteComponentProps> = (props) => {
         <img src="/images/images/radvix_logo.svg" className="logo" alt="" />
         {/* <span className="sub_logo">Login</span> */}
         <div className="d-flex flex-column">
+          <MainButton
+            children={"Resend verification email"}
+            type={MainButtonType.dark}
+            borderRadius="50px"
+            minWidth="139px"
+            className="mb-2"
+            fontSize="12px"
+            onClick={() => {
+              emailValidation();
+            }}
+          ></MainButton>
           <MainButton
             children={"Forgot Email?"}
             type={MainButtonType.dark}

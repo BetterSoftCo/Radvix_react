@@ -105,6 +105,11 @@ const RegisterPage: React.FC<RouteComponentProps> = (props) => {
         userController.UpdateMyProfile(
           body,
           (response) => {
+            userController.requestConfirmEmail(
+              payment.email,
+              () => {},
+              () => {}
+            );
             controller.addUserSubscription(
               {
                 userId: res.id!,

@@ -2,7 +2,7 @@ import { HTTP } from "../../../core/http_common";
 import { ChangePasswordReq } from "../../models/requests/user/change_password_req";
 import { UserSigninReq } from "../../models/requests/user/signin_req";
 import { UpdateMyProfileReq } from "../../models/requests/user/update_myprofile_req";
-import {  ChangePasswordRes } from "../../models/responses/user/change_password_res";
+import { ChangePasswordRes } from "../../models/responses/user/change_password_res";
 import { DashboardMyReport } from "../../models/responses/user/dashboard_report";
 import { UserSigninRes } from "../../models/responses/user/signin_res";
 import { UpdateMyProfileRes } from "../../models/responses/user/update_myprofile_req";
@@ -51,6 +51,15 @@ export class RemoteUser {
   ) {
     return HTTP.post("/Dashboard/MyReports")
       .then((res) => action(res.data))
+      .catch((err) => error(err));
+  }
+  requestConfirmEmail(
+    email: string,
+    action: (res: any) => any,
+    error: (err: any) => any
+  ) {
+    return HTTP.post(`User/Account/RequestConfirmEmail/${email}`)
+      .then((res) => action(res))
       .catch((err) => error(err));
   }
 }

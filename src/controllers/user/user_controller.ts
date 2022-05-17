@@ -91,4 +91,25 @@ export class UserController {
       }
     );
   }
+  requestConfirmEmail(
+    email: string,
+    action: (res: any) => any,
+    error: () => any
+  ) {
+    this.remote.requestConfirmEmail(
+      email,
+      (res) => {
+        toast.success("Email sent successfully", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+        action(res.result);
+      },
+      (err) => {
+        toast.error("Email failed", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+        error();
+      }
+    );
+  }
 }
