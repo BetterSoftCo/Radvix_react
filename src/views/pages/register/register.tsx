@@ -30,6 +30,7 @@ const RegisterPage: React.FC<RouteComponentProps> = (props) => {
     addressLine1: "",
     addressLine2: "",
     zipCode: "",
+    CompanyName: "",
   });
   const [cardInfo, setcardInfo] = useState<{
     billingEmail: string;
@@ -69,6 +70,7 @@ const RegisterPage: React.FC<RouteComponentProps> = (props) => {
       username: payment.email,
       phone: payment.phone,
       institution: payment.institution,
+      CompanyName: payment.institution,
       password: payment.password,
       confirmPassword: payment.confirmPassword,
       addressLine1: payment.addressLine1,
@@ -112,9 +114,9 @@ const RegisterPage: React.FC<RouteComponentProps> = (props) => {
             );
             controller.addUserSubscription(
               {
-                userId: res.id!,
-                subscriptionSettingId: SubscriptionID,
-                billingAddress: "",
+                companyName: payment.institution,
+                subscriptionId: SubscriptionID,
+                token: res.token ?? "",
               },
               () => {},
               () => {}

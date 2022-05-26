@@ -10,6 +10,7 @@ export interface GetMemberByIDResResult {
   firstName: string;
   lastName: string;
   role: number;
+  institution: string,
   teams: Equipment[];
   laboratories: Equipment[];
   equipments: Equipment[];

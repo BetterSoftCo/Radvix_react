@@ -102,10 +102,23 @@ class DiscusstionPage extends React.Component<
 
     await this.UploadController.UloadMedia(
       formData,
-      (res) => {},
+      (res) => {
+        this.setState({
+          loading: false,
+          ExternalUrl: [],
+          External: "",
+          massage: "",
+          files: [],
+        });
+      },
       () => {
         this.setState({
           loading: false,
+          ExternalUrl: [],
+          External: "",
+          massage: "",
+          files: [],
+          
         });
       }
     );
@@ -147,10 +160,10 @@ class DiscusstionPage extends React.Component<
             this.handelUpload(this.state.Discusstion.id);
           }
           this.setState({
+            message: "",
             loading: false,
             ExternalUrl: [],
-            External: "",
-            massage: "",
+            External: "",   
             files: [],
           });
           this.getDiscustionPanel();
@@ -330,6 +343,7 @@ class DiscusstionPage extends React.Component<
                     this.state.massage,
                     "required"
                   )}
+                  value={this.state.massage}
                   fontSize="14px"
                 ></InputComponent>
               </div>

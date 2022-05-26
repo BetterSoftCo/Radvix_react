@@ -1,5 +1,5 @@
 export interface AddUserSubscrtiptionReq {
-  userId: string;
-  subscriptionSettingId: number;
-  billingAddress: string;
+  companyName: string;
+  subscriptionId: number;
+  token:string
 }

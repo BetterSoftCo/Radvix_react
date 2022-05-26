@@ -393,9 +393,15 @@ export class EditMyProfile extends React.Component {
                       />
                       <CircleIcon
                         type={ThemeCircleIcon.dark}
-                        width="44px"
+                        width="30px"
                         height="30px"
                         className="mx-2 pointer"
+                        onClick={() => {
+                          this.setState({
+                            picture: [],
+                            profileImage: "",
+                          });
+                        }}
                       >
                         <img
                           src="/images/icons/garbage_can.svg"

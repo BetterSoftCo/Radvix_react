@@ -11,4 +11,5 @@ export interface RegisterReq {
   addressLine1: string;
   addressLine2: string;
   zipCode: string;
+  CompanyName: string;
 }

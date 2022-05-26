@@ -6,6 +6,7 @@ type UserInfo = {
   lastName: string;
   image: string;
   role: UserRoles;
+  institution:string
 };
 export class LocalDataSources {
   getSetting(): { [key: string]: AppSettingResResult[] } {
@@ -34,6 +35,7 @@ export class LocalDataSources {
       lastName: "",
       image: "",
       role: UserRoles.L1Client,
+      institution:""
     };
   }
   logedin(): boolean {

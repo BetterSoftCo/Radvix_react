@@ -235,7 +235,7 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
           <div className="col-12 modal-content">
             <button
               type="button"
-              className="btn-close d-none"
+              className="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
               id="close_modal"

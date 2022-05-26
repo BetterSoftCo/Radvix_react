@@ -49,6 +49,7 @@ class MemberPageProfile extends React.Component<
     cardExpireDate: "",
     cardCVC: "",
     nameOnCard: "",
+    institution: ""
   };
   componentDidMount() {
     this.controller.getMember(
@@ -112,13 +113,13 @@ class MemberPageProfile extends React.Component<
                 </CircleIcon>
               ) : null}
             </h5>
-            <div className="d-flex justify-content-around align-items-center w-25">
-              <MainButton
+            <div className="d-flex justify-content-end align-items-center w-25">
+              {/* <MainButton
                 children="Contact Lisa"
                 type={MainButtonType.dark}
                 borderRadius="24px"
                 fontSize="14px"
-              ></MainButton>
+              ></MainButton> */}
               <MainButton
                 children="Edit My Profile"
                 type={MainButtonType.dark}
@@ -192,7 +193,7 @@ class MemberPageProfile extends React.Component<
                   </ul>
                 </div>
               </div>
-              <div className="row border-bottom">
+              {/* <div className="row border-bottom">
                 <h6 className="col-5 t-title mb-0 border-b-l">Public Resume</h6>
                 <div className="col-7 t-desc border-b-r">
                   <ul className="file-list">
@@ -220,7 +221,7 @@ class MemberPageProfile extends React.Component<
                     </li>
                   </ul>
                 </div>
-              </div>
+              </div> */}
             </div>
             <div className="col-md-6">
               <div className="teams mb-3">

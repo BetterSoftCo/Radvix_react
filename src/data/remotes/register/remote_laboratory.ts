@@ -22,7 +22,16 @@ export class RemoteRegister {
     action: (res: AddUserSubscrtiptionRes) => any,
     error: (res: any) => any
   ) {
-    return HTTP.post("/Subscription/AddUserSubscription", body)
+    let config = {
+      headers: {
+        authorization: `Bearer ${body.token}`,
+      },
+    };
+    return HTTP.post(
+      `/Payment/BuySubscription?subscriptionId=${body.subscriptionId}&companyName=${body.companyName}`,
+      {},
+      config
+    )
       .then((res) => action(res.data))
       .catch((err) => {
         error(err);

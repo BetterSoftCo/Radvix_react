@@ -263,7 +263,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 }
               ></IconTextVertical>
             </li>
-            <NavLink to="/dashboard/Ticketing" activeClassName="selected">
+            <NavLink to={AppRoutes.ticketing} activeClassName="selected">
               <li>
                 <IconTextVertical
                   fontSize="15px"
