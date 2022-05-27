@@ -1133,6 +1133,7 @@ button.loading {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  overflow: hidden;
   border-radius: 9px;
   background-image: repeating-linear-gradient(-60deg, #adadad, #adadad 0.64px, transparent 1px, transparent 5.48px, #adadad 8px), repeating-linear-gradient(30deg, #adadad, #adadad 0.64px, transparent 1px, transparent 5.48px, #adadad 8px), repeating-linear-gradient(120deg, #adadad, #adadad 0.64px, transparent 1px, transparent 5.48px, #adadad 8px), repeating-linear-gradient(210deg, #adadad, #adadad 0.64px, transparent 1px, transparent 5.48px, #adadad 8px);
   background-size: 2px 100%, 100% 2px, 2px 100%, 100% 2px;
@@ -2953,6 +2954,7 @@ button.loading {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  overflow: hidden;
   border-radius: 9px;
   background-image: repeating-linear-gradient(-60deg, #adadad, #adadad 0.64px, transparent 1px, transparent 5.48px, #adadad 8px), repeating-linear-gradient(30deg, #adadad, #adadad 0.64px, transparent 1px, transparent 5.48px, #adadad 8px), repeating-linear-gradient(120deg, #adadad, #adadad 0.64px, transparent 1px, transparent 5.48px, #adadad 8px), repeating-linear-gradient(210deg, #adadad, #adadad 0.64px, transparent 1px, transparent 5.48px, #adadad 8px);
   background-size: 2px 100%, 100% 2px, 2px 100%, 100% 2px;

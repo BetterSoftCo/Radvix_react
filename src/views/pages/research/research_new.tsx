@@ -189,7 +189,7 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
   }
   render() {
     const files = this.state.files.map((file: any) => (
-      <li key={file.name}>
+      <li key={file.name} className="text-truncate">
         {file.name} - {file.size} bytes
         <CircleIcon
           type={ThemeCircleIcon.dark}

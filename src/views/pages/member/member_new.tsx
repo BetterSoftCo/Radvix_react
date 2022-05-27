@@ -319,6 +319,7 @@ class MemberPageNew extends React.Component<RouteComponentProps> {
                 onClick={() => {
                   this.handelCreateMember();
                 }}
+                loading={this.state.loading}
               ></MainButton>
             </div>
           </div>

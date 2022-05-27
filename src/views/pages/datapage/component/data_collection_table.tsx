@@ -88,7 +88,10 @@ const DataCollectionTable: React.FC<IAcordienTable & RouteComponentProps> = (
 
                   <div className="items d-flex flex-column">
                     {item.appTaskData.map((sub, index) => (
-                      <div className="row w-100 py-1 rounded my-auto" key={index}>
+                      <div
+                        className="row w-100 py-1 rounded my-auto"
+                        key={index}
+                      >
                         <div className="col-2 text-center">
                           <span
                             className="text-truncate d-inline-block"
@@ -100,18 +103,22 @@ const DataCollectionTable: React.FC<IAcordienTable & RouteComponentProps> = (
                         </div>
                         <div className="col-2 text-center d-flex justify-content-center align-items-baseline text-truncate ">
                           <div className="text-truncate">
-                            {sub.medias?.map((media) => (
-                              <div key={media.id}>
-                                <MainButton
-                                  children={media.name}
-                                  type={MainButtonType.dark}
-                                  borderRadius="24px"
-                                  fontSize="14px"
-                                  backgroundColor="#F5F5F5"
-                                  color="#096BFF"
-                                ></MainButton>
-                              </div>
-                            ))}
+                            {sub.medias
+                              ?.filter((item) => {
+                                return item.externalUrl !== null
+                              }).slice(0,1)
+                              .map((media) => (
+                                <div key={media.id}>
+                                  <MainButton
+                                    children={media.name}
+                                    type={MainButtonType.dark}
+                                    borderRadius="24px"
+                                    fontSize="14px"
+                                    backgroundColor="#F5F5F5"
+                                    color="#096BFF"
+                                  ></MainButton>
+                                </div>
+                              ))}
                           </div>
                           {sub.medias?.length ? (
                             <CircleIcon
