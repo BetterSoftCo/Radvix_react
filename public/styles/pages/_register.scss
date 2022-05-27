@@ -32,12 +32,12 @@
       color: #474747;
       background-color: #f4f4f4;
       .month {
-        font-size: 16px;
+        font-size: 17px;
         font-weight: lighter;
         color: #474747ba;
       }
       .billed {
-        font-size: 9px;
+        font-size: 11px;
         font-weight: lighter;
         color: #474747ba;
       }
@@ -49,10 +49,10 @@
       padding: 0.2rem 0.4rem;
       p {
         color: #474747ba;
-        font-size: 10px;
+        font-size: 13px;
         font-weight: lighter;
         text-align: center;
-        height: 50px;
+        height: 73px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -61,6 +61,7 @@
       .items {
         border-top: 1px solid #cbcbcb;
         border-bottom: 1px solid #cbcbcb;
+        padding-top: 0.5rem;
         .item {
           &:first-child {
             margin-top: 0.3rem;
@@ -182,10 +183,10 @@
       }
     }
     .stepper-wrapper {
-      padding-top: 0.3rem;
+      padding-top: 1rem;
       display: flex;
       justify-content: space-between;
-      margin-bottom: 8px;
+      margin-bottom: 1rem;
     }
     .stepper-item {
       position: relative;
@@ -271,7 +272,7 @@
     }
     .step-dynamic-form {
       .item {
-        margin: 0.5rem 0rem;
+        margin: 1rem 0rem;
         font-size: 0.8rem;
         input {
           height: 30px;

@@ -84,26 +84,32 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
       this.controller.createResearch(
         body,
         (res) => {
-          this.handelUpload(res.id);
-          this.setState({
-            files: [],
-            title: "",
-            description: "",
-            startDate: new Date(),
-            endDate: new Date(),
-            currency: 2,
-            priority: 2,
-            teamsId: [],
-            usersId: [],
-            status: 0,
-            listMembers: [],
-          });
-          this.props.history.push(
-            `${AppRoutes.profile_research.replace(
-              ":id",
-              res.id?.toString() ?? ""
-            )}`
-          );
+          if (
+            this.state.files.length > 0 ||
+            this.state.ExternalUrl.length > 0
+          ) {
+            this.handelUpload(res.id);
+          } else {
+            this.setState({
+              files: [],
+              title: "",
+              description: "",
+              startDate: new Date(),
+              endDate: new Date(),
+              currency: 2,
+              priority: 2,
+              teamsId: [],
+              usersId: [],
+              status: 0,
+              listMembers: [],
+            });
+            this.props.history.push(
+              `${AppRoutes.profile_research.replace(
+                ":id",
+                res.id?.toString() ?? ""
+              )}`
+            );
+          }
         },
         (err) => {
           this.setState({
@@ -153,8 +159,24 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
       formData,
       (res) => {
         this.setState({
-          loading: false,
+          files: [],
+          title: "",
+          description: "",
+          startDate: new Date(),
+          endDate: new Date(),
+          currency: 2,
+          priority: 2,
+          teamsId: [],
+          usersId: [],
+          status: 0,
+          listMembers: [],
         });
+        this.props.history.push(
+          `${AppRoutes.profile_research.replace(
+            ":id",
+            id?.toString() ?? ""
+          )}`
+        );
       },
       () => {
         this.setState({
@@ -387,7 +409,6 @@ class ResearchPageNew extends React.Component<RouteComponentProps> {
                         <p>Or drag and drop files here</p>
                       </div>
                       <aside>
-
                         <ul>{files} </ul>
                       </aside>
                     </section>

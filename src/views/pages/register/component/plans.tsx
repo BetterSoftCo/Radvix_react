@@ -37,7 +37,7 @@ const Plans: React.FC<Iprops & RouteComponentProps> = (props) => {
         <h4>
           Please pick the plan which fits your research projects and team size:
         </h4>
-        <span>Annual (Save $)</span>
+        <span className="ms-3">Annual (Save $)</span>
         <div className="form-check form-switch mx-2">
           <input
             className="form-check-input"
@@ -45,7 +45,7 @@ const Plans: React.FC<Iprops & RouteComponentProps> = (props) => {
             id="flexSwitchCheckDefault"
           />
           <label className="form-check-label" htmlFor="flexSwitchCheckDefault">
-            Default switch checkbox input
+            Monthly
           </label>
         </div>
       </div>

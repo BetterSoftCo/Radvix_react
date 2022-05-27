@@ -107,9 +107,17 @@ class MemberPageProfile extends React.Component<
                   backgroundColor="#474747"
                   fontSize="10px"
                   color="#ffff"
-                  className="mx-4"
+                  className="mx-4 pointer"
+                  onClick={() => {
+                    this.props.history.push(
+                      `${AppRoutes.member_user_edit.replace(
+                        ":id",
+                        this.props.match.params.id
+                      )}`
+                    );
+                  }}
                 >
-                  <i className="fas fa-history"></i>
+                 <img src="/images/icons/edit.svg" alt="radvix" />
                 </CircleIcon>
               ) : null}
             </h5>

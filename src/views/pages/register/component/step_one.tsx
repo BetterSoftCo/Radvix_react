@@ -13,6 +13,8 @@ import { SelectComponent } from "../../../components/select_input";
 import { RegisterContext } from "../register";
 import countries from "../../../../core/json/countries.json";
 import { CircleIcon, ThemeCircleIcon } from "../../../components/circle_icon";
+import { ValidPassword } from "../../../components/valid_password";
+import { toast } from "react-toastify";
 interface PropsPlanOne {
   SetPaymentCallBack: (pay: any) => void;
 }
@@ -32,6 +34,11 @@ const PlanOne: React.FC<PropsPlanOne & RouteComponentProps> = (props) => {
     Array<{ label: string; value: number } | {}>
   >([]);
   const [, forceUpdate] = useState(0);
+  const [userInfo, setuserInfo] = useState({
+    password: "",
+  });
+
+  const [isError, setError] = useState("");
   const Validator = useRef(
     new SimpleReactValidator({
       className: "text-danger",
@@ -42,12 +49,15 @@ const PlanOne: React.FC<PropsPlanOne & RouteComponentProps> = (props) => {
     if (!formValid) {
       Validator.current.showMessages();
       forceUpdate(1);
+      
+    }else if (isStrength !== 'Strong'){
+      toast.warning('Password is not strong')
     } else {
       props.SetPaymentCallBack({
         firstName,
         lastName,
         email,
-        password,
+        password:userInfo.password,
         confirmPassword,
         institution,
         addressLine1,
@@ -64,7 +74,43 @@ const PlanOne: React.FC<PropsPlanOne & RouteComponentProps> = (props) => {
     });
     setlistCountry(countriesMap);
   }, []);
-
+  const handleChangePassword = (e: string) => {
+    let password = e;
+    setuserInfo({
+      ...userInfo,
+      password: e,
+    });
+    setError("");
+    let capsCount, smallCount, numberCount, symbolCount;
+    if (password.length < 4) {
+      setError(
+        "Password must be minimum 4 characters include one UPPERCASE, lowercase, number and special character: @$! % * ? &"
+      );
+      return;
+    } else {
+      capsCount = (password.match(/[A-Z]/g) || []).length;
+      smallCount = (password.match(/[a-z]/g) || []).length;
+      numberCount = (password.match(/[0-9]/g) || []).length;
+      symbolCount = (password.match(/\W/g) || []).length;
+      if (capsCount < 1) {
+        setError("Must contain one UPPERCASE letter");
+        return;
+      } else if (smallCount < 1) {
+        setError("Must contain one lowercase letter");
+        return;
+      } else if (numberCount < 1) {
+        setError("Must contain one number");
+        return;
+      } else if (symbolCount < 1) {
+        setError("Must contain one special character: @$! % * ? &");
+        return;
+      }
+    }
+  };
+  const [isStrength, setStrength] = useState("");
+  const dataHandler = async (childData: any) => {
+    setStrength(childData);
+  };
   return (
     <Fragment>
       <div className="form-register">
@@ -74,7 +120,7 @@ const PlanOne: React.FC<PropsPlanOne & RouteComponentProps> = (props) => {
             alt="radvix"
             className="mx-3"
             onClick={() => {
-              nextStep(0)
+              nextStep(0);
             }}
           />{" "}
           Radvix Essential
@@ -107,7 +153,7 @@ const PlanOne: React.FC<PropsPlanOne & RouteComponentProps> = (props) => {
                   <InputComponent
                     type={InputType.text}
                     label="First Name:"
-                    popQuestion="First Name:"
+                    popQuestion="please type in your first name . this will be shown on your profile"
                     onChange={(e) => {
                       setfirstName(e.target.value);
                     }}
@@ -122,7 +168,7 @@ const PlanOne: React.FC<PropsPlanOne & RouteComponentProps> = (props) => {
                   <InputComponent
                     type={InputType.text}
                     label="Last Name:"
-                    popQuestion="Last Name:"
+                    popQuestion="please type in your Last name . this will be shown on your profile"
                     onChange={(e) => {
                       setlastName(e.target.value);
                     }}
@@ -137,7 +183,7 @@ const PlanOne: React.FC<PropsPlanOne & RouteComponentProps> = (props) => {
                   <InputComponent
                     type={InputType.text}
                     label="Email:"
-                    popQuestion="Email:"
+                    popQuestion="this is the email used to login to Radvix and also reciving email notification . if you change this email . you will recivie an activation email ."
                     onChange={(e) => {
                       setemail(e.target.value);
                     }}
@@ -149,33 +195,34 @@ const PlanOne: React.FC<PropsPlanOne & RouteComponentProps> = (props) => {
                   ></InputComponent>
                 </div>
                 <div className="item">
+                  
                   <InputComponent
                     type={InputType.text}
                     label="Password:"
-                    popQuestion="Password:"
                     onChange={(e) => {
-                      setpassword(e.target.value);
+                      handleChangePassword(e.target.value);
                     }}
-                    inValid={Validator.current.message(
-                      "Password",
-                      password,
-                      "required"
-                    )}
-                    isPassword={true}
+                    value={userInfo.password}
                   ></InputComponent>
+                  <ValidPassword
+                    password={userInfo.password}
+                    actions={dataHandler}
+                  />
+                  <label htmlFor="password text-danger">
+                    {isError !== null && <p className="errors text-danger"> - {isError}</p>}
+                  </label>
                 </div>
                 <div className="item">
                   <InputComponent
                     type={InputType.text}
                     label="Confirm Password:"
-                    popQuestion="Confirm Password:"
                     onChange={(e) => {
                       setconfirmPassword(e.target.value);
                     }}
                     inValid={Validator.current.message(
                       "Password",
                       confirmPassword,
-                      `required|in:${password}`
+                      `required|in:${userInfo.password}`
                     )}
                     isPassword={true}
                   ></InputComponent>

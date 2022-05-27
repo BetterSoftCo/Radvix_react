@@ -12,7 +12,7 @@ import { UpdateMyProfileReq } from "../../../data/models/requests/user/update_my
 import { UserController } from "../../../controllers/user/user_controller";
 export const RegisterContext = React.createContext((stpe: number) => {});
 const RegisterPage: React.FC<RouteComponentProps> = (props) => {
-  const [state, setStete] = useState(0);
+  const [state, setStete] = useState(1);
   const [loading, setloading] = useState(false);
   const [SubscriptionID, setSubscriptionID] = useState(0);
   const controller: RegisterController = new RegisterController();
