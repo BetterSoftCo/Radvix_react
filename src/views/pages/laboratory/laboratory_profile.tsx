@@ -7,7 +7,7 @@ import { IconTextRow } from "../../components/icon_text_horizontal";
 import { AccessPermition, Theme, UserRoles } from "../../../core/utils";
 import { BoxListScroll } from "../../components/box_list_scroll";
 import { withRouter, RouteComponentProps } from "react-router";
-import { AppRoutes } from "../../../core/constants";
+import { AppConstants, AppRoutes } from "../../../core/constants";
 import { LaboratoryController } from "../../../controllers/laboratory/laboratory_controller";
 import { GetLaboratoryByIDResult } from "../../../data/models/responses/laboratory/laboratory_by_id_res";
 interface RouteParams {
@@ -169,19 +169,24 @@ class LaboratoryPageProfile extends React.Component<
                   {" "}
                   <ul className="file-list">
                     {this.state.media
-                      .filter((item) => !item.externalUrl)
+                      .filter((item) => item.externalUrl === null)
                       .map((item) => (
-                        <li>
+                        <li key={item.id}>
                           <img
                             src={`/images/icons/${item.inputDataType.isMedia()}`}
                             alt=""
                             width={20}
                             height={20}
                           />{" "}
-                          {item.name}
+                          <a
+                            href={AppConstants.base_url_image + item.name}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {item.title}
+                          </a>
                         </li>
                       ))}
-
                     <li>
                       Shared Links:
                       {this.state.media
@@ -195,6 +200,8 @@ class LaboratoryPageProfile extends React.Component<
                               fontSize="14px"
                               backgroundColor="#F5F5F5"
                               color="#096BFF"
+                              className="col-8 text-truncate"
+                              title={item.externalUrl}
                             ></MainButton>
                           </div>
                         ))}

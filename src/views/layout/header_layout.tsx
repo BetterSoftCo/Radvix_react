@@ -22,10 +22,16 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
   const [PageSize, setPageSize] = useState<number>(10);
   const [PageCount, setPageCount] = useState<number>(0);
   const [TotalCount, setTotalCount] = useState<number>(0);
+  const [showNotif , setShowNotif] = useState(false)
   const [ProgressTimeline, setProgressTimeline] = useState<number>(0);
   const [ResearchName, setResearchName] = useState<string>(
     "Choose your research"
   );
+  const notif = localStorage.getItem('newResearch')
+  if(notif){
+    console.log(JSON.parse(notif));
+  }
+  
   const controller = new ResearchController();
   const local = new LocalDataSources();
   const RoleUser = store.getState().userRole;
@@ -141,7 +147,8 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
                             src="/images/icons/arrow_btn_header.svg"
                             alt=""
                           />
-                          <span className="notif mx-2"></span>
+                          {showNotif ? <span className="notif mx-2"></span> : null}
+                          
                         </div>
                       </button>
                     </div>

@@ -12,7 +12,7 @@ import { UpdateMyProfileReq } from "../../../data/models/requests/user/update_my
 import { UserController } from "../../../controllers/user/user_controller";
 export const RegisterContext = React.createContext((stpe: number) => {});
 const RegisterPage: React.FC<RouteComponentProps> = (props) => {
-  const [state, setStete] = useState(1);
+  const [state, setStete] = useState(0);
   const [loading, setloading] = useState(false);
   const [SubscriptionID, setSubscriptionID] = useState(0);
   const controller: RegisterController = new RegisterController();
@@ -137,24 +137,19 @@ const RegisterPage: React.FC<RouteComponentProps> = (props) => {
   return (
     <div className="register">
       <RegisterContext.Provider value={nextStep}>
-        {state === 0 ? (
           <Plans
+            step={state}  
             setSubscriptionID={(subId) => {
               setSubscriptionID(subId);
             }}
           />
-        ) : state === 1 ? (
-          <PlanOne SetPaymentCallBack={SetPayment} />
-        ) : state === 2 ? (
-          <PlanTwo SetPaymentCallBack={setCartInfo} />
-        ) : state === 3 ? (
+          <PlanOne SetPaymentCallBack={SetPayment} step={state} />
+          <PlanTwo SetPaymentCallBack={setCartInfo} step={state}  />
           <PlanThree
             handelRegisterCallBack={handelRegister}
             loading={loading}
+            step={state} 
           />
-        ) : (
-          ""
-        )}
       </RegisterContext.Provider>
     </div>
   );

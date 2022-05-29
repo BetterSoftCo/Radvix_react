@@ -76,6 +76,7 @@ class DashboardPage extends React.Component<RouteComponentProps> {
       countTaskPending: 0,
       countUsers: 0,
       daysLeftDeadline: 0,
+      newResearch:false,
     },
   };
   componentDidMount() {
@@ -135,8 +136,10 @@ class DashboardPage extends React.Component<RouteComponentProps> {
             countTaskPending: res.countTaskPending,
             countUsers: res.countUsers,
             daysLeftDeadline: res.daysLeftDeadline,
+            newResearch:res.newResearch
           },
         });
+        localStorage.setItem('newResearch' , res.newResearch.toString())
       },
       () => {}
     );
@@ -214,6 +217,7 @@ class DashboardPage extends React.Component<RouteComponentProps> {
               countTaskPending={this.state.report.countTaskPending}
               countUsers={this.state.report.countUsers}
               daysLeftDeadline={this.state.report.daysLeftDeadline}
+              newResearch={this.state.report.newResearch}
             ></HeadDashboardPage>
           </div>
           <div className="col-12">

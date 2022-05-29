@@ -102,24 +102,20 @@ class DiscusstionPage extends React.Component<
 
     await this.UploadController.UloadMedia(
       formData,
-      (res) => {
+      (res) => {           
         this.setState({
-          loading: false,
-          ExternalUrl: [],
-          External: "",
-          massage: "",
-          files: [],
-        });
+          massage:'',
+          files:[],
+          loading:false,
+        })
+        this.getDiscustionPanel();
       },
       () => {
         this.setState({
-          loading: false,
-          ExternalUrl: [],
-          External: "",
-          massage: "",
-          files: [],
-          
-        });
+          massage:'',
+          files:[],
+          loading:false,
+        })
       }
     );
   }
@@ -156,26 +152,26 @@ class DiscusstionPage extends React.Component<
       this.controller.createMassage(
         body,
         (res) => {
+          
           if (this.state.files.length) {
             this.handelUpload(this.state.Discusstion.id);
+          }else{
+            this.setState({
+              massage:'',
+              files:[],
+              loading:false,
+            })
+            this.getDiscustionPanel();
           }
-          this.setState({
-            message: "",
-            loading: false,
-            ExternalUrl: [],
-            External: "",   
-            files: [],
-          });
-          this.getDiscustionPanel();
+         
         },
         (err) => {
           this.setState({
-            loading: false,
-            ExternalUrl: [],
-            External: "",
-            massage: "",
-            files: [],
-          });
+            massage:'',
+            files:[],
+            loading:false,
+          })
+          this.getDiscustionPanel();
         }
       );
     } else {

@@ -10,6 +10,7 @@ import { RegisterContext } from "../register";
 // }
 interface PropsPlanOne {
   SetPaymentCallBack: (pay: any) => void;
+  step:number
 }
 const PlanTwo: React.FC<PropsPlanOne & RouteComponentProps> = (props) => {
   const [, forceUpdate] = useState(0);
@@ -45,7 +46,7 @@ const PlanTwo: React.FC<PropsPlanOne & RouteComponentProps> = (props) => {
   const nextStep = useContext(RegisterContext);
   return (
     <Fragment>
-      <div className="form-register">
+      <div  className={props.step === 2 ? 'form-register' : 'd-none'}>
         <div className="header-form">
           <img
             src="/images/icons/toggle_icon_register.svg"
@@ -90,7 +91,7 @@ const PlanTwo: React.FC<PropsPlanOne & RouteComponentProps> = (props) => {
                     inValid={Validator.current.message(
                       "Billing Email",
                       billingEmail,
-                      "required"
+                      "required|email"
                     )}
                   ></InputComponent>
                 </div>

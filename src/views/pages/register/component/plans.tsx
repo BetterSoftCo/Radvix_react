@@ -7,6 +7,7 @@ import { CircleIcon, ThemeCircleIcon } from "../../../components/circle_icon";
 import { RegisterContext } from "../register";
 interface Iprops {
   setSubscriptionID: (subId: number) => void;
+  step:number
 }
 const Plans: React.FC<Iprops & RouteComponentProps> = (props) => {
   const controller = new RegisterController();
@@ -33,7 +34,8 @@ const Plans: React.FC<Iprops & RouteComponentProps> = (props) => {
   const nextStep = useContext(RegisterContext);
   return (
     <Fragment>
-      <div className="Annual">
+      <div className={props.step === 0 ? '' : 'd-none'}>
+      <div>
         <h4>
           Please pick the plan which fits your research projects and team size:
         </h4>
@@ -1215,6 +1217,7 @@ const Plans: React.FC<Iprops & RouteComponentProps> = (props) => {
           </div>
         </div>
       ) : null}
+      </div>
     </Fragment>
   );
 };

@@ -17,6 +17,7 @@ import { ValidPassword } from "../../../components/valid_password";
 import { toast } from "react-toastify";
 interface PropsPlanOne {
   SetPaymentCallBack: (pay: any) => void;
+  step:number
 }
 const PlanOne: React.FC<PropsPlanOne & RouteComponentProps> = (props) => {
   const nextStep = useContext(RegisterContext);
@@ -113,7 +114,7 @@ const PlanOne: React.FC<PropsPlanOne & RouteComponentProps> = (props) => {
   };
   return (
     <Fragment>
-      <div className="form-register">
+      <div className={props.step === 1 ? 'form-register' : 'd-none'} >
         <div className="header-form">
           <img
             src="/images/icons/toggle_icon_register.svg"
@@ -281,11 +282,6 @@ const PlanOne: React.FC<PropsPlanOne & RouteComponentProps> = (props) => {
                     onChange={(e) => {
                       setaddressLine2(e.target.value);
                     }}
-                    inValid={Validator.current.message(
-                      "Address Line 2",
-                      addressLine2,
-                      "required"
-                    )}
                   ></InputComponent>
                 </div>
                 <div className="row">
