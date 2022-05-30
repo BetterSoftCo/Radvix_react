@@ -49,7 +49,8 @@ class MemberPageProfile extends React.Component<
     cardExpireDate: "",
     cardCVC: "",
     nameOnCard: "",
-    institution: ""
+    institution: "",
+    companyName: ""
   };
   componentDidMount() {
     this.controller.getMember(

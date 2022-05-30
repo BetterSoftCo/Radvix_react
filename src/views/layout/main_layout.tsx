@@ -40,7 +40,7 @@ class MainLayout extends React.Component<IMainLayout & RouteComponentProps> {
             email: res.userEmail,
             image: res.profileImage,
             role: res.role,
-            institution:res.institution
+            institution:res.companyName
           };
           localStorage.setItem("userInfo", JSON.stringify(UserInfo) ?? "");
           this.setState({

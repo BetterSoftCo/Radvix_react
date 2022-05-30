@@ -277,6 +277,11 @@ class ExpensePageEdit extends React.Component<RouteComponentProps<RouteParams>> 
                   onChange={(e) => {
                     this.handelChangeSelect("appTaskId", e);
                   }}
+                  inValid={this.validator.message(
+                    "",
+                    this.state.appTaskId,
+                    "required"
+                  )}
                 ></SelectComponent>
               </div>
               <div className="item">

@@ -259,6 +259,11 @@ class MemberPageNew extends React.Component<RouteComponentProps> {
                   onChange={(e) => {
                     this.handelChangeSelect("teamsId", e);
                   }}
+                  inValid={this.validator.message(
+                    "Member To Teams",
+                    this.state.teamsId,
+                    "required"
+                  )}
                   isMulti
                 ></SelectComponent>
               </div>

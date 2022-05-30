@@ -278,10 +278,14 @@ class TeamPageNew extends React.Component<RouteComponentProps> {
                       ? "Add Members To This Team:"
                       : "Add Members To This subteam::"
                   }
-                  optional=""
                   onChange={(e) => {
                     this.handelChangeSelect("usersId", e);
                   }}
+                  inValid={this.validator.message(
+                    "Members To This Team",
+                    this.state.usersId,
+                    "required"
+                  )}
                   isMulti
                 ></SelectComponent>
               </div>

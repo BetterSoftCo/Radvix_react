@@ -15,27 +15,26 @@ import { InputIcon } from "../components/search_box";
 import ReactPaginate from "react-paginate";
 import { CircleIcon, ThemeCircleIcon } from "../components/circle_icon";
 import { SetResearchId } from "../../data/store/actions/research_action";
-interface IHeader { }
+interface IHeader {}
 const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
   const [listResearch, setListResearch] = useState<Array<any>>([]);
   const [PageNumber, setPageNumber] = useState<number>(1);
   const [PageSize, setPageSize] = useState<number>(10);
   const [PageCount, setPageCount] = useState<number>(0);
   const [TotalCount, setTotalCount] = useState<number>(0);
-  const [showNotif , setShowNotif] = useState(false)
+  const [showNotif, setShowNotif] = useState(false);
   const [ProgressTimeline, setProgressTimeline] = useState<number>(0);
   const [ResearchName, setResearchName] = useState<string>(
     "Choose your research"
   );
-  const notif = localStorage.getItem('newResearch')
-  if(notif){
-    console.log(JSON.parse(notif));
-  }
-  
   const controller = new ResearchController();
   const local = new LocalDataSources();
   const RoleUser = store.getState().userRole;
   useEffect(() => {
+    const notif = localStorage.getItem("newResearch");
+      if (notif) {
+        setShowNotif(JSON.parse(notif));
+      }
     GetResearch(PageNumber, PageSize);
     if (store.getState().ResearchId >= 0) {
       timelineProgress();
@@ -89,7 +88,7 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
         const peresent = (completed * 100) % all;
         setProgressTimeline(peresent);
       },
-      (err) => { }
+      (err) => {}
     );
   };
   return (
@@ -147,8 +146,9 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
                             src="/images/icons/arrow_btn_header.svg"
                             alt=""
                           />
-                          {showNotif ? <span className="notif mx-2"></span> : null}
-                          
+                          {showNotif ? (
+                            <span className="notif mx-2"></span>
+                          ) : null}
                         </div>
                       </button>
                     </div>
@@ -184,7 +184,7 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
                       local.getUserId() && local.getUserInfo().image
                         ? local.getUserInfo().image.length
                           ? AppConstants.base_url_image +
-                          local.getUserInfo().image
+                            local.getUserInfo().image
                           : "/Images/images/img_avatar.png"
                         : "/Images/images/img_avatar.png"
                     }
@@ -285,7 +285,10 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
                   { name: "Research Name", center: false },
                   { name: "Status", center: true },
                 ]}
-                changeResearch={(e) => { changeResearch(e); document.getElementById("close_modal")?.click(); }}
+                changeResearch={(e) => {
+                  changeResearch(e);
+                  document.getElementById("close_modal")?.click();
+                }}
                 role={RoleUser}
               ></AcordienTableResearchHeader>
 

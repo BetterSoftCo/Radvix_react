@@ -32,6 +32,7 @@ export interface GetMemberByIDResResult {
   cardExpireDate: string;
   cardCVC: string;
   nameOnCard: string;
+  companyName:string
 }
 
 export interface Equipment {

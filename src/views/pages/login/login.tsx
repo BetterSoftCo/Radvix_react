@@ -42,7 +42,7 @@ const LoginPage: React.FC<RouteComponentProps> = (props) => {
               props.history.replace(AppRoutes.admin_dashboard);
               window.location.replace(AppRoutes.admin_dashboard);
             } else {
-              props.history.replace(AppRoutes.dashboard);
+              props.history.replace(AppRoutes.dashboard)
               window.location.replace(AppRoutes.dashboard);
             }
           }

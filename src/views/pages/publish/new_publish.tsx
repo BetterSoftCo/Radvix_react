@@ -152,6 +152,11 @@ class PublishPageNew extends React.Component<RouteComponentProps> {
                   onChange={(e) => {
                     this.handelChangeSelect("categoryId", e);
                   }}
+                  inValid={this.validator.message(
+                    "Category",
+                    this.state.categoryId,
+                    "required"
+                  )}
                 ></SelectComponent>
               </div>
               <div className="item">
@@ -269,6 +274,11 @@ class PublishPageNew extends React.Component<RouteComponentProps> {
                   onChange={(e) => {
                     this.handelChangeSelect("draftUploader", e);
                   }}
+                  inValid={this.validator.message(
+                    "",
+                    this.state.draftUploader,
+                    "required"
+                  )}
                   isMulti={false}
                 ></SelectComponent>
               </div>

@@ -316,6 +316,11 @@ class MemberPageUseEdit extends React.Component<
                   onChange={(e) => {
                     this.handelChangeSelect("addedTeamsId", e);
                   }}
+                  inValid={this.validator.message(
+                    "Member To Teams",
+                    this.state.addedTeamsId,
+                    "required"
+                  )}
                   isMulti
                 ></SelectComponent>
               </div>
