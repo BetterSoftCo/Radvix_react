@@ -101,7 +101,9 @@ class ExpensePageEdit extends React.Component<RouteComponentProps<RouteParams>> 
   }
   addExternalUrl() {
     let Url = [...this.state.ExternalUrl]
-    Url.push(this.state.External)
+    if (this.state.External.length > 2) {
+      Url.push(this.state.External);
+    }
     this.setState({
       ExternalUrl: Url,
       External: ''
@@ -275,6 +277,11 @@ class ExpensePageEdit extends React.Component<RouteComponentProps<RouteParams>> 
                   onChange={(e) => {
                     this.handelChangeSelect("appTaskId", e);
                   }}
+                  inValid={this.validator.message(
+                    "",
+                    this.state.appTaskId,
+                    "required"
+                  )}
                 ></SelectComponent>
               </div>
               <div className="item">

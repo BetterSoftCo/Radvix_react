@@ -16,29 +16,39 @@ import { DataList } from "../../../data/models/responses/data/get_all_data_res";
 import { DataController } from "../../../controllers/data/data_controller";
 import { LocalDataSources } from "../../../data/local_datasources";
 import { MemberController } from "../../../controllers/member/member_controller";
+import { RouteComponentProps, withRouter } from "react-router";
+import { AppRoutes } from "../../../core/constants";
+import { UserController } from "../../../controllers/user/user_controller";
+import { DashboardReportsResult } from "../../../data/models/responses/admin/dashboard_report_res";
+import { DashboardMyReportResult } from "../../../data/models/responses/user/dashboard_report";
 type StateType = {
   Researches: ResearchesList[];
   ResearchesPageNumber: number;
   ResearchesPageSize: number;
   ResearchesPageCount: number;
   ResearchesTotalCount: number;
+  ResearchesSearch: string;
   Tasks: AppTask[];
   TasksPageNumber: number;
   TasksPageSize: number;
   TasksPageCount: number;
   TasksTotalCount: number;
+  TasksSearch: string;
   Datas: DataList[];
   DatasPageNumber: number;
   DatasPageSize: number;
   DatasPageCount: number;
   DatasTotalCount: number;
+  DatasSearch: string;
+  report: DashboardMyReportResult;
 };
-export class DashboardPage extends React.Component {
+class DashboardPage extends React.Component<RouteComponentProps> {
   handlePageClick = (data: any) => {};
   RoleUser = store.getState().userRole;
   private researchController = new ResearchController();
   private taskcontroller = new TaskController();
   private Datacontroller = new DataController();
+  private userController = new UserController();
   private memberController: MemberController = new MemberController();
   local = new LocalDataSources();
   state: StateType = {
@@ -57,8 +67,23 @@ export class DashboardPage extends React.Component {
     DatasPageSize: 10,
     DatasPageCount: 0,
     DatasTotalCount: 0,
+    ResearchesSearch: "",
+    TasksSearch: "",
+    DatasSearch: "",
+    report: {
+      countEquipment: 0,
+      countTaskCompleted: 0,
+      countTaskPending: 0,
+      countUsers: 0,
+      daysLeftDeadline: 0,
+      newResearch:false,
+    },
   };
   componentDidMount() {
+    if (!this.local.logedin()) {
+      this.props.history.push(AppRoutes.login);
+    }
+    this.GetDashboardReport();
     if (store.getState().ResearchId >= 0) {
       this.GetResearch(
         this.state.ResearchesPageNumber,
@@ -81,7 +106,11 @@ export class DashboardPage extends React.Component {
   GetResearch(PageNumber: number, PageSize: number) {
     if (this.local.logedin()) {
       this.researchController.getResearches(
-        { PageNumber: PageNumber, PageSize: PageSize },
+        {
+          PageNumber: PageNumber,
+          PageSize: PageSize,
+          SearchParameter: this.state.ResearchesSearch,
+        },
         (res) => {
           this.setState({
             Researches: res.researchesList,
@@ -97,9 +126,27 @@ export class DashboardPage extends React.Component {
       );
     }
   }
+  GetDashboardReport() {
+    this.userController.dashboardReport(
+      (res) => {
+        this.setState({
+          report: {
+            countEquipment: res.countEquipment,
+            countTaskCompleted: res.countTaskCompleted,
+            countTaskPending: res.countTaskPending,
+            countUsers: res.countUsers,
+            daysLeftDeadline: res.daysLeftDeadline,
+            newResearch:res.newResearch
+          },
+        });
+        localStorage.setItem('newResearch' , res.newResearch.toString())
+      },
+      () => {}
+    );
+  }
   GetTasks(PageNumber: number, PageSize: number) {
     this.taskcontroller.getTasks(
-      { PageNumber, PageSize },
+      { PageNumber, PageSize, SearchParameter: this.state.TasksSearch },
       (res) => {
         this.setState({
           Tasks: res.appTasks,
@@ -112,7 +159,7 @@ export class DashboardPage extends React.Component {
   }
   GetDatas(PageNumber: number, PageSize: number) {
     this.Datacontroller.getAllData(
-      { PageNumber, PageSize },
+      { PageNumber, PageSize, SearchParameter: this.state.DatasSearch },
       (res) => {
         this.setState({
           Datas: res.dataLists,
@@ -164,7 +211,14 @@ export class DashboardPage extends React.Component {
       <div className="container-fluid dashbord">
         <div className="row">
           <div className="col-12">
-            <HeadDashboardPage></HeadDashboardPage>
+            <HeadDashboardPage
+              countEquipment={this.state.report.countEquipment}
+              countTaskCompleted={this.state.report.countTaskCompleted}
+              countTaskPending={this.state.report.countTaskPending}
+              countUsers={this.state.report.countUsers}
+              daysLeftDeadline={this.state.report.daysLeftDeadline}
+              newResearch={this.state.report.newResearch}
+            ></HeadDashboardPage>
           </div>
           <div className="col-12">
             <div className="TableBox">
@@ -176,6 +230,15 @@ export class DashboardPage extends React.Component {
                     width="100%"
                     placeholder="Search..."
                     TopPosition="15%"
+                    onChange={(e) => {
+                      this.setState({
+                        ResearchesSearch: e.target.value,
+                      });
+                      this.GetResearch(
+                        this.state.ResearchesPageNumber,
+                        this.state.ResearchesPageSize
+                      );
+                    }}
                   ></InputIcon>
                 </div>
                 <div className="right w-50 d-flex justify-content-end align-items-center">
@@ -253,6 +316,15 @@ export class DashboardPage extends React.Component {
                     chilren={<img src="/images/icons/search_box_icon.svg" />}
                     width="100%"
                     placeholder="Search..."
+                    onChange={(e) => {
+                      this.setState({
+                        TasksSearch: e.target.value,
+                      });
+                      this.GetTasks(
+                        this.state.TasksPageNumber,
+                        this.state.TasksPageSize
+                      );
+                    }}
                     TopPosition="15%"
                   ></InputIcon>
                 </div>
@@ -332,6 +404,15 @@ export class DashboardPage extends React.Component {
                     width="100%"
                     placeholder="Search..."
                     TopPosition="15%"
+                    onChange={(e) => {
+                      this.setState({
+                        DatasSearch: e.target.value,
+                      });
+                      this.GetDatas(
+                        this.state.DatasPageNumber,
+                        this.state.DatasPageSize
+                      );
+                    }}
                   ></InputIcon>
                 </div>
                 <div className="right w-50 d-flex justify-content-end align-items-center">
@@ -407,7 +488,7 @@ export class DashboardPage extends React.Component {
   }
 }
 
-const HeadDashboardPage: React.FC = () => {
+const HeadDashboardPage: React.FC<DashboardMyReportResult> = (props) => {
   return (
     <div className="overviwe d-flex flex-wrap flex-lg-nowrap justify-content-between align-items-center">
       <div className="overviwe-item">
@@ -418,7 +499,7 @@ const HeadDashboardPage: React.FC = () => {
             className="avatar"
           />
           <div className="d-flex flex-column align-items-center">
-            <h1 className="display-6 fw-bold mb-0">12</h1>
+            <h1 className="display-6 fw-bold mb-0">{props.countUsers}</h1>
             <span className="text-center">
               Users <br /> Involved
             </span>
@@ -433,7 +514,7 @@ const HeadDashboardPage: React.FC = () => {
             className="avatar"
           />
           <div className="d-flex flex-column align-items-center">
-            <h1 className="display-6  fw-bold mb-0">8</h1>
+            <h1 className="display-6  fw-bold mb-0">{props.countEquipment}</h1>
             <span className="text-center">
               Equipment <br /> Available
             </span>
@@ -448,7 +529,9 @@ const HeadDashboardPage: React.FC = () => {
             className="avatar"
           />
           <div className="d-flex flex-column align-items-center">
-            <h1 className="display-6  fw-bold mb-0">18</h1>
+            <h1 className="display-6  fw-bold mb-0">
+              {props.countTaskCompleted}
+            </h1>
             <span className="text-center">
               Tasks <br /> Completed
             </span>
@@ -463,7 +546,9 @@ const HeadDashboardPage: React.FC = () => {
             className="avatar"
           />
           <div className="d-flex flex-column align-items-center">
-            <h1 className="display-6  fw-bold mb-0">45</h1>
+            <h1 className="display-6  fw-bold mb-0">
+              {props.countTaskPending}
+            </h1>
             <span className="text-center">
               Tasks <br /> Pending
             </span>
@@ -478,7 +563,9 @@ const HeadDashboardPage: React.FC = () => {
             className="avatar"
           />
           <div className="d-flex flex-column align-items-center">
-            <h1 className="display-6  fw-bold mb-0">87</h1>
+            <h1 className="display-6  fw-bold mb-0">
+              {props.daysLeftDeadline}
+            </h1>
             <span className="text-center">
               Days Left <br /> To Deadline
             </span>
@@ -488,3 +575,4 @@ const HeadDashboardPage: React.FC = () => {
     </div>
   );
 };
+export default withRouter(DashboardPage);

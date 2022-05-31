@@ -39,6 +39,12 @@ type StateType = {
   listDegree: Array<{ value: number; label: string }>;
   socialMediaProfiles: Array<{ value: number; label: string }>;
   listCountry: Array<{ label: string; value: number } | {}>;
+  billingEmail: string;
+  billingAddress: string;
+  cardInfomation: string;
+  cardExpireDate: string;
+  cardCVC: string;
+  nameOnCard: string;
 };
 export class EditMyProfile extends React.Component {
   RoleUser = store.getState().userRole;
@@ -71,6 +77,12 @@ export class EditMyProfile extends React.Component {
     cahngePic: false,
     socialMediaProfiles: [],
     listCountry: [],
+    billingEmail: "",
+    billingAddress: "",
+    cardInfomation: "",
+    cardExpireDate: "",
+    cardCVC: "",
+    nameOnCard: "",
   };
   onDrop = (files: any) => {
     this.setState({ files });
@@ -84,6 +96,7 @@ export class EditMyProfile extends React.Component {
     this.controllerMember.getMember(
       {
         userId: this.local.getUserId(),
+        token: localStorage.getItem("token") ?? "",
       },
       (res) => {
         this.setState({
@@ -99,6 +112,12 @@ export class EditMyProfile extends React.Component {
           addressLine2: res.addressLine2,
           zipCode: res.zipCode,
           role: this.RoleUser,
+          billingEmail: res.billingEmail,
+          billingAddress: res.billingAddress,
+          cardInfomation: res.cardInfomation,
+          cardExpireDate: res.cardExpireDate,
+          cardCVC: res.cardCVC,
+          nameOnCard: res.nameOnCard,
           profileImage: res.profileImage,
           socialMediaProfiles: res.socialMediaProfiles.map((item, index) => {
             return { label: item, value: index };
@@ -126,7 +145,9 @@ export class EditMyProfile extends React.Component {
   }
   addExternalUrl() {
     let Url = [...this.state.ExternalUrl];
-    Url.push(this.state.External);
+    if (this.state.External.length > 2) {
+      Url.push(this.state.External);
+    }
     this.setState({
       ExternalUrl: Url,
       External: "",
@@ -166,6 +187,12 @@ export class EditMyProfile extends React.Component {
       zipCode: this.state.zipCode,
       token: localStorage.getItem("token")!,
       role: this.state.role,
+      billingEmail: this.state.billingEmail,
+      billingAddress: this.state.billingAddress,
+      cardInfomation: this.state.cardInfomation,
+      cardExpireDate: this.state.cardExpireDate,
+      cardCVC: this.state.cardCVC,
+      nameOnCard: this.state.nameOnCard,
     };
     this.setState({
       loading: true,
@@ -366,9 +393,15 @@ export class EditMyProfile extends React.Component {
                       />
                       <CircleIcon
                         type={ThemeCircleIcon.dark}
-                        width="44px"
+                        width="30px"
                         height="30px"
                         className="mx-2 pointer"
+                        onClick={() => {
+                          this.setState({
+                            picture: [],
+                            profileImage: "",
+                          });
+                        }}
                       >
                         <img
                           src="/images/icons/garbage_can.svg"
@@ -411,7 +444,6 @@ export class EditMyProfile extends React.Component {
                           <p>Or drag and drop files here</p>
                         </div>
                         <aside>
-                          
                           <ul>{picture}</ul>
                         </aside>
                       </section>
@@ -538,7 +570,6 @@ export class EditMyProfile extends React.Component {
                         <p>Or drag and drop files here</p>
                       </div>
                       <aside>
-                        
                         <ul>{files}</ul>
                       </aside>
                     </section>

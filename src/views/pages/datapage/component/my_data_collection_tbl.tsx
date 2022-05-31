@@ -98,20 +98,24 @@ const MyDataCollectionTable: React.FC<IAcordienTable & RouteComponentProps> = (
                             {sub.title}
                           </span>
                         </div>
-                        <div className="col-2 text-center d-flex justify-content-center align-items-baseline ">
+                        <div className="col-2 text-center d-flex justify-content-center align-items-center ">
                           <div className="text-truncate">
-                            {sub.medias?.map((media) => (
-                              <div key={media.id}>
-                                <MainButton
-                                  children={media.name}
-                                  type={MainButtonType.dark}
-                                  borderRadius="24px"
-                                  fontSize="14px"
-                                  backgroundColor="#F5F5F5"
-                                  color="#096BFF"
-                                ></MainButton>
-                              </div>
-                            ))}
+                          {sub.medias
+                              ?.filter((item) => {
+                                return item.externalUrl !== null
+                              }).slice(0,1)
+                              .map((media) => (
+                                <div key={media.id}>
+                                  <MainButton
+                                    children={media.externalUrl}
+                                    type={MainButtonType.dark}
+                                    borderRadius="24px"
+                                    fontSize="14px"
+                                    backgroundColor="#F5F5F5"
+                                    color="#096BFF"
+                                  ></MainButton>
+                                </div>
+                              ))}
                           </div>
                           {sub.medias?.length ? (
                             <CircleIcon

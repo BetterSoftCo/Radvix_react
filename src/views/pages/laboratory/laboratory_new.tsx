@@ -123,6 +123,9 @@ class LaboratoryPageNew extends React.Component<RouteComponentProps> {
         this.setState({
           loading: false,
         });
+        this.props.history.push(
+          `${AppRoutes.profile_laboratory.replace(":id", id?.toString())}`
+        );
       },
       () => {
         this.setState({
@@ -154,23 +157,30 @@ class LaboratoryPageNew extends React.Component<RouteComponentProps> {
       this.controller.createLaboratory(
         body,
         (res) => {
-          this.handelUpload(res.id);
-          this.setState({
-            files: [],
-            title: "",
-            description: "",
-            startDate: new Date(),
-            endDate: new Date(),
-            currency: 2,
-            priority: 2,
-            teamsId: [],
-            usersId: [],
-            status: 0,
-            listMembers: [],
-          });
-          this.props.history.push(
-            `${AppRoutes.profile_laboratory.replace(":id", res.id?.toString())}`
-          );
+          if(this.state.files.length > 0 ||
+            this.state.ExternalUrl.length > 0){
+              this.handelUpload(res.id);
+            }else{
+              this.setState({
+                files: [],
+                title: "",
+                description: "",
+                startDate: new Date(),
+                endDate: new Date(),
+                currency: 2,
+                priority: 2,
+                teamsId: [],
+                usersId: [],
+                status: 0,
+                listMembers: [],
+                loading:false,
+              });
+              this.props.history.push(
+                `${AppRoutes.profile_laboratory.replace(":id", res.id?.toString())}`
+              );
+            }
+          
+          
         },
         (err) => {
           this.setState({

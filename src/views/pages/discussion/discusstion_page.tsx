@@ -102,17 +102,28 @@ class DiscusstionPage extends React.Component<
 
     await this.UploadController.UloadMedia(
       formData,
-      (res) => {},
+      (res) => {           
+        this.setState({
+          massage:'',
+          files:[],
+          loading:false,
+        })
+        this.getDiscustionPanel();
+      },
       () => {
         this.setState({
-          loading: false,
-        });
+          massage:'',
+          files:[],
+          loading:false,
+        })
       }
     );
   }
   addExternalUrl() {
     let Url = [...this.state.ExternalUrl];
-    Url.push(this.state.External);
+    if (this.state.External.length > 2) {
+      Url.push(this.state.External);
+    }
     this.setState({
       ExternalUrl: Url,
       External: "",
@@ -141,26 +152,26 @@ class DiscusstionPage extends React.Component<
       this.controller.createMassage(
         body,
         (res) => {
+          
           if (this.state.files.length) {
             this.handelUpload(this.state.Discusstion.id);
+          }else{
+            this.setState({
+              massage:'',
+              files:[],
+              loading:false,
+            })
+            this.getDiscustionPanel();
           }
-          this.setState({
-            loading: false,
-            ExternalUrl: [],
-            External: "",
-            massage: "",
-            files: [],
-          });
-          this.getDiscustionPanel();
+         
         },
         (err) => {
           this.setState({
-            loading: false,
-            ExternalUrl: [],
-            External: "",
-            massage: "",
-            files: [],
-          });
+            massage:'',
+            files:[],
+            loading:false,
+          })
+          this.getDiscustionPanel();
         }
       );
     } else {
@@ -328,6 +339,7 @@ class DiscusstionPage extends React.Component<
                     this.state.massage,
                     "required"
                   )}
+                  value={this.state.massage}
                   fontSize="14px"
                 ></InputComponent>
               </div>

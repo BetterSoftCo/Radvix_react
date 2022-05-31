@@ -3,6 +3,7 @@ import ReactPaginate from "react-paginate";
 import { RouteComponentProps, withRouter } from "react-router";
 import { MemberController } from "../../../controllers/member/member_controller";
 import { AppRoutes } from "../../../core/constants";
+import { AccessPermition, UserRoles } from "../../../core/utils";
 import { Member } from "../../../data/models/responses/member/member_list_res";
 import { store } from "../../../data/store";
 import { MainButton, MainButtonType } from "../../components/button";
@@ -16,6 +17,7 @@ type StateType = {
   PageSize: number;
   PageCount: number;
   TotalCount: number;
+  Search: string;
 };
 class MemberPage extends React.Component<RouteComponentProps> {
   RoleUser = store.getState().userRole;
@@ -26,13 +28,18 @@ class MemberPage extends React.Component<RouteComponentProps> {
     PageSize: 10,
     PageCount: 0,
     TotalCount: 0,
+    Search: "",
   };
   componentDidMount() {
     this.GetMember(this.state.PageNumber, this.state.PageSize);
   }
   GetMember(PageNumber: number, PageSize: number) {
     this.controller.getMemberList(
-      { PageNumber: PageNumber, PageSize: PageSize },
+      {
+        PageNumber: PageNumber,
+        PageSize: PageSize,
+        SearchParameter: this.state.Search,
+      },
       (res) => {
         this.setState({
           Members: res.members,
@@ -61,7 +68,7 @@ class MemberPage extends React.Component<RouteComponentProps> {
         <div className="row"></div>
         <div className="col-12">
           <div className="TableBox">
-            <div className="TopTableBox d-flex justify-content-between align-items-center mb-3">
+            <div className="TopTableBox d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3">
               <div className="left d-flex w-50 align-items-center ">
                 <h4
                   style={{ width: "45%", fontSize: "16px" }}
@@ -82,20 +89,37 @@ class MemberPage extends React.Component<RouteComponentProps> {
                   width="100%"
                   placeholder="Search..."
                   TopPosition="15%"
+                  onChange={(e) => {
+                    this.setState({
+                      Search: e.target.value,
+                    });
+                    this.GetMember(
+                      this.state.PageNumber,
+                      this.state.PageSize
+                    );
+                  }}
                 ></InputIcon>
               </div>
-              <div className="right w-50 d-flex justify-content-end align-items-center">
-                <MainButton
-                  children="New Member"
-                  type={MainButtonType.dark}
-                  borderRadius="24px"
-                  fontSize="12px"
-                  className="my-2"
-                  minWidth="100px"
-                  onClick={() => {
-                    this.props.history.push(AppRoutes.member_new);
-                  }}
-                ></MainButton>
+              <div className="right  d-flex justify-content-between align-items-baseline">
+                {AccessPermition(this.RoleUser, [
+                  UserRoles.Admin,
+                  UserRoles.L1Client,
+                  UserRoles.L1User,
+                  UserRoles.L2User,
+                ]) ? (
+                  <MainButton
+                    children="New Member"
+                    type={MainButtonType.dark}
+                    borderRadius="24px"
+                    fontSize="12px"
+                    className="my-2"
+                    minWidth="100px"
+                    onClick={() => {
+                      this.props.history.push(AppRoutes.member_new);
+                    }}
+                  ></MainButton>
+                ) : null}
+
                 <MainButton
                   children="Teams"
                   type={MainButtonType.dark}

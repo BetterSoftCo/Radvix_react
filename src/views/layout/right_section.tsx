@@ -20,6 +20,7 @@ const RightSection: React.FC<RouteComponentProps> = (props) => {
           PageNumber: 1,
           PageSize: 3,
           ticket: false,
+          SearchParameter: "",
         },
         (res) => {
           setdiscusstion(res.discussions);
@@ -99,7 +100,7 @@ const RightSection: React.FC<RouteComponentProps> = (props) => {
                 >
                   <span
                     className="text-truncate d-inline-block"
-                    style={{ maxWidth: "115px"  }}
+                    style={{ maxWidth: "115px" }}
                     title={item.subject}
                   >
                     {item.subject}

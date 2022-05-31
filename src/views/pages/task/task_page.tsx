@@ -10,14 +10,19 @@ import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import { InputIcon } from "../../components/search_box";
 import { SelectComponent } from "../../components/select_input";
 import AcordienTable from "./component/recent_tasks";
+import { RouteComponentProps, withRouter } from "react-router";
+import { AppRoutes } from "../../../core/constants";
 type StateType = {
   Tasks: AppTask[];
   PageNumber: number;
   PageSize: number;
   PageCount: number;
   TotalCount: number;
+  Search: string
 };
-export class TasksPage extends React.Component {
+class TasksPage extends React.Component<
+  RouteComponentProps
+> {
   RoleUser = store.getState().userRole;
   controller = new TaskController();
   state: StateType = {
@@ -26,6 +31,7 @@ export class TasksPage extends React.Component {
     PageSize: 10,
     PageCount: 0,
     TotalCount: 0,
+    Search: ''
   };
   componentDidMount() {
     this.GetTasks(this.state.PageNumber, this.state.PageSize);
@@ -35,7 +41,7 @@ export class TasksPage extends React.Component {
   }
   GetTasks(PageNumber: number, PageSize: number) {
     this.controller.getTasks(
-      { PageNumber, PageSize },
+      { PageNumber, PageSize, SearchParameter: this.state.Search },
       (res) => {
         this.setState({
           Tasks: res.appTasks,
@@ -64,7 +70,7 @@ export class TasksPage extends React.Component {
         <div className="row"></div>
         <div className="col-12">
           <div className="TableBox">
-            <div className="TopTableBox d-flex justify-content-between align-items-center mb-3">
+            <div className="TopTableBox d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3">
               <div className="left d-flex w-50 align-items-baseline">
                 <h6 style={{ width: "35%" }}>Task List</h6>
                 <InputIcon
@@ -74,15 +80,24 @@ export class TasksPage extends React.Component {
                   width="100%"
                   placeholder="Search..."
                   TopPosition="15%"
+                  onChange={(e) => {
+                    this.setState({
+                      Search: e.target.value,
+                    });
+                    this.GetTasks(this.state.PageNumber, this.state.PageSize)
+                  }}
                 ></InputIcon>
               </div>
-              <div className="right w-50 d-flex justify-content-end align-items-center">
+              <div className="right  d-flex justify-content-between align-items-baseline">
                 <MainButton
-                  children="Discussion Panel"
+                  children="New Task"
                   type={MainButtonType.dark}
                   borderRadius="24px"
                   fontSize="14px"
                   className="px-3"
+                  onClick={() => {
+                    this.props.history.push(AppRoutes.task_new)
+                  }}
                 ></MainButton>
                 <SelectComponent
                   width="90px"
@@ -152,3 +167,4 @@ export class TasksPage extends React.Component {
     );
   }
 }
+export default withRouter(TasksPage)

@@ -1,13 +1,75 @@
 import React from "react";
 import ReactPaginate from "react-paginate";
-import { store } from "../../../data/store";
-import { MainButton, MainButtonType } from "../../components/button";
+import { RouteComponentProps, withRouter } from "react-router";
+import { AdminController } from "../../../controllers/admin/admin_controller";
+import { MemberUser } from "../../../data/models/responses/admin/list_member_user_res";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
 import { InputIcon } from "../../components/search_box";
 import { SelectComponent } from "../../components/select_input";
+import MemberItem from "./component/member_item";
+type StateType = {
+  Members: MemberUser[];
+  PageNumber: number;
+  PageSize: number;
+  PageCount: number;
+  TotalCount: number;
+  Search: string;
+  userName: string;
+};
+interface RouteParams {
+  id: string;
+  name: string;
+}
+class AdminMember extends React.Component<RouteComponentProps<RouteParams>> {
+  controller = new AdminController();
+  state: StateType = {
+    Members: [],
+    PageNumber: 1,
+    PageSize: 10,
+    PageCount: 0,
+    TotalCount: 0,
+    Search: "",
+    userName: "",
+  };
+  componentDidMount() {
+    let search = window.location.search;
+    let params = new URLSearchParams(search);
+    let name = params.get("name");
+    this.setState({
+      userName: name,
+    });
 
-export class AdminMember extends React.Component {
-  RoleUser = store.getState().userRole;
+    this.GetMember(this.state.PageNumber, this.state.PageSize);
+  }
+  GetMember(PageNumber: number, PageSize: number) {
+    this.controller.getListMembers(
+      {
+        pageNumber: PageNumber,
+        pageSize: PageSize,
+        searchParameter: this.state.Search,
+        userId: this.props.match.params.id,
+      },
+      (res) => {
+        this.setState({
+          Members: res.members,
+          PageCount: Math.ceil(res.count! / this.state.PageSize),
+          TotalCount: res.count,
+        });
+      }
+    );
+  }
+  handelChangePageNumber(e: { selected: number }) {
+    this.setState({
+      PageNumber: e.selected,
+    });
+    this.GetMember(e.selected + 1, this.state.PageSize);
+  }
+  handelChangePageSize(e: { label: string; value: number }) {
+    this.setState({
+      PageSize: e.value,
+    });
+    this.GetMember(this.state.PageNumber, e.value);
+  }
   render() {
     return (
       <div className="container-fluid research">
@@ -16,10 +78,19 @@ export class AdminMember extends React.Component {
           <div className="TableBox">
             <div className="TopTableBox d-flex justify-content-between align-items-center mb-3">
               <div className="left d-flex w-50 align-items-baseline ">
-                <h4 style={{ width: "100%" }} className="b-title d-flex align-items-center">
-                  <span onClick={()=>{window.history.back()}} className="backPage"></span> Members On{" "}
+                <h4
+                  style={{ width: "100%" }}
+                  className="b-title d-flex align-items-center"
+                >
+                  <span
+                    onClick={() => {
+                      window.history.back();
+                    }}
+                    className="backPage"
+                  ></span>{" "}
+                  Members On{" "}
                   <span style={{ color: "#009BB7" }} className="mx-1">
-                    Nima Hosseinzadeh’s
+                    {this.state.userName}
                   </span>{" "}
                   Subscription
                 </h4>
@@ -30,30 +101,46 @@ export class AdminMember extends React.Component {
                     <img src="/images/icons/search_box_icon.svg" alt="" />
                   }
                   width="100%"
-                  placeholder="Search..."  TopPosition="15%"
+                  placeholder="Search..."
+                  TopPosition="15%"
+                  onChange={(e) => {
+                    this.setState({
+                      Search: e.target.value,
+                    });
+                    this.GetMember(
+                      this.state.PageNumber,
+                      this.state.PageSize,
+                    );
+                  }}
                 ></InputIcon>
                 <SelectComponent
-                  width="63px"
+                  width="90px"
                   height="44px"
                   items={[
-                    { item: 1, id: 1 },
-                    { item: 2, id: 2 },
-                    { item: 3, id: 3 },
+                    { label: "10", value: 10 },
+                    { label: "15", value: 15 },
+                    { label: "20", value: 20 },
                   ]}
                   TextItem="item"
                   ValueItem="id"
+                  isMulti={false}
+                  placeholder={this.state.PageSize.toString()}
+                  onChange={(e) => {
+                    this.handelChangePageSize(e);
+                  }}
+                  className="mx-2"
                 ></SelectComponent>
               </div>
             </div>
             <div className="row">
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => (
-                <MemberItem></MemberItem>
+              {this.state.Members.map((item) => (
+                <MemberItem key={item.id} member={item}></MemberItem>
               ))}
             </div>
 
-           <div className="d-flex justify-content-between align-items-baseline">
-                  <div className="d-flex justify-content-end flex-fill">
-                  <ReactPaginate
+            <div className="d-flex justify-content-between align-items-baseline">
+              <div className="d-flex justify-content-end flex-fill">
+                <ReactPaginate
                   previousLabel={
                     <CircleIcon
                       width="24px"
@@ -76,69 +163,24 @@ export class AdminMember extends React.Component {
                   }
                   breakLabel={"..."}
                   breakClassName={"break-me"}
-                  pageCount={20}
+                  pageCount={this.state.PageCount}
                   marginPagesDisplayed={2}
                   pageRangeDisplayed={5}
-                  onPageChange={()=>{console.log('changepage')}}
+                  onPageChange={(e) => {
+                    this.handelChangePageNumber(e);
+                  }}
                   containerClassName={"pagination"}
                   activeClassName={"active"}
                 />
-                  </div>
-                  <div className="d-flex justify-content-end flex-fill">
-                  <p className="text-right mb-0 " >Total Results: 45</p>
-                  </div>
-                 
-                
               </div>
+              <div className="d-flex justify-content-end flex-fill">
+                <p className="text-right mb-0 ">Total Results: {this.state.TotalCount}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     );
   }
 }
-
-const MemberItem: React.FC = () => (
-  <div className="col-md-3 d-flex justify-content-center align-items-center flex-column mb-4">
-    <img
-      src="/images/images/img_avatar.png"
-      alt="Avatar"
-      className="rounded-circle avatar"
-      width="125px"
-      height="125px"
-    />
-    <h5 className="mt-2 fw-light">Nima Hosseinzadeh</h5>
-    <hr className="w-100 my-0" />
-    <MainButton
-      children="Principal Investigator"
-      type={MainButtonType.dark}
-      borderRadius="24px"
-      fontSize="14px"
-      className="my-2"
-    ></MainButton>
-
-    <div className="d-flex justify-content-center align-items-center">
-      <CircleIcon
-        width="26px"
-        height="26px"
-        type={ThemeCircleIcon.dark}
-        onClick={() => {
-          console.log("ssss");
-        }}
-        className="pointer mx-1"
-      >
-        <img src="/images/icons/edit.svg" alt="radvix" />
-      </CircleIcon>
-      <CircleIcon
-        width="26px"
-        height="26px"
-        type={ThemeCircleIcon.dark}
-        onClick={() => {
-          console.log("ssss");
-        }}
-        className="pointer mx-1"
-      >
-        <img src="/images/icons/google_docs.svg" alt="radvix" width={12} height={12} />
-      </CircleIcon>
-    </div>
-  </div>
-);
+export default withRouter(AdminMember);

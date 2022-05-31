@@ -92,7 +92,9 @@ class ExpensePageNew extends React.Component<RouteComponentProps> {
   }
   addExternalUrl() {
     let Url = [...this.state.ExternalUrl]
-    Url.push(this.state.External)
+    if (this.state.External.length > 2) {
+      Url.push(this.state.External);
+    }
     this.setState({
       ExternalUrl: Url,
       External: ''
@@ -132,7 +134,7 @@ class ExpensePageNew extends React.Component<RouteComponentProps> {
             title: '',
             appTaskId: '',
             description: 2,
-            amount: new Date(),
+            amount: 0,
             date: new Date(),
           });
         },
@@ -271,10 +273,11 @@ class ExpensePageNew extends React.Component<RouteComponentProps> {
                       placeholder="$0.00"
                       onChange={(e) => {
                         this.handleChange("amount", e.target.value);
+                        
                       }}
                       inValid={this.validator.message(
                         "amount",
-                        this.state.description,
+                        this.state.amount,
                         "required"
                       )}
                     ></InputComponent>
@@ -375,11 +378,6 @@ class ExpensePageNew extends React.Component<RouteComponentProps> {
                   onChange={(e) => {
                     this.handleChange("External", e.target.value);
                   }}
-                  inValid={this.validator.message(
-                    "External",
-                    this.state.description,
-                    "required"
-                  )}
                 ></InputComponent>
                 <CircleIcon
                   width="36px"

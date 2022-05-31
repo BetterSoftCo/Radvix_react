@@ -56,19 +56,19 @@ class PublishPageNew extends React.Component<RouteComponentProps> {
         (res) => {
           this.setState(
             {
-            name: '',
-            categoryId: 0,
-            submitAt: '',
-            priority: 1,
-            startDate: new Date(),
-            endDate: new Date(),
-            users: [],
-            draftUploader: '',
-            loading: false,
-            listMembers: [],
-            categories: [],
-            drafList: []
-          });
+              name: '',
+              categoryId: 0,
+              submitAt: '',
+              priority: 1,
+              startDate: new Date(),
+              endDate: new Date(),
+              users: [],
+              draftUploader: '',
+              loading: false,
+              listMembers: [],
+              categories: [],
+              drafList: []
+            });
           this.props.history.push(`${AppRoutes.publish_profile.replace(':id', res.id?.toString() ?? "")}`)
         },
         (err) => {
@@ -152,6 +152,11 @@ class PublishPageNew extends React.Component<RouteComponentProps> {
                   onChange={(e) => {
                     this.handelChangeSelect("categoryId", e);
                   }}
+                  inValid={this.validator.message(
+                    "Category",
+                    this.state.categoryId,
+                    "required"
+                  )}
                 ></SelectComponent>
               </div>
               <div className="item">
@@ -269,6 +274,11 @@ class PublishPageNew extends React.Component<RouteComponentProps> {
                   onChange={(e) => {
                     this.handelChangeSelect("draftUploader", e);
                   }}
+                  inValid={this.validator.message(
+                    "",
+                    this.state.draftUploader,
+                    "required"
+                  )}
                   isMulti={false}
                 ></SelectComponent>
               </div>

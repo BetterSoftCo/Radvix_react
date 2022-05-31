@@ -17,6 +17,7 @@ type StateType = {
   PageSize: number;
   PageCount: number;
   TotalCount: number;
+  Search: string;
 };
 class TeamPage extends React.Component<RouteComponentProps> {
   RoleUser = store.getState().userRole;
@@ -27,16 +28,50 @@ class TeamPage extends React.Component<RouteComponentProps> {
     PageSize: 10,
     PageCount: 0,
     TotalCount: 0,
+    Search: "",
   };
   componentDidMount() {
     this.GetTeams(this.state.PageNumber, this.state.PageSize);
   }
   GetTeams(PageNumber: number, PageSize: number) {
     this.controller.getAllTeams(
-      { pageNumber: PageNumber, pageSize: PageSize },
+      {
+        pageNumber: PageNumber,
+        pageSize: PageSize,
+        SearchParameter: this.state.Search,
+      },
       (res) => {
+        const team =
+          this.RoleUser === UserRoles.L2User
+            ? res.subTeams.map((item) => {
+                return {
+                  id: item.parentId,
+                  title: item.parentTitle,
+                  description: "",
+                  discussionId: 0,
+                  creatorUserId: 0,
+                  creatorUserFirstName: item.creatorFirstName,
+                  creatorUserLastName: item.creatorLastName,
+                  memberCount: item.parentTeamMemberCount,
+                  subTeams: res.subTeams
+                    .filter((sub) => sub.id === item.id)
+                    .map((submap) => {
+                      return {
+                        id: submap.id,
+                        title: submap.title,
+                        parentId: submap.parentId,
+                        parentTitle: submap.parentTitle,
+                        parentTeamMemberCount: submap.parentTeamMemberCount,
+                        creatorFirstName: submap.creatorFirstName,
+                        creatorLastName: submap.creatorLastName,
+                        subTeamMemberCount: submap.subTeamMemberCount,
+                      };
+                    }),
+                };
+              })
+            : res.teams;
         this.setState({
-          Teams: res.teams,
+          Teams: team,
           PageCount: Math.ceil(res.teamCount! / this.state.PageSize),
           TotalCount: res.teamCount,
         });
@@ -61,7 +96,7 @@ class TeamPage extends React.Component<RouteComponentProps> {
         <div className="row"></div>
         <div className="col-12">
           <div className="TableBox">
-            <div className="TopTableBox d-flex justify-content-between align-items-center mb-3">
+            <div className="TopTableBox d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3">
               <div className="left d-flex w-50 align-items-center">
                 <h6
                   style={{ width: "35%" }}
@@ -82,9 +117,15 @@ class TeamPage extends React.Component<RouteComponentProps> {
                   width="100%"
                   placeholder="Search..."
                   TopPosition="15%"
+                  onChange={(e) => {
+                    this.setState({
+                      Search: e.target.value,
+                    });
+                    this.GetTeams(this.state.PageNumber, this.state.PageSize);
+                  }}
                 ></InputIcon>
               </div>
-              <div className="right w-50 d-flex justify-content-end align-items-center">
+              <div className="right  d-flex justify-content-between align-items-baseline">
                 {AccessPermition(this.RoleUser, [
                   UserRoles.Admin,
                   UserRoles.L1Client,

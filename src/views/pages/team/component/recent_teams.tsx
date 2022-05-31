@@ -12,9 +12,14 @@ interface IAcordienTable {
 const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
   props
 ) => {
-  const handelOnclick = (e: any) => {
+  const handelOnclick = (e: any , id:number) => {
     e.stopPropagation();
-    props.history.push(AppRoutes.new_team);
+    props.history.push(
+      `${AppRoutes.team_profile.replace(
+        ":id",
+        id.toString() ?? ""
+      )}`
+    );
   };
   useEffect(() => {}, []);
   return (
@@ -160,7 +165,7 @@ const AcordienTable: React.FC<IAcordienTable & RouteComponentProps> = (
                             width="26px"
                             height="26px"
                             type={ThemeCircleIcon.dark}
-                            onClick={(e) => handelOnclick(e)}
+                            onClick={(e) => handelOnclick(e , sub.id)}
                             className="pointer  m-1"
                           >
                             <img

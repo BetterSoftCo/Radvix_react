@@ -17,8 +17,8 @@ export class RemoteData {
   SearchData(body: { researchId: number }, action: (res: SearchDataRes) => any, error: (res: any) => any) {
     return HTTP.get(`/Data/Search?researchId=${body.researchId}`).then((res) => action(res.data)).catch((err) => { error(err) });
   }
-  getAllData(body: { researchId: number, PageSize: number, PageNumber: number }, action: (res: GetAllDataRes) => any, error: (res: any) => any) {
-    return HTTP.get(`/Data?ResearchId=${body.researchId}&PageSize=${body.PageSize}&PageNumber=${body.PageNumber}`).then((res) => action(res.data)).catch((err) => { error(err) });
+  getAllData(body: { researchId: number, PageSize: number, PageNumber: number, SearchParameter: string }, action: (res: GetAllDataRes) => any, error: (res: any) => any) {
+    return HTTP.get(`/Data?ResearchId=${body.researchId}&PageSize=${body.PageSize}&PageNumber=${body.PageNumber}&SearchParameter=${body.SearchParameter}`).then((res) => action(res.data)).catch((err) => { error(err) });
   }
   getDataById(body: { dataId: number, researchId: number, appTaskId: number }, action: (res: GetDataByIDRes) => any, error: (res: any) => any) {
     return HTTP.get(`/Data/${body.dataId}?researchId=${body.researchId}&appTaskId=${body.appTaskId}`).then((res) => action(res.data)).catch((err) => { error(err) });

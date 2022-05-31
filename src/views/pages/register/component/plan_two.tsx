@@ -1,5 +1,6 @@
-import React, { Fragment, useContext } from "react";
+import React, { Fragment, useContext, useRef, useState } from "react";
 import { RouteComponentProps, withRouter } from "react-router";
+import SimpleReactValidator from "simple-react-validator";
 import { MainButton, MainButtonType } from "../../../components/button";
 import { InputComponent, InputType } from "../../../components/inputs";
 import { InputIcon } from "../../../components/search_box";
@@ -7,24 +8,58 @@ import { RegisterContext } from "../register";
 // interface PropsPlaneTwo {
 //   SetLoginCallBack: (pay: any) => void;
 // }
-const PlanTwo: React.FC<RouteComponentProps> = (props) => {
-  const nextStep = useContext(RegisterContext)
+interface PropsPlanOne {
+  SetPaymentCallBack: (pay: any) => void;
+  step:number
+}
+const PlanTwo: React.FC<PropsPlanOne & RouteComponentProps> = (props) => {
+  const [, forceUpdate] = useState(0);
+  const [billingEmail, setbillingEmail] = useState("");
+  const [cardInfomation, setcardInfomation] = useState("");
+  const [cardExpireDate, setcardExpireDate] = useState("");
+  const [cardCVC, setcardCVC] = useState("");
+  const [nameOnCard, setnameOnCard] = useState("");
+  const [zipCode, setzipCode] = useState("");
+ 
+  const payment = () => {
+    const formValid = Validator.current.allValid();
+    if (!formValid) {
+      Validator.current.showMessages();
+      forceUpdate(1);
+    } else {
+      props.SetPaymentCallBack({
+        billingEmail,
+        cardInfomation,
+        cardExpireDate,
+        cardCVC,
+        nameOnCard,
+        zipCode,
+      });
+      nextStep(3);
+    }
+  };
+  const Validator = useRef(
+    new SimpleReactValidator({
+      className: "text-danger",
+    })
+  );
+  const nextStep = useContext(RegisterContext);
   return (
     <Fragment>
-      <div className="form-register">
+      <div  className={props.step === 2 ? 'form-register' : 'd-none'}>
         <div className="header-form">
           <img
             src="/images/icons/toggle_icon_register.svg"
             alt="radvix"
             className="mx-3"
             onClick={() => {
-              nextStep(1)
+              nextStep(1);
             }}
           />{" "}
           Radvix Essential
         </div>
         <div className="body-form">
-        <div className="stepper-wrapper">
+          <div className="stepper-wrapper">
             <div className="stepper-item ">
               <div className="step-name">basic info</div>
               <div className="step-counter">1</div>
@@ -50,6 +85,14 @@ const PlanTwo: React.FC<RouteComponentProps> = (props) => {
                   <InputComponent
                     type={InputType.text}
                     label="Billing Email:"
+                    onChange={(e) => {
+                      setbillingEmail(e.target.value);
+                    }}
+                    inValid={Validator.current.message(
+                      "Billing Email",
+                      billingEmail,
+                      "required|email"
+                    )}
                   ></InputComponent>
                 </div>
               </div>
@@ -88,6 +131,9 @@ const PlanTwo: React.FC<RouteComponentProps> = (props) => {
                     width="100%"
                     placeholder="1234 1234 1234 1234"
                     TopPosition="4%"
+                    onChange={(e) => {
+                      setcardInfomation(e.target.value);
+                    }}
                   ></InputIcon>
                 </div>
                 <div className="row">
@@ -95,6 +141,14 @@ const PlanTwo: React.FC<RouteComponentProps> = (props) => {
                     <InputComponent
                       type={InputType.text}
                       placeholder="MM/YY"
+                      onChange={(e) => {
+                        setcardExpireDate(e.target.value);
+                      }}
+                      inValid={Validator.current.message(
+                        "MM/YY",
+                        cardExpireDate,
+                        "required"
+                      )}
                     ></InputComponent>
                   </div>
                   <div className="item col-md-6">
@@ -111,6 +165,9 @@ const PlanTwo: React.FC<RouteComponentProps> = (props) => {
                       }
                       width="100%"
                       placeholder="CVC"
+                      onChange={(e) => {
+                        setcardCVC(e.target.value);
+                      }}
                     ></InputIcon>
                   </div>
                 </div>
@@ -118,16 +175,34 @@ const PlanTwo: React.FC<RouteComponentProps> = (props) => {
                   <InputComponent
                     type={InputType.text}
                     placeholder="Name On Card"
+                    onChange={(e) => {
+                      setnameOnCard(e.target.value);
+                    }}
+                    inValid={Validator.current.message(
+                      "Name On Card",
+                      nameOnCard,
+                      "required"
+                    )}
                   ></InputComponent>
                 </div>
                 <div className="item mt-2">
                   <InputComponent
                     type={InputType.text}
                     placeholder="Zipcode"
+                    onChange={(e) => {
+                      setzipCode(e.target.value);
+                    }}
+                    inValid={Validator.current.message(
+                      "Zipcode",
+                      zipCode,
+                      "required"
+                    )}
                   ></InputComponent>
                 </div>
                 <div className="item d-flex justify-content-between justify-content-baseline mt-3">
-                   <span className="d-flex align-items-center">Total:  $119.88</span>   
+                  <span className="d-flex align-items-center">
+                    Total: $119.88
+                  </span>
                   <MainButton
                     type={MainButtonType.dark}
                     minHeight="42px"
@@ -135,7 +210,9 @@ const PlanTwo: React.FC<RouteComponentProps> = (props) => {
                     borderRadius="50px"
                     className="px-3"
                     backgroundColor="#00A598"
-                    onClick={()=>{nextStep(3)}}
+                    onClick={() => {
+                      payment();
+                    }}
                     children={
                       <div>
                         Activate Account

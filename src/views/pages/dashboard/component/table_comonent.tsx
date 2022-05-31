@@ -16,7 +16,11 @@ const TableComponent: React.FC<TableComponentProp & RouteComponentProps> = (
         <thead>
           <tr>
             {props.Heading.map((head, index) => (
-              <th scope="col" key={index}>
+              <th
+                scope="col"
+                key={index}
+                className={index === 1 ? "text-center" : ""}
+              >
                 {head}
               </th>
             ))}
@@ -29,24 +33,28 @@ const TableComponent: React.FC<TableComponentProp & RouteComponentProps> = (
                 New Project{" "}
                 <span
                   onClick={() => {
-                    props.history.push(`${AppRoutes.profile_research.replace(':id', head.id?.toString() ?? "")}`);
+                    props.history.push(
+                      `${AppRoutes.profile_research.replace(
+                        ":id",
+                        head.id?.toString() ?? ""
+                      )}`
+                    );
                   }}
                   className="pointer"
                 >
                   "{head.title}”
                 </span>{" "}
-                 Has Been Created
-                By{" "}
+                Has Been Created By{" "}
                 <span
                   className="pointer"
                   onClick={() => {
                     props.history.push(AppRoutes.member_profile);
                   }}
                 >
-                 {head.creatorUserFirstName + ' ' + head.creatorUserLastName}
+                  {head.creatorUserFirstName + " " + head.creatorUserLastName}
                 </span>
               </td>
-              <td> {moment(head.startDate).format("YYYY/MM/DD")}</td>
+              <td className="text-center"> {moment(head.startDate).format("YYYY/MM/DD")}</td>
             </tr>
           ))}
         </tbody>

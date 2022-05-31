@@ -16,6 +16,7 @@ type StateType = {
   PageSize: number;
   PageCount: number;
   TotalCount: number;
+  Search: string;
 };
 class DiscusstionList extends React.Component<RouteComponentProps> {
   RoleUser = store.getState().userRole;
@@ -26,13 +27,19 @@ class DiscusstionList extends React.Component<RouteComponentProps> {
     PageSize: 10,
     PageCount: 0,
     TotalCount: 0,
+    Search: "",
   };
   componentDidMount() {
     this.GetDiscusstion(this.state.PageNumber, this.state.PageSize);
   }
   GetDiscusstion(PageNumber: number, PageSize: number) {
     this.controller.getAllDiscusstion(
-      { PageNumber: PageNumber, PageSize: PageSize, ticket: false },
+      {
+        PageNumber: PageNumber,
+        PageSize: PageSize,
+        ticket: false,
+        SearchParameter: this.state.Search,
+      },
       (res) => {
         this.setState({
           Discusstion: res.discussions,
@@ -63,7 +70,10 @@ class DiscusstionList extends React.Component<RouteComponentProps> {
           <div className="TableBox">
             <div className="TopTableBox d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3">
               <div className="left d-flex w-50 align-items-center">
-                <h6 className="b-title d-flex align-items-center" style={{ width: "90%" }}>
+                <h6
+                  className="b-title d-flex align-items-center"
+                  style={{ width: "90%" }}
+                >
                   <span
                     onClick={() => {
                       window.history.back();
@@ -79,6 +89,15 @@ class DiscusstionList extends React.Component<RouteComponentProps> {
                   width="100%"
                   placeholder="Search..."
                   TopPosition="15%"
+                  onChange={(e) => {
+                    this.setState({
+                      Search: e.target.value,
+                    });
+                    this.GetDiscusstion(
+                      this.state.PageNumber,
+                      this.state.PageSize
+                    );
+                  }}
                 ></InputIcon>
               </div>
               <div className="right  d-flex justify-content-between align-items-baseline">
@@ -90,7 +109,9 @@ class DiscusstionList extends React.Component<RouteComponentProps> {
                   className="my-2 mx-2 px-2"
                   minWidth="120px"
                   onClick={() => {
-                    this.props.history.push(`${AppRoutes.discussion_new.replace(":topic", "1")}`);
+                    this.props.history.push(
+                      `${AppRoutes.discussion_new.replace(":topic", "1")}`
+                    );
                   }}
                 ></MainButton>
                 <SelectComponent
@@ -118,7 +139,7 @@ class DiscusstionList extends React.Component<RouteComponentProps> {
 
             <div className="d-flex justify-content-between align-items-baseline">
               <div className="d-flex justify-content-end flex-fill">
-              <ReactPaginate
+                <ReactPaginate
                   previousLabel={
                     <CircleIcon
                       width="24px"
@@ -152,7 +173,9 @@ class DiscusstionList extends React.Component<RouteComponentProps> {
                 />
               </div>
               <div className="d-flex justify-content-end flex-fill">
-                <p className="text-right mb-0 ">Total Results: {this.state.TotalCount}</p>
+                <p className="text-right mb-0 ">
+                  Total Results: {this.state.TotalCount}
+                </p>
               </div>
             </div>
           </div>

@@ -29,12 +29,12 @@ export class RemoteLaboratory {
       });
   }
   getLaboratoryGetAll(
-    body: { PageNumber: number; PageSize: number },
+    body: { PageNumber: number; PageSize: number , SearchParameter:string },
     action: (res: LaboratoryGetAllRes) => any,
     error: (res: any) => any
   ) {
     return HTTP.get(
-      `/Laboratory?PageSize=${body.PageSize}&PageNumber=${body.PageNumber}`
+      `/Laboratory?PageSize=${body.PageSize}&PageNumber=${body.PageNumber}&SearchParameter=${body.SearchParameter}`
     )
       .then((res) => action(res.data))
       .catch((err) => {

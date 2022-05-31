@@ -9,8 +9,8 @@ import { SearchExpenseRes } from "../../models/responses/expense/search_expense_
 import { EditExpenseRes } from "../../models/responses/expense/update_publish_res";
 
 export class RemoteExpense {
-  createExpense(body:CreateExpenseReq,action: (res: CreateExpenseRes) => any,error: (res: any) => any){
-    return HTTP.post("/Expense" , body).then((res) => action(res.data)).catch((err)=>{error(err)});
+  createExpense(body: CreateExpenseReq, action: (res: CreateExpenseRes) => any, error: (res: any) => any) {
+    return HTTP.post("/Expense", body).then((res) => action(res.data)).catch((err) => { error(err) });
   }
   SearchExpense(
     body: { researchId: number },
@@ -23,11 +23,11 @@ export class RemoteExpense {
         error(err);
       });
   }
-  getExpenses(body:{PageNumber:number , PageSize:number , ResearchId: number},action: (res: GetAllExpenses) => any,error: (res: any) => any){
-    return HTTP.get(`/Expense?PageNumber=${body.PageNumber}&PageSize=${body.PageSize}&ResearchId=${body.ResearchId}` ).then((res) => action(res.data)).catch((err)=>{error(err)});
+  getExpenses(body: { PageNumber: number, PageSize: number, ResearchId: number, SearchParameter: string }, action: (res: GetAllExpenses) => any, error: (res: any) => any) {
+    return HTTP.get(`/Expense?PageNumber=${body.PageNumber}&PageSize=${body.PageSize}&ResearchId=${body.ResearchId}&SearchParameter=${body.SearchParameter}`).then((res) => action(res.data)).catch((err) => { error(err) });
   }
-  createState(body:{expenseId:number , isApproved:boolean },action: (res: CreateStateExpenseRes) => any,error: (res: any) => any){
-    return HTTP.post(`/Expense/State/?expenseId=${body.expenseId}&isApproved=${body.isApproved}` ).then((res) => action(res.data)).catch((err)=>{error(err)});
+  createState(body: { expenseId: number, isApproved: boolean }, action: (res: CreateStateExpenseRes) => any, error: (res: any) => any) {
+    return HTTP.post(`/Expense/State/?expenseId=${body.expenseId}&isApproved=${body.isApproved}`).then((res) => action(res.data)).catch((err) => { error(err) });
   }
   getExpenseById(
     body: { id: number },
@@ -40,7 +40,7 @@ export class RemoteExpense {
         error(err);
       });
   }
-  updateExpense(body:EditExpenseReq,action: (res: EditExpenseRes) => any,error: (res: any) => any){
-    return HTTP.put("/Expense" , body).then((res) => action(res.data)).catch((err)=>{error(err)});
+  updateExpense(body: EditExpenseReq, action: (res: EditExpenseRes) => any, error: (res: any) => any) {
+    return HTTP.put("/Expense", body).then((res) => action(res.data)).catch((err) => { error(err) });
   }
 }

@@ -55,7 +55,7 @@ export class TaskController {
     }
   }
   getTasks(
-    body: { PageSize: number; PageNumber: number },
+    body: { PageSize: number; PageNumber: number , SearchParameter:string },
     action: (res: GetAllTasksResult) => any,
     error: (res: any) => any
   ) {

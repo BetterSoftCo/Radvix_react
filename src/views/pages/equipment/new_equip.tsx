@@ -114,7 +114,9 @@ class NewEquip extends React.Component<RouteComponentProps> {
   }
   addExternalUrl() {
     let Url = [...this.state.ExternalUrl];
-    Url.push(this.state.External);
+    if (this.state.External.length > 2) {
+      Url.push(this.state.External);
+    }
     this.setState({
       ExternalUrl: Url,
       External: "",
@@ -616,6 +618,11 @@ class NewEquip extends React.Component<RouteComponentProps> {
                   onChange={(e) => {
                     this.handleChange("technicianEmail", e.target.value);
                   }}
+                  inValid={this.validator.message(
+                    "technician Email",
+                    this.state.technicianEmail,
+                    "required|email"
+                  )}
                 ></InputComponent>
               </div>
               <div className="item">
@@ -625,6 +632,11 @@ class NewEquip extends React.Component<RouteComponentProps> {
                   onChange={(e) => {
                     this.handleChange("phone", e.target.value);
                   }}
+                  inValid={this.validator.message(
+                    "technician Phone",
+                    this.state.technicianPhone,
+                    "required"
+                  )}
                 ></InputComponent>
               </div>
               <div className="item">
@@ -639,6 +651,11 @@ class NewEquip extends React.Component<RouteComponentProps> {
                     this.handelChangeSelect(e);
                   }}
                   isMulti
+                  inValid={this.validator.message(
+                    "Assign To Laboratory",
+                    this.state.laboratoriesId,
+                    "required"
+                  )}
                 ></SelectComponent>
               </div>
               <BoxAlert text=" No Laboratory Has Been Added Yet!"></BoxAlert>

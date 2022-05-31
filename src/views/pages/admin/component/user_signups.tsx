@@ -1,24 +1,82 @@
+import { ApexOptions } from "apexcharts";
 import React from "react";
-import { Line } from "react-chartjs-2";
-interface TableComponentProp {}
-
-const data = {
-  labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
-  datasets: [
-    {
-      label: "First dataset",
-      data: [33, 53, 85, 41, 44, 65],
-      fill: false,
-      borderColor: "#0058FF",
+import ReactApexChart from "react-apexcharts";
+interface ChartAdminStateType {
+  series: ApexOptions["series"];
+  options: ApexOptions;
+}
+interface ChartAdminProp {
+  data:
+    | (number | null)[]
+    | {
+        x: any;
+        y: any;
+        fillColor?: string;
+        strokeColor?: string;
+        meta?: any;
+        goals?: any;
+      }[]
+    | [number, number | null][]
+    | [number, (number | null)[]][];
+}
+export class ChartAdmin extends React.Component<ChartAdminProp> {
+  componentDidMount() {
+    console.log(this.props , 'chart props');
+  }
+  state: ChartAdminStateType = {
+    series: [
+      {
+        name: "User Signup",
+        data: this.props.data,
+      },
+    ],
+    options: {
+      chart: {
+        id: "area-datetime",
+        type: "area",
+        height: 350,
+        zoom: {
+          autoScaleYaxis: true,
+        },
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      markers: {
+        size: 0,
+      },
+      xaxis: {
+        type: "datetime",
+        tickAmount: 6,
+      },
+      tooltip: {
+        x: {
+          format: "dd MMM yyyy",
+        },
+      },
+      fill: {
+        type: "gradient",
+        gradient: {
+          shadeIntensity: 1,
+          opacityFrom: 0.7,
+          opacityTo: 0.9,
+          stops: [0, 100],
+        },
+      },
     },
-    {
-      label: "Second dataset",
-      data: [33, 25, 35, 51, 54, 76],
-      fill: false,
-      borderColor: "#21D59B",
-    },
-  ],
-};
-export const UserSignups: React.FC<TableComponentProp> = () => {
-  return <Line data={data} />;
-};
+  };
+  render() {
+    return (
+      <div id="chart">
+        <div id="chart-timeline">
+          <ReactApexChart
+            options={this.state.options}
+            series={this.state.series}
+            type="area"
+            height={350}
+          />
+        </div>
+      </div>
+    );
+  }
+}

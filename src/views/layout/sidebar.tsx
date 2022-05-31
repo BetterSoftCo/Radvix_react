@@ -15,19 +15,24 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
     setPage(pageType);
   };
   const RoleUser = store.getState().userRole;
-  const closeSidebar = ()=>{
-    const sidebarElement = document.querySelector('.sidebar')
-    console.log(sidebarElement);
-    sidebarElement?.classList.add('closeing-sidebar')
-    sidebarElement?.classList.remove('opening-sidebar')
-  }
+  const closeSidebar = () => {
+    const sidebarElement = document.querySelector(".sidebar");
+    sidebarElement?.classList.add("closeing-sidebar");
+    sidebarElement?.classList.remove("opening-sidebar");
+  };
   return (
     <Fragment>
       <div className="parent-sidebar">
-      <i className="fa fa-window-close fa-2x text-white d-block d-md-none" aria-hidden="true" onClick={()=>{closeSidebar()}}></i>
+        <i
+          className="fa fa-window-close fa-2x text-white d-block d-lg-none"
+          aria-hidden="true"
+          onClick={() => {
+            closeSidebar();
+          }}
+        ></i>
         {props.location.pathname.search("/Admin") >= 0 ? (
           <ul>
-            <NavLink to={AppRoutes.admin_member} activeClassName="selected">
+            <NavLink to={AppRoutes.admin_clients} activeClassName="selected">
               <li>
                 <IconTextVertical
                   fontSize="15px"
@@ -240,24 +245,25 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 }
               ></IconTextVertical>
             </li>
-            <NavLink to="/dashboard/Setting" activeClassName="selected">
-              <li>
-                <IconTextVertical
-                  fontSize="15px"
-                  className="lighter"
-                  text="Setting"
-                  theme={Theme.dark}
-                  children={
-                    <img
-                      width="40px"
-                      height="40px"
-                      src="/images/icons/setting_menu_icon.svg"
-                    />
-                  }
-                ></IconTextVertical>
-              </li>
-            </NavLink>
-            <NavLink to="/dashboard/Ticketing" activeClassName="selected">
+            {/* <NavLink to="/dashboard/Setting" activeClassName="selected">
+              
+            </NavLink> */}
+            <li>
+              <IconTextVertical
+                fontSize="15px"
+                className="lighter"
+                text="Setting"
+                theme={Theme.dark}
+                children={
+                  <img
+                    width="40px"
+                    height="40px"
+                    src="/images/icons/setting_menu_icon.svg"
+                  />
+                }
+              ></IconTextVertical>
+            </li>
+            <NavLink to={AppRoutes.ticketing} activeClassName="selected">
               <li>
                 <IconTextVertical
                   fontSize="15px"
@@ -292,6 +298,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 onClick={() => {
                   props.history.push(AppRoutes.new_research);
                   setShowSidebar(!ShowSidebar);
+                  closeSidebar();
                 }}
                 theme={Theme.light}
                 children={
@@ -306,6 +313,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
               onClick={() => {
                 props.history.push(AppRoutes.research);
                 setShowSidebar(!ShowSidebar);
+                closeSidebar();
               }}
               text="Research"
               theme={Theme.light}
@@ -331,6 +339,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 onClick={() => {
                   props.history.push(AppRoutes.timeline_research);
                   setShowSidebar(!ShowSidebar);
+                  closeSidebar();
                 }}
                 children={
                   <img
@@ -391,6 +400,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 onClick={() => {
                   props.history.push(AppRoutes.new_laboratory);
                   setShowSidebar(!ShowSidebar);
+                  closeSidebar();
                 }}
                 fontSize="15px"
                 className="lighter mx-2 my-1 pointer"
@@ -406,6 +416,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
               onClick={() => {
                 props.history.push(AppRoutes.laboratory);
                 setShowSidebar(!ShowSidebar);
+                closeSidebar();
               }}
               fontSize="15px"
               className="lighter mx-2 my-1 pointer"
@@ -425,6 +436,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 onClick={() => {
                   props.history.push(AppRoutes.equip_new);
                   setShowSidebar(!ShowSidebar);
+                  closeSidebar();
                 }}
                 fontSize="15px"
                 className="lighter mx-2 my-1 pointer"
@@ -444,6 +456,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
               onClick={() => {
                 props.history.push(AppRoutes.equip);
                 setShowSidebar(!ShowSidebar);
+                closeSidebar();
               }}
               fontSize="15px"
               className="lighter mx-2 my-1 pointer"
@@ -506,9 +519,11 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
               <IconTextVertical
                 onClick={() => {
                   props.history.push(AppRoutes.new_team);
+                  setShowSidebar(!ShowSidebar);
+                  closeSidebar();
                 }}
                 fontSize="15px"
-                className="lighter mx-1 my-1 pointer"
+                className="lighter mx-3 my-1 pointer"
                 text={
                   AccessPermition(RoleUser, [
                     UserRoles.Admin,
@@ -533,9 +548,10 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
               onClick={() => {
                 props.history.push(AppRoutes.team);
                 setShowSidebar(!ShowSidebar);
+                closeSidebar();
               }}
               fontSize="15px"
-              className="lighter mx-1 my-1 pointer"
+              className="lighter mx-3 my-1 pointer"
               text="Teams List"
               theme={Theme.light}
               children={
@@ -552,6 +568,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 onClick={() => {
                   props.history.push(AppRoutes.member_new);
                   setShowSidebar(!ShowSidebar);
+                  closeSidebar();
                 }}
                 fontSize="15px"
                 className="lighter mx-1 my-1 pointer text-center"
@@ -575,6 +592,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
               onClick={() => {
                 props.history.push(AppRoutes.member);
                 setShowSidebar(!ShowSidebar);
+                closeSidebar();
               }}
               fontSize="15px"
               className="lighter mx-1 my-1 pointer"
@@ -638,6 +656,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                 onClick={() => {
                   props.history.push(AppRoutes.task_new);
                   setShowSidebar(!ShowSidebar);
+                  closeSidebar();
                 }}
                 fontSize="15px"
                 className="lighter mx-1 my-1 pointer"
@@ -657,6 +676,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
               onClick={() => {
                 props.history.push(AppRoutes.task);
                 setShowSidebar(!ShowSidebar);
+                closeSidebar();
               }}
               fontSize="15px"
               className="lighter mx-1 my-1 pointer"
@@ -710,6 +730,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
               onClick={() => {
                 props.history.push(AppRoutes.data_new);
                 setShowSidebar(!ShowSidebar);
+                closeSidebar();
               }}
               fontSize="15px"
               className="lighter mx-1 my-1 pointer"
@@ -727,6 +748,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
               onClick={() => {
                 props.history.push(AppRoutes.data);
                 setShowSidebar(!ShowSidebar);
+                closeSidebar();
               }}
               fontSize="15px"
               className="lighter mx-1 my-1 pointer"
@@ -782,6 +804,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
                   `${AppRoutes.discussion_new.replace(":topic", "1")}`
                 );
                 setShowSidebar(!ShowSidebar);
+                closeSidebar();
               }}
               fontSize="15px"
               className="lighter mx-1 my-1 pointer"
@@ -799,6 +822,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
               onClick={() => {
                 props.history.push(AppRoutes.discussion_list);
                 setShowSidebar(!ShowSidebar);
+                closeSidebar();
               }}
               fontSize="15px"
               className="lighter mx-1 my-1 pointer"
@@ -888,6 +912,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
               onClick={() => {
                 props.history.push(AppRoutes.publish_new);
                 setShowSidebar(!ShowSidebar);
+                closeSidebar();
               }}
               fontSize="15px"
               className="lighter mx-1 my-1 pointer"
@@ -905,6 +930,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
               onClick={() => {
                 props.history.push(AppRoutes.publish);
                 setShowSidebar(!ShowSidebar);
+                closeSidebar();
               }}
               fontSize="15px"
               className="lighter mx-1 my-1 pointer text-center"
@@ -966,6 +992,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
               onClick={() => {
                 props.history.push(AppRoutes.expense_new);
                 setShowSidebar(!ShowSidebar);
+                closeSidebar();
               }}
               fontSize="15px"
               className="lighter mx-1 my-1 pointer"
@@ -979,6 +1006,7 @@ const Sidebar: React.FC<RouteComponentProps> = (props) => {
               onClick={() => {
                 props.history.push(AppRoutes.expense);
                 setShowSidebar(!ShowSidebar);
+                closeSidebar();
               }}
               fontSize="15px"
               className="lighter mx-1 my-1  pointer text-center"

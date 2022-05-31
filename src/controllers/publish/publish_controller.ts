@@ -59,19 +59,21 @@ export class publishController {
     }
   }
   getPublishes(
-    body: { PageNumber: number; PageSize: number , ResearchId: number },
+    body: { PageNumber: number; PageSize: number, ResearchId: number, SearchParameter: string },
     action: (res: GetAllPublishesResult) => any,
     error: (res: any) => any
   ) {
-    this.remote.getPublishes(
-      body,
-      (res) => {
-        action(res.result!);
-      },
-      (err) => {
-        error(err);
-      }
-    );
+    if (body.ResearchId >= 0) {
+      this.remote.getPublishes(
+        body,
+        (res) => {
+          action(res.result!);
+        },
+        (err) => {
+          error(err);
+        }
+      );
+    }
   }
   getPublishById(
     body: { publicationId: number },
@@ -82,7 +84,7 @@ export class publishController {
       (res) => {
         action(res.result!);
       },
-      (err) => {}
+      (err) => { }
     );
   }
   createDraft(
@@ -107,7 +109,7 @@ export class publishController {
     );
   }
   addUser(
-    body: { publicationId: number; researchId: number},
+    body: { publicationId: number; researchId: number },
     action: (res: AddUserResResult) => any,
     error: (res: any) => any
   ) {
@@ -148,7 +150,7 @@ export class publishController {
     );
   }
   removeDraft(
-    body: { draftId: number},
+    body: { draftId: number },
     action: (res: boolean) => any,
     error: (res: any) => any
   ) {

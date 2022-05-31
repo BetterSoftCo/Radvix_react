@@ -77,7 +77,7 @@ export class DataController {
     }
   }
   getAllData(
-    body: { PageSize: number; PageNumber: number },
+    body: { PageSize: number; PageNumber: number , SearchParameter:string},
     action: (res: GetAllDataResResult) => any,
     error: (res: any) => any
   ) {

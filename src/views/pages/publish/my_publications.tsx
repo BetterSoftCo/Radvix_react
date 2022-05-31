@@ -1,6 +1,8 @@
 import React from "react";
 import ReactPaginate from "react-paginate";
+import { RouteComponentProps, withRouter } from "react-router";
 import { publishController } from "../../../controllers/publish/publish_controller";
+import { AppRoutes } from "../../../core/constants";
 import { store } from "../../../data/store";
 import { MainButton, MainButtonType } from "../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../components/circle_icon";
@@ -8,7 +10,7 @@ import { InputIcon } from "../../components/search_box";
 import { SelectComponent } from "../../components/select_input";
 import MyPublicationsTable from "./component/my_publications_tbl";
 
-export class MyPublications extends React.Component {
+ class MyPublications extends React.Component<RouteComponentProps> {
   RoleUser = store.getState().userRole;
   controller = new publishController();
   state = {
@@ -16,21 +18,22 @@ export class MyPublications extends React.Component {
     PageNumber: 1,
     PageSize: 10,
     PageCount: 0,
-    TotalCount:0,
-    ResearchId:store.getState().ResearchId
+    TotalCount: 0,
+    ResearchId: store.getState().ResearchId,
+    Search: ''
   };
-  getPublish(PageNumber: number, PageSize: number , ResearchId : number) {
-    this.controller.getPublishes({ PageNumber: PageNumber, PageSize: PageSize , ResearchId : ResearchId}, res => {
+  getPublish(PageNumber: number, PageSize: number, ResearchId: number) {
+    this.controller.getPublishes({ PageNumber: PageNumber, PageSize: PageSize, ResearchId: ResearchId, SearchParameter: this.state.Search }, res => {
       this.setState({
         Publishes: res.publications,
         PageCount: Math.ceil(res.count! / this.state.PageSize),
-        TotalCount:res.count
+        TotalCount: res.count
       })
 
     }, err => console.log(err)
     )
   }
-  
+
   handelChangePageNumber(
     e: { selected: number }
   ) {
@@ -45,16 +48,16 @@ export class MyPublications extends React.Component {
     this.setState({
       PageSize: e.value
     });
-    this.getPublish(this.state.PageNumber, e.value , store.getState().ResearchId)
+    this.getPublish(this.state.PageNumber, e.value, store.getState().ResearchId)
   }
 
   componentDidMount() {
-    this.getPublish(this.state.PageNumber, this.state.PageSize , store.getState().ResearchId)
+    this.getPublish(this.state.PageNumber, this.state.PageSize, store.getState().ResearchId)
     store.subscribe(() => {
-      this.getPublish(this.state.PageNumber, this.state.PageSize , store.getState().ResearchId)
+      this.getPublish(this.state.PageNumber, this.state.PageSize, store.getState().ResearchId)
     })
   }
-  
+
   render() {
     return (
       <div className="container-fluid research">
@@ -77,7 +80,13 @@ export class MyPublications extends React.Component {
                     <img src="/images/icons/search_box_icon.svg" alt="" />
                   }
                   width="100%"
-                  placeholder="Search..."  TopPosition="15%"
+                  placeholder="Search..." TopPosition="15%"
+                  onChange={(e) => {
+                    this.setState({
+                      Search: e.target.value,
+                    });
+                    this.getPublish(this.state.PageNumber, this.state.PageSize , this.state.ResearchId)
+                  }}
                 ></InputIcon>
               </div>
               <div className="right  d-flex justify-content-between align-items-baseline">
@@ -87,6 +96,9 @@ export class MyPublications extends React.Component {
                   borderRadius="24px"
                   fontSize="14px"
                   className="my-2 mx-2"
+                  onClick={()=>{
+                    this.props.history.push(AppRoutes.publish_new)
+                  }}
                 ></MainButton>
                 <SelectComponent
                   width="63px"
@@ -156,3 +168,4 @@ export class MyPublications extends React.Component {
     );
   }
 }
+export default withRouter(MyPublications)

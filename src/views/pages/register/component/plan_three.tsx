@@ -5,6 +5,7 @@ import { RegisterContext } from "../register";
 interface PropsPlanThree {
   handelRegisterCallBack: () => void;
   loading: boolean;
+  step:number
 }
 const PlanThree: React.FC<PropsPlanThree & RouteComponentProps> = (props) => {
   const nextStep = useContext(RegisterContext);
@@ -13,7 +14,7 @@ const PlanThree: React.FC<PropsPlanThree & RouteComponentProps> = (props) => {
   };
   return (
     <Fragment>
-      <div className="form-register">
+      <div  className={props.step === 3 ? 'form-register' : 'd-none'}>
         <div className="header-form">
           <img
             src="/images/icons/toggle_icon_register.svg"

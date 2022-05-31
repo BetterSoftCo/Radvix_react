@@ -331,7 +331,11 @@ class TeamPageEdit extends React.Component<RouteComponentProps<RouteParams>> {
                       ? "Add Members To This Team:"
                       : "Add Members To This subteam::"
                   }
-                  optional=""
+                  inValid={this.validator.message(
+                    "Members To This Team",
+                    this.state.addedUsersId,
+                    "required"
+                  )}
                   onChange={(e) => {
                     this.handelChangeSelect("addedUsersId", e);
                   }}

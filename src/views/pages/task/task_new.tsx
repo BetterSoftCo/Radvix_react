@@ -91,7 +91,9 @@ class TaskPageNew extends React.Component<RouteComponentProps> {
   }
   addExternalUrl() {
     let Url = [...this.state.ExternalUrl];
-    Url.push(this.state.External);
+    if (this.state.External.length > 2) {
+      Url.push(this.state.External);
+    }
     this.setState({
       ExternalUrl: Url,
       External: "",
@@ -319,7 +321,6 @@ class TaskPageNew extends React.Component<RouteComponentProps> {
                     placeholder="Click to see the list…"
                     label=" Choose The parent Subtask"
                     popQuestion=" Choose The parent Subtask"
-                    optional="optional"
                     isMulti={false}
                     onChange={(e) => {
                       this.handelChangeSelectTask(e);

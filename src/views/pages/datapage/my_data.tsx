@@ -17,6 +17,7 @@ type StateType = {
   PageSize: number;
   PageCount: number;
   TotalCount: number;
+  Search:string
 };
 class MyDataCollection extends React.Component<RouteComponentProps> {
   RoleUser = store.getState().userRole;
@@ -28,6 +29,7 @@ class MyDataCollection extends React.Component<RouteComponentProps> {
     PageSize: 10,
     PageCount: 0,
     TotalCount: 0,
+    Search: ""
   };
   componentDidMount() {
     this.GetDatas(this.state.PageNumber, this.state.PageSize);
@@ -37,7 +39,7 @@ class MyDataCollection extends React.Component<RouteComponentProps> {
   }
   GetDatas(PageNumber: number, PageSize: number) {
     this.controller.getAllData(
-      { PageNumber, PageSize },
+      { PageNumber, PageSize , SearchParameter:this.state.Search },
       (res) => {
         const myDatas = res.dataLists?.filter(item=>{
          return item.appTaskData?.filter(task=>task.creatorUserId === this.local.getUserId())
@@ -79,6 +81,12 @@ class MyDataCollection extends React.Component<RouteComponentProps> {
                   width="100%"
                   placeholder="Search..."
                   TopPosition="15%"
+                  onChange={(e) => {
+                    this.setState({
+                      Search: e.target.value,
+                    });
+                    this.GetDatas(this.state.PageNumber, this.state.PageSize)
+                  }}
                 ></InputIcon>
               </div>
               <div className="right w-50 d-flex justify-content-end align-items-center">

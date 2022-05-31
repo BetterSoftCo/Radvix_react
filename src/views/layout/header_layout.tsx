@@ -1,4 +1,3 @@
-
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/alt-text */
@@ -23,6 +22,7 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
   const [PageSize, setPageSize] = useState<number>(10);
   const [PageCount, setPageCount] = useState<number>(0);
   const [TotalCount, setTotalCount] = useState<number>(0);
+  const [showNotif, setShowNotif] = useState(false);
   const [ProgressTimeline, setProgressTimeline] = useState<number>(0);
   const [ResearchName, setResearchName] = useState<string>(
     "Choose your research"
@@ -31,6 +31,10 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
   const local = new LocalDataSources();
   const RoleUser = store.getState().userRole;
   useEffect(() => {
+    const notif = localStorage.getItem("newResearch");
+      if (notif) {
+        setShowNotif(JSON.parse(notif));
+      }
     GetResearch(PageNumber, PageSize);
     if (store.getState().ResearchId >= 0) {
       timelineProgress();
@@ -52,7 +56,7 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
   const GetResearch = (PageNumber: number, PageSize: number) => {
     if (local.logedin()) {
       controller.getResearches(
-        { PageNumber: PageNumber, PageSize: PageSize },
+        { PageNumber: PageNumber, PageSize: PageSize, SearchParameter: "" },
         (res) => {
           setListResearch(res.researchesList!);
           setPageCount(Math.ceil(res.count! / PageSize));
@@ -72,7 +76,6 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
   };
   const changeResearch = (value: string) => {
     setResearchName(value);
-    document.getElementById("close_modal")?.click();
   };
   const timelineProgress = () => {
     controller.getTimeline(
@@ -143,7 +146,9 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
                             src="/images/icons/arrow_btn_header.svg"
                             alt=""
                           />
-                          <span className="notif mx-2"></span>
+                          {showNotif ? (
+                            <span className="notif mx-2"></span>
+                          ) : null}
                         </div>
                       </button>
                     </div>
@@ -196,6 +201,11 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
                     type={MainButtonType.dark}
                     borderRadius="24px"
                     fontSize="11px"
+                    onClick={() => {
+                      if (RoleUser.isRole() === "Admin") {
+                        props.history.push(AppRoutes.admin_dashboard);
+                      }
+                    }}
                   ></MainButton>
                 </div>
                 <a
@@ -223,14 +233,16 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
         className="modal fade"
         id="exampleModal"
         tabIndex={-1}
-        aria-labelledby="exampleModalLabel"
         aria-hidden="true"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        aria-labelledby="staticBackdropLabel"
       >
         <div className="modal-dialog">
           <div className="col-12 modal-content">
             <button
               type="button"
-              className="btn-close d-none"
+              className="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
               id="close_modal"
@@ -273,7 +285,10 @@ const Header: React.FC<IHeader & RouteComponentProps> = (props) => {
                   { name: "Research Name", center: false },
                   { name: "Status", center: true },
                 ]}
-                changeResearch={changeResearch}
+                changeResearch={(e) => {
+                  changeResearch(e);
+                  document.getElementById("close_modal")?.click();
+                }}
                 role={RoleUser}
               ></AcordienTableResearchHeader>
 

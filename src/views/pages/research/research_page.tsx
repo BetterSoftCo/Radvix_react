@@ -12,7 +12,8 @@ type StateType = {
   PageNumber: number,
   PageSize: number,
   PageCount: number,
-  TotalCount:number
+  TotalCount: number,
+  Search: string
 }
 export class ResearchPage extends React.Component {
   controller = new ResearchController();
@@ -22,17 +23,18 @@ export class ResearchPage extends React.Component {
     PageNumber: 1,
     PageSize: 10,
     PageCount: 0,
-    TotalCount:0
+    TotalCount: 0,
+    Search: ""
   };
   componentDidMount() {
     this.GetResearch(this.state.PageNumber, this.state.PageSize)
   }
   GetResearch(PageNumber: number, PageSize: number) {
-    this.controller.getResearches({ PageNumber: PageNumber, PageSize: PageSize }, res => {
+    this.controller.getResearches({ PageNumber: PageNumber, PageSize: PageSize, SearchParameter: this.state.Search }, res => {
       this.setState({
         Researches: res.researchesList,
         PageCount: Math.ceil(res.count! / this.state.PageSize),
-        TotalCount:res.count
+        TotalCount: res.count
       })
 
     }, err => console.log(err)
@@ -69,6 +71,12 @@ export class ResearchPage extends React.Component {
                   }
                   width="100%"
                   placeholder="Search..." TopPosition="15%"
+                  onChange={(e) => {
+                    this.setState({
+                      Search: e.target.value,
+                    });
+                    this.GetResearch(this.state.PageNumber, this.state.PageSize)
+                  }}
                 ></InputIcon>
               </div>
               <div className="right w-50 d-flex justify-content-end align-items-center">

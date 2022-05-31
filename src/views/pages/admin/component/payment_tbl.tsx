@@ -1,9 +1,11 @@
+import moment from "moment";
 import React from "react";
+import { PaymentList } from "../../../../data/models/responses/admin/payments_res";
 import { MainButton, MainButtonType } from "../../../components/button";
 import { CircleIcon, ThemeCircleIcon } from "../../../components/circle_icon";
 interface TableComponentProp {
   Heading: any[];
-  Items: any[];
+  Items: PaymentList[];
 }
 export const PaymentsTbl: React.FC<TableComponentProp> = ({
   Heading,
@@ -28,13 +30,13 @@ export const PaymentsTbl: React.FC<TableComponentProp> = ({
         <tbody>
           {Items.map((head, index) => (
             <tr key={index}>
-              <td>{head.name}</td>
-              <td className="text-center">{head.Institution}</td>
-              <td className="text-center">{head.Category}</td>
-              <td className="text-center">{head.Eqiups}</td>
+              <td>{head.title}</td>
+              <td className="text-center">{moment(head.payDate).format("YYYY/MM/DD")}</td>
+              <td className="text-center">{head.user.firstName+ ' ' + head.user.lastName}</td>
+              <td className="text-center">{head.user.email}</td>
               <td className="text-center">
                 <MainButton
-                  children={head.status}
+                  children={head.status.isStatus()}
                   type={MainButtonType.dark}
                   borderRadius="24px"
                   fontSize="14px"

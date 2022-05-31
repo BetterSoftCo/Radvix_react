@@ -45,7 +45,7 @@ const DiscusstionListTable: React.FC<
                 ></MainButton>
               </td>
               <td>
-                <div className="col d-flex justify-content-between align-items-center">
+                <div className="col d-flex justify-content-end align-items-center">
                   <CircleIcon
                     width="26px"
                     height="26px"

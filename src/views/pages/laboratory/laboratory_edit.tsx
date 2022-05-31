@@ -168,7 +168,9 @@ export class LaboratoryPageEdit extends React.Component<
   }
   addExternalUrl() {
     let Url = [...this.state.ExternalUrl];
-    Url.push(this.state.External);
+    if (this.state.External.length > 2) {
+      Url.push(this.state.External);
+    }
     this.setState({
       ExternalUrl: Url,
       External: "",
@@ -206,8 +208,8 @@ export class LaboratoryPageEdit extends React.Component<
       this.controller.updateLaboratory(
         body,
         (res) => {
-          if (this.state.files.length || this.state.ExternalUrl.length) {
-            this.handelUpload(res.id);
+          if (this.state.files.length > 0) {
+            this.handelUpload(parseInt(this.props.match.params.id));
           } else {
             this.setState({
               loading: false,
@@ -215,7 +217,7 @@ export class LaboratoryPageEdit extends React.Component<
             this.props.history.push(
               `${AppRoutes.profile_laboratory.replace(
                 ":id",
-                res.id?.toString() ?? ""
+                parseInt(this.props.match.params.id)?.toString() ?? ""
               )}`
             );
           }
@@ -468,7 +470,7 @@ export class LaboratoryPageEdit extends React.Component<
                         <p>Or drag and drop files here</p>
                       </div>
                       <aside>
-                        
+
                         <ul>{files}</ul>
                       </aside>
                     </section>

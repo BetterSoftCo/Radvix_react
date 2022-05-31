@@ -31,12 +31,12 @@ export class RemoteTask {
       });
   }
   getTasks(
-    body: { researchId: number; PageSize: number; PageNumber: number },
+    body: { researchId: number; PageSize: number; PageNumber: number , SearchParameter:string },
     action: (res: GetAllTasks) => any,
     error: (res: any) => any
   ) {
     return HTTP.get(
-      `/AppTask?ResearchId=${body.researchId}&PageSize=${body.PageSize}&PageNumber=${body.PageNumber}`
+      `/AppTask?ResearchId=${body.researchId}&PageSize=${body.PageSize}&PageNumber=${body.PageNumber}&SearchParameter=${body.SearchParameter}`
     )
       .then((res) => action(res.data))
       .catch((err) => {

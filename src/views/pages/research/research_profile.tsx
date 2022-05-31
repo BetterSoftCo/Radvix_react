@@ -7,7 +7,7 @@ import { IconTextRow } from "../../components/icon_text_horizontal";
 import { AccessPermition, Theme, UserRoles } from "../../../core/utils";
 import { BoxListScroll } from "../../components/box_list_scroll";
 import { RouteComponentProps, withRouter } from "react-router";
-import { AppRoutes } from "../../../core/constants";
+import { AppConstants, AppRoutes } from "../../../core/constants";
 import { GetResearchByidResResult } from "../../../data/models/responses/research/research_by_id_res";
 import { ResearchController } from "../../../controllers/research/research_controller";
 import "../../../core/number_extentions";
@@ -191,7 +191,13 @@ class ResearchPageProfile extends React.Component<
                             width={20}
                             height={20}
                           />{" "}
-                          {item.title}
+                          <a
+                            href={AppConstants.base_url_image + item.name}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {item.title}
+                          </a>
                         </li>
                       ))}
                     <li>
@@ -207,7 +213,7 @@ class ResearchPageProfile extends React.Component<
                               fontSize="14px"
                               backgroundColor="#F5F5F5"
                               color="#096BFF"
-                              className="col-8 text-truncate" 
+                              className="col-8 text-truncate"
                               title={item.externalUrl}
                             ></MainButton>
                           </div>

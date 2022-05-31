@@ -12,10 +12,14 @@ import SimpleReactValidator from "simple-react-validator";
 import { publishController } from "../../../controllers/publish/publish_controller";
 import { AppRoutes } from "../../../core/constants";
 import { EditPublishReq } from "../../../data/models/requests/publish/update_publish_req";
+import { UserPublish } from "../../../data/models/responses/publish/publish_by_id_res";
 interface RouteParams {
   id: string;
 }
-class PublishPageEdit extends React.Component<RouteComponentProps<RouteParams>> {
+
+class PublishPageEdit extends React.Component<
+  RouteComponentProps<RouteParams>
+> {
   RoleUser = store.getState().userRole;
   controller = new publishController();
   date = new Date();
@@ -29,50 +33,17 @@ class PublishPageEdit extends React.Component<RouteComponentProps<RouteParams>> 
   });
   state = {
     id: 0,
-    name: '',
+    name: "",
     categoryId: 0,
     startDate: new Date(),
     endDate: new Date(),
     users: [],
-    draftUploader: '',
+    draftUploader: "",
     loading: false,
     listMembers: [],
     categories: [],
   };
-  
-  handleChange(target: string, val: any) {
-    this.setState({
-      [target]: val,
-    });
-  }
-  handelChangeSelectMultiple(e: Array<{ label: string; value: number }>, target: string) {
-    const user_Id = e.map((item) => item.value);
-    const drafList = e.map((item) => item);
-    this.setState({
-      [target]: user_Id,
-      drafList: drafList,
-    })
-  }
-
-  handelChangeSelect(
-    target: string,
-    e: { label: string; value: number }
-  ) {
-    this.setState({ [target]: e.value });
-  }
-  componentDidMount() {
-    this.controller.getPublishById(
-      { publicationId: parseInt(this.props.match.params.id) },
-      (res) => {
-        this.setState({
-          name: res.name,
-          startDate: new Date(),
-          endDate: new Date(),
-          users: res.users,
-
-        });
-      }
-    );
+  GetSearchPublish() {
     this.controller.SearchPublish(res => {
       this.setState({
         listMembers: res.users?.map(item => {
@@ -84,6 +55,52 @@ class PublishPageEdit extends React.Component<RouteComponentProps<RouteParams>> 
       })
     }, err => { })
   }
+  handleChange(target: string, val: any) {
+    this.setState({
+      [target]: val,
+    });
+  }
+  handelChangeSelectMultiple(
+    e: Array<{ label: string; value: number }>,
+    target: string
+  ) {
+    const user_Id = e.map((item) => item.value);
+    const drafList = e.map((item) => item);
+    this.setState({
+      [target]: user_Id,
+      drafList: drafList,
+    });
+  }
+
+  handelChangeSelect(target: string, e: { label: string; value: number }) {
+    this.setState({ [target]: e.value });
+  }
+  componentDidMount() {
+    this.controller.getPublishById(
+      { publicationId: parseInt(this.props.match.params.id) },
+      (res) => {
+        this.setState({
+          name: res.name,
+          startDate: new Date(),
+          endDate: new Date(),
+          users: res.users,
+        });
+      }
+    );
+    this.controller.SearchPublish(
+      (res) => {
+        this.setState({
+          listMembers: res.users?.map((item) => {
+            return { label: item.firstName, value: item.id };
+          }),
+          categories: res.categories?.map((item) => {
+            return { label: item.title, value: item.id };
+          }),
+        });
+      },
+      (err) => {}
+    );
+  }
   UpdatePublish() {
     if (this.validator.allValid()) {
       const body: EditPublishReq = {
@@ -92,7 +109,9 @@ class PublishPageEdit extends React.Component<RouteComponentProps<RouteParams>> 
         endDate: this.state.endDate,
         name: this.state.name,
         categoryId: this.state.categoryId,
-        addedUsers:this.state.users
+        addedUsers: this.state.users.map((item: UserPublish) => {
+          return item.id!;
+        }),
       };
       this.setState({
         loading: true,
@@ -103,9 +122,7 @@ class PublishPageEdit extends React.Component<RouteComponentProps<RouteParams>> 
           this.setState({
             loading: false,
           });
-          this.props.history.push(
-            AppRoutes.publish
-          );
+          this.props.history.push(AppRoutes.publish);
         },
         (err) => {
           this.setState({
@@ -124,7 +141,13 @@ class PublishPageEdit extends React.Component<RouteComponentProps<RouteParams>> 
         <div className="row"></div>
         <div className="col-12 box-content p-3">
           <h5 className="b-title d-flex align-items-center">
-            <span onClick={() => { window.history.back() }} className="backPage"></span> Edit Publication/Presentation
+            <span
+              onClick={() => {
+                window.history.back();
+              }}
+              className="backPage"
+            ></span>{" "}
+            Edit Publication/Presentation
           </h5>
           <div className="form row">
             <div className="col-md-6 left">
@@ -214,7 +237,6 @@ class PublishPageEdit extends React.Component<RouteComponentProps<RouteParams>> 
               ></BoxAlert>
             </div>
             <div className="col-12 d-flex justify-content-center align-items-center my-4">
-              
               <MainButton
                 type={MainButtonType.dark}
                 children={"Edit"}
@@ -224,7 +246,7 @@ class PublishPageEdit extends React.Component<RouteComponentProps<RouteParams>> 
                 minHeight="43px"
                 minWidth="136px"
                 onClick={() => {
-                  this.UpdatePublish()
+                  this.UpdatePublish();
                 }}
                 loading={this.state.loading}
               ></MainButton>
@@ -235,4 +257,4 @@ class PublishPageEdit extends React.Component<RouteComponentProps<RouteParams>> 
     );
   }
 }
-export default withRouter(PublishPageEdit)
+export default withRouter(PublishPageEdit);

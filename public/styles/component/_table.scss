@@ -5,8 +5,14 @@
   margin-top: 1rem;
   .TopTableBox {
     .left {
+      @media (max-width: 767.98px) {
+        width: 100% !important;
+      }
       h6 {
         font-size: 16px;
+        @media (max-width: 767.98px) {
+          width: 100% !important;
+        }
       }
       .InputComponentStyle {
         height: 39px;
@@ -135,6 +141,9 @@
     min-height: 65px;
     font-size: 12px;
     .sub-accordian-parent {
+      @media (max-width: 991.98px) {
+        width: 9%;
+      }
       display: flex;
       justify-content: end;
       align-items: center;

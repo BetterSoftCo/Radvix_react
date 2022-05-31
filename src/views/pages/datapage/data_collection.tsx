@@ -16,6 +16,7 @@ type StateType = {
   PageSize: number;
   PageCount: number;
   TotalCount: number;
+  Search: string
 };
 class DataCollection extends React.Component<RouteComponentProps> {
   RoleUser = store.getState().userRole;
@@ -26,6 +27,7 @@ class DataCollection extends React.Component<RouteComponentProps> {
     PageSize: 10,
     PageCount: 0,
     TotalCount: 0,
+    Search: ''
   };
   componentDidMount() {
     this.GetDatas(this.state.PageNumber, this.state.PageSize);
@@ -35,7 +37,7 @@ class DataCollection extends React.Component<RouteComponentProps> {
   }
   GetDatas(PageNumber: number, PageSize: number) {
     this.controller.getAllData(
-      { PageNumber, PageSize },
+      { PageNumber, PageSize, SearchParameter: this.state.Search },
       (res) => {
         this.setState({
           Datas: res.dataLists,
@@ -64,7 +66,7 @@ class DataCollection extends React.Component<RouteComponentProps> {
         <div className="row"></div>
         <div className="col-12">
           <div className="TableBox">
-            <div className="TopTableBox d-flex justify-content-between align-items-center mb-3">
+            <div className="TopTableBox d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3">
               <div className="left d-flex w-50 align-items-baseline">
                 <h6 style={{ width: "35%" }}>Data Collection</h6>
                 <InputIcon
@@ -73,9 +75,15 @@ class DataCollection extends React.Component<RouteComponentProps> {
                   }
                   width="100%"
                   placeholder="Search..." TopPosition="15%"
+                  onChange={(e) => {
+                    this.setState({
+                      Search: e.target.value,
+                    });
+                    this.GetDatas(this.state.PageNumber, this.state.PageSize)
+                  }}
                 ></InputIcon>
               </div>
-              <div className="right w-50 d-flex justify-content-end align-items-center">
+              <div className="right  d-flex justify-content-between align-items-baseline">
                 <MainButton
                   children="New Data"
                   type={MainButtonType.dark}
@@ -114,7 +122,7 @@ class DataCollection extends React.Component<RouteComponentProps> {
 
             <div className="d-flex justify-content-between align-items-baseline">
               <div className="d-flex justify-content-end flex-fill">
-              <ReactPaginate
+                <ReactPaginate
                   previousLabel={
                     <CircleIcon
                       width="24px"

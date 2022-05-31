@@ -136,7 +136,9 @@ class UploadNewDraft extends React.Component<RouteComponentProps<RouteParams>> {
   }
   addExternalUrl() {
     let Url = [...this.state.ExternalUrl];
-    Url.push(this.state.External);
+    if (this.state.External.length > 2) {
+      Url.push(this.state.External);
+    }
     this.setState({
       ExternalUrl: Url,
       External: "",

@@ -21,7 +21,7 @@ class MemberPageProfile extends React.Component<
 > {
   RoleUser = store.getState().userRole;
   controller = new MemberController();
-  local = new LocalDataSources()
+  local = new LocalDataSources();
   state: GetMemberByIDResResult = {
     profileImage: "",
     firstName: "",
@@ -42,12 +42,21 @@ class MemberPageProfile extends React.Component<
     id: "",
     major: "",
     zipCode: "",
-    phoneNumber: ""
+    phoneNumber: "",
+    billingEmail: "",
+    billingAddress: "",
+    cardInfomation: "",
+    cardExpireDate: "",
+    cardCVC: "",
+    nameOnCard: "",
+    institution: "",
+    companyName: ""
   };
   componentDidMount() {
     this.controller.getMember(
       {
         userId: this.props.match.params.id,
+        token: localStorage.getItem("token") ?? "",
       },
       (res) => {
         this.setState({
@@ -99,19 +108,27 @@ class MemberPageProfile extends React.Component<
                   backgroundColor="#474747"
                   fontSize="10px"
                   color="#ffff"
-                  className="mx-4"
+                  className="mx-4 pointer"
+                  onClick={() => {
+                    this.props.history.push(
+                      `${AppRoutes.member_user_edit.replace(
+                        ":id",
+                        this.props.match.params.id
+                      )}`
+                    );
+                  }}
                 >
-                  <i className="fas fa-history"></i>
+                 <img src="/images/icons/edit.svg" alt="radvix" />
                 </CircleIcon>
               ) : null}
             </h5>
-            <div className="d-flex justify-content-around align-items-center w-25">
-              <MainButton
+            <div className="d-flex justify-content-end align-items-center w-25">
+              {/* <MainButton
                 children="Contact Lisa"
                 type={MainButtonType.dark}
                 borderRadius="24px"
                 fontSize="14px"
-              ></MainButton>
+              ></MainButton> */}
               <MainButton
                 children="Edit My Profile"
                 type={MainButtonType.dark}
@@ -185,7 +202,7 @@ class MemberPageProfile extends React.Component<
                   </ul>
                 </div>
               </div>
-              <div className="row border-bottom">
+              {/* <div className="row border-bottom">
                 <h6 className="col-5 t-title mb-0 border-b-l">Public Resume</h6>
                 <div className="col-7 t-desc border-b-r">
                   <ul className="file-list">
@@ -213,7 +230,7 @@ class MemberPageProfile extends React.Component<
                     </li>
                   </ul>
                 </div>
-              </div>
+              </div> */}
             </div>
             <div className="col-md-6">
               <div className="teams mb-3">
