@@ -35,7 +35,7 @@ const Plans: React.FC<Iprops & RouteComponentProps> = (props) => {
   return (
     <Fragment>
       <div className={props.step === 0 ? '' : 'd-none'}>
-      <div>
+      <div className="Annual">
         <h4>
           Please pick the plan which fits your research projects and team size:
         </h4>

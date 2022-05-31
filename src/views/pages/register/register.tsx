@@ -144,7 +144,7 @@ const RegisterPage: React.FC<RouteComponentProps> = (props) => {
             }}
           />
           <PlanOne SetPaymentCallBack={SetPayment} step={state} />
-          <PlanTwo SetPaymentCallBack={setCartInfo} step={state}  />
+          <PlanTwo SetPaymentCallBack={setCartInfo} SubscriptionID={SubscriptionID} step={state}  />
           <PlanThree
             handelRegisterCallBack={handelRegister}
             loading={loading}
