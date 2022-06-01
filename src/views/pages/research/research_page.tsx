@@ -110,7 +110,7 @@ export class ResearchPage extends React.Component {
 
             <div className="d-flex justify-content-between align-items-baseline">
               <div className="d-flex justify-content-end flex-fill">
-                <ReactPaginate
+                {this.state.PageCount > 1 ? <ReactPaginate
                   previousLabel={
                     <CircleIcon
                       width="24px"
@@ -141,7 +141,7 @@ export class ResearchPage extends React.Component {
                   }}
                   containerClassName={"pagination"}
                   activeClassName={"active"}
-                />
+                /> : null}
               </div>
               <div className="d-flex justify-content-end flex-fill">
                 <p className="text-right mb-0 ">Total Results: {this.state.TotalCount}</p>
