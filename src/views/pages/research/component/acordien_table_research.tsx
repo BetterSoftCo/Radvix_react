@@ -114,12 +114,7 @@ const AcordienTableResearch: React.FC<
                       color="#ffff"
                       className="pointer mx-1"
                       onClick={() => {
-                        props.history.push(
-                          `${AppRoutes.profile_research.replace(
-                            ":id",
-                            head.id?.toString() ?? ""
-                          )}`
-                        );
+                        props.history.push(AppRoutes.timeline_research);
                       }}
                     >
                       <i className="fas fa-history"></i>

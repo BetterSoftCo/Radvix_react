@@ -9,7 +9,7 @@ const local = new LocalDataSources();
 const companyName = local.getUserInfo().institution
 export class AppRoutes {
   static splash: string = "/";
-  static dashboard: string = `/dashboard/${companyName}`;
+  static dashboard: string = `/dashboard/${companyName}/`;
   static login: string = "/login";
   static research: string = `/dashboard/${companyName}/research/`;
   static new_research: string = `/dashboard/${companyName}/research/new/`;

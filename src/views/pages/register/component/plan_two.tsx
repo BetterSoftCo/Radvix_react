@@ -1,6 +1,8 @@
-import React, { Fragment, useContext, useRef, useState } from "react";
+import React, { Fragment, useContext, useEffect, useRef, useState } from "react";
 import { RouteComponentProps, withRouter } from "react-router";
 import SimpleReactValidator from "simple-react-validator";
+import { RegisterController } from "../../../../controllers/register/research_controller";
+import { SubscriptionResResult } from "../../../../data/models/responses/register/subscription_res";
 import { MainButton, MainButtonType } from "../../../components/button";
 import { InputComponent, InputType } from "../../../components/inputs";
 import { InputIcon } from "../../../components/search_box";
@@ -10,7 +12,8 @@ import { RegisterContext } from "../register";
 // }
 interface PropsPlanOne {
   SetPaymentCallBack: (pay: any) => void;
-  step:number
+  step:number,
+  SubscriptionID:number
 }
 const PlanTwo: React.FC<PropsPlanOne & RouteComponentProps> = (props) => {
   const [, forceUpdate] = useState(0);
@@ -20,7 +23,8 @@ const PlanTwo: React.FC<PropsPlanOne & RouteComponentProps> = (props) => {
   const [cardCVC, setcardCVC] = useState("");
   const [nameOnCard, setnameOnCard] = useState("");
   const [zipCode, setzipCode] = useState("");
- 
+  const controller = new RegisterController();
+  const [Price, setPrice] = useState(0);
   const payment = () => {
     const formValid = Validator.current.allValid();
     if (!formValid) {
@@ -37,6 +41,25 @@ const PlanTwo: React.FC<PropsPlanOne & RouteComponentProps> = (props) => {
       });
       nextStep(3);
     }
+  };
+  useEffect(()=>{
+    getSubscription();
+  },[])
+  const getSubscription = () => {
+    controller.getSubscription(
+      {
+        PageNumber: 1,
+        PageSize: 10,
+        SearchParameter: "",
+      },
+      (res) => {
+          const priceSub = res.filter((item)=>{
+            return item.id === props.SubscriptionID
+          })[0].price
+          setPrice(priceSub)
+      },
+      (err) => console.log(err)
+    );
   };
   const Validator = useRef(
     new SimpleReactValidator({
@@ -201,7 +224,7 @@ const PlanTwo: React.FC<PropsPlanOne & RouteComponentProps> = (props) => {
                 </div>
                 <div className="item d-flex justify-content-between justify-content-baseline mt-3">
                   <span className="d-flex align-items-center">
-                    Total: $119.88
+                    Total: ${Price}
                   </span>
                   <MainButton
                     type={MainButtonType.dark}

@@ -24,6 +24,7 @@ export interface UserSigninResult {
   status?: boolean;
   invitationNote?: string;
   token?: string;
+  companyName?:string
 }
 
 export interface Location {

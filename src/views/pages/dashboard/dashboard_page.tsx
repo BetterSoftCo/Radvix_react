@@ -82,8 +82,8 @@ class DashboardPage extends React.Component<RouteComponentProps> {
   componentDidMount() {
     if (!this.local.logedin()) {
       this.props.history.push(AppRoutes.login);
-    }
-    this.GetDashboardReport();
+    }else{
+      this.GetDashboardReport();
     if (store.getState().ResearchId >= 0) {
       this.GetResearch(
         this.state.ResearchesPageNumber,
@@ -102,6 +102,8 @@ class DashboardPage extends React.Component<RouteComponentProps> {
         this.GetDatas(this.state.DatasPageNumber, this.state.DatasPageSize);
       }
     });
+    }
+    
   }
   GetResearch(PageNumber: number, PageSize: number) {
     if (this.local.logedin()) {

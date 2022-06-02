@@ -105,6 +105,9 @@ class ResearchPageProfile extends React.Component<
                   fontSize="10px"
                   color="#ffff"
                   className="mx-1"
+                  onClick={() => {
+                    this.props.history.push(AppRoutes.timeline_research);
+                  }}
                 >
                   <i className="fas fa-history"></i>
                 </CircleIcon>
@@ -206,16 +209,22 @@ class ResearchPageProfile extends React.Component<
                         .filter((item) => item.externalUrl)
                         .map((item) => (
                           <div key={item.id}>
-                            <MainButton
-                              children={item.externalUrl}
-                              type={MainButtonType.dark}
-                              borderRadius="24px"
-                              fontSize="14px"
-                              backgroundColor="#F5F5F5"
-                              color="#096BFF"
-                              className="col-8 text-truncate"
-                              title={item.externalUrl}
-                            ></MainButton>
+                            <a
+                              href={item.externalUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <MainButton
+                                children={item.externalUrl}
+                                type={MainButtonType.dark}
+                                borderRadius="24px"
+                                fontSize="14px"
+                                backgroundColor="#F5F5F5"
+                                color="#096BFF"
+                                className="col-8 text-truncate"
+                                title={item.externalUrl}
+                              ></MainButton>
+                            </a>
                           </div>
                         ))}
                     </li>
